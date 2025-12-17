@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    yandex: '', // Сюда код верификации Яндекс.Вебмастер
+    yandex: 'cd200b561d2e01f0', // Сюда код верификации Яндекс.Вебмастер
     google: '', // Сюда код верификации Google Search Console
   },
 };
