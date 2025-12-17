@@ -2,7 +2,7 @@ export default function JsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      /* 1. ГЛАВНЫЙ БРЕНД (Федеральная сеть) - Опорная точка */
+      /* 1. ГЛАВНЫЙ БРЕНД */
       {
         "@type": "Organization",
         "@id": "https://cyberxcommunity.ru/#brand",
@@ -14,13 +14,13 @@ export default function JsonLd() {
         ]
       },
 
-      /* 2. ВАШ ЛОКАЛЬНЫЙ ФИЛИАЛ */
+      /* 2. ЛОКАЛЬНЫЙ ФИЛИАЛ */
       {
         "@type": "InternetCafe",
         "@id": "https://cyberx-novokosino.ru/#store",
         "url": "https://cyberx-novokosino.ru/",
         "name": "Компьютерный клуб CyberX Новокосино",
-        "description": "Топовый кибер клуб в Новокосино 24/7. Мощные ПК (RTX 5070, 400Гц), автосимуляторы Sim Racing, PS5 Lounge. Гейминг нового уровня.",
+        "description": "Топовый кибер клуб в Новокосино 24/7. Мощные ПК (RTX 5070, 400Гц), автосимуляторы Sim Racing, PS5 Lounge.",
         "image": "https://cyberx-novokosino.ru/og-image.jpg",
         "telephone": "+79851289538",
         "email": "info@cyberx-novokosino.ru",
@@ -46,11 +46,9 @@ export default function JsonLd() {
           "opens": "00:00",
           "closes": "23:59"
         },
-        /* !!! КЛЮЧЕВАЯ СВЯЗЬ С БРЕНДОМ !!! */
         "parentOrganization": {
           "@id": "https://cyberxcommunity.ru/#brand"
         },
-        /* Ваши услуги (для расширенного сниппета) */
         "amenityFeature": [
           { "@type": "LocationFeatureSpecification", "name": "RTX 5070 / 4070 Super", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Sim Racing (Автосимуляторы)", "value": true },
@@ -59,7 +57,61 @@ export default function JsonLd() {
         ]
       },
 
-      /* 3. ХЛЕБНЫЕ КРОШКИ (Иерархия) */
+      /* 3. ТОВАРЫ (ЗОНЫ И ЦЕНЫ) - НОВОЕ! */
+      {
+        "@type": "Product",
+        "name": "Общий зал (Standard)",
+        "description": "Игровое место с ПК RTX 4060 и монитором 144 Гц.",
+        "image": "https://cyberx-novokosino.ru/zones/common-1.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "100",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "VIP Bootcamp",
+        "description": "Приватная комната на 5 ПК с RTX 4070 и 240 Гц.",
+        "image": "https://cyberx-novokosino.ru/zones/bootcamp-1.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "110",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Автосимулятор Sim Racing",
+        "description": "Профессиональный кокпит Moza R12, руль с обратной связью, 4K TV.",
+        "image": "https://cyberx-novokosino.ru/zones/sim-1.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "300",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "PS5 Lounge Zone",
+        "description": "Зона с PlayStation 5, диванами и 4K TV 70 дюймов.",
+        "image": "https://cyberx-novokosino.ru/zones/ps5-1.webp",
+        "offers": {
+          "@type": "Offer",
+          "price": "250",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
+        }
+      },
+
+      /* 4. ХЛЕБНЫЕ КРОШКИ */
       {
         "@type": "BreadcrumbList",
         "itemListElement": [

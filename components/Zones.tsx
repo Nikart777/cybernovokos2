@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image"; // Импортируем Image
 import { motion } from "framer-motion";
 import { 
   ChevronLeft, ChevronRight, 
@@ -88,8 +89,8 @@ const zones = [
     subtitle: "Полное погружение",
     price: "от 300₽",
     accent: "orange",
-    link: "https://cyberx.moscow/cyberracing", // Ссылка для перехода
-    btnText: "Подробнее", // Текст кнопки
+    link: "https://cyberx.moscow/cyberracing", 
+    btnText: "Подробнее", 
     features: [
       { icon: Disc, label: "Pro Руль", sub: "Force Feedback" },
       { icon: Tv, label: "55\" 4K 120Hz", sub: "Плавная картинка" },
@@ -128,29 +129,25 @@ export default function Zones() {
 }
 
 function ZoneCard({ zone, index }: { zone: any, index: number }) {
-  // Изначально ставим первую картинку, чтобы не было пустоты при загрузке
   const [images, setImages] = useState<string[]>([`/zones/${zone.id}-1.webp`]);
   const [currentImage, setCurrentImage] = useState(0);
   const isAccent = zone.accent === 'orange';
   const accentColor = isAccent ? '#FF8C00' : '#FF2E63'; 
 
-  // --- АВТОМАТИЧЕСКИЙ ПОИСК КАРТИНОК (1-6) ---
   useEffect(() => {
     const checkImages = async () => {
       const foundImages: string[] = [];
-      const maxImages = 6; // Сколько файлов проверять максимум
+      const maxImages = 6; 
 
-      // Функция проверки существования картинки
       const checkImageExists = (src: string) => {
         return new Promise((resolve) => {
-          const img = new Image();
+          const img = new window.Image(); // Явно указываем window.Image
           img.src = src;
           img.onload = () => resolve(true);
           img.onerror = () => resolve(false);
         });
       };
 
-      // Проверяем все по очереди
       for (let i = 1; i <= maxImages; i++) {
         const src = `/zones/${zone.id}-${i}.webp`;
         const exists = await checkImageExists(src);
@@ -159,7 +156,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
         }
       }
 
-      // Если нашли больше одной (первая и так по дефолту), обновляем список
       if (foundImages.length > 0) {
         setImages(foundImages);
       }
@@ -201,17 +197,19 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
             transition={{ duration: 0.5 }}
             className="absolute inset-0 w-full h-full"
           >
-            <img 
+            {/* Заменили img на Image */}
+            <Image 
               src={img} 
               alt={zone.title} 
-              className="w-full h-full object-cover"
-              loading="lazy"
+              fill // Растягивает на весь контейнер
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+              priority={index < 2} // Первые 2 карточки грузим сразу
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
           </motion.div>
         ))}
 
-        {/* Navigation Arrows (Show only if > 1 image) */}
         {images.length > 1 && (
           <>
             <button 
@@ -227,7 +225,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
               <ChevronRight size={20} />
             </button>
             
-            {/* Dots Indicator */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
               {images.map((_, i) => (
                 <div 
@@ -240,7 +237,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
         )}
 
         <div 
-          className="absolute top-4 right-4 px-3 py-1 rounded-md font-chakra font-bold text-sm text-white shadow-lg backdrop-blur-md"
+          className="absolute top-4 right-4 px-3 py-1 rounded-md font-chakra font-bold text-sm text-white shadow-lg backdrop-blur-md z-10"
           style={{ backgroundColor: isAccent ? 'rgba(255, 140, 0, 0.8)' : 'rgba(255, 46, 99, 0.8)' }}
         >
           {zone.price}
@@ -260,7 +257,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           <div className="w-12 h-[2px] mt-3" style={{ backgroundColor: accentColor }} />
         </div>
 
-        {/* Specs Grid (6 items, 2 cols) */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-5 mb-8">
           {zone.features.map((feat: any, i: number) => (
             <div key={i} className="flex items-start gap-3 group/feat">
@@ -279,7 +275,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           ))}
         </div>
 
-        {/* Action Button (Conditional Rendering) */}
         {zone.link ? (
           <a
             href={zone.link}

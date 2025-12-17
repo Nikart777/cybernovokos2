@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ПОДКЛЮЧЕНИЕ TacticSans
-   Файлы должны лежать прямо в папке /public/ вашего проекта
-*/
-
-/* 300 - Light */
+/* ПОДКЛЮЧЕНИЕ TacticSans */
 @font-face {
   font-family: 'TacticSans';
   src: url('/TacticSansExd-Lgt.woff') format('woff');
@@ -15,7 +11,6 @@
   font-display: swap;
 }
 
-/* 400 - Regular */
 @font-face {
   font-family: 'TacticSans';
   src: url('/TacticSansExd-Reg.woff') format('woff');
@@ -24,7 +19,6 @@
   font-display: swap;
 }
 
-/* 700 - Bold */
 @font-face {
   font-family: 'TacticSans';
   src: url('/TacticSansExd-Bld.woff') format('woff');
@@ -33,7 +27,6 @@
   font-display: swap;
 }
 
-/* 800 - ExtraBold */
 @font-face {
   font-family: 'TacticSans';
   src: url('/TacticSansExd-Blk.woff') format('woff');
@@ -42,7 +35,6 @@
   font-display: swap;
 }
 
-/* 900 - Black (Самый жирный - для заголовков) */
 @font-face {
   font-family: 'TacticSans';
   src: url('/TacticSansExd-Ult.woff') format('woff');
@@ -54,6 +46,13 @@
 /* --- Базовые настройки --- */
 :root {
   --foreground-rgb: 255, 255, 255;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Отступ для скролла, чтобы хедер не перекрывал контент */
+  /* 90px (высота хедера) + 20px (запас) */
+  scroll-padding-top: 110px; 
 }
 
 body {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Smartphone, MessageCircle, Gamepad2, Check, Coins } from "lucide-react";
+import { X, Smartphone, MessageCircle, Gamepad2, Check, Coins, Phone } from "lucide-react";
 
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,14 +134,26 @@ export default function BookingModal() {
                    </div>
                  </div>
 
-                 <a 
-                   href="https://t.me/CyberXNovokos" 
-                   target="_blank"
-                   className="flex items-center justify-center gap-3 w-full py-4 bg-transparent border border-white/20 text-white font-chakra font-bold text-sm md:text-base uppercase rounded-xl hover:bg-white hover:text-black transition-all duration-300"
-                 >
-                   <MessageCircle size={20} />
-                   Написать админу (@CyberXNovokos)
-                 </a>
+                 {/* Быстрая бронь + Телеграм */}
+                 <div className="grid grid-cols-2 gap-2">
+                    <a 
+                      href="tel:+79851289538"
+                      className="flex flex-col items-center justify-center p-3 bg-white/10 hover:bg-white/20 border border-white/10 text-white rounded-xl transition-all duration-300"
+                    >
+                      <Phone size={20} className="mb-1 text-[#FF2E63]" />
+                      <span className="font-chakra font-bold text-xs uppercase">Позвонить</span>
+                    </a>
+                    
+                    <a 
+                      href="https://t.me/CyberXNovokos" 
+                      target="_blank"
+                      className="flex flex-col items-center justify-center p-3 bg-white/10 hover:bg-white/20 border border-white/10 text-white rounded-xl transition-all duration-300"
+                    >
+                      <MessageCircle size={20} className="mb-1 text-[#0088cc]" />
+                      <span className="font-chakra font-bold text-xs uppercase">Telegram</span>
+                    </a>
+                 </div>
+
                </div>
 
             </div>

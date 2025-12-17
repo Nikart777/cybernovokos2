@@ -89,21 +89,23 @@ export default function Hero() {
           <div className="h-[2px] w-8 md:w-12 bg-[#FF2E63] shadow-[0_0_15px_#FF2E63]" />
         </motion.div>
 
-        {/* H1: BALANCED SIZE */}
+        {/* H1: FIX SEO (Один заголовок вместо двух) */}
         <motion.div
            initial={{ opacity: 0, scale: 0.95 }}
            animate={{ opacity: 1, scale: 1 }}
            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
            className="relative mb-12 md:mb-16 w-full flex flex-col items-center text-center"
         >
-           {/* CYBERX */}
-           <h1 className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-            CYBERX
-           </h1>
-           
-           {/* НОВОКОСИНО */}
-           <h1 className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0">
-             <span className="text-[#FF2E63]">НОВОКОСИНО</span>
+           <h1 className="flex flex-col items-center w-full">
+             {/* CYBERX */}
+             <span className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+              CYBERX
+             </span>
+             
+             {/* НОВОКОСИНО */}
+             <span className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0 text-[#FF2E63]">
+               НОВОКОСИНО
+             </span>
            </h1>
         </motion.div>
 
