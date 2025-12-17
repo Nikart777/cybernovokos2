@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ПОДКЛЮЧЕНИЕ TacticSans
+   Файлы должны лежать прямо в папке /public/ вашего проекта
+*/
+
+/* 300 - Light */
+@font-face {
+  font-family: 'TacticSans';
+  src: url('/TacticSansExd-Lgt.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 400 - Regular */
+@font-face {
+  font-family: 'TacticSans';
+  src: url('/TacticSansExd-Reg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 700 - Bold */
+@font-face {
+  font-family: 'TacticSans';
+  src: url('/TacticSansExd-Bld.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 800 - ExtraBold */
+@font-face {
+  font-family: 'TacticSans';
+  src: url('/TacticSansExd-Blk.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 900 - Black (Самый жирный - для заголовков) */
+@font-face {
+  font-family: 'TacticSans';
+  src: url('/TacticSansExd-Ult.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Базовые настройки --- */
+:root {
+  --foreground-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #050505;
+  overflow-x: hidden;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #FF2E63; }

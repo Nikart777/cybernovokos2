@@ -1,0 +1,43 @@
+Папка: /public/zones/
+
+SOLO PREMIUM:
+
+solo-premium-1.webp
+
+solo-premium-2.webp
+
+SOLO PRO:
+
+solo-pro-1.webp
+
+solo-pro-2.webp
+
+DUO ZONE:
+
+duo-1.webp
+
+duo-2.webp
+
+VIP BOOTCAMP:
+
+bootcamp-1.webp
+
+bootcamp-2.webp
+
+PS5 LOUNGE:
+
+ps5-1.webp
+
+ps5-2.webp
+
+АВТОСИМУЛЯТОР:
+
+sim-1.webp
+
+sim-2.webp
+
+ОБЩИЙ ЗАЛ:
+
+common-1.webp
+
+common-2.webp
