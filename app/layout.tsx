@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Inter } from "next/font/google"; 
-import Script from "next/script";
+import Script from "next/script"; // Импортируем компонент для скриптов
 import JsonLd from "@/components/JsonLd"; 
 import "./globals.css";
 
@@ -79,10 +79,13 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    yandex: 'cd200b561d2e01f0', // Сюда код верификации Яндекс.Вебмастер
-    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM', // Сюда код верификации Google Search Console 
+    yandex: 'cd200b561d2e01f0', // Код верификации Яндекс.Вебмастер
+    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM', // Код верификации Google Search Console 
   },
 };
+
+// Ваш ID Google Analytics
+const GA_MEASUREMENT_ID = 'G-T6L6MKR798';
 
 export default function RootLayout({
   children,
@@ -92,21 +95,41 @@ export default function RootLayout({
   return (
     <html lang="ru" className="scroll-smooth">
       <body className={`${chakra.variable} ${inter.variable} bg-cyber-bg font-inter antialiased`}>
+        {/* JSON-LD Разметка для SEO */}
+        <JsonLd />
+        
+        {children}
+
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+
         {/* Яндекс.Метрика */}
         <Script id="yandex-metrika" strategy="afterInteractive">
           {`
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+             m[i].l=1*new Date();
+             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-            ym(105894251, "init", { // !!! ЗАМЕНИТЕ XXXXXXXX НА ВАШ ID !!!
-                 clickmap:true,
-                 trackLinks:true,
-                 accurateTrackBounce:true,
-                 webvisor:true
-            });
+             ym(105894251, "init", {
+                  clickmap:true,
+                  trackLinks:true,
+                  accurateTrackBounce:true,
+                  webvisor:true
+             });
           `}
         </Script>
         <noscript>
@@ -114,9 +137,6 @@ export default function RootLayout({
             <img src="https://mc.yandex.ru/watch/105894251" style={{ position: 'absolute', left: '-9999px' }} alt="" />
           </div>
         </noscript>
-        
-        <JsonLd />
-        {children}
       </body>
     </html>
   );
