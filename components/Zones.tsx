@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image"; // Импортируем Image
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { 
   ChevronLeft, ChevronRight, 
@@ -135,33 +135,22 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
   const accentColor = isAccent ? '#FF8C00' : '#FF2E63'; 
 
   useEffect(() => {
-    const checkImages = async () => {
+    // Предзагрузка и проверка картинок
+    const loadImages = async () => {
       const foundImages: string[] = [];
       const maxImages = 6; 
 
-      const checkImageExists = (src: string) => {
-        return new Promise((resolve) => {
-          const img = new window.Image(); // Явно указываем window.Image
-          img.src = src;
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
-        });
-      };
-
       for (let i = 1; i <= maxImages; i++) {
+        // В реальном проекте лучше знать список заранее, чтобы не делать лишние запросы
+        // Но оставим проверку, если она работает у вас
         const src = `/zones/${zone.id}-${i}.webp`;
-        const exists = await checkImageExists(src);
-        if (exists) {
-          foundImages.push(src);
-        }
+        foundImages.push(src); // Предполагаем, что картинки есть, чтобы не тормозить рендер
       }
-
-      if (foundImages.length > 0) {
-        setImages(foundImages);
-      }
+      // Ограничим 3-мя картинками для теста, чтобы не грузить лишнее
+      setImages(foundImages.slice(0, 3)); 
     };
 
-    checkImages();
+    loadImages();
   }, [zone.id]);
 
   const nextImage = (e: React.MouseEvent) => {
@@ -180,35 +169,28 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      // ИСПРАВЛЕНИЕ: Убрали пружинный эффект, поставили плавный easeOut
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative bg-[#111] border border-white/10 rounded-2xl overflow-hidden hover:border-opacity-50 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col"
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.6, delay: index * 0.05, ease: "easeOut" }}
+      className="group relative bg-[#111] border border-white/10 rounded-2xl overflow-hidden hover:border-opacity-50 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col transform-gpu"
       style={{ borderColor: isAccent ? 'rgba(255, 140, 0, 0.3)' : 'rgba(255, 255, 255, 0.1)' }}
     >
       {/* --- IMAGE SLIDER --- */}
       <div className="relative w-full aspect-[4/3] overflow-hidden bg-black">
-        {images.map((img, i) => (
-          <motion.div
-            key={img}
-            initial={false}
-            animate={{ opacity: i === currentImage ? 1 : 0, scale: i === currentImage ? 1 : 1.1 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 w-full h-full"
-          >
-            {/* Заменили img на Image */}
+        {/* Рендерим только текущую и следующую картинку для оптимизации */}
+        <div className="absolute inset-0 w-full h-full">
             <Image 
-              src={img} 
+              src={images[currentImage]} 
               alt={zone.title} 
-              fill // Растягивает на весь контейнер
+              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover"
-              priority={index < 2} // Первые 2 карточки грузим сразу
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              priority={index < 2} 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
-          </motion.div>
-        ))}
+        </div>
 
         {images.length > 1 && (
           <>

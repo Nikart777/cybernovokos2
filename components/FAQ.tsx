@@ -49,7 +49,7 @@ const faqData = [
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Первый открыт по умолчанию
+  const [openIndex, setOpenIndex] = useState<number | null>(0); 
 
   return (
     <section id="faq" className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden">
@@ -61,7 +61,7 @@ export default function FAQ() {
          <div className="absolute right-[10%] top-0 w-[1px] h-full bg-white/5" />
          
          {/* Binary Noise */}
-         <div className="absolute top-20 right-20 opacity-10 font-mono text-xs text-[#FF2E63] writing-vertical-rl select-none">
+         <div className="absolute top-20 right-20 opacity-10 font-mono text-xs text-[#FF2E63] writing-vertical-rl select-none hidden md:block">
             01010101010101010101010101
          </div>
       </div>
@@ -69,19 +69,19 @@ export default function FAQ() {
       <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">
         
         {/* --- HEADER --- */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
            <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
               <div className="w-1.5 h-1.5 bg-[#FF2E63] rounded-full animate-pulse" />
               <span className="font-mono text-[10px] text-gray-400 uppercase tracking-widest">Knowledge Base // Database</span>
            </div>
            
-           <h2 className="font-tactic font-black text-5xl md:text-7xl text-white uppercase tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+           <h2 className="font-tactic font-black text-4xl md:text-7xl text-white uppercase tracking-wide drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
              ВОПРОС / ОТВЕТ
            </h2>
         </div>
 
         {/* --- GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
            {faqData.map((item, i) => (
              <FAQItem 
                key={i} 
@@ -93,7 +93,7 @@ export default function FAQ() {
         </div>
 
         {/* --- FOOTER CTA --- */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-12 md:mt-16 flex justify-center">
            <a 
              href="https://t.me/CyberXNovokos" 
              target="_blank"
@@ -119,23 +119,22 @@ export default function FAQ() {
 
 function FAQItem({ item, isOpen, onClick }: { item: any, isOpen: boolean, onClick: () => void }) {
   return (
-    <motion.div 
-      initial={false}
+    <div 
       className={`
-        relative overflow-hidden rounded-2xl border transition-all duration-300 cursor-pointer group
+        relative overflow-hidden rounded-2xl border transition-all duration-300 cursor-pointer
         ${isOpen 
-          ? "bg-[#111] border-[#FF2E63] shadow-[0_0_30px_rgba(255,46,99,0.15)]" 
-          : "bg-[#0A0A0A] border-white/10 hover:border-white/30"}
+          ? "bg-[#111] border-[#FF2E63] shadow-[0_0_20px_rgba(255,46,99,0.15)]" 
+          : "bg-[#0A0A0A] border-white/10 active:scale-[0.98] md:hover:border-white/30"}
       `}
       onClick={onClick}
     >
       {/* Header */}
-      <div className="p-6 flex items-center justify-between gap-4">
-         <div className="flex items-center gap-4">
-            <div className={`p-2 rounded-lg transition-colors ${isOpen ? 'bg-[#FF2E63]/20 text-[#FF2E63]' : 'bg-white/5 text-gray-500 group-hover:text-white'}`}>
+      <div className="p-5 md:p-6 flex items-center justify-between gap-4">
+         <div className="flex items-center gap-3 md:gap-4">
+            <div className={`p-2 rounded-lg transition-colors ${isOpen ? 'bg-[#FF2E63]/20 text-[#FF2E63]' : 'bg-white/5 text-gray-500'}`}>
                <item.icon size={20} />
             </div>
-            <h3 className={`font-chakra font-bold text-base md:text-lg uppercase transition-colors ${isOpen ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+            <h3 className={`font-chakra font-bold text-sm md:text-lg uppercase leading-tight transition-colors ${isOpen ? 'text-white' : 'text-gray-300'}`}>
               {item.question}
             </h3>
          </div>
@@ -145,16 +144,17 @@ function FAQItem({ item, isOpen, onClick }: { item: any, isOpen: boolean, onClic
          </div>
       </div>
 
-      {/* Body (Animate Height) */}
+      {/* Body (ИСПРАВЛЕНИЕ: Удаляем complex layout animations для ускорения) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.25, ease: "easeInOut" }} // Быстрее и плавнее
+            className="overflow-hidden"
           >
-            <div className="px-6 pb-6 pt-0">
+            <div className="px-5 md:px-6 pb-6 pt-0">
                <div className="h-[1px] w-full bg-white/10 mb-4" />
                <p className="font-inter text-sm md:text-base text-gray-400 leading-relaxed">
                  {item.answer}
@@ -168,6 +168,6 @@ function FAQItem({ item, isOpen, onClick }: { item: any, isOpen: boolean, onClic
       <div className={`absolute top-0 right-0 w-3 h-3 border-t border-r transition-all duration-300 ${isOpen ? 'border-[#FF2E63]' : 'border-transparent'}`} />
       <div className={`absolute bottom-0 left-0 w-3 h-3 border-b border-l transition-all duration-300 ${isOpen ? 'border-[#FF2E63]' : 'border-transparent'}`} />
 
-    </motion.div>
+    </div>
   );
 }

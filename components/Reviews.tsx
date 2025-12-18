@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Quote, MapPin, Gamepad2, Clock, Trophy, Star, ChevronRight } from "lucide-react";
 
 const reviews = [
@@ -53,35 +53,26 @@ const reviews = [
 ];
 
 export default function Reviews() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Скролл мышкой (Drag)
-  const [isDragging, setIsDragging] = useState(false);
-
   return (
     <section 
       id="otzyv" 
-      ref={containerRef}
       className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden"
     >
       {/* --- BACKGROUND FX --- */}
       <div className="absolute inset-0 pointer-events-none">
-         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FF2E63]/5 blur-[150px] rounded-full mix-blend-screen" />
-         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#B900FF]/5 blur-[150px] rounded-full mix-blend-screen" />
-         {/* Tech Grid */}
-         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+         <div className="absolute top-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#FF2E63]/5 blur-[100px] md:blur-[150px] rounded-full mix-blend-screen" />
+         <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-[#B900FF]/5 blur-[100px] md:blur-[150px] rounded-full mix-blend-screen" />
       </div>
       
       {/* --- HEADER --- */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-10 mb-16 flex flex-col md:flex-row items-end justify-between gap-8">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-10 mb-10 md:mb-16 flex flex-col md:flex-row items-end justify-between gap-8">
         <div>
           <div className="flex items-center gap-3 mb-4">
              <span className="font-mono text-xs text-[#FF2E63] tracking-[0.2em] uppercase bg-[#FF2E63]/10 px-2 py-1 rounded">
                CyberX Community
              </span>
           </div>
-          <h2 className="font-tactic font-black text-5xl md:text-7xl text-white uppercase leading-[0.85]">
+          <h2 className="font-tactic font-black text-4xl md:text-7xl text-white uppercase leading-[0.85]">
             ЗАЛ СЛАВЫ <br />
             <span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.5)" }}>ОТЗЫВЫ ГОСТЕЙ</span>
           </h2>
@@ -99,25 +90,21 @@ export default function Reviews() {
         </div>
       </div>
 
-      {/* --- CARDS SLIDER --- */}
-      <div className="relative w-full overflow-visible pl-4 md:pl-10">
-        <motion.div 
-          ref={scrollRef}
-          className="flex gap-6 w-max cursor-grab active:cursor-grabbing pb-10"
-          drag="x"
-          dragConstraints={{ right: 0, left: -1600 }} // Подстроить под контент
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
-        >
+      {/* --- CARDS SLIDER (NATIVE SCROLL) --- */}
+      {/* ИСПРАВЛЕНИЕ: Используем нативный CSS скролл с snap-x для максимальной плавности на мобильных */}
+      <div className="relative w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-4 md:pl-10 pb-10">
+        <div className="flex gap-4 md:gap-6 w-max pr-4 md:pr-10">
           {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+            <div key={review.id} className="snap-center shrink-0">
+               <ReviewCard review={review} />
+            </div>
           ))}
           
           {/* CTA Card (Last item) */}
           <a 
             href="https://yandex.ru/maps/-/CLWX5MIq" 
             target="_blank"
-            className="group relative w-[320px] md:w-[380px] bg-[#FF2E63] rounded-[30px] p-1 overflow-hidden flex flex-col justify-center items-center text-center transition-transform hover:-translate-y-2"
+            className="snap-center shrink-0 group relative w-[300px] md:w-[380px] bg-[#FF2E63] rounded-[30px] p-1 overflow-hidden flex flex-col justify-center items-center text-center transition-transform hover:-translate-y-2"
           >
              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
              <div className="relative z-10 w-full h-full bg-black/10 backdrop-blur-sm rounded-[28px] p-8 flex flex-col items-center justify-center border border-white/20">
@@ -136,7 +123,7 @@ export default function Reviews() {
              </div>
           </a>
 
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -144,14 +131,14 @@ export default function Reviews() {
 
 function ReviewCard({ review }: { review: any }) {
   return (
-    <div className="group relative w-[320px] md:w-[380px] min-h-[300px] perspective">
+    <div className="group relative w-[300px] md:w-[380px] min-h-[300px] perspective transform-gpu">
       {/* Glow Border Effect */}
       <div 
         className="absolute -inset-[1px] rounded-[30px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
         style={{ background: `linear-gradient(45deg, ${review.color}, transparent, ${review.color})` }}
       />
       
-      <div className="relative h-full bg-[#0E0E0E] border border-white/5 rounded-[30px] p-8 flex flex-col transition-transform duration-300 group-hover:-translate-y-1 overflow-hidden">
+      <div className="relative h-full bg-[#0E0E0E] border border-white/5 rounded-[30px] p-6 md:p-8 flex flex-col transition-transform duration-300 group-hover:-translate-y-1 overflow-hidden">
         
         {/* Top Gradient Fade */}
         <div 
@@ -166,7 +153,7 @@ function ReviewCard({ review }: { review: any }) {
                  {/* Avatar Ring */}
                  <div className="absolute inset-0 rounded-full border-2 border-dashed animate-[spin_10s_linear_infinite] opacity-30" 
                       style={{ borderColor: review.color }} />
-                 <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#1a1a1a] shadow-lg relative z-10">
+                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#1a1a1a] shadow-lg relative z-10">
                     <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
                  </div>
               </div>
@@ -178,11 +165,11 @@ function ReviewCard({ review }: { review: any }) {
                  </div>
               </div>
            </div>
-           <Quote size={32} className="opacity-10 rotate-12" style={{ color: review.color }} />
+           <Quote size={24} className="opacity-10 rotate-12 md:w-8 md:h-8" style={{ color: review.color }} />
         </div>
 
         {/* Text */}
-        <p className="font-inter text-sm text-gray-300 leading-relaxed mb-8 flex-grow relative z-10">
+        <p className="font-inter text-sm text-gray-300 leading-relaxed mb-8 flex-grow relative z-10 line-clamp-4">
           {review.text}
         </p>
 

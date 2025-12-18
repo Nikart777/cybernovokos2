@@ -1,39 +1,45 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function PromoHeader() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  // 1. Эффект "Открытия Лутбокса": Скобки разъезжаются при скролле
-  // Когда блок внизу экрана (0), скобки сжаты. Когда в центре (0.5) - идеальная позиция.
-  const xBracketLeft = useTransform(scrollYProgress, [0.1, 0.5, 0.9], ["100%", "0%", "-50%"]);
-  const xBracketRight = useTransform(scrollYProgress, [0.1, 0.5, 0.9], ["-100%", "0%", "50%"]);
+  // ИСПРАВЛЕНИЕ: Отключаем сложные движения на мобильных
+  const xBracketLeft = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [isMobile ? "0%" : "100%", "0%", isMobile ? "0%" : "-50%"]);
+  const xBracketRight = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [isMobile ? "0%" : "-100%", "0%", isMobile ? "0%" : "50%"]);
   
-  // 2. Прозрачность и масштаб для динамики
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.8, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0.8, 1.1, 1]);
 
-  // 3. Бегущие строки (Параллакс)
-  const xTicker1 = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-  const xTicker2 = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const xTicker1 = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]); // Уменьшили амплитуду
+  const xTicker2 = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section 
       id="special" 
       ref={containerRef}
-      className="relative w-full py-40 md:py-60 flex flex-col items-center justify-center overflow-hidden bg-[#050505] border-t border-white/5"
+      className="relative w-full py-32 md:py-60 flex flex-col items-center justify-center overflow-hidden bg-[#050505] border-t border-white/5"
     >
       {/* --- BACKGROUND PARALLAX TICKERS --- */}
       <div className="absolute inset-0 flex flex-col justify-center items-center opacity-10 pointer-events-none select-none overflow-hidden gap-12">
          
          {/* Ticker 1 */}
-         <motion.div style={{ x: xTicker1 }} className="whitespace-nowrap w-[200%] text-center">
+         <motion.div style={{ x: isMobile ? 0 : xTicker1 }} className="whitespace-nowrap w-[200%] text-center">
             <span 
               className="font-tactic font-black text-[12vw] md:text-[12rem] uppercase leading-none text-transparent" 
               style={{ WebkitTextStroke: "2px rgba(255,255,255,0.1)" }}
@@ -43,7 +49,7 @@ export default function PromoHeader() {
          </motion.div>
 
          {/* Ticker 2 */}
-         <motion.div style={{ x: xTicker2 }} className="whitespace-nowrap w-[200%] text-center">
+         <motion.div style={{ x: isMobile ? 0 : xTicker2 }} className="whitespace-nowrap w-[200%] text-center">
             <span 
               className="font-tactic font-black text-[12vw] md:text-[12rem] uppercase leading-none text-transparent" 
               style={{ WebkitTextStroke: "2px rgba(255,46,99,0.15)" }}
@@ -56,7 +62,7 @@ export default function PromoHeader() {
 
       {/* --- MAIN CONTENT (SCROLL DRIVEN) --- */}
       <motion.div 
-        style={{ opacity, scale }}
+        style={{ opacity, scale: isMobile ? 1 : scale }} // Отключаем масштаб на мобильных
         className="relative z-10 flex flex-col items-center text-center px-4 w-full"
       >
         
@@ -66,15 +72,17 @@ export default function PromoHeader() {
            {/* Left Bracket [ */}
            <motion.span 
              style={{ x: xBracketLeft }}
-             className="text-[#FF2E63] text-[20vw] md:text-[16rem] font-tactic font-light leading-[0.8] relative z-20 pb-4"
+             className="text-[#FF2E63] text-[20vw] md:text-[16rem] font-tactic font-light leading-[0.8] relative z-20 pb-4 hidden md:block" // Скрываем скобки на моб или делаем статичными
            >
              [
            </motion.span>
+           {/* Static bracket for mobile */}
+           <span className="text-[#FF2E63] text-[20vw] font-tactic font-light leading-[0.8] relative z-20 pb-4 md:hidden">[</span>
            
            {/* Center Text */}
-           <div className="relative mx-4 md:mx-12 z-10">
+           <div className="relative mx-2 md:mx-12 z-10">
              {/* Glow Layer */}
-             <h2 className="absolute inset-0 font-tactic font-black text-[12vw] md:text-[10rem] uppercase text-[#FF2E63] blur-[60px] opacity-60 select-none animate-pulse">
+             <h2 className="absolute inset-0 font-tactic font-black text-[12vw] md:text-[10rem] uppercase text-[#FF2E63] blur-[40px] opacity-60 select-none animate-pulse">
                АКЦИИ
              </h2>
              {/* Main Text */}
@@ -86,10 +94,12 @@ export default function PromoHeader() {
            {/* Right Bracket ] */}
            <motion.span 
              style={{ x: xBracketRight }}
-             className="text-[#FF2E63] text-[20vw] md:text-[16rem] font-tactic font-light leading-[0.8] relative z-20 pb-4"
+             className="text-[#FF2E63] text-[20vw] md:text-[16rem] font-tactic font-light leading-[0.8] relative z-20 pb-4 hidden md:block"
            >
              ]
            </motion.span>
+           {/* Static bracket for mobile */}
+           <span className="text-[#FF2E63] text-[20vw] font-tactic font-light leading-[0.8] relative z-20 pb-4 md:hidden">]</span>
         </div>
 
         {/* Subtitle Badge */}

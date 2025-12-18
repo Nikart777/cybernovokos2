@@ -6,9 +6,19 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(true);
 
-  // Параллакс эффект для мыши
+  useEffect(() => {
+    // Проверяем ширину экрана для отключения тяжелых эффектов
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Параллакс эффект только для десктопа
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (isMobile) return;
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
     const x = (clientX / innerWidth - 0.5) * 15; 
@@ -16,7 +26,6 @@ export default function Hero() {
     setMousePosition({ x, y });
   };
 
-  // Функция плавного скролла к зонам
   const scrollToZones = () => {
     const element = document.getElementById('about');
     if (element) {
@@ -25,23 +34,24 @@ export default function Hero() {
   };
 
   const { scrollY } = useScroll();
-  const yBg = useTransform(scrollY, [0, 500], [0, 150]);
+  // Отключаем параллакс по Y на мобильных (ставим 0), чтобы не дергалось
+  const yBg = useTransform(scrollY, [0, 500], [0, isMobile ? 0 : 150]);
 
   return (
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white py-10 md:py-0"
+      className="relative w-full min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white pt-24 md:py-0"
     >
       {/* --- BACKGROUND LAYERS --- */}
       
       {/* 1. Main Image */}
       <motion.div 
-        style={{ y: yBg, x: mousePosition.x * -1, scale: 1.1 }}
-        className="absolute inset-0 z-0"
+        style={{ y: yBg, x: isMobile ? 0 : mousePosition.x * -1, scale: 1.1 }}
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <div 
-            className="w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{ 
               backgroundImage: `url('/main.webp')`,
               filter: 'brightness(0.5) contrast(1.2)' 
@@ -58,7 +68,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-[2] bg-radial-gradient from-transparent via-[#050505]/40 to-[#050505] pointer-events-none" />
       <div className="absolute inset-0 z-[2] bg-gradient-to-b from-[#050505]/50 via-transparent to-[#050505] pointer-events-none" />
 
-      {/* --- HUD DECORATIONS (Minimalist) --- */}
+      {/* --- HUD DECORATIONS (Hidden on Mobile) --- */}
       <div className="absolute top-10 left-10 w-6 h-6 border-l-2 border-t-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute top-10 right-10 w-6 h-6 border-r-2 border-t-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 left-10 w-6 h-6 border-l-2 border-b-2 border-white/30 z-10 pointer-events-none hidden md:block" />
@@ -73,7 +83,7 @@ export default function Hero() {
       </div>
 
       {/* --- MAIN CONTENT WRAPPER --- */}
-      <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1400px] px-4 h-full flex-grow pb-20 md:pb-0">
+      <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1400px] px-4 flex-grow my-auto">
         
         {/* TAGLINE */}
         <motion.div 
@@ -89,20 +99,18 @@ export default function Hero() {
           <div className="h-[2px] w-8 md:w-12 bg-[#FF2E63] shadow-[0_0_15px_#FF2E63]" />
         </motion.div>
 
-        {/* H1: FIX SEO (Один заголовок вместо двух) */}
+        {/* H1 */}
         <motion.div
            initial={{ opacity: 0, scale: 0.95 }}
            animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-           className="relative mb-12 md:mb-16 w-full flex flex-col items-center text-center"
+           transition={{ duration: 0.8, ease: "easeOut" }} 
+           className="relative mb-8 md:mb-16 w-full flex flex-col items-center text-center"
         >
            <h1 className="flex flex-col items-center w-full">
-             {/* CYBERX */}
              <span className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               CYBERX
              </span>
              
-             {/* НОВОКОСИНО */}
              <span className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0 text-[#FF2E63]">
                НОВОКОСИНО
              </span>
@@ -114,7 +122,7 @@ export default function Hero() {
            initial={{ opacity: 0, y: 40 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ delay: 0.6 }}
-           className="mb-16 md:mb-20"
+           className="mb-8 md:mb-20"
         >
           <button 
             className="group relative inline-flex items-center justify-center px-10 py-4 md:px-12 md:py-6 bg-transparent outline-none cursor-pointer transform -skew-x-12 transition-transform duration-200 active:scale-95"
@@ -138,35 +146,35 @@ export default function Hero() {
                  <path d="m12 5 7 7-7 7" />
                </svg>
             </span>
-            <div className="absolute top-0 right-0 w-2 h-2 md:w-3 md:h-3 bg-white group-hover:bg-black transition-colors duration-200" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 md:w-3 md:h-3 bg-white group-hover:bg-black transition-colors duration-200" />
           </button>
         </motion.div>
 
-        {/* --- STATS INTEGRATED --- */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="absolute bottom-0 left-0 w-full z-30"
-        >
-           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-10 md:mb-12 hidden md:block" />
-
-           <div className="w-full max-w-[1400px] mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-y-10 md:gap-4 items-start justify-items-center text-center pb-8 md:pb-12 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent md:bg-none pt-12 md:pt-0">
-                  <HudItem icon={<GpuIcon />} value="RTX 5070" label="ВИДЕОКАРТЫ" />
-                  <HudItem icon={<MonitorIcon />} value="400 Гц" label="МОНИТОРЫ" />
-                  <HudItem icon={<GamepadIcon />} value="PS5 ZONE" label="БЕЗЛИМИТ" highlight />
-                  <HudItem icon={<SteeringIcon />} value="SIM RACING" label="АВТОСИМ" />
-                  
-                  <div className="col-span-2 md:col-span-1 w-full flex justify-center">
-                    <HudItem icon={<ClockIcon />} value="24 / 7" label="РЕЖИМ РАБОТЫ" />
-                  </div>
-              </div>
-           </div>
-        </motion.div>
-
       </div>
+
+      {/* --- STATS (ИСПРАВЛЕНО: Relative на мобильных, Absolute на десктопе) --- */}
+      {/* Это решает проблему наложения текста на кнопку */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 1 }}
+        className="w-full z-30 relative md:absolute md:bottom-0 md:left-0 pb-8 md:pb-0"
+      >
+         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 md:mb-12 hidden md:block" />
+
+         <div className="w-full max-w-[1400px] mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-y-6 md:gap-4 items-start justify-items-center text-center py-6 md:pb-12 bg-[#111]/50 md:bg-transparent rounded-2xl md:rounded-none border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none">
+                <HudItem icon={<GpuIcon />} value="RTX 5070" label="ВИДЕОКАРТЫ" />
+                <HudItem icon={<MonitorIcon />} value="400 Гц" label="МОНИТОРЫ" />
+                <HudItem icon={<GamepadIcon />} value="PS5 ZONE" label="БЕЗЛИМИТ" highlight />
+                <HudItem icon={<SteeringIcon />} value="SIM RACING" label="АВТОСИМ" />
+                
+                <div className="col-span-2 md:col-span-1 w-full flex justify-center">
+                  <HudItem icon={<ClockIcon />} value="24 / 7" label="РЕЖИМ РАБОТЫ" />
+                </div>
+            </div>
+         </div>
+      </motion.div>
+
     </section>
   );
 }
@@ -175,15 +183,15 @@ export default function Hero() {
 
 function HudItem({ value, label, icon, highlight = false }: { value: string, label: string, icon: React.ReactNode, highlight?: boolean }) {
     return (
-        <div className="flex flex-col items-center gap-3 group cursor-default w-full">
+        <div className="flex flex-col items-center gap-2 md:gap-3 group cursor-default w-full">
             <div className={`transition-transform duration-300 group-hover:-translate-y-1 ${highlight ? 'text-[#FF2E63]' : 'text-white/60 group-hover:text-white'}`}>
                 {icon}
             </div>
             <div className="flex flex-col items-center">
-                <div className={`font-chakra font-bold text-lg md:text-xl leading-none mb-2 ${highlight ? 'text-[#FF2E63]' : 'text-white group-hover:text-[#FF2E63]'} transition-colors`}>
+                <div className={`font-chakra font-bold text-base md:text-xl leading-none mb-1 md:mb-2 ${highlight ? 'text-[#FF2E63]' : 'text-white group-hover:text-[#FF2E63]'} transition-colors`}>
                     {value}
                 </div>
-                <div className="font-mono text-[9px] md:text-[10px] text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors duration-300">
+                <div className="font-mono text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors duration-300">
                     {label}
                 </div>
             </div>
@@ -191,9 +199,9 @@ function HudItem({ value, label, icon, highlight = false }: { value: string, lab
     )
 }
 
-// Inline SVGs
+// Inline SVGs (Optimized size for mobile)
 const GpuIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <path d="M2 15V9C2 5.68629 4.68629 3 8 3H16C19.3137 3 22 5.68629 22 9V15C22 18.3137 19.3137 21 16 21H8C4.68629 21 2 18.3137 2 15Z"/>
     <path d="M6 9L6.01 9"/>
     <path d="M6 15L6.01 15"/>
@@ -205,7 +213,7 @@ const GpuIcon = () => (
 )
 
 const MonitorIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
     <path d="M12 17v4"></path>
     <path d="M8 21h8"></path>
@@ -213,7 +221,7 @@ const MonitorIcon = () => (
 )
 
 const GamepadIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <rect x="2" y="6" width="20" height="12" rx="2"></rect>
     <path d="M6 12h4"></path>
     <path d="M8 10v4"></path>
@@ -223,7 +231,7 @@ const GamepadIcon = () => (
 )
 
 const SteeringIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <circle cx="12" cy="12" r="10"></circle>
     <path d="M12 2v8"></path>
     <path d="M12 14v8"></path>
@@ -234,7 +242,7 @@ const SteeringIcon = () => (
 )
 
 const ClockIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <circle cx="12" cy="12" r="10"></circle>
     <polyline points="12 6 12 12 16 14"></polyline>
   </svg>
