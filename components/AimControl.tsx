@@ -1,123 +1,127 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { Crosshair, Zap, Trophy, ArrowRight } from "lucide-react";
+import Link from "next/link"; // Импорт Link для перехода
 
 export default function AimControl() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative w-full h-[60vh] min-h-[500px] flex flex-col items-center justify-center overflow-hidden bg-[#050505] border-t border-b border-[#FF2E63]/20"
-    >
-      {/* --- BACKGROUND GRID --- */}
-      <div 
-        className="absolute inset-0 z-0 opacity-20 pointer-events-none"
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(255, 46, 99, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 46, 99, 0.3) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-          maskImage: 'radial-gradient(circle at center, black 40%, transparent 100%)'
-        }}
-      />
+    <section className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden border-t border-white/5">
       
-      <div className="absolute inset-0 z-0 bg-radial-gradient from-transparent via-[#050505]/80 to-[#050505]" />
-
-      {/* --- SCREEN CORNERS (UI) --- */}
-      <div className="absolute top-8 left-8 w-10 h-10 border-l-2 border-t-2 border-[#FF2E63]/60 rounded-tl-lg pointer-events-none z-10" />
-      <div className="absolute top-8 right-8 w-10 h-10 border-r-2 border-t-2 border-[#FF2E63]/60 rounded-tr-lg pointer-events-none z-10" />
-      <div className="absolute bottom-8 left-8 w-10 h-10 border-l-2 border-b-2 border-[#FF2E63]/60 rounded-bl-lg pointer-events-none z-10" />
-      <div className="absolute bottom-8 right-8 w-10 h-10 border-r-2 border-b-2 border-[#FF2E63]/60 rounded-br-lg pointer-events-none z-10" />
-
-      {/* --- REC INDICATOR --- */}
-      <div className="absolute top-10 right-24 flex items-center gap-2 font-mono text-xs text-white z-10 animate-pulse">
-        <div className="w-2.5 h-2.5 bg-red-600 rounded-full shadow-[0_0_10px_red]" />
-        REC
+      {/* Background Grid & Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#FF2E63]/20 blur-[100px] rounded-full animate-pulse" />
       </div>
 
-      {/* --- ANIMATED TARGETS --- */}
-      <Target x="20%" y="30%" delay={0} />
-      <Target x="80%" y="25%" delay={1.5} />
-      <Target x="70%" y="70%" delay={0.8} />
-      <Target x="30%" y="65%" delay={2.2} />
-
-      {/* --- CONTENT --- */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-10 relative z-10">
         
-        {/* Title */}
-        <motion.h2 
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-tactic font-black text-6xl md:text-8xl uppercase text-white leading-none mb-6 drop-shadow-[0_0_30px_rgba(255,46,99,0.5)]"
-        >
-          AIM <span className="text-transparent" style={{ WebkitTextStroke: "2px #fff" }}>CONTROL</span>
-        </motion.h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+           
+           {/* TEXT CONTENT */}
+           <motion.div 
+             initial={{ opacity: 0, x: -50 }}
+             whileInView={{ opacity: 1, x: 0 }}
+             viewport={{ once: true }}
+             className="flex flex-col items-start text-left"
+           >
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF2E63]/10 border border-[#FF2E63]/30 rounded-full mb-6">
+                 <Crosshair size={14} className="text-[#FF2E63] animate-[spin_3s_linear_infinite]" />
+                 <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-widest">Aim Challenge v1.0</span>
+              </div>
 
-        {/* Description */}
-        <motion.p 
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="font-inter text-sm md:text-lg text-gray-300 max-w-lg mb-10 leading-relaxed"
-        >
-          Проверь реакцию в нашем Telegram-боте.<br />
-          Чем быстрее выстрел — тем больше приз.
-          <span className="ml-3 inline-block px-3 py-1 border border-[#FF2E63] text-[#FF2E63] rounded font-bold text-xs shadow-[0_0_15px_rgba(255,46,99,0.2)]">
-            MAX 800₽
-          </span>
-        </motion.p>
+              <h2 className="font-tactic font-black text-5xl md:text-7xl text-white uppercase leading-[0.9] mb-6">
+                ПРОВЕРЬ <br />
+                <span className="text-transparent" style={{ WebkitTextStroke: "1px #FF2E63" }}>СВОЙ AIM</span>
+              </h2>
 
-        {/* Scope Button */}
-        <motion.a 
-          href="https://t.me/your_cyberx_novokosino_bot" 
-          target="_blank"
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="relative group w-[280px] h-[80px] flex items-center justify-center cursor-pointer"
-        >
-          {/* Button Corners */}
-          <div className="absolute top-0 left-0 w-6 h-6 border-l-[3px] border-t-[3px] border-white group-hover:border-[#FF2E63] group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
-          <div className="absolute top-0 right-0 w-6 h-6 border-r-[3px] border-t-[3px] border-white group-hover:border-[#FF2E63] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
-          <div className="absolute bottom-0 left-0 w-6 h-6 border-l-[3px] border-bottom-[3px] border-b-[3px] border-white group-hover:border-[#FF2E63] group-hover:-translate-x-1 group-hover:translate-y-1 transition-all duration-300" />
-          <div className="absolute bottom-0 right-0 w-6 h-6 border-r-[3px] border-bottom-[3px] border-b-[3px] border-white group-hover:border-[#FF2E63] group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300" />
+              <p className="font-inter text-gray-400 text-lg mb-10 max-w-md leading-relaxed">
+                Запусти тренажер прямо в браузере, покажи лучший результат и получи скидку на игровое время.
+              </p>
 
-          {/* Button Body */}
-          <div className="absolute inset-2 bg-white/5 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#FF2E63] transition-colors duration-300">
-             <span className="font-tactic font-black text-2xl tracking-[0.2em] text-white uppercase group-hover:tracking-[0.4em] transition-all duration-300">
-               START GAME
-             </span>
-          </div>
-        </motion.a>
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                 <Link
+                   href="/aim" // ССЫЛКА НА НОВУЮ СТРАНИЦУ
+                   className="group relative px-8 py-4 bg-[#FF2E63] text-white font-chakra font-bold text-lg uppercase tracking-widest overflow-hidden skew-x-[-12deg] hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-3"
+                 >
+                    <div className="skew-x-[12deg] flex items-center gap-3">
+                       <Zap size={20} className="fill-current" />
+                       Начать игру
+                    </div>
+                    {/* Shine Effect */}
+                    <div className="absolute top-0 -left-[100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[25deg] group-hover:animate-[shine_0.75s_infinite]" />
+                 </Link>
+                 
+                 <div className="px-8 py-4 border border-white/20 text-white font-chakra font-bold text-lg uppercase tracking-widest skew-x-[-12deg] flex items-center justify-center gap-3 opacity-60 cursor-not-allowed" title="Скоро">
+                    <div className="skew-x-[12deg] flex items-center gap-3">
+                       <Trophy size={20} />
+                       Лидерборд
+                    </div>
+                 </div>
+              </div>
+              
+              <div className="mt-6 flex items-center gap-4 text-xs font-mono text-gray-500 uppercase tracking-widest">
+                 <span className="flex items-center gap-1.5"><div className="w-1.5 h-1.5 bg-green-500 rounded-full" /> Browser Game</span>
+                 <span className="w-px h-3 bg-gray-700" />
+                 <span>Max Reward: 300₽</span>
+              </div>
+
+           </motion.div>
+
+           {/* VISUAL / MOCKUP */}
+           <motion.div 
+             initial={{ opacity: 0, scale: 0.9 }}
+             whileInView={{ opacity: 1, scale: 1 }}
+             viewport={{ once: true }}
+             className="relative h-[400px] md:h-[500px] bg-gradient-to-b from-[#111] to-[#0A0A0A] rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden group"
+           >
+              {/* Fake UI Elements */}
+              <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-20">
+                 <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                    <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                 </div>
+                 <div className="font-mono text-[10px] text-gray-600">TARGET_PRACTICE.EXE</div>
+              </div>
+
+              {/* Grid Target Animation */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                 {/* Crosshair Center */}
+                 <div className="relative z-10">
+                    <Crosshair size={48} className="text-[#FF2E63] opacity-80" strokeWidth={1} />
+                    <div className="absolute inset-0 bg-[#FF2E63]/20 blur-xl animate-pulse" />
+                 </div>
+                 
+                 {/* Moving Targets (Decorative) */}
+                 {[1,2,3].map((_, i) => (
+                   <div 
+                     key={i}
+                     className="absolute w-8 h-8 border border-[#FF2E63]/40 rounded-full flex items-center justify-center animate-[ping_3s_infinite]"
+                     style={{ 
+                       top: `${20 + Math.random() * 60}%`, 
+                       left: `${20 + Math.random() * 60}%`,
+                       animationDelay: `${i}s` 
+                     }}
+                   >
+                      <div className="w-1 h-1 bg-[#FF2E63] rounded-full" />
+                   </div>
+                 ))}
+
+                 {/* Phone Frame Hint */}
+                 <div className="absolute bottom-8 text-center">
+                    <p className="font-tactic font-bold text-2xl text-white tracking-widest">300 ₽</p>
+                    <p className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-1">Главный приз</p>
+                 </div>
+              </div>
+
+              {/* Scanline */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] opacity-10 pointer-events-none" />
+           </motion.div>
+
+        </div>
 
       </div>
     </section>
-  );
-}
-
-// Компонент мишени
-function Target({ x, y, delay }: { x: string, y: string, delay: number }) {
-  return (
-    <motion.div
-      className="absolute w-12 h-12 border border-dashed border-[#FF2E63]/60 rounded-full flex items-center justify-center z-10 pointer-events-none"
-      style={{ left: x, top: y }}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ 
-        scale: [0, 1, 1, 1.5],
-        opacity: [0, 1, 1, 0]
-      }}
-      transition={{ 
-        duration: 3, 
-        repeat: Infinity, 
-        delay: delay,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.8, 1]
-      }}
-    >
-      <div className="w-1.5 h-1.5 bg-[#FF2E63] rounded-full shadow-[0_0_10px_#FF2E63]" />
-    </motion.div>
   );
 }
