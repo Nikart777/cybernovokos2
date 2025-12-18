@@ -159,7 +159,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
       }
 
       if (foundImages.length > 0) {
-        setImages(foundImages); // Сняли ограничение .slice(0,3)
+        setImages(foundImages); 
       }
     };
 
@@ -176,13 +176,8 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const openBooking = () => {
-    window.dispatchEvent(new CustomEvent("open-booking"));
-  };
-
   return (
     <motion.div
-      // Используем плавную анимацию easeOut вместо spring, чтобы убрать "дергание" в конце
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
@@ -192,7 +187,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
     >
       {/* --- IMAGE SLIDER --- */}
       <div className="relative w-full aspect-[4/3] overflow-hidden bg-black">
-        {/* Рендерим все картинки для слайдера */}
         <div className="absolute inset-0 w-full h-full">
             <Image 
               src={images[currentImage]} 
@@ -270,7 +264,8 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           ))}
         </div>
 
-        {zone.link ? (
+        {/* Кнопка "Подробнее" ТОЛЬКО для автосимуляторов (или зон с ссылкой) */}
+        {zone.link && (
           <a
             href={zone.link}
             className="w-full py-4 mt-auto border rounded-xl font-chakra font-bold text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden group/btn block text-center"
@@ -284,25 +279,10 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
               style={{ backgroundColor: accentColor }}
             />
             <span className={`relative z-10 transition-colors flex items-center justify-center gap-2 ${isAccent ? 'group-hover/btn:text-black' : 'group-hover/btn:text-black'}`}>
-              {zone.btnText || "Забронировать"}
+              {zone.btnText || "Подробнее"}
               <ChevronRight size={16} />
             </span>
           </a>
-        ) : (
-          <button
-            onClick={openBooking}
-            className="w-full py-4 mt-auto border rounded-xl font-chakra font-bold text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden group/btn"
-            style={{ borderColor: 'rgba(255,255,255,0.1)', color: '#fff' }}
-          >
-            <div 
-              className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-              style={{ backgroundColor: accentColor }}
-            />
-            <span className="relative z-10 group-hover/btn:text-black transition-colors flex items-center justify-center gap-2">
-              Забронировать
-              <ChevronRight size={16} />
-            </span>
-          </button>
         )}
 
       </div>

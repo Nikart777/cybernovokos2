@@ -9,12 +9,13 @@ import Promotions from "@/components/Promotions";
 import AimControl from "@/components/AimControl";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
+import ClubMap from "@/components/ClubMap";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import PromoModals from "@/components/PromoModals";
 import StickyBar from "@/components/StickyBar";
 import BookingModal from "@/components/BookingModal";
-import LegalModals from "@/components/LegalModals"; // Добавляем LegalModals
+import LegalModals from "@/components/LegalModals";
 
 export default function Home() {
   return (
@@ -25,6 +26,9 @@ export default function Home() {
 
       <ZoneHeader />
       <Zones />
+      
+      {/* Переместил карту загруженности сюда, сразу после зон */}
+      <ClubMap />
 
       <PriceHeader />
       <Prices />
@@ -45,7 +49,7 @@ export default function Home() {
       <StickyBar />
       <BookingModal />
       <PromoModals />
-      <LegalModals /> {/* Вставляем юридические документы */}
+      <LegalModals />
     </main>
   );
 }

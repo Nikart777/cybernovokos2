@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Send } from "lucide-react";
+import { Menu, X, Phone, Send, Monitor } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +17,24 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Функция открытия попапа
+  // Функция открытия попапа брони
   const openBooking = () => {
     window.dispatchEvent(new CustomEvent("open-booking"));
     setIsOpen(false);
   };
 
+  // Скролл к карте (для мобильной кнопки)
+  const scrollToMap = () => {
+    setIsOpen(false);
+    const element = document.getElementById('map');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
     { name: "Зоны", href: "#about" },
+    { name: "Мониторинг", href: "#map" }, // Добавили пункт
     { name: "Цены", href: "#price" },
     { name: "Акции", href: "#special" },
     { name: "Отзывы", href: "#otzyv" },
@@ -44,13 +54,12 @@ export default function Header() {
         <div className="max-w-[1400px] mx-auto px-5 h-full flex items-center justify-between">
           
           {/* LOGO */}
-          <Link href="/" className="group flex items-center gap-2 select-none">
+          <Link href="/" className="group flex items-center gap-2 select-none" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="flex flex-col items-start">
                <div className="flex items-center gap-1">
                   <span className="font-tactic font-black text-2xl tracking-wider text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">CYBER</span>
                   <span className="font-tactic font-black text-3xl text-[#FF2E63] transform -skew-x-12 group-hover:text-white group-hover:drop-shadow-[0_0_15px_#FF2E63] transition-all duration-300">X</span>
                </div>
-               {/* Подпись НОВОКОСИНО */}
                <span className="text-[10px] font-chakra font-bold text-[#888] tracking-[0.2em] uppercase group-hover:text-[#FF2E63] transition-colors">
                  НОВОКОСИНО
                </span>
@@ -63,17 +72,23 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-chakra font-bold text-sm uppercase tracking-widest text-white/80 hover:text-[#FF2E63] transition-colors relative group"
+                className={`font-chakra font-bold text-sm uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
+                  link.href === '#map' ? 'text-[#00F0FF] hover:text-white' : 'text-white/80 hover:text-[#FF2E63]'
+                }`}
               >
+                {link.href === '#map' && <Monitor size={14} />}
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#FF2E63] group-hover:w-full transition-all duration-300 shadow-[0_0_10px_#FF2E63]"></span>
+                <span 
+                  className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                    link.href === '#map' ? 'bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]' : 'bg-[#FF2E63] shadow-[0_0_10px_#FF2E63]'
+                  }`}
+                ></span>
               </Link>
             ))}
           </nav>
 
           {/* DESKTOP ACTIONS */}
           <div className="hidden lg:flex items-center gap-6">
-            {/* Telegram Button (Desktop) */}
             <a 
               href="https://t.me/CyberXNovokos" 
               target="_blank" 
@@ -125,7 +140,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-[#0A0A0A] border-l border-[#FF2E63]/30 z-[70] flex flex-col p-8 shadow-[-20px_0_50px_rgba(0,0,0,0.8)]"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-[#0A0A0A] border-l border-[#FF2E63]/30 z-[70] flex flex-col p-8 shadow-[-20px_0_50px_rgba(0,0,0,0.8)] overflow-y-auto"
             >
               <button
                 onClick={() => setIsOpen(false)}
@@ -150,15 +165,23 @@ export default function Header() {
                     className="group flex items-baseline gap-4"
                   >
                     <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
-                    <span className="font-tactic font-bold text-2xl uppercase text-white group-hover:text-[#FF2E63] group-hover:translate-x-2 transition-all duration-300">
+                    <span className={`font-tactic font-bold text-2xl uppercase group-hover:translate-x-2 transition-all duration-300 ${link.href === '#map' ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63]'}`}>
                       {link.name}
                     </span>
                   </Link>
                 ))}
               </nav>
 
-              <div className="mt-auto flex flex-col gap-4">
-                {/* Telegram Mobile */}
+              {/* КНОПКА МОНИТОРИНГ В МОБИЛЬНОМ МЕНЮ (Добавлено) */}
+              <button 
+                 onClick={scrollToMap}
+                 className="w-full mt-8 py-4 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-black text-lg uppercase tracking-widest active:scale-95 transition-transform"
+               >
+                 <Monitor size={20} />
+                 Карта загрузки
+               </button>
+
+              <div className="mt-auto flex flex-col gap-4 pt-8">
                 <a 
                   href="https://t.me/CyberXNovokos" 
                   target="_blank"
