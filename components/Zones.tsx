@@ -135,19 +135,32 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
   const accentColor = isAccent ? '#FF8C00' : '#FF2E63'; 
 
   useEffect(() => {
-    // Предзагрузка и проверка картинок
+    // Предзагрузка и проверка картинок (возвращаем полный цикл до 6)
     const loadImages = async () => {
       const foundImages: string[] = [];
       const maxImages = 6; 
 
+      const checkImageExists = (src: string) => {
+        return new Promise((resolve) => {
+          const img = new window.Image();
+          img.src = src;
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+        });
+      };
+
       for (let i = 1; i <= maxImages; i++) {
-        // В реальном проекте лучше знать список заранее, чтобы не делать лишние запросы
-        // Но оставим проверку, если она работает у вас
         const src = `/zones/${zone.id}-${i}.webp`;
-        foundImages.push(src); // Предполагаем, что картинки есть, чтобы не тормозить рендер
+        // Проверяем наличие, чтобы не было битых слайдов
+        const exists = await checkImageExists(src);
+        if (exists) {
+          foundImages.push(src);
+        }
       }
-      // Ограничим 3-мя картинками для теста, чтобы не грузить лишнее
-      setImages(foundImages.slice(0, 3)); 
+
+      if (foundImages.length > 0) {
+        setImages(foundImages); // Сняли ограничение .slice(0,3)
+      }
     };
 
     loadImages();
@@ -169,7 +182,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
 
   return (
     <motion.div
-      // ИСПРАВЛЕНИЕ: Убрали пружинный эффект, поставили плавный easeOut
+      // Используем плавную анимацию easeOut вместо spring, чтобы убрать "дергание" в конце
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
@@ -179,7 +192,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
     >
       {/* --- IMAGE SLIDER --- */}
       <div className="relative w-full aspect-[4/3] overflow-hidden bg-black">
-        {/* Рендерим только текущую и следующую картинку для оптимизации */}
+        {/* Рендерим все картинки для слайдера */}
         <div className="absolute inset-0 w-full h-full">
             <Image 
               src={images[currentImage]} 
