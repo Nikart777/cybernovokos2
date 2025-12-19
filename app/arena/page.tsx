@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Login from '@/components/Login';
-import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History } from 'lucide-react'; // Icons
+import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor } from 'lucide-react';
 
 interface Lobby {
   id: number;
@@ -25,26 +24,41 @@ interface Good {
   price: number;
 }
 
-const GAMES = ['CS2', 'Dota 2', 'FIFA', 'Mortal Kombat'];
+const GAMES = ['CS2', 'Dota 2', 'Valorant', 'Apex Legends', 'World of Tanks', 'PUBG', 'Fortnite', 'Другая игра'];
 
 export default function ArenaPage() {
-  const [user, setUser] = useState<{ nick: string; pc: string } | null>(null);
   const [lobbies, setLobbies] = useState<Lobby[]>([]);
   const [goods, setGoods] = useState<Good[]>([]);
   const [loadingGoods, setLoadingGoods] = useState(false);
 
   // Create Lobby Form State
+  const [creatorNick, setCreatorNick] = useState('');
+  const [creatorPC, setCreatorPC] = useState('');
   const [selectedGame, setSelectedGame] = useState(GAMES[0]);
+  const [customGame, setCustomGame] = useState('');
   const [betType, setBetType] = useState<'money' | 'item'>('money');
   const [betAmount, setBetAmount] = useState('');
   const [selectedItem, setSelectedItem] = useState<Good | null>(null);
+  const [itemQuantity, setItemQuantity] = useState(1);
   const [isCreating, setIsCreating] = useState(false);
 
+  // Join Modal State
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const [joiningLobbyId, setJoiningLobbyId] = useState<number | null>(null);
+  const [joinerNick, setJoinerNick] = useState('');
+  const [joinerPC, setJoinerPC] = useState('');
+
   useEffect(() => {
-    const nick = localStorage.getItem('arena_nick');
-    const pc = localStorage.getItem('arena_pc');
-    if (nick && pc) {
-      setUser({ nick, pc });
+    // Restore User Info if available
+    const savedNick = localStorage.getItem('arena_nick');
+    const savedPC = localStorage.getItem('arena_pc');
+    if (savedNick) {
+        setCreatorNick(savedNick);
+        setJoinerNick(savedNick);
+    }
+    if (savedPC) {
+        setCreatorPC(savedPC);
+        setJoinerPC(savedPC);
     }
   }, []);
 
@@ -73,7 +87,6 @@ export default function ArenaPage() {
     setLoadingGoods(true);
     try {
       const res = await axios.get('/api/arena/goods');
-      // Sort alphabetically
       const sortedGoods = (res.data as Good[]).sort((a, b) => a.name.localeCompare(b.name));
       setGoods(sortedGoods);
     } catch (err) {
@@ -91,52 +104,74 @@ export default function ArenaPage() {
     return <Sandwich className="w-8 h-8 text-orange-400 mb-2 drop-shadow-[0_0_5px_rgba(251,146,60,0.5)]" />;
   };
 
-  const handleLogin = (nick: string, pc: string) => {
-    setUser({ nick, pc });
-  };
-
   const handleCreateLobby = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
+    if (!creatorNick || !creatorPC) {
+        alert('Введите ваш Ник и номер ПК');
+        return;
+    }
 
     setIsCreating(true);
     try {
+      // Save info
+      localStorage.setItem('arena_nick', creatorNick);
+      localStorage.setItem('arena_pc', creatorPC);
+
+      const gameName = selectedGame === 'Другая игра' ? customGame : selectedGame;
+      const betItemString = selectedItem ? `${selectedItem.name} (x${itemQuantity})` : null;
+
       await axios.post('/api/arena/lobbies', {
-        creator_nick: user.nick,
-        creator_pc: user.pc,
-        game: selectedGame,
+        creator_nick: creatorNick,
+        creator_pc: creatorPC,
+        game: gameName,
         bet_amount: betType === 'money' ? betAmount : null,
-        bet_item: betType === 'item' && selectedItem ? selectedItem.name : null,
+        bet_item: betItemString,
       });
+
       fetchLobbies();
+      // Reset sensitive fields only
       setBetAmount('');
       setSelectedItem(null);
+      setItemQuantity(1);
     } catch (err) {
-      alert('Failed to create lobby');
+      alert('Ошибка при создании лобби');
     } finally {
       setIsCreating(false);
     }
   };
 
-  const handleJoinLobby = async (lobbyId: number) => {
-    if (!user) return;
-    if (!confirm('Вы уверены, что хотите принять вызов?')) return;
+  const openJoinModal = (lobbyId: number) => {
+      setJoiningLobbyId(lobbyId);
+      setShowJoinModal(true);
+  };
+
+  const handleJoinLobby = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!joiningLobbyId) return;
+    if (!joinerNick || !joinerPC) {
+        alert('Введите ваш Ник и номер ПК');
+        return;
+    }
 
     try {
-      await axios.put(`/api/arena/lobbies/${lobbyId}`, {
+       // Save info
+      localStorage.setItem('arena_nick', joinerNick);
+      localStorage.setItem('arena_pc', joinerPC);
+
+      // Changed from PUT to POST to avoid 403 Forbidden on some hosts
+      await axios.post(`/api/arena/lobbies/${joiningLobbyId}`, {
         action: 'join',
-        joiner_nick: user.nick,
-        joiner_pc: user.pc,
+        joiner_nick: joinerNick,
+        joiner_pc: joinerPC,
       });
       fetchLobbies();
+      setShowJoinModal(false);
+      setJoiningLobbyId(null);
     } catch (err) {
+      console.error(err);
       alert('Не удалось присоединиться к лобби');
     }
   };
-
-  if (!user) {
-    return <Login onLogin={handleLogin} />;
-  }
 
   return (
     <div className="min-h-screen bg-cyber-bg text-white p-4 font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg">
@@ -147,26 +182,6 @@ export default function ArenaPage() {
                 <h1 className="text-3xl font-tactic text-white tracking-wider">CLUB <span className="text-cyber-red drop-shadow-[0_0_8px_rgba(255,46,99,0.8)]">ARENA</span></h1>
                 <p className="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase">Локальные микро-турниры</p>
             </div>
-        </div>
-        <div className="flex items-center space-x-6">
-            <div className="text-right hidden sm:block">
-                <p className="text-xs text-gray-500 uppercase tracking-wider">Игрок</p>
-                <p className="text-lg font-bold text-white leading-none">{user.nick}</p>
-            </div>
-            <div className="text-right hidden sm:block">
-                <p className="text-xs text-gray-500 uppercase tracking-wider">ПК</p>
-                <p className="text-3xl font-tactic text-cyber-purple leading-none drop-shadow-[0_0_5px_rgba(185,0,255,0.6)]">{user.pc}</p>
-            </div>
-            <button
-            onClick={() => {
-                localStorage.removeItem('arena_nick');
-                localStorage.removeItem('arena_pc');
-                setUser(null);
-            }}
-            className="text-sm text-gray-500 hover:text-white border border-gray-700 hover:border-white px-4 py-2 rounded transition-all"
-            >
-            Выход
-            </button>
         </div>
       </header>
 
@@ -181,37 +196,73 @@ export default function ArenaPage() {
                 Создать Дуэль
             </h2>
 
-            <form onSubmit={handleCreateLobby} className="space-y-6">
+            <form onSubmit={handleCreateLobby} className="space-y-4">
+               {/* User Info Fields */}
+               <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой Ник</label>
+                        <input
+                            type="text"
+                            value={creatorNick}
+                            onChange={(e) => setCreatorNick(e.target.value)}
+                            className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
+                            placeholder="Killer"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой ПК</label>
+                        <input
+                            type="text"
+                            value={creatorPC}
+                            onChange={(e) => setCreatorPC(e.target.value)}
+                            className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
+                            placeholder="15"
+                            required
+                        />
+                    </div>
+               </div>
+
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Игра</label>
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Игра</label>
                 <div className="relative">
                     <select
                     value={selectedGame}
                     onChange={(e) => setSelectedGame(e.target.value)}
-                    className="w-full p-4 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-lg font-bold outline-none appearance-none cursor-pointer hover:bg-black/60 transition-colors"
+                    className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-base font-bold outline-none appearance-none cursor-pointer hover:bg-black/60 transition-colors"
                     >
                     {GAMES.map(g => <option key={g} value={g}>{g}</option>)}
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
                 </div>
+                {selectedGame === 'Другая игра' && (
+                    <input
+                        type="text"
+                        value={customGame}
+                        onChange={(e) => setCustomGame(e.target.value)}
+                        className="w-full mt-2 p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none"
+                        placeholder="Название игры"
+                        required
+                    />
+                )}
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Тип ставки</label>
-                <div className="grid grid-cols-2 gap-2 mb-4 p-1 bg-black/40 rounded-lg">
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Тип ставки</label>
+                <div className="grid grid-cols-2 gap-2 mb-2 p-1 bg-black/40 rounded-lg">
                   <button
                     type="button"
                     onClick={() => setBetType('money')}
-                    className={`py-2 rounded-md font-bold text-sm transition-all flex items-center justify-center ${betType === 'money' ? 'bg-cyber-red text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
+                    className={`py-2 rounded-md font-bold text-xs transition-all flex items-center justify-center ${betType === 'money' ? 'bg-cyber-red text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
                   >
-                    <Coins className="w-4 h-4 mr-2" /> Деньги
+                    <Coins className="w-3 h-3 mr-2" /> Деньги
                   </button>
                   <button
                     type="button"
                     onClick={() => setBetType('item')}
-                    className={`py-2 rounded-md font-bold text-sm transition-all flex items-center justify-center ${betType === 'item' ? 'bg-cyber-purple text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
+                    className={`py-2 rounded-md font-bold text-xs transition-all flex items-center justify-center ${betType === 'item' ? 'bg-cyber-purple text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
                   >
-                    <Box className="w-4 h-4 mr-2" /> Товар
+                    <Box className="w-3 h-3 mr-2" /> Товар
                   </button>
                 </div>
 
@@ -233,7 +284,7 @@ export default function ArenaPage() {
                         {goods.map(good => (
                           <div
                             key={good.id}
-                            onClick={() => setSelectedItem(good)}
+                            onClick={() => { setSelectedItem(good); setItemQuantity(1); }}
                             className={`flex flex-col items-center justify-between p-2 rounded-xl cursor-pointer border transition-all h-28 relative overflow-hidden group/item
                                 ${selectedItem?.id === good.id
                                     ? 'border-cyber-purple bg-cyber-purple/20 shadow-[0_0_10px_rgba(185,0,255,0.3)]'
@@ -253,8 +304,26 @@ export default function ArenaPage() {
                       </div>
                     )}
                     {selectedItem && (
-                      <div className="text-sm font-bold text-cyber-purple text-center mt-2 animate-bounce">
-                        Выбрано: {selectedItem.name}
+                      <div className="bg-black/40 p-3 rounded-lg border border-cyber-purple/30">
+                          <div className="text-sm font-bold text-cyber-purple text-center mb-2">
+                            {selectedItem.name}
+                          </div>
+                          <div className="flex items-center justify-center space-x-3">
+                              <button
+                                type="button"
+                                onClick={() => setItemQuantity(Math.max(1, itemQuantity - 1))}
+                                className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
+                              >-</button>
+                              <span className="font-tactic text-xl w-8 text-center">{itemQuantity}</span>
+                              <button
+                                type="button"
+                                onClick={() => setItemQuantity(Math.min(selectedItem.count, itemQuantity + 1))}
+                                className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
+                              >+</button>
+                          </div>
+                          <div className="text-center text-[10px] text-gray-500 mt-1">
+                              Максимум: {selectedItem.count}
+                          </div>
                       </div>
                     )}
                   </div>
@@ -328,19 +397,13 @@ export default function ArenaPage() {
                     </div>
                   </div>
 
-                  {lobby.status === 'waiting' && lobby.creator_nick !== user.nick && (
+                  {lobby.status === 'waiting' && (
                     <button
-                      onClick={() => handleJoinLobby(lobby.id)}
+                      onClick={() => openJoinModal(lobby.id)}
                       className="w-full py-3 bg-white/5 hover:bg-cyber-purple hover:text-white border border-white/10 hover:border-cyber-purple rounded-lg font-bold text-sm tracking-wider uppercase transition-all mt-2 group-hover:shadow-[0_0_15px_rgba(185,0,255,0.3)]"
                     >
                       Принять вызов
                     </button>
-                  )}
-
-                  {lobby.status === 'waiting' && lobby.creator_nick === user.nick && (
-                     <div className="text-center text-xs font-bold text-gray-500 py-3 bg-black/20 rounded border border-white/5 animate-pulse mt-2">
-                       Ожидание соперника...
-                     </div>
                   )}
 
                   {(lobby.status === 'payment_check' || lobby.status === 'active') && (
@@ -358,6 +421,60 @@ export default function ArenaPage() {
           </div>
         </section>
       </main>
+
+      {/* JOIN MODAL */}
+      {showJoinModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+              <div className="bg-neutral-900 border border-cyber-purple/50 rounded-2xl w-full max-w-md p-6 relative shadow-[0_0_30px_rgba(185,0,255,0.2)]">
+                  <button
+                    onClick={() => setShowJoinModal(false)}
+                    className="absolute top-4 right-4 text-gray-500 hover:text-white"
+                  >
+                      <X className="w-6 h-6" />
+                  </button>
+
+                  <h3 className="text-2xl font-tactic text-white mb-6 text-center">Принять вызов</h3>
+
+                  <form onSubmit={handleJoinLobby} className="space-y-4">
+                       <div className="space-y-2">
+                            <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                <User className="w-4 h-4" /> Твой Никнейм
+                            </label>
+                            <input
+                                type="text"
+                                value={joinerNick}
+                                onChange={(e) => setJoinerNick(e.target.value)}
+                                className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
+                                placeholder="Nagibator"
+                                required
+                            />
+                       </div>
+                       <div className="space-y-2">
+                            <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                <Monitor className="w-4 h-4" /> Твой ПК
+                            </label>
+                            <input
+                                type="text"
+                                value={joinerPC}
+                                onChange={(e) => setJoinerPC(e.target.value)}
+                                className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
+                                placeholder="20"
+                                required
+                            />
+                       </div>
+
+                       <div className="pt-4">
+                           <button
+                                type="submit"
+                                className="w-full py-4 bg-cyber-purple hover:bg-purple-600 rounded-xl font-tactic text-xl uppercase tracking-widest transition-all shadow-lg"
+                           >
+                               В Бой!
+                           </button>
+                       </div>
+                  </form>
+              </div>
+          </div>
+      )}
     </div>
   );
 }

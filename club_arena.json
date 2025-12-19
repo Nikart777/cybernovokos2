@@ -1,4 +1,17 @@
 {
-  "lobbies": [],
-  "lastId": 0
+  "lobbies": [
+    {
+      "creator_nick": "CreatorNick",
+      "creator_pc": "PC1",
+      "game": "CS2",
+      "bet_amount": "300",
+      "bet_item": null,
+      "id": 1,
+      "joiner_nick": "JoinerNick",
+      "joiner_pc": "PC2",
+      "status": "payment_check",
+      "created_at": 1766155935189
+    }
+  ],
+  "lastId": 1
 }

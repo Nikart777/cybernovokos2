@@ -1,7 +1,6 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
-// const Database = require('better-sqlite3'); // Removed
 const path = require('path');
 const fs = require('fs');
 
