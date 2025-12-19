@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Login({ onLogin }: { onLogin: (nick: string, pc: string) => void }) {
   const [nick, setNick] = useState('');
@@ -17,37 +16,42 @@ export default function Login({ onLogin }: { onLogin: (nick: string, pc: string)
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-6 text-center text-red-500">Club Arena</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Игровой Никнейм</label>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cyber-bg text-white p-4 font-chakra relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 bg-[radial-gradient(circle_at_50%_50%,#B900FF_0%,transparent_50%)]"></div>
+
+      <div className="bg-neutral-900/80 backdrop-blur-sm p-8 rounded-xl border border-white/10 shadow-2xl w-full max-w-md relative z-10">
+        <h1 className="text-4xl font-tactic mb-8 text-center text-cyber-red tracking-wider drop-shadow-[0_0_10px_rgba(255,46,99,0.5)]">
+          CLUB ARENA
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <label className="block text-sm font-bold text-gray-400 uppercase tracking-widest">Игровой Никнейм</label>
             <input
               type="text"
               value={nick}
               onChange={(e) => setNick(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:border-red-500 focus:outline-none"
-              placeholder="Nagibator2000"
+              className="w-full p-3 rounded-lg bg-black/50 border border-white/10 focus:border-cyber-red focus:ring-1 focus:ring-cyber-red focus:outline-none transition-all placeholder-gray-700 text-lg"
+              placeholder="NAGIBATOR2000"
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Номер твоего ПК</label>
+          <div className="space-y-2">
+            <label className="block text-sm font-bold text-gray-400 uppercase tracking-widest">Номер твоего ПК</label>
             <input
               type="text"
               value={pc}
               onChange={(e) => setPc(e.target.value)}
-              className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:border-red-500 focus:outline-none"
-              placeholder="15 или VIP 2"
+              className="w-full p-3 rounded-lg bg-black/50 border border-white/10 focus:border-cyber-red focus:ring-1 focus:ring-cyber-red focus:outline-none transition-all placeholder-gray-700 text-lg"
+              placeholder="15"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-red-600 hover:bg-red-700 rounded font-bold transition-colors"
+            className="w-full py-4 bg-cyber-red hover:bg-red-600 rounded-lg font-tactic text-xl tracking-widest transition-all hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,46,99,0.4)] uppercase"
           >
-            ВОЙТИ
+            Войти в Игру
           </button>
         </form>
       </div>
