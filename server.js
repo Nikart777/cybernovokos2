@@ -1,6 +1,8 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
+const Database = require('better-sqlite3');
+const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
@@ -30,5 +32,22 @@ app.prepare().then(() => {
     })
     .listen(port, () => {
       console.log(`> Ready on http://${hostname}:${port}`);
+
+      // Cleanup task
+      const dbPath = path.join(process.cwd(), 'club_arena.db');
+
+      setInterval(() => {
+        try {
+            const db = new Database(dbPath);
+            const oneHourAgo = Date.now() - 3600000;
+            const info = db.prepare("DELETE FROM lobbies WHERE status = 'waiting' AND created_at < ?").run(oneHourAgo);
+            if (info.changes > 0) {
+                console.log(`Cleaned up ${info.changes} old lobbies`);
+            }
+            db.close();
+        } catch (e) {
+            console.error('Error in cleanup task:', e);
+        }
+      }, 60000); // Run every minute
     });
 });
