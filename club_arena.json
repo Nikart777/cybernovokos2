@@ -11,7 +11,33 @@
       "joiner_pc": "PC2",
       "status": "payment_check",
       "created_at": 1766155935189
+    },
+    {
+      "creator_nick": "RuleMaster",
+      "creator_pc": "PC99",
+      "game": "CS2",
+      "bet_amount": "1000",
+      "bet_item": null,
+      "rules": "Only Headshots",
+      "id": 2,
+      "joiner_nick": null,
+      "joiner_pc": null,
+      "status": "waiting",
+      "created_at": 1766158905110
+    },
+    {
+      "creator_nick": "RuleMaster",
+      "creator_pc": "PC99",
+      "game": "CS2",
+      "bet_amount": "1000",
+      "bet_item": null,
+      "rules": "Only Headshots",
+      "id": 3,
+      "joiner_nick": null,
+      "joiner_pc": null,
+      "status": "waiting",
+      "created_at": 1766159009574
     }
   ],
-  "lastId": 1
+  "lastId": 3
 }

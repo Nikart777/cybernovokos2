@@ -38,16 +38,19 @@ export default function AdminPage() {
   const handleAction = async (id: number, action: 'confirm' | 'reject' | 'finish') => {
     try {
       if (action === 'confirm') {
-        await axios.put(`/api/arena/lobbies/${id}`, {
+        // Changed to POST to avoid 403 Forbidden
+        await axios.post(`/api/arena/lobbies/${id}`, {
           action: 'update_status',
           status: 'active'
         });
       } else if (action === 'reject') {
         if (!confirm('Отменить матч? Это действие нельзя отменить.')) return;
-        await axios.delete(`/api/arena/lobbies/${id}`);
+        // Changed to POST with action='delete'
+        await axios.post(`/api/arena/lobbies/${id}`, { action: 'delete' });
       } else if (action === 'finish') {
           if (!confirm('Завершить матч?')) return;
-          await axios.delete(`/api/arena/lobbies/${id}`);
+          // Changed to POST with action='delete'
+          await axios.post(`/api/arena/lobbies/${id}`, { action: 'delete' });
       }
       fetchLobbies();
     } catch (err) {

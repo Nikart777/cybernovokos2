@@ -16,7 +16,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { creator_nick, creator_pc, game, bet_amount, bet_item } = body;
+    const { creator_nick, creator_pc, game, bet_amount, bet_item, rules } = body;
 
     if (!creator_nick || !creator_pc || !game) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -31,8 +31,9 @@ export async function POST(req: Request) {
         creator_pc,
         game,
         bet_amount,
-        bet_item
-    });
+        bet_item,
+        rules: rules || null
+    } as any);
 
     return NextResponse.json({ id: newLobby.id, status: 'waiting' }, { status: 201 });
   } catch (error: any) {
