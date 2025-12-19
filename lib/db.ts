@@ -1,38 +1,133 @@
-import Database from 'better-sqlite3';
+import fs from 'fs';
 import path from 'path';
 
-// Singleton pattern to prevent multiple connections in dev mode
-let db: Database.Database;
+const DB_PATH = path.join(process.cwd(), 'club_arena.json');
 
-if (process.env.NODE_ENV === 'production') {
-  db = new Database(path.join(process.cwd(), 'club_arena.db'));
-} else {
-  if (!(global as any).db) {
-    (global as any).db = new Database(path.join(process.cwd(), 'club_arena.db'));
-  }
-  db = (global as any).db;
+export interface Lobby {
+  id: number;
+  creator_nick: string;
+  creator_pc: string;
+  joiner_nick: string | null;
+  joiner_pc: string | null;
+  game: string;
+  bet_amount: string | null;
+  bet_item: string | null;
+  status: 'waiting' | 'payment_check' | 'active' | 'finished';
+  created_at: number;
 }
 
-// Initialize the database schema
-const initDB = () => {
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS lobbies (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      creator_nick TEXT NOT NULL,
-      creator_pc TEXT NOT NULL,
-      joiner_nick TEXT,
-      joiner_pc TEXT,
-      game TEXT NOT NULL,
-      bet_amount TEXT,
-      bet_item TEXT,
-      status TEXT NOT NULL DEFAULT 'waiting', -- waiting, payment_check, active, finished
-      created_at INTEGER NOT NULL
-    )
-  `);
+interface DatabaseSchema {
+  lobbies: Lobby[];
+  lastId: number;
+}
+
+const defaultData: DatabaseSchema = {
+  lobbies: [],
+  lastId: 0,
 };
 
-// Ensure DB is initialized
+// Initialize DB
+const initDB = () => {
+  if (!fs.existsSync(DB_PATH)) {
+    fs.writeFileSync(DB_PATH, JSON.stringify(defaultData, null, 2));
+  }
+};
+
+// Ensure DB exists on load
 initDB();
 
-export { initDB };
+// Helper to read DB
+const readDB = (): DatabaseSchema => {
+  try {
+    const data = fs.readFileSync(DB_PATH, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    return defaultData;
+  }
+};
+
+// Helper to write DB
+const writeDB = (data: DatabaseSchema) => {
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+};
+
+const db = {
+  getAll: (): Lobby[] => {
+    const data = readDB();
+    return data.lobbies;
+  },
+
+  getById: (id: number): Lobby | undefined => {
+    const data = readDB();
+    return data.lobbies.find(l => l.id === id);
+  },
+
+  create: (lobby: Omit<Lobby, 'id' | 'status' | 'created_at' | 'joiner_nick' | 'joiner_pc'>): Lobby => {
+    const data = readDB();
+    const newId = data.lastId + 1;
+    const newLobby: Lobby = {
+      ...lobby,
+      id: newId,
+      joiner_nick: null,
+      joiner_pc: null,
+      status: 'waiting',
+      created_at: Date.now(),
+    };
+
+    data.lobbies.push(newLobby);
+    data.lastId = newId;
+    writeDB(data);
+    return newLobby;
+  },
+
+  update: (id: number, updates: Partial<Lobby>) => {
+    const data = readDB();
+    const index = data.lobbies.findIndex(l => l.id === id);
+    if (index !== -1) {
+      data.lobbies[index] = { ...data.lobbies[index], ...updates };
+      writeDB(data);
+      return data.lobbies[index];
+    }
+    return null;
+  },
+
+  delete: (id: number) => {
+    const data = readDB();
+    const initialLength = data.lobbies.length;
+    data.lobbies = data.lobbies.filter(l => l.id !== id);
+    if (data.lobbies.length !== initialLength) {
+      writeDB(data);
+      return true;
+    }
+    return false;
+  },
+
+  // Specific query for active/waiting/payment_check
+  getActiveLobbies: (): Lobby[] => {
+      const data = readDB();
+      return data.lobbies
+        .filter(l => ['waiting', 'payment_check', 'active'].includes(l.status))
+        .sort((a, b) => b.created_at - a.created_at);
+  },
+
+  cleanupOldLobbies: () => {
+      const data = readDB();
+      const oneHourAgo = Date.now() - 3600000;
+      const initialLength = data.lobbies.length;
+
+      data.lobbies = data.lobbies.filter(l => {
+          if (l.status === 'waiting' && l.created_at < oneHourAgo) {
+              return false; // Remove
+          }
+          return true;
+      });
+
+      if (data.lobbies.length !== initialLength) {
+          writeDB(data);
+          return initialLength - data.lobbies.length;
+      }
+      return 0;
+  }
+};
+
 export default db;

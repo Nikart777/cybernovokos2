@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
-    const id = params.id;
+    const id = parseInt(params.id);
     const body = await req.json();
     const { action, joiner_nick, joiner_pc, status } = body;
 
-    const lobby = db.prepare('SELECT * FROM lobbies WHERE id = ?').get(id) as any;
+    const lobby = db.getById(id);
 
     if (!lobby) {
       return NextResponse.json({ error: 'Lobby not found' }, { status: 404 });
@@ -21,11 +23,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         return NextResponse.json({ error: 'Lobby is not waiting' }, { status: 400 });
       }
 
-      db.prepare(`
-        UPDATE lobbies
-        SET joiner_nick = ?, joiner_pc = ?, status = 'payment_check'
-        WHERE id = ?
-      `).run(joiner_nick, joiner_pc, id);
+      db.update(id, { joiner_nick, joiner_pc, status: 'payment_check' });
 
       return NextResponse.json({ success: true, status: 'payment_check' });
     }
@@ -35,7 +33,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         return NextResponse.json({ error: 'Missing status' }, { status: 400 });
       }
 
-      db.prepare('UPDATE lobbies SET status = ? WHERE id = ?').run(status, id);
+      db.update(id, { status });
       return NextResponse.json({ success: true, status });
     }
 
@@ -49,8 +47,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
     try {
-        const id = params.id;
-        db.prepare('DELETE FROM lobbies WHERE id = ?').run(id);
+        const id = parseInt(params.id);
+        db.delete(id);
         return NextResponse.json({ success: true });
     } catch (error: any) {
         console.error('Error deleting lobby:', error);

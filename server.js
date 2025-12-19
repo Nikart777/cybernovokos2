@@ -1,8 +1,9 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
-const Database = require('better-sqlite3');
+// const Database = require('better-sqlite3'); // Removed
 const path = require('path');
+const fs = require('fs');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
@@ -34,17 +35,27 @@ app.prepare().then(() => {
       console.log(`> Ready on http://${hostname}:${port}`);
 
       // Cleanup task
-      const dbPath = path.join(process.cwd(), 'club_arena.db');
+      const dbPath = path.join(process.cwd(), 'club_arena.json');
 
       setInterval(() => {
         try {
-            const db = new Database(dbPath);
+            if (!fs.existsSync(dbPath)) return;
+
+            const data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
             const oneHourAgo = Date.now() - 3600000;
-            const info = db.prepare("DELETE FROM lobbies WHERE status = 'waiting' AND created_at < ?").run(oneHourAgo);
-            if (info.changes > 0) {
-                console.log(`Cleaned up ${info.changes} old lobbies`);
+            const initialLength = data.lobbies.length;
+
+            data.lobbies = data.lobbies.filter(l => {
+                if (l.status === 'waiting' && l.created_at < oneHourAgo) {
+                    return false;
+                }
+                return true;
+            });
+
+            if (data.lobbies.length !== initialLength) {
+                fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
+                console.log(`Cleaned up ${initialLength - data.lobbies.length} old lobbies`);
             }
-            db.close();
         } catch (e) {
             console.error('Error in cleanup task:', e);
         }
