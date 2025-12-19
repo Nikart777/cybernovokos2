@@ -5,8 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/private/', '/admin/'], // Закрываем технические разделы, если будут
+      disallow: ['/private/', '/admin/', '/api/'], // Закрываем технические API, кроме публичных
     },
+    // Sitemap обязателен для правильной индексации
     sitemap: 'https://cyberx-novokosino.ru/sitemap.xml',
   };
 }

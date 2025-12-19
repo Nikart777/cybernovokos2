@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor, Users } from 'lucide-react';
+import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor, Users, Trophy, Target } from 'lucide-react';
 
 interface Lobby {
   id: number;
@@ -215,18 +215,71 @@ export default function ArenaPage() {
         </div>
       </header>
 
-      {/* PROMO HERO BLOCK */}
-      <div className="max-w-7xl mx-auto mb-10 relative overflow-hidden rounded-2xl border border-cyber-red/30 group">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyber-red/20 to-cyber-purple/20 opacity-50 group-hover:opacity-70 transition-opacity"></div>
-          <div className="relative z-10 p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-5xl font-tactic text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                  ХВАТИТ ИГРАТЬ С <span className="text-cyber-red">ВООБРАЖАЕМЫМИ</span> СОПЕРНИКАМИ!
-              </h2>
-              <p className="text-lg md:text-xl text-gray-300 font-bold max-w-3xl mx-auto leading-relaxed">
-                  Создай или подключись к мини-турниру прямо с игроком из клуба <span className="text-cyber-purple">ЗДЕСЬ И СЕЙЧАС</span>.
-                  <br/>Докажи, кто главный на районе.
-              </p>
-          </div>
+      {/* NEW SPLIT PROMO BLOCKS */}
+      <div className="max-w-7xl mx-auto mb-12 grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        {/* LEFT BLOCK (Aggressive) - 7 cols */}
+        <div className="md:col-span-7 relative overflow-hidden rounded-3xl border border-cyber-red/30 bg-[#0a0a0a] group">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-cyber-red/10 via-transparent to-transparent opacity-60"></div>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-red to-transparent opacity-50"></div>
+            
+            <div className="relative z-10 p-8 md:p-10 flex flex-col justify-center h-full">
+                <div className="flex items-center gap-2 mb-6">
+                    <span className="px-2 py-1 rounded bg-cyber-red/10 border border-cyber-red/20 text-[10px] font-bold text-cyber-red uppercase tracking-widest flex items-center gap-2">
+                        <Target size={12} />
+                        Брось вызов
+                    </span>
+                </div>
+                
+                <h2 className="text-3xl md:text-5xl font-tactic text-white uppercase leading-[0.9] drop-shadow-lg">
+                    СЫГРАЙ НА <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-red to-orange-500 drop-shadow-[0_0_25px_rgba(255,46,99,0.4)]">
+                        MONSTER ENERGY
+                    </span> <br/>
+                    ИЛИ ОБНУЛИ БАЛАНС СОСЕДА!
+                </h2>
+                
+                {/* Decorative elements */}
+                <div className="absolute right-4 top-4 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
+                     <Swords size={180} className="text-cyber-red -rotate-12" />
+                </div>
+            </div>
+        </div>
+
+        {/* RIGHT BLOCK (Info/Call) - 5 cols */}
+        <div className="md:col-span-5 relative overflow-hidden rounded-3xl border border-cyber-purple/30 bg-[#0a0a0a] flex flex-col justify-between group transition-colors hover:border-cyber-purple/50">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-cyber-purple/10 via-transparent to-transparent opacity-60"></div>
+            
+            <div className="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between">
+                 <div className="flex items-center gap-2 mb-4">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live PvP System</span>
+                 </div>
+                 
+                 <p className="text-lg text-gray-300 font-bold leading-snug mb-8 relative">
+                    Хватит катать в одиночку. Собери стак или найди соперника в зале. Забейся 1x1 или 5x5 на интерес и покажи, <span className="text-white bg-cyber-purple/20 px-2 py-0.5 rounded border border-cyber-purple/30 whitespace-nowrap inline-block mt-1 md:mt-0 shadow-[0_0_10px_rgba(185,0,255,0.2)]">КТО ТУТ БАТЯ</span>.
+                 </p>
+                 
+                 <div className="flex items-center gap-4 mt-auto p-4 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
+                    <div className="p-2.5 rounded-lg bg-cyber-purple/20 text-cyber-purple shadow-[0_0_15px_rgba(185,0,255,0.3)]">
+                        <Trophy size={24} />
+                    </div>
+                    <div>
+                        <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-0.5">Твоя цель</div>
+                        <span className="font-tactic text-xl text-white uppercase tracking-widest leading-none">
+                            Забрать Всё
+                        </span>
+                    </div>
+                 </div>
+            </div>
+            
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[size:20px_20px] pointer-events-none"></div>
+        </div>
+
       </div>
 
       <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">

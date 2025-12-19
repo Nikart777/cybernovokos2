@@ -2,30 +2,20 @@ export default function JsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      /* 1. ГЛАВНЫЙ БРЕНД */
-      {
-        "@type": "Organization",
-        "@id": "https://cyberxcommunity.ru/#brand",
-        "name": "CyberX Community",
-        "url": "https://cyberxcommunity.ru/",
-        "logo": "https://cyberxcommunity.ru/images/logo.svg",
-        "sameAs": [
-          "https://vk.com/cyberx_community"
-        ]
-      },
-
-      /* 2. ЛОКАЛЬНЫЙ ФИЛИАЛ */
+      /* 1. ИНФОРМАЦИЯ О КЛУБЕ (InternetCafe) */
       {
         "@type": "InternetCafe",
         "@id": "https://cyberx-novokosino.ru/#store",
         "url": "https://cyberx-novokosino.ru/",
-        "name": "Компьютерный клуб CyberX Новокосино",
-        "description": "Топовый кибер клуб в Новокосино 24/7. Мощные ПК (RTX 5070, 400Гц), автосимуляторы Sim Racing, PS5 Lounge.",
+        "name": "CyberX Новокосино",
+        "description": "Топовый компьютерный клуб в Новокосино 24/7. Мощные ПК RTX 5070, автосимуляторы Sim Racing, PS5 Lounge с диванами.",
         "image": "https://cyberx-novokosino.ru/og-image.jpg",
+        "logo": "https://cyberx-novokosino.ru/icon-512.png",
         "telephone": "+79851289538",
         "email": "info@cyberx-novokosino.ru",
         "priceRange": "100 - 2450 RUB",
         "paymentAccepted": "Cash, Credit Card, SBP",
+        "currenciesAccepted": "RUB",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "ул. Новокосинская, 32",
@@ -46,8 +36,18 @@ export default function JsonLd() {
           "opens": "00:00",
           "closes": "23:59"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "150",
+          "bestRating": "5"
+        },
+        /* ВОССТАНОВЛЕНА СВЯЗЬ С СЕТЬЮ (Для авторитета, но не ломает крошки) */
         "parentOrganization": {
-          "@id": "https://cyberxcommunity.ru/#brand"
+          "@type": "Organization",
+          "name": "CyberX Community",
+          "url": "https://cyberxcommunity.ru/",
+          "sameAs": "https://vk.com/cyberx_community"
         },
         "amenityFeature": [
           { "@type": "LocationFeatureSpecification", "name": "RTX 5070 / 4070 Super", "value": true },
@@ -57,11 +57,11 @@ export default function JsonLd() {
         ]
       },
 
-      /* 3. ТОВАРЫ (ЗОНЫ И ЦЕНЫ) - НОВОЕ! */
+      /* 2. ТОВАРЫ (Для сниппета с ценами в Яндексе) */
       {
         "@type": "Product",
-        "name": "Общий зал (Standard)",
-        "description": "Игровое место с ПК RTX 4060 и монитором 144 Гц.",
+        "name": "Пакет 1 Час (Общий зал)",
+        "description": "Игровое место в общем зале: ПК RTX 4060, монитор 144 Гц, периферия Logitech.",
         "image": "https://cyberx-novokosino.ru/zones/common-1.webp",
         "offers": {
           "@type": "Offer",
@@ -73,12 +73,12 @@ export default function JsonLd() {
       },
       {
         "@type": "Product",
-        "name": "VIP Bootcamp",
-        "description": "Приватная комната на 5 ПК с RTX 4070 и 240 Гц.",
+        "name": "Пакет Ночь (VIP Bootcamp)",
+        "description": "Ночной пакет (22:00 - 08:00) в приватной зоне Bootcamp на 5 ПК.",
         "image": "https://cyberx-novokosino.ru/zones/bootcamp-1.webp",
         "offers": {
           "@type": "Offer",
-          "price": "110",
+          "price": "850",
           "priceCurrency": "RUB",
           "availability": "https://schema.org/InStock",
           "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
@@ -86,8 +86,8 @@ export default function JsonLd() {
       },
       {
         "@type": "Product",
-        "name": "Автосимулятор Sim Racing",
-        "description": "Профессиональный кокпит Moza R12, руль с обратной связью, 4K TV.",
+        "name": "Автосимулятор Sim Racing (1 час)",
+        "description": "Профессиональный кокпит, руль Moza R12 с обратной связью, 4K TV.",
         "image": "https://cyberx-novokosino.ru/zones/sim-1.webp",
         "offers": {
           "@type": "Offer",
@@ -97,21 +97,8 @@ export default function JsonLd() {
           "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
         }
       },
-      {
-        "@type": "Product",
-        "name": "PS5 Lounge Zone",
-        "description": "Зона с PlayStation 5, диванами и 4K TV 70 дюймов.",
-        "image": "https://cyberx-novokosino.ru/zones/ps5-1.webp",
-        "offers": {
-          "@type": "Offer",
-          "price": "250",
-          "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
-        }
-      },
 
-      /* 4. ХЛЕБНЫЕ КРОШКИ */
+      /* 3. НАВИГАЦИОННАЯ ЦЕПОЧКА (ОСТАВЛЯЕМ ЛОКАЛЬНОЙ ДЛЯ ЯНДЕКСА) */
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -119,16 +106,24 @@ export default function JsonLd() {
             "@type": "ListItem",
             "position": 1,
             "item": {
-              "@id": "https://cyberxcommunity.ru/",
-              "name": "CyberX Community"
+              "@id": "https://cyberx-novokosino.ru/",
+              "name": "Главная"
             }
           },
           {
             "@type": "ListItem",
             "position": 2,
             "item": {
-              "@id": "https://cyberx-novokosino.ru/",
-              "name": "Клуб Новокосино"
+              "@id": "https://cyberx-novokosino.ru/#about",
+              "name": "Зоны и Компьютеры"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@id": "https://cyberx-novokosino.ru/#price",
+              "name": "Цены и Тарифы"
             }
           }
         ]

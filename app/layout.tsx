@@ -45,11 +45,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://cyberx-novokosino.ru',
   },
-  // Иконки и Манифест (PWA)
+  // Настройка иконок для Яндекса и браузеров
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png', // Добавьте эту картинку в public, если есть
+    apple: '/icon-192.png', 
   },
   openGraph: {
     title: "CyberX Новокосино — Киберспортивное пространство",
@@ -78,6 +82,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  // Коды верификации
   verification: {
     yandex: 'cd200b561d2e01f0', // Код верификации Яндекс.Вебмастер
     google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM', // Код верификации Google Search Console 

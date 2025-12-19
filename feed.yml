@@ -1,0 +1,58 @@
+import { NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  const date = new Date().toISOString();
+  
+  // Список услуг для Яндекса
+  const offers = [
+    { id: 'common-1h', name: '1 Час (Общий зал)', price: 100, categoryId: 1, desc: 'RTX 4060, 144Hz, Монитор 24.5' },
+    { id: 'common-3h', name: '3 Часа (Общий зал)', price: 410, categoryId: 1, desc: 'Выгодный пакет 3 часа' },
+    { id: 'common-5h', name: '5 Часов (Общий зал)', price: 630, categoryId: 1, desc: 'Выгодный пакет 5 часов' },
+    { id: 'common-night', name: 'Пакет Ночь (Общий зал)', price: 700, categoryId: 1, desc: 'Пакет времени с 22:00 до 08:00' },
+    
+    { id: 'bootcamp-1h', name: '1 Час (VIP Bootcamp)', price: 110, categoryId: 2, desc: 'Приватная комната, RTX 4070, 240Hz' },
+    { id: 'bootcamp-night', name: 'Пакет Ночь (VIP Bootcamp)', price: 850, categoryId: 2, desc: 'Ночь в буткемпе с 22:00 до 08:00' },
+    
+    { id: 'tv-ps5-1h', name: '1 Час (PS5 Lounge)', price: 250, categoryId: 3, desc: 'PlayStation 5, 4K TV 70 дюймов, диваны' },
+    { id: 'sim-racing-1h', name: '1 Час (Автосимулятор)', price: 300, categoryId: 4, desc: 'Кокпит Moza R12, профессиональный руль и педали' },
+  ];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="${date}">
+    <shop>
+        <name>CyberX Новокосино</name>
+        <company>ИП Артюх Никита Андреевич</company>
+        <url>https://cyberx-novokosino.ru/</url>
+        <currencies>
+            <currency id="RUR" rate="1"/>
+        </currencies>
+        <categories>
+            <category id="1">Игровые ПК (Общий зал)</category>
+            <category id="2">Bootcamp (VIP)</category>
+            <category id="3">Консоли (PlayStation 5)</category>
+            <category id="4">Автосимуляторы</category>
+        </categories>
+        <offers>
+            ${offers.map(offer => `
+            <offer id="${offer.id}" available="true">
+                <name>${offer.name}</name>
+                <price>${offer.price}</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>${offer.categoryId}</categoryId>
+                <description>${offer.desc}</description>
+                <url>https://cyberx-novokosino.ru/#price</url>
+                <picture>https://cyberx-novokosino.ru/og-image.jpg</picture>
+            </offer>
+            `).join('')}
+        </offers>
+    </shop>
+</yml_catalog>`;
+
+  return new NextResponse(xml, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  });
+}
