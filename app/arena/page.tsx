@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor } from 'lucide-react';
+import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor, Users } from 'lucide-react';
 
 interface Lobby {
   id: number;
@@ -15,6 +15,7 @@ interface Lobby {
   bet_item: string | null;
   status: 'waiting' | 'payment_check' | 'active' | 'finished';
   rules: string | null;
+  team_size: number;
   created_at: number;
 }
 
@@ -38,6 +39,7 @@ export default function ArenaPage() {
   const [selectedGame, setSelectedGame] = useState(GAMES[0]);
   const [customGame, setCustomGame] = useState('');
   const [rules, setRules] = useState('');
+  const [teamSize, setTeamSize] = useState(1);
   const [betType, setBetType] = useState<'money' | 'item'>('money');
   const [betAmount, setBetAmount] = useState('');
   const [selectedItem, setSelectedItem] = useState<Good | null>(null);
@@ -134,7 +136,8 @@ export default function ArenaPage() {
         game: gameName,
         bet_amount: betType === 'money' ? betAmount : null,
         bet_item: betItemString,
-        rules: rules
+        rules: rules,
+        team_size: teamSize
       });
 
       fetchLobbies();
@@ -143,6 +146,7 @@ export default function ArenaPage() {
       setSelectedItem(null);
       setItemQuantity(1);
       setRules('');
+      setTeamSize(1);
     } catch (err) {
       alert('Ошибка при создании лобби');
     } finally {
@@ -163,8 +167,15 @@ export default function ArenaPage() {
         return;
     }
 
+    // Prevent self-join
+    const lobby = lobbies.find(l => l.id === joiningLobbyId);
+    if (lobby && (lobby.creator_nick === joinerNick || lobby.creator_pc === joinerPC)) {
+        alert('Вы не можете играть сами с собой!');
+        return;
+    }
+
     // Show confirmation alert (simple implementation of "Disclaimer")
-    if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия.\n2. Убедитесь, что у вас есть средства.\n3. Играйте честно.\n\nПринять вызов?')) {
+    if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия.\n2. Убедитесь, что у вас есть средства.\n3. Подойдите к АДМИНУ для подтверждения старта.\n\nПринять вызов?')) {
         return;
     }
 
@@ -275,6 +286,22 @@ export default function ArenaPage() {
                     className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none placeholder-gray-600"
                     placeholder="Например: aim_map, до 10 побед, только дигл"
                 />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Команда</label>
+                <div className="flex gap-2 bg-black/40 p-1 rounded-lg">
+                    {[1, 2, 3, 4, 5].map(size => (
+                        <button
+                            key={size}
+                            type="button"
+                            onClick={() => setTeamSize(size)}
+                            className={`flex-1 py-2 rounded font-bold text-sm transition-all ${teamSize === size ? 'bg-cyber-red text-white' : 'text-gray-500 hover:text-white'}`}
+                        >
+                            {size}x{size}
+                        </button>
+                    ))}
+                </div>
               </div>
 
               <div>
@@ -412,8 +439,16 @@ export default function ArenaPage() {
 
                 <div className="flex flex-col h-full justify-between relative z-0">
                   <div className="mb-4">
-                    <h3 className="text-2xl font-tactic text-white mb-1 drop-shadow-lg">{lobby.game}</h3>
-                    <div className="flex items-center text-sm text-gray-400 font-bold">
+                    <div className="flex justify-between items-start">
+                        <h3 className="text-2xl font-tactic text-white mb-1 drop-shadow-lg">{lobby.game}</h3>
+                        {lobby.team_size > 1 && (
+                            <div className="flex items-center bg-cyber-purple/20 px-2 py-1 rounded border border-cyber-purple/50">
+                                <Users className="w-3 h-3 text-cyber-purple mr-1" />
+                                <span className="text-xs font-bold text-cyber-purple">{lobby.team_size}x{lobby.team_size}</span>
+                            </div>
+                        )}
+                    </div>
+                    <div className="flex items-center text-sm text-gray-400 font-bold mt-1">
                         <span className="text-cyber-red mr-2">Host:</span>
                         <span className="text-white bg-white/5 px-2 py-0.5 rounded mr-2">{lobby.creator_nick}</span>
                         <span className="text-cyber-purple">PC {lobby.creator_pc}</span>
