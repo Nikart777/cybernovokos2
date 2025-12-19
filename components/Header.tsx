@@ -23,15 +23,22 @@ export default function Header() {
     setIsOpen(false);
   };
 
-  const scrollToSection = (id: string) => {
+  const handleNavClick = (href: string) => {
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (href.startsWith('/')) {
+        // Navigate to page
+        window.location.href = href;
+    } else {
+        // Scroll to section
+        const element = document.getElementById(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
     }
   };
 
   const navLinks = [
+    { name: "ARENA", href: "/arena", isHot: true },
     { name: "Зоны", href: "about" },
     { name: "Свободные места", href: "map", isNew: true },
     { name: "Цены", href: "price" },
@@ -70,15 +77,21 @@ export default function Header() {
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link.href)}
                 className={`font-chakra font-bold text-xs uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
+                  // @ts-ignore
+                  link.isHot ? 'text-purple-500 hover:text-white drop-shadow-[0_0_5px_rgba(168,85,247,0.5)]' :
                   link.isNew ? 'text-[#00F0FF] hover:text-white' : 'text-white/80 hover:text-[#FF2E63]'
                 }`}
               >
+                {/* @ts-ignore */}
+                {link.isHot && <Crosshair size={14} />}
                 {link.isNew && <Monitor size={14} />}
                 {link.name}
                 <span 
                   className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                    // @ts-ignore
+                    link.isHot ? 'bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]' :
                     link.isNew ? 'bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]' : 'bg-[#FF2E63] shadow-[0_0_10px_#FF2E63]'
                   }`} 
                 />
@@ -161,11 +174,15 @@ export default function Header() {
                 {navLinks.map((link, idx) => (
                   <button
                     key={link.name}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleNavClick(link.href)}
                     className="group flex items-baseline gap-4 text-left"
                   >
                     <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
-                    <span className={`font-tactic font-bold text-xl uppercase transition-all duration-300 ${link.isNew ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63] group-hover:translate-x-2'}`}>
+                    <span className={`font-tactic font-bold text-xl uppercase transition-all duration-300 ${
+                      // @ts-ignore
+                      link.isHot ? 'text-purple-500 group-hover:text-white' :
+                      link.isNew ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63] group-hover:translate-x-2'
+                    }`}>
                       {link.name}
                     </span>
                   </button>
