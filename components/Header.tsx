@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Send, Monitor } from "lucide-react";
+import { Menu, X, Phone, Send, Monitor, Crosshair } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,29 +17,28 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Функция открытия попапа брони
+  // Функция открытия попапа брони (для других кнопок)
   const openBooking = () => {
     window.dispatchEvent(new CustomEvent("open-booking"));
     setIsOpen(false);
   };
 
-  // Скролл к карте (для мобильной кнопки)
-  const scrollToMap = () => {
+  const scrollToSection = (id: string) => {
     setIsOpen(false);
-    const element = document.getElementById('map');
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const navLinks = [
-    { name: "Зоны", href: "#about" },
-    { name: "Мониторинг", href: "#map" }, // Добавили пункт
-    { name: "Цены", href: "#price" },
-    { name: "Акции", href: "#special" },
-    { name: "Отзывы", href: "#otzyv" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Контакты", href: "#contact" },
+    { name: "Зоны", href: "about" },
+    { name: "Свободные места", href: "map", isNew: true },
+    { name: "Цены", href: "price" },
+    { name: "Акции", href: "special" },
+    { name: "Отзывы", href: "otzyv" },
+    { name: "FAQ", href: "faq" },
+    { name: "Контакты", href: "contact" },
   ];
 
   return (
@@ -67,28 +66,28 @@ export default function Header() {
           </Link>
 
           {/* DESKTOP NAV */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden xl:flex items-center gap-6">
             {navLinks.map((link) => (
-              <Link
+              <button
                 key={link.name}
-                href={link.href}
-                className={`font-chakra font-bold text-sm uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
-                  link.href === '#map' ? 'text-[#00F0FF] hover:text-white' : 'text-white/80 hover:text-[#FF2E63]'
+                onClick={() => scrollToSection(link.href)}
+                className={`font-chakra font-bold text-xs uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
+                  link.isNew ? 'text-[#00F0FF] hover:text-white' : 'text-white/80 hover:text-[#FF2E63]'
                 }`}
               >
-                {link.href === '#map' && <Monitor size={14} />}
+                {link.isNew && <Monitor size={14} />}
                 {link.name}
                 <span 
                   className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                    link.href === '#map' ? 'bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]' : 'bg-[#FF2E63] shadow-[0_0_10px_#FF2E63]'
-                  }`}
-                ></span>
-              </Link>
+                    link.isNew ? 'bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]' : 'bg-[#FF2E63] shadow-[0_0_10px_#FF2E63]'
+                  }`} 
+                />
+              </button>
             ))}
           </nav>
 
           {/* DESKTOP ACTIONS */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4">
             <a 
               href="https://t.me/CyberXNovokos" 
               target="_blank" 
@@ -98,18 +97,20 @@ export default function Header() {
               <Send size={18} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
 
-            <a href="tel:+79851289538" className="flex items-center gap-2 font-chakra font-bold text-lg hover:text-[#FF2E63] transition-colors group">
-              <Phone size={18} className="group-hover:fill-[#FF2E63] transition-colors" />
+            <a href="tel:+79851289538" className="flex items-center gap-2 font-chakra font-bold text-sm hover:text-[#FF2E63] transition-colors group mr-2">
+              <Phone size={16} className="group-hover:fill-[#FF2E63] transition-colors" />
               <span>+7 985 128 95 38</span>
             </a>
             
+            {/* КНОПКА ЗАБРАТЬ 1200 (Якорь на AimControl) */}
             <button 
-              onClick={openBooking}
-              className="group relative px-6 py-2 bg-transparent outline-none transform -skew-x-12 cursor-pointer"
+              onClick={() => scrollToSection('aim-control')} // ТЕПЕРЬ ВЕДЕТ НА ЯКОРЬ
+              className="group relative px-5 py-2 bg-transparent outline-none transform -skew-x-12 cursor-pointer"
             >
-               <div className="absolute inset-0 bg-[#FF2E63] opacity-80 group-hover:opacity-100 group-hover:bg-white transition-all duration-300 border border-[#FF2E63]" />
-               <span className="relative z-10 font-chakra font-bold text-sm uppercase tracking-wider text-white group-hover:text-black transition-colors duration-300 transform skew-x-12 inline-block">
-                 Забрать 800₽
+               <div className="absolute inset-0 bg-[#FF2E63] opacity-90 group-hover:opacity-100 group-hover:bg-white transition-all duration-300 border border-[#FF2E63] shadow-[0_0_15px_rgba(255,46,99,0.4)]" />
+               <span className="relative z-10 flex items-center gap-2 font-chakra font-bold text-xs uppercase tracking-wider text-white group-hover:text-black transition-colors duration-300 transform skew-x-12">
+                 <Crosshair size={14} />
+                 Забрать 1200Б
                </span>
             </button>
           </div>
@@ -117,7 +118,7 @@ export default function Header() {
           {/* MOBILE BURGER */}
           <button
             onClick={() => setIsOpen(true)}
-            className="lg:hidden p-2 text-white border border-white/20 rounded-md bg-white/5 hover:border-[#FF2E63] hover:text-[#FF2E63] transition-colors"
+            className="xl:hidden p-2 text-white border border-white/20 rounded-md bg-white/5 hover:border-[#FF2E63] hover:text-[#FF2E63] transition-colors"
           >
             <Menu size={28} />
           </button>
@@ -156,50 +157,61 @@ export default function Header() {
                  </span>
               </div>
 
-              <nav className="flex flex-col gap-6">
+              <nav className="flex flex-col gap-5 mb-8">
                 {navLinks.map((link, idx) => (
-                  <Link
+                  <button
                     key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="group flex items-baseline gap-4"
+                    onClick={() => scrollToSection(link.href)}
+                    className="group flex items-baseline gap-4 text-left"
                   >
                     <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
-                    <span className={`font-tactic font-bold text-2xl uppercase group-hover:translate-x-2 transition-all duration-300 ${link.href === '#map' ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63]'}`}>
+                    <span className={`font-tactic font-bold text-xl uppercase transition-all duration-300 ${link.isNew ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63] group-hover:translate-x-2'}`}>
                       {link.name}
                     </span>
-                  </Link>
+                  </button>
                 ))}
               </nav>
 
-              {/* КНОПКА МОНИТОРИНГ В МОБИЛЬНОМ МЕНЮ (Добавлено) */}
-              <button 
-                 onClick={scrollToMap}
-                 className="w-full mt-8 py-4 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-black text-lg uppercase tracking-widest active:scale-95 transition-transform"
-               >
-                 <Monitor size={20} />
-                 Карта загрузки
-               </button>
+              {/* ACTION BUTTONS LIST (VERTICAL STACK) */}
+              <div className="mt-auto flex flex-col gap-3">
+                
+                {/* 1. Карта загрузки */}
+                <button 
+                   onClick={() => scrollToSection('map')}
+                   className="w-full py-3.5 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
+                 >
+                   <Monitor size={18} />
+                   Карта загрузки
+                 </button>
 
-              <div className="mt-auto flex flex-col gap-4 pt-8">
+                 {/* 2. Забрать бонус */}
+                 <button 
+                    onClick={() => scrollToSection('aim-control')}
+                    className="w-full py-3.5 bg-[#FF2E63]/10 border border-[#FF2E63]/50 rounded-xl flex items-center justify-center gap-3 text-[#FF2E63] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
+                  >
+                    <Crosshair size={18} />
+                    Забрать 1200 Бонусов
+                  </button>
+
+                 {/* 3. Telegram */}
                 <a 
                   href="https://t.me/CyberXNovokos" 
                   target="_blank"
-                  className="flex items-center justify-center gap-3 w-full py-3 bg-[#0088cc]/10 border border-[#0088cc]/30 text-[#0088cc] font-chakra font-bold text-lg uppercase rounded-lg hover:bg-[#0088cc] hover:text-white transition-all duration-300"
+                  className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#0088cc]/10 border border-[#0088cc]/30 text-[#0088cc] font-chakra font-bold text-sm uppercase rounded-xl hover:bg-[#0088cc] hover:text-white transition-all duration-300"
                 >
-                  <Send size={20} />
+                  <Send size={18} />
                   Telegram
                 </a>
 
-                <button 
-                  onClick={openBooking}
-                  className="w-full py-4 bg-[#FF2E63] text-white font-chakra font-bold text-lg uppercase tracking-wider skew-x-[-10deg] hover:bg-white hover:text-black transition-colors duration-300"
+                {/* 4. Телефон */}
+                <a 
+                  href="tel:+79851289538" 
+                  className="flex items-center justify-center gap-3 w-full py-3.5 bg-white/5 border border-white/10 text-white font-chakra font-bold text-sm uppercase rounded-xl hover:bg-white/10 transition-all duration-300"
                 >
-                  <span className="skew-x-[10deg] inline-block">ЗАБРАТЬ БОНУС</span>
-                </button>
-                <a href="tel:+79851289538" className="text-center font-chakra font-bold text-xl text-white/80 mt-2 hover:text-[#FF2E63]">
+                  <Phone size={18} />
                   +7 985 128 95 38
                 </a>
+
               </div>
             </motion.div>
           </>

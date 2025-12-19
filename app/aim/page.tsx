@@ -231,8 +231,13 @@ export default function AimGamePage() {
     }, 500);
   };
 
-  const handleBackgroundClick = (e: React.MouseEvent | React.TouchEvent) => {
+  // --- ОБРАБОТКА НАЖАТИЙ (ИСПРАВЛЕНО ДЛЯ МОБИЛЬНЫХ) ---
+  // Используем onPointerDown вместо onMouseDown/onTouchStart для унификации
+  const handleBackgroundPointerDown = (e: React.PointerEvent) => {
+    // Проверяем, что это клик именно по фону, а не всплывшее событие от цели
     if ((e.target as HTMLElement).id === "game-area" && gameState === "playing") {
+       e.preventDefault(); // Предотвращаем дефолтное поведение
+       
        setCombo(1);
        setScore(prev => Math.max(0, prev - 100)); 
        setAccuracy(prev => ({ ...prev, miss: prev.miss + 1 }));
@@ -245,8 +250,12 @@ export default function AimGamePage() {
     }
   };
 
-  const hitTarget = (target: TargetObj) => {
+  const hitTarget = (target: TargetObj, e: React.PointerEvent) => {
     if (gameState !== "playing") return;
+    
+    // ВАЖНО: Останавливаем всплытие, чтобы не сработал клик по фону (промах)
+    e.stopPropagation();
+    e.preventDefault(); 
     
     setTargets(prev => prev.filter(t => t.id !== target.id));
     
@@ -280,7 +289,6 @@ export default function AimGamePage() {
   const totalClicks = accuracy.hits + accuracy.miss;
   const accuracyPercent = totalClicks > 0 ? Math.round((accuracy.hits / totalClicks) * 100) : 0;
   const totalBonusWithReg = bestReward && bestReward.type === 'bonus' ? parseInt(bestReward.label) + 400 : 0;
-  // CPS по русски
   const cps = (totalClicks / 45).toFixed(1);
 
   // Определение ранга
@@ -297,7 +305,7 @@ export default function AimGamePage() {
   const rank = getRank(score);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white overflow-hidden flex flex-col relative font-sans select-none">
+    <main className="min-h-screen bg-[#050505] text-white overflow-hidden flex flex-col relative font-sans select-none overscroll-none">
       
       {/* BACKGROUND FX */}
       <div className="absolute inset-0 pointer-events-none transition-opacity duration-1000" style={{ opacity: gameState === "playing" ? 1 : 0.5 }}>
@@ -358,8 +366,7 @@ export default function AimGamePage() {
          <div 
            id="game-area"
            ref={containerRef}
-           onMouseDown={handleBackgroundClick}
-           onTouchStart={handleBackgroundClick}
+           onPointerDown={handleBackgroundPointerDown} // ИСПРАВЛЕНО: единый обработчик для мыши и тача
            className={`relative w-full max-w-6xl h-[75vh] bg-[#0A0A0A] rounded-3xl border border-white/10 shadow-[inset_0_0_100px_rgba(0,0,0,0.9)] overflow-hidden cursor-crosshair touch-none transition-colors duration-100 ${combo > 5 ? 'border-yellow-500/20 shadow-[inset_0_0_50px_rgba(255,215,0,0.1)]' : ''}`}
          >
             {/* Grid */}
@@ -376,12 +383,11 @@ export default function AimGamePage() {
                     animate={{ scale: 1 }}
                     exit={{ scale: 0, rotate: 180 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="absolute rounded-full flex items-center justify-center cursor-pointer z-10"
+                    className="absolute rounded-full flex items-center justify-center cursor-pointer z-10 touch-manipulation" // touch-manipulation для быстрого отклика
                     style={{ 
                       left: target.x, top: target.y, width: target.size, height: target.size 
                     }}
-                    onMouseDown={(e) => { e.stopPropagation(); hitTarget(target); }}
-                    onTouchStart={(e) => { e.stopPropagation(); e.preventDefault(); hitTarget(target); }}
+                    onPointerDown={(e) => hitTarget(target, e)} // ИСПРАВЛЕНО: единый обработчик
                   >
                      <motion.div 
                         initial={{ scale: 1.4, opacity: 0.8, borderColor: isGold ? "#FFD700" : "#00F0FF" }}
@@ -479,14 +485,14 @@ export default function AimGamePage() {
                </div>
             )}
 
-            {/* RESULTS SCREEN (FIXED SCROLL & SPACING) */}
+            {/* RESULTS SCREEN (FIXED SCROLL & OVERFLOW) */}
             {gameState === "finished" && (
-               <div className="absolute inset-0 bg-black/95 backdrop-blur-xl flex flex-col z-50 overflow-y-auto">
-                  <div className="flex-grow flex flex-col items-center justify-center p-4 py-12 md:py-8 min-h-full">
+               <div className="absolute inset-0 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center z-50 p-4">
+                  <div className="w-full h-full overflow-y-auto flex items-center justify-center py-8">
                     <motion.div 
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="w-full max-w-md text-center relative"
+                      className="w-full max-w-md text-center relative my-auto"
                     >
                        
                        {/* Score Header */}
