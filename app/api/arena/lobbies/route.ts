@@ -5,11 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const lobbies = db.prepare(`
-      SELECT * FROM lobbies
-      WHERE status IN ('waiting', 'payment_check', 'active')
-      ORDER BY created_at DESC
-    `).all();
+    const lobbies = db.getActiveLobbies();
     return NextResponse.json(lobbies);
   } catch (error: any) {
     console.error('Error fetching lobbies:', error);
@@ -30,14 +26,15 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Bet is required' }, { status: 400 });
     }
 
-    const stmt = db.prepare(`
-      INSERT INTO lobbies (creator_nick, creator_pc, game, bet_amount, bet_item, created_at)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `);
+    const newLobby = db.create({
+        creator_nick,
+        creator_pc,
+        game,
+        bet_amount,
+        bet_item
+    });
 
-    const info = stmt.run(creator_nick, creator_pc, game, bet_amount, bet_item, Date.now());
-
-    return NextResponse.json({ id: info.lastInsertRowid, status: 'waiting' }, { status: 201 });
+    return NextResponse.json({ id: newLobby.id, status: 'waiting' }, { status: 201 });
   } catch (error: any) {
     console.error('Error creating lobby:', error);
     return NextResponse.json({ error: 'Failed to create lobby' }, { status: 500 });
