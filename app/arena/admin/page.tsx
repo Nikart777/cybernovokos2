@@ -27,11 +27,34 @@ export default function AdminPage() {
   const [guestPhone, setGuestPhone] = useState('');
   const [isManagerInformed, setIsManagerInformed] = useState(false);
 
+  // Auth State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+
   useEffect(() => {
+    // Check session
+    const auth = sessionStorage.getItem('admin_auth');
+    if (auth === 'true') {
+        setIsAuthenticated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
     fetchLobbies();
     const interval = setInterval(fetchLobbies, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isAuthenticated]);
+
+  const handleLogin = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (password === 'ADMINCYB') {
+          setIsAuthenticated(true);
+          sessionStorage.setItem('admin_auth', 'true');
+      } else {
+          alert('Неверный пароль');
+      }
+  };
 
   const fetchLobbies = async () => {
     try {
@@ -88,6 +111,29 @@ export default function AdminPage() {
   };
 
   const activeLobbies = lobbies.filter(l => ['payment_check', 'active'].includes(l.status));
+
+  if (!isAuthenticated) {
+      return (
+          <div className="min-h-screen bg-neutral-900 flex items-center justify-center p-4">
+              <form onSubmit={handleLogin} className="bg-neutral-800 p-8 rounded-2xl border border-white/10 shadow-2xl w-full max-w-sm">
+                  <h2 className="text-2xl font-tactic text-white mb-6 text-center">ADMIN ACCESS</h2>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-black/50 border border-white/10 rounded-lg p-4 text-white text-center text-xl tracking-widest focus:border-cyber-red outline-none mb-4"
+                    placeholder="PASSWORD"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-cyber-red hover:bg-red-600 rounded-xl font-bold uppercase tracking-widest text-white transition-all"
+                  >
+                      Войти
+                  </button>
+              </form>
+          </div>
+      );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-900 text-white p-8 font-chakra">
@@ -161,7 +207,7 @@ export default function AdminPage() {
                                     className="flex items-center px-8 py-3 bg-green-600 hover:bg-green-500 text-black font-tactic text-lg rounded-lg shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all uppercase tracking-wider transform hover:-translate-y-1"
                             >
                                 <CheckCircle2 className="w-6 h-6 mr-2" />
-                                Оплата Принята / Старт
+                                ПЕРЕЙТИ К ПОДТВЕРЖДЕНИЮ
                             </button>
                         </>
                     ) : (
@@ -176,7 +222,7 @@ export default function AdminPage() {
                 </div>
 
                 {/* Timestamp */}
-                <div className="absolute top-6 left-6 text-gray-500 font-bold text-xs flex items-center bg-black/50 px-2 py-1 rounded">
+                <div className="absolute bottom-6 left-6 text-gray-500 font-bold text-xs flex items-center bg-black/50 px-2 py-1 rounded">
                     <Calendar className="w-3 h-3 mr-1" />
                     {formatDate(lobby.created_at)}
                 </div>

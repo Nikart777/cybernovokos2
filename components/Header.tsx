@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Send, Monitor, Crosshair } from "lucide-react";
+import { Menu, X, Phone, Send, Monitor, Crosshair, Trophy } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showArenaPromo, setShowArenaPromo] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +26,12 @@ export default function Header() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
+
+    if (href === '/arena') {
+        setShowArenaPromo(true);
+        return;
+    }
+
     if (href.startsWith('/')) {
         // Navigate to page
         window.location.href = href;
@@ -232,6 +239,60 @@ export default function Header() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* ARENA PROMO MODAL */}
+      <AnimatePresence>
+        {showArenaPromo && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+              <motion.div
+                 initial={{ scale: 0.9, opacity: 0 }}
+                 animate={{ scale: 1, opacity: 1 }}
+                 exit={{ scale: 0.9, opacity: 0 }}
+                 className="bg-[#0A0A0A] border border-[#FF2E63] rounded-2xl w-full max-w-2xl relative shadow-[0_0_50px_rgba(255,46,99,0.3)] overflow-hidden"
+              >
+                  {/* Background FX */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF2E63] blur-[100px] opacity-20 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#B900FF] blur-[100px] opacity-20 pointer-events-none"></div>
+
+                  <button
+                    onClick={() => setShowArenaPromo(false)}
+                    className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-10"
+                  >
+                      <X size={24} />
+                  </button>
+
+                  <div className="p-8 md:p-12 text-center relative z-0">
+                      <Trophy className="w-20 h-20 text-[#FF2E63] mx-auto mb-6 drop-shadow-[0_0_15px_rgba(255,46,99,0.6)]" />
+
+                      <h2 className="text-4xl md:text-5xl font-tactic text-white mb-4 uppercase leading-none">
+                          CLUB <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF]">ARENA</span>
+                      </h2>
+
+                      <p className="text-xl text-gray-300 font-bold mb-8 max-w-lg mx-auto">
+                          Локальные микро-турниры 24/7.
+                          <br/>
+                          <span className="text-[#00F0FF]">Приходи и выигрывай</span> бар или опустошай баланс соперников!
+                      </p>
+
+                      <div className="flex flex-col gap-4">
+                          <button
+                              onClick={() => window.location.href = '/arena'}
+                              className="w-full py-5 bg-gradient-to-r from-[#FF2E63] to-[#B900FF] hover:from-[#d62552] hover:to-[#9600d1] rounded-xl font-tactic text-2xl uppercase tracking-widest text-white shadow-[0_0_20px_rgba(255,46,99,0.4)] hover:shadow-[0_0_40px_rgba(255,46,99,0.6)] transition-all transform hover:-translate-y-1"
+                          >
+                              Ворваться в игру
+                          </button>
+                          <button
+                              onClick={() => setShowArenaPromo(false)}
+                              className="text-gray-500 hover:text-white font-bold uppercase text-sm tracking-widest transition-colors"
+                          >
+                              Я пока просто посмотрю
+                          </button>
+                      </div>
+                  </div>
+              </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
