@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NotificationSystem from "@/components/NotificationSystem";
 
 export const metadata: Metadata = {
   title: "Арена Дуэлей | CyberX Новокосино",
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Арена Дуэлей — CyberX Новокосино",
     description: "Брось вызов другим игрокам клуба! Создай дуэль и докажи, кто здесь главный.",
-    images: ['/og-image.jpg'], // Используем общее изображение или можно сделать уникальное для арены
+    images: ['/og-image.jpg'],
   }
 };
 
@@ -15,5 +16,10 @@ export default function ArenaLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <NotificationSystem />
+      {children}
+    </>
+  );
 }

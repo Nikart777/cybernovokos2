@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor, Users, Trophy, Target } from 'lucide-react';
+import { Beer, Sandwich, Swords, Gamepad2, Coins, Box, History, X, User, Monitor, Users, Trophy, Target, Bell, Info } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Lobby {
   id: number;
@@ -51,6 +52,13 @@ export default function ArenaPage() {
   const [joiningLobbyId, setJoiningLobbyId] = useState<number | null>(null);
   const [joinerNick, setJoinerNick] = useState('');
   const [joinerPC, setJoinerPC] = useState('');
+  const [permission, setPermission] = useState<NotificationPermission>('default');
+
+  // Refs для отслеживания состояния уведомлений
+  const lastNotifiedStatusRef = useRef<string | null>(null);
+  const maxLobbyIdRef = useRef<number>(0); // Для отслеживания новых лобби
+  const isFirstLoadRef = useRef<boolean>(true); // Чтобы не спамить при первом заходе
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Restore User Info if available
@@ -64,13 +72,21 @@ export default function ArenaPage() {
         setCreatorPC(savedPC);
         setJoinerPC(savedPC);
     }
+
+    if ("Notification" in window) {
+      setPermission(Notification.permission);
+    }
+
+    // Инициализация звука
+    const audio = new Audio('/sounds/notification.mp3');
+    audioRef.current = audio;
   }, []);
 
   useEffect(() => {
     fetchLobbies();
-    const interval = setInterval(fetchLobbies, 10000);
+    const interval = setInterval(fetchLobbies, 5000); 
     return () => clearInterval(interval);
-  }, []);
+  }, [permission, creatorPC]); 
 
   useEffect(() => {
     if (betType === 'item' && goods.length === 0) {
@@ -78,10 +94,119 @@ export default function ArenaPage() {
     }
   }, [betType]);
 
+  const requestPermission = async () => {
+    if (!("Notification" in window)) return;
+    const result = await Notification.requestPermission();
+    setPermission(result);
+    
+    if (result === 'granted') {
+        new Notification("CyberX Arena", { body: "Уведомления активированы!" });
+    }
+  };
+
+  // Функция проверки уведомлений
+  const checkNotifications = (currentLobbies: Lobby[]) => {
+    const currentPC = localStorage.getItem('arena_pc') || creatorPC;
+    
+    // --- 1. Уведомления о НОВЫХ лобби (для всех) ---
+    // Находим максимальный ID среди текущих лобби
+    const currentMaxId = Math.max(...currentLobbies.map(l => l.id), 0);
+
+    // Если это не первая загрузка и появился новый ID
+    if (!isFirstLoadRef.current && currentMaxId > maxLobbyIdRef.current) {
+        const newLobbies = currentLobbies.filter(l => l.id > maxLobbyIdRef.current);
+        
+        newLobbies.forEach(lobby => {
+            // Уведомляем только если лобби ждет игроков и создано НЕ нами
+            if (lobby.status === 'waiting' && lobby.creator_pc !== currentPC) {
+                 // Звук
+                 audioRef.current?.play().catch(() => {});
+                 
+                 // Системное уведомление
+                 if (Notification.permission === "granted") {
+                     const notification = new Notification(`Новый соперник на Арене!`, {
+                         body: `${lobby.creator_nick} (PC ${lobby.creator_pc}) зовет играть в ${lobby.game}!`,
+                         icon: '/icon-192.png',
+                         tag: `new-lobby-${lobby.id}`,
+                         silent: false
+                     } as any); // cast to any to avoid TS error
+                     
+                     // ОБРАБОТЧИК КЛИКА: Фокус окна и переход на Арену
+                     notification.onclick = function(e) {
+                        e.preventDefault(); // Предотвращаем стандартное поведение
+                        window.focus(); // Пытаемся вернуть фокус окну
+                        window.location.href = '/arena'; // Явный переход на страницу арены
+                        this.close(); // Закрываем уведомление
+                     };
+                 }
+            }
+        });
+    }
+
+    // Обновляем рефы
+    maxLobbyIdRef.current = currentMaxId;
+    isFirstLoadRef.current = false;
+
+
+    // --- 2. Уведомления о СВОИХ матчах (как раньше) ---
+    if (!currentPC) return;
+
+    const myRelevantLobby = currentLobbies.find(l => {
+        // Если я создал, и кто-то присоединился (ждет оплаты)
+        if (l.creator_pc === currentPC && l.status === 'payment_check') return true;
+        // Если я присоединился (или меня вызвали), и статус payment_check или active
+        if (l.joiner_pc === currentPC && ['payment_check', 'active'].includes(l.status)) return true;
+        return false;
+    });
+
+    if (myRelevantLobby) {
+        const statusKey = `${myRelevantLobby.id}-${myRelevantLobby.status}`;
+
+        if (lastNotifiedStatusRef.current !== statusKey) {
+            lastNotifiedStatusRef.current = statusKey;
+
+            audioRef.current?.play().catch((e) => console.log("Audio play failed", e));
+
+            if (Notification.permission === "granted") {
+                const isHost = currentPC === myRelevantLobby.creator_pc;
+                const opponentNick = isHost ? myRelevantLobby.joiner_nick : myRelevantLobby.creator_nick;
+                const opponentPC = isHost ? myRelevantLobby.joiner_pc : myRelevantLobby.creator_pc;
+                const title = myRelevantLobby.status === 'active' ? 'GO GO GO! МАТЧ НАЧАЛСЯ!' : 'ВЫЗОВ ПРИНЯТ!';
+                
+                try {
+                    // Используем as any, чтобы TypeScript не ругался на renotify
+                    const notification = new Notification(`CyberX: ${title}`, {
+                        body: `Соперник: ${opponentNick} (PC ${opponentPC})\nИгра: ${myRelevantLobby.game}\nСтавка: ${myRelevantLobby.bet_amount || myRelevantLobby.bet_item}`,
+                        icon: '/icon-192.png',
+                        tag: 'arena-notification',
+                        renotify: true,
+                        requireInteraction: true,
+                        silent: false
+                    } as any);
+
+                    // ОБРАБОТЧИК КЛИКА: Фокус окна и переход на Арену
+                    notification.onclick = function(e) {
+                        e.preventDefault();
+                        window.focus();
+                        window.location.href = '/arena';
+                        this.close();
+                    };
+
+                } catch (e) {
+                    console.error("Notification error", e);
+                }
+            }
+        }
+    } else {
+        lastNotifiedStatusRef.current = null;
+    }
+  };
+
   const fetchLobbies = async () => {
     try {
       const res = await axios.get('/api/arena/lobbies');
       setLobbies(res.data);
+      checkNotifications(res.data);
     } catch (err) {
       console.error('Failed to fetch lobbies', err);
     }
@@ -117,14 +242,12 @@ export default function ArenaPage() {
 
     setIsCreating(true);
     try {
-      // Save info
       localStorage.setItem('arena_nick', creatorNick);
       localStorage.setItem('arena_pc', creatorPC);
 
       const gameName = selectedGame === 'Другая игра' ? customGame : selectedGame;
       const betItemString = selectedItem ? `${selectedItem.name} (x${itemQuantity})` : null;
 
-      // Show confirmation alert (simple implementation of "Disclaimer")
       if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия игры.\n2. Убедитесь, что у обоих есть средства на балансе.\n3. Только честная игра (Fair Play).\n\nСоздать дуэль?')) {
           setIsCreating(false);
           return;
@@ -141,7 +264,6 @@ export default function ArenaPage() {
       });
 
       fetchLobbies();
-      // Reset sensitive fields only
       setBetAmount('');
       setSelectedItem(null);
       setItemQuantity(1);
@@ -167,24 +289,20 @@ export default function ArenaPage() {
         return;
     }
 
-    // Prevent self-join
     const lobby = lobbies.find(l => l.id === joiningLobbyId);
     if (lobby && (lobby.creator_nick === joinerNick || lobby.creator_pc === joinerPC)) {
         alert('Вы не можете играть сами с собой!');
         return;
     }
 
-    // Show confirmation alert (simple implementation of "Disclaimer")
     if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия.\n2. Убедитесь, что у вас есть средства.\n3. Подойдите к АДМИНУ для подтверждения старта.\n\nПринять вызов?')) {
         return;
     }
 
     try {
-       // Save info
       localStorage.setItem('arena_nick', joinerNick);
       localStorage.setItem('arena_pc', joinerPC);
 
-      // Changed from PUT to POST to avoid 403 Forbidden on some hosts
       await axios.post(`/api/arena/lobbies/${joiningLobbyId}`, {
         action: 'join',
         joiner_nick: joinerNick,
@@ -200,7 +318,7 @@ export default function ArenaPage() {
   };
 
   return (
-    <div className="min-h-screen bg-cyber-bg text-white p-4 font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg">
+    <div className="min-h-screen bg-cyber-bg text-white p-4 font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg relative">
       <header className="max-w-7xl mx-auto flex justify-between items-center mb-8 border-b border-white/10 pb-6 pt-2">
         <div className="flex items-center space-x-4">
             <Swords className="w-8 h-8 text-cyber-red" />
@@ -218,7 +336,7 @@ export default function ArenaPage() {
       {/* NEW SPLIT PROMO BLOCKS */}
       <div className="max-w-7xl mx-auto mb-12 grid grid-cols-1 md:grid-cols-12 gap-6">
         
-        {/* LEFT BLOCK (Aggressive) - 7 cols */}
+        {/* LEFT BLOCK (Aggressive) */}
         <div className="md:col-span-7 relative overflow-hidden rounded-3xl border border-cyber-red/30 bg-[#0a0a0a] group">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-cyber-red/10 via-transparent to-transparent opacity-60"></div>
             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-red to-transparent opacity-50"></div>
@@ -239,14 +357,13 @@ export default function ArenaPage() {
                     ИЛИ ОБНУЛИ БАЛАНС СОСЕДА!
                 </h2>
                 
-                {/* Decorative elements */}
                 <div className="absolute right-4 top-4 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
                      <Swords size={180} className="text-cyber-red -rotate-12" />
                 </div>
             </div>
         </div>
 
-        {/* RIGHT BLOCK (Info/Call) - 5 cols */}
+        {/* RIGHT BLOCK (Info/Call) */}
         <div className="md:col-span-5 relative overflow-hidden rounded-3xl border border-cyber-purple/30 bg-[#0a0a0a] flex flex-col justify-between group transition-colors hover:border-cyber-purple/50">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-cyber-purple/10 via-transparent to-transparent opacity-60"></div>
             
@@ -276,14 +393,13 @@ export default function ArenaPage() {
                  </div>
             </div>
             
-            {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[size:20px_20px] pointer-events-none"></div>
         </div>
 
       </div>
 
-      <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Create Lobby Section - Takes 4 columns */}
+      <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+        {/* Create Lobby Section */}
         <section className="lg:col-span-4 h-fit sticky top-4">
           <div className="bg-neutral-900/50 backdrop-blur border border-white/10 p-6 rounded-2xl shadow-xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-1 h-full bg-cyber-red group-hover:shadow-[0_0_15px_#FF2E63] transition-all duration-500"></div>
@@ -465,7 +581,7 @@ export default function ArenaPage() {
           </div>
         </section>
 
-        {/* Lobbies List Section - Takes 8 columns */}
+        {/* Lobbies List Section */}
         <section className="lg:col-span-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-tactic flex items-center">
@@ -560,6 +676,31 @@ export default function ArenaPage() {
           </div>
         </section>
       </main>
+
+      {/* Info Bar at Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-white/10 py-3 z-40">
+          <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2 text-gray-400 text-xs md:text-sm font-bold uppercase tracking-wider">
+              <Info size={16} className="text-cyber-purple animate-pulse" />
+              <span>Не закрывайте эту страницу, чтобы получать уведомления о новых вызовах!</span>
+          </div>
+      </div>
+
+       {/* Кнопка запроса прав (только если мы "в системе" и права не даны) */}
+       {(creatorNick || creatorPC) && permission === 'default' && (
+         <motion.div 
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="fixed bottom-16 right-4 z-50"
+         >
+            <button 
+                onClick={requestPermission}
+                className="bg-[#FF2E63] text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(255,46,99,0.4)] hover:scale-105 transition-transform flex items-center gap-2 animate-bounce"
+            >
+                <Bell size={16} />
+                Включить уведомления
+            </button>
+         </motion.div>
+       )}
 
       {/* JOIN MODAL */}
       {showJoinModal && (
