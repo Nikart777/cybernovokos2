@@ -14,6 +14,7 @@ interface Lobby {
   bet_amount: string | null;
   bet_item: string | null;
   status: 'waiting' | 'payment_check' | 'active' | 'finished';
+  rules: string | null;
   created_at: number;
 }
 
@@ -36,6 +37,7 @@ export default function ArenaPage() {
   const [creatorPC, setCreatorPC] = useState('');
   const [selectedGame, setSelectedGame] = useState(GAMES[0]);
   const [customGame, setCustomGame] = useState('');
+  const [rules, setRules] = useState('');
   const [betType, setBetType] = useState<'money' | 'item'>('money');
   const [betAmount, setBetAmount] = useState('');
   const [selectedItem, setSelectedItem] = useState<Good | null>(null);
@@ -120,12 +122,19 @@ export default function ArenaPage() {
       const gameName = selectedGame === 'Другая игра' ? customGame : selectedGame;
       const betItemString = selectedItem ? `${selectedItem.name} (x${itemQuantity})` : null;
 
+      // Show confirmation alert (simple implementation of "Disclaimer")
+      if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия игры.\n2. Убедитесь, что у обоих есть средства на балансе.\n3. Только честная игра (Fair Play).\n\nСоздать дуэль?')) {
+          setIsCreating(false);
+          return;
+      }
+
       await axios.post('/api/arena/lobbies', {
         creator_nick: creatorNick,
         creator_pc: creatorPC,
         game: gameName,
         bet_amount: betType === 'money' ? betAmount : null,
         bet_item: betItemString,
+        rules: rules
       });
 
       fetchLobbies();
@@ -133,6 +142,7 @@ export default function ArenaPage() {
       setBetAmount('');
       setSelectedItem(null);
       setItemQuantity(1);
+      setRules('');
     } catch (err) {
       alert('Ошибка при создании лобби');
     } finally {
@@ -150,6 +160,11 @@ export default function ArenaPage() {
     if (!joiningLobbyId) return;
     if (!joinerNick || !joinerPC) {
         alert('Введите ваш Ник и номер ПК');
+        return;
+    }
+
+    // Show confirmation alert (simple implementation of "Disclaimer")
+    if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия.\n2. Убедитесь, что у вас есть средства.\n3. Играйте честно.\n\nПринять вызов?')) {
         return;
     }
 
@@ -179,8 +194,12 @@ export default function ArenaPage() {
         <div className="flex items-center space-x-4">
             <Swords className="w-8 h-8 text-cyber-red" />
             <div>
-                <h1 className="text-3xl font-tactic text-white tracking-wider">CLUB <span className="text-cyber-red drop-shadow-[0_0_8px_rgba(255,46,99,0.8)]">ARENA</span></h1>
-                <p className="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase">Локальные микро-турниры</p>
+                <div className="flex items-center gap-1">
+                  <span className="font-tactic font-black text-2xl tracking-wider text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">CYBER</span>
+                  <span className="font-tactic font-black text-3xl text-[#FF2E63] transform -skew-x-12 drop-shadow-[0_0_15px_#FF2E63]">X</span>
+                  <span className="font-tactic font-bold text-xl text-white ml-2 tracking-widest">НОВОКОСИНО</span>
+                </div>
+                <p className="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase mt-1">Локальные микро-турниры</p>
             </div>
         </div>
       </header>
@@ -245,6 +264,17 @@ export default function ArenaPage() {
                         required
                     />
                 )}
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Доп. условия / Формат</label>
+                <input
+                    type="text"
+                    value={rules}
+                    onChange={(e) => setRules(e.target.value)}
+                    className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none placeholder-gray-600"
+                    placeholder="Например: aim_map, до 10 побед, только дигл"
+                />
               </div>
 
               <div>
@@ -390,11 +420,18 @@ export default function ArenaPage() {
                     </div>
                   </div>
 
-                  <div className="py-3 my-2 border-t border-b border-white/5 flex justify-between items-center">
-                    <span className="text-xs font-bold text-gray-500 uppercase">На кону</span>
-                    <div className="text-xl font-tactic text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 drop-shadow-sm">
-                      {lobby.bet_amount ? `${lobby.bet_amount} RUB` : lobby.bet_item}
+                  <div className="py-3 my-2 border-t border-b border-white/5">
+                    <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold text-gray-500 uppercase">На кону</span>
+                        <div className="text-xl font-tactic text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 drop-shadow-sm">
+                        {lobby.bet_amount ? `${lobby.bet_amount} RUB` : lobby.bet_item}
+                        </div>
                     </div>
+                    {lobby.rules && (
+                        <div className="text-xs text-gray-400 italic border-l-2 border-cyber-purple pl-2 mt-2">
+                            "{lobby.rules}"
+                        </div>
+                    )}
                   </div>
 
                   {lobby.status === 'waiting' && (

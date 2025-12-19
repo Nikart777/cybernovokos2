@@ -13,6 +13,7 @@ export interface Lobby {
   bet_amount: string | null;
   bet_item: string | null;
   status: 'waiting' | 'payment_check' | 'active' | 'finished';
+  rules: string | null;
   created_at: number;
 }
 
@@ -71,6 +72,7 @@ const db = {
       joiner_nick: null,
       joiner_pc: null,
       status: 'waiting',
+      rules: (lobby as any).rules || null,
       created_at: Date.now(),
     };
 
