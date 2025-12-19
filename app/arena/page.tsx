@@ -215,6 +215,20 @@ export default function ArenaPage() {
         </div>
       </header>
 
+      {/* PROMO HERO BLOCK */}
+      <div className="max-w-7xl mx-auto mb-10 relative overflow-hidden rounded-2xl border border-cyber-red/30 group">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyber-red/20 to-cyber-purple/20 opacity-50 group-hover:opacity-70 transition-opacity"></div>
+          <div className="relative z-10 p-8 md:p-12 text-center">
+              <h2 className="text-3xl md:text-5xl font-tactic text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                  ХВАТИТ ИГРАТЬ С <span className="text-cyber-red">ВООБРАЖАЕМЫМИ</span> СОПЕРНИКАМИ!
+              </h2>
+              <p className="text-lg md:text-xl text-gray-300 font-bold max-w-3xl mx-auto leading-relaxed">
+                  Создай или подключись к мини-турниру прямо с игроком из клуба <span className="text-cyber-purple">ЗДЕСЬ И СЕЙЧАС</span>.
+                  <br/>Докажи, кто главный на районе.
+              </p>
+          </div>
+      </div>
+
       <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Create Lobby Section - Takes 4 columns */}
         <section className="lg:col-span-4 h-fit sticky top-4">
