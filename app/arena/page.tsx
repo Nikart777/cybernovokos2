@@ -60,6 +60,41 @@ export default function ArenaPage() {
   const isFirstLoadRef = useRef<boolean>(true); // Чтобы не спамить при первом заходе
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // --- WAKE LOCK LOGIC (Чтобы браузер не засыпал) ---
+  useEffect(() => {
+    let wakeLock: any = null;
+
+    const requestWakeLock = async () => {
+      try {
+        if ('wakeLock' in navigator) {
+          // Запрашиваем блокировку отключения экрана/сна
+          // Это подсказывает браузеру, что вкладка активна
+          wakeLock = await (navigator as any).wakeLock.request('screen');
+          console.log('Wake Lock is active');
+        }
+      } catch (err) {
+        // Игнорируем ошибки, если API недоступен
+        console.log('Wake Lock not supported or rejected');
+      }
+    };
+
+    // Запрашиваем при загрузке и при возвращении на вкладку
+    requestWakeLock();
+
+    const handleVisibilityChange = () => {
+      if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      if (wakeLock !== null) wakeLock.release();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+  // --------------------------------------------------
+
   useEffect(() => {
     // Restore User Info if available
     const savedNick = localStorage.getItem('arena_nick');
@@ -84,6 +119,9 @@ export default function ArenaPage() {
 
   useEffect(() => {
     fetchLobbies();
+    // Опрашиваем сервер.
+    // Примечание: В свернутом режиме интервал может замедляться до 1 раза в минуту браузером.
+    // WakeLock помогает это предотвратить.
     const interval = setInterval(fetchLobbies, 5000); 
     return () => clearInterval(interval);
   }, [permission, creatorPC]); 
@@ -129,14 +167,13 @@ export default function ArenaPage() {
                          icon: '/icon-192.png',
                          tag: `new-lobby-${lobby.id}`,
                          silent: false
-                     } as any); // cast to any to avoid TS error
+                     } as any); 
                      
-                     // ОБРАБОТЧИК КЛИКА: Фокус окна и переход на Арену
                      notification.onclick = function(e) {
-                        e.preventDefault(); // Предотвращаем стандартное поведение
-                        window.focus(); // Пытаемся вернуть фокус окну
-                        window.location.href = '/arena'; // Явный переход на страницу арены
-                        this.close(); // Закрываем уведомление
+                        e.preventDefault(); 
+                        window.focus(); 
+                        window.location.href = '/arena';
+                        this.close(); 
                      };
                  }
             }
@@ -174,7 +211,6 @@ export default function ArenaPage() {
                 const title = myRelevantLobby.status === 'active' ? 'GO GO GO! МАТЧ НАЧАЛСЯ!' : 'ВЫЗОВ ПРИНЯТ!';
                 
                 try {
-                    // Используем as any, чтобы TypeScript не ругался на renotify
                     const notification = new Notification(`CyberX: ${title}`, {
                         body: `Соперник: ${opponentNick} (PC ${opponentPC})\nИгра: ${myRelevantLobby.game}\nСтавка: ${myRelevantLobby.bet_amount || myRelevantLobby.bet_item}`,
                         icon: '/icon-192.png',
@@ -184,7 +220,6 @@ export default function ArenaPage() {
                         silent: false
                     } as any);
 
-                    // ОБРАБОТЧИК КЛИКА: Фокус окна и переход на Арену
                     notification.onclick = function(e) {
                         e.preventDefault();
                         window.focus();
