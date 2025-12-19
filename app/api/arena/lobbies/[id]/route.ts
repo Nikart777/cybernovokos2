@@ -7,7 +7,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
   try {
     const id = parseInt(params.id);
     const body = await req.json();
-    const { action, joiner_nick, joiner_pc, status } = body;
+    const { action, joiner_nick, joiner_pc, status, host_phone, guest_phone } = body;
 
     // Handle Delete Action via POST
     if (action === 'delete') {
@@ -45,7 +45,12 @@ export async function POST(req: Request, { params }: { params: { id: string } })
           return NextResponse.json({ error: 'Missing status' }, { status: 400 });
         }
 
-        db.update(id, { status });
+        // Save admin checks if provided
+        const updates: any = { status };
+        if (host_phone) updates.admin_check_host_phone = host_phone;
+        if (guest_phone) updates.admin_check_guest_phone = guest_phone;
+
+        db.update(id, updates);
         return NextResponse.json({ success: true, status });
     }
 

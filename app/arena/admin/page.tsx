@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ShieldAlert, CheckCircle2, XCircle, Trash2, Monitor } from 'lucide-react';
+import { ShieldAlert, CheckCircle2, XCircle, Trash2, Monitor, Calendar } from 'lucide-react';
 
 interface Lobby {
   id: number;
@@ -14,11 +14,18 @@ interface Lobby {
   bet_amount: string | null;
   bet_item: string | null;
   status: 'waiting' | 'payment_check' | 'active' | 'finished';
+  team_size: number;
   created_at: number;
 }
 
 export default function AdminPage() {
   const [lobbies, setLobbies] = useState<Lobby[]>([]);
+  const [confirmationLobbyId, setConfirmationLobbyId] = useState<number | null>(null);
+
+  // Confirmation Form State
+  const [hostPhone, setHostPhone] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const [isManagerInformed, setIsManagerInformed] = useState(false);
 
   useEffect(() => {
     fetchLobbies();
@@ -35,27 +42,49 @@ export default function AdminPage() {
     }
   };
 
-  const handleAction = async (id: number, action: 'confirm' | 'reject' | 'finish') => {
-    try {
-      if (action === 'confirm') {
-        // Changed to POST to avoid 403 Forbidden
-        await axios.post(`/api/arena/lobbies/${id}`, {
+  const openConfirmation = (id: number) => {
+      setConfirmationLobbyId(id);
+      setHostPhone('');
+      setGuestPhone('');
+      setIsManagerInformed(false);
+  };
+
+  const submitConfirmation = async () => {
+      if (!confirmationLobbyId) return;
+
+      try {
+        await axios.post(`/api/arena/lobbies/${confirmationLobbyId}`, {
           action: 'update_status',
-          status: 'active'
+          status: 'active',
+          host_phone: hostPhone,
+          guest_phone: guestPhone
         });
-      } else if (action === 'reject') {
+        setConfirmationLobbyId(null);
+        fetchLobbies();
+      } catch (err) {
+        alert('Ошибка при подтверждении');
+      }
+  };
+
+  const handleAction = async (id: number, action: 'reject' | 'finish') => {
+    try {
+      if (action === 'reject') {
         if (!confirm('Отменить матч? Это действие нельзя отменить.')) return;
-        // Changed to POST with action='delete'
         await axios.post(`/api/arena/lobbies/${id}`, { action: 'delete' });
       } else if (action === 'finish') {
           if (!confirm('Завершить матч?')) return;
-          // Changed to POST with action='delete'
           await axios.post(`/api/arena/lobbies/${id}`, { action: 'delete' });
       }
       fetchLobbies();
     } catch (err) {
       alert('Ошибка при выполнении действия');
     }
+  };
+
+  const formatDate = (timestamp: number) => {
+      return new Date(timestamp).toLocaleString('ru-RU', {
+          day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
+      });
   };
 
   const activeLobbies = lobbies.filter(l => ['payment_check', 'active'].includes(l.status));
@@ -128,7 +157,7 @@ export default function AdminPage() {
                                 Отмена
                             </button>
                             <button
-                                    onClick={() => handleAction(lobby.id, 'confirm')}
+                                    onClick={() => openConfirmation(lobby.id)}
                                     className="flex items-center px-8 py-3 bg-green-600 hover:bg-green-500 text-black font-tactic text-lg rounded-lg shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all uppercase tracking-wider transform hover:-translate-y-1"
                             >
                                 <CheckCircle2 className="w-6 h-6 mr-2" />
@@ -145,10 +174,83 @@ export default function AdminPage() {
                         </button>
                     )}
                 </div>
+
+                {/* Timestamp */}
+                <div className="absolute top-6 left-6 text-gray-500 font-bold text-xs flex items-center bg-black/50 px-2 py-1 rounded">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    {formatDate(lobby.created_at)}
+                </div>
              </div>
           </div>
         ))}
       </div>
+
+      {/* Confirmation Modal */}
+      {confirmationLobbyId && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+              <div className="bg-neutral-900 border border-green-500/50 rounded-2xl w-full max-w-lg p-8 relative shadow-[0_0_50px_rgba(34,197,94,0.2)]">
+                  <h2 className="text-2xl font-tactic text-white mb-6 uppercase">Проверка перед стартом</h2>
+
+                  <div className="space-y-4 mb-8">
+                      <div>
+                          <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Последние 4 цифры (Host)</label>
+                          <input
+                            type="text"
+                            maxLength={4}
+                            value={hostPhone}
+                            onChange={e => setHostPhone(e.target.value)}
+                            className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-green-500 outline-none"
+                            placeholder="Например: 1234"
+                          />
+                      </div>
+                      <div>
+                          <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Последние 4 цифры (Guest)</label>
+                          <input
+                            type="text"
+                            maxLength={4}
+                            value={guestPhone}
+                            onChange={e => setGuestPhone(e.target.value)}
+                            className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-green-500 outline-none"
+                            placeholder="Например: 5678"
+                          />
+                      </div>
+
+                      <div className="bg-yellow-500/10 border border-yellow-500/30 p-4 rounded-lg">
+                          <ul className="text-sm text-yellow-500 list-disc list-inside font-bold space-y-1">
+                              <li>Проверь баланс: Ставка + 300р на сессию</li>
+                              <li>Сообщи управляющему о списании/удержании</li>
+                          </ul>
+                      </div>
+
+                      <label className="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-white/5">
+                          <input
+                            type="checkbox"
+                            checked={isManagerInformed}
+                            onChange={e => setIsManagerInformed(e.target.checked)}
+                            className="w-5 h-5 accent-green-500"
+                          />
+                          <span className="text-sm font-bold text-white">Я сообщил управляющему, сумма удержана.</span>
+                      </label>
+                  </div>
+
+                  <div className="flex space-x-4">
+                      <button
+                        onClick={() => setConfirmationLobbyId(null)}
+                        className="flex-1 py-4 bg-neutral-800 hover:bg-neutral-700 rounded-xl font-bold uppercase tracking-wider text-gray-400"
+                      >
+                          Отмена
+                      </button>
+                      <button
+                        onClick={submitConfirmation}
+                        disabled={!hostPhone || !guestPhone || !isManagerInformed}
+                        className="flex-1 py-4 bg-green-600 hover:bg-green-500 disabled:bg-gray-800 disabled:text-gray-600 rounded-xl font-tactic uppercase tracking-wider text-black transition-all"
+                      >
+                          ПОДТВЕРДИТЬ
+                      </button>
+                  </div>
+              </div>
+          </div>
+      )}
     </div>
   );
 }
