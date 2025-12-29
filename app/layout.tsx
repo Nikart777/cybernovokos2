@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Inter } from "next/font/google"; 
+import localFont from "next/font/local"; // <--- Импортируем загрузчик локальных шрифтов
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd"; 
 import "./globals.css";
 
+// 1. Подключаем Google шрифты
 const chakra = Chakra_Petch({ 
   weight: ['300', '400', '500', '600', '700'],
   subsets: ["latin"],
@@ -14,6 +16,39 @@ const chakra = Chakra_Petch({
 const inter = Inter({ 
   subsets: ["latin", "cyrillic"],
   variable: '--font-inter',
+  display: 'swap',
+});
+
+// 2. Подключаем локальный Tactic Sans "железобетонно"
+const tactic = localFont({
+  src: [
+    {
+      path: './fonts/TacticSansExd-Lgt.woff',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Reg.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Bld.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Blk.woff',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Ult.woff',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-tactic', // Эта переменная пойдет в CSS
   display: 'swap',
 });
 
@@ -44,17 +79,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://cyberx-novokosino.ru',
   },
-  
-  // --- ВОТ ЭТА ЧАСТЬ ОТВЕЧАЕТ ЗА ИКОНКУ ---
-  // Максимально просто, как на старых сайтах. 
-  // Яндекс считывает это напрямую.
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',
     apple: '/icon.png',
   },
-  // ----------------------------------------
-
   openGraph: {
     title: "CyberX Новокосино — Топовый компьютерный клуб",
     description: "RTX 5070, Автосимуляторы, PS5 и BootCamp. Залетай в игру на Новокосинской 32!",
@@ -97,10 +126,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="scroll-smooth">
-      <body className={`${chakra.variable} ${inter.variable} bg-cyber-bg font-inter antialiased`}>
-        {/* Разметка Schema.org */}
+      {/* 3. Добавляем tactic.variable в className body */}
+      <body className={`${chakra.variable} ${inter.variable} ${tactic.variable} bg-cyber-bg font-inter antialiased`}>
         <JsonLd />
-        
         {children}
 
         {/* Google Analytics */}
@@ -113,7 +141,6 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>

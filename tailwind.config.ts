@@ -20,8 +20,11 @@ const config: Config = {
         chakra: ["var(--font-chakra)", "sans-serif"],
         // Inter (Гугл)
         inter: ["var(--font-inter)", "sans-serif"],
-        // TacticSans (Локальный) -> если не загрузится, будет Chakra
-        tactic: ["TacticSans", "var(--font-chakra)", "sans-serif"], 
+        
+        // --- ИЗМЕНЕНИЕ ЗДЕСЬ ---
+        // Теперь ссылаемся на CSS-переменную var(--font-tactic), 
+        // которую мы определили в layout.tsx через next/font/local
+        tactic: ["var(--font-tactic)", "var(--font-chakra)", "sans-serif"], 
       },
       animation: {
         'glitch': 'glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite',
