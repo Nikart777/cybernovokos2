@@ -4,6 +4,7 @@ import localFont from "next/font/local"; // <--- Импортируем загр
 import Script from "next/script";
 import JsonLd from "@/components/JsonLd"; 
 import "./globals.css";
+import Snow from "@/components/Snow";
 
 // 1. Подключаем Google шрифты
 const chakra = Chakra_Petch({ 
@@ -128,6 +129,7 @@ export default function RootLayout({
     <html lang="ru" className="scroll-smooth">
       {/* 3. Добавляем tactic.variable в className body */}
       <body className={`${chakra.variable} ${inter.variable} ${tactic.variable} bg-cyber-bg font-inter antialiased`}>
+        <Snow />
         <JsonLd />
         {children}
 
