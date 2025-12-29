@@ -22,7 +22,7 @@ export default function Header() {
   const navLinks = [
     { name: "ARENA", href: "/arena", isHot: true },
     { name: "Зоны", href: "/#about" }, // Добавил /# для жесткой привязки
-    { name: "Свободные места", href: "/map", isNew: true }, // Если это страница /map
+    { name: "Свободные места", href: "/#map", isNew: true }, // Если это страница /map
     { name: "Цены", href: "/#price" },
     { name: "Акции", href: "/#special" },
     { name: "Отзывы", href: "/#otzyv" },
@@ -220,7 +220,7 @@ export default function Header() {
                 
                 {/* 1. Карта загрузки */}
                 <Link 
-                   href="/map"
+                   href="/#map"
                    onClick={() => setIsOpen(false)}
                    className="w-full py-3.5 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
                  >
