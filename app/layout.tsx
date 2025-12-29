@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Inter } from "next/font/google"; 
-import Script from "next/script"; // Импортируем компонент для скриптов
+import Script from "next/script";
 import JsonLd from "@/components/JsonLd"; 
 import "./globals.css";
 
@@ -26,37 +26,37 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://cyberx-novokosino.ru'),
   title: {
-    default: "Компьютерный клуб CyberX Новокосино | Автосимуляторы & RTX 5070",
+    default: "Компьютерный клуб CyberX Новокосино | PS5, Автосимуляторы & RTX 5070",
     template: "%s | CyberX Новокосино"
   },
-  description: "Лучший кибер клуб в Новокосино на ул. Новокосинская 32. Мощные ПК (RTX 4060/5070), профессиональные автосимуляторы (руль и педали), зона PS5 с диванами и BootCamp. Работаем круглосуточно!",
+  description: "Лучший кибер клуб в Новокосино на ул. Новокосинская 32. Мощные ПК (RTX 4060/5070), профессиональные автосимуляторы, зона PS5 с диванами. Работаем круглосуточно!",
   keywords: [
     "Компьютерный клуб Новокосино",
     "CyberX Новокосино",
+    "Компьютерный клуб рядом",
     "Автосимуляторы Москва",
-    "ПК клуб с рулем и педалями",
     "Симрейсинг",
     "Аренда PS5 Новокосино",
     "RTX 5070",
     "Кибер клуб Москва",
     "Игровой клуб 24/7"
   ],
-  // Canonical ссылка (защита от дублей)
   alternates: {
     canonical: 'https://cyberx-novokosino.ru',
   },
-  // Настройка иконок для Яндекса и браузеров
+  
+  // --- ВОТ ЭТА ЧАСТЬ ОТВЕЧАЕТ ЗА ИКОНКУ ---
+  // Максимально просто, как на старых сайтах. 
+  // Яндекс считывает это напрямую.
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
-      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/icon-192.png', 
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
+  // ----------------------------------------
+
   openGraph: {
-    title: "CyberX Новокосино — Киберспортивное пространство",
+    title: "CyberX Новокосино — Топовый компьютерный клуб",
     description: "RTX 5070, Автосимуляторы, PS5 и BootCamp. Залетай в игру на Новокосинской 32!",
     url: 'https://cyberx-novokosino.ru',
     siteName: 'CyberX Novokosino',
@@ -82,14 +82,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Коды верификации
   verification: {
-    yandex: 'cd200b561d2e01f0', // Код верификации Яндекс.Вебмастер
-    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM', // Код верификации Google Search Console 
+    yandex: 'cd200b561d2e01f0',
+    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM',
   },
 };
 
-// Ваш ID Google Analytics
 const GA_MEASUREMENT_ID = 'G-T6L6MKR798';
 
 export default function RootLayout({
@@ -100,7 +98,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className="scroll-smooth">
       <body className={`${chakra.variable} ${inter.variable} bg-cyber-bg font-inter antialiased`}>
-        {/* JSON-LD Разметка для SEO */}
+        {/* Разметка Schema.org */}
         <JsonLd />
         
         {children}
