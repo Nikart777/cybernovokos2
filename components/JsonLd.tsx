@@ -2,34 +2,41 @@ export default function JsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      /* 1. ГЛАВНЫЙ БРЕНД */
+      /* 1. ГЛАВНЫЙ БРЕНД / ВЕБ-САЙТ */
       {
-        "@type": "Organization",
-        "@id": "https://cyberxcommunity.ru/#brand",
-        "name": "CyberX Community",
-        "url": "https://cyberxcommunity.ru/",
-        "logo": "https://cyberxcommunity.ru/images/logo.svg",
-        "sameAs": [
-          "https://vk.com/cyberx_community"
-        ]
+        "@type": "WebSite",
+        "@id": "https://cyberx-novokosino.ru/#website",
+        "url": "https://cyberx-novokosino.ru/",
+        "name": "CyberX Новокосино",
+        "description": "Компьютерный клуб 24/7 в Новокосино",
+        "publisher": { "@id": "https://cyberx-novokosino.ru/#store" },
+        "inLanguage": "ru-RU"
       },
 
-      /* 2. ЛОКАЛЬНЫЙ ФИЛИАЛ */
+      /* 2. ЛОКАЛЬНЫЙ БИЗНЕС */
       {
-        "@type": "InternetCafe",
+        "@type": ["InternetCafe", "LocalBusiness"],
         "@id": "https://cyberx-novokosino.ru/#store",
         "url": "https://cyberx-novokosino.ru/",
         "name": "Компьютерный клуб CyberX Новокосино",
-        "description": "Топовый кибер клуб в Новокосино 24/7. Мощные ПК (RTX 5070, 400Гц), автосимуляторы Sim Racing, PS5 Lounge.",
-        "image": "https://cyberx-novokosino.ru/og-image.jpg",
+        "legalName": "Компьютерный клуб CyberX Новокосино",
+        "description": "Топовый компьютерный клуб в Новокосино (Москва) с RTX 5070, мониторами 400 Гц BenQ Zowie, PS5 и профессиональными автосимуляторами. Зоны Solo Pro, Solo Premium и Bootcamp. Работаем 24/7.",
+        "image": "https://cyberx-novokosino.ru/main.webp",
+        "logo": "https://cyberx-novokosino.ru/icon-512.png",
         "telephone": "+79851289538",
         "email": "info@cyberx-novokosino.ru",
-        "priceRange": "100 - 2450 RUB",
+        "priceRange": "100 - 450 RUB",
+        "currenciesAccepted": "RUB",
         "paymentAccepted": "Cash, Credit Card, SBP",
+        "hasMap": [
+          "https://yandex.ru/maps/-/CLhI4A3c",
+          "https://goo.gl/maps/example"
+        ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "ул. Новокосинская, 32",
+          "streetAddress": "ул. Новокосинская, 32, ТЦ \"Новокосино\", 2 этаж",
           "addressLocality": "Москва",
+          "addressRegion": "Москва",
           "postalCode": "111673",
           "addressCountry": "RU"
         },
@@ -46,66 +53,34 @@ export default function JsonLd() {
           "opens": "00:00",
           "closes": "23:59"
         },
-        "parentOrganization": {
-          "@id": "https://cyberxcommunity.ru/#brand"
-        },
+        "sameAs": [
+          "https://vk.com/club224403383",
+          "https://t.me/cyberxn32",
+          "https://yandex.ru/maps/-/CLhI4A3c",
+          "https://go.2gis.com/zeQlt"
+        ],
         "amenityFeature": [
-          { "@type": "LocationFeatureSpecification", "name": "RTX 5070 / 4070 Super", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Sim Racing (Автосимуляторы)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "RTX 5070 / 4060", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Мониторы 400Гц BenQ Zowie", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Solo Pro & Solo Premium", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Симрейсинг (Автосимуляторы)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "PS5 Lounge Zone", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "BootCamp", "value": true }
         ]
       },
 
-      /* 3. ТОВАРЫ (ЗОНЫ И ЦЕНЫ) - НОВОЕ! */
+      /* 3. УСЛУГИ/ТОВАРЫ */
       {
         "@type": "Product",
-        "name": "Общий зал (Standard)",
-        "description": "Игровое место с ПК RTX 4060 и монитором 144 Гц.",
-        "image": "https://cyberx-novokosino.ru/zones/common-1.webp",
+        "name": "Игровой час в CyberX Новокосино",
+        "description": "Аренда мощного игрового ПК с RTX 5070/4060.",
+        "brand": { "@type": "Brand", "name": "CyberX" },
         "offers": {
-          "@type": "Offer",
-          "price": "100",
+          "@type": "AggregateOffer",
+          "lowPrice": "100",
+          "highPrice": "450",
           "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "VIP Bootcamp",
-        "description": "Приватная комната на 5 ПК с RTX 4070 и 240 Гц.",
-        "image": "https://cyberx-novokosino.ru/zones/bootcamp-1.webp",
-        "offers": {
-          "@type": "Offer",
-          "price": "110",
-          "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "Автосимулятор Sim Racing",
-        "description": "Профессиональный кокпит Moza R12, руль с обратной связью, 4K TV.",
-        "image": "https://cyberx-novokosino.ru/zones/sim-1.webp",
-        "offers": {
-          "@type": "Offer",
-          "price": "300",
-          "priceCurrency": "RUB",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
-        }
-      },
-      {
-        "@type": "Product",
-        "name": "PS5 Lounge Zone",
-        "description": "Зона с PlayStation 5, диванами и 4K TV 70 дюймов.",
-        "image": "https://cyberx-novokosino.ru/zones/ps5-1.webp",
-        "offers": {
-          "@type": "Offer",
-          "price": "250",
-          "priceCurrency": "RUB",
+          "offerCount": "15",
           "availability": "https://schema.org/InStock",
           "seller": { "@id": "https://cyberx-novokosino.ru/#store" }
         }
@@ -119,16 +94,8 @@ export default function JsonLd() {
             "@type": "ListItem",
             "position": 1,
             "item": {
-              "@id": "https://cyberxcommunity.ru/",
-              "name": "CyberX Community"
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
               "@id": "https://cyberx-novokosino.ru/",
-              "name": "Клуб Новокосино"
+              "name": "CyberX Новокосино"
             }
           }
         ]

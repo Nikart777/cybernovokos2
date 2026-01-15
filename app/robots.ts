@@ -5,8 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/private/', '/admin/'], // Закрываем технические разделы, если будут
+      disallow: ['/_next/', '/api/', '/aim', '/private/', '/admin/'], // Технические пути и исключенные страницы
     },
     sitemap: 'https://cyberx-novokosino.ru/sitemap.xml',
+    host: 'https://cyberx-novokosino.ru',
   };
 }

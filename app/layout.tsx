@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Chakra_Petch, Inter } from "next/font/google"; 
+import { Chakra_Petch, Inter } from "next/font/google";
 import Script from "next/script"; // Импортируем компонент для скриптов
-import JsonLd from "@/components/JsonLd"; 
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
 
-const chakra = Chakra_Petch({ 
+const chakra = Chakra_Petch({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ["latin"],
   variable: '--font-chakra',
   display: 'swap',
 });
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin", "cyrillic"],
   variable: '--font-inter',
   display: 'swap',
@@ -26,36 +26,35 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://cyberx-novokosino.ru'),
   title: {
-    default: "Компьютерный клуб CyberX Новокосино | Автосимуляторы & RTX 5070",
-    template: "%s | CyberX Новокосино"
+    default: "CyberX Новокосино | Компьютерный клуб в Москве (ВАО) | 24/7",
+    template: "%s | CyberX Новокосино | Москва"
   },
-  description: "Лучший кибер клуб в Новокосино на ул. Новокосинская 32. Мощные ПК (RTX 4060/5070), профессиональные автосимуляторы (руль и педали), зона PS5 с диванами и BootCamp. Работаем круглосуточно!",
+  description: "Лучший компьютерный клуб в Новокосино (Москва). Мощные ПК с RTX 5070, мониторы 400 Гц, PS5 и автосимуляторы. Работаем круглосуточно 24/7. ТЦ Новокосино, 2 этаж.",
   keywords: [
-    "Компьютерный клуб Новокосино",
-    "CyberX Новокосино",
-    "Автосимуляторы Москва",
-    "ПК клуб с рулем и педалями",
-    "Симрейсинг",
-    "Аренда PS5 Новокосино",
+    "компьютерный клуб Новокосино",
+    "кибер клуб Новокосино",
+    "PS5 Новокосино",
+    "игровой клуб Новокосино",
+    "комп клуб Новокосино",
+    "киберспорт Москва",
+    "аренда PS5 Москва",
+    "автосимулятор Москва",
     "RTX 5070",
-    "Кибер клуб Москва",
-    "Игровой клуб 24/7"
+    "BootCamp Москва"
   ],
-  // Canonical ссылка (защита от дублей)
   alternates: {
     canonical: 'https://cyberx-novokosino.ru',
   },
-  // Иконки и Манифест (PWA)
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png', // Добавьте эту картинку в public, если есть
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: "CyberX Новокосино — Киберспортивное пространство",
-    description: "RTX 5070, Автосимуляторы, PS5 и BootCamp. Залетай в игру на Новокосинской 32!",
+    title: "CyberX Новокосино — Твой киберспортивный спейс 24/7",
+    description: "RTX 5070, мониторы 400 Гц, Автосимуляторы и PS5. Залетай в игру на Новокосинской 32!",
     url: 'https://cyberx-novokosino.ru',
-    siteName: 'CyberX Novokosino',
+    siteName: 'CyberX Новокосино',
     locale: 'ru_RU',
     type: 'website',
     images: [
@@ -63,9 +62,15 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CyberX Novokosino Interior',
+        alt: 'Интерьер компьютерного клуба CyberX Новокосино',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "CyberX Новокосино — Компьютерный клуб 24/7",
+    description: "Мощное железо и топовая атмосфера в Новокосино.",
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -79,8 +84,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    yandex: 'cd200b561d2e01f0', // Код верификации Яндекс.Вебмастер
-    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM', // Код верификации Google Search Console 
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || 'cd200b561d2e01f0',
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM',
   },
 };
 
@@ -97,7 +102,7 @@ export default function RootLayout({
       <body className={`${chakra.variable} ${inter.variable} bg-cyber-bg font-inter antialiased`}>
         {/* JSON-LD Разметка для SEO */}
         <JsonLd />
-        
+
         {children}
 
         {/* Google Analytics */}

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ export default function Hero() {
     if (isMobile) return;
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
-    const x = (clientX / innerWidth - 0.5) * 15; 
+    const x = (clientX / innerWidth - 0.5) * 15;
     const y = (clientY / innerHeight - 0.5) * 15;
     setMousePosition({ x, y });
   };
@@ -44,24 +45,25 @@ export default function Hero() {
       className="relative w-full min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white pt-24 md:py-0"
     >
       {/* --- BACKGROUND LAYERS --- */}
-      
+
       {/* 1. Main Image */}
-      <motion.div 
+      <motion.div
         style={{ y: yBg, x: isMobile ? 0 : mousePosition.x * -1, scale: 1.1 }}
         className="absolute inset-0 z-0 will-change-transform"
       >
-        <div 
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ 
-              backgroundImage: `url('/main.webp')`,
-              filter: 'brightness(0.5) contrast(1.2)' 
-            }} 
+        <Image
+          src="/main.webp"
+          alt="Киберспортивный клуб CyberX Новокосино"
+          fill
+          priority
+          className="object-cover brightness-[0.5] contrast-[1.2]"
+          sizes="100vw"
         />
       </motion.div>
 
       {/* 2. Fine Grain */}
-      <div className="absolute inset-0 z-[1] opacity-20 pointer-events-none mix-blend-overlay" 
-           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }} 
+      <div className="absolute inset-0 z-[1] opacity-20 pointer-events-none mix-blend-overlay"
+        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }}
       />
 
       {/* 3. Vignette */}
@@ -73,7 +75,7 @@ export default function Hero() {
       <div className="absolute top-10 right-10 w-6 h-6 border-r-2 border-t-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 left-10 w-6 h-6 border-l-2 border-b-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 right-10 w-6 h-6 border-r-2 border-b-2 border-white/30 z-10 pointer-events-none hidden md:block" />
-      
+
       {/* System Status / SEO HUD */}
       <div className="absolute top-24 right-5 md:top-28 md:right-10 z-10 hidden sm:flex flex-col items-end text-[9px] md:text-[10px] font-mono text-white/60 tracking-widest gap-2">
         <span className="border-b border-white/10 pb-1 mb-1">КОМПЬЮТЕРНЫЙ КЛУБ НОВОКОСИНО</span>
@@ -84,9 +86,9 @@ export default function Hero() {
 
       {/* --- MAIN CONTENT WRAPPER --- */}
       <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1400px] px-4 flex-grow my-auto">
-        
+
         {/* TAGLINE */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -101,50 +103,55 @@ export default function Hero() {
 
         {/* H1 */}
         <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.8, ease: "easeOut" }} 
-           className="relative mb-8 md:mb-16 w-full flex flex-col items-center text-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative mb-8 md:mb-16 w-full flex flex-col items-center text-center"
         >
-           <h1 className="flex flex-col items-center w-full">
-             <span className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+          <h1 className="flex flex-col items-center w-full">
+            <span className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               CYBERX
-             </span>
-             
-             <span className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0 text-[#FF2E63]">
-               НОВОКОСИНО
-             </span>
-           </h1>
+            </span>
+
+            <span className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0 text-[#FF2E63]">
+              НОВОКОСИНО
+            </span>
+
+            <span className="sr-only">Компьютерный клуб CyberX Новокосино — Москва, метро Новокосино</span>
+          </h1>
+          <p className="mt-4 font-chakra font-bold text-sm md:text-lg text-white/70 uppercase tracking-widest max-w-2xl px-4">
+            Топовый киберклуб в Москве (Новокосино). RTX 5070, 400 Гц, PS5 и Автосимуляторы 24/7.
+          </p>
         </motion.div>
 
         {/* BUTTON */}
         <motion.div
-           initial={{ opacity: 0, y: 40 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.6 }}
-           className="mb-8 md:mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-8 md:mb-20"
         >
-          <button 
+          <button
             className="group relative inline-flex items-center justify-center px-10 py-4 md:px-12 md:py-6 bg-transparent outline-none cursor-pointer transform -skew-x-12 transition-transform duration-200 active:scale-95"
             onClick={scrollToZones}
           >
             <div className="absolute inset-0 bg-[#111] border-2 border-white/20 group-hover:bg-[#FF2E63] group-hover:border-[#FF2E63] transition-all duration-200 ease-out shadow-[0_0_20px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_40px_rgba(255,46,99,0.6)]" />
             <span className="relative z-10 flex items-center justify-center gap-3 font-chakra font-black text-lg md:text-2xl tracking-[0.15em] uppercase transform skew-x-12 text-white group-hover:text-black transition-colors duration-200 whitespace-nowrap">
-               ВРЫВАЙСЯ В ИГРУ
-               <svg 
-                 xmlns="http://www.w3.org/2000/svg" 
-                 width="24" height="24" 
-                 viewBox="0 0 24 24" 
-                 fill="none" 
-                 stroke="currentColor" 
-                 strokeWidth="3" 
-                 strokeLinecap="round" 
-                 strokeLinejoin="round"
-                 className="w-5 h-5 md:w-6 md:h-6 transform group-hover:translate-x-1 transition-transform duration-200"
-               >
-                 <path d="M5 12h14" />
-                 <path d="m12 5 7 7-7 7" />
-               </svg>
+              ВРЫВАЙСЯ В ИГРУ
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5 md:w-6 md:h-6 transform group-hover:translate-x-1 transition-transform duration-200"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
             </span>
           </button>
         </motion.div>
@@ -153,26 +160,26 @@ export default function Hero() {
 
       {/* --- STATS (ИСПРАВЛЕНО: Relative на мобильных, Absolute на десктопе) --- */}
       {/* Это решает проблему наложения текста на кнопку */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
         className="w-full z-30 relative md:absolute md:bottom-0 md:left-0 pb-8 md:pb-0"
       >
-         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 md:mb-12 hidden md:block" />
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 md:mb-12 hidden md:block" />
 
-         <div className="w-full max-w-[1400px] mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-y-6 md:gap-4 items-start justify-items-center text-center py-6 md:pb-12 bg-[#111]/50 md:bg-transparent rounded-2xl md:rounded-none border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none">
-                <HudItem icon={<GpuIcon />} value="RTX 5070" label="ВИДЕОКАРТЫ" />
-                <HudItem icon={<MonitorIcon />} value="400 Гц" label="МОНИТОРЫ" />
-                <HudItem icon={<GamepadIcon />} value="PS5 ZONE" label="БЕЗЛИМИТ" highlight />
-                <HudItem icon={<SteeringIcon />} value="SIM RACING" label="АВТОСИМ" />
-                
-                <div className="col-span-2 md:col-span-1 w-full flex justify-center">
-                  <HudItem icon={<ClockIcon />} value="24 / 7" label="РЕЖИМ РАБОТЫ" />
-                </div>
+        <div className="w-full max-w-[1400px] mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-y-6 md:gap-4 items-start justify-items-center text-center py-6 md:pb-12 bg-[#111]/50 md:bg-transparent rounded-2xl md:rounded-none border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none">
+            <HudItem icon={<GpuIcon />} value="RTX 5070" label="ВИДЕОКАРТЫ" />
+            <HudItem icon={<MonitorIcon />} value="400 Гц" label="МОНИТОРЫ" />
+            <HudItem icon={<GamepadIcon />} value="PS5 ZONE" label="БЕЗЛИМИТ" highlight />
+            <HudItem icon={<SteeringIcon />} value="SIM RACING" label="АВТОСИМ" />
+
+            <div className="col-span-2 md:col-span-1 w-full flex justify-center">
+              <HudItem icon={<ClockIcon />} value="24 / 7" label="РЕЖИМ РАБОТЫ" />
             </div>
-         </div>
+          </div>
+        </div>
       </motion.div>
 
     </section>
@@ -182,33 +189,33 @@ export default function Hero() {
 // --- SUBCOMPONENTS ---
 
 function HudItem({ value, label, icon, highlight = false }: { value: string, label: string, icon: React.ReactNode, highlight?: boolean }) {
-    return (
-        <div className="flex flex-col items-center gap-2 md:gap-3 group cursor-default w-full">
-            <div className={`transition-transform duration-300 group-hover:-translate-y-1 ${highlight ? 'text-[#FF2E63]' : 'text-white/60 group-hover:text-white'}`}>
-                {icon}
-            </div>
-            <div className="flex flex-col items-center">
-                <div className={`font-chakra font-bold text-base md:text-xl leading-none mb-1 md:mb-2 ${highlight ? 'text-[#FF2E63]' : 'text-white group-hover:text-[#FF2E63]'} transition-colors`}>
-                    {value}
-                </div>
-                <div className="font-mono text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors duration-300">
-                    {label}
-                </div>
-            </div>
+  return (
+    <div className="flex flex-col items-center gap-2 md:gap-3 group cursor-default w-full">
+      <div className={`transition-transform duration-300 group-hover:-translate-y-1 ${highlight ? 'text-[#FF2E63]' : 'text-white/60 group-hover:text-white'}`}>
+        {icon}
+      </div>
+      <div className="flex flex-col items-center">
+        <div className={`font-chakra font-bold text-base md:text-xl leading-none mb-1 md:mb-2 ${highlight ? 'text-[#FF2E63]' : 'text-white group-hover:text-[#FF2E63]'} transition-colors`}>
+          {value}
         </div>
-    )
+        <div className="font-mono text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest group-hover:text-white transition-colors duration-300">
+          {label}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 // Inline SVGs (Optimized size for mobile)
 const GpuIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
-    <path d="M2 15V9C2 5.68629 4.68629 3 8 3H16C19.3137 3 22 5.68629 22 9V15C22 18.3137 19.3137 21 16 21H8C4.68629 21 2 18.3137 2 15Z"/>
-    <path d="M6 9L6.01 9"/>
-    <path d="M6 15L6.01 15"/>
-    <path d="M10 6V18"/>
-    <path d="M14 6V18"/>
-    <path d="M18 9L18.01 9"/>
-    <path d="M18 15L18.01 15"/>
+    <path d="M2 15V9C2 5.68629 4.68629 3 8 3H16C19.3137 3 22 5.68629 22 9V15C22 18.3137 19.3137 21 16 21H8C4.68629 21 2 18.3137 2 15Z" />
+    <path d="M6 9L6.01 9" />
+    <path d="M6 15L6.01 15" />
+    <path d="M10 6V18" />
+    <path d="M14 6V18" />
+    <path d="M18 9L18.01 9" />
+    <path d="M18 15L18.01 15" />
   </svg>
 )
 

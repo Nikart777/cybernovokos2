@@ -15,24 +15,24 @@ export default function ZoneHeader() {
   const opacityWatermark = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.1, 0]);
 
   return (
-    <section 
+    <section
       id="about" // Добавлен ID для навигации
       ref={containerRef}
       className="relative w-full py-32 md:py-40 flex flex-col items-center justify-center overflow-hidden bg-[#050505]"
     >
       {/* --- BACKGROUND GRID (Subtle Tech Pattern) --- */}
       <div className="absolute inset-0 w-full h-full pointer-events-none opacity-20"
-           style={{ 
-             backgroundImage: `linear-gradient(rgba(255, 46, 99, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 46, 99, 0.05) 1px, transparent 1px)`,
-             backgroundSize: '40px 40px'
-           }}
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 46, 99, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 46, 99, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}
       />
-      
+
       {/* Radial Glow in center */}
       <div className="absolute inset-0 bg-radial-gradient from-[#FF2E63]/5 via-transparent to-transparent opacity-50" />
 
       {/* --- WATERMARK "01" --- */}
-      <motion.div 
+      <motion.div
         style={{ y: yWatermark, opacity: opacityWatermark }}
         className="absolute z-0 select-none pointer-events-none"
       >
@@ -43,7 +43,7 @@ export default function ZoneHeader() {
 
       {/* --- CONTENT --- */}
       <div className="relative z-10 flex flex-col items-center text-center px-4">
-        
+
         {/* Animated Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
@@ -73,9 +73,9 @@ export default function ZoneHeader() {
           className="flex items-center gap-3 md:gap-6 font-chakra font-bold text-sm md:text-lg tracking-[0.3em] uppercase text-white/60"
         >
           <span>PC</span>
-          <span className="text-[#FF2E63]">//</span>
+          <span className="text-[#FF2E63]">{'//'}</span>
           <span>PS5</span>
-          <span className="text-[#FF2E63]">//</span>
+          <span className="text-[#FF2E63]">{'//'}</span>
           <span>SIM</span>
         </motion.div>
 

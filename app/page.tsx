@@ -16,26 +16,28 @@ import PromoModals from "@/components/PromoModals";
 import StickyBar from "@/components/StickyBar";
 import BookingModal from "@/components/BookingModal";
 import LegalModals from "@/components/LegalModals";
+import fs from "fs";
+import path from "path";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-cyber-bg text-white relative">
       <Header />
-      
+
       <Hero />
 
       <ZoneHeader />
       <Zones />
-      
+
       {/* Переместил карту загруженности сюда, сразу после зон */}
       <ClubMap />
 
       <PriceHeader />
-      <Prices />
+      <Prices initialData={JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'prices.json'), 'utf8'))} />
 
       <PromoHeader />
       <Promotions />
-      
+
       <AimControl />
 
       <Reviews />

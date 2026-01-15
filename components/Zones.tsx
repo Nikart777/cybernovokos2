@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { 
-  ChevronLeft, ChevronRight, 
-  Cpu, Monitor, Mouse, Wind, Armchair, 
-  Zap, Users, Lock, Trophy, Headset, 
-  Gamepad2, Tv, Car, Gauge, Disc, 
+import {
+  ChevronLeft, ChevronRight,
+  Cpu, Monitor, Mouse, Wind, Armchair,
+  Zap, Users, Lock, Trophy, Headset,
+  Gamepad2, Tv, Car, Gauge, Disc,
   Coffee, Clock, Wifi
 } from "lucide-react";
 
@@ -89,8 +89,8 @@ const zones = [
     subtitle: "Полное погружение",
     price: "от 300₽",
     accent: "orange",
-    link: "https://cyberx.moscow/cyberracing", 
-    btnText: "Подробнее", 
+    link: "https://cyberx.moscow/cyberracing",
+    btnText: "Подробнее",
     features: [
       { icon: Disc, label: "Pro Руль", sub: "Force Feedback" },
       { icon: Tv, label: "55\" 4K 120Hz", sub: "Плавная картинка" },
@@ -132,13 +132,13 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
   const [images, setImages] = useState<string[]>([`/zones/${zone.id}-1.webp`]);
   const [currentImage, setCurrentImage] = useState(0);
   const isAccent = zone.accent === 'orange';
-  const accentColor = isAccent ? '#FF8C00' : '#FF2E63'; 
+  const accentColor = isAccent ? '#FF8C00' : '#FF2E63';
 
   useEffect(() => {
     // Предзагрузка и проверка картинок (возвращаем полный цикл до 6)
     const loadImages = async () => {
       const foundImages: string[] = [];
-      const maxImages = 6; 
+      const maxImages = 6;
 
       const checkImageExists = (src: string) => {
         return new Promise((resolve) => {
@@ -159,7 +159,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
       }
 
       if (foundImages.length > 0) {
-        setImages(foundImages); 
+        setImages(foundImages);
       }
     };
 
@@ -188,36 +188,36 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
       {/* --- IMAGE SLIDER --- */}
       <div className="relative w-full aspect-[4/3] overflow-hidden bg-black">
         <div className="absolute inset-0 w-full h-full">
-            <Image 
-              src={images[currentImage]} 
-              alt={zone.title} 
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              priority={index < 2} 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
+          <Image
+            src={images[currentImage]}
+            alt={`Компьютерный клуб CyberX Новокосино - Игровая зона ${zone.title}`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            priority={index < 3}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
         </div>
 
         {images.length > 1 && (
           <>
-            <button 
-              onClick={prevImage} 
+            <button
+              onClick={prevImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
             >
               <ChevronLeft size={20} />
             </button>
-            <button 
-              onClick={nextImage} 
+            <button
+              onClick={nextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
             >
               <ChevronRight size={20} />
             </button>
-            
+
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
               {images.map((_, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`w-1.5 h-1.5 rounded-full transition-colors ${i === currentImage ? 'bg-white' : 'bg-white/30'}`}
                 />
               ))}
@@ -225,7 +225,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           </>
         )}
 
-        <div 
+        <div
           className="absolute top-4 right-4 px-3 py-1 rounded-md font-chakra font-bold text-sm text-white shadow-lg backdrop-blur-md z-10"
           style={{ backgroundColor: isAccent ? 'rgba(255, 140, 0, 0.8)' : 'rgba(255, 46, 99, 0.8)' }}
         >
@@ -235,7 +235,7 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
 
       {/* --- CONTENT --- */}
       <div className="p-6 flex flex-col flex-grow relative z-10 -mt-4 bg-[#111] rounded-t-2xl border-t border-white/5">
-        
+
         <div className="mb-6">
           <h3 className="font-tactic font-bold text-2xl text-white uppercase tracking-wide mb-1">
             {zone.title}
@@ -269,12 +269,12 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           <a
             href={zone.link}
             className="w-full py-4 mt-auto border rounded-xl font-chakra font-bold text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden group/btn block text-center"
-            style={{ 
-              borderColor: isAccent ? 'rgba(255, 140, 0, 0.5)' : 'rgba(255,255,255,0.1)', 
-              color: isAccent ? '#FF8C00' : '#fff' 
+            style={{
+              borderColor: isAccent ? 'rgba(255, 140, 0, 0.5)' : 'rgba(255,255,255,0.1)',
+              color: isAccent ? '#FF8C00' : '#fff'
             }}
           >
-            <div 
+            <div
               className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
               style={{ backgroundColor: accentColor }}
             />
