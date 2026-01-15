@@ -1,10 +1,23 @@
 import type { Metadata, Viewport } from "next";
+<<<<<<< HEAD
 import { Chakra_Petch, Inter } from "next/font/google";
 import Script from "next/script"; // Импортируем компонент для скриптов
 import JsonLd from "@/components/JsonLd";
+=======
+import { Chakra_Petch, Inter } from "next/font/google"; 
+import localFont from "next/font/local"; // <--- Импортируем загрузчик локальных шрифтов
+import Script from "next/script";
+import JsonLd from "@/components/JsonLd"; 
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
 import "./globals.css";
+import Snow from "@/components/Snow";
 
+<<<<<<< HEAD
 const chakra = Chakra_Petch({
+=======
+// 1. Подключаем Google шрифты
+const chakra = Chakra_Petch({ 
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
   weight: ['300', '400', '500', '600', '700'],
   subsets: ["latin"],
   variable: '--font-chakra',
@@ -17,6 +30,39 @@ const inter = Inter({
   display: 'swap',
 });
 
+// 2. Подключаем локальный Tactic Sans "железобетонно"
+const tactic = localFont({
+  src: [
+    {
+      path: './fonts/TacticSansExd-Lgt.woff',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Reg.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Bld.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Blk.woff',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TacticSansExd-Ult.woff',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-tactic', // Эта переменная пойдет в CSS
+  display: 'swap',
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -26,6 +72,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://cyberx-novokosino.ru'),
   title: {
+<<<<<<< HEAD
     default: "CyberX Новокосино | Компьютерный клуб в Москве (ВАО) | 24/7",
     template: "%s | CyberX Новокосино | Москва"
   },
@@ -39,6 +86,19 @@ export const metadata: Metadata = {
     "киберспорт Москва",
     "аренда PS5 Москва",
     "автосимулятор Москва",
+=======
+    default: "Компьютерный клуб CyberX Новокосино | PS5, Автосимуляторы & RTX 5070",
+    template: "%s | CyberX Новокосино"
+  },
+  description: "Лучший кибер клуб в Новокосино на ул. Новокосинская 32. Мощные ПК (RTX 4060/5070), профессиональные автосимуляторы, зона PS5 с диванами. Работаем круглосуточно!",
+  keywords: [
+    "Компьютерный клуб Новокосино",
+    "CyberX Новокосино",
+    "Компьютерный клуб рядом",
+    "Автосимуляторы Москва",
+    "Симрейсинг",
+    "Аренда PS5 Новокосино",
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
     "RTX 5070",
     "BootCamp Москва"
   ],
@@ -46,6 +106,7 @@ export const metadata: Metadata = {
     canonical: 'https://cyberx-novokosino.ru',
   },
   icons: {
+<<<<<<< HEAD
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
@@ -53,6 +114,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CyberX Новокосино — Твой киберспортивный спейс 24/7",
     description: "RTX 5070, мониторы 400 Гц, Автосимуляторы и PS5. Залетай в игру на Новокосинской 32!",
+=======
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
+  openGraph: {
+    title: "CyberX Новокосино — Топовый компьютерный клуб",
+    description: "RTX 5070, Автосимуляторы, PS5 и BootCamp. Залетай в игру на Новокосинской 32!",
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
     url: 'https://cyberx-novokosino.ru',
     siteName: 'CyberX Новокосино',
     locale: 'ru_RU',
@@ -84,12 +154,16 @@ export const metadata: Metadata = {
     },
   },
   verification: {
+<<<<<<< HEAD
     yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || 'cd200b561d2e01f0',
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM',
+=======
+    yandex: 'cd200b561d2e01f0',
+    google: 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM',
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
   },
 };
 
-// Ваш ID Google Analytics
 const GA_MEASUREMENT_ID = 'G-T6L6MKR798';
 
 export default function RootLayout({
@@ -99,10 +173,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="scroll-smooth">
-      <body className={`${chakra.variable} ${inter.variable} bg-cyber-bg font-inter antialiased`}>
-        {/* JSON-LD Разметка для SEO */}
+      {/* 3. Добавляем tactic.variable в className body */}
+      <body className={`${chakra.variable} ${inter.variable} ${tactic.variable} bg-cyber-bg font-inter antialiased`}>
+        <Snow />
         <JsonLd />
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
         {children}
 
         {/* Google Analytics */}
@@ -115,7 +193,6 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>

@@ -44,7 +44,14 @@ export default function Hero() {
       onMouseMove={handleMouseMove}
       className="relative w-full min-h-[100dvh] flex flex-col items-center justify-between overflow-hidden bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white pt-24 md:py-0"
     >
+      {/* --- SEO H1 (Скрыт от глаз, но виден Яндексу/Google) --- */}
+      {/* Это самый важный элемент для ранжирования. Робот видит его первым. */}
+      <h1 className="sr-only">
+        Компьютерный клуб CyberX Новокосино
+      </h1>
+
       {/* --- BACKGROUND LAYERS --- */}
+<<<<<<< HEAD
 
       {/* 1. Main Image */}
       <motion.div
@@ -58,6 +65,23 @@ export default function Hero() {
           priority
           className="object-cover brightness-[0.5] contrast-[1.2]"
           sizes="100vw"
+=======
+      
+      {/* 1. Main Image (OPTIMIZED: img tag instead of css background for faster LCP) */}
+      <motion.div 
+        style={{ y: yBg, x: isMobile ? 0 : mousePosition.x * -1, scale: 1.1 }}
+        className="absolute inset-0 z-0 will-change-transform"
+      >
+        <img 
+            src="/main.webp" 
+            alt="Интерьер компьютерного клуба CyberX Новокосино" 
+            className="w-full h-full object-cover"
+            style={{ 
+              filter: 'brightness(0.5) contrast(1.2)' 
+            }} 
+            loading="eager" // Грузим картинку мгновенно
+            decoding="sync"
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
         />
       </motion.div>
 
@@ -75,8 +99,13 @@ export default function Hero() {
       <div className="absolute top-10 right-10 w-6 h-6 border-r-2 border-t-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 left-10 w-6 h-6 border-l-2 border-b-2 border-white/30 z-10 pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 right-10 w-6 h-6 border-r-2 border-b-2 border-white/30 z-10 pointer-events-none hidden md:block" />
+<<<<<<< HEAD
 
       {/* System Status / SEO HUD */}
+=======
+      
+      {/* System Status / HUD Text */}
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
       <div className="absolute top-24 right-5 md:top-28 md:right-10 z-10 hidden sm:flex flex-col items-end text-[9px] md:text-[10px] font-mono text-white/60 tracking-widest gap-2">
         <span className="border-b border-white/10 pb-1 mb-1">КОМПЬЮТЕРНЫЙ КЛУБ НОВОКОСИНО</span>
         <span>МОЩНЫЕ ПК RTX 4060 / 5070</span>
@@ -85,7 +114,9 @@ export default function Hero() {
       </div>
 
       {/* --- MAIN CONTENT WRAPPER --- */}
+      {/* aria-hidden="true" говорит роботу пропустить этот блок текста, так как мы уже дали ему H1 выше */}
       <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1400px] px-4 flex-grow my-auto">
+<<<<<<< HEAD
 
         {/* TAGLINE */}
         <motion.div
@@ -123,6 +154,42 @@ export default function Hero() {
             Топовый киберклуб в Москве (Новокосино). RTX 5070, 400 Гц, PS5 и Автосимуляторы 24/7.
           </p>
         </motion.div>
+=======
+        
+        <div aria-hidden="true" className="flex flex-col items-center w-full">
+            {/* TAGLINE */}
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8"
+            >
+              <div className="h-[2px] w-8 md:w-12 bg-[#FF2E63] shadow-[0_0_15px_#FF2E63]" />
+              <span className="font-chakra font-bold text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase text-white/90 drop-shadow-[0_0_8px_rgba(255,46,99,0.8)] whitespace-nowrap">
+                КОМПЬЮТЕРНЫЙ КЛУБ
+              </span>
+              <div className="h-[2px] w-8 md:w-12 bg-[#FF2E63] shadow-[0_0_15px_#FF2E63]" />
+            </motion.div>
+
+            {/* BIG LOGO (Visual Title) */}
+            <motion.div
+               initial={{ opacity: 0, scale: 0.95 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.8, ease: "easeOut" }} 
+               className="relative mb-8 md:mb-16 w-full flex flex-col items-center text-center"
+            >
+               <div className="flex flex-col items-center w-full">
+                 <span className="font-tactic font-black text-[15vw] md:text-[10vw] lg:text-[150px] uppercase leading-[0.8] tracking-tight text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+                  CYBERX
+                 </span>
+                 
+                 <span className="font-tactic font-black text-[9vw] md:text-[6vw] lg:text-[90px] uppercase leading-[0.9] tracking-tight w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] mt-2 md:mt-0 text-[#FF2E63]">
+                   НОВОКОСИНО
+                 </span>
+               </div>
+            </motion.div>
+        </div>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
 
         {/* BUTTON */}
         <motion.div
@@ -158,14 +225,20 @@ export default function Hero() {
 
       </div>
 
+<<<<<<< HEAD
       {/* --- STATS (ИСПРАВЛЕНО: Relative на мобильных, Absolute на десктопе) --- */}
       {/* Это решает проблему наложения текста на кнопку */}
       <motion.div
+=======
+      {/* --- STATS --- */}
+      <motion.div 
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
         className="w-full z-30 relative md:absolute md:bottom-0 md:left-0 pb-8 md:pb-0"
       >
+<<<<<<< HEAD
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 md:mb-12 hidden md:block" />
 
         <div className="w-full max-w-[1400px] mx-auto px-4">
@@ -180,6 +253,22 @@ export default function Hero() {
             </div>
           </div>
         </div>
+=======
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 md:mb-12 hidden md:block" />
+
+          <div className="w-full max-w-[1400px] mx-auto px-4">
+             <div className="grid grid-cols-2 md:grid-cols-5 gap-y-6 md:gap-4 items-start justify-items-center text-center py-6 md:pb-12 bg-[#111]/50 md:bg-transparent rounded-2xl md:rounded-none border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none">
+                 <HudItem icon={<GpuIcon />} value="RTX 5070" label="ВИДЕОКАРТЫ" />
+                 <HudItem icon={<MonitorIcon />} value="400 Гц" label="МОНИТОРЫ" />
+                 <HudItem icon={<GamepadIcon />} value="PS5 ZONE" label="БЕЗЛИМИТ" highlight />
+                 <HudItem icon={<SteeringIcon />} value="SIM RACING" label="АВТОСИМ" />
+                 
+                 <div className="col-span-2 md:col-span-1 w-full flex justify-center">
+                   <HudItem icon={<ClockIcon />} value="24 / 7" label="РЕЖИМ РАБОТЫ" />
+                 </div>
+             </div>
+          </div>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
       </motion.div>
 
     </section>
@@ -206,7 +295,7 @@ function HudItem({ value, label, icon, highlight = false }: { value: string, lab
   )
 }
 
-// Inline SVGs (Optimized size for mobile)
+// Inline SVGs
 const GpuIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[28px] md:h-[28px]">
     <path d="M2 15V9C2 5.68629 4.68629 3 8 3H16C19.3137 3 22 5.68629 22 9V15C22 18.3137 19.3137 21 16 21H8C4.68629 21 2 18.3137 2 15Z" />

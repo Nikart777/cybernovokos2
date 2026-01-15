@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -12,12 +12,15 @@ import {
 } from "lucide-react";
 
 // --- DATA ---
+// Я добавил поле 'imageCount' на основе твоих файлов в public/zones.
+// Теперь слайдер работает мгновенно, без подгрузок и проверок.
 const zones = [
   {
     id: "solo-premium",
     title: "SOLO PREMIUM",
     subtitle: "Уединенный комфорт",
     price: "от 150₽",
+    imageCount: 6, // У тебя лежит 6 файлов
     features: [
       { icon: Cpu, label: "RTX 5070 12GB", sub: "Видеокарта" },
       { icon: Monitor, label: "240 Гц / 2K", sub: "Gigabyte 27\"" },
@@ -32,6 +35,7 @@ const zones = [
     title: "SOLO PRO",
     subtitle: "Киберспорт уровень",
     price: "от 130₽",
+    imageCount: 3, // У тебя лежит 3 файла
     features: [
       { icon: Cpu, label: "RTX 5070 12GB", sub: "Мощность" },
       { icon: Monitor, label: "400 Гц BenQ", sub: "Zowie Esports" },
@@ -46,6 +50,7 @@ const zones = [
     title: "DUO ZONE",
     subtitle: "Играем вдвоем",
     price: "от 120₽",
+    imageCount: 3, // У тебя лежит 3 файла
     features: [
       { icon: Cpu, label: "RTX 4060", sub: "Стабильный FPS" },
       { icon: Monitor, label: "240 Гц IPS", sub: "24 дюйма" },
@@ -60,6 +65,7 @@ const zones = [
     title: "VIP BOOTCAMP",
     subtitle: "Для команд на 5 ПК",
     price: "от 110₽",
+    imageCount: 5, // У тебя лежит 5 файлов
     features: [
       { icon: Users, label: "5 Игровых мест", sub: "Командная зона" },
       { icon: Cpu, label: "RTX 4070", sub: "Флагманы" },
@@ -74,6 +80,7 @@ const zones = [
     title: "PS5 LOUNGE",
     subtitle: "PlayStation 5 Zone",
     price: "от 250₽",
+    imageCount: 5, // У тебя лежит 5 файлов
     features: [
       { icon: Tv, label: "70 Дюймов", sub: "4K Ultra HD" },
       { icon: Gamepad2, label: "FC26 / UFC 5", sub: "Игры на двоих" },
@@ -88,6 +95,7 @@ const zones = [
     title: "АВТОСИМУЛЯТОР",
     subtitle: "Полное погружение",
     price: "от 300₽",
+    imageCount: 5, // У тебя лежит 5 файлов
     accent: "orange",
     link: "https://cyberx.moscow/cyberracing",
     btnText: "Подробнее",
@@ -105,6 +113,7 @@ const zones = [
     title: "ОБЩИЙ ЗАЛ",
     subtitle: "База клуба",
     price: "от 100₽",
+    imageCount: 5, // У тебя лежит 5 файлов
     features: [
       { icon: Monitor, label: "25 ПК", sub: "Рабочие лошадки" },
       { icon: Coffee, label: "Бар и Снеки", sub: "Подкрепиться" },
@@ -129,11 +138,14 @@ export default function Zones() {
 }
 
 function ZoneCard({ zone, index }: { zone: any, index: number }) {
-  const [images, setImages] = useState<string[]>([`/zones/${zone.id}-1.webp`]);
+  // Генерируем массив картинок сразу при рендере, без useEffect и задержек
+  const images = Array.from({ length: zone.imageCount }, (_, i) => `/zones/${zone.id}-${i + 1}.webp`);
+  
   const [currentImage, setCurrentImage] = useState(0);
   const isAccent = zone.accent === 'orange';
   const accentColor = isAccent ? '#FF8C00' : '#FF2E63';
 
+<<<<<<< HEAD
   useEffect(() => {
     // Предзагрузка и проверка картинок (возвращаем полный цикл до 6)
     const loadImages = async () => {
@@ -166,6 +178,8 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
     loadImages();
   }, [zone.id]);
 
+=======
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImage((prev) => (prev + 1) % images.length);
@@ -186,8 +200,10 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
       style={{ borderColor: isAccent ? 'rgba(255, 140, 0, 0.3)' : 'rgba(255, 255, 255, 0.1)' }}
     >
       {/* --- IMAGE SLIDER --- */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-black">
+      {/* aspect-[4/3] жестко резервирует место под картинку, предотвращая прыжки */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden bg-black isolate">
         <div className="absolute inset-0 w-full h-full">
+<<<<<<< HEAD
           <Image
             src={images[currentImage]}
             alt={`Компьютерный клуб CyberX Новокосино - Игровая зона ${zone.title}`}
@@ -197,6 +213,20 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
             priority={index < 3}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
+=======
+            <Image 
+              src={images[currentImage]} 
+              alt={zone.title} 
+              fill
+              // sizes помогает браузеру выбрать правильный размер и не грузить лишнее
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              // Грузим первые две карточки мгновенно (LCP), остальные лениво
+              priority={index < 2} 
+            />
+            {/* Градиент для читаемости текста цены */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90 pointer-events-none" />
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
         </div>
 
         {images.length > 1 && (
@@ -204,17 +234,24 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
             <button
               onClick={prevImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
+              aria-label="Previous image"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={nextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
+              aria-label="Next image"
             >
               <ChevronRight size={20} />
             </button>
+<<<<<<< HEAD
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+=======
+            
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20 pointer-events-none">
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
               {images.map((_, i) => (
                 <div
                   key={i}
@@ -264,7 +301,6 @@ function ZoneCard({ zone, index }: { zone: any, index: number }) {
           ))}
         </div>
 
-        {/* Кнопка "Подробнее" ТОЛЬКО для автосимуляторов (или зон с ссылкой) */}
         {zone.link && (
           <a
             href={zone.link}

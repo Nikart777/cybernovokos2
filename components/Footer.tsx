@@ -1,15 +1,11 @@
 "use client";
 
-import Link from "next/link";
-
 export default function Footer() {
-  const openPolicy = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const openPolicy = () => {
     window.dispatchEvent(new CustomEvent("open-privacy-policy"));
   };
 
-  const openOffer = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const openOffer = () => {
     window.dispatchEvent(new CustomEvent("open-public-offer"));
   };
 
@@ -24,6 +20,7 @@ export default function Footer() {
 
         {/* LEFT COLUMN: BRANDING & STUDIO */}
         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+<<<<<<< HEAD
 
           {/* --- ART.VISION BADGE (ALWAYS GLOWING) --- */}
           <a
@@ -33,6 +30,36 @@ export default function Footer() {
           >
             {/* Always Animated Scanline Background */}
             <div className="absolute top-0 left-[-150%] w-[100%] h-full bg-gradient-to-r from-transparent via-[#00F3FF]/10 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite_linear]" />
+=======
+           
+           {/* --- ART.VISION BADGE --- */}
+           {/* Добавили rel="noopener noreferrer", чтобы ссылка была безопасной */}
+           <a 
+             href="https://art-vision.online/" 
+             target="_blank"
+             rel="noopener noreferrer"
+             className="group relative mb-8 inline-flex items-center gap-5 px-6 py-4 bg-[#0A0A0A] border border-[#00F3FF]/30 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,243,255,0.1)] hover:shadow-[0_0_40px_rgba(0,243,255,0.3)] hover:border-[#00F3FF] transition-all duration-300"
+           >
+              <div className="absolute top-0 left-[-150%] w-[100%] h-full bg-gradient-to-r from-transparent via-[#00F3FF]/10 to-transparent skew-x-[-20deg] animate-[shine_3s_infinite_linear]" />
+              
+              <div className="flex flex-col items-start relative z-10">
+                 <span className="font-mono text-[9px] text-gray-400 uppercase tracking-[0.1em] mb-1">
+                   Сайт разработан студией
+                 </span>
+                 <span className="font-tactic font-black text-2xl text-[#00F3FF] tracking-widest drop-shadow-[0_0_10px_rgba(0,243,255,0.5)]">
+                   ART.VISION
+                 </span>
+              </div>
+              
+              <div className="relative w-2 h-2">
+                 <div className="absolute inset-0 bg-[#00F3FF] rounded-full animate-ping opacity-75" />
+                 <div className="relative w-2 h-2 bg-[#00F3FF] rounded-full shadow-[0_0_10px_#00F3FF]" />
+              </div>
+
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#00F3FF]/50" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#00F3FF]/50" />
+           </a>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
 
             {/* Text Content */}
             <div className="flex flex-col items-start relative z-10">
@@ -75,13 +102,29 @@ export default function Footer() {
         </div>
 
         {/* RIGHT: LEGAL LINKS */}
+        {/* ИСПРАВЛЕНО: Теперь это button, а не a href="#" */}
         <div className="flex flex-wrap justify-center gap-6 mb-2">
+<<<<<<< HEAD
           <a href="#" onClick={openPolicy} className="text-xs text-gray-500 hover:text-[#FF2E63] transition-colors cursor-pointer font-medium uppercase tracking-wide">
             Политика конфиденциальности CyberX
           </a>
           <a href="#" onClick={openOffer} className="text-xs text-gray-500 hover:text-[#FF2E63] transition-colors cursor-pointer font-medium uppercase tracking-wide">
             Публичная оферта клуба
           </a>
+=======
+           <button 
+             onClick={openPolicy} 
+             className="text-xs text-gray-500 hover:text-[#FF2E63] transition-colors cursor-pointer font-medium uppercase tracking-wide bg-transparent border-none outline-none"
+           >
+             Политика конфиденциальности
+           </button>
+           <button 
+             onClick={openOffer} 
+             className="text-xs text-gray-500 hover:text-[#FF2E63] transition-colors cursor-pointer font-medium uppercase tracking-wide bg-transparent border-none outline-none"
+           >
+             Публичная оферта
+           </button>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
         </div>
 
       </div>

@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "next/link"; // Обязательно используем Link для SEO
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Send, Monitor, Crosshair } from "lucide-react";
+import { Menu, X, Phone, Send, Monitor, Crosshair, Trophy } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showArenaPromo, setShowArenaPromo] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,20 +18,31 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Функция открытия попапа брони (для других кнопок)
-  const openBooking = () => {
-    window.dispatchEvent(new CustomEvent("open-booking"));
-    setIsOpen(false);
-  };
+  // Обновленный список с правильными ссылками для роботов
+  const navLinks = [
+    { name: "ARENA", href: "/arena", isHot: true },
+    { name: "Зоны", href: "/#about" }, // Добавил /# для жесткой привязки
+    { name: "Свободные места", href: "/#map", isNew: true }, // Если это страница /map
+    { name: "Цены", href: "/#price" },
+    { name: "Акции", href: "/#special" },
+    { name: "Отзывы", href: "/#otzyv" },
+    { name: "FAQ", href: "/#faq" },
+    { name: "Контакты", href: "/#contact" },
+  ];
 
-  const scrollToSection = (id: string) => {
+  // Обработчик клика теперь проще: просто закрываем меню
+  // Скролл работает сам, так как у тебя в layout.tsx стоит scroll-smooth
+  const handleNavClick = (href: string) => {
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (href === '/arena') {
+       // Если нужно предотвратить переход и открыть попап (опционально)
+       // Но для SEO лучше все же переходить. 
+       // Оставим твою логику с попапом:
+       setShowArenaPromo(true);
     }
   };
 
+<<<<<<< HEAD
   const navLinks = [
     { name: "Зоны", href: "about" },
     { name: "Свободные места", href: "map", isNew: true },
@@ -42,6 +54,8 @@ export default function Header() {
     { name: "Контакты", href: "contacts" },
   ];
 
+=======
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
   return (
     <>
       <header
@@ -66,7 +80,9 @@ export default function Header() {
           </Link>
 
           {/* DESKTOP NAV */}
+          {/* ВАЖНО: Используем <Link>, а не <button> */}
           <nav className="hidden xl:flex items-center gap-6">
+<<<<<<< HEAD
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -89,6 +105,44 @@ export default function Header() {
                 />
               </Link>
             ))}
+=======
+            {navLinks.map((link) => {
+                // Если это Арена, оставляем button для попапа, иначе Link для SEO
+                if (link.href === '/arena') {
+                    return (
+                        <button
+                            key={link.name}
+                            onClick={() => setShowArenaPromo(true)}
+                            className={`font-chakra font-bold text-xs uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
+                                link.isHot ? 'text-purple-500 hover:text-white drop-shadow-[0_0_5px_rgba(168,85,247,0.5)]' : 'text-white/80 hover:text-[#FF2E63]'
+                            }`}
+                        >
+                            <Crosshair size={14} />
+                            {link.name}
+                            <span className="absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]" />
+                        </button>
+                    )
+                }
+
+                return (
+                    <Link
+                        key={link.name}
+                        href={link.href}
+                        className={`font-chakra font-bold text-xs uppercase tracking-widest transition-colors relative group flex items-center gap-2 ${
+                            link.isNew ? 'text-[#00F0FF] hover:text-white' : 'text-white/80 hover:text-[#FF2E63]'
+                        }`}
+                    >
+                        {link.isNew && <Monitor size={14} />}
+                        {link.name}
+                        <span 
+                            className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
+                            link.isNew ? 'bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]' : 'bg-[#FF2E63] shadow-[0_0_10px_#FF2E63]'
+                            }`} 
+                        />
+                    </Link>
+                );
+            })}
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
           </nav>
 
           {/* DESKTOP ACTIONS */}
@@ -106,6 +160,7 @@ export default function Header() {
               <Phone size={16} className="group-hover:fill-[#FF2E63] transition-colors" />
               <span>+7 985 128 95 38</span>
             </a>
+<<<<<<< HEAD
 
             {/* КНОПКА ЗАБРАТЬ 1200 (Якорь на AimControl) */}
             <button
@@ -118,6 +173,20 @@ export default function Header() {
                 Забрать 1200Б
               </span>
             </button>
+=======
+            
+            {/* КНОПКА ЗАБРАТЬ 1200 - Тоже делаем ссылкой на якорь */}
+            <Link 
+              href="/#aim-control" 
+              className="group relative px-5 py-2 bg-transparent outline-none transform -skew-x-12 cursor-pointer inline-block"
+            >
+               <div className="absolute inset-0 bg-[#FF2E63] opacity-90 group-hover:opacity-100 group-hover:bg-white transition-all duration-300 border border-[#FF2E63] shadow-[0_0_15px_rgba(255,46,99,0.4)]" />
+               <span className="relative z-10 flex items-center gap-2 font-chakra font-bold text-xs uppercase tracking-wider text-white group-hover:text-black transition-colors duration-300 transform skew-x-12">
+                 <Crosshair size={14} />
+                 Забрать 1200Б
+               </span>
+            </Link>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
           </div>
 
           {/* MOBILE BURGER */}
@@ -163,24 +232,47 @@ export default function Header() {
               </div>
 
               <nav className="flex flex-col gap-5 mb-8">
-                {navLinks.map((link, idx) => (
-                  <button
-                    key={link.name}
-                    onClick={() => scrollToSection(link.href)}
-                    className="group flex items-baseline gap-4 text-left"
-                  >
-                    <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
-                    <span className={`font-tactic font-bold text-xl uppercase transition-all duration-300 ${link.isNew ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63] group-hover:translate-x-2'}`}>
-                      {link.name}
-                    </span>
-                  </button>
-                ))}
+                {navLinks.map((link, idx) => {
+                    const isArena = link.href === '/arena';
+                    
+                    if (isArena) {
+                        return (
+                            <button
+                                key={link.name}
+                                onClick={() => { setShowArenaPromo(true); setIsOpen(false); }}
+                                className="group flex items-baseline gap-4 text-left"
+                            >
+                                <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
+                                <span className="font-tactic font-bold text-xl uppercase transition-all duration-300 text-purple-500 group-hover:text-white">
+                                    {link.name}
+                                </span>
+                            </button>
+                        )
+                    }
+
+                    return (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-baseline gap-4 text-left"
+                        >
+                            <span className="text-xs font-mono text-[#FF2E63] opacity-60 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
+                            <span className={`font-tactic font-bold text-xl uppercase transition-all duration-300 ${
+                                link.isNew ? 'text-[#00F0FF]' : 'text-white group-hover:text-[#FF2E63] group-hover:translate-x-2'
+                            }`}>
+                                {link.name}
+                            </span>
+                        </Link>
+                    );
+                })}
               </nav>
 
               {/* ACTION BUTTONS LIST (VERTICAL STACK) */}
               <div className="mt-auto flex flex-col gap-3">
 
                 {/* 1. Карта загрузки */}
+<<<<<<< HEAD
                 <button
                   onClick={() => scrollToSection('map')}
                   className="w-full py-3.5 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
@@ -197,6 +289,26 @@ export default function Header() {
                   <Crosshair size={18} />
                   Забрать 1200 Бонусов
                 </button>
+=======
+                <Link 
+                   href="/#map"
+                   onClick={() => setIsOpen(false)}
+                   className="w-full py-3.5 bg-[#00F0FF]/10 border border-[#00F0FF]/50 rounded-xl flex items-center justify-center gap-3 text-[#00F0FF] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
+                 >
+                   <Monitor size={18} />
+                   Карта загрузки
+                 </Link>
+
+                 {/* 2. Забрать бонус */}
+                 <Link 
+                    href="/#aim-control"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full py-3.5 bg-[#FF2E63]/10 border border-[#FF2E63]/50 rounded-xl flex items-center justify-center gap-3 text-[#FF2E63] font-chakra font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
+                  >
+                    <Crosshair size={18} />
+                    Забрать 1200 Бонусов
+                  </Link>
+>>>>>>> b9fcc27b24145455a93c33448f19977129ad833f
 
                 {/* 3. Telegram */}
                 <a
@@ -220,6 +332,60 @@ export default function Header() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* ARENA PROMO MODAL (Без изменений, только рендер) */}
+      <AnimatePresence>
+        {showArenaPromo && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+              <motion.div
+                 initial={{ scale: 0.9, opacity: 0 }}
+                 animate={{ scale: 1, opacity: 1 }}
+                 exit={{ scale: 0.9, opacity: 0 }}
+                 className="bg-[#0A0A0A] border border-[#FF2E63] rounded-2xl w-full max-w-2xl relative shadow-[0_0_50px_rgba(255,46,99,0.3)] overflow-hidden"
+              >
+                 {/* Background FX */}
+                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF2E63] blur-[100px] opacity-20 pointer-events-none"></div>
+                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#B900FF] blur-[100px] opacity-20 pointer-events-none"></div>
+
+                 <button
+                   onClick={() => setShowArenaPromo(false)}
+                   className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors z-10"
+                 >
+                   <X size={24} />
+                 </button>
+
+                 <div className="p-8 md:p-12 text-center relative z-0">
+                     <Trophy className="w-20 h-20 text-[#FF2E63] mx-auto mb-6 drop-shadow-[0_0_15px_rgba(255,46,99,0.6)]" />
+
+                     <h2 className="text-4xl md:text-5xl font-tactic text-white mb-4 uppercase leading-none">
+                         CLUB <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF]">ARENA</span>
+                     </h2>
+
+                     <p className="text-xl text-gray-300 font-bold mb-8 max-w-lg mx-auto">
+                         Локальные микро-турниры 24/7.
+                         <br/>
+                         <span className="text-[#00F0FF]">Приходи и выигрывай</span> бар или опустошай баланс соперников!
+                     </p>
+
+                     <div className="flex flex-col gap-4">
+                         <button
+                             onClick={() => window.location.href = '/arena'}
+                             className="w-full py-5 bg-gradient-to-r from-[#FF2E63] to-[#B900FF] hover:from-[#d62552] hover:to-[#9600d1] rounded-xl font-tactic text-2xl uppercase tracking-widest text-white shadow-[0_0_20px_rgba(255,46,99,0.4)] hover:shadow-[0_0_40px_rgba(255,46,99,0.6)] transition-all transform hover:-translate-y-1"
+                         >
+                             Ворваться в игру
+                         </button>
+                         <button
+                             onClick={() => setShowArenaPromo(false)}
+                             className="text-gray-500 hover:text-white font-bold uppercase text-sm tracking-widest transition-colors"
+                         >
+                             Я пока просто посмотрю
+                         </button>
+                     </div>
+                 </div>
+              </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
