@@ -48,7 +48,6 @@ export default function Header() {
                         </div>
                         <div className="flex flex-col ml-3 hidden md:flex">
                             <span className="font-chakra font-black text-[10px] text-white tracking-[0.4em] uppercase leading-none">НОВОКОСИНСКАЯ</span>
-                            <span className="font-chakra font-bold text-[8px] text-[#00F0FF] tracking-[0.2em] uppercase mt-1 opacity-70">Gaming Universe</span>
                         </div>
                     </div>
                 </Link>
@@ -103,7 +102,7 @@ export default function Header() {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.2 }}
                                 onClick={() => setIsOpen(false)}
-                                className="fixed inset-0 z-[101] bg-[#000000] backdrop-blur-md lg:hidden"
+                                className="fixed inset-0 z-[101] bg-black lg:hidden"
                             />
                             <motion.div
                                 initial={{ x: '100%' }}
