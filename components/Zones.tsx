@@ -1,263 +1,353 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  ChevronLeft, ChevronRight,
-  Cpu, Monitor, Mouse, Wind, Armchair,
-  Zap, Users, Lock, Trophy, Headset,
-  Gamepad2, Tv, Car, Gauge, Disc,
-  Coffee, Clock, Wifi
-} from "lucide-react";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, Monitor, Cpu, Gauge, MousePointer2, Thermometer, Zap, Shield, Tv, Gamepad2, Users, Users2, Trophy, Coffee, Clock, User, ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-// --- DATA ---
 const zones = [
-  {
-    id: "solo-premium",
-    title: "SOLO PREMIUM",
-    subtitle: "Уединенный комфорт",
-    price: "от 150₽",
-    imageCount: 6,
-    features: [
-      { icon: Cpu, label: "RTX 5070 12GB", sub: "Видеокарта" },
-      { icon: Monitor, label: "240 Гц / 2K", sub: "Gigabyte 27\"" },
-      { icon: Mouse, label: "Logitech G Pro", sub: "Беспроводная" },
-      { icon: Wind, label: "Свой климат", sub: "Кондиционер" },
-      { icon: Zap, label: "Быстрая зарядка", sub: "Type-C / Lightning" },
-      { icon: Armchair, label: "Комфорт", sub: "Кронштейн + Кресло" },
-    ]
-  },
-  {
-    id: "solo-pro",
-    title: "SOLO PRO",
-    subtitle: "Киберспорт уровень",
-    price: "от 130₽",
-    imageCount: 3,
-    features: [
-      { icon: Cpu, label: "RTX 5070 12GB", sub: "Мощность" },
-      { icon: Monitor, label: "400 Гц BenQ", sub: "Zowie Esports" },
-      { icon: Mouse, label: "Logitech G Pro", sub: "Superlight" },
-      { icon: Wind, label: "Кондиционер", sub: "Личный холод" },
-      { icon: Zap, label: "All Charge", sub: "Зарядка на столе" },
-      { icon: Monitor, label: "Кронштейн", sub: "Настройка экрана" },
-    ]
-  },
-  {
-    id: "duo",
-    title: "DUO ZONE",
-    subtitle: "Играем вдвоем",
-    price: "от 120₽",
-    imageCount: 3,
-    features: [
-      { icon: Cpu, label: "RTX 4060", sub: "Стабильный FPS" },
-      { icon: Monitor, label: "240 Гц IPS", sub: "24 дюйма" },
-      { icon: Mouse, label: "Logitech G403", sub: "Классика" },
-      { icon: Users, label: "Приватность", sub: "Зона для двоих" },
-      { icon: Armchair, label: "Удобство", sub: "Игровые кресла" },
-      { icon: Wind, label: "Атмосфера", sub: "Своя вентиляция" },
-    ]
-  },
-  {
-    id: "bootcamp",
-    title: "VIP BOOTCAMP",
-    subtitle: "Для команд на 5 ПК",
-    price: "от 110₽",
-    imageCount: 5,
-    features: [
-      { icon: Users, label: "5 Игровых мест", sub: "Командная зона" },
-      { icon: Cpu, label: "RTX 4070", sub: "Флагманы" },
-      { icon: Monitor, label: "240 Гц", sub: "На кронштейнах" },
-      { icon: Lock, label: "Шумоизоляция", sub: "Никто не мешает" },
-      { icon: Mouse, label: "Периферия", sub: "Топовый сет" },
-      { icon: Headset, label: "VIP Сервис", sub: "Обслуживание" },
-    ]
-  },
-  {
-    id: "ps5",
-    title: "PS5 LOUNGE",
-    subtitle: "PlayStation 5 Zone",
-    price: "от 250₽",
-    imageCount: 5,
-    features: [
-      { icon: Tv, label: "70 Дюймов", sub: "4K Ultra HD" },
-      { icon: Gamepad2, label: "FC26 / UFC 5", sub: "Игры на двоих" },
-      { icon: Trophy, label: "MK 1 / NHL", sub: "Файтинги и спорт" },
-      { icon: Armchair, label: "Для компаний", sub: "Диваны и пуфы" },
-      { icon: Users, label: "It Takes Two", sub: "Игры для пар" },
-      { icon: Zap, label: "Атмосфера", sub: "Лучшая в районе" },
-    ]
-  },
-  {
-    id: "sim",
-    title: "АВТОСИМУЛЯТОР",
-    subtitle: "Полное погружение",
-    price: "от 300₽",
-    imageCount: 5,
-    accent: "orange",
-    link: "https://cyberx.moscow/cyberracing",
-    btnText: "Подробнее",
-    features: [
-      { icon: Disc, label: "Pro Руль", sub: "Force Feedback" },
-      { icon: Tv, label: "55\" 4K 120Hz", sub: "Плавная картинка" },
-      { icon: Car, label: "Кокпит", sub: "Гоночный каркас" },
-      { icon: Gauge, label: "Педали", sub: "Металлические" },
-      { icon: Zap, label: "Ощущения", sub: "Вибрация и драйв" },
-      { icon: Cpu, label: "Топовый ПК", sub: "Графика Ультра" },
-    ]
-  },
-  {
-    id: "common",
-    title: "ОБЩИЙ ЗАЛ",
-    subtitle: "База клуба",
-    price: "от 100₽",
-    imageCount: 5,
-    features: [
-      { icon: Monitor, label: "25 ПК", sub: "Рабочие лошадки" },
-      { icon: Coffee, label: "Бар и Снеки", sub: "Подкрепиться" },
-      { icon: Clock, label: "24/7", sub: "Работаем всегда" },
-      { icon: Headset, label: "Админы", sub: "Помогут во всем" },
-      { icon: Mouse, label: "Периферия", sub: "Logitech" },
-      { icon: Wifi, label: "Стабильность", sub: "Low Ping" },
-    ]
-  }
+    {
+        id: 'solo-premium',
+        name: 'SOLO PREMIUM',
+        subtitle: 'Уединенный комфорт',
+        price: 'от 220₽',
+        features: [
+            { label: 'Видеокарта', value: 'RTX 5070 12GB', icon: Cpu },
+            { label: 'Монитор', value: '240 Гц / 2K', icon: Monitor },
+            { label: 'Периферия', value: 'Logitech G Pro', icon: MousePointer2 },
+            { label: 'Климат', value: 'Кондиционер', icon: Thermometer },
+            { label: 'Зарядка', value: 'Type-C / Lightning', icon: Zap },
+            { label: 'Комфорт', value: 'Кронштейн + Кресло', icon: Shield },
+        ],
+        images: [
+            '/zones/solo-premium-1.webp',
+            '/zones/solo-premium-2.webp',
+            '/zones/solo-premium-3.webp',
+            '/zones/solo-premium-4.webp',
+            '/zones/solo-premium-5.webp',
+            '/zones/solo-premium-6.webp'
+        ],
+        color: '#FF2E63'
+    },
+    {
+        id: 'solo-pro',
+        name: 'SOLO PRO',
+        subtitle: 'Киберспорт уровень',
+        price: 'от 220₽',
+        features: [
+            { label: 'Мощность', value: 'RTX 5070 12GB', icon: Cpu },
+            { label: 'Экраны', value: '400 Гц BenQ Zowie', icon: Monitor },
+            { label: 'Мышь', value: 'Logitech G Pro Superlight', icon: MousePointer2 },
+            { label: 'Холод', value: 'Кондиционер', icon: Thermometer },
+            { label: 'Зарядка', value: 'Зарядка на столе', icon: Zap },
+            { label: 'Настройка', value: 'Проф. кронштейн', icon: Gauge },
+        ],
+        images: [
+            '/zones/solo-pro-1.webp',
+            '/zones/solo-pro-2.webp',
+            '/zones/solo-pro-3.webp'
+        ],
+        color: '#00F0FF'
+    },
+    {
+        id: 'duo-zone',
+        name: 'DUO ZONE',
+        subtitle: 'Играем вдвоем',
+        price: 'от 180₽',
+        features: [
+            { label: 'FPS', value: 'RTX 4060', icon: Cpu },
+            { label: 'Картинка', value: '240 Гц IPS / 24"', icon: Monitor },
+            { label: 'Классика', value: 'Logitech G403', icon: MousePointer2 },
+            { label: 'Приватность', value: 'Зона для двоих', icon: Users2 },
+            { label: 'Удобство', value: 'Игровые кресла', icon: Shield },
+            { label: 'Атмосфера', value: 'Своя вентиляция', icon: Thermometer },
+        ],
+        images: [
+            '/zones/duo-1.webp',
+            '/zones/duo-2.webp',
+            '/zones/duo-3.webp'
+        ],
+        color: '#B900FF'
+    },
+    {
+        id: 'vip-bootcamp',
+        name: 'VIP BOOTCAMP',
+        subtitle: 'Для команд на 5 ПК',
+        price: 'от 180₽',
+        features: [
+            { label: 'Места', value: '5 Игровых мест', icon: Users },
+            { label: 'Флагманы', value: 'RTX 4070', icon: Cpu },
+            { label: 'Эргономика', value: '240 Гц на кронштейнах', icon: Monitor },
+            { label: 'Тишина', value: 'Шумоизоляция', icon: Shield },
+            { label: 'Периферия', value: 'Топовый сет', icon: MousePointer2 },
+            { label: 'Сервис', value: 'VIP Обслуживание', icon: Trophy },
+        ],
+        images: [
+            '/zones/bootcamp-1.webp',
+            '/zones/bootcamp-2.webp',
+            '/zones/bootcamp-3.webp',
+            '/zones/bootcamp-4.webp',
+            '/zones/bootcamp-5.webp'
+        ],
+        color: '#FF7A00'
+    },
+    {
+        id: 'ps5-lounge',
+        name: 'PS5 LOUNGE',
+        subtitle: 'Зона PlayStation 5',
+        price: 'от 320₽',
+        features: [
+            { label: 'Экран', value: '70 Дюймов 4K Ultra HD', icon: Tv },
+            { label: 'Хиты', value: 'FC26 / UFC 5', icon: Gamepad2 },
+            { label: 'Для двоих', value: 'MK 1 / NHL', icon: Users2 },
+            { label: 'Отдых', value: 'Диваны и пуфы', icon: Coffee },
+            { label: 'Парам', value: 'It Takes Two', icon: Zap },
+            { label: 'Комфорт', value: 'Лучшая атмосфера', icon: Shield },
+        ],
+        images: [
+            '/zones/ps5-1.webp',
+            '/zones/ps5-2.webp',
+            '/zones/ps5-3.webp',
+            '/zones/ps5-4.webp',
+            '/zones/ps5-5.webp'
+        ],
+        color: '#0072CE'
+    },
+    {
+        id: 'simracing',
+        name: 'АВТОСИМУЛЯТОР',
+        subtitle: 'Полное погружение',
+        price: 'от 300₽',
+        features: [
+            { label: 'Руль', value: 'Pro / Force Feedback', icon: Gauge },
+            { label: 'Картинка', value: '55" 4K 120Hz', icon: Tv },
+            { label: 'Кокпит', value: 'Гоночный каркас', icon: Shield },
+            { label: 'Педали', value: 'Металлические', icon: Zap },
+            { label: 'Драйв', value: 'Вибрация и отдала', icon: Trophy },
+            { label: 'Графика', value: 'Топовый ПК / Ультра', icon: Cpu },
+        ],
+        images: [
+            '/zones/sim-1.webp',
+            '/zones/sim-2.webp',
+            '/zones/sim-3.webp',
+            '/zones/sim-4.webp',
+            '/zones/sim-5.webp'
+        ],
+        color: '#00F0FF'
+    },
+    {
+        id: 'common',
+        name: 'ОБЩИЙ ЗАЛ',
+        subtitle: 'База клуба',
+        price: 'от 140₽',
+        features: [
+            { label: 'Парк', value: '25 Рабочих лошадок', icon: Monitor },
+            { label: 'Бар', value: 'Снеки и напитки', icon: Coffee },
+            { label: 'График', value: 'Работаем 24/7', icon: Clock },
+            { label: 'Сервис', value: 'Помощь админов', icon: User },
+            { label: 'Девайсы', value: 'Logitech', icon: MousePointer2 },
+            { label: 'Сеть', value: 'Стабильный Low Ping', icon: Zap },
+        ],
+        images: [
+            '/zones/common-1.webp',
+            '/zones/common-2.webp',
+            '/zones/common-3.webp',
+            '/zones/common-4.webp',
+            '/zones/common-5.webp'
+        ],
+        color: '#555555'
+    }
 ];
 
-export default function Zones() {
-  return (
-    <section className="relative w-full bg-[#050505] pb-20 px-4 md:px-10">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
-        {zones.map((zone, index) => (
-          <ZoneCard key={zone.id} zone={zone} index={index} />
-        ))}
-      </div>
-    </section>
-  );
+function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
+    const [currentImage, setCurrentImage] = useState(0);
+
+    const nextImage = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCurrentImage((prev) => (prev + 1) % zone.images.length);
+    };
+
+    const prevImage = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCurrentImage((prev) => (prev - 1 + zone.images.length) % zone.images.length);
+    };
+
+    const openBooking = () => {
+        window.dispatchEvent(new CustomEvent('open-booking'));
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.05 }}
+            viewport={{ once: true }}
+            className="group relative h-[620px] rounded-[40px] overflow-hidden bg-neutral-900 border border-white/5 transition-all duration-500 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+        >
+            {/* Background & Slider */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentImage}
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.8, ease: "circOut" }}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src={zone.images[currentImage]}
+                            alt={zone.name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-[2s] opacity-50 grayscale group-hover:grayscale-0"
+                        />
+                    </motion.div>
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/40 to-transparent" />
+
+                {/* Dots Navigation */}
+                {zone.images.length > 1 && (
+                    <div className="absolute top-8 left-8 z-20 flex gap-2">
+                        {zone.images.map((_, i) => (
+                            <div
+                                key={i}
+                                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentImage ? 'bg-white w-4' : 'bg-white/20'}`}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Arrow Controls - Outside background container for proper z-index */}
+            {zone.images.length > 1 && (
+                <>
+                    <button
+                        onClick={prevImage}
+                        className="absolute top-1/2 left-4 z-30 -translate-y-1/2 p-2 rounded-full bg-black/50 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black"
+                    >
+                        <ChevronLeft size={16} />
+                    </button>
+                    <button
+                        onClick={nextImage}
+                        className="absolute top-1/2 right-4 z-30 -translate-y-1/2 p-2 rounded-full bg-black/50 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black"
+                    >
+                        <ChevronRight size={16} />
+                    </button>
+                </>
+            )}
+
+            <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
+                {/* Header Decoration */}
+                <div
+                    className="w-16 h-1 mb-6 rounded-full"
+                    style={{ backgroundColor: zone.color }}
+                />
+
+                <div className="mb-2">
+                    <h3 className="font-tactic font-black text-3xl uppercase italic text-white leading-tight tracking-tight drop-shadow-lg">
+                        {zone.name}
+                    </h3>
+                    <p className="font-chakra font-bold text-xs uppercase text-white/40 tracking-[0.2em] mt-1 drop-shadow-md">
+                        {zone.subtitle}
+                    </p>
+                </div>
+
+                <div className="font-tactic font-black text-[#FF2E63] text-3xl mb-8 uppercase tracking-wider flex items-baseline gap-1">
+                    <span className="text-sm font-chakra text-white/50 lowercase">от</span>
+                    {zone.price.replace('от ', '')}
+                </div>
+
+                {/* Features Grid - Modernized */}
+                <div className="grid grid-cols-2 gap-y-5 gap-x-4 mb-8 border-t border-white/10 pt-8">
+                    {zone.features.slice(0, 4).map((feature, fIdx) => (
+                        <div key={fIdx} className="flex flex-col gap-1.5">
+                            <div className="flex items-center gap-2">
+                                <div className="p-1.5 rounded-md bg-white/5 group-hover:bg-white/10 transition-colors">
+                                    <feature.icon size={12} className="text-[#FF2E63]" />
+                                </div>
+                                <span className="text-[9px] font-chakra font-black uppercase text-white/30 tracking-[0.1em]">{feature.label}</span>
+                            </div>
+                            <div className="text-[11px] font-chakra font-bold uppercase text-white leading-tight truncate">
+                                {feature.value}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {zone.id === 'simracing' ? (
+                    <Link
+                        href="/simracing"
+                        className="w-full py-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black transition-all relative overflow-hidden group/btn"
+                    >
+                        <span className="relative z-10 transition-colors">Подробнее</span>
+                        <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-expo" />
+                    </Link>
+                ) : (
+                    <button
+                        onClick={openBooking}
+                        className="w-full py-4 rounded-2xl bg-[#FF2E63] border border-[#FF2E63] flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black hover:border-white transition-all relative overflow-hidden group/btn shadow-[0_15px_30px_rgba(255,46,99,0.3)]"
+                    >
+                        <span className="relative z-10 transition-colors">Забронировать</span>
+                        <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-expo" />
+                    </button>
+                )}
+            </div>
+
+            {/* Premium Decor corners */}
+            <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-10 group-hover:opacity-40 transition-opacity duration-1000">
+                <div className="absolute top-12 right-12 w-12 h-[1px] bg-gradient-to-l from-white to-transparent" />
+                <div className="absolute top-12 right-12 h-12 w-[1px] bg-gradient-to-t from-white to-transparent" />
+            </div>
+        </motion.div>
+    );
 }
 
-function ZoneCard({ zone, index }: { zone: any, index: number }) {
-  const images = Array.from({ length: zone.imageCount }, (_, i) => `/zones/${zone.id}-${i + 1}.webp`);
-  const [currentImage, setCurrentImage] = useState(0);
-  const isAccent = zone.accent === 'orange';
-  const accentColor = isAccent ? '#FF8C00' : '#FF2E63';
-
-  const nextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImage((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.6, delay: index * 0.05, ease: "easeOut" }}
-      className="group relative bg-[#111] border border-white/10 rounded-2xl overflow-hidden hover:border-opacity-50 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col transform-gpu"
-      style={{ borderColor: isAccent ? 'rgba(255, 140, 0, 0.3)' : 'rgba(255, 255, 255, 0.1)' }}
-    >
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-black isolate">
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src={images[currentImage]}
-            alt={`Компьютерный клуб CyberX Новокосино - Игровая зона ${zone.title}`}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            priority={index < 2}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90 pointer-events-none" />
-        </div>
-
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
-              aria-label="Previous image"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 z-20"
-              aria-label="Next image"
-            >
-              <ChevronRight size={20} />
-            </button>
-
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20 pointer-events-none">
-              {images.map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === currentImage ? 'bg-white' : 'bg-white/30'}`}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
-        <div
-          className="absolute top-4 right-4 px-3 py-1 rounded-md font-chakra font-bold text-sm text-white shadow-lg backdrop-blur-md z-10"
-          style={{ backgroundColor: isAccent ? 'rgba(255, 140, 0, 0.8)' : 'rgba(255, 46, 99, 0.8)' }}
-        >
-          {zone.price}
-        </div>
-      </div>
-
-      <div className="p-6 flex flex-col flex-grow relative z-10 -mt-4 bg-[#111] rounded-t-2xl border-t border-white/5">
-        <div className="mb-6">
-          <h3 className="font-tactic font-bold text-2xl text-white uppercase tracking-wide mb-1">
-            {zone.title}
-          </h3>
-          <p className="font-inter text-xs font-bold uppercase tracking-widest text-gray-500">
-            {zone.subtitle}
-          </p>
-          <div className="w-12 h-[2px] mt-3" style={{ backgroundColor: accentColor }} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-x-4 gap-y-5 mb-8">
-          {zone.features.map((feat: any, i: number) => (
-            <div key={i} className="flex items-start gap-3 group/feat">
-              <div className="mt-0.5 opacity-70 group-hover/feat:opacity-100 transition-opacity" style={{ color: accentColor }}>
-                <feat.icon size={18} />
-              </div>
-              <div>
-                <div className="font-chakra font-bold text-sm text-white leading-tight">
-                  {feat.label}
+export default function Zones() {
+    return (
+        <section id="zones" className="py-24 bg-[#050505] relative overflow-hidden">
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+                    <div className="max-w-3xl">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-block px-4 py-1.5 mb-6 rounded-full border border-[#FF2E63]/30 bg-[#FF2E63]/5 text-[#FF2E63] text-[10px] font-black uppercase tracking-[0.3em]"
+                        >
+                            Игровые площадки
+                        </motion.div>
+                        <h2 className="font-tactic font-black text-4xl md:text-8xl uppercase italic text-white leading-[0.9] mb-8">
+                            ВЫБЕРИ СВОЙ <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_15px_rgba(255,46,99,0.3)]">
+                                LEVEL UP
+                            </span>
+                        </h2>
+                        <p className="font-chakra font-bold text-white/50 uppercase tracking-[0.15em] leading-relaxed text-sm md:text-base border-l-4 border-[#FF2E63] pl-6 py-2">
+                            Семь уникальных игровых площадок. От демократичного <br className="hidden md:block" /> общего зала до эксклюзивных Solo Premium комнат.
+                        </p>
+                    </div>
+                    <Link href="/prices" className="flex items-center gap-3 font-chakra font-black text-sm uppercase tracking-[0.25em] text-[#FF2E63] hover:text-white transition-all duration-500 group border-b border-[#FF2E63]/20 pb-2 hover:border-white">
+                        Смотреть все цены
+                        <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                        >
+                            <ChevronRight size={22} className="group-hover:translate-x-1" />
+                        </motion.div>
+                    </Link>
                 </div>
-                <div className="font-inter text-[10px] text-gray-500 uppercase tracking-wide mt-0.5">
-                  {feat.sub}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {zone.link && (
-          <a
-            href={zone.link}
-            className="w-full py-4 mt-auto border rounded-xl font-chakra font-bold text-sm uppercase tracking-widest transition-all duration-300 relative overflow-hidden group/btn block text-center"
-            style={{
-              borderColor: isAccent ? 'rgba(255, 140, 0, 0.5)' : 'rgba(255,255,255,0.1)',
-              color: isAccent ? '#FF8C00' : '#fff'
-            }}
-          >
-            <div
-              className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-              style={{ backgroundColor: accentColor }}
-            />
-            <span className={`relative z-10 transition-colors flex items-center justify-center gap-2 ${isAccent ? 'group-hover/btn:text-black' : 'group-hover/btn:text-black'}`}>
-              {zone.btnText || "Подробнее"}
-              <ChevronRight size={16} />
-            </span>
-          </a>
-        )}
-      </div>
-    </motion.div>
-  );
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {zones.map((zone, idx) => (
+                        <ZoneCard key={zone.id} zone={zone} idx={idx} />
+                    ))}
+                </div>
+            </div>
+
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#FF2E63] blur-[200px] opacity-[0.03] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#B900FF] blur-[200px] opacity-[0.03] rounded-full pointer-events-none" />
+        </section>
+    );
 }

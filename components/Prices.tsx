@@ -3,39 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock, Smartphone, ChevronRight, Apple } from "lucide-react";
-
-// --- ТИПЫ И ДАННЫЕ ---
-
-type PriceItem = {
-  time: string;
-  hours: string;
-  week: number;
-  end: number;
-  isNight?: boolean;
-};
-
-type SubSection = {
-  title: string;
-  morning: PriceItem[];
-  evening: PriceItem[];
-};
-
-type ZoneData = {
-  id: string;
-  name: string;
-  desc: string;
-  // Для обычных зон
-  morning?: PriceItem[];
-  evening?: PriceItem[];
-  // Для зон с разделением (как TV)
-  subSections?: SubSection[];
-};
-
-// Удалено: жестко прописанная константа pricingData. Теперь данные приходят из JSON через props.
+import { PricingData, ZoneData, PriceItem } from "@/app/lib/types";
 
 // --- ХЕЛПЕРЫ ---
-
-// Функция округления: >6 -> вверх до 10, иначе вниз до 10
 function calculateAppPrice(basePrice: number): number {
   const discountPrice = basePrice * 0.95; // Скидка 5%
   const rounded = Math.round(discountPrice); // Округляем до целого
@@ -48,11 +18,12 @@ function calculateAppPrice(basePrice: number): number {
   }
 }
 
-export default function Prices({ initialData }: { initialData: ZoneData[] }) {
-  const [activeZoneId, setActiveZoneId] = useState(initialData[0].id);
+export default function Prices({ data }: { data: PricingData }) {
+  const [activeZoneId, setActiveZoneId] = useState(data.zones[0]?.id || "common");
   const [isWeekend, setIsWeekend] = useState(false);
+  const [showAbonnements, setShowAbonnements] = useState(false);
 
-  const activeZone = initialData.find(z => z.id === activeZoneId) || initialData[0];
+  const activeZone = data.zones.find(z => z.id === activeZoneId) || data.zones[0];
 
   return (
     <section className="relative w-full bg-[#050505] pb-20 px-4 md:px-10">
@@ -60,13 +31,16 @@ export default function Prices({ initialData }: { initialData: ZoneData[] }) {
 
         {/* --- TABS (NAVIGATION) --- */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {initialData.map((zone) => (
+          {data.zones.map((zone) => (
             <button
               key={zone.id}
-              onClick={() => setActiveZoneId(zone.id)}
+              onClick={() => {
+                setActiveZoneId(zone.id);
+                setShowAbonnements(false);
+              }}
               className={`
                 relative px-5 py-3 rounded-xl font-chakra font-bold text-sm uppercase tracking-wider transition-all duration-300
-                ${activeZoneId === zone.id
+                ${activeZoneId === zone.id && !showAbonnements
                   ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   : "bg-[#111] text-gray-500 hover:text-white border border-white/10 hover:border-white/30"}
               `}
@@ -74,78 +48,129 @@ export default function Prices({ initialData }: { initialData: ZoneData[] }) {
               {zone.name}
             </button>
           ))}
-        </div>
-
-        {/* --- SWITCHER (WEEKDAY / WEEKEND) --- */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative w-[240px]">
-            {/* Active Indicator */}
-            <motion.div
-              className="absolute top-1 bottom-1 w-[116px] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
-              initial={false}
-              animate={{ x: isWeekend ? 116 : 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-
+          {data.abonnements && data.abonnements.length > 0 && (
             <button
-              onClick={() => setIsWeekend(false)}
-              className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${!isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+              onClick={() => setShowAbonnements(true)}
+              className={`
+                relative px-5 py-3 rounded-xl font-chakra font-bold text-sm uppercase tracking-wider transition-all duration-300
+                ${showAbonnements
+                  ? "bg-[#FF2E63] text-white shadow-[0_0_20px_rgba(255,46,99,0.3)]"
+                  : "bg-[#111] text-[#FF2E63] hover:text-white border border-[#FF2E63]/20 hover:border-[#FF2E63]/40"}
+              `}
             >
-              БУДНИ
+              АБОНЕМЕНТЫ
             </button>
-            <button
-              onClick={() => setIsWeekend(true)}
-              className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-            >
-              ВЫХОДНЫЕ
-            </button>
-          </div>
+          )}
         </div>
 
-        {/* --- ACTIVE ZONE INFO --- */}
-        <div className="text-center mb-12">
-          <h2 className="sr-only">Цены на услуги компьютерного клуба в Новокосино</h2>
-          <h3 className="font-tactic font-black text-3xl md:text-5xl text-white uppercase mb-2 drop-shadow-lg">
-            {activeZone.name}
-          </h3>
-          <p className="font-mono text-xs md:text-sm text-[#FF2E63] tracking-[0.2em] uppercase opacity-90">
-            {activeZone.desc}
-          </p>
-        </div>
+        {!showAbonnements ? (
+          <>
+            {/* --- SWITCHER (WEEKDAY / WEEKEND) --- */}
+            <div className="flex justify-center mb-12">
+              <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative w-[240px]">
+                <motion.div
+                  className="absolute top-1 bottom-1 w-[116px] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
+                  initial={false}
+                  animate={{ x: isWeekend ? 116 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
 
-        {/* --- PRICE GRID --- */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeZoneId + (isWeekend ? '-end' : '-week')}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-          >
-            {activeZone.subSections ? (
-              // Рендерим подразделы (для TV)
-              <div className="space-y-16">
-                {activeZone.subSections.map((section, idx) => (
-                  <div key={idx} className="border border-white/5 rounded-3xl p-6 md:p-8 bg-[#0e0e0e]">
-                    <h4 className="font-tactic font-bold text-2xl text-white uppercase tracking-wide mb-8 text-center border-b border-white/10 pb-4">
-                      {section.title}
-                    </h4>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
-                      <PriceColumn title="Утро и День" items={section.morning} isWeekend={isWeekend} color="#FF2E63" />
-                      <PriceColumn title="Вечер и Ночь" items={section.evening} isWeekend={isWeekend} color="#B900FF" />
-                    </div>
+                <button
+                  onClick={() => setIsWeekend(false)}
+                  className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${!isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                >
+                  БУДНИ
+                </button>
+                <button
+                  onClick={() => setIsWeekend(true)}
+                  className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                >
+                  ВЫХОДНЫЕ
+                </button>
+              </div>
+            </div>
+
+            {/* --- ACTIVE ZONE INFO --- */}
+            <div className="text-center mb-12">
+              <h2 className="sr-only">Цены на услуги компьютерного клуба в Новокосино</h2>
+              <h3 className="font-tactic font-black text-3xl md:text-5xl text-white uppercase mb-2 drop-shadow-lg">
+                {activeZone.name}
+              </h3>
+              <p className="font-mono text-xs md:text-sm text-[#FF2E63] tracking-[0.2em] uppercase opacity-90">
+                {activeZone.desc}
+              </p>
+            </div>
+
+            {/* --- PRICE GRID --- */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeZoneId + (isWeekend ? '-end' : '-week')}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                {activeZone.subZones ? (
+                  <div className="space-y-16">
+                    {activeZone.subZones.map((section, idx) => (
+                      <div key={idx} className="border border-white/5 rounded-3xl p-6 md:p-8 bg-[#0e0e0e]">
+                        <h4 className="font-tactic font-bold text-2xl text-white uppercase tracking-wide mb-8 text-center border-b border-white/10 pb-4">
+                          {section.name}
+                        </h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
+                          {section.categories.map((cat, cIdx) => (
+                            <PriceColumn key={cIdx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
+                    {activeZone.categories?.map((cat, idx) => (
+                      <PriceColumn key={idx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </>
+        ) : (
+          /* --- ABONNEMENTS GRID --- */
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {data.abonnements.map((abon, idx) => (
+              <div key={idx} className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF2E63]/5 blur-3xl group-hover:bg-[#FF2E63]/10 transition-colors" />
+                <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-[0.3em] mb-4">Abonnement</span>
+                <h4 className="font-tactic font-black text-3xl text-white mb-2">{abon.name}</h4>
+
+                <div className="w-full space-y-4 my-6 py-4 border-y border-white/5">
+                  {abon.prices.map((p, pIdx) => (
+                    <div key={pIdx} className="flex justify-between items-center group/price">
+                      <span className="font-chakra font-bold text-[10px] uppercase text-gray-500 group-hover/price:text-white transition-colors">
+                        {p.zone}
+                      </span>
+                      <span className="font-tactic font-black text-2xl text-white">
+                        {p.value}₽
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col gap-1 text-gray-500 font-chakra font-bold text-xs uppercase tracking-widest mb-8">
+                  <span>Срок действия: {abon.validity}</span>
+                </div>
+                <div className="w-full py-4 bg-white/5 border border-white/10 rounded-xl font-chakra font-bold text-[10px] uppercase tracking-[0.2em] text-gray-500">
+                  Доступно только в клубе
+                </div>
               </div>
-            ) : (
-              // Стандартный рендер
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
-                <PriceColumn title="Утро и День" items={activeZone.morning!} isWeekend={isWeekend} color="#FF2E63" />
-                <PriceColumn title="Вечер и Ночь" items={activeZone.evening!} isWeekend={isWeekend} color="#B900FF" />
-              </div>
-            )}
+            ))}
           </motion.div>
-        </AnimatePresence>
+        )}
 
         {/* --- APP BANNER --- */}
         <div className="mt-20 relative overflow-hidden rounded-2xl border border-[#FF2E63]/30 bg-[#111]">
@@ -164,7 +189,6 @@ export default function Prices({ initialData }: { initialData: ZoneData[] }) {
                   Цены в прайсе указаны без учета скидки. В приложении дешевле + копятся бонусы.
                 </p>
 
-                {/* iOS / Android Icons */}
                 <div className="flex items-center justify-center md:justify-start gap-4 text-white/50 text-[10px] font-bold uppercase tracking-wider mt-2">
                   <div className="flex items-center gap-1.5 hover:text-white transition-colors">
                     <svg viewBox="0 0 384 512" fill="currentColor" className="w-3 h-3"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" /></svg>

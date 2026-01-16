@@ -1,37 +1,44 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
-const DATA_PATH = path.join(process.cwd(), 'data', 'prices.json');
-
-export async function GET() {
+export async function POST(req: NextRequest) {
     try {
-        const fileContents = fs.readFileSync(DATA_PATH, 'utf8');
-        const data = JSON.parse(fileContents);
-        return NextResponse.json(data);
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to read data' }, { status: 500 });
-    }
-}
+        const body = await req.json();
+        const { password, data } = body;
 
-export async function POST(request: Request) {
-    try {
-        const { password, data } = await request.json();
+        // Проверка пароля из переменной окружения
+        const adminPassword = process.env.ADMIN_PASSWORD;
 
-        // Простая проверка пароля через переменную окружения
-        if (password !== process.env.ADMIN_PASSWORD) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        if (!adminPassword || password !== adminPassword) {
+            return NextResponse.json({ error: "Invalid password" }, { status: 401 });
         }
 
         if (!data) {
-            return NextResponse.json({ error: 'Missing data' }, { status: 400 });
+            return NextResponse.json({ error: "No data provided" }, { status: 400 });
         }
 
-        // Запись в файл
-        fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), 'utf8');
+        const filePath = path.join(process.cwd(), "data", "prices.json");
+
+        // Записываем JSON обратно в файл
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
 
         return NextResponse.json({ success: true });
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to save data' }, { status: 500 });
+    } catch (error: any) {
+        console.error("Admin API Error:", error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
+
+export async function GET(req: NextRequest) {
+    try {
+        const filePath = path.join(process.cwd(), "data", "prices.json");
+        if (!fs.existsSync(filePath)) {
+            return NextResponse.json({ error: "File not found" }, { status: 404 });
+        }
+        const jsonData = fs.readFileSync(filePath, "utf8");
+        return NextResponse.json(JSON.parse(jsonData));
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

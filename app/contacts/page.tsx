@@ -43,18 +43,18 @@ export default function ContactsPage() {
                                 <h2 className="font-tactic font-bold text-3xl uppercase mb-6 flex items-center gap-4">
                                     <span className="text-[#FF2E63]">01.</span> Как нас найти?
                                 </h2>
-                                <p className="font-inter text-gray-400 text-lg leading-relaxed mb-6">
+                                <div className="font-inter text-gray-400 text-lg leading-relaxed mb-6">
                                     Мы находимся в <span className="text-white font-bold">ТЦ &quot;Новокосино&quot;</span> на 2 этаже.
-                                    Заходите через центральный вход, поднимайтесь на эскалаторе или лифте.
-                                    Наш клуб расположен рядом с зоной фуд-корта.
+                                    Заходите через центральный вход, поднимайтесь по лестнице на 2 этаж.
+                                    Наш клуб расположен рядом с магазином электроники DNS.
                                     <div className="mt-4">
                                         <Link href="/prices" className="text-[#FF2E63] font-chakra font-bold uppercase text-xs border-b border-[#FF2E63]/30 hover:border-[#FF2E63] transition-all">
                                             Посмотреть прайс-лист →
                                         </Link>
                                     </div>
-                                </p>
+                                </div>
                                 <div className="flex flex-wrap gap-4">
-                                    <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/10 text-[10px] font-chakra font-bold uppercase text-[#FF2E63] tracking-widest">2 этаж // ТЦ Новокосино</div>
+                                    <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/10 text-[10px] font-chakra font-bold uppercase text-[#FF2E63] tracking-widest">2 этаж // Новокосинская 32</div>
                                     <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/10 text-[10px] font-chakra font-bold uppercase text-[#00F0FF] tracking-widest">5 мин от метро</div>
                                     <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/10 text-[10px] font-chakra font-bold uppercase text-white tracking-widest">24/7 Режим работы</div>
                                 </div>
@@ -62,9 +62,9 @@ export default function ContactsPage() {
 
                             <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-6 rounded-2xl flex flex-col justify-center text-center">
                                 <h3 className="font-chakra font-bold text-white uppercase mb-2">Ориентир</h3>
-                                <p className="text-xs text-gray-500 mb-6 font-inter leading-relaxed">Большая неоновая вывеска CYBERX напротив фуд-корта. Работаем на всей площади этажа.</p>
+                                <p className="text-xs text-gray-500 mb-6 font-inter leading-relaxed">Вход в CYBERX рядом с магазином DNS. Работаем на всей площади этажа.</p>
                                 <a
-                                    href="https://yandex.ru/maps/-/CLWXNB~k"
+                                    href="https://yandex.ru/maps/-/CLhuNRiq"
                                     target="_blank"
                                     className="py-4 bg-[#FF2E63] rounded-xl font-chakra font-black text-sm uppercase tracking-wider hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] transition-all active:scale-95"
                                 >

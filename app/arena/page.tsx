@@ -100,12 +100,12 @@ export default function ArenaPage() {
     const savedNick = localStorage.getItem('arena_nick');
     const savedPC = localStorage.getItem('arena_pc');
     if (savedNick) {
-        setCreatorNick(savedNick);
-        setJoinerNick(savedNick);
+      setCreatorNick(savedNick);
+      setJoinerNick(savedNick);
     }
     if (savedPC) {
-        setCreatorPC(savedPC);
-        setJoinerPC(savedPC);
+      setCreatorPC(savedPC);
+      setJoinerPC(savedPC);
     }
 
     if ("Notification" in window) {
@@ -122,9 +122,9 @@ export default function ArenaPage() {
     // Опрашиваем сервер.
     // Примечание: В свернутом режиме интервал может замедляться до 1 раза в минуту браузером.
     // WakeLock помогает это предотвратить.
-    const interval = setInterval(fetchLobbies, 5000); 
+    const interval = setInterval(fetchLobbies, 5000);
     return () => clearInterval(interval);
-  }, [permission, creatorPC]); 
+  }, [permission, creatorPC]);
 
   useEffect(() => {
     if (betType === 'item' && goods.length === 0) {
@@ -136,48 +136,48 @@ export default function ArenaPage() {
     if (!("Notification" in window)) return;
     const result = await Notification.requestPermission();
     setPermission(result);
-    
+
     if (result === 'granted') {
-        new Notification("CyberX Arena", { body: "Уведомления активированы!" });
+      new Notification("CyberX Arena", { body: "Уведомления активированы!" });
     }
   };
 
   // Функция проверки уведомлений
   const checkNotifications = (currentLobbies: Lobby[]) => {
     const currentPC = localStorage.getItem('arena_pc') || creatorPC;
-    
+
     // --- 1. Уведомления о НОВЫХ лобби (для всех) ---
     // Находим максимальный ID среди текущих лобби
     const currentMaxId = Math.max(...currentLobbies.map(l => l.id), 0);
 
     // Если это не первая загрузка и появился новый ID
     if (!isFirstLoadRef.current && currentMaxId > maxLobbyIdRef.current) {
-        const newLobbies = currentLobbies.filter(l => l.id > maxLobbyIdRef.current);
-        
-        newLobbies.forEach(lobby => {
-            // Уведомляем только если лобби ждет игроков и создано НЕ нами
-            if (lobby.status === 'waiting' && lobby.creator_pc !== currentPC) {
-                 // Звук
-                 audioRef.current?.play().catch(() => {});
-                 
-                 // Системное уведомление
-                 if (Notification.permission === "granted") {
-                     const notification = new Notification(`Новый соперник на Арене!`, {
-                         body: `${lobby.creator_nick} (PC ${lobby.creator_pc}) зовет играть в ${lobby.game}!`,
-                         icon: '/icon-192.png',
-                         tag: `new-lobby-${lobby.id}`,
-                         silent: false
-                     } as any); 
-                     
-                     notification.onclick = function(e) {
-                        e.preventDefault(); 
-                        window.focus(); 
-                        window.location.href = '/arena';
-                        this.close(); 
-                     };
-                 }
-            }
-        });
+      const newLobbies = currentLobbies.filter(l => l.id > maxLobbyIdRef.current);
+
+      newLobbies.forEach(lobby => {
+        // Уведомляем только если лобби ждет игроков и создано НЕ нами
+        if (lobby.status === 'waiting' && lobby.creator_pc !== currentPC) {
+          // Звук
+          audioRef.current?.play().catch(() => { });
+
+          // Системное уведомление
+          if (Notification.permission === "granted") {
+            const notification = new Notification(`Новый соперник на Арене!`, {
+              body: `${lobby.creator_nick} (PC ${lobby.creator_pc}) зовет играть в ${lobby.game}!`,
+              icon: '/icon-192.png',
+              tag: `new-lobby-${lobby.id}`,
+              silent: false
+            } as any);
+
+            notification.onclick = function (e) {
+              e.preventDefault();
+              window.focus();
+              window.location.href = '/arena';
+              this.close();
+            };
+          }
+        }
+      });
     }
 
     // Обновляем рефы
@@ -189,51 +189,51 @@ export default function ArenaPage() {
     if (!currentPC) return;
 
     const myRelevantLobby = currentLobbies.find(l => {
-        // Если я создал, и кто-то присоединился (ждет оплаты)
-        if (l.creator_pc === currentPC && l.status === 'payment_check') return true;
-        // Если я присоединился (или меня вызвали), и статус payment_check или active
-        if (l.joiner_pc === currentPC && ['payment_check', 'active'].includes(l.status)) return true;
-        return false;
+      // Если я создал, и кто-то присоединился (ждет оплаты)
+      if (l.creator_pc === currentPC && l.status === 'payment_check') return true;
+      // Если я присоединился (или меня вызвали), и статус payment_check или active
+      if (l.joiner_pc === currentPC && ['payment_check', 'active'].includes(l.status)) return true;
+      return false;
     });
 
     if (myRelevantLobby) {
-        const statusKey = `${myRelevantLobby.id}-${myRelevantLobby.status}`;
+      const statusKey = `${myRelevantLobby.id}-${myRelevantLobby.status}`;
 
-        if (lastNotifiedStatusRef.current !== statusKey) {
-            lastNotifiedStatusRef.current = statusKey;
+      if (lastNotifiedStatusRef.current !== statusKey) {
+        lastNotifiedStatusRef.current = statusKey;
 
-            audioRef.current?.play().catch((e) => console.log("Audio play failed", e));
+        audioRef.current?.play().catch((e) => console.log("Audio play failed", e));
 
-            if (Notification.permission === "granted") {
-                const isHost = currentPC === myRelevantLobby.creator_pc;
-                const opponentNick = isHost ? myRelevantLobby.joiner_nick : myRelevantLobby.creator_nick;
-                const opponentPC = isHost ? myRelevantLobby.joiner_pc : myRelevantLobby.creator_pc;
-                const title = myRelevantLobby.status === 'active' ? 'GO GO GO! МАТЧ НАЧАЛСЯ!' : 'ВЫЗОВ ПРИНЯТ!';
-                
-                try {
-                    const notification = new Notification(`CyberX: ${title}`, {
-                        body: `Соперник: ${opponentNick} (PC ${opponentPC})\nИгра: ${myRelevantLobby.game}\nСтавка: ${myRelevantLobby.bet_amount || myRelevantLobby.bet_item}`,
-                        icon: '/icon-192.png',
-                        tag: 'arena-notification',
-                        renotify: true,
-                        requireInteraction: true,
-                        silent: false
-                    } as any);
+        if (Notification.permission === "granted") {
+          const isHost = currentPC === myRelevantLobby.creator_pc;
+          const opponentNick = isHost ? myRelevantLobby.joiner_nick : myRelevantLobby.creator_nick;
+          const opponentPC = isHost ? myRelevantLobby.joiner_pc : myRelevantLobby.creator_pc;
+          const title = myRelevantLobby.status === 'active' ? 'GO GO GO! МАТЧ НАЧАЛСЯ!' : 'ВЫЗОВ ПРИНЯТ!';
 
-                    notification.onclick = function(e) {
-                        e.preventDefault();
-                        window.focus();
-                        window.location.href = '/arena';
-                        this.close();
-                    };
+          try {
+            const notification = new Notification(`CyberX: ${title}`, {
+              body: `Соперник: ${opponentNick} (PC ${opponentPC})\nИгра: ${myRelevantLobby.game}\nСтавка: ${myRelevantLobby.bet_amount || myRelevantLobby.bet_item}`,
+              icon: '/icon-192.png',
+              tag: 'arena-notification',
+              renotify: true,
+              requireInteraction: true,
+              silent: false
+            } as any);
 
-                } catch (e) {
-                    console.error("Notification error", e);
-                }
-            }
+            notification.onclick = function (e) {
+              e.preventDefault();
+              window.focus();
+              window.location.href = '/arena';
+              this.close();
+            };
+
+          } catch (e) {
+            console.error("Notification error", e);
+          }
         }
+      }
     } else {
-        lastNotifiedStatusRef.current = null;
+      lastNotifiedStatusRef.current = null;
     }
   };
 
@@ -271,8 +271,8 @@ export default function ArenaPage() {
   const handleCreateLobby = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!creatorNick || !creatorPC) {
-        alert('Введите ваш Ник и номер ПК');
-        return;
+      alert('Введите ваш Ник и номер ПК');
+      return;
     }
 
     setIsCreating(true);
@@ -284,8 +284,8 @@ export default function ArenaPage() {
       const betItemString = selectedItem ? `${selectedItem.name} (x${itemQuantity})` : null;
 
       if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия игры.\n2. Убедитесь, что у обоих есть средства на балансе.\n3. Только честная игра (Fair Play).\n\nСоздать дуэль?')) {
-          setIsCreating(false);
-          return;
+        setIsCreating(false);
+        return;
       }
 
       await axios.post('/api/arena/lobbies', {
@@ -312,26 +312,26 @@ export default function ArenaPage() {
   };
 
   const openJoinModal = (lobbyId: number) => {
-      setJoiningLobbyId(lobbyId);
-      setShowJoinModal(true);
+    setJoiningLobbyId(lobbyId);
+    setShowJoinModal(true);
   };
 
   const handleJoinLobby = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!joiningLobbyId) return;
     if (!joinerNick || !joinerPC) {
-        alert('Введите ваш Ник и номер ПК');
-        return;
+      alert('Введите ваш Ник и номер ПК');
+      return;
     }
 
     const lobby = lobbies.find(l => l.id === joiningLobbyId);
     if (lobby && (lobby.creator_nick === joinerNick || lobby.creator_pc === joinerPC)) {
-        alert('Вы не можете играть сами с собой!');
-        return;
+      alert('Вы не можете играть сами с собой!');
+      return;
     }
 
     if (!confirm('ВАЖНО:\n1. Подойдите к сопернику и обсудите условия.\n2. Убедитесь, что у вас есть средства.\n3. Подойдите к АДМИНУ для подтверждения старта.\n\nПринять вызов?')) {
-        return;
+      return;
     }
 
     try {
@@ -356,79 +356,79 @@ export default function ArenaPage() {
     <div className="min-h-screen bg-cyber-bg text-white p-4 font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg relative">
       <header className="max-w-7xl mx-auto flex justify-between items-center mb-8 border-b border-white/10 pb-6 pt-2">
         <div className="flex items-center space-x-4">
-            <Swords className="w-8 h-8 text-cyber-red" />
-            <div>
-                <div className="flex items-center gap-1">
-                  <span className="font-tactic font-black text-2xl tracking-wider text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">CYBER</span>
-                  <span className="font-tactic font-black text-3xl text-[#FF2E63] transform -skew-x-12 drop-shadow-[0_0_15px_#FF2E63]">X</span>
-                  <span className="font-tactic font-bold text-xl text-white ml-2 tracking-widest">НОВОКОСИНО</span>
-                </div>
-                <p className="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase mt-1">Локальные микро-турниры</p>
+          <Swords className="w-8 h-8 text-cyber-red" />
+          <div>
+            <div className="flex items-center gap-1">
+              <span className="font-tactic font-black text-2xl tracking-wider text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">CYBER</span>
+              <span className="font-tactic font-black text-3xl text-[#FF2E63] transform -skew-x-12 drop-shadow-[0_0_15px_#FF2E63]">X</span>
+              <span className="font-tactic font-bold text-xl text-white ml-2 tracking-widest">НОВОКОСИНО</span>
             </div>
+            <p className="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase mt-1">Локальные микро-турниры</p>
+          </div>
         </div>
       </header>
 
       {/* NEW SPLIT PROMO BLOCKS */}
       <div className="max-w-7xl mx-auto mb-12 grid grid-cols-1 md:grid-cols-12 gap-6">
-        
+
         {/* LEFT BLOCK (Aggressive) */}
         <div className="md:col-span-7 relative overflow-hidden rounded-3xl border border-cyber-red/30 bg-[#0a0a0a] group">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-cyber-red/10 via-transparent to-transparent opacity-60"></div>
-            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-red to-transparent opacity-50"></div>
-            
-            <div className="relative z-10 p-8 md:p-10 flex flex-col justify-center h-full">
-                <div className="flex items-center gap-2 mb-6">
-                    <span className="px-2 py-1 rounded bg-cyber-red/10 border border-cyber-red/20 text-[10px] font-bold text-cyber-red uppercase tracking-widest flex items-center gap-2">
-                        <Target size={12} />
-                        Брось вызов
-                    </span>
-                </div>
-                
-                <h2 className="text-3xl md:text-5xl font-tactic text-white uppercase leading-[0.9] drop-shadow-lg">
-                    СЫГРАЙ НА <br/>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-red to-orange-500 drop-shadow-[0_0_25px_rgba(255,46,99,0.4)]">
-                        MONSTER ENERGY
-                    </span> <br/>
-                    ИЛИ ОБНУЛИ БАЛАНС СОСЕДА!
-                </h2>
-                
-                <div className="absolute right-4 top-4 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
-                     <Swords size={180} className="text-cyber-red -rotate-12" />
-                </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-cyber-red/10 via-transparent to-transparent opacity-60"></div>
+          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyber-red to-transparent opacity-50"></div>
+
+          <div className="relative z-10 p-8 md:p-10 flex flex-col justify-center h-full">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="px-2 py-1 rounded bg-cyber-red/10 border border-cyber-red/20 text-[10px] font-bold text-cyber-red uppercase tracking-widest flex items-center gap-2">
+                <Target size={12} />
+                Брось вызов
+              </span>
             </div>
+
+            <h2 className="text-3xl md:text-5xl font-tactic text-white uppercase leading-[0.9] drop-shadow-lg">
+              СЫГРАЙ НА <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-red to-orange-500 drop-shadow-[0_0_25px_rgba(255,46,99,0.4)]">
+                MONSTER ENERGY
+              </span> <br />
+              ИЛИ ОБНУЛИ БАЛАНС СОСЕДА!
+            </h2>
+
+            <div className="absolute right-4 top-4 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
+              <Swords size={180} className="text-cyber-red -rotate-12" />
+            </div>
+          </div>
         </div>
 
         {/* RIGHT BLOCK (Info/Call) */}
         <div className="md:col-span-5 relative overflow-hidden rounded-3xl border border-cyber-purple/30 bg-[#0a0a0a] flex flex-col justify-between group transition-colors hover:border-cyber-purple/50">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-cyber-purple/10 via-transparent to-transparent opacity-60"></div>
-            
-            <div className="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between">
-                 <div className="flex items-center gap-2 mb-4">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live PvP System</span>
-                 </div>
-                 
-                 <p className="text-lg text-gray-300 font-bold leading-snug mb-8 relative">
-                    Хватит катать в одиночку. Собери стак или найди соперника в зале. Забейся 1x1 или 5x5 на интерес и покажи, <span className="text-white bg-cyber-purple/20 px-2 py-0.5 rounded border border-cyber-purple/30 whitespace-nowrap inline-block mt-1 md:mt-0 shadow-[0_0_10px_rgba(185,0,255,0.2)]">КТО ТУТ БАТЯ</span>.
-                 </p>
-                 
-                 <div className="flex items-center gap-4 mt-auto p-4 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
-                    <div className="p-2.5 rounded-lg bg-cyber-purple/20 text-cyber-purple shadow-[0_0_15px_rgba(185,0,255,0.3)]">
-                        <Trophy size={24} />
-                    </div>
-                    <div>
-                        <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-0.5">Твоя цель</div>
-                        <span className="font-tactic text-xl text-white uppercase tracking-widest leading-none">
-                            Забрать Всё
-                        </span>
-                    </div>
-                 </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-cyber-purple/10 via-transparent to-transparent opacity-60"></div>
+
+          <div className="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live PvP System</span>
             </div>
-            
-            <div className="absolute inset-0 opacity-5 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[size:20px_20px] pointer-events-none"></div>
+
+            <p className="text-lg text-gray-300 font-bold leading-snug mb-8 relative">
+              Хватит катать в одиночку. Собери стак или найди соперника в зале. Забейся 1x1 или 5x5 на интерес и покажи, <span className="text-white bg-cyber-purple/20 px-2 py-0.5 rounded border border-cyber-purple/30 whitespace-nowrap inline-block mt-1 md:mt-0 shadow-[0_0_10px_rgba(185,0,255,0.2)]">КТО ТУТ БАТЯ</span>.
+            </p>
+
+            <div className="flex items-center gap-4 mt-auto p-4 bg-white/5 rounded-xl border border-white/5 backdrop-blur-sm">
+              <div className="p-2.5 rounded-lg bg-cyber-purple/20 text-cyber-purple shadow-[0_0_15px_rgba(185,0,255,0.3)]">
+                <Trophy size={24} />
+              </div>
+              <div>
+                <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-0.5">Твоя цель</div>
+                <span className="font-tactic text-xl text-white uppercase tracking-widest leading-none">
+                  Забрать Всё
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute inset-0 opacity-5 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[size:20px_20px] pointer-events-none"></div>
         </div>
 
       </div>
@@ -440,85 +440,85 @@ export default function ArenaPage() {
             <div className="absolute top-0 left-0 w-1 h-full bg-cyber-red group-hover:shadow-[0_0_15px_#FF2E63] transition-all duration-500"></div>
 
             <h2 className="text-2xl font-tactic mb-6 flex items-center">
-                <Gamepad2 className="w-6 h-6 mr-3 text-cyber-red" />
-                Создать Дуэль
+              <Gamepad2 className="w-6 h-6 mr-3 text-cyber-red" />
+              Создать Дуэль
             </h2>
 
             <form onSubmit={handleCreateLobby} className="space-y-4">
-               {/* User Info Fields */}
-               <div className="grid grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой Ник</label>
-                        <input
-                            type="text"
-                            value={creatorNick}
-                            onChange={(e) => setCreatorNick(e.target.value)}
-                            className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
-                            placeholder="Killer"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой ПК</label>
-                        <input
-                            type="text"
-                            value={creatorPC}
-                            onChange={(e) => setCreatorPC(e.target.value)}
-                            className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
-                            placeholder="15"
-                            required
-                        />
-                    </div>
-               </div>
+              {/* User Info Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой Ник</label>
+                  <input
+                    type="text"
+                    value={creatorNick}
+                    onChange={(e) => setCreatorNick(e.target.value)}
+                    className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
+                    placeholder="Killer"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Твой ПК</label>
+                  <input
+                    type="text"
+                    value={creatorPC}
+                    onChange={(e) => setCreatorPC(e.target.value)}
+                    className="w-full p-2 rounded-lg bg-black/40 border border-white/10 focus:border-cyber-red outline-none text-sm font-bold"
+                    placeholder="15"
+                    required
+                  />
+                </div>
+              </div>
 
               <div>
                 <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Игра</label>
                 <div className="relative">
-                    <select
+                  <select
                     value={selectedGame}
                     onChange={(e) => setSelectedGame(e.target.value)}
                     className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-base font-bold outline-none appearance-none cursor-pointer hover:bg-black/60 transition-colors"
-                    >
+                  >
                     {GAMES.map(g => <option key={g} value={g}>{g}</option>)}
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
+                  </select>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">▼</div>
                 </div>
                 {selectedGame === 'Другая игра' && (
-                    <input
-                        type="text"
-                        value={customGame}
-                        onChange={(e) => setCustomGame(e.target.value)}
-                        className="w-full mt-2 p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none"
-                        placeholder="Название игры"
-                        required
-                    />
+                  <input
+                    type="text"
+                    value={customGame}
+                    onChange={(e) => setCustomGame(e.target.value)}
+                    className="w-full mt-2 p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none"
+                    placeholder="Название игры"
+                    required
+                  />
                 )}
               </div>
 
               <div>
                 <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Доп. условия / Формат</label>
                 <input
-                    type="text"
-                    value={rules}
-                    onChange={(e) => setRules(e.target.value)}
-                    className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none placeholder-gray-600"
-                    placeholder="Например: aim_map, до 10 побед, только дигл"
+                  type="text"
+                  value={rules}
+                  onChange={(e) => setRules(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyber-red text-sm font-bold outline-none placeholder-gray-600"
+                  placeholder="Например: aim_map, до 10 побед, только дигл"
                 />
               </div>
 
               <div>
                 <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Команда</label>
                 <div className="flex gap-2 bg-black/40 p-1 rounded-lg">
-                    {[1, 2, 3, 4, 5].map(size => (
-                        <button
-                            key={size}
-                            type="button"
-                            onClick={() => setTeamSize(size)}
-                            className={`flex-1 py-2 rounded font-bold text-sm transition-all ${teamSize === size ? 'bg-cyber-red text-white' : 'text-gray-500 hover:text-white'}`}
-                        >
-                            {size}x{size}
-                        </button>
-                    ))}
+                  {[1, 2, 3, 4, 5].map(size => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => setTeamSize(size)}
+                      className={`flex-1 py-2 rounded font-bold text-sm transition-all ${teamSize === size ? 'bg-cyber-red text-white' : 'text-gray-500 hover:text-white'}`}
+                    >
+                      {size}x{size}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -562,17 +562,17 @@ export default function ArenaPage() {
                             onClick={() => { setSelectedItem(good); setItemQuantity(1); }}
                             className={`flex flex-col items-center justify-between p-2 rounded-xl cursor-pointer border transition-all h-28 relative overflow-hidden group/item
                                 ${selectedItem?.id === good.id
-                                    ? 'border-cyber-purple bg-cyber-purple/20 shadow-[0_0_10px_rgba(185,0,255,0.3)]'
-                                    : 'border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20'}`}
+                                ? 'border-cyber-purple bg-cyber-purple/20 shadow-[0_0_10px_rgba(185,0,255,0.3)]'
+                                : 'border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20'}`}
                           >
                             <div className="mt-1 transform group-hover/item:scale-110 transition-transform duration-300">
-                                {getIconForGood(good.name)}
+                              {getIconForGood(good.name)}
                             </div>
                             <div className="text-[10px] font-bold w-full text-center line-clamp-2 leading-tight px-1 h-8 flex items-center justify-center text-gray-300 group-hover/item:text-white">
-                                {good.name}
+                              {good.name}
                             </div>
                             {good.count < 5 && (
-                                <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_5px_#ef4444]" title={`Осталось: ${good.count}`}></div>
+                              <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_5px_#ef4444]" title={`Осталось: ${good.count}`}></div>
                             )}
                           </div>
                         ))}
@@ -580,25 +580,25 @@ export default function ArenaPage() {
                     )}
                     {selectedItem && (
                       <div className="bg-black/40 p-3 rounded-lg border border-cyber-purple/30">
-                          <div className="text-sm font-bold text-cyber-purple text-center mb-2">
-                            {selectedItem.name}
-                          </div>
-                          <div className="flex items-center justify-center space-x-3">
-                              <button
-                                type="button"
-                                onClick={() => setItemQuantity(Math.max(1, itemQuantity - 1))}
-                                className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
-                              >-</button>
-                              <span className="font-tactic text-xl w-8 text-center">{itemQuantity}</span>
-                              <button
-                                type="button"
-                                onClick={() => setItemQuantity(Math.min(selectedItem.count, itemQuantity + 1))}
-                                className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
-                              >+</button>
-                          </div>
-                          <div className="text-center text-[10px] text-gray-500 mt-1">
-                              Максимум: {selectedItem.count}
-                          </div>
+                        <div className="text-sm font-bold text-cyber-purple text-center mb-2">
+                          {selectedItem.name}
+                        </div>
+                        <div className="flex items-center justify-center space-x-3">
+                          <button
+                            type="button"
+                            onClick={() => setItemQuantity(Math.max(1, itemQuantity - 1))}
+                            className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
+                          >-</button>
+                          <span className="font-tactic text-xl w-8 text-center">{itemQuantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => setItemQuantity(Math.min(selectedItem.count, itemQuantity + 1))}
+                            className="w-8 h-8 rounded bg-gray-800 hover:bg-gray-700 text-white font-bold"
+                          >+</button>
+                        </div>
+                        <div className="text-center text-[10px] text-gray-500 mt-1">
+                          Максимум: {selectedItem.count}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -620,12 +620,12 @@ export default function ArenaPage() {
         <section className="lg:col-span-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-tactic flex items-center">
-                <History className="w-6 h-6 mr-3 text-cyber-purple" />
-                Арена Дуэлей
+              <History className="w-6 h-6 mr-3 text-cyber-purple" />
+              Арена Дуэлей
             </h2>
             <div className="flex space-x-2">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Live</span>
+              <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Live</span>
             </div>
           </div>
 
@@ -643,47 +643,47 @@ export default function ArenaPage() {
 
                 {/* Status Badges */}
                 <div className="absolute top-4 right-4 z-10">
-                    {lobby.status === 'payment_check' && (
-                        <div className="bg-yellow-500/20 text-yellow-500 border border-yellow-500/50 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest shadow-[0_0_10px_rgba(234,179,8,0.2)] animate-pulse">
-                            Оплата...
-                        </div>
-                    )}
-                    {lobby.status === 'active' && (
-                        <div className="bg-green-500/20 text-green-500 border border-green-500/50 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest shadow-[0_0_10px_rgba(34,197,94,0.2)]">
-                            В игре
-                        </div>
-                    )}
+                  {lobby.status === 'payment_check' && (
+                    <div className="bg-yellow-500/20 text-yellow-500 border border-yellow-500/50 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest shadow-[0_0_10px_rgba(234,179,8,0.2)] animate-pulse">
+                      Оплата...
+                    </div>
+                  )}
+                  {lobby.status === 'active' && (
+                    <div className="bg-green-500/20 text-green-500 border border-green-500/50 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                      В игре
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-col h-full justify-between relative z-0">
                   <div className="mb-4">
                     <div className="flex justify-between items-start">
-                        <h3 className="text-2xl font-tactic text-white mb-1 drop-shadow-lg">{lobby.game}</h3>
-                        {lobby.team_size > 1 && (
-                            <div className="flex items-center bg-cyber-purple/20 px-2 py-1 rounded border border-cyber-purple/50">
-                                <Users className="w-3 h-3 text-cyber-purple mr-1" />
-                                <span className="text-xs font-bold text-cyber-purple">{lobby.team_size}x{lobby.team_size}</span>
-                            </div>
-                        )}
+                      <h3 className="text-2xl font-tactic text-white mb-1 drop-shadow-lg">{lobby.game}</h3>
+                      {lobby.team_size > 1 && (
+                        <div className="flex items-center bg-cyber-purple/20 px-2 py-1 rounded border border-cyber-purple/50">
+                          <Users className="w-3 h-3 text-cyber-purple mr-1" />
+                          <span className="text-xs font-bold text-cyber-purple">{lobby.team_size}x{lobby.team_size}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex items-center text-sm text-gray-400 font-bold mt-1">
-                        <span className="text-cyber-red mr-2">Host:</span>
-                        <span className="text-white bg-white/5 px-2 py-0.5 rounded mr-2">{lobby.creator_nick}</span>
-                        <span className="text-cyber-purple">PC {lobby.creator_pc}</span>
+                      <span className="text-cyber-red mr-2">Host:</span>
+                      <span className="text-white bg-white/5 px-2 py-0.5 rounded mr-2">{lobby.creator_nick}</span>
+                      <span className="text-cyber-purple">PC {lobby.creator_pc}</span>
                     </div>
                   </div>
 
                   <div className="py-3 my-2 border-t border-b border-white/5">
                     <div className="flex justify-between items-center mb-1">
-                        <span className="text-xs font-bold text-gray-500 uppercase">На кону</span>
-                        <div className="text-xl font-tactic text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 drop-shadow-sm">
+                      <span className="text-xs font-bold text-gray-500 uppercase">На кону</span>
+                      <div className="text-xl font-tactic text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 drop-shadow-sm">
                         {lobby.bet_amount ? `${lobby.bet_amount} RUB` : lobby.bet_item}
-                        </div>
+                      </div>
                     </div>
                     {lobby.rules && (
-                        <div className="text-xs text-gray-400 italic border-l-2 border-cyber-purple pl-2 mt-2">
-                            "{lobby.rules}"
-                        </div>
+                      <div className="text-xs text-gray-400 italic border-l-2 border-cyber-purple pl-2 mt-2">
+                        &quot;{lobby.rules}&quot;
+                      </div>
                     )}
                   </div>
 
@@ -698,11 +698,11 @@ export default function ArenaPage() {
 
                   {(lobby.status === 'payment_check' || lobby.status === 'active') && (
                     <div className="mt-2 p-3 bg-black/40 rounded border border-white/5 flex items-center justify-between">
-                        <span className="text-xs font-bold text-gray-500">VS</span>
-                        <div className="text-right">
-                            <div className="text-sm font-bold text-white">{lobby.joiner_nick}</div>
-                            <div className="text-xs text-cyber-purple">PC {lobby.joiner_pc}</div>
-                        </div>
+                      <span className="text-xs font-bold text-gray-500">VS</span>
+                      <div className="text-right">
+                        <div className="text-sm font-bold text-white">{lobby.joiner_nick}</div>
+                        <div className="text-xs text-cyber-purple">PC {lobby.joiner_pc}</div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -714,81 +714,81 @@ export default function ArenaPage() {
 
       {/* Info Bar at Bottom */}
       <div className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-white/10 py-3 z-40">
-          <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2 text-gray-400 text-xs md:text-sm font-bold uppercase tracking-wider">
-              <Info size={16} className="text-cyber-purple animate-pulse" />
-              <span>Не закрывайте эту страницу, чтобы получать уведомления о новых вызовах!</span>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2 text-gray-400 text-xs md:text-sm font-bold uppercase tracking-wider">
+          <Info size={16} className="text-cyber-purple animate-pulse" />
+          <span>Не закрывайте эту страницу, чтобы получать уведомления о новых вызовах!</span>
+        </div>
       </div>
 
-       {/* Кнопка запроса прав (только если мы "в системе" и права не даны) */}
-       {(creatorNick || creatorPC) && permission === 'default' && (
-         <motion.div 
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="fixed bottom-16 right-4 z-50"
-         >
-            <button 
-                onClick={requestPermission}
-                className="bg-[#FF2E63] text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(255,46,99,0.4)] hover:scale-105 transition-transform flex items-center gap-2 animate-bounce"
-            >
-                <Bell size={16} />
-                Включить уведомления
-            </button>
-         </motion.div>
-       )}
+      {/* Кнопка запроса прав (только если мы "в системе" и права не даны) */}
+      {(creatorNick || creatorPC) && permission === 'default' && (
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="fixed bottom-16 right-4 z-50"
+        >
+          <button
+            onClick={requestPermission}
+            className="bg-[#FF2E63] text-white px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(255,46,99,0.4)] hover:scale-105 transition-transform flex items-center gap-2 animate-bounce"
+          >
+            <Bell size={16} />
+            Включить уведомления
+          </button>
+        </motion.div>
+      )}
 
       {/* JOIN MODAL */}
       {showJoinModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-              <div className="bg-neutral-900 border border-cyber-purple/50 rounded-2xl w-full max-w-md p-6 relative shadow-[0_0_30px_rgba(185,0,255,0.2)]">
-                  <button
-                    onClick={() => setShowJoinModal(false)}
-                    className="absolute top-4 right-4 text-gray-500 hover:text-white"
-                  >
-                      <X className="w-6 h-6" />
-                  </button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-neutral-900 border border-cyber-purple/50 rounded-2xl w-full max-w-md p-6 relative shadow-[0_0_30px_rgba(185,0,255,0.2)]">
+            <button
+              onClick={() => setShowJoinModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
 
-                  <h3 className="text-2xl font-tactic text-white mb-6 text-center">Принять вызов</h3>
+            <h3 className="text-2xl font-tactic text-white mb-6 text-center">Принять вызов</h3>
 
-                  <form onSubmit={handleJoinLobby} className="space-y-4">
-                       <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                                <User className="w-4 h-4" /> Твой Никнейм
-                            </label>
-                            <input
-                                type="text"
-                                value={joinerNick}
-                                onChange={(e) => setJoinerNick(e.target.value)}
-                                className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
-                                placeholder="Nagibator"
-                                required
-                            />
-                       </div>
-                       <div className="space-y-2">
-                            <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                                <Monitor className="w-4 h-4" /> Твой ПК
-                            </label>
-                            <input
-                                type="text"
-                                value={joinerPC}
-                                onChange={(e) => setJoinerPC(e.target.value)}
-                                className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
-                                placeholder="20"
-                                required
-                            />
-                       </div>
-
-                       <div className="pt-4">
-                           <button
-                                type="submit"
-                                className="w-full py-4 bg-cyber-purple hover:bg-purple-600 rounded-xl font-tactic text-xl uppercase tracking-widest transition-all shadow-lg"
-                           >
-                               В Бой!
-                           </button>
-                       </div>
-                  </form>
+            <form onSubmit={handleJoinLobby} className="space-y-4">
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  <User className="w-4 h-4" /> Твой Никнейм
+                </label>
+                <input
+                  type="text"
+                  value={joinerNick}
+                  onChange={(e) => setJoinerNick(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
+                  placeholder="Nagibator"
+                  required
+                />
               </div>
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  <Monitor className="w-4 h-4" /> Твой ПК
+                </label>
+                <input
+                  type="text"
+                  value={joinerPC}
+                  onChange={(e) => setJoinerPC(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyber-purple outline-none"
+                  placeholder="20"
+                  required
+                />
+              </div>
+
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-cyber-purple hover:bg-purple-600 rounded-xl font-tactic text-xl uppercase tracking-widest transition-all shadow-lg"
+                >
+                  В Бой!
+                </button>
+              </div>
+            </form>
           </div>
+        </div>
       )}
     </div>
   );
