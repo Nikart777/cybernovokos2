@@ -68,7 +68,7 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="font-chakra font-bold text-lg md:text-2xl text-white/60 max-w-2xl mb-12 uppercase tracking-wide leading-relaxed"
+                        className="hidden md:block font-chakra font-bold text-lg md:text-2xl text-white/60 max-w-2xl mb-12 uppercase tracking-wide leading-relaxed"
                     >
                         Топовый киберклуб в Новокосино: мощные ПК с RTX 5070, мониторы 400Hz и PS5 Lounge. Твой лучший киберспортивный опыт в Москве 24/7.
                     </motion.p>
@@ -77,7 +77,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row gap-6 mb-20"
+                        className="flex flex-col sm:flex-row gap-4 mb-12 md:mb-20"
                     >
                         <Link
                             href="/prices"
@@ -99,7 +99,7 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1.2, delay: 0.8 }}
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-white/5 pt-12"
+                        className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-white/5 pt-12"
                     >
                         {stats.map((stat, idx) => (
                             <div key={idx} className="flex items-center gap-4 group">

@@ -30,8 +30,8 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled
-                    ? 'bg-[#050505]/80 backdrop-blur-xl py-3 border-b border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
-                    : 'bg-transparent py-6'
+                ? 'bg-[#050505]/80 backdrop-blur-xl py-3 border-b border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+                : 'bg-transparent py-6'
                 }`}
         >
             <div className="container mx-auto px-4 flex items-center justify-between">
@@ -101,14 +101,15 @@ export default function Header() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
                                 onClick={() => setIsOpen(false)}
-                                className="fixed inset-0 z-[101] bg-black/90 backdrop-blur-md lg:hidden"
+                                className="fixed inset-0 z-[101] bg-[#000000] backdrop-blur-md lg:hidden"
                             />
                             <motion.div
                                 initial={{ x: '100%' }}
                                 animate={{ x: 0 }}
                                 exit={{ x: '100%' }}
-                                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                                transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
                                 className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] z-[102] bg-[#0A0A0A] border-l border-white/10 p-8 flex flex-col lg:hidden"
                             >
                                 <div className="mt-20 flex flex-col gap-6">
