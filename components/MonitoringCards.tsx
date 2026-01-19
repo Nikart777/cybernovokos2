@@ -415,28 +415,28 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                     </div>
 
                     {prices.length > 0 ? prices.map((group, gIdx) => (
-                        <div key={gIdx} className={`${gIdx > 0 ? 'mt-1 pt-2 border-t border-white/5' : ''}`}>
-                            <div className="text-[9px] text-[#FF2E63] font-bold uppercase tracking-wider mb-2 text-center opacity-80">{group.title}</div>
-                            <div className={`grid grid-cols-4 gap-1 items-start`}>
+                        <div key={gIdx} className={`${gIdx > 0 ? 'mt-3 pt-3 border-t border-white/5' : ''}`}>
+                            <div className="text-[10px] md:text-xs text-[#FF2E63] font-bold uppercase tracking-wider mb-3 text-center opacity-90">{group.title}</div>
+                            <div className={`grid grid-cols-2 lg:grid-cols-4 gap-3 items-start`}>
                                 {group.items.map((p, i) => {
                                     const basePrice = isWeekend ? p.end : p.week;
                                     const appPrice = calculateAppPrice(basePrice);
 
                                     return (
-                                        <div key={i} className="flex flex-col items-center text-center">
-                                            <div className={`text-[8px] font-chakra font-bold uppercase mb-0.5 ${p.isNight ? 'text-[#FF2E63]' : 'text-white/40'}`}>
-                                                {p.time.replace('ЧАСОВ', 'Ч.').replace('ЧАСА', 'Ч.').replace('ЧАС', 'Ч.')}
+                                        <div key={i} className="flex flex-col items-center text-center bg-black/20 rounded-lg p-2 border border-white/5 mx-auto w-full">
+                                            <div className={`text-[10px] md:text-xs font-chakra font-black uppercase mb-1 ${p.isNight ? 'text-[#FF2E63]' : 'text-white/60'}`}>
+                                                {p.time}
                                             </div>
 
-                                            <div className="flex flex-col items-center leading-none">
-                                                <div className="text-[12px] font-tactic font-black text-[#00F0FF] mb-0.5 drop-shadow-[0_0_5px_rgba(0,240,255,0.4)]">
+                                            <div className="flex flex-col items-center leading-none my-1">
+                                                <div className="text-xl md:text-2xl font-tactic font-black text-[#00F0FF] mb-1 drop-shadow-[0_0_8px_rgba(0,240,255,0.3)]">
                                                     {appPrice}
                                                 </div>
-                                                <div className="text-[8px] font-bold text-white/30 line-through decoration-white/20">
+                                                <div className="text-[10px] md:text-xs font-bold text-white/30 line-through decoration-white/20">
                                                     {basePrice}
                                                 </div>
                                             </div>
-                                            <div className="text-[6px] text-white/20 font-mono mt-0.5 leading-none whitespace-nowrap">
+                                            <div className="text-[9px] md:text-[10px] text-white/30 font-mono mt-1 leading-none whitespace-nowrap">
                                                 {p.hours.replace(/ /g, '')}
                                             </div>
                                         </div>
@@ -445,8 +445,9 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                             </div>
                         </div>
                     )) : (
-                        <div className="text-center text-[10px] text-white/30 py-4">Цены уточняются</div>
+                        <div className="text-center text-sm text-white/30 py-6">Цены уточняются</div>
                     )}
+
                 </div>
 
                 {/* Action Buttons */}

@@ -106,20 +106,22 @@ export default function RootLayout({
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=105894251", "ym");
 
-            ym(99516625, "init", {
+            ym(105894251, "init", {
+                  ssr:true,
+                  webvisor:true,
                   clickmap:true,
-                  trackLinks:true,
+                  ecommerce:"dataLayer",
                   accurateTrackBounce:true,
-                  webvisor:true
+                  trackLinks:true
             });
           `}
                 </Script>
             </head>
             <body className="bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white antialiased overflow-x-hidden">
                 {children}
-                <noscript><div><img src="https://mc.yandex.ru/watch/99516625" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
+                <noscript><div><img src="https://mc.yandex.ru/watch/105894251" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
 
                 {/* Глобальные UI компоненты */}
                 <StickyBar />
