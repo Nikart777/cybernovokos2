@@ -374,6 +374,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "simracing",
+      "name": "АВТОСИМУЛЯТОР",
+      "desc": "Pro Wheel • 4K TV • Cockpit",
+      "categories": [
+        {
+          "title": "Тарифы",
+          "color": "#00F0FF",
+          "items": [
+            {
+              "time": "1 ЧАС",
+              "hours": "Любое время",
+              "week": 580,
+              "end": 850
+            },
+            {
+              "time": "2 ЧАСА",
+              "hours": "Любое время",
+              "week": 980,
+              "end": 1290
+            },
+            {
+              "time": "3 ЧАСА",
+              "hours": "Любое время",
+              "week": 1350,
+              "end": 1650
+            }
+          ]
+        }
+      ]
     }
   ],
   "abonnements": [

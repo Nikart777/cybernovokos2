@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
     { name: 'Главная', href: '/' },
-    { name: 'Игровые зоны', href: '/#zones' },
+    { name: 'Игровые зоны', href: '/#monitoring' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
     { name: 'Sim Racing', href: '/simracing' },

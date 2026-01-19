@@ -71,7 +71,7 @@ export default function Hero() {
                         className="flex flex-col sm:flex-row gap-4 mb-12 md:mb-20"
                     >
                         <Link
-                            href="/#zones"
+                            href="/#monitoring"
                             className="group relative px-10 py-5 bg-[#FF2E63] overflow-hidden rounded-2xl transition-all hover:scale-105 active:scale-95"
                         >
                             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
