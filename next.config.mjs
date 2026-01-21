@@ -9,9 +9,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // ВАЖНО: Оптимизация включена (требует библиотеки 'sharp')
-    // Next.js будет автоматически сжимать и оптимизировать изображения.
-    // unoptimized: true, // REMOVED for SEO
+    // ВАЖНО: Оптимизация отключена для стабильности на хостинге.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
