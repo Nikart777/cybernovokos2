@@ -9,9 +9,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // ВАЖНО: Отключаем оптимизацию. Картинки будут грузиться напрямую из папки.
-    // Это исправляет проблему "битых" изображений на VPS/Хостингах.
-    unoptimized: true,
+    // ВАЖНО: Оптимизация включена (требует библиотеки 'sharp')
+    // Next.js будет автоматически сжимать и оптимизировать изображения.
+    // unoptimized: true, // REMOVED for SEO
     remotePatterns: [
       {
         protocol: 'https',
