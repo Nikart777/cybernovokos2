@@ -2,11 +2,12 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PromoHeader from "@/components/PromoHeader";
 import Promotions from "@/components/Promotions";
-import AimControl from "@/components/AimControl";
+
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
+import PromoBand from "@/components/PromoBand";
 import MonitoringCards from "@/components/MonitoringCards";
 import fs from "fs";
 import path from "path";
@@ -45,12 +46,13 @@ export default function Home() {
       <PromoHeader />
       <Promotions />
 
-      <AimControl />
+
 
       <Reviews />
 
       <FAQ />
 
+      <PromoBand />
       <Contacts />
       <Footer />
     </main>

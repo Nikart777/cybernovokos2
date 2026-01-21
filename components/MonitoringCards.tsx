@@ -314,7 +314,7 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                     >
                         <Image
                             src={config.images[currentImage]}
-                            alt={config.name}
+                            alt={`Игровая зона ${config.name} в CyberX Новокосино - ${config.subtitle}`}
                             fill
                             className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
                         />

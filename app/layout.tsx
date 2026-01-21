@@ -7,6 +7,7 @@ import StickyBar from "@/components/StickyBar";
 import BookingModal from "@/components/BookingModal";
 import PromoModals from "@/components/PromoModals";
 import LegalModals from "@/components/LegalModals";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 // Локальные шрифты Tactic Sans
 const tacticSans = localFont({
@@ -96,9 +97,50 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const businessSchema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "CyberX Новокосино",
+        "image": "https://cyberx-novokosino.ru/og-image.jpg",
+        "@id": "https://cyberx-novokosino.ru",
+        "url": "https://cyberx-novokosino.ru",
+        "telephone": "+79851289538",
+        "priceRange": "100RUB - 1000RUB",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Новокосинская, 32",
+            "addressLocality": "Москва",
+            "postalCode": "111673",
+            "addressCountry": "RU"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 55.742007,
+            "longitude": 37.867178
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://vk.com/cyberx_novokosino"
+        ]
+    };
+
     return (
         <html lang="ru" className={`${tacticSans.variable} ${chakra.variable} ${inter.variable}`}>
             <head>
+                <SchemaMarkup schema={businessSchema} />
                 {/* Yandex.Metrika counter */}
                 <Script id="yandex-metrika" strategy="afterInteractive">
                     {`

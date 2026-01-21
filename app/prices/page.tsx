@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import { PricingData } from "../lib/types";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export const metadata: Metadata = {
     title: "Цены на услуги киберклуба | CyberX Новокосино | Москва",
@@ -40,8 +41,35 @@ export default async function PricesPage() {
     const jsonData = fs.readFileSync(filePath, "utf8");
     const pricingData: PricingData = JSON.parse(jsonData);
 
+    const pricesSchema = {
+        "@context": "https://schema.org",
+        "@type": "PriceSheet",
+        "name": "Прайс-лист CyberX Новокосино",
+        "description": "Цены на игровое время, пакеты и абонементы",
+        "offers": pricingData.zones.map(zone => ({
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "name": zone.name,
+                "description": zone.desc
+            },
+            "priceSpecification": zone.categories?.flatMap(cat => cat.items.map(item => ({
+                "@type": "PriceSpecification",
+                "name": `${cat.title} - ${item.time}`,
+                "price": item.week,
+                "priceCurrency": "RUB",
+                "eligibleQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": parseInt(item.hours) || 1,
+                    "unitCode": "HUR"
+                }
+            })))
+        }))
+    };
+
     return (
         <main className="min-h-screen flex flex-col bg-[#050505] text-white">
+            <SchemaMarkup schema={pricesSchema} />
             <Header />
             <div className="pt-32 px-4 md:px-10 max-w-[1400px] mx-auto w-full flex-grow">
                 <section className="mb-12">
@@ -56,7 +84,7 @@ export default async function PricesPage() {
                 {/* Передаем данные в клиентский компонент */}
                 <Prices data={pricingData} />
 
-                <FAQ initialItems={faqItems} />
+                <FAQ items={faqItems} />
             </div>
             <Footer />
         </main>

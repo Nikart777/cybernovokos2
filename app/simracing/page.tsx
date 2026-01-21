@@ -4,6 +4,7 @@ import FAQ from "@/components/FAQ";
 import { Metadata } from "next";
 import { Car, Disc, Tv, Gauge, Zap, Cpu, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export const metadata: Metadata = {
     title: "Автосимуляторы и Симрейсинг в Новокосино | CyberX | Москва",
@@ -12,11 +13,38 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://cyberx-novokosino.ru/simracing",
     },
+    openGraph: {
+        images: [
+            {
+                url: "/images/og/simracing.png",
+                width: 1200,
+                height: 630,
+                alt: "Автосимуляторы и Симрейсинг в CyberX Новокосино",
+            },
+        ],
+    },
 };
 
 export default function SimracingPage() {
+    const simracingSchema = {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "Симрейсинг CyberX Новокосино",
+        "description": "Профессиональные автосимуляторы и гоночные кокпиты в Москве (ВАО).",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Новокосинская, 32",
+            "addressLocality": "Москва",
+            "postalCode": "111673",
+            "addressCountry": "RU"
+        },
+        "url": "https://cyberx-novokosino.ru/simracing",
+        "image": "https://cyberx-novokosino.ru/zones/sim-1.webp"
+    };
+
     return (
         <main className="min-h-screen flex flex-col bg-[#050505] text-white">
+            <SchemaMarkup schema={simracingSchema} />
             <Header />
             <div className="pt-32 px-4 md:px-10 max-w-[1400px] mx-auto w-full flex-grow">
                 <section className="mb-20">
