@@ -125,20 +125,36 @@ export default function FAQ({ items }: { items?: { question: string, answer: str
 
         {/* --- FOOTER CTA --- */}
         <div className="mt-12 md:mt-16 flex justify-center">
-          <a
-            href="https://t.me/CyberXNovokos"
-            target="_blank"
-            className="group relative inline-flex items-center gap-4 px-8 py-4 bg-transparent border border-[#FF2E63]/50 rounded-xl overflow-hidden hover:border-[#FF2E63] transition-colors"
-          >
-            <div className="absolute inset-0 bg-[#FF2E63]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-            <MessageSquare size={24} className="text-[#FF2E63] relative z-10" />
-            <div className="flex flex-col text-left relative z-10">
-              <span className="font-chakra font-bold text-sm text-white uppercase tracking-wider">Не нашли ответа?</span>
-              <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-widest group-hover:text-white transition-colors">
-                Написать администратору в Telegram
-              </span>
-            </div>
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://t.me/CyberXNovokos"
+              target="_blank"
+              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-transparent border border-[#FF2E63]/30 rounded-xl overflow-hidden hover:border-[#FF2E63] transition-colors"
+            >
+              <div className="absolute inset-0 bg-[#FF2E63]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <MessageSquare size={24} className="text-[#FF2E63] relative z-10" />
+              <div className="flex flex-col text-left relative z-10">
+                <span className="font-chakra font-bold text-sm text-white uppercase tracking-wider">Есть вопросы?</span>
+                <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-widest group-hover:text-white transition-colors">
+                  Написать в Telegram
+                </span>
+              </div>
+            </a>
+
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+              className="group relative inline-flex items-center gap-4 px-8 py-4 bg-[#FF2E63] border border-[#FF2E63] rounded-xl overflow-hidden hover:shadow-[0_0_20px_rgba(255,46,99,0.4)] transition-all"
+            >
+              <div className="absolute inset-0 bg-white/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <MessageSquare size={24} className="text-white relative z-10" />
+              <div className="flex flex-col text-left relative z-10">
+                <span className="font-chakra font-bold text-sm text-white uppercase tracking-wider">Чат на сайте</span>
+                <span className="font-mono text-[10px] text-white/70 uppercase tracking-widest">
+                  Администратор онлайн
+                </span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </section>

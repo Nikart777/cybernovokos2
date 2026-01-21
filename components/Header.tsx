@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Smartphone, MapPin, Clock } from 'lucide-react';
+import { Menu, X, Smartphone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -17,6 +17,10 @@ const navLinks = [
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    const openChat = () => {
+        window.dispatchEvent(new CustomEvent('open-chat'));
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -80,6 +84,13 @@ export default function Header() {
                             ))}
                         </ul>
                         <div className="h-6 w-[1px] bg-white/10 mx-2" />
+                        <button
+                            onClick={openChat}
+                            className="hidden xl:flex items-center gap-2 font-chakra font-black text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#FF2E63] transition-all mr-2 group/chat"
+                        >
+                            <MessageSquare size={14} className="group-hover/chat:scale-110 transition-transform" />
+                            Чат с админом
+                        </button>
                         <button
                             onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
                             className="group relative flex items-center gap-3 bg-[#FF2E63] px-8 py-3 rounded-full font-chakra font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,46,99,0.5)] active:scale-95 overflow-hidden"
@@ -163,6 +174,18 @@ export default function Header() {
                                 >
                                     <Smartphone size={20} />
                                     Забронировать
+                                </button>
+
+                                {/* Chat Button */}
+                                <button
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        openChat();
+                                    }}
+                                    className="w-full flex items-center justify-center gap-3 bg-white/5 border border-white/10 py-4 rounded-xl font-chakra font-black text-base uppercase tracking-wider active:scale-95 transition-all hover:bg-white/10"
+                                >
+                                    <MessageSquare size={20} className="text-[#FF2E63]" />
+                                    Чат с админом
                                 </button>
 
                                 {/* Contact Info */}

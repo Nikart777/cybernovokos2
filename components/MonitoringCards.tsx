@@ -323,15 +323,7 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
 
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4 z-20">
-                    <div className={`backdrop-blur-md px-3 py-1.5 rounded-full border ${statusBorder} ${statusBg} flex items-center gap-2`}>
-                        <div className={`w-2 h-2 rounded-full ${isFull ? 'bg-[#FF2E63]' : 'bg-[#00F0FF]'} ${!isFull ? 'animate-pulse' : ''}`} />
-                        <span className={`font-mono text-xs font-bold ${statusColor} uppercase tracking-wider`}>
-                            {status ? `${freePc} СВОБОДНО` : 'ЗАГРУЗКА...'}
-                        </span>
-                    </div>
-                </div>
+                {/* Status Badge removed from here */}
 
                 {config.images.length > 1 && (
                     <>
@@ -451,23 +443,36 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                 </div>
 
                 {/* Action Buttons */}
-                <div className="mt-4 flex gap-2">
-                    <button
-                        onClick={openBooking}
-                        className="flex-1 py-2.5 rounded-xl bg-[#FF2E63] hover:bg-[#FF2E63]/80 text-white transition-all font-chakra font-black text-xs uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,46,99,0.3)] hover:shadow-[0_0_25px_rgba(255,46,99,0.5)]"
-                    >
-                        Забронировать
-                    </button>
-                    {/* @ts-ignore */}
-                    {config.link && (
-                        <Link
-                            // @ts-ignore
-                            href={config.link}
-                            className="w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all"
+                <div className="mt-4 flex flex-col gap-2">
+                    {/* Availability Plaque */}
+                    <div className={`w-full py-1.5 px-3 rounded-lg border ${statusBorder} ${statusBg} backdrop-blur-md flex items-center justify-between transition-all duration-300`}>
+                        <div className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full ${isFull ? 'bg-[#FF2E63]' : 'bg-[#00F0FF]'} ${!isFull ? 'animate-pulse' : ''}`} />
+                            <span className="text-[10px] font-chakra font-black text-white/60 uppercase tracking-widest">Сейчас свободно</span>
+                        </div>
+                        <span className={`font-mono text-xs font-bold ${statusColor} tracking-wider`}>
+                            {status ? `${freePc} ИЗ ${totalPc}` : '...'}
+                        </span>
+                    </div>
+
+                    <div className="flex gap-2">
+                        <button
+                            onClick={openBooking}
+                            className="flex-1 py-2.5 rounded-xl bg-[#FF2E63] hover:bg-[#FF2E63]/80 text-white transition-all font-chakra font-black text-xs uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,46,99,0.3)] hover:shadow-[0_0_25px_rgba(255,46,99,0.5)]"
                         >
-                            <Info size={16} className="text-[#00F0FF]" />
-                        </Link>
-                    )}
+                            Забронировать
+                        </button>
+                        {/* @ts-ignore */}
+                        {config.link && (
+                            <Link
+                                // @ts-ignore
+                                href={config.link}
+                                className="w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all"
+                            >
+                                <Info size={16} className="text-[#00F0FF]" />
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </div>
         </motion.div>

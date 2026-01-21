@@ -24,6 +24,13 @@ const contactMethods = [
         value: 'ул. Новокосинская, 32',
         href: 'https://yandex.ru/maps/-/CLhuNRiq',
         color: '#B900FF'
+    },
+    {
+        icon: MessageSquare,
+        title: 'Чат с админом',
+        value: 'Написать на сайте',
+        action: 'open-chat',
+        color: '#FF2E63'
     }
 ];
 
@@ -49,28 +56,49 @@ export default function Contacts() {
                         </motion.div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-                            {contactMethods.map((item, idx) => (
-                                <motion.a
-                                    key={idx}
-                                    href={item.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="bg-neutral-900/50 border border-white/5 p-6 rounded-3xl hover:border-white/20 transition-all group"
-                                >
-                                    <div
-                                        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-                                        style={{ backgroundColor: `${item.color}10`, color: item.color }}
+                            {contactMethods.map((item, idx) =>
+                                item.href ? (
+                                    <motion.a
+                                        key={idx}
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        viewport={{ once: true }}
+                                        className="bg-neutral-900/50 border border-white/5 p-6 rounded-3xl hover:border-white/20 transition-all group"
                                     >
-                                        <item.icon size={24} />
-                                    </div>
-                                    <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">{item.title}</div>
-                                    <div className="font-chakra font-black text-sm text-white uppercase tracking-wider">{item.value}</div>
-                                </motion.a>
-                            ))}
+                                        <div
+                                            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+                                            style={{ backgroundColor: `${item.color}10`, color: item.color }}
+                                        >
+                                            <item.icon size={24} />
+                                        </div>
+                                        <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">{item.title}</div>
+                                        <div className="font-chakra font-black text-sm text-white uppercase tracking-wider">{item.value}</div>
+                                    </motion.a>
+                                ) : (
+                                    <motion.button
+                                        key={idx}
+                                        onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        viewport={{ once: true }}
+                                        className="bg-neutral-900/50 border border-[#FF2E63]/20 p-6 rounded-3xl hover:border-[#FF2E63]/50 transition-all group text-left"
+                                    >
+                                        <div
+                                            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+                                            style={{ backgroundColor: `${item.color}10`, color: item.color }}
+                                        >
+                                            <item.icon size={24} />
+                                        </div>
+                                        <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">{item.title}</div>
+                                        <div className="font-chakra font-black text-sm text-white uppercase tracking-wider">{item.value}</div>
+                                    </motion.button>
+                                )
+                            )}
 
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
@@ -87,14 +115,24 @@ export default function Contacts() {
                             </motion.div>
                         </div>
 
-                        <button
-                            onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="inline-flex items-center gap-4 bg-[#FF2E63] px-8 py-5 rounded-2xl font-tactic font-black text-lg uppercase italic tracking-widest hover:scale-105 transition-all text-white"
-                        >
-                            <Smartphone size={24} />
-                            Бронь в приложении
-                            <ChevronRight size={20} />
-                        </button>
+                        <div className="flex flex-wrap gap-4">
+                            <button
+                                onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
+                                className="inline-flex items-center gap-4 bg-[#FF2E63] px-8 py-5 rounded-2xl font-tactic font-black text-lg uppercase italic tracking-widest hover:scale-105 transition-all text-white shadow-[0_10px_30px_rgba(255,46,99,0.3)]"
+                            >
+                                <Smartphone size={24} />
+                                Бронь в приложении
+                                <ChevronRight size={20} />
+                            </button>
+
+                            <button
+                                onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+                                className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-5 rounded-2xl font-tactic font-black text-lg uppercase italic tracking-widest hover:bg-white/10 transition-all text-white"
+                            >
+                                <MessageSquare size={24} className="text-[#FF2E63]" />
+                                Чат с админом
+                            </button>
+                        </div>
                     </div>
 
                     <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-[40px] overflow-hidden border border-white/10 group">

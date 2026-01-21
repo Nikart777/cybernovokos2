@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MapPin, Gamepad2 } from "lucide-react";
+import { Phone, MapPin, Gamepad2, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function StickyBar() {
@@ -14,6 +14,10 @@ export default function StickyBar() {
 
   const openBooking = () => {
     window.dispatchEvent(new CustomEvent("open-booking"));
+  };
+
+  const openChat = () => {
+    window.dispatchEvent(new CustomEvent("open-chat"));
   };
 
   return (
@@ -35,15 +39,13 @@ export default function StickyBar() {
               <span className="text-[9px] font-inter font-bold uppercase tracking-wide opacity-70">Звонок</span>
             </a>
 
-            <a
-              href="https://yandex.ru/maps/-/CLWXNB~k"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openChat}
               className="flex flex-col items-center justify-center w-[65px] bg-[#1a1a1a]/80 backdrop-blur-xl border border-white/10 rounded-xl text-white active:scale-95 transition-transform hover:bg-white/10"
             >
-              <MapPin size={20} className="mb-[2px] text-white" />
-              <span className="text-[9px] font-inter font-bold uppercase tracking-wide opacity-70">Карта</span>
-            </a>
+              <MessageSquare size={20} className="mb-[2px] text-[#FF0055]" />
+              <span className="text-[9px] font-inter font-bold uppercase tracking-wide opacity-70">Чат</span>
+            </button>
           </div>
 
           <button
