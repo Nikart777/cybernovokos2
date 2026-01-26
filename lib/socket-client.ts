@@ -82,7 +82,8 @@ class SocketClient {
         this.socket = io(SERVER_URL, {
             reconnection: true,
             reconnectionDelay: 1000,
-            reconnectionAttempts: this.maxReconnectAttempts
+            reconnectionAttempts: this.maxReconnectAttempts,
+            transports: ['websocket'] // Critical for HTTPS -> HTTP bypass
         });
 
         this.socket.on('connect', () => {
