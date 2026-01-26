@@ -40,3 +40,23 @@ next-env.d.ts
 
 # Agentic AI
 .agent/
+
+# --- CYBERX SERVER EXCLUSIONS ---
+# Exclude the entire server directory (logic for VPS)
+/server/
+../server/
+
+# Databases
+*.db
+*.db-journal
+
+# Scripts and auxiliary files
+start-social-hub.bat
+SOCIAL_HUB_README.md
+agents.md
+requirements.txt
+server.js
+
+# Environment files (extra safety)
+.env*
+!.env.example
