@@ -46,6 +46,8 @@ class SocketClient {
     private isAdmin: boolean = false;
     private reconnectAttempts = 0;
     private maxReconnectAttempts = 5;
+    private userCount: number = 0;
+    private userList: ConnectedUser[] = [];
 
     constructor() {
         this.initializeUserId();
@@ -89,6 +91,14 @@ class SocketClient {
         this.socket.on('connect', () => {
             console.log('[SocketClient] Connected to server');
             this.reconnectAttempts = 0;
+
+            // Global listeners to cache stats immediately
+            this.socket?.on('users:count', (count) => {
+                this.userCount = count;
+            });
+            this.socket?.on('users:list', (list) => {
+                this.userList = list;
+            });
 
             // Announce presence only if we have a userId
             if (this.userId && this.nickname) {
@@ -224,12 +234,24 @@ class SocketClient {
         this.socket?.on('challenge:accepted', callback);
     }
 
+
+
     onUserCount(callback: (count: number) => void) {
-        this.socket?.on('users:count', callback);
+        // Immediate callback with cached value
+        callback(this.userCount);
+        this.socket?.on('users:count', (count) => {
+            this.userCount = count;
+            callback(count);
+        });
     }
 
     onUserList(callback: (users: ConnectedUser[]) => void) {
-        this.socket?.on('users:list', callback);
+        // Immediate callback with cached value
+        callback(this.userList);
+        this.socket?.on('users:list', (users) => {
+            this.userList = users;
+            callback(users);
+        });
     }
 
     onUserTyping(callback: (data: { userId: string; typing: boolean }) => void) {
