@@ -172,6 +172,11 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                     setMessages(history);
                     setTimeout(scrollToBottom, 100);
                 }
+                // Enabling socket history for news/market to unify data source
+                if (channel === 'news' || channel === 'market') {
+                    setMessages(history);
+                    setTimeout(scrollToBottom, 100);
+                }
             });
 
             // Listen for new messages
@@ -205,7 +210,8 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
             setMessages([]);
         });
 
-        // RSS Fetching Logic for client-side news
+        // RSS Fetching Logic for client-side news - DISABLED in favor of Server Socket
+        /*
         if (channelId === 'news' || channelId === 'market') {
             const feedUrl = channelId === 'news'
                 ? 'https://tg.i-c-a.su/rss/cyberxn32'
@@ -269,6 +275,7 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                 })
                 .catch(err => console.error('[ChatFeed] RSS Fetch Error:', err));
         }
+        */
 
         return () => {
             // Keep connection alive for other components
@@ -367,7 +374,7 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
 
             {/* Pinned Message */}
 
-            <div
+            < div
                 className="flex-1 overflow-y-auto px-4 py-4 space-y-4 custom-scrollbar"
                 style={{
                     scrollBehavior: 'smooth',
@@ -425,132 +432,138 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                     </div>
                 )}
 
-                {channelId !== 'admins' && (
-                    <AnimatePresence initial={false}>
-                        {messages.map((msg, idx) => {
-                            const isOwnMessage = msg.userId === socketClient.getUserId();
-                            const isOfficial = msg.author === 'CyberX' || msg.channel === 'news' || msg.channel === 'market';
-                            const isNews = msg.channel === 'news';
-                            const isMarket = msg.channel === 'market';
+                {
+                    channelId !== 'admins' && (
+                        <AnimatePresence initial={false}>
+                            {messages.map((msg, idx) => {
+                                const isOwnMessage = msg.userId === socketClient.getUserId();
+                                const isOfficial = msg.author === 'CyberX' || msg.channel === 'news' || msg.channel === 'market';
+                                const isNews = msg.channel === 'news';
+                                const isMarket = msg.channel === 'market';
 
-                            return (
-                                <motion.div
-                                    key={msg.id || idx}
-                                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    className={`flex items-start gap-3 ${isOwnMessage ? 'flex-row-reverse' : ''}`}
-                                >
-                                    <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-white/10 flex-shrink-0 bg-black/40">
-                                        <img
-                                            src={`/images/social-hub/${(isOfficial || msg.avatar === 'official') ? 'official' : (msg.avatar || '1')}.png`}
-                                            alt="avatar"
-                                            className="w-full h-full object-cover"
-                                            onError={(e) => {
-                                                (e.target as HTMLImageElement).src = '/images/social-hub/1.png';
-                                            }}
-                                        />
-                                    </div>
-
-                                    <div className={`flex flex-col max-w-[85%] ${isOwnMessage ? 'items-end' : ''}`}>
-                                        <div className="flex items-center gap-2 mb-1 px-1">
-                                            <span className={`text-xs font-bold ${isOwnMessage ? 'text-cyber-red' : msg.isAdmin ? 'text-yellow-500 drop-shadow-[0_0_5px_rgba(234,179,8,0.8)]' : isOfficial ? 'text-cyber-red' : 'text-white'}`}>
-                                                {isNews ? '📰 CyberX Новости' : isMarket ? (msg.nickname || '📦 CyberX Барахолка') : (msg.nickname || msg.userId)}
-                                            </span>
-                                            {!isOwnMessage && <ClubBadge club={(msg.club === 'neutral' || !msg.club) ? 'altufievo' : (msg.club as 'altufievo' | 'vlasino')} size="sm" isAdmin={msg.isAdmin} />}
-                                            {!['reviews', 'suggestions'].includes(channelId) && (
-                                                <span className="text-[9px] text-gray-600 font-bold uppercase">
-                                                    {new Date(msg.date ? msg.date * 1000 : msg.timestamp * 1000).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
-                                                </span>
-                                            )}
+                                return (
+                                    <motion.div
+                                        key={msg.id || idx}
+                                        initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        className={`flex items-start gap-3 ${isOwnMessage ? 'flex-row-reverse' : ''}`}
+                                    >
+                                        <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-white/10 flex-shrink-0 bg-black/40">
+                                            <img
+                                                src={`/images/social-hub/${(isOfficial || msg.avatar === 'official') ? 'official' : (msg.avatar || '1')}.png`}
+                                                alt="avatar"
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => {
+                                                    (e.target as HTMLImageElement).src = '/images/social-hub/1.png';
+                                                }}
+                                            />
                                         </div>
 
-                                        {msg.sticker ? (
-                                            <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="px-2 py-2">
-                                                <img src={`/images/social-hub/${msg.sticker}.ico`} alt="sticker" className="w-24 h-24 object-contain" />
-                                            </motion.div>
-                                        ) : (
-                                            <div className={`px-4 py-2.5 rounded-2xl shadow-xl border relative overflow-hidden ${isOwnMessage
-                                                ? 'bg-cyber-red/20 border-cyber-red/30 text-white rounded-tr-none'
-                                                : msg.isAdmin
-                                                    ? 'bg-gradient-to-br from-yellow-500/10 to-transparent border-yellow-500/50 text-white rounded-tl-none shadow-[0_0_15px_rgba(234,179,8,0.2)]'
-                                                    : isOfficial
-                                                        ? 'bg-slate-800/80 border-cyber-red/30 text-gray-100 rounded-tl-none shadow-[0_0_15px_rgba(255,46,99,0.1)]'
-                                                        : 'bg-white/5 border-white/10 text-gray-200 rounded-tl-none'
-                                                }`}>
-                                                {/* Golden Shine Effect for Admins */}
-                                                {msg.isAdmin && <div className="absolute inset-0 bg-yellow-400/5 pointer-events-none" />}
-
-                                                {/* Delete Button (Only for Admins) */}
-                                                {socketClient.getIsAdmin() && (
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            if (confirm('Удалить сообщение?')) {
-                                                                // Optimistic update: remove immediately
-                                                                setMessages(prev => prev.filter(m => m.id != msg.id));
-                                                                socketClient.deleteMessage(msg.id!);
-                                                            }
-                                                        }}
-                                                        className="absolute top-1 right-1 p-1.5 text-gray-400 hover:text-red-500 bg-black/60 hover:bg-black/90 rounded-full transition-all z-50 cursor-pointer shadow-lg border border-white/10"
-                                                        title="Удалить"
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
-                                                    </button>
+                                        <div className={`flex flex-col max-w-[85%] ${isOwnMessage ? 'items-end' : ''}`}>
+                                            <div className="flex items-center gap-2 mb-1 px-1">
+                                                <span className={`text-xs font-bold ${isOwnMessage ? 'text-cyber-red' : msg.isAdmin ? 'text-yellow-500 drop-shadow-[0_0_5px_rgba(234,179,8,0.8)]' : isOfficial ? 'text-cyber-red' : 'text-white'}`}>
+                                                    {isNews ? '📰 CyberX Новости' : isMarket ? (msg.nickname || '📦 CyberX Барахолка') : (msg.nickname || msg.userId)}
+                                                </span>
+                                                {!isOwnMessage && <ClubBadge club={(msg.club === 'neutral' || !msg.club) ? 'altufievo' : (msg.club as 'altufievo' | 'vlasino')} size="sm" isAdmin={msg.isAdmin} />}
+                                                {!['reviews', 'suggestions'].includes(channelId) && (
+                                                    <span className="text-[9px] text-gray-600 font-bold uppercase">
+                                                        {new Date(msg.date ? msg.date * 1000 : msg.timestamp * 1000).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
+                                                    </span>
                                                 )}
-                                                {/* Media Handling for Official Posts */}
-                                                {isOfficial && msg.mediaUrl && (
-                                                    <div className="mb-3 rounded-xl overflow-hidden border border-white/10 bg-black/20 group/media relative">
-                                                        {msg.mediaType === 'video' ? (
-                                                            <video
-                                                                src={msg.mediaUrl}
-                                                                controls
-                                                                className="w-full max-h-[300px] object-contain"
-                                                            />
-                                                        ) : (
-                                                            <img
-                                                                src={msg.mediaUrl}
-                                                                alt="news media"
-                                                                className="w-full max-h-[400px] object-cover"
-                                                                referrerPolicy="no-referrer"
-                                                            />
-                                                        )}
-                                                    </div>
-                                                )}
-
-                                                <p className="text-sm leading-relaxed break-words whitespace-pre-line">{msg.text}</p>
                                             </div>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </AnimatePresence>
-                )}
 
-                {typingUsers.size > 0 && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-[10px] text-gray-500 font-bold uppercase tracking-widest ml-2">
-                        <div className="flex gap-1 bg-white/5 px-2 py-1.5 rounded-full"><span className="animate-bounce">.</span><span className="animate-bounce" style={{ animationDelay: '0.1s' }}>.</span><span className="animate-bounce" style={{ animationDelay: '0.2s' }}>.</span></div>
-                        {Array.from(typingUsers)[0]} печатает...
-                    </motion.div>
-                )}
+                                            {msg.sticker ? (
+                                                <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="px-2 py-2">
+                                                    <img src={`/images/social-hub/${msg.sticker}.ico`} alt="sticker" className="w-24 h-24 object-contain" />
+                                                </motion.div>
+                                            ) : (
+                                                <div className={`px-4 py-2.5 rounded-2xl shadow-xl border relative overflow-hidden ${isOwnMessage
+                                                    ? 'bg-cyber-red/20 border-cyber-red/30 text-white rounded-tr-none'
+                                                    : msg.isAdmin
+                                                        ? 'bg-gradient-to-br from-yellow-500/10 to-transparent border-yellow-500/50 text-white rounded-tl-none shadow-[0_0_15px_rgba(234,179,8,0.2)]'
+                                                        : isOfficial
+                                                            ? 'bg-slate-800/80 border-cyber-red/30 text-gray-100 rounded-tl-none shadow-[0_0_15px_rgba(255,46,99,0.1)]'
+                                                            : 'bg-white/5 border-white/10 text-gray-200 rounded-tl-none'
+                                                    }`}>
+                                                    {/* Golden Shine Effect for Admins */}
+                                                    {msg.isAdmin && <div className="absolute inset-0 bg-yellow-400/5 pointer-events-none" />}
+
+                                                    {/* Delete Button (Only for Admins) */}
+                                                    {socketClient.getIsAdmin() && (
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                if (confirm('Удалить сообщение?')) {
+                                                                    // Optimistic update: remove immediately
+                                                                    setMessages(prev => prev.filter(m => m.id != msg.id));
+                                                                    socketClient.deleteMessage(msg.id!);
+                                                                }
+                                                            }}
+                                                            className="absolute top-1 right-1 p-1.5 text-gray-400 hover:text-red-500 bg-black/60 hover:bg-black/90 rounded-full transition-all z-50 cursor-pointer shadow-lg border border-white/10"
+                                                            title="Удалить"
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                                                        </button>
+                                                    )}
+                                                    {/* Media Handling for Official Posts */}
+                                                    {isOfficial && msg.mediaUrl && (
+                                                        <div className="mb-3 rounded-xl overflow-hidden border border-white/10 bg-black/20 group/media relative">
+                                                            {msg.mediaType === 'video' ? (
+                                                                <video
+                                                                    src={msg.mediaUrl}
+                                                                    controls
+                                                                    className="w-full max-h-[300px] object-contain"
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={msg.mediaUrl}
+                                                                    alt="news media"
+                                                                    className="w-full max-h-[400px] object-cover"
+                                                                    referrerPolicy="no-referrer"
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    )}
+
+                                                    <p className="text-sm leading-relaxed break-words whitespace-pre-line">{msg.text}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </AnimatePresence>
+                    )
+                }
+
+                {
+                    typingUsers.size > 0 && (
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 text-[10px] text-gray-500 font-bold uppercase tracking-widest ml-2">
+                            <div className="flex gap-1 bg-white/5 px-2 py-1.5 rounded-full"><span className="animate-bounce">.</span><span className="animate-bounce" style={{ animationDelay: '0.1s' }}>.</span><span className="animate-bounce" style={{ animationDelay: '0.2s' }}>.</span></div>
+                            {Array.from(typingUsers)[0]} печатает...
+                        </motion.div>
+                    )
+                }
 
                 <div ref={messagesEndRef} />
-            </div>
+            </div >
 
             {/* Stickers Picker */}
             <AnimatePresence>
-                {showStickers && (
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="absolute bottom-24 left-4 right-4 bg-neutral-900 border border-white/10 rounded-2xl p-4 shadow-2xl z-20">
-                        <div className="flex gap-4">
-                            {STICKERS.map((s) => (
-                                <button key={s.id} onClick={() => handleSendMessage(undefined, s.id)} className="w-20 h-20 bg-black/40 rounded-xl border border-white/5 hover:border-cyber-red transition-all p-2 group">
-                                    <img src={`/images/social-hub/${s.id}.ico`} alt={s.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
-                                </button>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                {
+                    showStickers && (
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="absolute bottom-24 left-4 right-4 bg-neutral-900 border border-white/10 rounded-2xl p-4 shadow-2xl z-20">
+                            <div className="flex gap-4">
+                                {STICKERS.map((s) => (
+                                    <button key={s.id} onClick={() => handleSendMessage(undefined, s.id)} className="w-20 h-20 bg-black/40 rounded-xl border border-white/5 hover:border-cyber-red transition-all p-2 group">
+                                        <img src={`/images/social-hub/${s.id}.ico`} alt={s.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
+                                    </button>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence >
 
             {/* Input Area */}
             {

@@ -265,6 +265,11 @@ class SocketClient {
         this.socket?.on('chat:cleared', callback);
     }
 
+    requestUserStats() {
+        if (!this.socket?.connected) return;
+        this.socket.emit('users:get');
+    }
+
     off(event: string) {
         this.socket?.off(event);
     }

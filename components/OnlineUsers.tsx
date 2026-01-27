@@ -15,6 +15,9 @@ export default function OnlineUsers({ onChallengeClick }: OnlineUsersProps) {
     const [users, setUsers] = useState<ConnectedUser[]>([]);
 
     useEffect(() => {
+        // Force update on mount
+        socketClient.requestUserStats();
+
         socketClient.onUserCount((count) => {
             setOnlineCount(count);
         });
