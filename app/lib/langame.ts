@@ -1,8 +1,8 @@
 "use server";
 
 
-export const API_TOKEN = process.env.LANGAME_API_TOKEN || "";
-export const BASE_URL = process.env.LANGAME_API_URL || "";
+const API_TOKEN = process.env.LANGAME_API_TOKEN || "";
+const BASE_URL = process.env.LANGAME_API_URL || "";
 
 
 
