@@ -88,15 +88,17 @@ class SocketClient {
             transports: ['websocket'] // Critical for HTTPS -> HTTP bypass
         });
 
-        // Global listeners to cache stats immediately (Registered BEFORE connect event)
+        // Global listeners to cache stats and notify subscribers
         this.socket.on('users:count', (count: number) => {
             console.log('[SocketClient] Cache update users:count:', count);
             this.userCount = count;
+            this.userCountCallbacks.forEach(cb => cb(count));
         });
 
         this.socket.on('users:list', (list: ConnectedUser[]) => {
             console.log('[SocketClient] Cache update users:list:', list.length);
             this.userList = list;
+            this.userListCallbacks.forEach(cb => cb(list));
         });
 
         this.socket.on('connect', () => {
@@ -239,22 +241,24 @@ class SocketClient {
 
 
 
+    private userCountCallbacks: ((count: number) => void)[] = [];
+    private userListCallbacks: ((users: ConnectedUser[]) => void)[] = [];
+
     onUserCount(callback: (count: number) => void) {
         // Immediate callback with cached value
         callback(this.userCount);
-        this.socket?.on('users:count', (count: number) => {
-            this.userCount = count;
-            callback(count);
-        });
+        this.userCountCallbacks.push(callback);
+
+        // If already connected, ensure we listen (listener might be set in connect(), 
+        // but we need to ensure this specific callback gets updates. 
+        // Actually, better logic is: connect() sets up the SINGLE socket listener 
+        // that iterates over userCountCallbacks.
     }
 
     onUserList(callback: (users: ConnectedUser[]) => void) {
         // Immediate callback with cached value
         callback(this.userList);
-        this.socket?.on('users:list', (users: ConnectedUser[]) => {
-            this.userList = users;
-            callback(users);
-        });
+        this.userListCallbacks.push(callback);
     }
 
     onUserTyping(callback: (data: { userId: string; typing: boolean }) => void) {
