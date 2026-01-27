@@ -78,7 +78,7 @@ class SocketClient {
             return;
         }
 
-        const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://82.97.253.207:3001';
+        const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://socket.cyberx-novokosino.ru';
         this.socket = io(SERVER_URL, {
             reconnection: true,
             reconnectionDelay: 1000,

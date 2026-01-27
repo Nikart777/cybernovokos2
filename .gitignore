@@ -40,6 +40,7 @@ next-env.d.ts
 
 # Agentic AI
 .agent/
+cyberx-server/
 
 # --- CYBERX SERVER EXCLUSIONS ---
 # Exclude the entire server directory (logic for VPS)
