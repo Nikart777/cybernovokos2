@@ -88,17 +88,20 @@ class SocketClient {
             transports: ['websocket'] // Critical for HTTPS -> HTTP bypass
         });
 
+        // Global listeners to cache stats immediately (Registered BEFORE connect event)
+        this.socket.on('users:count', (count: number) => {
+            console.log('[SocketClient] Cache update users:count:', count);
+            this.userCount = count;
+        });
+
+        this.socket.on('users:list', (list: ConnectedUser[]) => {
+            console.log('[SocketClient] Cache update users:list:', list.length);
+            this.userList = list;
+        });
+
         this.socket.on('connect', () => {
             console.log('[SocketClient] Connected to server');
             this.reconnectAttempts = 0;
-
-            // Global listeners to cache stats immediately
-            this.socket?.on('users:count', (count) => {
-                this.userCount = count;
-            });
-            this.socket?.on('users:list', (list) => {
-                this.userList = list;
-            });
 
             // Announce presence only if we have a userId
             if (this.userId && this.nickname) {
@@ -117,7 +120,7 @@ class SocketClient {
             console.log('[SocketClient] Disconnected from server');
         });
 
-        this.socket.on('connect_error', (error) => {
+        this.socket.on('connect_error', (error: Error) => {
             console.error('[SocketClient] Connection error:', error);
             this.reconnectAttempts++;
 
@@ -207,7 +210,7 @@ class SocketClient {
 
     onMessageHistory(callback: (data: { channel: string; messages: ChatMessage[] }) => void) {
         console.log('[SocketClient] Registering message:history listener');
-        this.socket?.on('message:history', (data) => {
+        this.socket?.on('message:history', (data: { channel: string; messages: ChatMessage[] }) => {
             console.log(`[SocketClient] Received message:history for channel ${data.channel}:`, data.messages.length, 'messages');
             callback(data);
         });
@@ -227,11 +230,11 @@ class SocketClient {
     }
 
     onChallengeReceived(callback: (data: ChallengeSyncData) => void) {
-        this.socket?.on('challenge:received', callback);
+        this.socket?.on('challenge:received', (data: ChallengeSyncData) => callback(data));
     }
 
     onChallengeAccepted(callback: (data: { acceptor: string }) => void) {
-        this.socket?.on('challenge:accepted', callback);
+        this.socket?.on('challenge:accepted', (data: { acceptor: string }) => callback(data));
     }
 
 
@@ -239,7 +242,7 @@ class SocketClient {
     onUserCount(callback: (count: number) => void) {
         // Immediate callback with cached value
         callback(this.userCount);
-        this.socket?.on('users:count', (count) => {
+        this.socket?.on('users:count', (count: number) => {
             this.userCount = count;
             callback(count);
         });
@@ -248,7 +251,7 @@ class SocketClient {
     onUserList(callback: (users: ConnectedUser[]) => void) {
         // Immediate callback with cached value
         callback(this.userList);
-        this.socket?.on('users:list', (users) => {
+        this.socket?.on('users:list', (users: ConnectedUser[]) => {
             this.userList = users;
             callback(users);
         });
