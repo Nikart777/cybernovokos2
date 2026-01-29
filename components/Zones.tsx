@@ -183,10 +183,10 @@ function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05 }}
             viewport={{ once: true }}
-            className="group relative h-[620px] rounded-[40px] overflow-hidden bg-neutral-900 border border-white/5 transition-all duration-500 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            className="group relative h-[620px] rounded-[40px] overflow-hidden bg-neutral-900 border border-white/5 transition-all duration-500 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] touch-action-pan-y"
         >
-            {/* Background & Slider */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
+            {/* Background & Slider - Pointer events auto for swiping */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentImage}
@@ -194,7 +194,15 @@ function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.8, ease: "circOut" }}
-                        className="absolute inset-0"
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.2}
+                        onDragEnd={(_, info) => {
+                            const swipe = info.offset.x;
+                            if (swipe > 50) prevImage({ stopPropagation: () => { } } as any);
+                            else if (swipe < -50) nextImage({ stopPropagation: () => { } } as any);
+                        }}
+                        className="absolute inset-0 cursor-grab active:cursor-grabbing touch-none"
                     >
                         <Image
                             src={zone.images[currentImage]}
@@ -205,39 +213,48 @@ function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
                     </motion.div>
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/40 to-transparent" />
-
-                {/* Dots Navigation */}
-                {zone.images.length > 1 && (
-                    <div className="absolute top-8 left-8 z-20 flex gap-2">
-                        {zone.images.map((_, i) => (
-                            <div
-                                key={i}
-                                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentImage ? 'bg-white w-4' : 'bg-white/20'}`}
-                            />
-                        ))}
-                    </div>
-                )}
             </div>
 
-            {/* Arrow Controls - Outside background container for proper z-index */}
+            {/* Instagram-style Progress Indicators - Mega-visible for Mobile */}
             {zone.images.length > 1 && (
-                <>
+                <div className="absolute top-6 left-6 right-6 z-40 flex gap-1.5 p-1 rounded-full bg-black/10 backdrop-blur-sm">
+                    {zone.images.map((_, i) => (
+                        <div
+                            key={i}
+                            className="h-2 flex-1 overflow-hidden rounded-full bg-white/20 shadow-inner"
+                        >
+                            <motion.div
+                                className="h-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+                                initial={false}
+                                animate={{
+                                    width: i <= currentImage ? "100%" : "0%",
+                                }}
+                                transition={{ duration: 0.3 }}
+                            />
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/* Arrow Controls - Hidden on mobile, hover on desktop */}
+            {zone.images.length > 1 && (
+                <div className="hidden lg:block">
                     <button
                         onClick={prevImage}
-                        className="absolute top-1/2 left-4 z-30 -translate-y-1/2 p-2 rounded-full bg-black/50 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black"
+                        className="absolute top-1/2 left-4 z-40 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 active:scale-90 shadow-2xl"
                     >
-                        <ChevronLeft size={16} />
+                        <ChevronLeft size={20} />
                     </button>
                     <button
                         onClick={nextImage}
-                        className="absolute top-1/2 right-4 z-30 -translate-y-1/2 p-2 rounded-full bg-black/50 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black"
+                        className="absolute top-1/2 right-4 z-40 -translate-y-1/2 p-3 rounded-full bg-black/60 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 active:scale-90 shadow-2xl"
                     >
-                        <ChevronRight size={16} />
+                        <ChevronRight size={20} />
                     </button>
-                </>
+                </div>
             )}
 
-            <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end">
+            <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end pointer-events-none">
                 {/* Header Decoration */}
                 <div
                     className="w-16 h-1 mb-6 rounded-full"
@@ -278,7 +295,7 @@ function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
                 {zone.id === 'simracing' ? (
                     <Link
                         href="/simracing"
-                        className="w-full py-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black transition-all relative overflow-hidden group/btn"
+                        className="w-full py-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black transition-all relative overflow-hidden group/btn pointer-events-auto"
                     >
                         <span className="relative z-10 transition-colors">Подробнее</span>
                         <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-expo" />
@@ -286,7 +303,7 @@ function ZoneCard({ zone, idx }: { zone: typeof zones[0], idx: number }) {
                 ) : (
                     <button
                         onClick={openBooking}
-                        className="w-full py-4 rounded-2xl bg-[#FF2E63] border border-[#FF2E63] flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black hover:border-white transition-all relative overflow-hidden group/btn shadow-[0_15px_30px_rgba(255,46,99,0.3)]"
+                        className="w-full py-4 rounded-2xl bg-[#FF2E63] border border-[#FF2E63] flex items-center justify-center font-chakra font-black text-xs uppercase tracking-[0.25em] text-white hover:bg-white hover:text-black hover:border-white transition-all relative overflow-hidden group/btn shadow-[0_15px_30px_rgba(255,46,99,0.3)] pointer-events-auto"
                     >
                         <span className="relative z-10 transition-colors">Забронировать</span>
                         <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-expo" />

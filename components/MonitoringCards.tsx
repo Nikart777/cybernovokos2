@@ -303,6 +303,8 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
         >
             {/* IMAGE AREA */}
             <div className="relative h-[240px] shrink-0 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentImage}
@@ -310,7 +312,15 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="absolute inset-0"
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.2}
+                        onDragEnd={(_, info) => {
+                            const swipe = info.offset.x;
+                            if (swipe > 50) prevImage({ stopPropagation: () => { } } as any);
+                            else if (swipe < -50) nextImage({ stopPropagation: () => { } } as any);
+                        }}
+                        className="absolute inset-0 cursor-grab active:cursor-grabbing touch-none"
                     >
                         <Image
                             src={config.images[currentImage]}
@@ -321,19 +331,39 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+                {/* Instagram-style Progress Indicators - Mobile priority */}
+                {config.images.length > 1 && (
+                    <div className="absolute top-4 left-4 right-4 z-40 flex gap-1.5 p-1 rounded-full bg-black/10 backdrop-blur-sm">
+                        {config.images.map((_, i) => (
+                            <div
+                                key={i}
+                                className="h-1 flex-1 overflow-hidden rounded-full bg-white/20"
+                            >
+                                <motion.div
+                                    className="h-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                                    initial={false}
+                                    animate={{
+                                        width: i <= currentImage ? "100%" : "0%",
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 {/* Status Badge removed from here */}
 
+                {/* Controls - Only on desktop hover */}
                 {config.images.length > 1 && (
-                    <>
+                    <div className="hidden lg:block">
                         <button onClick={prevImage} className="absolute top-1/2 left-2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white z-30 opacity-0 group-hover:opacity-100 transition-opacity">
                             <ChevronLeft size={20} />
                         </button>
                         <button onClick={nextImage} className="absolute top-1/2 right-2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white z-30 opacity-0 group-hover:opacity-100 transition-opacity">
                             <ChevronRight size={20} />
                         </button>
-                    </>
+                    </div>
                 )}
             </div>
 
@@ -378,22 +408,22 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                 {/* Pricing Grid */}
                 <div className="mt-auto bg-white/5 rounded-xl p-3 border border-white/5 relative overflow-hidden flex flex-col gap-2">
                     <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                        <div className="bg-[#111] p-0.5 rounded flex relative">
+                        <div className="bg-[#111] p-0.5 rounded flex relative min-w-[140px]">
                             <motion.div
-                                className="absolute top-0.5 bottom-0.5 w-[50%] bg-[#FF2E63] rounded-sm z-0"
+                                className="absolute top-0.5 bottom-0.5 left-0.5 w-[calc(50%-2px)] bg-[#FF2E63] rounded-sm z-0"
                                 initial={false}
                                 animate={{ x: isWeekend ? "100%" : "0%" }}
                                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             />
                             <button
                                 onClick={() => setIsWeekend(false)}
-                                className={`relative z-10 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider transition-colors duration-200 ${!isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                                className={`flex-1 relative z-10 px-2 py-1 text-[8px] font-bold uppercase tracking-wider transition-colors duration-200 ${!isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
                             >
                                 Будни
                             </button>
                             <button
                                 onClick={() => setIsWeekend(true)}
-                                className={`relative z-10 px-2.5 py-1 text-[8px] font-bold uppercase tracking-wider transition-colors duration-200 ${isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                                className={`flex-1 relative z-10 px-2 py-1 text-[8px] font-bold uppercase tracking-wider transition-colors duration-200 ${isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}
                             >
                                 Выходные
                             </button>
@@ -525,25 +555,29 @@ export default function MonitoringCards({ pricingData }: { pricingData?: Pricing
                             9 уникальных игровых площадок. От демократичного общего зала до эксклюзивных Solo Premium комнат.
                         </p>
 
-                        <div className="mt-8">
-                            <Link
-                                href="/prices"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF2E63]/50 transition-all group"
-                            >
-                                <span className="font-chakra font-bold text-sm uppercase tracking-wider text-white group-hover:text-[#FF2E63] transition-colors">
-                                    Смотреть все цены
-                                </span>
-                                <ChevronRight size={16} className="text-gray-500 group-hover:text-[#FF2E63] transition-colors group-hover:translate-x-1" />
-                            </Link>
-                        </div>
                     </div>
 
-                    <div className="flex flex-col items-end gap-4">
-                        <div className="bg-[#111] border border-white/10 px-6 py-4 rounded-xl text-right min-w-[200px]">
-                            <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Свободно мест</div>
-                            <div className="font-tactic font-black text-4xl text-white leading-none flex items-baseline justify-end gap-2">
-                                {clubZones ? clubZones.reduce((acc, z) => acc + z.free_pc_count, 0) : '...'}
-                                <span className="text-sm font-bold text-white/20">/ {clubZones ? clubZones.reduce((acc, z) => acc + z.pc_count, 0) : '...'}</span>
+                    <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-end gap-4 md:gap-6 w-full md:w-auto mt-4 md:mt-0">
+                        <Link
+                            href="/prices"
+                            className="flex items-center gap-2 px-4 py-2.5 md:px-5 md:py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF2E63]/50 transition-all group"
+                        >
+                            <span className="font-chakra font-bold text-[11px] md:text-sm uppercase tracking-wider text-white group-hover:text-[#FF2E63] transition-colors whitespace-nowrap">
+                                Смотреть все цены
+                            </span>
+                            <ChevronRight size={14} className="text-gray-500 group-hover:text-[#FF2E63] transition-colors group-hover:translate-x-1" />
+                        </Link>
+
+                        <div className="bg-[#111] border border-[#FF2E63]/30 px-5 py-2.5 md:px-5 md:py-3 rounded-xl text-right min-w-[140px] md:min-w-[140px] shadow-[0_0_20px_rgba(255,46,99,0.1)] relative overflow-hidden group/seats">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF2E63]/5 to-transparent opacity-50" />
+                            <div className="relative z-10">
+                                <div className="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-0.5">Свободно мест</div>
+                                <div className="font-tactic font-black text-2xl md:text-4xl text-white leading-none flex items-baseline justify-end gap-1.5 md:gap-2">
+                                    <span className="text-[#00F0FF] drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]">
+                                        {clubZones ? clubZones.reduce((acc, z) => acc + z.free_pc_count, 0) : '...'}
+                                    </span>
+                                    <span className="text-[11px] md:text-sm font-bold text-white/20">/ {clubZones ? clubZones.reduce((acc, z) => acc + z.pc_count, 0) : '...'}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
