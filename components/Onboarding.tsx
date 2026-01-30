@@ -332,7 +332,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                 animation: step === 1 ? 'gentleRocket 4s ease-in-out infinite' : 'none'
                             }}
                         >
-                            <img src="/images/social-hub/logo.png" alt="CyberX Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain" />
+                            <img src="/images/social-hub/LOGO.png" alt="CyberX Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain" />
                         </div>
                         <div className="text-left flex-1 min-w-0">
                             <h1 className="text-[10px] md:text-sm font-mono text-cyber-red tracking-[0.4em] uppercase mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,46,99,0.4)]">КТО ТЫ В CYBERX?</h1>
@@ -357,31 +357,29 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                         {/* Orbital Lines System */}
                                         <div className="orbital-line" style={{ color: `${avatar.color}44`, borderColor: 'currentColor' }} />
                                         <div className="orbital-line-alt" />
-                                        
-                                        <div className={`relative w-full aspect-square bg-[#0a0a0a] geometric-card transition-all duration-500 overflow-hidden ${
-                                            selectedAvatar === avatar.id 
-                                            ? 'scale-110 shadow-[0_0_60px_rgba(255,46,99,0.25)] border-white/40' 
-                                            : 'opacity-70 grayscale-[30%] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 border-white/5'
-                                        }`}
+
+                                        <div className={`relative w-full aspect-square bg-[#0a0a0a] geometric-card transition-all duration-500 overflow-hidden ${selectedAvatar === avatar.id
+                                                ? 'scale-110 shadow-[0_0_60px_rgba(255,46,99,0.25)] border-white/40'
+                                                : 'opacity-70 grayscale-[30%] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 border-white/5'
+                                            }`}
                                         >
                                             {/* Notched Borders Overlay */}
-                                            <div className={`absolute inset-0 border-[3px] transition-all duration-300 geometric-card ${
-                                                selectedAvatar === avatar.id ? 'border-white' : 'border-white/10 group-hover:border-white/30'
-                                            }`} />
-                                            
+                                            <div className={`absolute inset-0 border-[3px] transition-all duration-300 geometric-card ${selectedAvatar === avatar.id ? 'border-white' : 'border-white/10 group-hover:border-white/30'
+                                                }`} />
+
                                             {/* Vivid Glow Layers */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-white/5" />
-                                            <div className="absolute inset-0" style={{ 
+                                            <div className="absolute inset-0" style={{
                                                 background: `radial-gradient(circle at center, ${avatar.color}33 0%, transparent 70%)`,
                                                 opacity: selectedAvatar === avatar.id ? 1 : 0.5
                                             }} />
-                                            
+
                                             <img
                                                 src={`/images/social-hub/${avatar.id}.png`}
                                                 alt={avatar.name}
                                                 className="w-full h-full object-cover relative z-10 brightness-110 contrast-110"
                                             />
-                                            
+
                                             {/* Shimmer on hover */}
                                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12 z-20" />
                                         </div>
