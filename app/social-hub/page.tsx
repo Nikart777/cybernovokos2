@@ -74,10 +74,8 @@ export default function SocialHubPage() {
     };
 
     const handleOnboardingComplete = () => {
-        console.log('[SocialHub] Onboarding complete callback triggered');
         const nick = sessionStorage.getItem('social_hub_user_id') || '';
         const avatar = sessionStorage.getItem('social_hub_avatar') || 'cat';
-        console.log('[SocialHub] Setting user state:', { nick, avatar });
         setShowOnboarding(false);
         setCurrentUserId(nick);
         setCurrentAvatar(avatar);
