@@ -63,6 +63,8 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
         }
 
         socketClient.updateUser(trimmedNick, selectedAvatar, selectedClub as 'vlasino' | 'altufievo');
+        sessionStorage.setItem('social_hub_user_id', trimmedNick);
+        sessionStorage.setItem('social_hub_avatar', selectedAvatar);
         sessionStorage.setItem('user_club', selectedClub);
         sessionStorage.setItem('onboarding_done', 'true');
         onComplete();
