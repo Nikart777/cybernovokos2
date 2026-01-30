@@ -54,7 +54,10 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
     const handleFinish = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         const trimmedNick = nickname.trim();
-        if (!trimmedNick) return;
+        if (!trimmedNick) {
+            alert('Сначала введи свой крутой никнейм!');
+            return;
+        }
 
         const reservedNicks = ['admin.altufievo', 'admin.novokosino'];
         if (reservedNicks.includes(trimmedNick.toLowerCase())) {
@@ -62,12 +65,16 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
             return;
         }
 
-        socketClient.updateUser(trimmedNick, selectedAvatar, selectedClub as 'vlasino' | 'altufievo');
-        sessionStorage.setItem('social_hub_user_id', trimmedNick);
-        sessionStorage.setItem('social_hub_avatar', selectedAvatar);
-        sessionStorage.setItem('user_club', selectedClub);
-        sessionStorage.setItem('onboarding_done', 'true');
-        onComplete();
+        try {
+            socketClient.updateUser(trimmedNick, selectedAvatar, selectedClub as 'vlasino' | 'altufievo');
+            sessionStorage.setItem('social_hub_user_id', trimmedNick);
+            sessionStorage.setItem('social_hub_avatar', selectedAvatar);
+            sessionStorage.setItem('user_club', selectedClub);
+            sessionStorage.setItem('onboarding_done', 'true');
+            onComplete();
+        } catch (err) {
+            console.error('[Onboarding] Error during finish:', err);
+        }
     };
 
     return (
@@ -320,7 +327,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                         <p className="text-[8px] text-gray-500 uppercase tracking-[0.2em] font-medium opacity-60">Твой пропуск в экосистему клуба</p>
                     </div>
 
-                    <form onSubmit={handleFinish} className="w-full space-y-6">
+                    <div className="w-full space-y-6">
                         <div>
                             <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-3">Твой никнейм</label>
                             <div className="relative group">
@@ -384,14 +391,14 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                 Назад
                             </button>
                             <button
-                                type="submit"
-                                disabled={!nickname.trim()}
+                                type="button"
+                                onClick={() => handleFinish()}
                                 className="flex-1 py-4 bg-gradient-to-r from-cyber-red to-cyber-purple rounded-2xl font-tactic text-xl tracking-widest text-white transition-all hover:shadow-[0_10px_30px_rgba(255,46,99,0.3)] transform hover:-translate-y-1 disabled:opacity-30 disabled:grayscale uppercase"
                             >
                                 ВОРВАТЬСЯ! 🚀
                             </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -74,8 +74,10 @@ export default function SocialHubPage() {
     };
 
     const handleOnboardingComplete = () => {
+        console.log('[SocialHub] Onboarding complete callback triggered');
         const nick = sessionStorage.getItem('social_hub_user_id') || '';
         const avatar = sessionStorage.getItem('social_hub_avatar') || 'cat';
+        console.log('[SocialHub] Setting user state:', { nick, avatar });
         setShowOnboarding(false);
         setCurrentUserId(nick);
         setCurrentAvatar(avatar);
@@ -132,8 +134,9 @@ export default function SocialHubPage() {
 
     return (
         <div className="fixed inset-0 bg-cyber-bg text-white font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg selection:bg-cyber-red selection:text-white flex flex-col overflow-hidden h-screen w-screen">
+            {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
+
             <AnimatePresence>
-                {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
                 {incomingChallenge && (
                     <ChallengeNotification
                         challenge={incomingChallenge}

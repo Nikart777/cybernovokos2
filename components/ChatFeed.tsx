@@ -64,7 +64,14 @@ function AdminCard({ admin, club, likes, isConnected }: { admin: any, club: 'vla
 
             <div className="flex flex-col md:flex-row gap-8 relative z-10 items-center md:items-start text-center md:text-left">
                 <div className="w-40 h-40 md:w-[130px] md:h-[130px] rounded-[2rem] overflow-hidden border-2 border-white/10 flex-shrink-0 relative shadow-glow">
-                    <img src={`/images/social-hub/${admin.avatar}.png`} alt={admin.name} className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500" />
+                    <img
+                        src={`/images/social-hub/${admin.avatar}.png`}
+                        alt={admin.name}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500"
+                        onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/images/social-hub/official.png';
+                        }}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
 
