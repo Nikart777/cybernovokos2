@@ -332,7 +332,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                 animation: step === 1 ? 'gentleRocket 4s ease-in-out infinite' : 'none'
                             }}
                         >
-                            <img src="/images/social-hub/LOGO.png" alt="CyberX Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain" />
+                            <img src="/images/social-hub/logo.png" alt="CyberX Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain" />
                         </div>
                         <div className="text-left flex-1 min-w-0">
                             <h1 className="text-[10px] md:text-sm font-mono text-cyber-red tracking-[0.4em] uppercase mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,46,99,0.4)]">КТО ТЫ В CYBERX?</h1>
@@ -359,8 +359,8 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                         <div className="orbital-line-alt" />
 
                                         <div className={`relative w-full aspect-square bg-[#0a0a0a] geometric-card transition-all duration-500 overflow-hidden ${selectedAvatar === avatar.id
-                                                ? 'scale-110 shadow-[0_0_60px_rgba(255,46,99,0.25)] border-white/40'
-                                                : 'opacity-70 grayscale-[30%] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 border-white/5'
+                                            ? 'scale-110 shadow-[0_0_60px_rgba(255,46,99,0.25)] border-white/40'
+                                            : 'opacity-70 grayscale-[30%] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 border-white/5'
                                             }`}
                                         >
                                             {/* Notched Borders Overlay */}
