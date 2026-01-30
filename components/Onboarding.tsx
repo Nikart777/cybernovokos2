@@ -14,7 +14,7 @@ const AVATARS = [
     { id: '2', name: 'Катка-до-утра', color: '#60A5FA' },
     { id: '3', name: 'Лягух-банкрот', color: '#9CA3AF' },
     { id: '4', name: 'Хардбасс-3ночи', color: '#F59E0B' },
-    { id: '5', name: 'Бэтмен-подвал', color: '#FACC15' },
+    { id: '5', name: 'Yeezus', color: '#FACC15' },
     { id: '6', name: 'Крипта-сдохла', color: '#94A3B8' },
     { id: '7', name: 'Всё-нормально', color: '#059669' },
     { id: '8', name: 'Махач в чате', color: '#EF4444' },
@@ -150,6 +150,91 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                     50% { transform: translateY(-30px); opacity: 0.9; }
                     75% { opacity: 0.6; }
                 }
+                @keyframes cyber-spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes cyber-spin-reverse {
+                    from { transform: rotate(360deg); }
+                    to { transform: rotate(0deg); }
+                }
+                @keyframes neon-pulse {
+                    0%, 100% { opacity: 0.4; filter: blur(5px); }
+                    50% { opacity: 0.8; filter: blur(8px); }
+                }
+                .cyber-ring {
+                    position: absolute;
+                    inset: -8px;
+                    border: 1px dashed currentColor;
+                    border-radius: 50%;
+                    opacity: 0.3;
+                    pointer-events: none;
+                }
+                .cyber-brackets::before, .cyber-brackets::after {
+                    content: '';
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    border: 2px solid currentColor;
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                }
+                .cyber-brackets::before {
+                    top: -4px; left: -4px;
+                    border-right: 0; border-bottom: 0;
+                }
+                .cyber-brackets::after {
+                    bottom: -4px; right: -4px;
+                    border-left: 0; border-top: 0;
+                }
+                .group:hover .cyber-brackets::before,
+                .group:hover .cyber-brackets::after {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+                .geometric-card {
+                    clip-path: polygon(
+                        0 10%, 5% 10%, 5% 5%, 10% 5%, 10% 0,
+                        90% 0, 90% 5%, 95% 5%, 95% 10%, 100% 10%,
+                        100% 90%, 95% 90%, 95% 95%, 90% 95%, 90% 100%,
+                        10% 100%, 10% 95%, 5% 95%, 5% 90%, 0 90%
+                    );
+                }
+                @keyframes orbit {
+                    from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+                    to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+                }
+                .orbital-line {
+                    position: absolute;
+                    inset: -30px;
+                    border: 1.5px solid rgba(255, 46, 99, 0.2);
+                    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+                    pointer-events: none;
+                    animation: cyber-spin 18s linear infinite;
+                    box-shadow: 0 0 20px currentColor;
+                }
+                .orbital-line-alt {
+                    position: absolute;
+                    inset: -45px;
+                    border: 1px dashed rgba(255, 255, 255, 0.15);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    animation: cyber-spin-reverse 28s linear infinite;
+                }
+                .grid-texture {
+                    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+                    background-size: 40px 40px;
+                }
+                @keyframes ticker {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .ticker-content {
+                    display: flex;
+                    animation: ticker 30s linear infinite;
+                    white-space: nowrap;
+                }
                 @keyframes fadeInScale {
                     from { opacity: 0; transform: scale(0.95); }
                     to { opacity: 1; transform: scale(1); }
@@ -182,12 +267,6 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                         <div
                             className="absolute top-1/2 left-1/2 w-full h-full bg-cyber-red/10 blur-[180px] rounded-full"
                             style={{ animation: 'float-blob-center 5s ease-in-out infinite' }}
-                        />
-
-                        {/* Scanning line */}
-                        <div
-                            className="absolute left-0 w-full h-[2px] bg-cyber-red/20 blur-[2px] z-[1]"
-                            style={{ animation: 'scan-line 4s linear infinite' }}
                         />
 
                         {/* Reduced floating particles - 6 instead of 20 */}
@@ -228,11 +307,13 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
             </div>
 
 
-            <div className="w-full max-w-4xl max-h-[95vh] md:max-h-[90vh] bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-[30px] md:rounded-[40px] p-4 md:p-10 relative shadow-[0_0_100px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden"
+            <div className="w-full max-w-5xl h-[95vh] md:h-[90vh] bg-[#0c0c0c]/90 backdrop-blur-2xl border border-white/10 rounded-[40px] p-4 md:p-12 relative shadow-[0_40px_100px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden"
                 style={{
                     animation: 'fadeInScale 0.3s ease-out',
                 }}
             >
+                {/* Main Grid Texture */}
+                <div className="absolute inset-0 grid-texture pointer-events-none opacity-40" />
                 {/* Progress Bar */}
                 <div className="absolute top-0 left-0 w-full h-1.5 bg-white/5 overflow-hidden rounded-t-[30px] md:rounded-t-[40px]">
                     <div
@@ -245,52 +326,96 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 <div
                     className={`flex flex-col items-center h-full overflow-hidden transition-opacity duration-300 ${step === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none absolute'}`}
                 >
-                    <div className="text-center mb-4 md:mb-6 shrink-0">
-                        <div className="inline-flex p-2 md:p-3 rounded-2xl bg-cyber-red/10 text-cyber-red mb-2 md:mb-4 border border-cyber-red/20"
+                    <div className="flex flex-row items-center gap-4 md:gap-8 mb-4 md:mb-8 shrink-0 w-full px-2 md:px-6">
+                        <div className="inline-flex p-2 md:p-4 rounded-3xl bg-white/5 border border-white/10 shadow-glow overflow-hidden shrink-0"
                             style={{
                                 animation: step === 1 ? 'gentleRocket 4s ease-in-out infinite' : 'none'
                             }}
                         >
-                            <Rocket size={28} className="md:w-8 md:h-8" />
+                            <img src="/images/social-hub/logo.png" alt="CyberX Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain" />
                         </div>
-                        <h1 className="text-[10px] md:text-sm font-mono text-cyber-red tracking-[0.3em] uppercase mb-1">Кто ты в CYBERX?</h1>
-                        <h2 className="text-2xl md:text-5xl font-tactic text-white mb-1 md:mb-2 tracking-tighter uppercase whitespace-nowrap">ВЫБЕРИ СВОЕГО ГЕРОЯ</h2>
-                        <p className="text-gray-400 font-bold uppercase tracking-widest text-[8px] md:text-xs">Жми на любую медаль!</p>
+                        <div className="text-left flex-1 min-w-0">
+                            <h1 className="text-[10px] md:text-sm font-mono text-cyber-red tracking-[0.4em] uppercase mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,46,99,0.4)]">КТО ТЫ В CYBERX?</h1>
+                            <h2 className="text-2xl md:text-5xl font-tactic text-white mb-4 md:mb-6 tracking-tight uppercase leading-[0.9] drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">ВЫБЕРИ СВОЕГО <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-red via-orange-500 to-cyber-purple">ГЕРОЯ</span></h2>
+                            <button className="px-8 py-2 md:py-3 rounded-xl bg-gradient-to-r from-cyber-red to-orange-600 text-white font-mono text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,46,99,0.4)] border border-white/20">
+                                ИССЛЕДУЙ ПРЯМО СЕЙЧАС
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="flex-1 w-full overflow-y-auto custom-scrollbar pr-2 mb-2">
-                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3 md:gap-4 p-2">
+                    <div className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar pr-2 mb-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-12 p-8">
                             {AVATARS.map((avatar) => (
                                 <motion.div
                                     key={avatar.id}
                                     whileHover={{ scale: 1.15, zIndex: 10 }}
-                                    whileTap={{ scale: 0.9 }}
+                                    whileTap={{ scale: 0.95 }}
                                     onClick={() => handleAvatarSelect(avatar.id)}
                                     className="relative cursor-pointer group flex flex-col items-center"
                                 >
-                                    <div className="relative p-0.5 rounded-full transition-all duration-300">
-                                        {/* Rainbow/Colorful Glow */}
-                                        <div
-                                            className={`absolute -inset-1 rounded-full opacity-40 group-hover:opacity-100 blur-[10px] transition-all duration-500 active-medallion`}
-                                            style={{
-                                                background: `conic-gradient(from 0deg, ${avatar.color}, #ffffff, ${avatar.color})`,
-                                                boxShadow: `0 0 20px ${avatar.color}44`
-                                            }}
-                                        />
-
-                                        <div className={`relative w-full aspect-square rounded-full overflow-hidden border-2 bg-black/40 shimmer-effect ${selectedAvatar === avatar.id ? 'border-white scale-110' : 'border-white/20'
-                                            }`}>
+                                    <div className="relative p-2 transition-all duration-300">
+                                        {/* Orbital Lines System */}
+                                        <div className="orbital-line" style={{ color: `${avatar.color}44`, borderColor: 'currentColor' }} />
+                                        <div className="orbital-line-alt" />
+                                        
+                                        <div className={`relative w-full aspect-square bg-[#0a0a0a] geometric-card transition-all duration-500 overflow-hidden ${
+                                            selectedAvatar === avatar.id 
+                                            ? 'scale-110 shadow-[0_0_60px_rgba(255,46,99,0.25)] border-white/40' 
+                                            : 'opacity-70 grayscale-[30%] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 border-white/5'
+                                        }`}
+                                        >
+                                            {/* Notched Borders Overlay */}
+                                            <div className={`absolute inset-0 border-[3px] transition-all duration-300 geometric-card ${
+                                                selectedAvatar === avatar.id ? 'border-white' : 'border-white/10 group-hover:border-white/30'
+                                            }`} />
+                                            
+                                            {/* Vivid Glow Layers */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-white/5" />
+                                            <div className="absolute inset-0" style={{ 
+                                                background: `radial-gradient(circle at center, ${avatar.color}33 0%, transparent 70%)`,
+                                                opacity: selectedAvatar === avatar.id ? 1 : 0.5
+                                            }} />
+                                            
                                             <img
                                                 src={`/images/social-hub/${avatar.id}.png`}
                                                 alt={avatar.name}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover relative z-10 brightness-110 contrast-110"
                                             />
+                                            
+                                            {/* Shimmer on hover */}
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12 z-20" />
                                         </div>
                                     </div>
-                                    <p className="text-[8px] text-center mt-2 font-bold uppercase tracking-tight text-gray-400 group-hover:text-white transition-colors duration-300 leading-tight">
-                                        {avatar.name}
-                                    </p>
+                                    <div className="mt-6 px-4 py-2 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-300 flex items-center gap-3 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+                                        <div
+                                            className="w-2 h-2 rounded-full shadow-[0_0_12px_currentColor]"
+                                            style={{ color: avatar.color, backgroundColor: avatar.color }}
+                                        />
+                                        <p className="text-[13px] md:text-[14px] font-mono font-bold uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors duration-300 leading-none">
+                                            {avatar.name}
+                                        </p>
+                                    </div>
                                 </motion.div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Partners Ticker */}
+                    <div className="w-full overflow-hidden bg-black/40 border-y border-white/5 py-3 mt-auto shrink-0">
+                        <div className="ticker-content gap-12 text-[10px] items-center">
+                            {[1, 2, 3].map((_, setIdx) => (
+                                <div key={setIdx} className="flex gap-12 items-center text-gray-500 font-mono font-black uppercase tracking-[0.4em] opacity-40">
+                                    <span>CYBERX</span>
+                                    <span className="text-cyber-red">●</span>
+                                    <span>INTEL</span>
+                                    <span className="text-cyber-purple">●</span>
+                                    <span>NVIDIA</span>
+                                    <span>●</span>
+                                    <span>RAZER</span>
+                                    <span>●</span>
+                                    <span>ASUS ROG</span>
+                                    <span>●</span>
+                                </div>
                             ))}
                         </div>
                     </div>

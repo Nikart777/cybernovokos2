@@ -22,16 +22,16 @@ const STICKERS = [
 
 const ADMINS = {
     novokosino: [
-        { id: 'n_ivan', name: 'Иван', role: 'Senior Admin', bio: 'Любит шутеры и энергетики. Всегда разрулит любой вопрос.', avatar: 'ape' },
-        { id: 'n_grigory', name: 'Григорий', role: 'Технический Гуру', bio: 'Чинит ПК силой мысли. Мастер разгона мониторов.', avatar: 'brain' },
-        { id: 'n_alexey', name: 'Алексей', role: 'Community Lead', bio: 'Самый дружелюбный админ. Знает всех по именам.', avatar: 'cat' },
+        { id: 'n_ivan', name: 'Иван', role: 'Good Admin', bio: 'Любит шутеры и энергетики. Всегда разрулит любой вопрос. Ночной администратор', avatar: 'ape' },
+        { id: 'n_grigory', name: 'Григорий', role: 'Технический Гуру', bio: 'Чинит ПК силой мысли. Мастер разгона мониторов. Дневной администратор', avatar: 'brain' },
+        { id: 'n_alexey', name: 'Алексей', role: 'Community Lead', bio: 'Самый дружелюбный админ. Знает всех по именам. Дневной администратор', avatar: 'cat' },
         { id: 'n_artem', name: 'Артем', role: 'Ночной Страж', bio: 'Правит ночными сменами. Железная дисциплина и порядок.', avatar: 'robot' }
     ],
     altufievo: [
-        { id: 'a_bato', name: 'Бато', role: 'Club Manager', bio: 'Стратег и про-игрок в Dota 2. Строит лучший сервис.', avatar: 'pepe' },
-        { id: 'a_alexander', name: 'Железный Алекс', role: 'Hardware Guru', bio: 'Знает всё про RTX 4090. Твой конфиг в надежных руках.', avatar: 'fire' },
-        { id: 'a_igor', name: 'Игорь', role: 'Tournament Lead', bio: 'Организатор турниров. За честную игру и жесткий скилл.', avatar: 'dog' },
-        { id: 'a_ekaterina', name: 'Екатерина', role: 'Hospitality Lead', bio: 'Поможет найти идеальное место. Улыбка и уют клуба.', avatar: 'pepe' }
+        { id: 'a_bato', name: 'Бато', role: 'Club Manager', bio: 'Стратег и про-игрок в Dota 2. Строит лучший сервис. Дневной администратор', avatar: 'pepe' },
+        { id: 'a_alexander', name: 'Железный Алекс', role: 'Hardware Guru', bio: 'Знает всё про RTX 4090. Твой конфиг в надежных руках. Ночной администратор', avatar: 'fire' },
+        { id: 'a_igor', name: 'Игорь', role: 'Tournament Lead', bio: 'Организатор турниров. За честную игру и жесткий скилл. Дневной администратор', avatar: 'dog' },
+        { id: 'a_ekaterina', name: 'Екатерина', role: 'Hospitality Lead', bio: 'Поможет найти идеальное место. Улыбка и уют клуба. Ночной администратор', avatar: 'pepe' }
     ]
 };
 
