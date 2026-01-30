@@ -152,8 +152,15 @@ export default function RootLayout({
         <html lang="ru" className={`${tacticSans.variable} ${chakra.variable} ${inter.variable}`}>
             <head>
                 <SchemaMarkup schema={businessSchema} />
-                {/* Yandex.Metrika counter */}
-                <Script id="yandex-metrika" strategy="afterInteractive">
+
+                {/* Resource Hints for Performance */}
+                <link rel="preconnect" href="https://mc.yandex.ru" />
+                <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+                {/* Yandex.Metrika counter - Optimized loading */}
+                <Script id="yandex-metrika" strategy="lazyOnload">
                     {`
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
