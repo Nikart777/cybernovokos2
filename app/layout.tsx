@@ -134,8 +134,18 @@ export default function RootLayout({
             "closes": "23:59"
         },
         "sameAs": [
-            "https://vk.com/cyberx_novokosino"
-        ]
+            "https://t.me/CyberXNovokos",
+            "https://t.me/cyberxn32",
+            "https://vk.com/club224403383",
+            "https://www.tiktok.com/@cyberxnovokosino",
+            "https://yandex.ru/maps/-/CPA4UJ~I",
+            "https://go.2gis.com/EjmFC"
+        ],
+        "parentOrganization": {
+            "@type": "Organization",
+            "name": "CyberX Community",
+            "url": "https://cyberxcommunity.ru"
+        }
     };
 
     return (

@@ -34,6 +34,45 @@ const contactMethods = [
     }
 ];
 
+const socialLinks = [
+    {
+        name: 'Telegram канал',
+        url: 'https://t.me/CyberXNovokos',
+        icon: 'telegram',
+        color: '#FF2E63'
+    },
+    {
+        name: 'Telegram чат',
+        url: 'https://t.me/cyberxn32',
+        icon: 'telegram',
+        color: '#00F0FF'
+    },
+    {
+        name: 'VKontakte',
+        url: 'https://vk.com/club224403383',
+        icon: 'vk',
+        color: '#0077FF'
+    },
+    {
+        name: 'TikTok',
+        url: 'https://www.tiktok.com/@cyberxnovokosino',
+        icon: 'tiktok',
+        color: '#FF2E63'
+    },
+    {
+        name: 'Яндекс.Карты',
+        url: 'https://yandex.ru/maps/-/CPA4UJ~I',
+        icon: 'yandex',
+        color: '#FFCC00'
+    },
+    {
+        name: '2GIS',
+        url: 'https://go.2gis.com/EjmFC',
+        icon: '2gis',
+        color: '#00D664'
+    }
+];
+
 export default function Contacts() {
     return (
         <section id="contacts" className="py-24 bg-[#050505] relative overflow-hidden">
@@ -133,6 +172,41 @@ export default function Contacts() {
                                 Чат с админом
                             </button>
                         </div>
+
+                        {/* Social Media Block */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-12 bg-gradient-to-br from-[#FF2E63]/10 to-[#B900FF]/10 border border-[#FF2E63]/30 p-8 rounded-3xl backdrop-blur-sm"
+                        >
+                            <h3 className="font-tactic font-black text-2xl uppercase text-white mb-6 flex items-center gap-3">
+                                <span className="text-[#FF2E63]">•</span>
+                                Мы в соцсетях
+                            </h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                {socialLinks.map((social, idx) => (
+                                    <motion.a
+                                        key={idx}
+                                        href={social.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: idx * 0.05 }}
+                                        viewport={{ once: true }}
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        className="bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-2xl hover:border-white/30 transition-all group flex flex-col items-center justify-center text-center gap-2"
+                                        title={social.name}
+                                    >
+                                        <SocialIcon icon={social.icon} color={social.color} />
+                                        <span className="font-chakra font-bold text-[9px] text-white/60 uppercase tracking-widest group-hover:text-white transition-colors">
+                                            {social.name}
+                                        </span>
+                                    </motion.a>
+                                ))}
+                            </div>
+                        </motion.div>
                     </div>
 
                     <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-[40px] overflow-hidden border border-white/10 group">
@@ -149,4 +223,43 @@ export default function Contacts() {
             </div>
         </section>
     );
+}
+
+function SocialIcon({ icon, color }: { icon: string; color: string }) {
+    const size = 28;
+
+    switch (icon) {
+        case 'telegram':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ color }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.52-.46-.01-1.33-.26-1.98-.48-.8-.27-1.43-.42-1.37-.89.03-.25.38-.51 1.03-.78 4.04-1.75 6.73-2.91 8.07-3.48 3.84-1.63 4.63-1.91 5.15-1.92.12 0 .38.03.55.17.14.12.18.28.2.44.02.1.02.21.01.29z" />
+                </svg>
+            );
+        case 'vk':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ color }}>
+                    <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.523-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z" />
+                </svg>
+            );
+        case 'tiktok':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ color }}>
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
+            );
+        case 'yandex':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ color }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+                </svg>
+            );
+        case '2gis':
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ color }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 13.5c0 .83-.67 1.5-1.5 1.5H14v-2h1.5c.28 0 .5-.22.5-.5V13h-2.5c-.83 0-1.5-.67-1.5-1.5v-2c0-.83.67-1.5 1.5-1.5h3c.83 0 1.5.67 1.5 1.5v6zm-10 0V13H5.5c-.28 0-.5.22-.5.5v1h2V16H5.5c-.83 0-1.5-.67-1.5-1.5v-2C4 11.67 4.67 11 5.5 11h3c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5H7zm7-5.5h-2v1h2v-1z" />
+                </svg>
+            );
+        default:
+            return null;
+    }
 }

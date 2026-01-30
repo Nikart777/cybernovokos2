@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     },
 };
 
+// Force static generation for simracing page (content is static)
+export const dynamic = 'force-static';
+
 export default function SimracingPage() {
     const simracingSchema = {
         "@context": "https://schema.org",

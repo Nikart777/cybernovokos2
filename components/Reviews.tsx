@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Quote, MapPin, Gamepad2, Clock, Trophy, Star, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const reviews = [
   {
@@ -154,7 +155,13 @@ function ReviewCard({ review }: { review: any }) {
               <div className="absolute inset-0 rounded-full border-2 border-dashed animate-[spin_10s_linear_infinite] opacity-30"
                 style={{ borderColor: review.color }} />
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#1a1a1a] shadow-lg relative z-10">
-                <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
+                <Image
+                  src={review.avatar}
+                  alt={review.name}
+                  width={56}
+                  height={56}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div>

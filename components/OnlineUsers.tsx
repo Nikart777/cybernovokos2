@@ -5,6 +5,7 @@ import { socketClient, ConnectedUser } from '@/lib/socket-client';
 import { Users, Swords } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ClubBadge from './ClubBadge';
+import Image from 'next/image';
 
 interface OnlineUsersProps {
     onChallengeClick?: (targetUser: ConnectedUser) => void;
@@ -89,9 +90,11 @@ export default function OnlineUsers({ onChallengeClick }: OnlineUsersProps) {
                                 <div className="flex items-center gap-3 flex-1 min-w-0">
                                     {/* Avatar Thumbnail */}
                                     <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 bg-black/40 border-2 border-white/5">
-                                        <img
+                                        <Image
                                             src={`/images/social-hub/${(user.avatar && user.avatar !== 'undefined') ? user.avatar : 'cat'}.png`}
                                             alt="avatar"
+                                            width={36}
+                                            height={36}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
                                                 (e.target as HTMLImageElement).src = '/images/social-hub/cat.png';

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     },
 };
 
+// ISR: Revalidate every 60 seconds for fresh pricing data while maintaining SEO-friendly HTML
+export const revalidate = 60;
+
 const faqItems = [
     {
         iconKey: 'credit-card',
