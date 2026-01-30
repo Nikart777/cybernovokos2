@@ -167,7 +167,21 @@
       "joiner_pc": null,
       "status": "waiting",
       "created_at": 1769252434564
+    },
+    {
+      "creator_nick": "67",
+      "creator_pc": "0",
+      "game": "CS2",
+      "bet_amount": "200",
+      "bet_item": null,
+      "rules": null,
+      "team_size": 1,
+      "id": 24,
+      "joiner_nick": null,
+      "joiner_pc": null,
+      "status": "waiting",
+      "created_at": 1769780537923
     }
   ],
-  "lastId": 23
+  "lastId": 24
 }
