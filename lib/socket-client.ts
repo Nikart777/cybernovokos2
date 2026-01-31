@@ -42,12 +42,15 @@ class SocketClient {
     private nickname: string = '';
     private avatar: string = 'cat';
     private club: 'vlasino' | 'altufievo' | 'neutral' = 'neutral';
-    private currentChannel: string = 'general';
+    private currentChannel: string = '';
     private isAdmin: boolean = false;
     private reconnectAttempts = 0;
     private maxReconnectAttempts = 5;
     private userCount: number = 0;
     private userList: ConnectedUser[] = [];
+    private unreadCounts: Record<string, number> = {};
+    private unreadCallbacks: Set<(counts: Record<string, number>) => void> = new Set();
+    private isTrackingUnread = false;
 
     constructor() {
         this.initializeUserId();
@@ -80,6 +83,12 @@ class SocketClient {
             return;
         }
 
+        if (this.socket) {
+            // Already initializing, just add the listener
+            if (onConnected) this.socket.once('connect', onConnected);
+            return;
+        }
+
         const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://socket.cyberx-novokosino.ru';
         this.socket = io(SERVER_URL, {
             reconnection: true,
@@ -87,6 +96,10 @@ class SocketClient {
             reconnectionAttempts: this.maxReconnectAttempts,
             transports: ['websocket'] // Critical for HTTPS -> HTTP bypass
         });
+
+        if (onConnected) {
+            this.socket.once('connect', onConnected);
+        }
 
         // Global listeners to cache stats and notify subscribers
         this.socket.on('users:count', (count: number) => {
@@ -159,6 +172,9 @@ class SocketClient {
     switchChannel(channel: string) {
         console.log(`[SocketClient] Switching to channel: ${channel}`);
         this.currentChannel = channel;
+        // Reset unread for this channel automatically
+        this.resetUnread(channel);
+
         if (this.socket?.connected) {
             console.log(`[SocketClient] Emitting channel:switch event for ${channel}`);
             this.socket.emit('channel:switch', { channel });
@@ -211,11 +227,7 @@ class SocketClient {
     }
 
     onMessageHistory(callback: (data: { channel: string; messages: ChatMessage[] }) => void) {
-        console.log('[SocketClient] Registering message:history listener');
-        this.socket?.on('message:history', (data: { channel: string; messages: ChatMessage[] }) => {
-            console.log(`[SocketClient] Received message:history for channel ${data.channel}:`, data.messages.length, 'messages');
-            callback(data);
-        });
+        this.socket?.on('message:history', callback);
     }
 
     onNewMessage(callback: (message: ChatMessage) => void) {
@@ -274,8 +286,90 @@ class SocketClient {
         this.socket.emit('users:get');
     }
 
-    off(event: string) {
-        this.socket?.off(event);
+    off(event: string, callback?: any) {
+        if (callback) {
+            this.socket?.off(event, callback);
+        } else {
+            this.socket?.off(event);
+        }
+    }
+
+    // Unread and Global tracking logic
+    public startGlobalTracking(channels: { id: string }[]) {
+        if (this.isTrackingUnread) return;
+        this.isTrackingUnread = true;
+
+        console.log('[SocketClient] Starting global unread tracking for:', channels.map(c => c.id).join(', '));
+
+        // Listen for all new messages globally
+        this.socket?.on('message:new', (message: ChatMessage) => {
+            const channelId = message.channel || 'general';
+
+            console.log(`[SocketClient] Global tracker caught message in #${channelId}. Current: #${this.currentChannel}`);
+
+            // Only increment if it's NOT the current channel
+            if (channelId !== this.currentChannel) {
+                this.unreadCounts[channelId] = (this.unreadCounts[channelId] || 0) + 1;
+                console.log(`[SocketClient] Incremented unread for #${channelId}: ${this.unreadCounts[channelId]}`);
+                this.notifyUnreadUpdate();
+            }
+        });
+
+        // Listen for history to initialize counts
+        this.socket?.on('message:history', (data: { channel: string; messages: ChatMessage[] }) => {
+            // If we are currently initialized via history for a channel we are NOT in
+            if (data.channel !== this.currentChannel) {
+                console.log(`[SocketClient] Global tracker processing history for #${data.channel}: ${data.messages.length} messages`);
+                // We use historical count as "unread" for a fresh session
+                if (!this.unreadCounts[data.channel] || this.unreadCounts[data.channel] < data.messages.length) {
+                    this.unreadCounts[data.channel] = data.messages.length;
+                    this.notifyUnreadUpdate();
+                }
+            }
+        });
+
+        // Fetch initial history for all channels to populate counters
+        const fetchHistory = () => {
+            console.log('[SocketClient] Fetching initial history for all channels...');
+            channels.forEach((ch, index) => {
+                setTimeout(() => {
+                    if (this.socket?.connected) {
+                        console.log(`[SocketClient] Background history check for #${ch.id}`);
+                        this.socket.emit('channel:switch', { channel: ch.id });
+                    }
+                }, index * 100);
+            });
+        };
+
+        if (this.socket?.connected) {
+            fetchHistory();
+        } else {
+            console.log('[SocketClient] Tracking started but socket not connected. Waiting for connect event...');
+            this.socket?.once('connect', fetchHistory);
+        }
+    }
+
+    public getUnreadCounts() {
+        return { ...this.unreadCounts };
+    }
+
+    public onUnreadUpdate(callback: (counts: Record<string, number>) => void) {
+        this.unreadCallbacks.add(callback);
+        // Immediate call with current values
+        callback(this.getUnreadCounts());
+        return () => this.unreadCallbacks.delete(callback);
+    }
+
+    private notifyUnreadUpdate() {
+        const counts = this.getUnreadCounts();
+        this.unreadCallbacks.forEach(cb => cb(counts));
+    }
+
+    public resetUnread(channelId: string) {
+        if (this.unreadCounts[channelId]) {
+            delete this.unreadCounts[channelId];
+            this.notifyUnreadUpdate();
+        }
     }
 
     startTyping() {

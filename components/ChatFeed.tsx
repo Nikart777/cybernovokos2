@@ -163,54 +163,54 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
             console.log('[ChatFeed] Socket connected, registering listeners');
             setIsConnected(true);
 
-            // Clear old listeners first (inside connect callback)
-            socketClient.off('message:history');
-            socketClient.off('message:new');
-            socketClient.off('user:typing');
-            socketClient.off('admin:likes_update');
-
-            // Listen for message history
-            socketClient.onMessageHistory(({ channel, messages: history }) => {
+            // 1. Define handlers
+            const historyHandler = ({ channel, messages: history }: any) => {
                 console.log(`[ChatFeed] Received history for #${channel}:`, history.length, 'messages');
-                // For news/market, we prioritize RSS, but keep history if socket sends it (e.g. mixed content)
-                // actually, for news/market we might want to IGNORE socket history if we trust RSS fully,
-                // OR we merge them. For simplicity, let's treat RSS as the "history" for these channels.
-                if (channel !== 'news' && channel !== 'market') {
+                if (channel === channelId) {
                     setMessages(history);
                     setTimeout(scrollToBottom, 100);
                 }
-                // Enabling socket history for news/market to unify data source
-                if (channel === 'news' || channel === 'market') {
-                    setMessages(history);
-                    setTimeout(scrollToBottom, 100);
+            };
+
+            const newMessageHandler = (message: any) => {
+                if (message.channel === channelId) {
+                    console.log(`[ChatFeed] Received new message in #${message.channel}`);
+                    setMessages((prev) => {
+                        if (prev.find(m => m.id === message.id)) return prev;
+                        return [...prev, message];
+                    });
+                    setTimeout(scrollToBottom, 50);
                 }
-            });
+            };
 
-            // Listen for new messages
-            socketClient.onNewMessage((message) => {
-                console.log(`[ChatFeed] Received new message in #${message.channel}:`, message.text?.substring(0, 30));
-                setMessages((prev) => {
-                    if (prev.find(m => m.id === message.id)) return prev;
-                    return [...prev, message];
-                });
-                setTimeout(scrollToBottom, 50);
-            });
-
-            // Listen for typing indicators
-            socketClient.onUserTyping(({ userId, typing }) => {
+            const typingHandler = ({ userId, typing }: any) => {
                 setTypingUsers((prev) => {
                     const next = new Set(prev);
                     if (typing) next.add(userId);
                     else next.delete(userId);
                     return next;
                 });
-            });
+            };
 
-            socketClient.onAdminLikesUpdate((counts) => {
+            const likesHandler = (counts: any) => {
                 setAdminLikes(prev => ({ ...prev, ...counts }));
-            });
+            };
+
+            // 2. Register listeners (Surgically)
+            socketClient.onMessageHistory(historyHandler);
+            socketClient.onNewMessage(newMessageHandler);
+            socketClient.onUserTyping(typingHandler);
+            socketClient.onAdminLikesUpdate(likesHandler);
 
             socketClient.getAdminLikes();
+
+            // 3. Store for cleanup
+            return () => {
+                socketClient.off('message:history', historyHandler);
+                socketClient.off('message:new', newMessageHandler);
+                socketClient.off('user:typing', typingHandler);
+                socketClient.off('admin:likes_update', likesHandler);
+            };
         });
 
         socketClient.onChatCleared(() => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Hash } from 'lucide-react';
 
 export interface Channel {
@@ -28,9 +28,11 @@ const CHANNELS: Channel[] = [
 interface ChannelSwitcherProps {
     currentChannel: string;
     onChannelChange: (channelId: string) => void;
+    unreadCounts?: Record<string, number>;
 }
 
-export default function ChannelSwitcher({ currentChannel, onChannelChange }: ChannelSwitcherProps) {
+export default function ChannelSwitcher({ currentChannel, onChannelChange, unreadCounts = {} }: ChannelSwitcherProps) {
+    console.log('[ChannelSwitcher] Rendering with unreadCounts:', unreadCounts);
     const categories = {
         social: CHANNELS.filter(c => c.category === 'social'),
         info: CHANNELS.filter(c => c.category === 'info'),
@@ -54,6 +56,7 @@ export default function ChannelSwitcher({ currentChannel, onChannelChange }: Cha
                                 key={channel.id}
                                 channel={channel}
                                 isActive={currentChannel === channel.id}
+                                unreadCount={unreadCounts?.[channel.id] || 0}
                                 onClick={() => onChannelChange(channel.id)}
                             />
                         ))}
@@ -69,6 +72,7 @@ export default function ChannelSwitcher({ currentChannel, onChannelChange }: Cha
                                 key={channel.id}
                                 channel={channel}
                                 isActive={currentChannel === channel.id}
+                                unreadCount={unreadCounts?.[channel.id] || 0}
                                 onClick={() => onChannelChange(channel.id)}
                             />
                         ))}
@@ -84,6 +88,7 @@ export default function ChannelSwitcher({ currentChannel, onChannelChange }: Cha
                                 key={channel.id}
                                 channel={channel}
                                 isActive={currentChannel === channel.id}
+                                unreadCount={unreadCounts?.[channel.id] || 0}
                                 onClick={() => onChannelChange(channel.id)}
                             />
                         ))}
@@ -97,26 +102,41 @@ export default function ChannelSwitcher({ currentChannel, onChannelChange }: Cha
 interface ChannelButtonProps {
     channel: Channel;
     isActive: boolean;
+    unreadCount: number;
     onClick: () => void;
 }
 
-function ChannelButton({ channel, isActive, onClick }: ChannelButtonProps) {
+function ChannelButton({ channel, isActive, unreadCount, onClick }: ChannelButtonProps) {
     return (
         <motion.button
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.98 }}
             onClick={onClick}
-            className={`w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-left transition-all ${isActive
+            className={`w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-left transition-all relative overflow-hidden ${isActive
                 ? 'bg-cyber-red/20 text-cyber-red border border-cyber-red/30 shadow-[0_0_15px_rgba(255,46,99,0.2)]'
                 : 'text-gray-400 hover:bg-white/5 hover:text-white'
                 }`}
         >
             <span className="text-base">{channel.emoji}</span>
-            <span className="text-xs font-bold uppercase tracking-wide">{channel.name}</span>
+            <span className="text-xs font-bold uppercase tracking-wide flex-1">{channel.name}</span>
+
+            <AnimatePresence>
+                {unreadCount > 0 && !isActive && (
+                    <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0, opacity: 0 }}
+                        className="bg-cyber-red text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,46,99,0.6)] border border-white/20"
+                    >
+                        {unreadCount > 99 ? '99+' : unreadCount}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {isActive && (
                 <motion.div
                     layoutId="active-channel"
-                    className="ml-auto w-2 h-2 rounded-full bg-cyber-red"
+                    className="w-2 h-2 rounded-full bg-cyber-red shadow-[0_0_8px_rgba(255,46,99,0.8)]"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
             )}

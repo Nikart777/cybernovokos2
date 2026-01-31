@@ -7,6 +7,7 @@ import { Rocket, User, CheckCircle2, MapPin, Sparkles, Gift, MessageSquare, Swor
 
 interface OnboardingProps {
     onComplete: () => void;
+    totalUnread?: number;
 }
 
 const AVATARS = [
@@ -31,11 +32,12 @@ const CLUBS = [
     { id: 'vlasino', name: 'Новокосино', color: '#B900FF' }
 ];
 
-export default function Onboarding({ onComplete }: OnboardingProps) {
+export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingProps) {
     const [step, setStep] = useState(1);
     const [selectedAvatar, setSelectedAvatar] = useState('');
     const [nickname, setNickname] = useState('');
     const [selectedClub, setSelectedClub] = useState('altufievo');
+    const [hasAttemptedProceed, setHasAttemptedProceed] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Auto-focus input on step 2
@@ -47,6 +49,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
 
     const handleAvatarSelect = (id: string) => {
         setSelectedAvatar(id);
+        setHasAttemptedProceed(false); // Reset attempt state on selection
         // Auto-advance to Step 2 after a small delay for visual feedback
         setTimeout(() => setStep(2), 300);
     };
@@ -337,14 +340,84 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                         <div className="text-left flex-1 min-w-0">
                             <h1 className="text-[10px] md:text-sm font-mono text-cyber-red tracking-[0.4em] uppercase mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,46,99,0.4)]">КТО ТЫ В CYBERX?</h1>
                             <h2 className="text-2xl md:text-5xl font-tactic text-white mb-4 md:mb-6 tracking-tight uppercase leading-[0.9] drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">ВЫБЕРИ СВОЕГО <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-red via-orange-500 to-cyber-purple">ГЕРОЯ</span></h2>
-                            <button className="px-8 py-2 md:py-3 rounded-xl bg-gradient-to-r from-cyber-red to-orange-600 text-white font-mono text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 hover:brightness-110 active:scale-95 transition-all shadow-[0_10px_30px_rgba(255,46,99,0.4)] border border-white/20">
-                                ИССЛЕДУЙ ПРЯМО СЕЙЧАС
-                            </button>
+
+                            <motion.button
+                                animate={(totalUnread && totalUnread > 0) || true ? {
+                                    scale: [1, 1.05, 1],
+                                    boxShadow: [
+                                        "0 10px 30px rgba(255,46,99,0.4)",
+                                        "0 15px 45px rgba(255,46,99,0.7)",
+                                        "0 10px 30px rgba(255,46,99,0.4)"
+                                    ]
+                                } : {}}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                onClick={() => {
+                                    if (step === 1) {
+                                        if (selectedAvatar) {
+                                            setStep(2);
+                                        } else {
+                                            // Record that user tried to proceed without selection
+                                            setHasAttemptedProceed(true);
+
+                                            // Visual feedback that selection is needed
+                                            const grid = document.getElementById('hero-grid');
+                                            if (grid) {
+                                                grid.animate([
+                                                    { transform: 'translateX(0)' },
+                                                    { transform: 'translateX(-5px)' },
+                                                    { transform: 'translateX(5px)' },
+                                                    { transform: 'translateX(-5px)' },
+                                                    { transform: 'translateX(5px)' },
+                                                    { transform: 'translateX(0)' }
+                                                ], { duration: 400 });
+                                            }
+                                        }
+                                    }
+                                }}
+                                className="relative px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-cyber-red to-orange-600 text-white font-mono text-[11px] md:text-sm font-black uppercase tracking-[0.2em] transition-all border border-white/20 overflow-hidden group/btn"
+                            >
+                                <span className="relative z-10 flex items-center gap-3">
+                                    {(() => {
+                                        // Stable daily random count for "wow" effect (30-45)
+                                        const today = new Date().toISOString().split('T')[0];
+                                        const hash = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                                        const dailyCount = 30 + (hash % 16);
+
+                                        const count = totalUnread && totalUnread > 0 ? totalUnread : dailyCount;
+
+                                        const getPluralWord = (n: number) => {
+                                            const last = n % 10;
+                                            const last100 = n % 100;
+                                            if (last === 1 && last100 !== 11) return 'НЕПРОЧИТАННОЕ СООБЩЕНИЕ';
+                                            if ([2, 3, 4].includes(last) && ![12, 13, 14].includes(last100)) return 'НЕПРОЧИТАННЫХ СООБЩЕНИЯ';
+                                            return 'НЕПРОЧИТАННЫХ СООБЩЕНИЙ';
+                                        };
+
+                                        return (
+                                            <>
+                                                {hasAttemptedProceed && !selectedAvatar ? (
+                                                    <span className="text-white/60">ВЫБЕРИ ГЕРОЯ, ЧТОБЫ ВОЙТИ</span>
+                                                ) : (
+                                                    <>
+                                                        <span className="flex h-3 w-3 relative">
+                                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                                            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                                                        </span>
+                                                        У ВАС {count} {getPluralWord(count)}
+                                                    </>
+                                                )}
+                                            </>
+                                        );
+                                    })()}
+                                </span>
+                                {/* Background shimmer on the button */}
+                                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full ${selectedAvatar ? 'group-hover/btn:animate-[shimmer_1.5s_infinite]' : ''}`} />
+                            </motion.button>
                         </div>
                     </div>
 
                     <div className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar pr-2 mb-2">
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-12 p-8">
+                        <div id="hero-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-12 p-8">
                             {AVATARS.map((avatar) => (
                                 <motion.div
                                     key={avatar.id}

@@ -24,6 +24,12 @@ const ADMIN_TIPS = [
     "Ставь на кон только то, что готов проиграть."
 ];
 
+const CHANNELS = [
+    { id: 'general' }, { id: 'cs2' }, { id: 'valorant' }, { id: 'dota2' },
+    { id: 'news' }, { id: 'reviews' }, { id: 'suggestions' }, { id: 'rules' },
+    { id: 'market' }, { id: 'arena' }, { id: 'admins' }
+];
+
 export default function SocialHubPage() {
     const [showChallengeModal, setShowChallengeModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState<ConnectedUser | null>(null);
@@ -33,6 +39,7 @@ export default function SocialHubPage() {
     const [incomingChallenge, setIncomingChallenge] = useState<ChallengeSyncData | null>(null);
     const [acceptedChallenge, setAcceptedChallenge] = useState<{ acceptor: string, acceptorPc?: string } | null>(null);
     const [currentChannel, setCurrentChannel] = useState('general');
+    const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -63,8 +70,19 @@ export default function SocialHubPage() {
             setTimeout(() => setAcceptedChallenge(null), 10000);
         });
 
+        // Use SocketClient's internal unread tracking
+        const unsubscribe = socketClient.onUnreadUpdate((counts) => {
+            console.log('[SocialHubPage] Received unread update:', counts);
+            setUnreadCounts(counts);
+        });
+
+        socketClient.connect(() => {
+            // Start global tracking once connected
+            socketClient.startGlobalTracking(CHANNELS);
+        });
+
         return () => {
-            // Clean up
+            unsubscribe();
         };
     }, []);
 
@@ -79,7 +97,9 @@ export default function SocialHubPage() {
         setShowOnboarding(false);
         setCurrentUserId(nick);
         setCurrentAvatar(avatar);
-        socketClient.connect();
+        socketClient.connect(() => {
+            socketClient.switchChannel('general');
+        });
     };
 
     const handleLogout = () => {
@@ -96,6 +116,7 @@ export default function SocialHubPage() {
 
     const handleChannelChange = (channelId: string) => {
         setCurrentChannel(channelId);
+        // Switch channel in socket client - this also resets unread count internally
         socketClient.switchChannel(channelId);
     };
 
@@ -130,9 +151,13 @@ export default function SocialHubPage() {
         }
     };
 
+    const totalUnread = Object.entries(unreadCounts)
+        .filter(([id]) => id !== 'news' && id !== 'market')
+        .reduce((acc, [_, count]) => acc + count, 0);
+
     return (
         <div className="fixed inset-0 bg-cyber-bg text-white font-chakra bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-cyber-bg to-cyber-bg selection:bg-cyber-red selection:text-white flex flex-col overflow-hidden h-screen w-screen">
-            {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
+            {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} totalUnread={totalUnread} />}
 
             <AnimatePresence>
                 {incomingChallenge && (
@@ -212,7 +237,11 @@ export default function SocialHubPage() {
                     <div className="lg:col-span-2 h-full overflow-hidden flex flex-col"><OnlineUsers onChallengeClick={handleChallengeClick} /></div>
                     <div className="lg:col-span-8 h-full overflow-hidden flex flex-col"><ChatFeed channelId={currentChannel} /></div>
                     <div className="lg:col-span-2 h-full overflow-hidden flex flex-col">
-                        <ChannelSwitcher currentChannel={currentChannel} onChannelChange={handleChannelChange} />
+                        <ChannelSwitcher
+                            currentChannel={currentChannel}
+                            onChannelChange={handleChannelChange}
+                            unreadCounts={unreadCounts}
+                        />
                     </div>
                 </div>
             </main>
