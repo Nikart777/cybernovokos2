@@ -31,7 +31,7 @@ const ADMINS = {
         { id: 'a_bato', name: 'Бато', role: 'Club Manager', bio: 'Стратег и про-игрок в Dota 2. Строит лучший сервис. Дневной администратор', avatar: 'pepe' },
         { id: 'a_alexander', name: 'Железный Алекс', role: 'Hardware Guru', bio: 'Знает всё про RTX 4090. Твой конфиг в надежных руках. Ночной администратор', avatar: 'fire' },
         { id: 'a_igor', name: 'Игорь', role: 'Tournament Lead', bio: 'Организатор турниров. За честную игру и жесткий скилл. Дневной администратор', avatar: 'dog' },
-        { id: 'a_ekaterina', name: 'Екатерина', role: 'Hospitality Lead', bio: 'Поможет найти идеальное место. Улыбка и уют клуба. Ночной администратор', avatar: 'pepe' }
+        { id: 'a_ekaterina', name: 'Екатерина', role: 'Hospitality Lead', bio: 'Поможет найти идеальное место. Улыбка и уют клуба. Ночной администратор', avatar: 'katya' }
     ]
 };
 
