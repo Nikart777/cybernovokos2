@@ -13,18 +13,18 @@ interface OnboardingProps {
 const AVATARS = [
     { id: '1', name: 'Пепе-интеллигент', color: '#4ADE80' },
     { id: '2', name: 'Катка-до-утра', color: '#60A5FA' },
-    { id: '3', name: 'Лягух-банкрот', color: '#9CA3AF' },
-    { id: '4', name: 'Хардбасс-3ночи', color: '#F59E0B' },
+    { id: '3', name: 'Депрессед кид', color: '#9CA3AF' },
+    { id: '4', name: 'Темный трикстер', color: '#F59E0B' },
     { id: '5', name: 'Yeezus', color: '#FACC15' },
-    { id: '6', name: 'Крипта-сдохла', color: '#94A3B8' },
-    { id: '7', name: 'Всё-нормально', color: '#059669' },
+    { id: '6', name: 'ZXC гуль', color: '#94A3B8' },
+    { id: '7', name: 'GrokAI', color: '#059669' },
     { id: '8', name: 'Махач в чате', color: '#EF4444' },
     { id: '9', name: 'СНГ-подпивас', color: '#818CF8' },
     { id: '10', name: 'Батя войны', color: '#EA580C' },
     { id: '11', name: 'Прозревший Патрик', color: '#F472B6' },
-    { id: '12', name: 'Пиво-утро', color: '#2563EB' },
+    { id: '12', name: 'Белый русский', color: '#2563EB' },
     { id: '13', name: 'Ким-Сина', color: '#27272A' },
-    { id: '14', name: 'Мамкин кодер', color: '#A855F7' },
+    { id: '14', name: 'Хакер 228666', color: '#A855F7' },
 ];
 
 const CLUBS = [
