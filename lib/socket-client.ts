@@ -124,7 +124,8 @@ class SocketClient {
                     userId: this.userId,
                     nickname: this.nickname,
                     club: this.club,
-                    avatar: this.avatar
+                    avatar: this.avatar,
+                    isAdmin: this.isAdmin
                 });
             }
 
@@ -221,7 +222,8 @@ class SocketClient {
                 userId: this.userId,
                 nickname: this.nickname,
                 club: this.club,
-                avatar: this.avatar
+                avatar: this.avatar,
+                isAdmin: this.isAdmin
             });
         }
     }
@@ -284,6 +286,10 @@ class SocketClient {
     requestUserStats() {
         if (!this.socket?.connected) return;
         this.socket.emit('users:get');
+    }
+
+    on(event: string, callback: any) {
+        this.socket?.on(event, callback);
     }
 
     off(event: string, callback?: any) {
@@ -433,8 +439,10 @@ class SocketClient {
         if (this.socket?.connected) {
             this.socket.emit('user:join', {
                 userId: this.userId,
+                nickname: this.nickname,
                 club: this.club,
-                avatar: this.avatar
+                avatar: this.avatar,
+                isAdmin: this.isAdmin
             });
         }
     }

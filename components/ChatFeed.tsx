@@ -183,6 +183,13 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                 }
             };
 
+            const updatedMessageHandler = (updatedMsg: any) => {
+                if (updatedMsg.channel === channelId) {
+                    console.log(`[ChatFeed] Received updated message in #${updatedMsg.channel}`);
+                    setMessages((prev) => prev.map(m => m.id === updatedMsg.id ? { ...m, ...updatedMsg } : m));
+                }
+            };
+
             const typingHandler = ({ userId, typing }: any) => {
                 setTypingUsers((prev) => {
                     const next = new Set(prev);
@@ -192,6 +199,11 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                 });
             };
 
+            const deletedMessageHandler = ({ messageId }: { messageId: string | number }) => {
+                console.log(`[ChatFeed] Received deletion for message ${messageId}`);
+                setMessages((prev) => prev.filter(m => String(m.id) !== String(messageId)));
+            };
+
             const likesHandler = (counts: any) => {
                 setAdminLikes(prev => ({ ...prev, ...counts }));
             };
@@ -199,6 +211,8 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
             // 2. Register listeners (Surgically)
             socketClient.onMessageHistory(historyHandler);
             socketClient.onNewMessage(newMessageHandler);
+            socketClient.on('message:updated', updatedMessageHandler);
+            socketClient.onMessageDeleted(deletedMessageHandler);
             socketClient.onUserTyping(typingHandler);
             socketClient.onAdminLikesUpdate(likesHandler);
 
@@ -208,6 +222,8 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
             return () => {
                 socketClient.off('message:history', historyHandler);
                 socketClient.off('message:new', newMessageHandler);
+                socketClient.off('message:updated', updatedMessageHandler);
+                socketClient.off('message:deleted', deletedMessageHandler);
                 socketClient.off('user:typing', typingHandler);
                 socketClient.off('admin:likes_update', likesHandler);
             };

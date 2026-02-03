@@ -12,7 +12,7 @@
 Бато (Club Manager) — pepe.png
 Железный Алекс (Hardware Guru) — fire.png
 Игорь (Tournament Lead) — dog.png
-Екатерина (Hospitality Lead) — pepe.png
+Екатерина (Hospitality Lead) — katya.png
 [!TIP] Если файла с таким названием нет в папке, система автоматически поставит аватарку №1 (Пепе-интеллигент).
 
 3. Как изменить информацию (имена, роли, био)
