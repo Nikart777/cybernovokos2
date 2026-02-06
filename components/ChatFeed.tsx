@@ -548,7 +548,41 @@ export default function ChatFeed({ channelId = 'general' }: { channelId?: string
                                                         </div>
                                                     )}
 
-                                                    <p className="text-sm leading-relaxed break-words whitespace-pre-line">{msg.text}</p>
+                                                    <p className="text-sm leading-relaxed break-words whitespace-pre-line">
+                                                        {msg.text.split('/join').map((part, i, arr) => {
+                                                            if (i === 0) return part;
+                                                            // Part contains the roomId and rest of string
+                                                            const roomIdMatch = part.match(/^\s+(cyberx-[a-f0-9-]+)/);
+                                                            if (roomIdMatch) {
+                                                                const roomId = roomIdMatch[1];
+                                                                const rest = part.substring(roomIdMatch[0].length);
+
+                                                                if (msg.callStatus === 'ended') {
+                                                                    return (
+                                                                        <span key={i}>
+                                                                            <span className="inline-flex items-center gap-2 px-3 py-1 mx-1 bg-red-600/50 text-white/50 rounded-full text-xs font-bold uppercase tracking-wider border border-red-500/30">
+                                                                                📞 Звонок завершён
+                                                                            </span>
+                                                                            {rest}
+                                                                        </span>
+                                                                    );
+                                                                }
+
+                                                                return (
+                                                                    <span key={i}>
+                                                                        <button
+                                                                            onClick={() => socketClient.joinCall(roomId)}
+                                                                            className="inline-flex items-center gap-2 px-3 py-1 mx-1 bg-green-600 hover:bg-green-500 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-glow"
+                                                                        >
+                                                                            📞 Присоединиться
+                                                                        </button>
+                                                                        {rest}
+                                                                    </span>
+                                                                );
+                                                            }
+                                                            return '/join' + part;
+                                                        })}
+                                                    </p>
                                                 </div>
                                             )}
                                         </div>

@@ -12,6 +12,8 @@ import ChannelSwitcher from '@/components/ChannelSwitcher';
 import PinnedMessage from '@/components/PinnedMessage';
 import { socketClient, ConnectedUser, ChallengeSyncData } from '@/lib/socket-client';
 import { ChallengeData } from '@/components/QuickChallengeModal';
+import CallModal from '@/components/CallModal';
+import { useCallState } from '@/hooks/useCallState';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -40,6 +42,17 @@ export default function SocialHubPage() {
     const [acceptedChallenge, setAcceptedChallenge] = useState<{ acceptor: string, acceptorPc?: string } | null>(null);
     const [currentChannel, setCurrentChannel] = useState('general');
     const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
+
+    // Voice Call State
+    const {
+        callState,
+        activeCall,
+        initiateCall,
+        acceptCall,
+        rejectCall,
+        cancelCall,
+        endCall
+    } = useCallState();
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -234,7 +247,12 @@ export default function SocialHubPage() {
             {/* Main Layout */}
             <main className="max-w-[1700px] w-full mx-auto px-6 py-4 flex-1 overflow-hidden min-h-0">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full min-h-0">
-                    <div className="lg:col-span-2 h-full overflow-hidden flex flex-col"><OnlineUsers onChallengeClick={handleChallengeClick} /></div>
+                    <div className="lg:col-span-2 h-full overflow-hidden flex flex-col">
+                        <OnlineUsers
+                            onChallengeClick={handleChallengeClick}
+                            onCallClick={(user) => initiateCall(user.nickname, user.avatar, user.userId)}
+                        />
+                    </div>
                     <div className="lg:col-span-8 h-full overflow-hidden flex flex-col"><ChatFeed channelId={currentChannel} /></div>
                     <div className="lg:col-span-2 h-full overflow-hidden flex flex-col">
                         <ChannelSwitcher
@@ -247,6 +265,18 @@ export default function SocialHubPage() {
             </main>
 
             <AnimatePresence>{showChallengeModal && selectedUser && <QuickChallengeModal targetUser={selectedUser} onClose={() => setShowChallengeModal(false)} onSubmit={handleChallengeSubmit} />}</AnimatePresence>
+
+            {/* Voice Call Modal */}
+            <CallModal
+                state={callState}
+                targetUser={activeCall?.targetUser}
+                roomId={activeCall?.roomId}
+                onAccept={acceptCall}
+                onReject={rejectCall}
+                onCancel={cancelCall}
+                onEndCall={endCall}
+                onClose={() => { }} // Controlled by hook state
+            />
 
             <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar { width: 3px; }

@@ -35,7 +35,8 @@ const CLUBS = [
 export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingProps) {
     const [step, setStep] = useState(1);
     const [selectedAvatar, setSelectedAvatar] = useState('');
-    const [nickname, setNickname] = useState('');
+    const [avatarName, setAvatarName] = useState('');
+    const [pcNumber, setPcNumber] = useState('');
     const [selectedClub, setSelectedClub] = useState('altufievo');
     const [hasAttemptedProceed, setHasAttemptedProceed] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -49,6 +50,8 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
 
     const handleAvatarSelect = (id: string) => {
         setSelectedAvatar(id);
+        const avatar = AVATARS.find(a => a.id === id);
+        if (avatar) setAvatarName(avatar.name);
         setHasAttemptedProceed(false); // Reset attempt state on selection
         // Auto-advance to Step 2 after a small delay for visual feedback
         setTimeout(() => setStep(2), 300);
@@ -56,21 +59,17 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
 
     const handleFinish = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
-        const trimmedNick = nickname.trim();
-        if (!trimmedNick) {
-            alert('Сначала введи свой крутой никнейм!');
+        const trimmedPC = pcNumber.trim();
+        if (!trimmedPC) {
+            alert('Сначала введи номер своего ПК!');
             return;
         }
 
-        const reservedNicks = ['admin.altufievo', 'admin.novokosino'];
-        if (reservedNicks.includes(trimmedNick.toLowerCase())) {
-            alert('Этот ник зарезервирован для администрации!');
-            return;
-        }
+        const finalNickname = `ПК №${trimmedPC} | ${avatarName}`;
 
         try {
-            socketClient.updateUser(trimmedNick, selectedAvatar, selectedClub as 'vlasino' | 'altufievo');
-            sessionStorage.setItem('social_hub_user_id', trimmedNick);
+            socketClient.updateUser(finalNickname, selectedAvatar, selectedClub as 'vlasino' | 'altufievo');
+            sessionStorage.setItem('social_hub_user_id', finalNickname);
             sessionStorage.setItem('social_hub_avatar', selectedAvatar);
             sessionStorage.setItem('user_club', selectedClub);
             sessionStorage.setItem('onboarding_done', 'true');
@@ -525,15 +524,15 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
 
                     <div className="w-full space-y-6">
                         <div>
-                            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-3">Твой никнейм</label>
+                            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-3">За каким ты компом?</label>
                             <div className="relative group">
-                                <User className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-cyber-red transition-colors" size={20} />
+                                <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-cyber-red transition-colors" size={20} />
                                 <input
                                     ref={inputRef}
                                     type="text"
-                                    value={nickname}
-                                    onChange={(e) => setNickname(e.target.value)}
-                                    placeholder="Введи ник..."
+                                    value={pcNumber}
+                                    onChange={(e) => setPcNumber(e.target.value)}
+                                    placeholder="НОМЕР ПК..."
                                     className="w-full pl-14 pr-6 py-4 rounded-2xl bg-black/60 border-2 border-white/5 focus:border-cyber-red outline-none text-xl font-bold text-white transition-all placeholder:text-gray-800 text-center uppercase tracking-widest"
                                     required
                                 />

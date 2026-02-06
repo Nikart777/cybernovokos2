@@ -16,6 +16,8 @@ export interface ChatMessage {
     mediaUrl?: string;
     mediaType?: 'image' | 'video' | 'none';
     isAdmin?: boolean;
+    callStatus?: 'ended' | 'active' | null;
+    roomId?: string;
 }
 
 export interface ConnectedUser {
@@ -449,6 +451,78 @@ class SocketClient {
 
     isConnected() {
         return this.socket?.connected || false;
+    }
+
+    // ===== VOICE CALL METHODS =====
+
+    initiateCall(to: string) {
+        if (!this.socket?.connected) {
+            console.error('[SocketClient] Cannot initiate call: not connected');
+            return;
+        }
+        this.socket.emit('call:request', { to });
+    }
+
+    acceptCall(roomId: string, from: string) {
+        if (!this.socket?.connected) return;
+        this.socket.emit('call:accepted', { roomId, from });
+    }
+
+    rejectCall(roomId: string, from: string) {
+        if (!this.socket?.connected) return;
+        this.socket.emit('call:rejected', { roomId, from });
+    }
+
+    cancelCall(to: string, roomId: string) {
+        if (!this.socket?.connected) return;
+        this.socket.emit('call:cancelled', { to, roomId });
+    }
+
+    endCall(roomId: string, otherUserId: string) {
+        if (!this.socket?.connected) return;
+        this.socket.emit('call:ended', { roomId, otherUserId });
+    }
+
+    joinCall(roomId: string) {
+        if (!this.socket?.connected) return;
+        this.socket.emit('call:join', { roomId });
+    }
+
+    // Event listeners for calls
+    onIncomingCall(callback: (data: { from: string; fromUserId: string; fromAvatar: string; roomId: string }) => void) {
+        this.socket?.on('call:incoming', callback);
+    }
+
+    onCallInitiated(callback: (data: { roomId: string; to: string }) => void) {
+        this.socket?.on('call:initiated', callback);
+    }
+
+    onCallAccepted(callback: (data: { roomId: string; acceptedBy: string }) => void) {
+        this.socket?.on('call:accepted', callback);
+    }
+
+    onCallRejected(callback: (data: { roomId: string; rejectedBy: string }) => void) {
+        this.socket?.on('call:rejected', callback);
+    }
+
+    onCallCancelled(callback: (data: { from: string; roomId: string; reason?: string }) => void) {
+        this.socket?.on('call:cancelled', callback);
+    }
+
+    onCallEnded(callback: (data: { roomId: string }) => void) {
+        this.socket?.on('call:ended', callback);
+    }
+
+    onCallBusy(callback: (data: { user: string; reason?: string }) => void) {
+        this.socket?.on('call:busy', callback);
+    }
+
+    onCallFailed(callback: (data: { reason: string }) => void) {
+        this.socket?.on('call:failed', callback);
+    }
+
+    onCallTimeout(callback: (data: { to: string }) => void) {
+        this.socket?.on('call:timeout', callback);
     }
 }
 

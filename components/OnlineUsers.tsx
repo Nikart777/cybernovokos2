@@ -2,18 +2,33 @@
 
 import { useState, useEffect } from 'react';
 import { socketClient, ConnectedUser } from '@/lib/socket-client';
-import { Users, Swords } from 'lucide-react';
+import { Users, Swords, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ClubBadge from './ClubBadge';
 import Image from 'next/image';
 
 interface OnlineUsersProps {
     onChallengeClick?: (targetUser: ConnectedUser) => void;
+    onCallClick?: (targetUser: ConnectedUser) => void;
 }
 
-export default function OnlineUsers({ onChallengeClick }: OnlineUsersProps) {
+function useIsDesktop() {
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
+
+    return isDesktop;
+}
+
+export default function OnlineUsers({ onChallengeClick, onCallClick }: OnlineUsersProps) {
     const [onlineCount, setOnlineCount] = useState(0);
     const [users, setUsers] = useState<ConnectedUser[]>([]);
+    const isDesktop = useIsDesktop();
 
     useEffect(() => {
         // Force update on mount
@@ -115,18 +130,33 @@ export default function OnlineUsers({ onChallengeClick }: OnlineUsersProps) {
                                     </div>
                                 </div>
 
-                                {!isOwnUser && !user.isAdmin && (
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleUserClick(user);
-                                        }}
-                                        className="opacity-0 group-hover:opacity-100 transition-all bg-cyber-red/20 p-2 rounded-xl text-cyber-red hover:bg-cyber-red hover:text-white transform scale-90 hover:scale-100 shadow-glow"
-                                        title="Вызвать на дуэль"
-                                    >
-                                        <Swords className="w-4 h-4" />
-                                    </button>
-                                )}
+                                {!isOwnUser && !user.isAdmin &&
+                                    !['admin.altufievo', 'admin.novokosino'].includes(user.userId) && (
+                                        <div className="flex items-center gap-2">
+                                            {isDesktop && (
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        onCallClick?.(user);
+                                                    }}
+                                                    className="transition-all bg-green-500/20 p-2 rounded-xl text-green-500 hover:bg-green-500 hover:text-white transform scale-90 hover:scale-100 shadow-glow"
+                                                    title="Позвонить"
+                                                >
+                                                    <Phone className="w-4 h-4" />
+                                                </button>
+                                            )}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleUserClick(user);
+                                                }}
+                                                className="transition-all bg-cyber-red/20 p-2 rounded-xl text-cyber-red hover:bg-cyber-red hover:text-white transform scale-90 hover:scale-100 shadow-glow"
+                                                title="Вызвать на дуэль"
+                                            >
+                                                <Swords className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    )}
                             </div>
                         </motion.div>
                     );
@@ -134,10 +164,24 @@ export default function OnlineUsers({ onChallengeClick }: OnlineUsersProps) {
             </div>
 
             {/* Footer Hint */}
-            <div className="px-4 py-4 border-t border-white/10 bg-black/40">
-                <p className="text-[9px] text-gray-600 text-center font-bold uppercase tracking-widest leading-relaxed">
-                    Тыкай на чела, <br /> чтобы бросить вызов ⚔️
-                </p>
+            <div className="px-2 py-4 border-t border-white/10 bg-black/40 flex items-center divide-x divide-white/5">
+                <div className="flex-1 flex items-center justify-center gap-2.5 px-2 group/hint">
+                    <div className="p-1.5 bg-green-500/10 rounded-lg border border-green-500/20 group-hover/hint:bg-green-500/20 transition-colors">
+                        <Phone className="w-3 h-3 text-green-500" />
+                    </div>
+                    <p className="text-[8px] text-gray-400 font-black uppercase tracking-widest leading-tight">
+                        Звони любому <br /> в чате
+                    </p>
+                </div>
+
+                <div className="flex-1 flex items-center justify-center gap-2.5 px-2 group/hint text-right">
+                    <p className="text-[8px] text-gray-400 font-black uppercase tracking-widest leading-tight">
+                        Бросай <br /> вызов
+                    </p>
+                    <div className="p-1.5 bg-cyber-red/10 rounded-lg border border-cyber-red/20 group-hover/hint:bg-cyber-red/20 transition-colors">
+                        <Swords className="w-3 h-3 text-cyber-red" />
+                    </div>
+                </div>
             </div>
 
             <style jsx>{`
