@@ -14,7 +14,6 @@ import { socketClient, ConnectedUser, ChallengeSyncData } from '@/lib/socket-cli
 import { ChallengeData } from '@/components/QuickChallengeModal';
 import CallModal from '@/components/CallModal';
 import { useCallState } from '@/hooks/useCallState';
-import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ADMIN_TIPS = [
@@ -137,16 +136,6 @@ export default function SocialHubPage() {
         try {
             const creatorNick = currentUserId || 'Unknown';
             const creatorPC = sessionStorage.getItem('arena_pc') || '0';
-
-            await axios.post('/api/arena/lobbies', {
-                creator_nick: creatorNick,
-                creator_pc: creatorPC,
-                game: challengeData.game,
-                bet_amount: challengeData.betAmount,
-                bet_item: null,
-                rules: challengeData.rules || null,
-                team_size: 1
-            });
 
             // Real-time sync
             socketClient.sendChallenge({
