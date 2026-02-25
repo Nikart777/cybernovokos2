@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { socketClient } from '@/lib/socket-client';
-import { Rocket, User, CheckCircle2, MapPin, Sparkles, Gift, MessageSquare, Swords, Ticket } from 'lucide-react';
+import { Rocket, User, CheckCircle2, MapPin, Sparkles, Gift, MessageSquare, Swords, Ticket, Globe, Flame, HeartHandshake } from 'lucide-react';
+import { generateWelcomeMessage } from '@/lib/welcome-messages';
 
 interface OnboardingProps {
     onComplete: () => void;
@@ -33,7 +34,8 @@ const CLUBS = [
 ];
 
 export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingProps) {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(0); // Start at Welcome screen
+    const [welcomeMessage, setWelcomeMessage] = useState('');
     const [selectedAvatar, setSelectedAvatar] = useState('');
     const [avatarName, setAvatarName] = useState('');
     const [pcNumber, setPcNumber] = useState('');
@@ -47,6 +49,11 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
             inputRef.current.focus();
         }
     }, [step]);
+
+    // Select random welcome message on mount
+    useEffect(() => {
+        setWelcomeMessage(generateWelcomeMessage());
+    }, []);
 
     const handleAvatarSelect = (id: string) => {
         setSelectedAvatar(id);
@@ -253,7 +260,7 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
                 <div className="absolute inset-0 bg-gradient-to-br from-cyber-red/20 via-black to-cyber-purple/20" style={{ opacity: step === 1 ? 0.8 : 0.3, transition: 'opacity 0.5s ease' }} />
 
                 {/* Vibrant blobs for Step 1 - Pure CSS */}
-                {step === 1 && (
+                {(step === 0 || step === 1) && (
                     <>
                         {/* Main animated blobs */}
                         <div
@@ -308,10 +315,138 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
             </div>
 
+            {/* STEP 0: Welcome Screen (Full Screen Transition) */}
+            <AnimatePresence>
+                {step === 0 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, scale: 1.1, filter: 'blur(20px)' }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                        className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-[#070707] overflow-hidden"
+                    >
+                        {/* Premium Dark Background */}
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyber-red/5 via-[#070707] to-[#040404]"></div>
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
+
+                        {/* Subtle Glows */}
+                        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyber-red/10 blur-[150px] rounded-full pointer-events-none opacity-50"></div>
+                        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-cyber-purple/10 blur-[150px] rounded-full pointer-events-none opacity-50"></div>
+
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+                            className="relative z-10 w-full max-w-4xl flex flex-col items-center px-6"
+                        >
+                            {/* Main Logo */}
+                            <img src="/images/social-hub/logo.png" alt="CyberX Logo" className="w-28 h-28 md:w-36 md:h-36 object-contain mb-8 drop-shadow-[0_0_25px_rgba(255,46,99,0.5)]" />
+
+                            {/* Small discrete header like the main site */}
+                            <div className="flex flex-col items-center mb-10 w-full justify-center opacity-80">
+                                <h2 className="text-2xl font-tactic text-white tracking-widest uppercase flex items-center gap-1 drop-shadow-md">
+                                    cyberx<span className="text-cyber-red">_</span>connect
+                                </h2>
+                                <p className="text-[10px] text-gray-500 font-mono tracking-[0.2em] uppercase mt-1">
+                                    Болтай — Зарубайся — Доминируй
+                                </p>
+                            </div>
+
+                            {/* Center Message of the Day */}
+                            <div className="w-full max-w-3xl bg-white/[0.02] border border-white/5 rounded-[32px] p-8 md:p-12 text-center shadow-2xl backdrop-blur-md mb-12 relative overflow-hidden group">
+                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                                <HeartHandshake className="w-10 h-10 text-cyber-red/60 mx-auto mb-6" />
+                                <p className="text-lg md:text-2xl font-inter text-gray-300 leading-relaxed font-medium">
+                                    "{welcomeMessage}"
+                                </p>
+                            </div>
+
+                            {/* Features Grid with bright icons */}
+                            <div className="w-full max-w-4xl grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-cyber-purple/30 transition-colors">
+                                    <div className="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-purple shrink-0">
+                                        <MessageSquare className="w-5 h-5" />
+                                    </div>
+                                    <div className="text-left">
+                                        <h4 className="text-white font-bold text-sm">Общение</h4>
+                                        <p className="text-gray-500 text-[10px] uppercase">Находи тиммейтов</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-cyber-red/30 transition-colors">
+                                    <div className="w-10 h-10 rounded-full bg-cyber-red/20 flex items-center justify-center text-cyber-red shrink-0">
+                                        <Swords className="w-5 h-5" />
+                                    </div>
+                                    <div className="text-left">
+                                        <h4 className="text-white font-bold text-sm">Дуэли</h4>
+                                        <p className="text-gray-500 text-[10px] uppercase">Бросай вызов на баланс</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 transition-colors">
+                                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
+                                        <Globe className="w-5 h-5" />
+                                    </div>
+                                    <div className="text-left">
+                                        <h4 className="text-white font-bold text-sm">Экосистема</h4>
+                                        <p className="text-gray-500 text-[10px] uppercase">Алтуфьево & Новокосино</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-orange-500/30 transition-colors">
+                                    <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
+                                        <Flame className="w-5 h-5" />
+                                    </div>
+                                    <div className="text-left">
+                                        <h4 className="text-white font-bold text-sm">Промокоды</h4>
+                                        <p className="text-gray-500 text-[10px] uppercase">Лови акции каждый день</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col items-center mt-4">
+                                <button
+                                    onClick={() => setStep(1)}
+                                    className="relative group w-[340px] md:w-[400px] h-[64px] rounded-[32px] overflow-visible outline-none transition-transform active:scale-[0.98]"
+                                >
+                                    {/* Sub-layer for outer blurred glow */}
+                                    <div className="absolute -inset-[3px] rounded-[36px] overflow-hidden blur-[12px] opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                                        <div
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] aspect-square animate-[spin_4s_linear_infinite]"
+                                            style={{
+                                                background: 'conic-gradient(from 0deg at 50% 50%, rgba(20,20,30,0) 0%, #00ffaa 15%, #ff3300 35%, #ff00ff 50%, #4a00e0 65%, #ffffff 80%, #b100ff 90%, rgba(20,20,30,0) 100%)'
+                                            }}
+                                        />
+                                    </div>
+
+                                    {/* Main border layer */}
+                                    <div className="absolute inset-0 p-[2px] rounded-[32px] overflow-hidden bg-[#0a0a0a]">
+                                        <div
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] aspect-square animate-[spin_4s_linear_infinite]"
+                                            style={{
+                                                background: 'conic-gradient(from 0deg at 50% 50%, rgba(20,20,30,0) 0%, #00ffaa 15%, #ff3300 35%, #ff00ff 50%, #4a00e0 65%, #ffffff 80%, #b100ff 90%, rgba(20,20,30,0) 100%)'
+                                            }}
+                                        />
+                                        {/* Extremely dark button surface */}
+                                        <div className="relative w-full h-full bg-[#050505] rounded-[30px] flex items-center justify-center shadow-[inset_0_4px_30px_rgba(0,0,0,0.8)] z-10 overflow-hidden">
+                                            <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-30"></div>
+                                            <span className="relative z-10 font-tactic text-lg md:text-xl tracking-widest font-black text-white/90 group-hover:text-white transition-colors drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]">
+                                                ВОЙТИ В СИСТЕМУ
+                                            </span>
+                                        </div>
+                                    </div>
+                                </button>
+                                <p className="mt-8 text-xs font-mono text-gray-500 tracking-widest uppercase opacity-60">
+                                    Далее: Выбор аватара и настройка профиля
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <div className="w-full max-w-5xl h-[95vh] md:h-[90vh] bg-[#0c0c0c]/90 backdrop-blur-2xl border border-white/10 rounded-[40px] p-4 md:p-12 relative shadow-[0_40px_100px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden"
                 style={{
-                    animation: 'fadeInScale 0.3s ease-out',
+                    animation: step > 0 ? 'fadeInScale 0.6s ease-out forwards' : 'none',
+                    opacity: step > 0 ? 1 : 0,
+                    pointerEvents: step > 0 ? 'auto' : 'none'
                 }}
             >
                 {/* Main Grid Texture */}
@@ -320,7 +455,7 @@ export default function Onboarding({ onComplete, totalUnread = 0 }: OnboardingPr
                 <div className="absolute top-0 left-0 w-full h-1.5 bg-white/5 overflow-hidden rounded-t-[30px] md:rounded-t-[40px]">
                     <div
                         className="h-full bg-gradient-to-r from-cyber-red to-cyber-purple shadow-[0_0_15px_rgba(255,46,99,0.5)] transition-all duration-300 ease-out"
-                        style={{ width: step === 1 ? "50%" : "100%" }}
+                        style={{ width: step === 0 ? "0%" : step === 1 ? "50%" : "100%" }}
                     />
                 </div>
 
