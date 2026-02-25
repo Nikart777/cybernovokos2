@@ -91,7 +91,7 @@ function AdminCard({ admin, club, likes, isConnected }: { admin: any, club: 'vla
                     </div>
 
                     <div className="mt-4 p-4 bg-white/5 rounded-2xl border border-white/5">
-                        <p className="text-gray-400 font-medium leading-relaxed italic text-sm md:text-base">"{admin.bio}"</p>
+                        <p className="text-gray-400 font-medium leading-relaxed italic text-sm md:text-base">&quot;{admin.bio}&quot;</p>
                     </div>
                 </div>
             </div>

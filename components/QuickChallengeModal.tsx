@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ConnectedUser } from '@/lib/socket-client';
 import { X, Swords, Gamepad2, Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -24,7 +24,11 @@ const GAMES = ['CS2', 'Dota 2', 'Valorant', 'Apex Legends', 'World of Tanks', 'P
 export default function QuickChallengeModal({ targetUser, onClose, onSubmit }: QuickChallengeModalProps) {
     const [game, setGame] = useState('CS2');
     const [betAmount, setBetAmount] = useState('200');
-    const [pcNumber, setPcNumber] = useState(localStorage.getItem('arena_pc') || '');
+    const [pcNumber, setPcNumber] = useState('');
+
+    useEffect(() => {
+        setPcNumber(localStorage.getItem('arena_pc') || '');
+    }, []);
     const [rules, setRules] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {

@@ -5,11 +5,12 @@ import { Send, Target, Users, Rocket, Heart, Crown, Monitor, Gamepad2, Coffee, C
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Подарочные сертификаты | CyberX Новокосино",
-  description: "Лучший подарок для настоящего геймера. Подарочные сертификаты в компьютерный клуб CyberX Новокосино на любой номинал.",
+  title: "Подарок парню: подарочный сертификат в компьютерный клуб | CyberX Новокосино",
+  description: "Ищете оригинальный подарок парню или мужчине на 23 февраля или день рождения? Подарочные сертификаты в компьютерный клуб CyberX Новокосино на любой номинал.",
   alternates: {
     canonical: "https://cyberx-novokosino.ru/certificate",
   },
+  keywords: "подарок парню, что подарить мужчине, оригинальный подарок парню, подарок на 23 февраля парню, подарок на день рождения парню, сертификат",
 };
 
 export default function CertificatePage() {
@@ -51,15 +52,15 @@ export default function CertificatePage() {
 
           <div className="relative z-10 space-y-6 max-w-4xl mx-auto">
             <span className="inline-block text-[#00F0FF] font-chakra font-bold text-sm md:text-base tracking-widest uppercase bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/20 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-              Подари ему бессонную ночь... в CyberX Новокосино
+              Оригинальный подарок парню... бессонная ночь в CyberX
             </span>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-tactic italic uppercase font-black leading-tight tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_20px_rgba(255,46,99,0.4)]">
-              ЛУЧШИЙ ПОДАРОК <br className="hidden md:block" /> ДЛЯ НАСТОЯЩЕГО ГЕЙМЕРА
+              ЛУЧШИЙ ПОДАРОК ПАРНЮ <br className="hidden md:block" /> ДЛЯ НАСТОЯЩЕГО ГЕЙМЕРА
             </h1>
 
             <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-inter font-medium leading-relaxed mb-4">
-              Потому что носки и пена для бритья — это прошлый уровень. Дари эмоции, адреналин и полное погружение, которые он точно оценит!
+              Не знаете, что подарить мужчине на 23 февраля или день рождения? Носки и пена — прошлый уровень. Дарите эмоции и адреналин, которые он точно оценит!
             </p>
           </div>
         </section>

@@ -68,8 +68,9 @@ export default function LeadForm() {
                         CYBERXWEB
                     </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-4 font-chakra uppercase tracking-widest">
-                    Введи этот промокод в клубе при регистрации
+                <p className="text-xs text-gray-400 mt-4 font-inter text-center leading-relaxed">
+                    Введи этот промокод в клубе при регистрации<br />
+                    или в приложении <a href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" target="_blank" rel="noopener noreferrer" className="text-[#00ff88] font-tactic italic hover:underline">CYBERX</a> (выберите CYBERX новокосино)
                 </p>
             </div>
         );
