@@ -10,7 +10,6 @@ const navLinks = [
     { name: 'Игровые зоны', href: '/#monitoring' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
-    { name: 'Sim Racing', href: '/simracing' },
     { name: 'Контакты', href: '/contacts' },
 ];
 

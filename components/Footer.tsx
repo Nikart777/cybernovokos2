@@ -5,6 +5,7 @@ const links = [
     { name: 'Главная', href: '/' },
     { name: 'Цены', href: '/prices' },
     { name: 'Sim Racing', href: '/simracing' },
+    { name: 'Подарочные сертификаты', href: '/certificate' },
     { name: 'Контакты', href: '/contacts' },
 ];
 
