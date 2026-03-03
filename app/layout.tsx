@@ -156,8 +156,24 @@ export default function RootLayout({
                 {/* Resource Hints for Performance */}
                 <link rel="preconnect" href="https://mc.yandex.ru" />
                 <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+                {/* Google Analytics (GA4) */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-T6L6MKR798"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-T6L6MKR798');
+          `}
+                </Script>
 
                 {/* Yandex.Metrika counter - Optimized loading */}
                 <Script id="yandex-metrika" strategy="lazyOnload">
