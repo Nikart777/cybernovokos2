@@ -61,3 +61,6 @@ server.js
 # Environment files (extra safety)
 .env*
 !.env.example
+1LANGAME Software Public API.html
+app/certificate/wordstat_similar_queries.csv
+app/certificate/wordstat_top_queries.csv

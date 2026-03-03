@@ -43,11 +43,27 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL('https://cyberx-novokosino.ru'),
     title: {
-        default: "CyberX Новокосино | Компьютерный клуб Москва | 24/7",
+        default: "CyberX Новокосино | Официальный сайт клуба | Цены, Промокоды, RTX 5070",
         template: "%s | CyberX Новокосино"
     },
-    description: "Лучший компьютерный клуб в Новокосино (Москва). RTX 5070, 400Гц, PS5 Lounge и профессиональные автосимуляторы. Работаем круглосуточно 24/7. Пакеты от 100 руб.",
-    keywords: ["компьютерный клуб Новокосино", "CyberX Москва", "киберклуб ВАО", "где поиграть в PS5 Москва", "симрейсинг Новокосино", "компьютерный клуб рядом"],
+    description: "Ищете компьютерный клуб в Новокосино (Москва)? ✅ Забирай промокод на первое посещение! ⚡ Топовые игровые ПК на RTX 5070, мониторы 400 Гц. 📍 ул. Новокосинская, 32. 🕒 Работаем 24/7. Смотреть цены...",
+    keywords: [
+        "компьютерный клуб",
+        "компьютерный клуб москва",
+        "колизеум компьютерный клуб",
+        "компьютерный клуб цены",
+        "компьютерный клуб рядом",
+        "coliseum компьютерный клуб",
+        "компьютерный клуб колизей",
+        "пк клуб",
+        "ps5 клуб",
+        "cyber x",
+        "кибер х",
+        "сайбер икс",
+        "киберклуб вао",
+        "симрейсинг",
+        "автосимулятор москва"
+    ],
     authors: [{ name: "CyberX Novokosino" }],
     creator: "CyberX Novokosino",
     publisher: "CyberX Novokosino",
@@ -60,8 +76,8 @@ export const metadata: Metadata = {
         type: "website",
         locale: "ru_RU",
         url: "https://cyberx-novokosino.ru",
-        title: "CyberX Новокосино | Топовый компьютерный клуб в Москве",
-        description: "RTX 5070, PS5, Sim Racing. Играй на профессиональном железе 24/7.",
+        title: "CYBERX НОВОКОСИНО | Компьютерный клуб",
+        description: "Киберспортивный клуб CYBERX в Москве. RTX 5070, PS5 Lounge, и профессиональный автосимулятор.",
         siteName: "CyberX Новокосино",
         images: [{
             url: "/og-image.jpg",
@@ -72,8 +88,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "CyberX Новокосино | Компьютерный клуб 24/7",
-        description: "Играй на мощных ПК в Новокосино. Ул. Новокосинская, 32.",
+        title: "CYBERX НОВОКОСИНО | Компьютерный клуб",
+        description: "Ищете компьютерный клуб в Новокосино? Забирай промокод на первое посещение! Топовые ПК на RTX 5070.",
         images: ["/og-image.jpg"],
     },
     robots: {

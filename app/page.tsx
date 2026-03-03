@@ -7,6 +7,7 @@ import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
+import SEOBlock from "@/components/SEOBlock";
 import PromoBand from "@/components/PromoBand";
 import MonitoringCards from "@/components/MonitoringCards";
 import fs from "fs";
@@ -15,8 +16,8 @@ import { PricingData } from "./lib/types";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CyberX Новокосино | Компьютерный клуб в Москве | ТЦ Новокосино 24/7",
-  description: "Лучший игровой клуб в Москве (Новокосино). Мощные ПК с RTX 5070, мониторы 400Гц, VIP-зоны, PS5 и автосимуляторы. Уютная атмосфера и топовое железо 24/7.",
+  title: "CyberX Новокосино | Главная | Цены, Промокоды, RTX 5070",
+  description: "Ищете компьютерный клуб в Новокосино (Москва)? ✅ Забирай промокод на первое посещение! ⚡ Топовые игровые ПК на RTX 5070, мониторы 400 Гц. 📍 ул. Новокосинская, 32. 🕒 Работаем 24/7. Смотреть цены...",
   alternates: {
     canonical: "https://cyberx-novokosino.ru",
   },
@@ -54,6 +55,7 @@ export default function Home() {
 
       <PromoBand />
       <Contacts />
+      <SEOBlock />
       <Footer />
     </main>
   );
