@@ -58,7 +58,52 @@ export async function POST(request: Request) {
         let compensation = 0.0;
         let calculationDetails = "";
 
-        if (tariff_type === "minute") {
+        if (zone === 11) {
+            // For Simracing, user selects 1h, 2h, or 3h.
+            // Map the selected "tariff_type" to the desired packet duration in hours
+            let desiredHours = 0;
+            if (tariff_type === "1h") desiredHours = 1;
+            else if (tariff_type === "2h") desiredHours = 2;
+            else if (tariff_type === "3h") desiredHours = 3;
+            else {
+                return Response.json({ error: "Для автосимулятора выберите пакет 1, 2 или 3 часа" }, { status: 400 });
+            }
+
+            const targetDurationMinutes = desiredHours * 60;
+            let packetPrice = 0;
+
+            // Find matching packet in typesGroups
+            const simPackets = typesGroups.filter((g: any) =>
+                g.type === 'packet' &&
+                g.duration === targetDurationMinutes &&
+                (g.name.toLowerCase().includes('автосим') || g.name.toLowerCase().includes('racing')) &&
+                !g.is_deleted
+            );
+
+            if (simPackets.length === 0) {
+                return Response.json({ error: `Пакет на ${desiredHours} ч. для автосимулятора не найден в базе` }, { status: 404 });
+            }
+
+            // We need to find the price for this packet ID in the current time period
+            const validPacketIds = simPackets.map((p: any) => p.id);
+            const packetOffers = tariffs.filter((t: any) =>
+                t.packets_type_PC === 11 &&
+                validPacketIds.includes(t.tariff_packet_id) &&
+                t.tariff_groups === tariffGroup &&
+                currentTime >= t.time_from &&
+                currentTime <= t.time_to
+            );
+
+            if (packetOffers.length === 0) {
+                return Response.json({ error: `Цена для пакета ${desiredHours} ч. недоступна в текущее время/день` }, { status: 404 });
+            }
+
+            packetPrice = packetOffers[0].price;
+            const pricePerMin = packetPrice / targetDurationMinutes;
+            compensation = pricePerMin * minutes;
+            calculationDetails = `Автосимулятор (Пакет ${desiredHours}ч = ${packetPrice}₽) → ${pricePerMin.toFixed(2)}₽/мин × ${minutes} мин = ${Math.round(compensation)}₽`;
+
+        } else if (tariff_type === "minute") {
             const pricePerHour = findPerMinutePrice(tariffs, zone, tariffGroup, currentTime);
             if (pricePerHour === 0) {
                 return Response.json({ error: "Не найден поминутный тариф для текущего времени и зоны" }, { status: 404 });

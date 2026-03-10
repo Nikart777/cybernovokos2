@@ -242,34 +242,62 @@ export default function CalculatorPage() {
                                 <span className="step-label">Тариф клиента</span>
                             </div>
                             <div className="tariff-buttons">
-                                <button
-                                    className={`tariff-btn ${tariff === "minute" ? "active" : ""}`}
-                                    onClick={() => handleSelectTariff("minute")}
-                                >
-                                    <span className="tariff-icon">⏱</span>
-                                    <span className="tariff-name">Поминутный</span>
-                                </button>
-                                <button
-                                    className={`tariff-btn ${tariff === "3h" ? "active" : ""}`}
-                                    onClick={() => handleSelectTariff("3h")}
-                                >
-                                    <span className="tariff-icon">🕒</span>
-                                    <span className="tariff-name">Пакет 3 часа</span>
-                                </button>
-                                <button
-                                    className={`tariff-btn ${tariff === "5h" ? "active" : ""}`}
-                                    onClick={() => handleSelectTariff("5h")}
-                                >
-                                    <span className="tariff-icon">🕔</span>
-                                    <span className="tariff-name">Пакет 5 часов</span>
-                                </button>
-                                <button
-                                    className={`tariff-btn ${tariff === "night" ? "active" : ""}`}
-                                    onClick={() => handleSelectTariff("night")}
-                                >
-                                    <span className="tariff-icon">🌙</span>
-                                    <span className="tariff-name">Ночной</span>
-                                </button>
+                                {zone === 11 ? (
+                                    <>
+                                        <button
+                                            className={`tariff-btn ${tariff === "1h" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("1h")}
+                                        >
+                                            <span className="tariff-icon">⏱</span>
+                                            <span className="tariff-name">Пакет 1 час</span>
+                                        </button>
+                                        <button
+                                            className={`tariff-btn ${tariff === "2h" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("2h")}
+                                        >
+                                            <span className="tariff-icon">⏱</span>
+                                            <span className="tariff-name">Пакет 2 часа</span>
+                                        </button>
+                                        <button
+                                            className={`tariff-btn ${tariff === "3h" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("3h")}
+                                        >
+                                            <span className="tariff-icon">🕒</span>
+                                            <span className="tariff-name">Пакет 3 часа</span>
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button
+                                            className={`tariff-btn ${tariff === "minute" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("minute")}
+                                        >
+                                            <span className="tariff-icon">⏱</span>
+                                            <span className="tariff-name">Поминутный</span>
+                                        </button>
+                                        <button
+                                            className={`tariff-btn ${tariff === "3h" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("3h")}
+                                        >
+                                            <span className="tariff-icon">🕒</span>
+                                            <span className="tariff-name">Пакет 3 часа</span>
+                                        </button>
+                                        <button
+                                            className={`tariff-btn ${tariff === "5h" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("5h")}
+                                        >
+                                            <span className="tariff-icon">🕔</span>
+                                            <span className="tariff-name">Пакет 5 часов</span>
+                                        </button>
+                                        <button
+                                            className={`tariff-btn ${tariff === "night" ? "active" : ""}`}
+                                            onClick={() => handleSelectTariff("night")}
+                                        >
+                                            <span className="tariff-icon">🌙</span>
+                                            <span className="tariff-name">Ночной</span>
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </section>
                     )}

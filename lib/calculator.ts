@@ -30,6 +30,7 @@ export const CLUBS: Record<string, ClubConfig> = {
             5: "DUO / SOLO",
             4: "АРЕНДА TV",
             9: "АРЕНДА TV VIP КОМНАТА",
+            11: "АВТОСИМУЛЯТОР",
         },
     },
 };
