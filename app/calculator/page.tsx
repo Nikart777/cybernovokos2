@@ -134,12 +134,17 @@ export default function CalculatorPage() {
 
     const ZONE_ICONS: Record<string, string> = {
         "ОБЩИЙ ЗАЛ (Standard)": "🖥️",
-        БУТКЕМП: "🎯",
+        "ОБЩИЙ ЗАЛ": "🖥️",
+        "БУТКЕМП": "🎯",
+        "VIP БУТКЕМП (5 МЕСТ)": "👑",
         "VIP БУТКЕМП и DUO": "👥",
-        SOLO: "👤",
+        "DUO / SOLO": "👥",
+        "SOLO": "👤",
         "TV ОБЩИЙ ЗАЛ": "📺",
+        "АРЕНДА TV": "📺",
         "TV VIP КОМНАТА": "💎",
-        АВТОСИМУЛЯТОР: "🏎️",
+        "АРЕНДА TV VIP КОМНАТА": "💎",
+        "АВТОСИМУЛЯТОР": "🏎️",
     };
 
     return (
