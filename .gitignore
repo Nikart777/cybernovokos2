@@ -64,3 +64,8 @@ server.js
 1LANGAME Software Public API.html
 app/certificate/wordstat_similar_queries.csv
 app/certificate/wordstat_top_queries.csv
+GOOGLE_API_CHEATSHEET.md
+YANDEX_API_CHEATSHEET.md
+калькулятор компенсаций/style.css
+калькулятор компенсаций/server.py
+калькулятор компенсаций/index.html
