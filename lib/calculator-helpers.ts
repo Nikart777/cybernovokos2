@@ -7,11 +7,22 @@ export interface TariffTypeMapEntry {
 }
 
 export const TARIFF_TYPE_MAP: Record<string, TariffTypeMapEntry> = {
+    "1h": { packet_id: null, label: "Пакет 1 час", duration_min: 60 },
+    "2h": { packet_id: null, label: "Пакет 2 часа", duration_min: 120 },
     minute: { packet_id: 1, label: "Поминутный", duration_min: null },
     "3h": { packet_id: 2, label: "Пакет 3 часа", duration_min: 180 },
     "5h": { packet_id: 3, label: "Пакет 5 часов", duration_min: 300 },
     night: { packet_id: null, label: "Ночной", duration_min: null },
 };
+
+function isTimeInPeriod(timeFrom: string, timeTo: string, currentTime: string): boolean {
+    if (timeFrom <= timeTo) {
+        return currentTime >= timeFrom && currentTime <= timeTo;
+    } else {
+        // Overnight period (e.g., 16:00:00 to 07:59:59)
+        return currentTime >= timeFrom || currentTime <= timeTo;
+    }
+}
 
 export async function getTodayTariffGroup(clubId: string): Promise<number> {
     const byDays = await langameGet(clubId, "tariffs/by_days/list");
@@ -57,7 +68,7 @@ export function findPerMinutePrice(tariffs: any[], zone: number, tariffGroup: nu
             t.tariff_groups === tariffGroup &&
             t.tariff_packet_id === 1
         ) {
-            if (t.time_from <= currentTime && currentTime <= t.time_to) {
+            if (isTimeInPeriod(t.time_from, t.time_to, currentTime)) {
                 return t.price;
             }
         }
@@ -72,7 +83,7 @@ export function findPackagePrice(tariffs: any[], zone: number, tariffGroup: numb
             t.tariff_groups === tariffGroup &&
             t.tariff_packet_id === packetId
         ) {
-            if (t.time_from <= currentTime && currentTime <= t.time_to) {
+            if (isTimeInPeriod(t.time_from, t.time_to, currentTime)) {
                 return [t.price, packetId];
             }
         }
