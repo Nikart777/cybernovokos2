@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { MapPin, Phone, Instagram, ChevronRight, MapPinned } from 'lucide-react';
 
@@ -119,12 +121,18 @@ export default function Footer() {
                     </a>
 
                     <div className="flex gap-8 order-3">
-                        <Link href="/privacy" className="text-white/20 font-chakra text-[10px] uppercase font-bold hover:text-white transition-colors tracking-widest">
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent("open-privacy-policy"))}
+                            className="text-white/20 font-chakra text-[10px] uppercase font-bold hover:text-white transition-colors tracking-widest cursor-pointer"
+                        >
                             Политика конфиденциальности
-                        </Link>
-                        <Link href="/terms" className="text-white/20 font-chakra text-[10px] uppercase font-bold hover:text-white transition-colors tracking-widest">
+                        </button>
+                        <button
+                            onClick={() => window.dispatchEvent(new CustomEvent("open-public-offer"))}
+                            className="text-white/20 font-chakra text-[10px] uppercase font-bold hover:text-white transition-colors tracking-widest cursor-pointer"
+                        >
                             Оферта
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
