@@ -297,6 +297,72 @@ export default function MouseTestClient() {
                 </div>
             </section>
 
+            {/* ===== HOW TO USE ===== */}
+            <section className="container mx-auto px-4 mt-8">
+                <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-[#B900FF]/10 flex items-center justify-center">
+                        <Info size={16} className="text-[#B900FF]" />
+                    </div>
+                    <h2 className="font-tactic font-black text-2xl md:text-3xl uppercase italic tracking-tighter">
+                        Как пользоваться
+                    </h2>
+                </div>
+                <p className="text-white/30 text-sm font-chakra font-bold uppercase tracking-wider mb-8">
+                    Пошаговая инструкция для аккуратной проверки
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                        {
+                            step: 1,
+                            icon: <Mouse size={20} />,
+                            title: 'Подготовка',
+                            text: 'Подключите мышь и положите руку в удобное положение. Убедитесь, что будете делать одиночные клики, не двойные.',
+                        },
+                        {
+                            step: 2,
+                            icon: <Target size={20} />,
+                            title: 'Кликайте в обычном темпе',
+                            text: 'Нажимайте кнопку мыши одиночными кликами в обычном рабочем темпе. Не торопитесь.',
+                        },
+                        {
+                            step: 3,
+                            icon: <Zap size={20} />,
+                            title: 'Минимум 30 кликов',
+                            text: 'Чем больше кликов — тем точнее результат. 30–50 кликов дадут достаточно данных для диагностики.',
+                        },
+                        {
+                            step: 4,
+                            icon: <CheckCircle2 size={20} />,
+                            title: 'Оцените результат',
+                            text: 'Система покажет вердикт. Красные записи — подозрительные даблклики от микропереключателя.',
+                        },
+                    ].map((item, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:border-white/10 transition-all group"
+                        >
+                            <div className="w-10 h-10 rounded-xl bg-[#FF2E63]/10 border border-[#FF2E63]/20 flex items-center justify-center text-[#FF2E63] mb-4 group-hover:scale-110 transition-transform">
+                                {item.icon}
+                            </div>
+                            <div className="text-white/20 text-[10px] font-chakra font-black uppercase tracking-widest mb-1">
+                                Шаг {item.step}
+                            </div>
+                            <h3 className="font-tactic font-black text-base uppercase italic tracking-tight text-white mb-2">
+                                {item.title}
+                            </h3>
+                            <p className="text-white/40 text-xs font-chakra leading-relaxed">
+                                {item.text}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
             {/* ===== MAIN TEST AREA ===== */}
             <section className="container mx-auto px-4 mt-8">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4 md:gap-5">
@@ -593,79 +659,114 @@ export default function MouseTestClient() {
                 </div>
             </section>
 
+
+
             {/* ===== SEPARATOR ===== */}
             <div className="container mx-auto px-4 my-16">
                 <div className="h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             </div>
 
-            {/* ===== HOW TO USE ===== */}
-            <section className="container mx-auto px-4">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-[#B900FF]/10 flex items-center justify-center">
-                        <Info size={16} className="text-[#B900FF]" />
-                    </div>
-                    <h2 className="font-tactic font-black text-2xl md:text-3xl uppercase italic tracking-tighter">
-                        Как пользоваться
-                    </h2>
-                </div>
-                <p className="text-white/30 text-sm font-chakra font-bold uppercase tracking-wider mb-8">
-                    Пошаговая инструкция для аккуратной проверки
-                </p>
+            {/* ===== BONUS: WHEEL FIX ===== */}
+            <section className="container mx-auto px-4 mb-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="relative bg-gradient-to-br from-[#B900FF]/[0.06] via-white/[0.02] to-[#00F0FF]/[0.04] border border-[#B900FF]/20 rounded-3xl p-8 md:p-10 overflow-hidden"
+                >
+                    {/* Background glow */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#B900FF]/5 blur-[100px] rounded-full pointer-events-none" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {[
-                        {
-                            step: 1,
-                            icon: <Mouse size={20} />,
-                            title: 'Подготовка',
-                            text: 'Подключите мышь и положите руку в удобное положение. Убедитесь, что будете делать одиночные клики, не двойные.',
-                        },
-                        {
-                            step: 2,
-                            icon: <Target size={20} />,
-                            title: 'Кликайте в обычном темпе',
-                            text: 'Нажимайте кнопку мыши одиночными кликами в обычном рабочем темпе. Не торопитесь.',
-                        },
-                        {
-                            step: 3,
-                            icon: <Zap size={20} />,
-                            title: 'Минимум 30 кликов',
-                            text: 'Чем больше кликов — тем точнее результат. 30–50 кликов дадут достаточно данных для диагностики.',
-                        },
-                        {
-                            step: 4,
-                            icon: <CheckCircle2 size={20} />,
-                            title: 'Оцените результат',
-                            text: 'Система покажет вердикт. Красные записи — подозрительные даблклики от микропереключателя.',
-                        },
-                    ].map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:border-white/10 transition-all group"
-                        >
-                            <div className="w-10 h-10 rounded-xl bg-[#FF2E63]/10 border border-[#FF2E63]/20 flex items-center justify-center text-[#FF2E63] mb-4 group-hover:scale-110 transition-transform">
-                                {item.icon}
-                            </div>
-                            <div className="text-white/20 text-[10px] font-chakra font-black uppercase tracking-widest mb-1">
-                                Шаг {item.step}
-                            </div>
-                            <h3 className="font-tactic font-black text-base uppercase italic tracking-tight text-white mb-2">
-                                {item.title}
-                            </h3>
-                            <p className="text-white/40 text-xs font-chakra leading-relaxed">
-                                {item.text}
+                    {/* Header */}
+                    <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 rounded-xl bg-[#B900FF]/15 border border-[#B900FF]/25 flex items-center justify-center">
+                            <span className="text-xl">🛠</span>
+                        </div>
+                        <div>
+                            <h2 className="font-tactic font-black text-xl md:text-2xl uppercase italic tracking-tighter text-white">
+                                Бонус: если лагает колесо
+                            </h2>
+                            <p className="text-[#B900FF]/60 text-[10px] font-chakra font-black uppercase tracking-widest">
+                                Дедовский способ — без разборки
                             </p>
-                        </motion.div>
-                    ))}
-                </div>
+                        </div>
+                    </div>
+
+                    <p className="text-white/50 text-sm font-chakra leading-relaxed mt-4 mb-6 max-w-3xl">
+                        Бывает, что колесико живёт своей жизнью: скроллишь вниз, а оно дёргается вверх.
+                        Чаще всего это просто пыль или волосы в энкодере. Лечится за 10 секунд:
+                    </p>
+
+                    {/* Steps */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        {[
+                            {
+                                num: '01',
+                                title: 'Отключи мышь',
+                                text: 'Выдерни кабель или выключи беспроводную. Переверни мышь пузом вверх.',
+                                icon: '🔌',
+                            },
+                            {
+                                num: '02',
+                                title: 'Прижми к столу',
+                                text: 'Прижми колесиком к твёрдой поверхности (без коврика). Надави уверенно, но без фанатизма.',
+                                icon: '👇',
+                            },
+                            {
+                                num: '03',
+                                title: 'Прокатай 15 сек',
+                                text: 'Быстро прокатай мышь туда‑сюда по столу секунд 15. Давление + скорость сбивают грязь с контактов.',
+                                icon: '🔄',
+                            },
+                        ].map((step, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 15 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:border-[#B900FF]/20 transition-all"
+                            >
+                                <div className="flex items-center gap-3 mb-3">
+                                    <span className="text-2xl">{step.icon}</span>
+                                    <div>
+                                        <div className="text-[#B900FF]/40 text-[10px] font-chakra font-black uppercase tracking-widest">
+                                            Шаг {step.num}
+                                        </div>
+                                        <div className="font-tactic font-black text-sm uppercase italic text-white">
+                                            {step.title}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-white/40 text-xs font-chakra leading-relaxed">
+                                    {step.text}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Result info */}
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
+                                <span className="text-lg">✅</span>
+                            </div>
+                            <div>
+                                <div className="font-chakra font-black text-xs uppercase tracking-wider text-emerald-400/80">
+                                    Результат
+                                </div>
+                                <p className="text-white/40 text-xs font-chakra leading-relaxed">
+                                    В <span className="text-emerald-400 font-bold">8 из 10</span> случаев лаги колеса пропадают.
+                                    Не помогло? Тогда мышь — в ремонт на замену энкодера.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
             </section>
 
             {/* ===== SEPARATOR ===== */}
-            <div className="container mx-auto px-4 my-16">
+            <div className="container mx-auto px-4 mb-16">
                 <div className="h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             </div>
 
