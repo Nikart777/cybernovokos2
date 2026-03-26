@@ -16,6 +16,20 @@ export const metadata: Metadata = {
             "Проверь свою мышь на ложные двойные нажатия. Бесплатная онлайн диагностика оборудования.",
         url: "https://cyberx-novokosino.ru/mouse-test",
         type: "website",
+        images: [
+            {
+                url: "https://cyberx-novokosino.ru/og-mouse-test.png",
+                width: 1200,
+                height: 630,
+                alt: "Тест мыши на даблклик — CyberX Новокосино",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Тест мыши на даблклик — CyberX Новокосино",
+        description: "Проверь свою мышь на ложные двойные нажатия. Бесплатная онлайн диагностика.",
+        images: ["https://cyberx-novokosino.ru/og-mouse-test.png"],
     },
 };
 
