@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Smartphone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -51,20 +52,14 @@ export default function Header() {
             >
                 <div className="container mx-auto px-4 flex items-center justify-between">
                     <Link href="/" className="relative z-[110] flex items-center group">
-                        <div className="flex items-baseline gap-0">
-                            <span className="font-tactic font-black text-2xl md:text-3xl tracking-tighter text-white uppercase italic group-hover:text-[#FF2E63] transition-colors duration-300">CYBER</span>
-                            <div className="relative">
-                                <span className="font-tactic font-black text-3xl md:text-5xl tracking-tighter text-[#FF2E63] italic -ml-1 transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(255,46,99,0.8)]">X</span>
-                                <motion.div
-                                    animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
-                                    transition={{ repeat: Infinity, duration: 2 }}
-                                    className="absolute inset-0 bg-[#FF2E63] blur-2xl -z-10 rounded-full"
-                                />
-                            </div>
-                            <div className="flex flex-col ml-3 hidden md:flex">
-                                <span className="font-chakra font-black text-[10px] text-white tracking-[0.4em] uppercase leading-none">НОВОКОСИНСКАЯ</span>
-                            </div>
-                        </div>
+                        <Image
+                            src="/logo new.png"
+                            alt="CyberX Novokosino"
+                            width={200}
+                            height={50}
+                            className="h-8 md:h-10 w-auto object-contain transition-all duration-300 group-hover:brightness-125 group-hover:drop-shadow-[0_0_15px_rgba(255,46,99,0.5)]"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}

@@ -6,10 +6,23 @@ import { useState, useEffect } from "react";
 
 export default function StickyBar() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isNearBottom, setIsNearBottom] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const checkBottom = () => {
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const pageHeight = document.documentElement.scrollHeight;
+      setIsNearBottom(pageHeight - scrollBottom < 200);
+    };
+
+    window.addEventListener('scroll', checkBottom, { passive: true });
+    checkBottom();
+    return () => window.removeEventListener('scroll', checkBottom);
   }, []);
 
   const openBooking = () => {
@@ -22,7 +35,7 @@ export default function StickyBar() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isNearBottom && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
