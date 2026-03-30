@@ -1,15 +1,12 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import PromoHeader from "@/components/PromoHeader";
-import Promotions from "@/components/Promotions";
-
+import Hero from "@/components/HeroNew";
+import ZonesPreview from "@/components/ZonesPreview";
+import PromotionsNew from "@/components/PromotionsNew";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import SEOBlock from "@/components/SEOBlock";
-import PromoBand from "@/components/PromoBand";
-import MonitoringCards from "@/components/MonitoringCards";
 import fs from "fs";
 import path from "path";
 import { PricingData } from "./lib/types";
@@ -24,7 +21,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // Читаем данные для блока цен на сервере
   const filePath = path.join(process.cwd(), "data", "prices.json");
   let pricingData: PricingData | undefined;
 
@@ -38,22 +34,11 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-[#050505] text-white relative">
       <Header />
-
       <Hero />
-
-      {/* NEW MONITORING BLOCK */}
-      {pricingData && <MonitoringCards pricingData={pricingData} />}
-
-      <PromoHeader />
-      <Promotions />
-
-
-
+      {pricingData && <ZonesPreview pricingData={pricingData} />}
+      <PromotionsNew />
       <Reviews />
-
       <FAQ />
-
-      <PromoBand />
       <Contacts />
       <SEOBlock />
       <Footer />
