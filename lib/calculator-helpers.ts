@@ -61,9 +61,10 @@ export async function getTodayTariffGroup(clubId: string): Promise<number> {
     return 74;
 }
 
-export function findPerMinutePrice(tariffs: any[], zone: number, tariffGroup: number, currentTime: string): number {
+export function findPerMinutePrice(tariffs: any[], zone: number, tariffGroup: number, currentTime: string, clubId: number): number {
     for (const t of tariffs) {
         if (
+            t.club_id === clubId &&
             t.packets_type_PC === zone &&
             t.tariff_groups === tariffGroup &&
             t.tariff_packet_id === 1
@@ -76,22 +77,36 @@ export function findPerMinutePrice(tariffs: any[], zone: number, tariffGroup: nu
     return 0;
 }
 
-export function findPackagePrice(tariffs: any[], zone: number, tariffGroup: number, currentTime: string, packetId: number): [number, number] {
+export function findPackagePrice(tariffs: any[], typesGroups: any[], zone: number, tariffGroup: number, currentTime: string, durationMin: number, clubId: number): [number, number] {
+    const validPacketIds = new Set<number>();
+    
+    for (const tg of typesGroups) {
+        if (tg.type === 'packet' && tg.duration === durationMin && tg.is_deleted !== 1) {
+            const name = (tg.name || "").toLowerCase();
+            // Исключаем автосимуляторы, если это не зона автосимуляторов (11)
+            if (zone !== 11 && (name.includes('автосим') || name.includes('racing'))) {
+                continue;
+            }
+            validPacketIds.add(tg.id);
+        }
+    }
+
     for (const t of tariffs) {
         if (
+            t.club_id === clubId &&
             t.packets_type_PC === zone &&
             t.tariff_groups === tariffGroup &&
-            t.tariff_packet_id === packetId
+            validPacketIds.has(t.tariff_packet_id)
         ) {
             if (isTimeInPeriod(t.time_from, t.time_to, currentTime)) {
-                return [t.price, packetId];
+                return [t.price, t.tariff_packet_id];
             }
         }
     }
-    return [0, packetId];
+    return [0, 0];
 }
 
-export function findNightPrice(tariffs: any[], zone: number, tariffGroup: number, typesGroups: any[]): [number, number] {
+export function findNightPrice(tariffs: any[], zone: number, tariffGroup: number, typesGroups: any[], clubId: number): [number, number] {
     const nightIds = new Set<number>();
 
     for (const tg of typesGroups) {
@@ -111,6 +126,7 @@ export function findNightPrice(tariffs: any[], zone: number, tariffGroup: number
     // First try: tariff in current active time_period with a matching packet
     for (const t of tariffs) {
         if (
+            t.club_id === clubId &&
             t.packets_type_PC === zone &&
             t.tariff_groups === tariffGroup &&
             nightIds.has(t.tariff_packet_id)
@@ -122,6 +138,7 @@ export function findNightPrice(tariffs: any[], zone: number, tariffGroup: number
     // Fallback: take tariffs that start at 00:00:00 and are not regular packets
     for (const t of tariffs) {
         if (
+            t.club_id === clubId &&
             t.packets_type_PC === zone &&
             t.tariff_groups === tariffGroup &&
             t.time_from === "00:00:00"

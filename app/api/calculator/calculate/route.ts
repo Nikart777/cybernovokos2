@@ -87,6 +87,7 @@ export async function POST(request: Request) {
             // We need to find the price for this packet ID in the current time period
             const validPacketIds = simPackets.map((p: any) => p.id);
             const packetOffers = tariffs.filter((t: any) =>
+                t.club_id === clubConfig.langame_club_id &&
                 t.packets_type_PC === 11 &&
                 validPacketIds.includes(t.tariff_packet_id) &&
                 t.tariff_groups === tariffGroup &&
@@ -104,7 +105,7 @@ export async function POST(request: Request) {
             calculationDetails = `Автосимулятор (Пакет ${desiredHours}ч = ${packetPrice}₽) → ${pricePerMin.toFixed(2)}₽/мин × ${minutes} мин = ${Math.round(compensation)}₽`;
 
         } else if (tariff_type === "minute") {
-            const pricePerHour = findPerMinutePrice(tariffs, zone, tariffGroup, currentTime);
+            const pricePerHour = findPerMinutePrice(tariffs, zone, tariffGroup, currentTime, clubConfig.langame_club_id);
             if (pricePerHour === 0) {
                 return Response.json({ error: "Не найден поминутный тариф для текущего времени и зоны" }, { status: 404 });
             }
@@ -112,9 +113,8 @@ export async function POST(request: Request) {
             compensation = pricePerMin * minutes;
             calculationDetails = `${pricePerHour}₽/час ÷ 60 = ${pricePerMin.toFixed(2)}₽/мин × ${minutes} мин = ${Math.round(compensation)}₽`;
         } else if (tariff_type === "3h" || tariff_type === "5h") {
-            const packetId = tariffInfo.packet_id!;
             const durationMin = tariffInfo.duration_min!;
-            const [packagePrice] = findPackagePrice(tariffs, zone, tariffGroup, currentTime, packetId);
+            const [packagePrice] = findPackagePrice(tariffs, typesGroups, zone, tariffGroup, currentTime, durationMin, clubConfig.langame_club_id);
             if (packagePrice === 0) {
                 return Response.json({ error: "Не найден тариф пакета для текущего времени и зоны" }, { status: 404 });
             }
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
             compensation = pricePerMinute * minutes;
             calculationDetails = `Пакет ${Math.floor(durationMin / 60)}ч = ${packagePrice}₽ → ${pricePerMinute.toFixed(2)}₽/мин × ${minutes} мин = ${Math.round(compensation)}₽`;
         } else if (tariff_type === "night") {
-            const [nightPrice, nightPacketId] = findNightPrice(tariffs, zone, tariffGroup, typesGroups);
+            const [nightPrice, nightPacketId] = findNightPrice(tariffs, zone, tariffGroup, typesGroups, clubConfig.langame_club_id);
             if (nightPrice === 0) {
                 return Response.json({ error: "Не найден ночной тариф для текущей зоны" }, { status: 404 });
             }

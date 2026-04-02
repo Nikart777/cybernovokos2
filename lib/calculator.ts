@@ -2,6 +2,7 @@ export interface ClubConfig {
     name: string;
     api_key: string;
     base_url: string;
+    langame_club_id: number;
     zones: Record<number, string>;
 }
 
@@ -9,7 +10,8 @@ export const CLUBS: Record<string, ClubConfig> = {
     novokosino: {
         name: "CyberX Новокосино",
         api_key: process.env.LANGAME_API_TOKEN || "",
-        base_url: "https://cyberx165.langame-pr.ru/public_api",
+        base_url: process.env.LANGAME_API_URL || "https://cyberx165.langame-pr.ru/public_api",
+        langame_club_id: 1,
         zones: {
             1: "ОБЩИЙ ЗАЛ (Standard)",
             3: "БУТКЕМП",
@@ -23,7 +25,8 @@ export const CLUBS: Record<string, ClubConfig> = {
     altufyevo: {
         name: "CyberX Алтуфьево",
         api_key: process.env.LANGAME_API_TOKEN_ALTUFYEVO || "",
-        base_url: "https://cyberx52.langamesftw.ru/public_api",
+        base_url: process.env.LANGAME_API_URL_ALTUFYEVO || "https://cyberx52.langamesftw.ru/public_api",
+        langame_club_id: 3,
         zones: {
             1: "ОБЩИЙ ЗАЛ",
             2: "VIP БУТКЕМП (5 МЕСТ)",
