@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { MapPin, Phone, ChevronRight, MapPinned } from 'lucide-react';
 
 const links = [
-    { name: 'Р“Р»Р°РІРЅР°СЏ', href: '/' },
-    { name: 'Р¦РµРЅС‹', href: '/prices' },
+    { name: 'Главная', href: '/' },
+    { name: 'Цены', href: '/prices' },
     { name: 'Sim Racing', href: '/simracing' },
-    { name: 'РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹', href: '/certificate' },
-    { name: 'РљРѕРЅС‚Р°РєС‚С‹', href: '/contacts' },
+    { name: 'Подарочные сертификаты', href: '/certificate' },
+    { name: 'Контакты', href: '/contacts' },
 ];
 
 export default function Footer() {
@@ -24,14 +24,14 @@ export default function Footer() {
                             </div>
                         </Link>
                         <p className="text-white/40 text-xs font-chakra font-bold leading-relaxed mb-6 uppercase tracking-wider">
-                            РўР’РћРЇ РР“Р РћР’РђРЇ Р’РЎР•Р›Р•РќРќРђРЇ <br /> Р’ РќРћР’РћРљРћРЎРРќРћ. Р›РЈР§РЁР•Р• Р–Р•Р›Р•Р—Рћ <br /> Р РђРўРњРћРЎР¤Р•Р Рђ РљРР‘Р•Р РЎРџРћР РўРђ.
+                            ТВОЯ ИГРОВАЯ ВСЕЛЕННАЯ <br /> В НОВОКОСИНО. ЛУЧШЕЕ ЖЕЛЕЗО <br /> И АТМОСФЕРА КИБЕРСПОРТА.
                         </p>
-                        <h4 className="font-tactic font-black text-white uppercase mb-4 tracking-widest text-xs italic">РњС‹ РІ СЃРѕС†СЃРµС‚СЏС…</h4>
+                        <h4 className="font-tactic font-black text-white uppercase mb-4 tracking-widest text-xs italic">Мы в соцсетях</h4>
                         <div className="flex flex-wrap items-center gap-3">
-                            <a href="https://t.me/CyberXNovokos" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram РєР°РЅР°Р»">
+                            <a href="https://t.me/CyberXNovokos" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram канал">
                                 <TelegramIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://t.me/cyberxn32" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram С‡Р°С‚">
+                            <a href="https://t.me/cyberxn32" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram чат">
                                 <TelegramIcon size={18} className="text-[#00F0FF]" />
                             </a>
                             <a href="https://vk.com/club224403383" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all flex items-center justify-center" title="VK">
@@ -40,7 +40,7 @@ export default function Footer() {
                             <a href="https://www.tiktok.com/@cyberxnovokosino" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="TikTok">
                                 <TikTokIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://yandex.ru/maps/-/CPA4UJ~I" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="РЇРЅРґРµРєСЃ.РљР°СЂС‚С‹">
+                            <a href="https://yandex.ru/maps/-/CPA4UJ~I" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Яндекс.Карты">
                                 <MapPinned size={18} className="text-[#FF2E63]" />
                             </a>
                             <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all flex items-center justify-center" title="2GIS">
@@ -50,7 +50,7 @@ export default function Footer() {
                     </div>
 
                     <div className="md:col-span-1">
-                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">РќР°РІРёРіР°С†РёСЏ</h4>
+                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Навигация</h4>
                         <div className="flex flex-col gap-4">
                             {links.map((link) => (
                                 <Link
@@ -65,22 +65,22 @@ export default function Footer() {
                     </div>
 
                     <div className="md:col-span-2">
-                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">РљРѕРЅС‚Р°РєС‚С‹</h4>
+                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Контакты</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-start gap-4">
                                     <MapPin size={20} className="text-[#FF2E63] mt-1 shrink-0" />
                                     <div>
-                                        <div className="text-white font-chakra font-black text-xs uppercase tracking-widest mb-1">РђРґСЂРµСЃ</div>
+                                        <div className="text-white font-chakra font-black text-xs uppercase tracking-widest mb-1">Адрес</div>
                                         <div className="text-white/40 font-chakra text-xs uppercase font-bold leading-relaxed">
-                                            РњРѕСЃРєРІР°, СѓР». РќРѕРІРѕРєРѕСЃРёРЅСЃРєР°СЏ, 32
+                                            Москва, ул. Новокосинская, 32
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <Phone size={20} className="text-[#FF2E63] mt-1 shrink-0" />
                                     <div>
-                                        <div className="text-white font-chakra font-black text-xs uppercase tracking-widest mb-1">РўРµР»РµС„РѕРЅ</div>
+                                        <div className="text-white font-chakra font-black text-xs uppercase tracking-widest mb-1">Телефон</div>
                                         <a href="tel:+79851289538" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
                                             +7 (985) 128-95-38
                                         </a>
@@ -89,9 +89,9 @@ export default function Footer() {
                             </div>
                             <div className="flex flex-col gap-4">
                                 <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                                    <div className="text-[10px] text-white/30 uppercase font-black mb-1">Р РµР¶РёРј СЂР°Р±РѕС‚С‹</div>
+                                    <div className="text-[10px] text-white/30 uppercase font-black mb-1">Режим работы</div>
                                     <div className="text-white font-tactic font-black text-lg skew-x-[-12deg] tracking-wider uppercase">
-                                        РљР РЈР“Р›РћРЎРЈРўРћР§РќРћ 24/7
+                                        КРУГЛОСУТОЧНО 24/7
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ export default function Footer() {
 
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-8">
                     <p className="text-white/20 font-chakra text-[10px] uppercase font-bold tracking-widest order-2 md:order-1">
-                        В© 2026 CyberX Novokosino. Р’СЃРµ РїСЂР°РІР° Р·Р°С‰РёС‰РµРЅС‹.
+                        © 2026 CyberX Novokosino. Все права защищены.
                     </p>
 
                     <a
@@ -111,7 +111,7 @@ export default function Footer() {
                         className="group relative flex items-center gap-4 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl transition-all duration-500 hover:bg-white hover:text-black overflow-hidden order-1 md:order-2"
                     >
                         <div className="flex flex-col items-end">
-                            <span className="text-[8px] font-chakra font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">РЎР°Р№С‚ СЂР°Р·СЂР°Р±РѕС‚Р°РЅ</span>
+                            <span className="text-[8px] font-chakra font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">Сайт разработан</span>
                             <span className="text-xs font-tactic font-black uppercase tracking-tighter italic">ART.VISION</span>
                         </div>
                         <div className="w-10 h-10 rounded-xl bg-[#FF2E63] flex items-center justify-center group-hover:rotate-[360deg] transition-all duration-700 shadow-[0_0_20px_rgba(255,46,99,0.3)]">
