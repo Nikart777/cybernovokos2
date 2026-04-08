@@ -39,17 +39,13 @@ export default function LeadForm() {
             if (res.ok && data.success) {
                 setSuccess(true);
             } else {
-                setError(data.error || "Ошибка отправки");
+                setError(data.error || "РћС€РёР±РєР° РѕС‚РїСЂР°РІРєРё");
             }
         } catch (err) {
-            setError("Ошибка соединения");
+            setError("РћС€РёР±РєР° СЃРѕРµРґРёРЅРµРЅРёСЏ");
         } finally {
             setLoading(false);
         }
-    };
-
-    const openPrivacy = () => {
-        window.dispatchEvent(new CustomEvent("open-privacy-policy"));
     };
 
     if (success) {
@@ -60,7 +56,7 @@ export default function LeadForm() {
                     <span className="text-[#00ff88]">V</span>ictory!
                 </h3>
                 <p className="font-chakra font-medium text-gray-300 mb-6 text-lg">
-                    Твой промокод на 1 час игры:
+                    РўРІРѕР№ РїСЂРѕРјРѕРєРѕРґ РЅР° 1 С‡Р°СЃ РёРіСЂС‹:
                 </p>
                 <div className="relative group cursor-pointer" onClick={() => navigator.clipboard.writeText("CYBERXWEB")}>
                     <div className="absolute inset-0 bg-[#00ff88] blur-xl opacity-20 group-hover:opacity-40 transition-opacity" />
@@ -69,8 +65,8 @@ export default function LeadForm() {
                     </div>
                 </div>
                 <p className="text-xs text-gray-400 mt-4 font-inter text-center leading-relaxed">
-                    Введи этот промокод в клубе при регистрации<br />
-                    или в приложении <a href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" target="_blank" rel="noopener noreferrer" className="text-[#00ff88] font-tactic italic hover:underline">CYBERX</a> (выберите CYBERX новокосино)
+                    Р’РІРµРґРё СЌС‚РѕС‚ РїСЂРѕРјРѕРєРѕРґ РІ РєР»СѓР±Рµ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё<br />
+                    РёР»Рё РІ РїСЂРёР»РѕР¶РµРЅРёРё <a href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" target="_blank" rel="noopener noreferrer" className="text-[#00ff88] font-tactic italic hover:underline">CYBERX</a> (РІС‹Р±РµСЂРёС‚Рµ CYBERX РЅРѕРІРѕРєРѕСЃРёРЅРѕ)
                 </p>
             </div>
         );
@@ -90,10 +86,10 @@ export default function LeadForm() {
                 {/* Header */}
                 <div className="mb-8 text-center relative z-10">
                     <h3 className="font-tactic font-black text-3xl md:text-4xl text-white mb-3 uppercase italic leading-none drop-shadow-[0_0_10px_rgba(0,255,136,0.3)]">
-                        Забери <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff88] to-[#00f0ff]">1 час игры</span> бесплатно
+                        Р—Р°Р±РµСЂРё <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ff88] to-[#00f0ff]">1 С‡Р°СЃ РёРіСЂС‹</span> Р±РµСЃРїР»Р°С‚РЅРѕ
                     </h3>
                     <p className="font-chakra font-medium text-gray-400 text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-                        Оставь номер, и мы пришлем промокод на первое посещение + <span className="text-[#FFD700] font-bold">400 бонусов</span> на баланс
+                        РћСЃС‚Р°РІСЊ РЅРѕРјРµСЂ, Рё РјС‹ РїСЂРёС€Р»РµРј РїСЂРѕРјРѕРєРѕРґ РЅР° РїРµСЂРІРѕРµ РїРѕСЃРµС‰РµРЅРёРµ + <span className="text-[#FFD700] font-bold">400 Р±РѕРЅСѓСЃРѕРІ</span> РЅР° Р±Р°Р»Р°РЅСЃ
                     </p>
                 </div>
 
@@ -124,24 +120,13 @@ export default function LeadForm() {
                     >
                         <div className="relative bg-black/10 backdrop-blur-sm rounded-[11px] py-4 transition-all group-hover/btn:bg-transparent">
                             <span className="font-tactic font-black text-xl text-[#050505] uppercase italic tracking-wider flex items-center justify-center gap-3">
-                                Получить код
+                                РџРѕР»СѓС‡РёС‚СЊ РєРѕРґ
                                 <MousePointer2 className="w-5 h-5 fill-black stroke-black rotate-[-15deg]" />
                             </span>
                         </div>
                         {/* Shine effect */}
                         <div className="absolute inset-0 translate-x-[-100%] group-hover/btn:translate-x-[100%] bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 pointer-events-none" />
                     </button>
-
-                    <p className="text-[10px] text-gray-600 text-center font-chakra uppercase tracking-wider">
-                        Нажимая кнопку, вы соглашаетесь с{" "}
-                        <button
-                            type="button"
-                            onClick={openPrivacy}
-                            className="text-gray-400 hover:text-[#00ff88] underline decoration-dashed underline-offset-4 transition-colors"
-                        >
-                            политикой конфиденциальности
-                        </button>
-                    </p>
                 </form>
             </div>
         </div>

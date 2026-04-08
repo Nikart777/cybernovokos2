@@ -6,7 +6,6 @@ import Script from "next/script";
 import StickyBar from "@/components/StickyBar";
 import BookingModal from "@/components/BookingModal";
 import PromoModals from "@/components/PromoModals";
-import LegalModals from "@/components/LegalModals";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ChatBot from "@/components/ChatBot";
 
@@ -218,7 +217,6 @@ export default function RootLayout({
                 <ChatBot />
                 <BookingModal />
                 <PromoModals />
-                <LegalModals />
             </body>
         </html>
     );
