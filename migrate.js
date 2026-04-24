@@ -1,52 +1,66 @@
 const fs = require('fs');
 
-const path = 'app/certificate/page.tsx';
-let content = fs.readFileSync(path, 'utf8');
+const pageContent = fs.readFileSync('app/admin-test/page.tsx', 'utf-8');
 
-// 1. Add imports
-content = content.replace(
-    `import { Send, Target, Users, Rocket, Heart, Crown, Monitor, Gamepad2, Coffee, Clock } from "lucide-react";`,
-    `import SlotMachineNumber from "@/components/SlotMachineNumber";\nimport GiftCalculator from "@/components/GiftCalculator";\nimport { Send, Target, Users, Rocket, Heart, Crown, Monitor, Gamepad2, Coffee, Clock } from "lucide-react";`
-);
+// Use regex to locate the QUESTIONS array
+const startIndex = pageContent.indexOf('const QUESTIONS = [');
+const endIndex = pageContent.indexOf('export default function AdminTestPage()');
 
-// 2. Replace static 5000 with SlotMachineNumber
-content = content.replace(
-    `<span className="text-[3.5rem] min-[360px]:text-[4.5rem] md:text-[5.5rem] font-tactic italic font-black leading-none tracking-tighter">5000</span>`,
-    `<SlotMachineNumber />`
-);
+if (startIndex === -1 || endIndex === -1) {
+    console.log("Could not find boundaries");
+    process.exit(1);
+}
 
-// 3. Remove Contacts component
-content = content.replace(/<Contacts \/>[\r\n]*/g, '');
+let questionsSource = pageContent.substring(startIndex, endIndex);
 
-// 4. Reorder blocks: Move Level Up below Zones Gallery and rename it
-const happinessStart = content.indexOf('{/* HAPPINESS LEVEL UP */}');
-const zonesGalleryStart = content.indexOf('{/* ZONES GALLERY */}');
-const ctaStart = content.indexOf('{/* CTA SECTION WITH STEPS */}');
+// Just replace "const QUESTIONS = " with "module.exports = "
+questionsSource = questionsSource.replace('const QUESTIONS =', 'module.exports =');
 
-const happinessBlock = content.substring(happinessStart, zonesGalleryStart);
-const zonesGalleryBlock = content.substring(zonesGalleryStart, ctaStart);
+fs.writeFileSync('temp_questions.js', questionsSource);
 
-let newHappinessBlock = happinessBlock.replace(
-    `ШКАЛА <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#B900FF]">LEVEL UP</span>`,
-    `ПУТЬ К <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#B900FF]">СЕРДЦУ МУЖЧИНЫ</span>`
-);
+const questions = require('./temp_questions.js');
 
-const giftCalculatorBlock = `
-        {/* GIFT CALCULATOR */}
-        <section className="px-6 py-12 relative z-10">
-          <div className="container mx-auto">
-            <GiftCalculator />
-          </div>
-        </section>
+if (!fs.existsSync('app/admin-test/questions')) {
+    fs.mkdirSync('app/admin-test/questions');
+}
 
+const map = {};
+for (const q of questions) {
+    let sectionNum = "intro";
+    const m = q.section.match(/^(\d+)/);
+    if (m && m[1] !== "0") {
+        sectionNum = "section" + m[1];
+    }
+    
+    if (!map[sectionNum]) map[sectionNum] = [];
+    map[sectionNum].push(q);
+}
+
+let indexExports = [];
+let indexArray = [];
+
+for (const [key, items] of Object.entries(map)) {
+    // Generate file
+    const content = `export const ${key} = ${JSON.stringify(items, null, 4)};\n`;
+    fs.writeFileSync(`app/admin-test/questions/${key}.ts`, content);
+    
+    indexExports.push(`import { ${key} } from './${key}';`);
+    indexArray.push(`...${key}`);
+}
+
+const finalIndex = `${indexExports.join('\n')}
+
+export const QUESTIONS = [
+    ${indexArray.join(',\n    ')}
+];
 `;
 
-let finalContent = content.substring(0, happinessStart);
-finalContent += zonesGalleryBlock;
-finalContent += newHappinessBlock;
-finalContent += content.substring(ctaStart);
+fs.writeFileSync('app/admin-test/questions/index.ts', finalIndex);
 
-finalContent = finalContent.replace('{/* TIERS */}', giftCalculatorBlock + '        {/* TIERS */}');
+// Now update page.tsx
+let newPageContent = pageContent.substring(0, startIndex);
+newPageContent += `import { QUESTIONS } from './questions';\n\n`;
+newPageContent += pageContent.substring(endIndex);
 
-fs.writeFileSync(path, finalContent, 'utf8');
-console.log('Script ran successfully!');
+fs.writeFileSync('app/admin-test/page.tsx', newPageContent);
+console.log("Migration complete!");

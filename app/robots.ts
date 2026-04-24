@@ -10,6 +10,7 @@ export default function robots(): MetadataRoute.Robots {
                 '/aim',         // Технический раздел
                 '/private/',    // Личный кабинет
                 '/admin/',      // Админка
+                '/admin-rules', // Инструкция администратора
                 '/social-hub',  // Закрытый Social Hub
                 '/_next/',      // Системные файлы Next.js
             ],

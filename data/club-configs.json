@@ -1,0 +1,238 @@
+{
+  "novokosino": {
+    "headers": [
+      {
+        "title": "Общий зал",
+        "subtitle": "13 ПК"
+      },
+      {
+        "title": "VIP",
+        "subtitle": "5 ПК"
+      },
+      {
+        "title": "BOOTCAMP",
+        "subtitle": "5 ПК"
+      },
+      {
+        "title": "SOLO PRO",
+        "subtitle": "2 ПК"
+      },
+      {
+        "title": "SOLO PREMIUM",
+        "subtitle": "2 ПК"
+      },
+      {
+        "title": "DUO",
+        "subtitle": "2 ПК"
+      },
+      {
+        "title": "Автосимуляторы",
+        "subtitle": "4 шт"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Процессор",
+        "values": [
+          "Intel Core i5-12400F",
+          "Intel Core i5-13400F",
+          "Intel Core i5-13400F",
+          "Intel Core i5-14600KF",
+          "Intel Core i5-14600KF",
+          "Intel Core i5-12400F",
+          "Intel Core i5-14600KF"
+        ]
+      },
+      {
+        "label": "Видеокарта",
+        "values": [
+          "RTX 4060 8 Gb",
+          "RTX 4070 12 Gb",
+          "RTX 4060 8 Gb",
+          "RTX 5070 12 Gb",
+          "RTX 5070 12 Gb",
+          "RTX 4060 8 Gb",
+          "RTX 5070Ti 12 Gb"
+        ]
+      },
+      {
+        "label": "ОЗУ",
+        "values": [
+          "16 Gb DDR4",
+          "16 Gb DDR4",
+          "16 Gb DDR4",
+          "32 Gb DDR4",
+          "32 Gb DDR4",
+          "16 Gb DDR4",
+          "32 Gb DDR5"
+        ]
+      },
+      {
+        "label": "Клавиатура",
+        "values": [
+          "Logitech G512",
+          "Logitech G512",
+          "Logitech G512",
+          "Red Square",
+          "Red Square",
+          "Logitech G512",
+          "MOZA R12"
+        ]
+      },
+      {
+        "label": "Мышь",
+        "values": [
+          "Logitech G403",
+          "Logitech G403",
+          "Logitech G403",
+          "Logitech G PRO X SUPERLIGHT",
+          "Logitech G PRO X SUPERLIGHT",
+          "Logitech G403",
+          "MOZA R12"
+        ]
+      },
+      {
+        "label": "Гарнитура",
+        "values": [
+          "HyperX Cloud II",
+          "HyperX Cloud II",
+          "HyperX Cloud II",
+          "Logitech G PRO X",
+          "Logitech G PRO X",
+          "HyperX Cloud II",
+          "HyperX Cloud II"
+        ]
+      },
+      {
+        "label": "Кресло",
+        "values": [
+          "Cougar",
+          "Cougar",
+          "Cougar",
+          "Cougar",
+          "Cougar",
+          "Cougar",
+          "Спортивный ковш"
+        ]
+      },
+      {
+        "label": "Монитор",
+        "values": [
+          "BenQ 24\" 144Гц",
+          "Samsung 25\" 240Гц",
+          "BenQ 24\" 144Гц",
+          "BenQ 24,5\" 400Гц",
+          "Gigabyte 27\" 2K 240Гц",
+          "Samsung 24\" 240Гц",
+          "55\" 120Гц"
+        ]
+      }
+    ]
+  },
+  "altufevo": {
+    "headers": [
+      {
+        "title": "Общий зал",
+        "subtitle": "20 ПК"
+      },
+      {
+        "title": "VIP",
+        "subtitle": "5 ПК"
+      },
+      {
+        "title": "SOLO",
+        "subtitle": "3 ПК"
+      },
+      {
+        "title": "DUO",
+        "subtitle": "2 ПК"
+      },
+      {
+        "title": "Автосимуляторы",
+        "subtitle": "2 шт"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Процессор",
+        "values": [
+          "Intel Core i5-13400F",
+          "Intel Core i5-13400F",
+          "Intel Core i5-14600KF",
+          "Intel Core i5-14600KF",
+          "Intel Core i5-14600KF"
+        ]
+      },
+      {
+        "label": "Видеокарта",
+        "values": [
+          "NVIDIA GeForce RTX 5060 8Gb",
+          "NVIDIA GeForce RTX 5070 12 Gb",
+          "NVIDIA GeForce RTX 4070 Super 12 Gb",
+          "NVIDIA GeForce RTX 4070 Super 12 Gb",
+          "RTX 4060 8 Gb"
+        ]
+      },
+      {
+        "label": "ОЗУ",
+        "values": [
+          "16 Gb DDR4",
+          "16 Gb DDR4",
+          "32 Gb DDR4",
+          "32 Gb DDR4",
+          "16 Gb DDR5"
+        ]
+      },
+      {
+        "label": "Клавиатура",
+        "values": [
+          "Logitech",
+          "Logitech",
+          "Red Square",
+          "Red Square",
+          "MOZA R5"
+        ]
+      },
+      {
+        "label": "Мышь",
+        "values": [
+          "Logitech",
+          "Logitech",
+          "Logitech G PRO X SUPERLIGHT",
+          "Zowie",
+          "MOZA R5"
+        ]
+      },
+      {
+        "label": "Гарнитура",
+        "values": [
+          "HyperX",
+          "HyperX",
+          "Logitech G PRO X",
+          "Logitech G PRO X",
+          "HyperX Cloud II"
+        ]
+      },
+      {
+        "label": "Кресло",
+        "values": [
+          "Cougar",
+          "Tesoro",
+          "Cougar",
+          "Cougar",
+          "Спортивный ковш"
+        ]
+      },
+      {
+        "label": "Монитор",
+        "values": [
+          "Samsung 24\" 240Гц",
+          "BenQ 25\" 240Гц",
+          "Samsung 27\" 240Гц",
+          "BenQ 24,5\" 360Гц",
+          "55\" 60Гц"
+        ]
+      }
+    ]
+  }
+}
