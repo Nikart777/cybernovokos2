@@ -16,6 +16,7 @@ export default function AdminTestPage() {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [showExplanation, setShowExplanation] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const [mistakes, setMistakes] = useState<{questionIdx: number, selectedIdx: number}[]>([]);
 
     const handleStart = (selectedClub: 'altufevo' | 'novokosino') => {
         setClub(selectedClub);
@@ -30,6 +31,8 @@ export default function AdminTestPage() {
         
         if (optionIdx === QUESTIONS[currentQuestion].correct) {
             setScore(s => s + 1);
+        } else {
+            setMistakes(prev => [...prev, { questionIdx: currentQuestion, selectedIdx: optionIdx }]);
         }
     };
 
@@ -52,6 +55,7 @@ export default function AdminTestPage() {
         setSelectedOption(null);
         setShowExplanation(false);
         setCompleted(false);
+        setMistakes([]);
     };
 
     // === ЭКРАН СТАРТА ===
@@ -109,11 +113,11 @@ export default function AdminTestPage() {
         const passed = score >= passTarget;
 
         return (
-            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden">
+            <div className="min-h-screen bg-slate-50 py-12 px-4 flex flex-col items-center relative overflow-x-hidden">
                 {/* Result Decor */}
-                <div className={`absolute inset-0 opacity-10 blur-3xl pointer-events-none ${passed ? 'bg-emerald-500' : 'bg-rose-500'}`} />
+                <div className={`fixed inset-0 opacity-10 blur-3xl pointer-events-none ${passed ? 'bg-emerald-500' : 'bg-rose-500'}`} />
 
-                <div className="max-w-xl w-full bg-white rounded-[2.5rem] shadow-2xl p-10 text-center relative z-10 border border-slate-100 animate-in zoom-in-95 duration-500">
+                <div className="max-w-2xl w-full bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-10 text-center relative z-10 border border-slate-100 animate-in zoom-in-95 duration-500 mb-8 mt-auto mx-auto shrink-0">
                     <div className={`w-28 h-28 mx-auto rounded-full flex items-center justify-center mb-8 border-8 ${passed ? 'bg-emerald-100 text-emerald-500 border-emerald-50' : 'bg-rose-100 text-rose-500 border-rose-50'}`}>
                         {passed ? <CheckCircle2 size={64} /> : <XCircle size={64} />}
                     </div>
@@ -146,6 +150,62 @@ export default function AdminTestPage() {
                         )}
                     </div>
                 </div>
+
+                {mistakes.length > 0 && (
+                    <div className="max-w-2xl w-full relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700 mx-auto mt-4 mb-auto">
+                        <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-800 mb-6 flex items-center justify-center sm:justify-start gap-3">
+                            <ShieldAlert className="text-rose-500" /> Разбор ошибок ({mistakes.length})
+                        </h3>
+                        <div className="space-y-6">
+                            {mistakes.map((m, i) => {
+                                const q = QUESTIONS[m.questionIdx];
+                                return (
+                                    <div key={i} className="bg-white border border-slate-200 rounded-3xl p-6 relative overflow-hidden shadow-sm">
+                                        <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-500" />
+                                        <div className="text-xs font-chakra font-bold uppercase tracking-widest text-slate-400 mb-2">{q.section}</div>
+                                        <h4 className="font-tactic text-lg uppercase italic text-slate-900 mb-6">{q.question}</h4>
+                                        
+                                        <div className="space-y-4 mb-6">
+                                            <div className="flex gap-4 items-start p-4 bg-rose-50/50 rounded-2xl border border-rose-100">
+                                                <XCircle className="text-rose-500 shrink-0 mt-0.5" size={24} />
+                                                <div>
+                                                    <span className="text-xs font-bold uppercase text-rose-500 tracking-wider block mb-1">Ваш ответ</span>
+                                                    <span className="font-chakra text-slate-700">{q.options[m.selectedIdx]}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-4 items-start p-4 bg-emerald-50/50 rounded-2xl border border-emerald-100">
+                                                <CheckCircle2 className="text-emerald-500 shrink-0 mt-0.5" size={24} />
+                                                <div>
+                                                    <span className="text-xs font-bold uppercase text-emerald-500 tracking-wider block mb-1">Правильный ответ</span>
+                                                    <span className="font-chakra text-slate-700">{q.options[q.correct]}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                                            <span className="text-xs font-tactic italic uppercase text-indigo-500 tracking-wider block mb-2">Объяснение:</span>
+                                            <p className="font-chakra text-slate-600 leading-relaxed">{q.explanation}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        {/* Repeat buttons at the bottom if many mistakes */}
+                        {mistakes.length > 2 && (
+                             <div className="mt-8 flex justify-center pb-8">
+                                 {passed ? (
+                                    <Link href="/admin-rules" className="bg-slate-900 hover:bg-slate-800 text-white p-5 rounded-2xl font-tactic italic uppercase tracking-wider transition-colors inline-flex justify-center items-center gap-2">
+                                        <Home size={20} /> В Инструкцию
+                                    </Link>
+                                ) : (
+                                    <button onClick={resetQuiz} className="bg-rose-500 hover:bg-rose-600 text-white p-5 rounded-2xl font-tactic italic uppercase tracking-wider shadow-lg shadow-rose-500/20 transition-all hover:shadow-rose-500/40 inline-flex justify-center items-center gap-2">
+                                        <RefreshCcw size={20} /> Повторить Тест
+                                    </button>
+                                )}
+                             </div>
+                        )}
+                    </div>
+                )}
             </div>
         );
     }
