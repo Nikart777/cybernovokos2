@@ -156,8 +156,35 @@ export default function AdminRulesClient() {
                             </p>
                         </div>
                         
-                        {/* Правый блок: Поиск + Кнопка */}
+                        {/* Правый блок: Быстрые ссылки, Поиск + Кнопка */}
                         <div className="w-full lg:w-auto shrink-0 flex flex-col sm:flex-row items-center gap-4 relative">
+                            <div className="hidden xl:flex items-center gap-3 mr-2">
+                                <a 
+                                    href="https://cyberx-novokosino.ru/mouse-test" 
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="h-10 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center border border-slate-200 z-20 whitespace-nowrap"
+                                >
+                                    Контроль мышек
+                                </a>
+                                <a 
+                                    href="https://cyberx-novokosino.ru/calculator" 
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="h-10 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center border border-slate-200 z-20 whitespace-nowrap"
+                                >
+                                    Калькулятор компенсаций
+                                </a>
+                                <a 
+                                    href="https://docs.google.com/spreadsheets/d/1HU1dAuhUMZZsCLSwuMlyUPsVl0_VExCAiVNpQVp2Gzc/edit?usp=sharing" 
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="h-10 px-4 bg-rose-50 hover:bg-rose-100 text-rose-600 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center border border-rose-200 z-20 whitespace-nowrap"
+                                >
+                                    Таблица штрафов (Новокосино)
+                                </a>
+                            </div>
+
                             <Link 
                                 href="/admin-test" 
                                 className="w-full sm:w-auto h-12 px-6 bg-[#FF2E63] hover:bg-[#E62A5A] text-white font-chakra font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_5px_20px_-5px_rgba(255,46,99,0.4)] hover:shadow-[0_8px_25px_-5px_rgba(255,46,99,0.5)] flex items-center justify-center gap-2 z-20"

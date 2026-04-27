@@ -224,6 +224,19 @@ export function Section4() {
                         </div>
                     </div>
                 </div>
+
+                {/* Скриншот правил из приложения */}
+                <div className="mt-6 mb-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 flex items-center justify-center p-2 sm:p-4">
+                    <Image 
+                        src="/instruktsiya/bookingrules.jpg" 
+                        alt="Правила бронирования в приложении" 
+                        width={600} 
+                        height={800} 
+                        className="w-full max-w-[400px] h-auto rounded-xl shadow-md" 
+                        unoptimized
+                    />
+                </div>
+
                 <div className="mt-4 flex items-center gap-4 p-5 rounded-2xl bg-indigo-50 border border-indigo-100">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shadow-sm"><Lock size={18} /></div>
                     <div>
