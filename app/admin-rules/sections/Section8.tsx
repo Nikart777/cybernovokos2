@@ -40,6 +40,28 @@ export function Section8() {
                 </div>
             </div>
 
+            {/* ГЛАВНАЯ МОТИВАЦИЯ */}
+            <div className="mb-12 rounded-3xl bg-gradient-to-r from-blue-600 to-violet-600 p-8 shadow-xl shadow-blue-500/20 text-white relative overflow-hidden flex flex-col md:flex-row items-center gap-8 justify-between group border border-blue-400/30">
+                <div className="absolute -right-4 -top-4 opacity-[0.07] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700 pointer-events-none">
+                    <Trophy size={200} />
+                </div>
+                <div className="relative z-10 space-y-4 max-w-2xl text-center md:text-left">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full font-chakra font-bold text-xs uppercase tracking-widest backdrop-blur-sm border border-white/20">
+                        <Star size={14} className="text-yellow-400 fill-yellow-400/50" />
+                        Топовая мотивация
+                    </div>
+                    <h3 className="font-tactic font-black text-2xl md:text-4xl italic uppercase drop-shadow-sm">
+                        Бесплатный <span className="text-yellow-400">аккаунт</span>
+                    </h3>
+                    <p className="font-chakra text-blue-100 text-sm md:text-base leading-relaxed">
+                        Стабильно работаешь и показываешь крутые результаты? <strong className="text-white bg-white/10 px-1.5 py-0.5 rounded">Через 3 месяца</strong> после начала работы администратор может получить персональный аккаунт на <strong className="text-white border-b-2 border-yellow-400">абсолютно бесплатное пользование клубом</strong>!
+                    </p>
+                </div>
+                <div className="shrink-0 relative z-10 w-24 h-24 md:w-32 md:h-32 bg-white/10 rounded-2xl md:rounded-[2rem] flex items-center justify-center backdrop-blur-md border border-white/20 shadow-inner group-hover:bg-white/20 transition-all duration-300 group-hover:-translate-y-2">
+                    <MonitorPlay size={48} className="text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
+                </div>
+            </div>
+
             {/* БЛОК БАРА И ЛК */}
             <div className="relative mb-12 rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
                 <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
