@@ -71,6 +71,10 @@ export function Section16() {
                     </div>
                     <div className="p-5 font-chakra text-sm">
                         <ul className="divide-y divide-orange-100">
+                            <li className="flex justify-between items-center py-3">
+                                <span className="text-slate-700 font-bold">Пропущенная уборка клуба</span>
+                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">500 ₽</span>
+                            </li>
                             <li className="flex justify-between items-start py-3">
                                 <div className="text-slate-700">
                                     <strong className="block mb-1 text-slate-900">Грязное игровое место ПК:</strong>
