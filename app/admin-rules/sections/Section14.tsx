@@ -126,9 +126,20 @@ export function Section14() {
                     <h4 className="font-tactic uppercase text-rose-600 mb-2">Secure Boot (FaceIT)</h4>
                     <p className="font-chakra text-sm text-slate-700 mb-4">
                         Если после нажатия "ОК" античит не запускается — удалить FaceIT в тех.режиме и установить заново.
-                        <br/><br/>
-                        <strong>Как включить в BIOS:</strong><br />
-                        <span className="text-xs">Пароль от BIOS (Новокосино): <code className="bg-rose-100 text-rose-800 px-1 py-0.5 rounded">cyber 1</code></span>
+                    </p>
+                    
+                    <div className="bg-gradient-to-r from-rose-600 to-rose-500 text-white rounded-2xl p-5 mb-5 flex items-center gap-4 shadow-[0_5px_20px_rgba(225,29,72,0.4)] border border-rose-400">
+                        <div className="shrink-0 w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <ShieldAlert size={28} className="text-white drop-shadow-md" />
+                        </div>
+                        <div>
+                            <span className="text-[10px] font-chakra font-bold uppercase tracking-widest text-rose-100 block mb-1">Пароль от BIOS (Новокосино)</span>
+                            <span className="font-tactic text-3xl md:text-4xl tracking-[0.05em] drop-shadow-md">cyber 1</span>
+                        </div>
+                    </div>
+
+                    <p className="font-chakra text-sm text-slate-700 mb-3 block">
+                        <strong>Как включить в BIOS:</strong>
                     </p>
                     <ol className="font-chakra text-xs text-rose-800 space-y-2 bg-white/60 p-4 rounded-xl border border-rose-100">
                         <li>0. Вход в BIOS (DEL).</li>

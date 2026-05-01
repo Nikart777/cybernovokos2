@@ -41,7 +41,7 @@ const SECTIONS_NAV = [
     { id: 'section9', label: '9. Закрытие смены', keywords: 'закрытие смены инкассация подсчет кассы сейф отчет excel таблица эксель терминал z-отчет x-отчет' },
     { id: 'section10', label: '10. Форс-мажор', keywords: 'пожар полиция скорая драка конфликт пьяный неадекват кража нет света отключили интернет потоп роутер свич' },
     { id: 'section11', label: '11. Уборка и контроль', keywords: 'уборка чек-лист пыль мусор монитор мышка клавиатура туалет бумага мыло проверка свет' },
-    { id: 'section12', label: '12. Обновления ПК', keywords: 'обновление игр стим steam cs dota valorant pubg тех режим sdi драйвера диски лан гейм' },
+    { id: 'section12', label: '12. Обновления ПК', keywords: 'обновление игр стим steam cs dota valorant pubg тех режим sdi драйвера диски лан гейм обои wallpaper cyberx фирменные синхронизация runme' },
     { id: 'section13', label: '13. Зона TV (PS5)', labelSearch: 'Зона TV (PS5)', keywords: 'тв tv пс5 ps5 плойка консоль телевизор джойстик геймпад fifa ufc mk мортал комбат аккаунт' },
     { id: 'section14', label: '14. Технические вопросы', keywords: 'техподдержка синий экран фейсит faceit windows bios secure boot память ошибки мышь сенсор звук' },
     { id: 'section15', label: '15. Подарочные сертификаты', keywords: 'сертификат подарочный подарок номинал активация' },
@@ -283,7 +283,7 @@ export default function AdminRulesClient() {
                         {activeSection === 'section9' && <Section9 setZoomedImage={setZoomedImage} />}
                         {activeSection === 'section10' && <Section10 setZoomedImage={setZoomedImage} />}
                         {activeSection === 'section11' && <Section11 />}
-                        {activeSection === 'section12' && <Section12 />}
+                        {activeSection === 'section12' && <Section12 setZoomedImage={setZoomedImage} />}
                         {activeSection === 'section13' && <Section13 />}
                         {activeSection === 'section14' && <Section14 />}
                         {activeSection === 'section15' && <Section15 />}

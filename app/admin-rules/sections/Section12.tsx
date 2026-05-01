@@ -1,8 +1,9 @@
 import React from 'react';
-import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle } from 'lucide-react';
+import Image from 'next/image';
+import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, ExternalLink, MonitorDown, ArrowDown } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
-export function Section12() {
+export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | null) => void }) {
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="12" label="Раздел" />
@@ -194,6 +195,102 @@ export function Section12() {
                             <li>Рассчитать потерянное гостем время в Калькуляторе компенсаций.</li>
                             <li className="text-rose-600 font-bold bg-rose-50/50 p-2 rounded -ml-2 inline-block">Отправить в рабочий чат шаблон со скриншотом калькулятора, указав причину: <br/><em>«Решение проблемы по буферу оверлея»</em>.</li>
                         </ol>
+                    </div>
+                </div>
+            </div>
+
+            {/* ФИРМЕННЫЕ ОБОИ CYBERX */}
+            <div className="rounded-3xl border border-violet-200 bg-white overflow-hidden shadow-sm mb-12">
+                <div className="bg-gradient-to-r from-violet-600 to-indigo-600 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-violet-500/30">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0 backdrop-blur-sm">
+                            <MonitorDown size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Фирменные обои CyberX</h3>
+                            <p className="font-chakra text-violet-200 text-sm">Установка и синхронизация обоев с сервером</p>
+                        </div>
+                    </div>
+                    <a
+                        href="https://disk.yandex.ru/d/u6XlLKp3r4SO0Q"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-5 py-2.5 rounded-xl font-chakra font-bold text-sm transition-all border border-white/20 shrink-0"
+                    >
+                        <ExternalLink size={16} />
+                        Открыть на Яндекс.Диске
+                    </a>
+                </div>
+
+                <div className="p-6 md:p-8 font-chakra text-slate-700 text-sm leading-relaxed space-y-6">
+                    <div className="bg-violet-50 border border-violet-100 rounded-2xl p-5">
+                        <h4 className="font-bold text-violet-900 uppercase tracking-widest text-[11px] mb-3 flex items-center gap-2">
+                            <AlertTriangle size={14} className="text-violet-500" />
+                            Когда необходима установка обоев
+                        </h4>
+                        <ul className="space-y-2 text-violet-800">
+                            <li className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-1.5" />
+                                <span>После <strong>переустановки Windows</strong> на компьютере</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-1.5" />
+                                <span>Если обои на данном ПК <strong>отличаются от обоев на других компьютерах</strong> клуба</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <h4 className="font-bold text-slate-900 uppercase tracking-widest text-[11px] mb-4 flex items-center gap-2">
+                            <ArrowDown size={14} className="text-indigo-500" />
+                            Пошаговая инструкция
+                        </h4>
+                        <ol className="list-decimal list-inside space-y-3 text-slate-600 ml-1 font-medium">
+                            <li>
+                                Скачайте папку с обоями по ссылке: <a href="https://disk.yandex.ru/d/u6XlLKp3r4SO0Q" target="_blank" rel="noopener noreferrer" className="text-violet-600 font-bold hover:underline inline-flex items-center gap-1">Яндекс.Диск <ExternalLink size={12} /></a>
+                            </li>
+                            <li>
+                                Сохраните скачанную папку на <strong>диск C:\</strong> компьютера.
+                            </li>
+                            <li>
+                                Запустите файл <code className="bg-slate-800 text-emerald-400 font-mono text-sm px-2 py-0.5 rounded font-bold">runme.bat</code> из скачанной папки.
+                            </li>
+                            <li>
+                                Введите, какой клуб — <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">1</code> (CyberX 1) или <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">2</code> (CyberX 2).
+                            </li>
+                            <li>
+                                Введите <strong>номер ПК</strong> (например, <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">14</code>).
+                            </li>
+                            <li className="text-emerald-700 font-bold bg-emerald-50/50 p-2 rounded -ml-2">
+                                Нажмите <strong>Enter</strong> — обои установятся и будут автоматически синхронизироваться с сервером.
+                            </li>
+                        </ol>
+                    </div>
+
+                    {/* Пример обоев */}
+                    <div>
+                        <h4 className="font-bold text-slate-400 uppercase tracking-widest text-[10px] mb-3">Пример фирменных обоев:</h4>
+                        <div 
+                            className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group"
+                            onClick={() => setZoomedImage?.('/instruktsiya/29may.jpeg')}
+                        >
+                            <Image
+                                src="/instruktsiya/29may.jpeg"
+                                alt="Пример фирменных обоев CyberX Community"
+                                width={1920}
+                                height={1080}
+                                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                unoptimized
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                                <span className="font-chakra text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg">Нажмите для увеличения</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-2 p-3 bg-indigo-50 border border-indigo-100 text-indigo-800 rounded-xl font-chakra text-xs">
+                        <Download className="shrink-0 mt-0.5" size={16} />
+                        <span>После установки обои будут автоматически обновляться с сервера при появлении новых акций и праздников. Повторная установка не требуется.</span>
                     </div>
                 </div>
             </div>
