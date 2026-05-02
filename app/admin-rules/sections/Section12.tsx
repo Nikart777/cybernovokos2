@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, ExternalLink, MonitorDown, ArrowDown } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
+import { PcMonitorWidget } from '../components/PcMonitorWidget';
 
 export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | null) => void }) {
     return (
@@ -294,6 +295,9 @@ export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | 
                     </div>
                 </div>
             </div>
+
+            {/* МОНИТОРИНГ ПК */}
+            <PcMonitorWidget />
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
