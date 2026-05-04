@@ -265,12 +265,12 @@ export function Section14() {
                         <ul className="text-sm text-slate-700 space-y-2">
                             <li><strong className="text-emerald-600">Драйвера:</strong> Устанавливаются автоматически при первом запуске системы. Game Ready драйвер из Nvidia App.</li>
                             <li><strong className="text-indigo-600">Лаунчеры/Игры:</strong> Ставить строго НЕ на диск C. В Алтуфьево диск 1.8ТБ должен быть скрыт!</li>
-                            <li><strong className="text-violet-600">Langame:</strong> Сертификат + ПО. <br/>
-                            Домены: <br/>
-                            <code>cyberx52.langamesftw.ru</code> (Алтуфьево) <br/>
-                            <code>cyberx165.langame-pr.ru</code> (Новокосино)</li>
+                            <li><strong className="text-violet-600">Langame:</strong> Сертификат + ПО.</li>
                         </ul>
-                        <p className="text-xs font-bold text-rose-500 uppercase">UUID менять запрещено!</p>
+                        <div className="mt-3 bg-violet-50 border border-violet-200 rounded-xl p-3 text-xs font-chakra text-violet-800">
+                            <strong className="block mb-1 text-violet-700 uppercase tracking-wide">📩 После установки всех игр, программ и лаунчеров:</strong>
+                            Написать в чат технической поддержки — для установки Langame на клиентский ПК.
+                        </div>
                     </div>
                 </div>
             </div>
