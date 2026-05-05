@@ -61,7 +61,11 @@ interface ClubGroup {
   lastUpdate: string;
 }
 
-export function PcMonitorWidget() {
+interface PcMonitorWidgetProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
   const [data, setData] = useState<StatusData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -316,6 +320,22 @@ export function PcMonitorWidget() {
                                   </span>
                                 ))}
                               </div>
+                              {pc.fac_issues.includes('HVCI включён') && (
+                                <div className="mt-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5 flex items-start gap-2">
+                                  <AlertTriangle className="text-amber-500 shrink-0 mt-0.5" size={14} />
+                                  <div className="font-chakra text-xs text-amber-800 leading-relaxed">
+                                    <span className="font-bold">Memory Integrity (HVCI)</span> — защита ядра Windows блокирует запуск Faceit AC. Требуется отключить в настройках безопасности Windows.
+                                    {onNavigate && (
+                                      <button
+                                        onClick={() => onNavigate('section14')}
+                                        className="ml-1.5 underline text-amber-700 font-bold hover:text-amber-900 transition-colors"
+                                      >
+                                        → Раздел 14: Ошибки античитов
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           )}
 
@@ -366,6 +386,14 @@ export function PcMonitorWidget() {
                                   );
                                 })}
                               </div>
+                              {pc.disk_low && (
+                                <div className="mt-2 bg-blue-50 border border-blue-200 rounded-xl px-3 py-2.5 flex items-start gap-2">
+                                  <HardDrive className="text-blue-400 shrink-0 mt-0.5" size={14} />
+                                  <p className="font-chakra text-xs text-blue-800 leading-relaxed">
+                                    <span className="font-bold">Первый шаг:</span> очистка мастерской Steam — откройте Steam → Библиотека → нажмите ПКМ на CS2/Dota → Свойства → Мастерская → удалите лишние подписки. Освобождает до нескольких ГБ.
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           )}
 
