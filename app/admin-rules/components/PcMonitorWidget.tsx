@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Monitor, CheckCircle2, AlertTriangle, XCircle, HardDrive, Shield, Gamepad2, ChevronDown, ChevronUp, MapPin, Clock } from 'lucide-react';
+import { Monitor, CheckCircle2, AlertTriangle, XCircle, HardDrive, Shield, Gamepad2, ChevronDown, ChevronUp, MapPin, Clock, Laptop } from 'lucide-react';
 
 const API_URL = '/api/pc-status';
 
@@ -25,6 +25,12 @@ interface GameIssue {
   ref?: string;
 }
 
+interface WindowsBuildInfo {
+  current: string;
+  max: string;
+  status: 'ok' | 'outdated';
+}
+
 interface PcStatus {
   hostname: string;
   club: string;
@@ -34,6 +40,7 @@ interface PcStatus {
   game_issues: GameIssue[];
   fac_issues: string[];
   fac_overall: string;
+  windows_build: WindowsBuildInfo | null;
   disks: DiskInfo[];
   disk_low: boolean;
 }
@@ -76,8 +83,8 @@ export function PcMonitorWidget() {
     fetchData();
   }, []);
 
-  const togglePc = (hostname: string) => {
-    setExpandedPc(expandedPc === hostname ? null : hostname);
+  const togglePc = (key: string) => {
+    setExpandedPc(expandedPc === key ? null : key);
   };
 
   const pcNum = (hostname: string) => hostname.replace(/\D/g, '');
@@ -202,19 +209,20 @@ export function PcMonitorWidget() {
               {/* PC cards for this club */}
               <div className="space-y-2">
                 {club.pcs.map((pc) => {
-                  const isExpanded = expandedPc === pc.hostname;
+                  const isExpanded = expandedPc === (pc.club + ':' + pc.hostname);
                   const isOk = pc.status === 'ok';
+                  const winBuildOutdated = pc.windows_build?.status === 'outdated';
                   const num = pcNum(pc.hostname);
 
                   return (
                     <div
-                      key={pc.hostname}
+                      key={pc.club + ':' + pc.hostname}
                       className={`rounded-2xl border overflow-hidden transition-all ${
                         isOk ? 'border-emerald-100 bg-emerald-50/30' : 'border-rose-100 bg-rose-50/30'
                       }`}
                     >
                       <button
-                        onClick={() => togglePc(pc.hostname)}
+                        onClick={() => togglePc(pc.club + ':' + pc.hostname)}
                         className="w-full flex items-center justify-between px-5 py-3.5 text-left hover:bg-white/50 transition-colors"
                       >
                         <div className="flex items-center gap-4">
@@ -242,6 +250,11 @@ export function PcMonitorWidget() {
                               {pc.fac_issues.length > 0 && (
                                 <span className="bg-rose-100 text-rose-700 font-chakra font-bold text-xs px-2 py-1 rounded-lg">
                                   🛡 FAC
+                                </span>
+                              )}
+                              {winBuildOutdated && (
+                                <span className="bg-blue-100 text-blue-700 font-chakra font-bold text-xs px-2 py-1 rounded-lg">
+                                  💻 Build
                                 </span>
                               )}
                               {pc.disk_low && (
@@ -304,6 +317,28 @@ export function PcMonitorWidget() {
                             </div>
                           )}
 
+                          {/* Windows Build */}
+                          {pc.windows_build && (
+                            <div>
+                              <div className="flex items-center gap-2 mb-2">
+                                <Laptop className={pc.windows_build.status === 'outdated' ? 'text-blue-500' : 'text-emerald-500'} size={16} />
+                                <span className="font-chakra font-bold text-xs text-slate-500 uppercase tracking-widest">Windows Build</span>
+                              </div>
+                              <div className="bg-white rounded-xl px-3 py-2.5 border border-slate-100 flex items-center justify-between">
+                                <span className="font-chakra text-sm text-slate-600 font-medium">Версия сборки</span>
+                                {pc.windows_build.status === 'outdated' ? (
+                                  <span className="font-chakra text-xs text-amber-600">
+                                    <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.current}</code>
+                                    <span className="mx-1">→</span>
+                                    <code className="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.max}</code>
+                                  </span>
+                                ) : (
+                                  <span className="text-emerald-600 font-chakra font-bold text-xs">✅ {pc.windows_build.current}</span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
                           {/* Disks */}
                           {pc.disks.length > 0 && (
                             <div>
@@ -333,7 +368,7 @@ export function PcMonitorWidget() {
                           )}
 
                           {/* All OK */}
-                          {pc.game_issues.length === 0 && pc.fac_issues.length === 0 && !pc.disk_low && (
+                          {pc.game_issues.length === 0 && pc.fac_issues.length === 0 && !winBuildOutdated && !pc.disk_low && (
                             <div className="mt-4 bg-emerald-50 border border-emerald-100 rounded-xl p-4 text-center">
                               <CheckCircle2 className="text-emerald-500 mx-auto mb-2" size={24} />
                               <span className="font-chakra text-emerald-700 text-sm font-bold">Все проверки пройдены</span>
