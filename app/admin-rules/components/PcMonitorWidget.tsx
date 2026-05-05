@@ -287,6 +287,8 @@ export function PcMonitorWidget() {
                                     <span className="font-chakra text-slate-700 font-medium">{g.game}</span>
                                     {g.status === 'missing' ? (
                                       <span className="text-rose-500 font-chakra font-bold text-xs">❌ Не найдена</span>
+                                    ) : g.status === 'version_unknown' ? (
+                                      <span className="text-violet-600 font-chakra font-bold text-xs">❓ Версия неизвестна</span>
                                     ) : (
                                       <span className="text-amber-600 font-chakra text-xs">
                                         <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">{g.local}</code>
