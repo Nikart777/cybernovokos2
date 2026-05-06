@@ -102,8 +102,13 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
       groups[club].push(pc);
     }
 
+    const CLUB_ORDER: Record<string, number> = { novokosino: 0, altufevo: 1 };
     return Object.entries(groups)
-      .sort(([a], [b]) => a.localeCompare(b))
+      .sort(([a], [b]) => {
+        const oa = CLUB_ORDER[a] ?? 99;
+        const ob = CLUB_ORDER[b] ?? 99;
+        return oa !== ob ? oa - ob : a.localeCompare(b);
+      })
       .map(([name, clubPcs]) => {
         const okCount = clubPcs.filter(p => p.status === 'ok').length;
         // Find latest update time
@@ -217,6 +222,11 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                   const isOk = pc.status === 'ok';
                   const winBuildOutdated = pc.windows_build?.status === 'outdated';
                   const num = pcNum(pc.hostname);
+                  // version_unknown не является реальной проблемой (Valorant и др. не хранят версию)
+                  const realGameIssues = pc.game_issues.filter(g => g.status !== 'version_unknown' && g.status !== 'installed');
+                  // Для Алтуфьево: 3+ диска = не отключён старый HDD
+                  const isAltufevo = pc.club?.toLowerCase().includes('altu') || pc.club?.toLowerCase().includes('алту');
+                  const hasExtraDisk = isAltufevo && pc.disks.length >= 3;
 
                   return (
                     <div
@@ -240,15 +250,15 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          {isOk ? (
+                          {isOk && !hasExtraDisk ? (
                             <span className="bg-emerald-100 text-emerald-700 font-chakra font-bold text-xs px-3 py-1 rounded-lg">
                               ✅ ОК
                             </span>
                           ) : (
                             <div className="flex flex-wrap gap-1.5 justify-end">
-                              {pc.game_issues.length > 0 && (
+                              {realGameIssues.length > 0 && (
                                 <span className="bg-amber-100 text-amber-700 font-chakra font-bold text-xs px-2 py-1 rounded-lg">
-                                  🎮 {pc.game_issues.length}
+                                  🎮 {realGameIssues.length}
                                 </span>
                               )}
                               {pc.fac_issues.length > 0 && (
@@ -266,6 +276,11 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                   💾 Диск
                                 </span>
                               )}
+                              {hasExtraDisk && (
+                                <span className="bg-orange-100 text-orange-700 font-chakra font-bold text-xs px-2 py-1 rounded-lg">
+                                  🖴 HDD
+                                </span>
+                              )}
                             </div>
                           )}
                           {isExpanded ? (
@@ -278,21 +293,19 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
 
                       {isExpanded && (
                         <div className="px-5 pb-5 space-y-4 border-t border-slate-100">
-                          {/* Games */}
-                          {pc.game_issues.length > 0 && (
+                          {/* Games - показываем только реальные проблемы */}
+                          {realGameIssues.length > 0 && (
                             <div className="mt-4">
                               <div className="flex items-center gap-2 mb-2">
                                 <Gamepad2 className="text-amber-500" size={16} />
                                 <span className="font-chakra font-bold text-xs text-slate-500 uppercase tracking-widest">Игры</span>
                               </div>
                               <div className="space-y-1.5">
-                                {pc.game_issues.map((g, i) => (
+                                {realGameIssues.map((g, i) => (
                                   <div key={i} className="flex items-center justify-between bg-white rounded-xl px-3 py-2 border border-slate-100 text-sm">
                                     <span className="font-chakra text-slate-700 font-medium">{g.game}</span>
                                     {g.status === 'missing' ? (
                                       <span className="text-rose-500 font-chakra font-bold text-xs">❌ Не найдена</span>
-                                    ) : g.status === 'version_unknown' ? (
-                                      <span className="text-violet-600 font-chakra font-bold text-xs">❓ Версия неизвестна</span>
                                     ) : (
                                       <span className="text-amber-600 font-chakra text-xs">
                                         <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">{g.local}</code>
@@ -320,11 +333,11 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                   </span>
                                 ))}
                               </div>
-                              {pc.fac_issues.includes('HVCI включён') && (
+                              {pc.fac_issues.includes('HVCI выключен') && (
                                 <div className="mt-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5 flex items-start gap-2">
                                   <AlertTriangle className="text-amber-500 shrink-0 mt-0.5" size={14} />
                                   <div className="font-chakra text-xs text-amber-800 leading-relaxed">
-                                    <span className="font-bold">Memory Integrity (HVCI)</span> — защита ядра Windows блокирует запуск Faceit AC. Требуется отключить в настройках безопасности Windows.
+                                    <span className="font-bold">Memory Integrity (HVCI) выключен</span> — защита ядра Windows отключена, это может мешать запуску Faceit AC на некоторых конфигурациях.
                                     {onNavigate && (
                                       <button
                                         onClick={() => onNavigate('section14')}
@@ -339,27 +352,35 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                             </div>
                           )}
 
-                          {/* Windows Build */}
-                          {pc.windows_build && (
+                          {/* Windows Build - показываем только если устарела */}
+                          {pc.windows_build && pc.windows_build.status === 'outdated' && (
                             <div>
                               <div className="flex items-center gap-2 mb-2">
-                                <Laptop className={pc.windows_build.status === 'outdated' ? 'text-blue-500' : 'text-emerald-500'} size={16} />
+                                <Laptop className="text-blue-500" size={16} />
                                 <span className="font-chakra font-bold text-xs text-slate-500 uppercase tracking-widest">Windows Build</span>
                               </div>
                               <div className="bg-white rounded-xl px-3 py-2.5 border border-slate-100 flex items-center justify-between">
                                 <span className="font-chakra text-sm text-slate-600 font-medium">Версия сборки</span>
-                                {pc.windows_build.status === 'outdated' ? (
-                                  <span className="font-chakra text-xs text-amber-600">
-                                    <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.current}</code>
-                                    <span className="mx-1">→</span>
-                                    <code className="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.max}</code>
-                                  </span>
-                                ) : (
-                                  <span className="text-emerald-600 font-chakra font-bold text-xs">✅ {pc.windows_build.current}</span>
+                                <span className="font-chakra text-xs text-amber-600">
+                                  <code className="bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.current}</code>
+                                  <span className="mx-1">→</span>
+                                  <code className="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded text-[11px]">{pc.windows_build.max}</code>
+                                </span>
+                              </div>
+                              <div className="mt-2 bg-blue-50 border border-blue-200 rounded-xl px-3 py-2.5 flex items-center gap-3">
+                                <span className="font-chakra text-xs text-blue-800 flex-1">Обновите Windows по инструкции Раздела 14</span>
+                                {onNavigate && (
+                                  <button
+                                    onClick={() => onNavigate('section14')}
+                                    className="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-chakra font-bold text-xs px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+                                  >
+                                    → Раздел 14
+                                  </button>
                                 )}
                               </div>
                             </div>
                           )}
+
 
                           {/* Disks */}
                           {pc.disks.length > 0 && (
@@ -394,11 +415,22 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                   </p>
                                 </div>
                               )}
+                              {hasExtraDisk && (
+                                <div className="mt-2 bg-orange-50 border border-orange-300 rounded-xl px-3 py-3 flex items-start gap-2.5">
+                                  <span className="text-orange-500 shrink-0 text-base leading-none mt-0.5">⚠️</span>
+                                  <div className="font-chakra text-xs text-orange-900 leading-relaxed space-y-1">
+                                    <p className="font-bold text-orange-700">Обнаружен {pc.disks.length}-й диск — не отключён старый HDD</p>
+                                    <p>Перенести все данные с диска <code className="bg-orange-100 px-1 rounded">E:</code>, затем отключить: <span className="font-bold">Диспетчер устройств → ПКМ на ST2000DM008-2UB102 → Отключить устройство</span>.</p>
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           )}
 
+
+
                           {/* All OK */}
-                          {pc.game_issues.length === 0 && pc.fac_issues.length === 0 && !winBuildOutdated && !pc.disk_low && (
+                          {realGameIssues.length === 0 && pc.fac_issues.length === 0 && !winBuildOutdated && !pc.disk_low && !hasExtraDisk && (
                             <div className="mt-4 bg-emerald-50 border border-emerald-100 rounded-xl p-4 text-center">
                               <CheckCircle2 className="text-emerald-500 mx-auto mb-2" size={24} />
                               <span className="font-chakra text-emerald-700 text-sm font-bold">Все проверки пройдены</span>
