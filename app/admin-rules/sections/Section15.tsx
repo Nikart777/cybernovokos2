@@ -66,8 +66,8 @@ export function Section15() {
                             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mt-4">
                                 <h4 className="font-tactic text-amber-800 uppercase text-xs mb-2">Реквизиты для оплаты</h4>
                                 <div className="text-amber-900 bg-amber-100/50 p-3 rounded-lg font-bold">
-                                    Перевод на ВТБ по номеру телефона: <br/>
-                                    <span className="text-lg">+7 (915) 481-00-81</span> (Никита Андреевич А.)
+                                    Банк ВТБ — перевод по номеру телефона Никиты. <br/>
+                                    <span className="text-xs font-normal text-amber-700">Запросите реквизиты у руководства.</span>
                                 </div>
                             </div>
                         </div>

@@ -69,10 +69,11 @@ export function Section8() {
                 </div>
                 
                 <div className="p-6 md:p-8 relative z-10">
-                    <h3 className="font-tactic font-black uppercase italic text-2xl mb-6 flex items-center gap-3">
+                    <h3 className="font-tactic font-black uppercase italic text-2xl mb-2 flex items-center gap-3">
                         <span className="w-10 h-10 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center">🍔</span>
                         Премия за продажи бара
                     </h3>
+                    <p className="font-chakra text-slate-400 text-xs uppercase tracking-widest font-bold mb-6 ml-[52px]">Таблица для Новокосино</p>
 
                     <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8 shadow-sm">
                         <div className="flex items-start gap-4">
@@ -213,6 +214,10 @@ export function Section8() {
                         </div>
                         
                         <div className="border-t border-slate-100 pt-5 space-y-3">
+                            <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-xl mb-3">
+                                <p className="font-chakra text-sm font-bold text-emerald-800 mb-1">💰 Пробковый сбор идёт в учёт вашей премии!</p>
+                                <p className="font-chakra text-xs text-emerald-700 leading-relaxed">Пробивайте товар (пробковый сбор) для <strong>каждого клиента</strong> со своими напитками — это напрямую увеличивает вашу выручку и премию за бар.</p>
+                            </div>
                             <p className="font-chakra text-sm font-bold text-slate-700 w-full mb-3">Ваша дисциплина в этом вопросе напрямую влияет на увеличение выплат за ваш бар!</p>
                             <div className="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
                                 <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 shrink-0 flex items-center justify-center"><Camera size={12} /></div>

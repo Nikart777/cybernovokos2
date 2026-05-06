@@ -27,7 +27,7 @@ export function Section7() {
                     <div className="bg-slate-50 border border-slate-100 p-4 rounded-2xl">
                         <h4 className="font-tactic font-black text-sm uppercase text-slate-800 mb-2">Не обновлена игра из списка обязательных</h4>
                         <p className="font-chakra text-sm text-slate-600 mb-2">
-                            Если клиент жалуется на то, что не обновлена базовая игра (CS2, Dota 2, Valorant и др.) — происходит <strong>сброс сессии клиента</strong> и перевод ПК в <strong>Технический режим</strong> для обновления.
+                            Если клиент жалуется на то, что не обновлена базовая игра (CS2, Dota 2, Valorant и др.) и обновление занимает <strong>от 15 минут</strong> — происходит <strong>сброс сессии клиента</strong> и перевод ПК в <strong>Технический режим</strong> для обновления.
                         </p>
                         <div className="text-[10px] font-chakra font-bold text-violet-600 uppercase tracking-widest bg-violet-50 inline-block px-2 py-1 rounded">См. Раздел «Обновления ПК»</div>
                     </div>

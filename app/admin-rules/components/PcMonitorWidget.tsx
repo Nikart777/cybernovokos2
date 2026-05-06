@@ -419,11 +419,13 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                 <div className="mt-2 bg-orange-50 border border-orange-300 rounded-xl px-3 py-3 flex items-start gap-2.5">
                                   <span className="text-orange-500 shrink-0 text-base leading-none mt-0.5">⚠️</span>
                                   <div className="font-chakra text-xs text-orange-900 leading-relaxed space-y-1">
-                                    <p className="font-bold text-orange-700">Обнаружен {pc.disks.length}-й диск — не отключён старый HDD</p>
-                                    <p>Перенести все данные с диска <code className="bg-orange-100 px-1 rounded">E:</code>, затем отключить: <span className="font-bold">Диспетчер устройств → ПКМ на ST2000DM008-2UB102 → Отключить устройство</span>.</p>
+                                    <p className="font-bold text-orange-700">Не отключён старый HDD (ST2000DM008-2UB102, 2 ТБ)</p>
+                                    <p>Перенести данные, затем в <span className="font-bold">Диспетчере устройств</span> → ПКМ на <code className="bg-orange-100 px-1 rounded">ST2000DM008-2UB102</code> → <span className="font-bold">Отключить устройство</span>. При необходимости переустановить игры.</p>
                                   </div>
                                 </div>
                               )}
+
+
                             </div>
                           )}
 

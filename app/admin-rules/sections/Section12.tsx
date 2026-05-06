@@ -28,7 +28,7 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                         <Terminal size={24} />
                     </div>
                     <div>
-                        <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Технический режим (Лангар)</h3>
+                        <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Технический режим</h3>
                         <p className="font-chakra text-slate-400 text-sm">Управление ПК через чат</p>
                     </div>
                 </div>
