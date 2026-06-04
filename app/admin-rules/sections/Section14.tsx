@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Monitor, Wrench, ShieldAlert, Cpu, HardDrive, Mouse, BotMessageSquare, AlertCircle, RefreshCw, Layers, FileDown } from 'lucide-react';
+import { Target, Monitor, Wrench, ShieldAlert, Cpu, HardDrive, Mouse, BotMessageSquare, AlertCircle, RefreshCw, Layers, FileDown, ExternalLink, Terminal } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
 export function Section14() {
@@ -62,29 +62,82 @@ export function Section14() {
             </div>
 
             {/* Обновление Windows & FACE IT */}
-            <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900 mb-6 flex items-center gap-3">
+            <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900 mb-4 flex items-center gap-3">
                 <RefreshCw className="text-blue-600" /> Windows Update и ошибки FaceIT
             </h3>
-            
+
+            {/* Папка с файлами */}
+            <div className="mb-6 flex items-center gap-4 bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4">
+                <div className="shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                    <FileDown size={20} />
+                </div>
+                <div className="flex-1">
+                    <p className="font-chakra text-sm font-bold text-slate-800 mb-0.5">Необходимые файлы (батники)</p>
+                    <p className="font-chakra text-xs text-slate-500">Папка на Яндекс.Диске — все нужные батники для обновления Windows</p>
+                </div>
+                <a
+                    href="https://disk.yandex.ru/d/Mw_SCarHUTXTqg"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="shrink-0 inline-flex items-center gap-1.5 font-chakra font-bold text-sm text-white bg-blue-600 hover:bg-blue-500 transition-colors px-4 py-2 rounded-xl"
+                >
+                    <ExternalLink size={14} /> Открыть папку
+                </a>
+            </div>
+
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-                {/* Вариант 1 (Штатный) */}
+                {/* Способ 1 */}
                 <div className="bg-white border text-sm font-chakra border-slate-200 rounded-3xl p-6 shadow-sm h-full flex flex-col">
                     <h4 className="font-tactic px-3 py-1 bg-blue-100 text-blue-800 rounded-lg inline-block text-xs uppercase tracking-widest self-start mb-4">Способ 1: Штатный сценарий</h4>
-                    <p className="text-slate-600 mb-4">Все батники запускаются строго <strong className="text-blue-600">«От имени администратора»</strong>.</p>
-                    <ol className="space-y-2 text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-100 flex-1">
-                        <li><strong>0.</strong> Перевести ПК в Тех. режим.</li>
-                        <li><strong>1.</strong> Запустить <code>ON ВКЛЮЧИТЬ ОБНОВЛЕНИЯ.bat</code>.</li>
-                        <li><strong>2.</strong> Перезагрузить ПК в Тех. режиме.</li>
-                        <li><strong>3.</strong> Провести обновления в Центре Обновлений.</li>
-                        <li><strong>4.</strong> Обязательная перезагрузка.</li>
-                        <li><strong>5.</strong> Запустить <code>off_all.bat</code> (после установки апдейтов).</li>
-                        <li><strong>6.</strong> В центре отложить обновления на самый дальний срок.</li>
-                        <li><strong>7.</strong> Перезагрузить → <strong>8.</strong> Вывести из тех. режима.</li>
+                    <p className="text-slate-500 text-xs mb-3">Все батники запускаются строго <strong className="text-blue-600">«От имени администратора»</strong>.</p>
+                    <p className="text-slate-700 font-medium mb-3">Для обновления Windows необходимо:</p>
+                    <ol className="space-y-2.5 text-slate-700 flex-1">
+                        <li><strong className="text-blue-800">1.</strong> Перевести ПК в <strong>тех. режим</strong></li>
+                        <li>
+                            <strong className="text-blue-800">2.</strong> На рабочем столе от имени администратора запустить файл{' '}
+                            <a href="https://disk.yandex.ru/d/SRH5BrK38WBxXg" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline">
+                                <code>ON ВКЛЮЧИТЬ ОБНОВЛЕНИЯ</code> <ExternalLink size={11} />
+                            </a>
+                        </li>
+                        <li><strong className="text-blue-800">3.</strong> Перезагрузить ПК</li>
+                        <li><strong className="text-blue-800">4.</strong> Запустить обновления в <strong>Центре Обновлений Windows</strong></li>
+                        <li><strong className="text-blue-800">5.</strong> После завершения всех обновлений — перезагрузить ПК и ещё раз запустить обновления, чтобы убедиться, что установлены все обновления Windows. Повторять данный шаг, пока не закончатся обновления.</li>
+                        <li>
+                            <strong className="text-red-600">6.</strong>{' '}
+                            <strong className="text-red-600">После всех обновлений Windows не забудьте запустить{' '}
+                            <a href="https://disk.yandex.ru/d/fWoNIPa-RMp33Q" target="_blank" rel="noreferrer" className="inline-flex items-center gap-0.5 underline hover:text-red-500">
+                                Off_all.bat <ExternalLink size={11} />
+                            </a>{' '}
+                            с рабочего стола от имени администратора.</strong>{' '}
+                            <span className="text-red-500 text-xs font-bold">Если не запустить — ПК уйдёт в ребут, дальше только переустановка Windows.</span>
+                        </li>
+                        <li>
+                            <strong className="text-blue-800">7.</strong> Вывести ПК из Тех. режима:{' '}
+                            <span className="text-slate-600">ПКМ на красный значок <strong>«G»</strong> в трее (правый нижний угол) → <strong>«Тех. стоп»</strong></span>
+                        </li>
                     </ol>
-                    <div className="mt-4 bg-orange-50 border border-orange-100 p-3 rounded-xl text-xs text-orange-800">
-                        <strong>Если скрипты не работают:</strong> <br/>
-                        Ручное изменение в `gpedit.msc` → Админ. шаблоны → Компоненты WIndows → Центр обновлений.<br/>
-                        Применить: <code>gpupdate /force</code> в cmd для прошивки политик без перезагрузки.
+
+                    {/* Если не устанавливаются */}
+                    <div className="mt-4 bg-orange-50 border border-orange-200 p-4 rounded-xl text-xs text-orange-900 space-y-2">
+                        <p className="font-bold text-orange-800">⚠ Если обновления не устанавливаются (п.4):</p>
+                        <p>Запустить <a href="https://disk.yandex.ru/d/AvcNBIQKXEyTzw" target="_blank" rel="noreferrer" className="font-bold text-orange-700 underline inline-flex items-center gap-0.5">wureset <ExternalLink size={10}/></a> — прогнать пункты <strong>2, 12 и 14</strong>, затем перезагрузить ПК.</p>
+                    </div>
+
+                    {/* Цикл обновлений */}
+                    <div className="mt-3 bg-rose-50 border border-rose-200 p-4 rounded-xl text-sm text-rose-900 space-y-2">
+                        <p className="font-bold text-rose-800">🔁 Если обновления идут, но после перезагрузки ошибка и цикл повторяется:</p>
+                        <ol className="space-y-1 list-decimal list-inside text-rose-800">
+                            <li>Удалить <strong>Faceit AC</strong> и <strong>Faceit</strong></li>
+                            <li>В командной строке (от администратора) выполнить:</li>
+                        </ol>
+                        <div className="bg-slate-900 text-emerald-400 font-mono rounded-lg p-3 space-y-1 text-[11px] leading-relaxed">
+                            <div>sfc /scannow</div>
+                            <div>DISM /Online /Cleanup-Image /CheckHealth</div>
+                            <div>DISM /Online /Cleanup-Image /ScanHealth</div>
+                            <div>DISM /Online /Cleanup-Image /RestoreHealth</div>
+                        </div>
+                        <p className="text-rose-700">После этого перезагрузить ПК и установить обновления ещё раз.</p>
                     </div>
                 </div>
 
@@ -265,12 +318,12 @@ export function Section14() {
                         <ul className="text-sm text-slate-700 space-y-2">
                             <li><strong className="text-emerald-600">Драйвера:</strong> Устанавливаются автоматически при первом запуске системы. Game Ready драйвер из Nvidia App.</li>
                             <li><strong className="text-indigo-600">Лаунчеры/Игры:</strong> Ставить строго НЕ на диск C. В Алтуфьево диск 1.8ТБ должен быть скрыт!</li>
-                            <li><strong className="text-violet-600">Langame:</strong> Сертификат + ПО. <br/>
-                            Домены: <br/>
-                            <code>cyberx52.langamesftw.ru</code> (Алтуфьево) <br/>
-                            <code>cyberx165.langame-pr.ru</code> (Новокосино)</li>
+                            <li><strong className="text-violet-600">Langame:</strong> Сертификат + ПО.</li>
                         </ul>
-                        <p className="text-xs font-bold text-rose-500 uppercase">UUID менять запрещено!</p>
+                        <div className="mt-3 bg-violet-50 border border-violet-200 rounded-xl p-3 text-xs font-chakra text-violet-800">
+                            <strong className="block mb-1 text-violet-700 uppercase tracking-wide">📩 После установки всех игр, программ и лаунчеров:</strong>
+                            Написать в чат технической поддержки — для установки Langame на клиентский ПК.
+                        </div>
                     </div>
                 </div>
             </div>

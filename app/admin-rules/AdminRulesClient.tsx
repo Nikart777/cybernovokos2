@@ -310,7 +310,7 @@ export default function AdminRulesClient() {
                         {activeSection === 'section9' && <Section9 setZoomedImage={setZoomedImage} />}
                         {activeSection === 'section10' && <Section10 setZoomedImage={setZoomedImage} />}
                         {activeSection === 'section11' && <Section11 />}
-                        {activeSection === 'section12' && <Section12 setZoomedImage={setZoomedImage} />}
+                        {activeSection === 'section12' && <Section12 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
                         {activeSection === 'section13' && <Section13 />}
                         {activeSection === 'section14' && <Section14 />}
                         {activeSection === 'section15' && <Section15 />}

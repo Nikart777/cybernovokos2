@@ -4,7 +4,7 @@ import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertT
 import { SectionBadge } from '../components/SectionBadge';
 import { PcMonitorWidget } from '../components/PcMonitorWidget';
 
-export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | null) => void }) {
+export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="12" label="Раздел" />
@@ -28,7 +28,7 @@ export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | 
                         <Terminal size={24} />
                     </div>
                     <div>
-                        <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Технический режим (Лангар)</h3>
+                        <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Технический режим</h3>
                         <p className="font-chakra text-slate-400 text-sm">Управление ПК через чат</p>
                     </div>
                 </div>
@@ -297,7 +297,7 @@ export function Section12({ setZoomedImage }: { setZoomedImage?: (src: string | 
             </div>
 
             {/* МОНИТОРИНГ ПК */}
-            <PcMonitorWidget />
+            <PcMonitorWidget onNavigate={onNavigate} />
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">

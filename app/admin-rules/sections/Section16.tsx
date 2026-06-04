@@ -6,7 +6,7 @@ export function Section16() {
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="16" label="Раздел" />
-            
+
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
                     <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
@@ -114,7 +114,7 @@ export function Section16() {
                     <div className="p-5 font-chakra text-sm">
                         <ul className="divide-y divide-violet-100">
                             <li className="flex justify-between items-start py-3 gap-4">
-                                <span className="text-slate-700 w-2/3">Жалоба на бездействие (проблема клиента описана в правилах, но админ не применил решение и не обратился в техподдержку)</span>
+                                <span className="text-slate-700 w-2/3">Массово необновленные ПК ночная смена</span>
                                 <span className="font-bold text-violet-600 whitespace-nowrap">1 000 ₽</span>
                             </li>
                             <li className="flex justify-between items-center py-3">
@@ -144,7 +144,7 @@ export function Section16() {
                         <h3 className="font-tactic font-black text-xl uppercase italic text-white flex-1 drop-shadow-md">КРИТИЧЕСКИЕ НАРУШЕНИЯ</h3>
                     </div>
                     <div className="p-6 font-chakra text-sm space-y-6">
-                        
+
                         {/* Сон на рабочем месте */}
                         <div className="border-b border-slate-700 pb-5">
                             <h4 className="font-bold text-rose-400 mb-3 text-base flex items-center gap-2 uppercase tracking-wide">
@@ -183,8 +183,8 @@ export function Section16() {
                             <li>
                                 <div className="text-slate-300 mb-1">Уведомление об увольнении менее чем за 14 дней</div>
                                 <div className="text-red-400 font-black flex items-center flex-wrap gap-2 uppercase text-xs tracking-widest mt-2">
-                                    <span className="bg-red-950 px-3 py-1 border border-red-900 rounded">Увольнение без з/п</span> 
-                                    <span className="text-slate-500 lowercase">или</span> 
+                                    <span className="bg-red-950 px-3 py-1 border border-red-900 rounded">Увольнение без з/п</span>
+                                    <span className="text-slate-500 lowercase">или</span>
                                     <span className="bg-orange-950 text-orange-400 px-3 py-1 border border-orange-900 rounded">50% от з/п</span>
                                     <span className="text-slate-500 normal-case tracking-normal ml-1">(на усмотрение рук-ва)</span>
                                 </div>
