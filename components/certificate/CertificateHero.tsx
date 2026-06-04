@@ -26,14 +26,14 @@ export default function CertificateHero() {
                             <span className="inline-block text-[#00F0FF] font-chakra font-bold text-sm md:text-base tracking-widest uppercase bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/20 shadow-[0_0_15px_rgba(0,240,255,0.2)] mb-6">
                                 Оригинальный подарок
                             </span>
-                            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-tactic italic uppercase font-black leading-[0.9] tracking-tighter text-white">
+                            <h1 className="text-4xl md:text-7xl lg:text-[5.5rem] font-tactic italic uppercase font-black leading-[0.9] tracking-tighter text-white break-words sm:break-normal">
                                 ПОДАРОЧНЫЙ
                                 <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_20px_rgba(255,46,99,0.4)]">
                                     СЕРТИФИКАТ
                                 </span>
                             </h1>
-                            <h2 className="text-4xl md:text-6xl font-tactic italic uppercase font-black leading-tight tracking-tighter text-white/90 mt-2">
+                            <h2 className="text-3xl md:text-6xl font-tactic italic uppercase font-black leading-tight tracking-tighter text-white/90 mt-2">
                                 НА КАТКИ В CYBER<span className="text-[#FF2E63]">X</span>
                             </h2>
                         </motion.div>

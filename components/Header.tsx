@@ -6,12 +6,21 @@ import Image from 'next/image';
 import { Menu, X, Smartphone, MapPin, Clock, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
+const desktopNavLinks = [
     { name: 'Главная', href: '/' },
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
     { name: 'Блог', href: '/blog' },
+    { name: 'Контакты', href: '/contacts' },
+];
+
+const mobileNavLinks = [
+    { name: 'Главная', href: '/' },
+    { name: 'Игровые зоны', href: '/#zones' },
+    { name: 'Цены', href: '/prices' },
+    { name: 'Акции', href: '/#promotions' },
+    { name: 'Подарочные сертификаты', href: '/certificate' },
     { name: 'Контакты', href: '/contacts' },
 ];
 
@@ -65,7 +74,7 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-10">
                         <ul className="flex items-center gap-8">
-                            {navLinks.map((link) => (
+                            {desktopNavLinks.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
@@ -177,7 +186,7 @@ export default function Header() {
 
                             {/* Navigation Links */}
                             <nav className="flex-1 flex flex-col justify-center items-center gap-4 w-full max-w-md">
-                                {navLinks.map((link, idx) => (
+                                {mobileNavLinks.map((link, idx) => (
                                     <motion.div
                                         key={link.name}
                                         initial={{ opacity: 0, x: -30 }}

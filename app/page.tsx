@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/HeroNew";
 import ZonesPreview from "@/components/ZonesPreview";
 import PromotionsNew from "@/components/PromotionsNew";
+import CertificateBanner from "@/components/CertificateBanner";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Contacts from "@/components/Contacts";
@@ -36,11 +37,11 @@ export default function Home() {
       <Header />
       <Hero />
       {pricingData && <ZonesPreview pricingData={pricingData} />}
+      <CertificateBanner />
       <PromotionsNew />
       <Reviews />
       <FAQ />
       <Contacts />
-      <SEOBlock />
       <Footer />
     </main>
   );
