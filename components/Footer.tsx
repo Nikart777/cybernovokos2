@@ -7,15 +7,23 @@ const links = [
     { name: 'Главная', href: '/' },
     { name: 'Цены', href: '/prices' },
     { name: 'Sim Racing', href: '/simracing' },
+    { name: 'Блог', href: '/blog' },
     { name: 'Подарочные сертификаты', href: '/certificate' },
     { name: 'Контакты', href: '/contacts' },
+];
+
+const legalDocs = [
+    { name: 'Оферта', href: '/legal/offer' },
+    { name: 'Конфиденциальность', href: '/legal/privacy' },
+    { name: 'Правила посещения', href: '/legal/rules' },
+    { name: 'Правила бронирования', href: '/legal/booking' },
 ];
 
 export default function Footer() {
     return (
         <footer className="bg-black border-t border-white/5 pt-16 pb-8">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
                     <div className="md:col-span-1 border-r border-white/5 pr-8">
                         <Link href="/" className="inline-block mb-6">
                             <div className="flex items-baseline">
@@ -64,6 +72,21 @@ export default function Footer() {
                         </div>
                     </div>
 
+                    <div className="md:col-span-1">
+                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Документы</h4>
+                        <div className="flex flex-col gap-4">
+                            {legalDocs.map((doc) => (
+                                <Link
+                                    key={doc.name}
+                                    href={doc.href}
+                                    className="font-chakra font-bold text-xs uppercase text-white/40 hover:text-white transition-colors tracking-widest"
+                                >
+                                    {doc.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
                     <div className="md:col-span-2">
                         <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Контакты</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -100,9 +123,14 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-8">
-                    <p className="text-white/20 font-chakra text-[10px] uppercase font-bold tracking-widest order-2 md:order-1">
-                        © 2026 CyberX Novokosino. Все права защищены.
-                    </p>
+                    <div className="flex flex-col gap-2 order-2 md:order-1 items-center md:items-start text-center md:text-left">
+                        <p className="text-white/20 font-chakra text-[10px] uppercase font-bold tracking-widest">
+                            © 2026 CyberX Novokosino. Все права защищены.
+                        </p>
+                        <p className="text-white/20 font-chakra text-[10px] uppercase tracking-wider">
+                            ИП Артюх Никита Андреевич • ОГРНИП 325508100725157
+                        </p>
+                    </div>
 
                     <a
                         href="https://art-vision.online/"

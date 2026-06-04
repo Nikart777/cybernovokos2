@@ -11,6 +11,7 @@ const navLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
+    { name: 'Блог', href: '/blog' },
     { name: 'Контакты', href: '/contacts' },
 ];
 

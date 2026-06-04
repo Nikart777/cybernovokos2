@@ -42,7 +42,7 @@ export default function CertificateSteps({ telegramUrl, telegramText }: { telegr
                         <div className="text-5xl font-tactic italic text-white/5 absolute top-4 right-6 group-hover:text-white/10 transition-colors">3</div>
                         <h3 className="text-xl font-tactic italic mb-3 text-[#00F0FF] uppercase">Вручение</h3>
                         <p className="text-slate-300 font-inter text-sm leading-relaxed relative z-10">
-                            Отправим сюрприз ему в личку, или вам для распечатки. В клубе мы просто переведем номинал сертификата ему на баланс в приложении CyberX, и он сможет тратить его как захочет: бронировать любые ПК или играть с друзьями!
+                            Начисление происходит автоматически через приложение CyberX! Мы отправим вам или получателю в личные сообщения сам сертификат + промокод, по которому будет производиться начисление.
                         </p>
                     </div>
                 </div>

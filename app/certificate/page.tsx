@@ -51,7 +51,9 @@ export default function CertificatePage() {
         {/* ZONES GALLERY for CERTIFICATES*/}
         <CertificateZones />
 
-        <GiftCalculator />
+        <div id="calculator">
+          <GiftCalculator />
+        </div>
 
         <CertificateHappinessScale />
         <CertificateSteps telegramUrl={telegramUrl} telegramText={telegramText} />

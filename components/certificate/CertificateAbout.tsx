@@ -4,26 +4,53 @@ import SlotMachineNumber from "@/components/SlotMachineNumber";
 
 export default function CertificateAbout({ telegramUrl, telegramText }: { telegramUrl: string, telegramText: string }) {
     return (
-        <section className="px-6 py-12 md:py-20 relative z-10 mt-4 overflow-hidden">
-            <div className="container mx-auto max-w-6xl relative">
-                <div className="relative bg-gradient-to-br from-white/10 to-transparent backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/10 overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+        <section className="px-4 md:px-6 py-12 md:py-20 relative z-10 mt-4 overflow-hidden w-full">
+            <div className="w-full max-w-[1600px] mx-auto relative">
+                <div className="relative bg-gradient-to-br from-white/10 to-transparent backdrop-blur-lg rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 lg:p-20 border border-white/10 overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                     {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#B900FF]/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00F0FF]/20 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/3"></div>
-                    <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#FF2E63]/10 rounded-full blur-[60px] -translate-y-1/2 -translate-x-1/2"></div>
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-[#B900FF]/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00F0FF]/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
+                    <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#FF2E63]/10 rounded-full blur-[80px] -translate-y-1/2 -translate-x-1/2"></div>
 
-                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                         {/* Left Side: About Certificate */}
-                        <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-tactic italic uppercase font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-200 drop-shadow-sm">
+                        <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-tactic italic uppercase font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-200 drop-shadow-sm">
                                 Что такое <br /><span className="text-[#FF2E63]">сертификат</span> CyberX?
                             </h2>
-                            <p className="text-lg md:text-xl text-white font-inter leading-relaxed bg-white/5 p-5 rounded-2xl border-l-4 border-[#00F0FF]">
-                                Это не просто вещь, это оригинальная услуга и <span className="text-[#00F0FF] font-bold uppercase tracking-wider block mt-1">уникальные эмоции!</span>
+                            <p className="text-xl md:text-2xl text-white font-inter leading-relaxed bg-white/5 p-6 rounded-2xl border-l-4 border-[#00F0FF]">
+                                Это не просто вещь, это оригинальная услуга и <span className="text-[#00F0FF] font-bold uppercase tracking-wider block mt-2">уникальные эмоции!</span>
                             </p>
-                            <p className="text-base md:text-lg text-slate-300 font-inter leading-relaxed max-w-xl mx-auto lg:mx-0">
-                                Наш подарочный сертификат — универсальный ключ в кибервселенную. Порадуйте любимого мужчину: офрмите подарочный сертификат CYBERX GIFT, а он сам решит, во что играть: мощнейшие ПК, расслабляющая зона PS5 или адреналиновый автосимулятор. Мы просто переведем всю сумму на его аккаунт в приложении клуба, и он сможет тратить ее на что угодно — будь то игра одному или бронь всего зала с друзьями!
+                            <p className="text-lg md:text-xl text-slate-300 font-inter leading-relaxed max-w-3xl mx-auto lg:mx-0">
+                                Наш подарочный сертификат — универсальный ключ в кибервселенную. Порадуйте близкого человека: оформите подарочный сертификат CYBERX, и мы переведем всю сумму на его аккаунт в приложении клуба. Он сможет тратить эти средства на всё, что захочет:
                             </p>
+                            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto lg:mx-0 text-left relative z-10">
+                                {/* Gaming Zones Card */}
+                                <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-white/10 rounded-2xl p-5 relative overflow-hidden group hover:-translate-y-1 transition-transform shadow-lg">
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#FF2E63]/10 rounded-full blur-xl group-hover:bg-[#FF2E63]/20 transition-colors"></div>
+                                    <div className="text-3xl mb-3 flex gap-2">
+                                        <span>🖥️</span><span>🎮</span><span>🏎️</span>
+                                    </div>
+                                    <h4 className="font-tactic italic uppercase text-white mb-2 tracking-wide text-sm">Любые игровые зоны</h4>
+                                    <p className="text-xs text-slate-400 font-inter leading-relaxed relative z-10">
+                                        Мощнейшие ПК, комфортная зона PS5 или адреналиновый автосимулятор.
+                                    </p>
+                                </div>
+
+                                {/* Bar & Snacks Card (Highlighted) */}
+                                <div className="bg-gradient-to-br from-[#00F0FF]/10 to-[#B900FF]/10 border border-[#00F0FF]/30 rounded-2xl p-5 relative overflow-hidden group hover:-translate-y-1 transition-transform shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+                                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#00F0FF]/20 rounded-full blur-xl group-hover:bg-[#00F0FF]/30 transition-colors"></div>
+                                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#B900FF]/20 rounded-full blur-xl group-hover:bg-[#B900FF]/30 transition-colors"></div>
+                                    
+                                    <div className="text-3xl mb-3 flex gap-2 relative z-10">
+                                        <span>🥤</span><span>🍫</span><span>⚡</span>
+                                    </div>
+                                    <h4 className="font-tactic italic uppercase text-[#00F0FF] mb-2 tracking-wide text-sm drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] relative z-10">Бар, Снеки, Напитки</h4>
+                                    <p className="text-xs text-white/90 font-inter leading-relaxed relative z-10">
+                                        В стоимость входят любые энергетики, шоколадки и напитки в нашем баре. Полная свобода выбора!
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="flex lg:col-span-5 justify-center items-center mt-8 lg:mt-0 w-full px-2 sm:px-0">

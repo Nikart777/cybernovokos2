@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { blogPosts } from '@/data/blog-posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://cyberx-novokosino.ru';
@@ -28,6 +29,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly',
             priority: 0.7,
         },
+        {
+            url: `${baseUrl}/blog`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.75,
+        },
+        ...blogPosts.map((post) => ({
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: new Date(post.updated),
+            changeFrequency: 'monthly' as const,
+            priority: 0.72,
+        })),
         {
             url: `${baseUrl}/mouse-test`,
             lastModified: new Date(),

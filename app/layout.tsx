@@ -8,6 +8,7 @@ import BookingModal from "@/components/BookingModal";
 import PromoModals from "@/components/PromoModals";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ChatBot from "@/components/ChatBot";
+import CookieBanner from "@/components/CookieBanner";
 
 // Локальные шрифты Tactic Sans
 const tacticSans = localFont({
@@ -217,6 +218,7 @@ export default function RootLayout({
                 <ChatBot />
                 <BookingModal />
                 <PromoModals />
+                <CookieBanner />
             </body>
         </html>
     );

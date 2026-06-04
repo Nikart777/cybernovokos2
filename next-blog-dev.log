@@ -1,0 +1,14 @@
+
+> cyberx-novokosino@1.0.0 dev
+> next dev -p 3000
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Ready in 7.2s
+ ○ Compiling /blog/[slug] ...
+ ✓ Compiled /blog/[slug] in 21.7s (1375 modules)
+ ✓ Compiled /manifest.webmanifest in 473ms (732 modules)
+ ✓ Compiled in 528ms (699 modules)
+ ✓ Compiled /manifest.webmanifest in 296ms (730 modules)

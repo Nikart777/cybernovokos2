@@ -12,6 +12,7 @@ export default function robots(): MetadataRoute.Robots {
                 '/admin/',      // Админка
                 '/admin-rules', // Инструкция администратора
                 '/social-hub',  // Закрытый Social Hub
+                '/legal/',      // Правовые документы
                 '/_next/',      // Системные файлы Next.js
             ],
         },
