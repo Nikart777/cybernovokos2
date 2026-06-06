@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Tactic Sans";
+  src: url("../public/site-fonts/TacticSansExd-Reg.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Tactic Sans";
+  src: url("../public/site-fonts/TacticSansExd-Bld.woff") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Tactic Sans";
+  src: url("../public/site-fonts/TacticSansExd-Blk.woff") format("woff");
+  font-weight: 900;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #050505;
+}

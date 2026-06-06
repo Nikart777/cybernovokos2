@@ -7,7 +7,6 @@ import { Menu, X, Smartphone, MapPin, Clock, MessageSquare } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion';
 
 const desktopNavLinks = [
-    { name: 'Главная', href: '/' },
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
@@ -16,7 +15,6 @@ const desktopNavLinks = [
 ];
 
 const mobileNavLinks = [
-    { name: 'Главная', href: '/' },
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
     { name: 'Акции', href: '/#promotions' },
@@ -197,7 +195,7 @@ export default function Header() {
                                         <Link
                                             href={link.href}
                                             onClick={() => setIsOpen(false)}
-                                            className="block text-center font-tactic font-black text-2xl md:text-3xl text-white uppercase italic py-3 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#FF2E63] hover:to-[#B900FF] transition-all"
+                                            className="block text-center font-tactic font-black text-xl leading-tight sm:text-2xl md:text-3xl text-white uppercase italic py-3 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#FF2E63] hover:to-[#B900FF] transition-all"
                                         >
                                             {link.name}
                                         </Link>

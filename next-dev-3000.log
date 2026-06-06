@@ -1,0 +1,90 @@
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Ready in 14.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 25.4s (1422 modules)
+ ✓ Compiled in 2.7s (710 modules)
+ ○ Compiling /api/club-status ...
+ ✓ Compiled /api/club-status in 2.3s (746 modules)
+ ✓ Compiled in 3.6s (1422 modules)
+ ✓ Compiled in 3.4s (1422 modules)
+ ○ Compiling /api/club-status ...
+ ✓ Compiled /api/club-status in 1584ms (746 modules)
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 1771ms (775 modules)
+ ✓ Compiled in 1903ms (710 modules)
+ ✓ Compiled in 2.9s (1456 modules)
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 926ms (775 modules)
+ ✓ Compiled in 3.6s (1485 modules)
+ ✓ Compiled in 3.2s (1485 modules)
+ ✓ Compiled in 1183ms (1485 modules)
+ ✓ Compiled in 4.7s (1485 modules)
+ ✓ Compiled in 1884ms (1485 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1271ms (778 modules)
+ ✓ Compiled in 2.5s (1488 modules)
+ ✓ Compiled in 1322ms (710 modules)
+ ✓ Compiled in 1750ms (1485 modules)
+ ✓ Compiled in 3.5s (1456 modules)
+ ✓ Compiled /manifest.webmanifest in 249ms (775 modules)
+ ✓ Compiled in 2.4s (1485 modules)
+ ✓ Compiled in 5.3s (1458 modules)
+ ✓ Compiled /manifest.webmanifest in 243ms (776 modules)
+ ✓ Compiled in 1999ms (1458 modules)
+ ✓ Compiled /manifest.webmanifest in 403ms (776 modules)
+ ✓ Compiled in 1567ms (1487 modules)
+ ✓ Compiled in 3.3s (1487 modules)
+ ✓ Compiled in 2.5s (1487 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 933ms (779 modules)
+ ✓ Compiled in 1777ms (1458 modules)
+ ✓ Compiled /manifest.webmanifest in 258ms (776 modules)
+ ○ Compiling /simracing ...
+ ✓ Compiled /simracing in 6.7s (1453 modules)
+ ✓ Compiled /manifest.webmanifest in 424ms (784 modules)
+ ✓ Compiled in 2.3s (1467 modules)
+ ✓ Compiled /manifest.webmanifest in 475ms (784 modules)
+ ✓ Compiled in 4.5s (1467 modules)
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 664ms (784 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1462ms (787 modules)
+ ✓ Compiled in 5.4s (1499 modules)
+ ✓ Compiled in 2.4s (1470 modules)
+ ✓ Compiled /manifest.webmanifest in 318ms (787 modules)
+ ✓ Compiled in 4.4s (1467 modules)
+ ✓ Compiled /manifest.webmanifest in 313ms (784 modules)
+ ✓ Compiled in 2.1s (712 modules)
+ ✓ Compiled in 1576ms (1496 modules)
+ ○ Compiling /certificate ...
+ ✓ Compiled /certificate in 1681ms (1520 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1208ms (814 modules)
+ ✓ Compiled in 1991ms (1505 modules)
+ ✓ Compiled /manifest.webmanifest in 295ms (811 modules)
+ ✓ Compiled in 2.8s (1505 modules)
+ ✓ Compiled /manifest.webmanifest in 450ms (811 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 1599ms (785 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.6s (1656 modules)
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 749ms (853 modules)
+ ✓ Compiled in 4.2s (1631 modules)
+ ✓ Compiled in 2.5s (1631 modules)
+ ✓ Compiled /api/club-status in 221ms (820 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 617ms (1653 modules)
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 3.5s (1670 modules)
+ ✓ Compiled in 2.4s (1670 modules)
+ ✓ Compiled in 1896ms (1636 modules)
+ ✓ Compiled in 1423ms (1636 modules)
+ ✓ Compiled in 2.9s (1636 modules)
+ ✓ Compiled in 6.2s (1624 modules)
+ ✓ Compiled in 9.4s (1631 modules)
+ ✓ Compiled in 4s (1631 modules)
+ ✓ Compiled in 1905ms (845 modules)

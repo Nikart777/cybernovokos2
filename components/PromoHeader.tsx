@@ -81,8 +81,8 @@ export default function PromoHeader() {
            
            {/* Center Text */}
            <div className="relative mx-2 md:mx-12 z-10">
-             {/* Glow Layer */}
-             <h2 className="absolute inset-0 font-tactic font-black text-[12vw] md:text-[10rem] uppercase text-[#FF2E63] blur-[40px] opacity-60 select-none animate-pulse">
+             {/* Glow Layer - Static instead of animating to save GPU */}
+             <h2 className="absolute inset-0 font-tactic font-black text-[12vw] md:text-[10rem] uppercase text-[#FF2E63] blur-2xl md:blur-[40px] opacity-50 select-none pointer-events-none">
                АКЦИИ
              </h2>
              {/* Main Text */}
@@ -104,7 +104,7 @@ export default function PromoHeader() {
 
         {/* Subtitle Badge */}
         <motion.div
-          className="mt-6 md:mt-10 inline-flex items-center gap-4 px-8 py-3 border border-[#FF2E63]/50 rounded-full bg-black/80 backdrop-blur-xl shadow-[0_0_40px_rgba(255,46,99,0.3)]"
+          className="mt-6 md:mt-10 inline-flex items-center gap-4 px-8 py-3 border border-[#FF2E63]/50 rounded-full bg-black/90 md:bg-black/80 md:backdrop-blur-xl shadow-none md:shadow-[0_0_40px_rgba(255,46,99,0.3)]"
         >
           <div className="w-2 h-2 bg-[#FF2E63] rounded-full animate-pulse" />
           <span className="font-chakra font-bold text-xs md:text-base text-white uppercase tracking-[0.3em]">

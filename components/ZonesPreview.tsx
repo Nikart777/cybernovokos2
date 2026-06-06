@@ -446,23 +446,40 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.8 }}
-                    className="relative rounded-3xl overflow-hidden"
+                    className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#08080b]/92 shadow-[0_28px_120px_rgba(0,0,0,0.42)]"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#FF2E63]/20 via-[#B900FF]/20 to-[#00F0FF]/20" />
-                    <div className="absolute inset-0 backdrop-blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(255,46,99,0.2),transparent_34%),radial-gradient(circle_at_88%_18%,rgba(0,240,255,0.16),transparent_32%)]" />
+                    <div
+                        className="absolute inset-0 opacity-[0.055]"
+                        style={{
+                            backgroundImage: 'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
+                            backgroundSize: '52px 52px',
+                        }}
+                    />
                     
-                    <div className="relative z-10 p-8 md:p-12 text-center">
-                        <h3 className="font-tactic font-black text-2xl sm:text-3xl md:text-4xl uppercase text-white mb-4">Не можешь выбрать?</h3>
-                        <p className="font-inter text-sm md:text-base text-white/70 max-w-xl mx-auto mb-8">
-                            Забронируй место онлайн или позвони нам — администраторы помогут подобрать идеальную зону.
-                        </p>
+                    <div className="relative z-10 grid gap-8 p-7 md:grid-cols-[1fr_auto] md:items-center md:p-10 lg:p-12">
+                        <div>
+                            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#FF2E63]/25 bg-[#FF2E63]/10 px-3 py-2">
+                                <span className="h-2 w-2 rounded-full bg-[#FF2E63] shadow-[0_0_14px_#FF2E63]" />
+                                <span className="font-chakra text-[10px] font-black uppercase tracking-[0.2em] text-[#FF2E63]">
+                                    поможем выбрать
+                                </span>
+                            </div>
+                            <h3 className="font-tactic text-3xl font-black uppercase italic leading-none text-white sm:text-4xl md:text-5xl">
+                                Не уверен,
+                                <span className="block text-[#00F0FF]">какая зона нужна?</span>
+                            </h3>
+                            <p className="mt-4 max-w-2xl font-inter text-sm leading-6 text-white/64 md:text-base">
+                                Забронируй место онлайн или позвони нам. Администратор подскажет, что лучше под твой формат: соло, команду, PS5 или автосимулятор.
+                            </p>
+                        </div>
                         
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <button onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))} className="group flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-chakra font-black text-sm uppercase tracking-[0.2em] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300 hover:scale-105">
+                        <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+                            <button onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))} className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-white px-7 font-chakra text-xs font-black uppercase tracking-[0.22em] text-black transition duration-300 hover:bg-[#FF2E63] hover:text-white hover:shadow-[0_0_48px_rgba(255,46,99,0.36)]">
                                 Забронировать
                                 <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                             </button>
-                            <a href="tel:+79851289538" className="flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 border border-white/20 font-chakra font-black text-sm uppercase tracking-[0.2em] text-white hover:bg-white/15 transition-all duration-300">
+                            <a href="tel:+79851289538" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/12 bg-white/[0.045] px-7 font-chakra text-xs font-black uppercase tracking-[0.22em] text-white transition duration-300 hover:border-[#00F0FF]/40 hover:bg-[#00F0FF]/[0.08]">
                                 +7 (985) 128-95-38
                             </a>
                         </div>

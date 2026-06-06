@@ -72,23 +72,9 @@ export default function PromotionsNew() {
         }}
       />
 
-      {/* Gradient Orbs */}
-      <motion.div 
-        animate={{
-          opacity: [0.2, 0.4, 0.2],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#FF2E63]/10 blur-[150px] rounded-full"
-      />
-      <motion.div 
-        animate={{
-          opacity: [0.2, 0.4, 0.2],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#B900FF]/10 blur-[150px] rounded-full"
-      />
+      {/* Gradient Orbs - Static to save performance */}
+      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#FF2E63]/10 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#B900FF]/10 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}

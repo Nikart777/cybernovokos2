@@ -13,7 +13,7 @@ export default function CertificateBanner() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="relative w-full rounded-3xl overflow-hidden bg-[#FF2E63] p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 shadow-[0_0_80px_rgba(255,46,99,0.4)] transition-all duration-500 hover:shadow-[0_0_100px_rgba(255,46,99,0.6)] group"
+                        className="relative w-full rounded-3xl overflow-hidden bg-[#FF2E63] p-5 sm:p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 shadow-[0_0_80px_rgba(255,46,99,0.4)] transition-all duration-500 hover:shadow-[0_0_100px_rgba(255,46,99,0.6)] group"
                     >
                         {/* Background subtle textures */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 pointer-events-none" />
@@ -34,8 +34,8 @@ export default function CertificateBanner() {
                                 </span>
                             </div>
                             
-                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-tactic italic uppercase font-black tracking-tighter text-[#0a0f1a] leading-[0.85] mb-6">
-                                ПОДАРОЧНЫЙ <br className="hidden md:block" />
+                            <h2 className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-tactic italic uppercase font-black tracking-tighter text-[#0a0f1a] leading-[0.85] mb-6 break-words w-full">
+                                ПОДАРОЧНЫЙ <br />
                                 <span className="text-[#0a0f1a]">
                                     СЕРТИФИКАТ
                                 </span>

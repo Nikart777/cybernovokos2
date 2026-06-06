@@ -1,40 +1,91 @@
 "use client";
-import React, { useRef } from "react";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function CertificateHero() {
-    return (
-        <section className="relative px-6 py-16 md:py-24 overflow-hidden">
-            <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] z-10"></div>
-                {/* Neon mesh background */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#FF2E63]/20 to-[#00F0FF]/20 blur-[100px] rounded-full pointer-events-none" />
-            </div>
+    const mouseX = useMotionValue(0.5);
+    const mouseY = useMotionValue(0.5);
 
-            <div className="relative z-10 container mx-auto max-w-7xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+    const springConfig = { damping: 25, stiffness: 100 };
+    const mouseXSpring = useSpring(mouseX, springConfig);
+    const mouseYSpring = useSpring(mouseY, springConfig);
+
+    const translateX = useTransform(mouseXSpring, [0, 1], ["-1.5%", "1.5%"]);
+    const translateY = useTransform(mouseYSpring, [0, 1], ["-1.5%", "1.5%"]);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
+    return (
+        <section 
+            className="relative w-full min-h-[90svh] md:min-h-[85vh] flex flex-col justify-start md:justify-center pt-[100px] md:pt-20 pb-16 md:pb-20 overflow-hidden bg-[#FF0033]"
+            onMouseMove={handleMouseMove}
+        >
+            {/* Background Layer with Parallax */}
+            <motion.div 
+                className="absolute inset-0 z-0"
+                style={{ x: translateX, y: translateY }}
+            >
+                <motion.div
+                    animate={{ scale: [1.04, 1.08, 1.04] }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full origin-center"
+                >
+                    <Image 
+                        src="/certificates.webp" 
+                        alt="Подарочный сертификат CyberX"
+                        fill
+                        className="object-cover object-[85%_center] lg:object-[85%_center]"
+                        priority
+                    />
                     
-                    {/* Left: Typography */}
+                    {/* Cyberpunk Scanlines (Desktop only) */}
+                    <div 
+                        className="absolute inset-0 opacity-[0.12] hidden md:block pointer-events-none"
+                        style={{
+                            backgroundImage: 'repeating-linear-gradient(transparent, transparent 2px, #000 2px, #000 4px)'
+                        }}
+                    />
+                </motion.div>
+            </motion.div>
+            
+            {/* Cinematic Vignette */}
+            <div className="absolute inset-0 hidden md:block z-10 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.6)_150%)]" />
+            
+            {/* Mobile readability gradient - darkens top for text, keeps face clear at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FF0033]/95 via-[#FF0033]/80 to-transparent md:hidden z-10 pointer-events-none" />
+
+            {/* Seamless transition to the next dark section */}
+            <div className="absolute bottom-0 left-0 right-0 h-48 md:h-64 lg:h-80 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-20 pointer-events-none" />
+
+            <div className="relative z-20 container mx-auto px-6 max-w-7xl pointer-events-none">
+                <div className="max-w-2xl pointer-events-auto">
                     <div className="space-y-6 md:space-y-8 flex flex-col justify-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="inline-block text-[#00F0FF] font-chakra font-bold text-sm md:text-base tracking-widest uppercase bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/20 shadow-[0_0_15px_rgba(0,240,255,0.2)] mb-6">
+                            <span className="inline-block text-white font-chakra font-bold text-[10px] sm:text-xs md:text-base tracking-widest uppercase bg-black px-3 md:px-5 py-1.5 md:py-2.5 rounded-full shadow-xl mb-5 md:mb-6">
                                 Оригинальный подарок
                             </span>
-                            <h1 className="text-4xl md:text-7xl lg:text-[5.5rem] font-tactic italic uppercase font-black leading-[0.9] tracking-tighter text-white break-words sm:break-normal">
+                            <h1 className="max-w-full text-[2rem] min-[390px]:text-[2.12rem] sm:text-5xl md:text-7xl lg:text-[6rem] font-tactic italic uppercase font-black leading-[0.95] tracking-normal sm:tracking-tighter text-white drop-shadow-xl">
                                 ПОДАРОЧНЫЙ
                                 <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_20px_rgba(255,46,99,0.4)]">
+                                <span className="text-black drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)] md:drop-shadow-md">
                                     СЕРТИФИКАТ
                                 </span>
                             </h1>
-                            <h2 className="text-3xl md:text-6xl font-tactic italic uppercase font-black leading-tight tracking-tighter text-white/90 mt-2">
-                                НА КАТКИ В CYBER<span className="text-[#FF2E63]">X</span>
+                            <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-5xl font-tactic italic uppercase font-black leading-tight tracking-normal sm:tracking-tighter text-white mt-4 md:mt-4 drop-shadow-xl">
+                                НА КАТКИ В CYBER<span className="text-black">X</span>
                             </h2>
                         </motion.div>
 
@@ -42,7 +93,7 @@ export default function CertificateHero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-slate-300 text-lg md:text-xl font-inter font-medium leading-relaxed max-w-lg"
+                            className="text-white text-base md:text-xl font-inter font-semibold leading-relaxed max-w-lg drop-shadow-md"
                         >
                             Для друга, брата, парня, коллеги. Подари эмоции, которые он точно оценит! Выбирай номинал и оформляй онлайн.
                         </motion.p>
@@ -51,155 +102,24 @@ export default function CertificateHero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
-                            className="pt-4"
+                            className="pt-6 md:pt-4"
                         >
                             <Link href="#calculator" onClick={(e) => {
                                 e.preventDefault();
                                 document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
                             }}>
-                                <button className="group relative px-8 py-4 bg-white text-black font-tactic italic font-black uppercase tracking-widest text-lg overflow-hidden flex items-center gap-4 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)] rounded-sm">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-[#00F0FF] to-[#FF2E63] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                                <button className="group relative px-6 md:px-8 py-3 md:py-4 bg-black text-white font-tactic italic font-black uppercase tracking-widest text-base md:text-lg overflow-hidden flex items-center gap-4 transition-transform hover:scale-105 active:scale-95 rounded-full shadow-2xl">
+                                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    <span className="relative z-10 group-hover:text-black transition-colors duration-300">
                                         Выбрать номинал
                                     </span>
-                                    <ArrowDown className="relative z-10 group-hover:text-white transition-colors duration-300 animate-bounce" />
+                                    <ArrowDown className="relative z-10 group-hover:text-black transition-colors duration-300 animate-bounce" />
                                 </button>
                             </Link>
                         </motion.div>
                     </div>
-
-                    {/* Right: 3D Interactive Card */}
-                    <div className="relative flex justify-center items-center h-[500px] perspective-[1000px]">
-                        <Certificate3DCard />
-                    </div>
                 </div>
             </div>
         </section>
-    );
-}
-
-function Certificate3DCard() {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
-    const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return;
-        const rect = cardRef.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
-
-    return (
-        <motion.div
-            ref={cardRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-            }}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ 
-                y: [0, -15, 0],
-                opacity: 1 
-            }}
-            transition={{
-                y: {
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                },
-                opacity: { duration: 1 }
-            }}
-            className="w-full max-w-[480px] aspect-[1.586/1] relative cursor-pointer group"
-        >
-            {/* Shadows */}
-            <div 
-                className="absolute -inset-4 bg-[#FF2E63]/30 blur-2xl rounded-2xl transform transition-opacity group-hover:opacity-100 opacity-60" 
-                style={{ transform: "translateZ(-50px)" }}
-            />
-            <div 
-                className="absolute inset-0 bg-[#00F0FF]/20 blur-xl rounded-2xl transform translate-y-8 transition-opacity group-hover:opacity-100 opacity-60" 
-                style={{ transform: "translateZ(-80px)" }}
-            />
-
-            {/* Card Body */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#050505] rounded-2xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm"
-                 style={{ transform: "translateZ(0px)" }}>
-                
-                {/* Tech Grid Pattern */}
-                <div 
-                    className="absolute inset-0 opacity-[0.04]"
-                    style={{
-                        backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-                        backgroundSize: '24px 24px'
-                    }}
-                />
-
-                {/* Glare effect */}
-                <motion.div
-                    className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay"
-                    style={{
-                        background: useTransform(
-                            [mouseXSpring, mouseYSpring],
-                            ([latestX, latestY]) => {
-                                const percentageX = (Number(latestX) + 0.5) * 100;
-                                const percentageY = (Number(latestY) + 0.5) * 100;
-                                return `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(255,255,255,0.4) 0%, transparent 60%)`;
-                            }
-                        )
-                    }}
-                />
-
-                {/* Content Layer (Hovering) */}
-                <div className="relative h-full flex flex-col justify-between p-8" style={{ transform: "translateZ(40px)" }}>
-                    <div className="flex justify-between items-start">
-                        <div className="flex flex-col">
-                            <span className="font-tactic font-black text-3xl tracking-tighter text-white uppercase italic leading-none drop-shadow-md">CYBER<span className="text-[#FF2E63]">X</span></span>
-                            <span className="font-chakra text-[9px] font-bold tracking-[0.3em] text-white/50 uppercase mt-1 ml-1">Community</span>
-                        </div>
-                        <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md shadow-inner bg-white/5">
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#FF2E63] to-[#00F0FF] animate-pulse shadow-[0_0_15px_rgba(255,46,99,0.8)]" />
-                        </div>
-                    </div>
-
-                    <div className="flex justify-between items-end relative z-10">
-                        <div className="space-y-1">
-                            <div className="font-chakra font-black text-sm text-[#00F0FF] uppercase tracking-widest drop-shadow-sm">
-                                Сертификат на катки
-                            </div>
-                            <div className="font-tactic italic font-black text-5xl text-white tracking-widest drop-shadow-md">
-                                X ₽
-                            </div>
-                        </div>
-                    </div>
-                    
-                    {/* Big X Logo in the background of the card */}
-                    <div className="absolute right-[-20px] bottom-[-40px] opacity-20 pointer-events-none" style={{ transform: "translateZ(10px)" }}>
-                        <span className="font-tactic italic font-black text-[180px] leading-none text-white drop-shadow-2xl">X</span>
-                    </div>
-                </div>
-
-            </div>
-        </motion.div>
     );
 }
