@@ -41,6 +41,7 @@ export default function Home() {
       <PromotionsNew />
       <Reviews />
       <FAQ />
+      <SEOBlock />
       <Contacts />
       <Footer />
     </main>

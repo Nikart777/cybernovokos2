@@ -125,15 +125,15 @@ export default function RootLayout({
         "priceRange": "100RUB - 1000RUB",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "ул. Новокосинская, 32",
+            "streetAddress": "Новокосинская ул., 32, этаж 2",
             "addressLocality": "Москва",
             "postalCode": "111673",
             "addressCountry": "RU"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 55.742007,
-            "longitude": 37.867178
+            "latitude": 55.741887,
+            "longitude": 37.867172
         },
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",

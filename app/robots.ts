@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',   // Явно разрешаем публичные страницы
             disallow: [
                 '/api/',        // Скрываем API роуты (экономим краулинговый бюджет)
+                '/calculator',  // Внутренний калькулятор компенсаций
                 '/aim',         // Технический раздел
                 '/private/',    // Личный кабинет
                 '/admin/',      // Админка

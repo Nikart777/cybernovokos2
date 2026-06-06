@@ -13,7 +13,7 @@ export default function JsonLd() {
         "priceRange": "100 - 450 RUB",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "ул. Новокосинская, 32",
+            "streetAddress": "Новокосинская ул., 32, этаж 2",
             "addressLocality": "Москва",
             "postalCode": "111673",
             "addressCountry": "RU"
