@@ -2,7 +2,7 @@
 
 
 const API_TOKEN = process.env.LANGAME_API_TOKEN || "";
-const BASE_URL = process.env.LANGAME_API_URL || "";
+const BASE_URL = process.env.LANGAME_API_URL || "https://cyberx165.langame-pr.ru/public_api";
 
 
 
