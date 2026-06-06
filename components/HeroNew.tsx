@@ -246,7 +246,7 @@ export default function HeroNew() {
         <div className="container relative z-10 mx-auto h-full">
           <div className="relative h-full w-full">
             <motion.div
-              className="pointer-events-none absolute inset-0 flex items-start pt-10 sm:items-center sm:pt-0"
+              className="pointer-events-none absolute inset-0 flex items-start pt-20 sm:items-center sm:pt-0"
               style={{ opacity: introOpacity, y: introY, filter: introFilter }}
             >
               <div className="max-w-4xl">
@@ -256,7 +256,7 @@ export default function HeroNew() {
                     компьютерный клуб 24/7
                   </span>
                 </div>
-                <h1 className="font-tactic text-[2.12rem] font-black uppercase italic leading-[0.9] tracking-normal text-white sm:text-[4.15rem] lg:text-[6.1rem] xl:text-[6.4rem]">
+                <h1 className="font-tactic text-[2.1rem] min-[380px]:text-[2.4rem] sm:text-[4.15rem] lg:text-[6.1rem] xl:text-[6.4rem] font-black uppercase italic leading-[1.05] sm:leading-[0.9] tracking-normal text-white">
                   Твой
                   <span className="block sm:inline"> вечер</span>
                   <span className="block text-[#00F0FF]">начинается</span>
@@ -269,7 +269,7 @@ export default function HeroNew() {
             </motion.div>
 
             <motion.div
-              className="pointer-events-none absolute inset-0 flex items-start pt-10 sm:items-center sm:pt-0"
+              className="pointer-events-none absolute inset-0 flex items-start pt-20 sm:items-center sm:pt-0"
               style={{ opacity: choicesOpacity, y: choicesY }}
             >
               <div className="w-full">
@@ -295,7 +295,7 @@ export default function HeroNew() {
             </motion.div>
 
             <motion.div
-              className="absolute inset-0 grid items-start gap-6 pt-10 sm:items-center sm:pt-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.76fr)] lg:gap-12"
+              className="absolute inset-0 grid items-start gap-6 pt-20 sm:items-center sm:pt-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.76fr)] lg:gap-12"
               style={{ opacity: finalOpacity, y: finalY }}
             >
               <div className="max-w-5xl">
