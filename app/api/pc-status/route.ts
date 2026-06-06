@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const MONITOR_API = 'http://82.97.253.207:4200/api/games/status';
 
 export async function GET() {

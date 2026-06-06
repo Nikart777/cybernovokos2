@@ -294,13 +294,21 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     ];
 
     return (
-        <section ref={containerRef} className="relative py-24 md:py-32 bg-[#0a0a0a] overflow-hidden" id="zones">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#050505] to-[#0a0a0a]" />
+        <section ref={containerRef} className="relative py-24 md:py-32 bg-[#050505] overflow-hidden" id="zones">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#080808] to-[#050505]" />
             
-            <div className="absolute inset-0 opacity-[0.02]"
+            {/* Unified Grid (72px) to match Hero */}
+            <div className="absolute inset-0 opacity-[0.06]"
                 style={{
-                    backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                    backgroundSize: '80px 80px',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
+                    backgroundSize: '72px 72px',
+                }}
+            />
+            {/* Unified Grid (18px) to match Hero */}
+            <div className="absolute inset-0 opacity-[0.03]"
+                style={{
+                    backgroundImage: 'linear-gradient(rgba(0,240,255,0.75) 1px, transparent 1px), linear-gradient(90deg, rgba(255,46,99,0.55) 1px, transparent 1px)',
+                    backgroundSize: '18px 18px',
                 }}
             />
 
@@ -314,48 +322,38 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.8 }}
-                    className="mb-16 md:mb-24"
+                    className="mb-12 flex flex-col items-start md:items-center md:text-center"
                 >
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] mb-4">
-                        <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-75 animate-ping"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00F0FF]"></span>
-                        </span>
-                        <span className="font-chakra font-bold text-xs text-white/60 tracking-wide uppercase">
-                            Live Статус
-                        </span>
-                    </div>
-                    
                     {/* Title */}
                     <h2 className="font-tactic font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.85] text-white mb-4 italic">
                         9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF]">Площадок</span>
                     </h2>
                     
                     {/* Description */}
-                    <p className="font-inter text-base md:text-lg text-white/60 leading-relaxed mb-6 max-w-xl">
+                    <p className="font-inter text-base md:text-lg text-white/60 leading-relaxed max-w-xl md:mx-auto">
                         От демократичного общего зала до эксклюзивных Solo Premium комнат.
                     </p>
-
-                    {/* CTA Button - Full width on mobile */}
-                    <Link
-                        href="/prices"
-                        className="group inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white/5 border border-white/10 font-chakra font-bold text-sm uppercase tracking-wider text-white hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300 w-full sm:w-fit"
-                    >
-                        Все цены
-                        <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
                 </motion.div>
 
-                {/* Time Badge */}
+                {/* Controls and Toggles Row */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="flex justify-center mb-8"
+                    className="flex flex-col md:flex-row items-center justify-center gap-4 mb-16"
                 >
-                    <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-[#111] border border-white/10">
+                    {/* CTA Button */}
+                    <Link
+                        href="/prices"
+                        className="group inline-flex items-center justify-center gap-3 px-6 h-12 rounded-full bg-white/5 border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 w-full md:w-auto"
+                    >
+                        Все цены
+                        <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
+                    {/* Time Badge */}
+                    <div className="flex items-center gap-3 px-5 h-12 rounded-full bg-[#111] border border-white/10 w-full md:w-auto justify-center">
                         <Clock size={16} className="text-[#00F0FF]" />
                         <span className="font-chakra font-bold text-xs text-white/60 uppercase">
                             {isWeekend ? 'Выходной' : 'Будний день'}
@@ -373,25 +371,17 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                             {currentPeriod === 'night' ? 'Ночь' : currentPeriod === 'evening' ? 'Вечер' : 'День'}
                         </span>
                     </div>
-                </motion.div>
 
-                {/* Price Toggle */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="flex justify-center mb-8"
-                >
-                    <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative">
+                    {/* Price Toggle */}
+                    <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative h-12 w-full md:w-[240px] items-center">
                         <motion.div
-                            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
+                            className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
                             initial={false}
                             animate={{ x: activePriceTab === 'end' ? '100%' : '0%' }}
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         />
-                        <button onClick={() => setActivePriceTab('week')} className={`relative z-10 px-6 py-2 text-sm font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
-                        <button onClick={() => setActivePriceTab('end')} className={`relative z-10 px-6 py-2 text-sm font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
+                        <button onClick={() => setActivePriceTab('week')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
+                        <button onClick={() => setActivePriceTab('end')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
                     </div>
                 </motion.div>
 

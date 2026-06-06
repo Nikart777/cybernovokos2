@@ -1,6 +1,6 @@
 # SEO Optimization Agent Profile for Next.js
 
-Последнее обновление: 2026-06-04
+Последнее обновление: 2026-06-06
 
 ## 1. Role & Objective
 You are an Expert SEO Engineer and Next.js Architect. Your goal is to analyze the current codebase, perform a comprehensive SEO audit using available agentic skills, and implement technical optimizations compliant with Google and Yandex standards.
@@ -62,6 +62,7 @@ You must utilize the following skills from the `antigravity-awesome-skills` libr
 
 ## 5. История изменений
 - **2026-06-04**: Добавлен динамический рендеринг текстовых правовых файлов (`/legal/[slug]`). Удалены `LegalModals.tsx`. В подвал (`Footer.tsx`) добавлены прямые ссылки на правовые документы и реквизиты ИП. Добавлен `CookieBanner.tsx` с задержкой появления. Исключен `/legal/` из файла `app/robots.ts` для запрета индексации этих документов поисковиками.
+- **2026-06-06**: Восстановлено соединение с API Langame (добавлен дефолтный URL в `app/lib/langame.ts`). Блок `medprogramcenter-promo` исключен из отслеживания Git. Оптимизирована верстка заголовка `ZonesPreview.tsx`: удален верхний статус-бэйдж, а кнопка перехода к ценам, бэйдж со временем и переключатель дней объединены в одну аккуратную строку на десктопе. Исправлено смещение активной подложки-пилюли в переключателе дней (добавлены `flex-1` кнопкам и абсолютное позиционирование `left-1`). Унифицирован переход между `HeroNew.tsx` и `ZonesPreview.tsx` (в `ZonesPreview` скопированы параметры сетки 72px/18px и фоновый цвет #050505). Добавлено `export const dynamic = 'force-dynamic'` для API-роутов `/api/club-status` и `/api/pc-status`, чтобы избежать кэширования пустых ответов при сборке (build time) на хостинге.
 
 ## 6. Final Deliverable: "SEO_AUDIT_REPORT.md"
 After implementation, generate a report containing:

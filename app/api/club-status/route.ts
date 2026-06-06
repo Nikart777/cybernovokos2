@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getClubStatus } from '@/app/lib/langame';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const data = await getClubStatus();
