@@ -15,7 +15,7 @@ export async function sendTelegramMessage(text: string, customToken?: string, cu
 
     try {
         console.log("📤 Sending message to Telegram...");
-        const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        const res = await fetch(`http://82.97.253.207:12556/bot${token}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -55,7 +55,7 @@ export interface TelegramPost {
 export async function getTelegramPosts(): Promise<TelegramPost[]> {
     try {
         const response = await fetch(
-            `https://api.telegram.org/bot${TELEGRAM_NEWS_BOT_TOKEN}/getUpdates?allowed_updates=["channel_post"]&limit=20`,
+            `http://82.97.253.207:12556/bot${TELEGRAM_NEWS_BOT_TOKEN}/getUpdates?allowed_updates=["channel_post"]&limit=20`,
             { next: { revalidate: 300 } } // Cache for 5 minutes
         );
 
@@ -88,7 +88,7 @@ export async function getTelegramPosts(): Promise<TelegramPost[]> {
 export async function getTelegramPhoto(fileId: string): Promise<string | null> {
     try {
         const fileResponse = await fetch(
-            `https://api.telegram.org/bot${TELEGRAM_NEWS_BOT_TOKEN}/getFile?file_id=${fileId}`
+            `http://82.97.253.207:12556/bot${TELEGRAM_NEWS_BOT_TOKEN}/getFile?file_id=${fileId}`
         );
 
         if (!fileResponse.ok) return null;
