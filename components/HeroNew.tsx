@@ -319,7 +319,7 @@ export default function HeroNew() {
                   Забронируй ПК, VIP-комнату, PS5-зону или автосимулятор заранее и приходи играть без ожидания.
                 </p>
 
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <button
                     onClick={openBooking}
                     className="group relative inline-flex min-h-14 items-center justify-center overflow-hidden rounded-full bg-[#FF2E63] px-7 font-chakra text-xs font-black uppercase tracking-[0.22em] text-white shadow-[0_0_42px_rgba(255,46,99,0.3)] transition duration-300 hover:bg-[#ff3f72] hover:shadow-[0_0_64px_rgba(255,46,99,0.46)] active:scale-[0.98]"
@@ -330,13 +330,15 @@ export default function HeroNew() {
                       Забронировать место
                     </span>
                   </button>
-                  <a
-                    href="/prices"
-                    className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-[#00F0FF]/32 bg-[#00F0FF]/[0.08] px-7 font-chakra text-xs font-black uppercase tracking-[0.22em] text-white backdrop-blur-md transition duration-300 hover:border-[#00F0FF]/56 hover:bg-[#00F0FF]/[0.14]"
-                  >
-                    Смотреть цены
-                    <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </a>
+                  
+                  <div className="group flex items-center justify-center sm:justify-start gap-3 px-4 py-2 font-chakra text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-white/60">
+                    <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
+                      <ChevronsDown className="h-5 w-5 text-[#00F0FF]" />
+                    </motion.div>
+                    <span className="text-left leading-relaxed">
+                      или листай ниже, чтобы<br className="hidden sm:block" />узнать железо и цены
+                    </span>
+                  </div>
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 font-chakra text-[11px] font-bold uppercase tracking-[0.18em] text-white/48">
