@@ -34,8 +34,8 @@ export default function CertificateBanner() {
                                 </span>
                             </div>
                             
-                            <h2 className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-tactic italic uppercase font-black tracking-tighter text-[#0a0f1a] leading-[0.85] mb-6 break-words w-full">
-                                ПОДАРОЧНЫЙ <br />
+                            <h2 className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-[3rem] lg:text-[4rem] xl:text-[4.5rem] font-tactic italic uppercase font-black tracking-tighter text-[#0a0f1a] leading-[0.85] mb-6 w-full">
+                                ПОДАРОЧНЫЙ <br className="hidden sm:block" />
                                 <span className="text-[#0a0f1a]">
                                     СЕРТИФИКАТ
                                 </span>
