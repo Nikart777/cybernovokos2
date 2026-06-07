@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sendTelegramMessage } from "@/lib/telegram";
+import { sendEmail } from "@/lib/email";
 
 export async function POST(req: Request) {
     try {
@@ -47,17 +47,15 @@ export async function POST(req: Request) {
             mistakesText
         ].join("\n");
 
-        console.log(`📨 Sending test result for: ${fullName}`);
-        
-        const token = process.env.TELEGRAM_ADMIN_TEST_BOT_TOKEN;
-        const chatId = process.env.TELEGRAM_ADMIN_TEST_CHAT_ID;
+        const subject = `Результаты теста администратора: ${fullName}`;
+        const htmlMessage = message.replace(/\n/g, '<br/>');
 
-        const success = await sendTelegramMessage(message, token, chatId);
+        const success = await sendEmail(subject, message, htmlMessage);
 
         if (success) {
             return NextResponse.json({ success: true });
         } else {
-            return NextResponse.json({ error: "Failed to send Telegram message" }, { status: 500 });
+            return NextResponse.json({ error: "Failed to send Email" }, { status: 500 });
         }
     } catch (error) {
         console.error("❌ Technical Test API Error:", error);
