@@ -103,16 +103,16 @@ function ZoneCard({
   return (
     <motion.div
       style={{ opacity, y, rotate }}
-      className="relative min-h-[150px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] shadow-[0_34px_90px_rgba(0,0,0,0.34)] sm:min-h-[200px] lg:min-h-[230px]"
+      className="relative min-h-[150px] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] shadow-2xl sm:min-h-[200px] lg:min-h-[230px] transform-gpu will-change-transform"
     >
       <Image
         src={zone.image}
         alt={zone.title}
         fill
         sizes="(max-width: 1024px) 45vw, 280px"
-        className="object-cover opacity-75 saturate-125"
+        className="object-cover opacity-80"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
       <div className="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5">
         <div
           className="mb-3 h-1 w-12 md:mb-4 md:w-16"
@@ -143,7 +143,7 @@ function SpecCard({
   return (
     <motion.div
       style={{ opacity, y }}
-      className="rounded-2xl border border-white/10 bg-white/[0.045] p-3 backdrop-blur-md sm:p-4 md:p-5"
+      className="rounded-2xl border border-white/10 bg-white/[0.045] p-3 backdrop-blur-md sm:p-4 md:p-5 transform-gpu will-change-transform"
     >
       <item.icon className="mb-4 h-4 w-4 sm:mb-5 sm:h-5 sm:w-5" style={{ color: item.color }} />
       <div className="font-tactic text-xl font-black uppercase leading-none sm:text-2xl md:text-3xl" style={{ color: item.color }}>
@@ -269,7 +269,7 @@ export default function HeroNew() {
             </motion.div>
 
             <motion.div
-              className="pointer-events-none absolute inset-0 flex items-start pt-20 sm:items-center sm:pt-0"
+              className="pointer-events-none absolute inset-0 flex items-start pt-20 sm:items-center sm:pt-0 transform-gpu will-change-transform"
               style={{ opacity: choicesOpacity, y: choicesY }}
             >
               <div className="w-full">
