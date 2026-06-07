@@ -1,6 +1,6 @@
 # SEO Optimization Agent Profile for Next.js
 
-Последнее обновление: 2026-06-06
+Последнее обновление: 2026-06-07
 
 ## 1. Role & Objective
 You are an Expert SEO Engineer and Next.js Architect. Your goal is to analyze the current codebase, perform a comprehensive SEO audit using available agentic skills, and implement technical optimizations compliant with Google and Yandex standards.
@@ -53,9 +53,12 @@ You must utilize the following skills from the `antigravity-awesome-skills` libr
 2. **Fonts:** Ensure `next/font/google` is used to host fonts locally (prevents extra requests to Google servers, improving speed and privacy) [34].
 3. **Static Generation:** Implement `generateStaticParams` for dynamic routes where possible to pre-render pages at build time (SSG), drastically improving crawl speed [35, 36].
 
-## 4. Структура файлов (Обновлено 2026-06-04)
+## 4. Структура файлов (Обновлено 2026-06-07)
 - `/app/legal/layout.tsx` - Layout для правовых документов (Оферта, Политика, Правила и т.д.)
 - `/app/legal/[slug]/page.tsx` - Динамический роутинг для загрузки и парсинга .txt файлов правовых документов.
+- `/app/admin-test/page.tsx` - Страница технического тестирования администраторов с формой ввода ФИО и логикой отправки данных.
+- `/app/api/admin-test/route.ts` - API-роут для обработки результатов теста и отправки отчета в Telegram.
+- `/lib/telegram.ts` - Вспомогательные функции для интеграции с Telegram Bot API (добавлена поддержка переопределения токена и чата).
 - `/components/Footer.tsx` - Подвал сайта, содержит ссылки на навигацию, соцсети, документы и реквизиты.
 - `/components/CookieBanner.tsx` - Баннер согласия на использование cookie (рендерится в `app/layout.tsx`).
 - `/data/legal/*.txt` - Исходные текстовые версии правовых документов (privacy, offer, rules, booking).
@@ -63,6 +66,7 @@ You must utilize the following skills from the `antigravity-awesome-skills` libr
 ## 5. История изменений
 - **2026-06-04**: Добавлен динамический рендеринг текстовых правовых файлов (`/legal/[slug]`). Удалены `LegalModals.tsx`. В подвал (`Footer.tsx`) добавлены прямые ссылки на правовые документы и реквизиты ИП. Добавлен `CookieBanner.tsx` с задержкой появления. Исключен `/legal/` из файла `app/robots.ts` для запрета индексации этих документов поисковиками.
 - **2026-06-06**: Восстановлено соединение с API Langame (добавлен дефолтный URL в `app/lib/langame.ts`). Блок `medprogramcenter-promo` исключен из отслеживания Git. Оптимизирована верстка заголовка `ZonesPreview.tsx`: удален верхний статус-бэйдж, а кнопка перехода к ценам, бэйдж со временем и переключатель дней объединены в одну аккуратную строку на десктопе. Исправлено смещение активной подложки-пилюли в переключателе дней (добавлены `flex-1` кнопкам и абсолютное позиционирование `left-1`). Унифицирован переход между `HeroNew.tsx` и `ZonesPreview.tsx` (в `ZonesPreview` скопированы параметры сетки 72px/18px и фоновый цвет #050505). Добавлено `export const dynamic = 'force-dynamic'` для API-роутов `/api/club-status` и `/api/pc-status`, чтобы избежать кэширования пустых ответов при сборке (build time) на хостинге. На мобильных устройствах увеличен верхний отступ слайдов Hero (с `pt-10` до `pt-20`), а также увеличен размер шрифта и межстрочный интервал (leading) главного заголовка для лучшей читаемости, при этом размер шрифта адаптирован под узкие экраны, чтобы избежать горизонтального переполнения длинных слов. Проведен технический SEO-аудит: добавлена промо-страница `/certificate` в карту сайта (`app/sitemap.ts`), закрыт от индексации в `app/robots.ts` внутренний калькулятор `/calculator`. Подключен и активирован компонент `<SEOBlock />` на главной странице (`app/page.tsx`) для устранения риска слабой текстовой релевантности (LSI). Исправлены расхождения в NAP (телефон в `data/legal/booking.txt` и адрес в `stitch_certificate.html`). Подтвержден серверный рендеринг (SSR/Static) основных страниц для корректного обхода роботами. Синхронизированы точный почтовый адрес ("Новокосинская ул., 32, этаж 2") и географические координаты (55.741887, 37.867172) в `app/layout.tsx` и `components/JsonLd.tsx` для 100% совпадения с карточкой Яндекс.Бизнеса. Обновлен отчет `SEO_AUDIT_REPORT.md` на русском языке.
+- **2026-06-07**: Внедрено улучшение технического теста администраторов (`/admin-test`). Добавлено поле ввода ФИО перед стартом теста с валидацией заполненности (не менее 2 слов, длина от 5 символов). Разработан серверный API-роут `/api/admin-test/route.ts` для обработки результатов теста и отправки отчета (ФИО, выбранный клуб, дата сдачи по МСК, набранные баллы, статус допуска и список сделанных ошибок) в рабочий Telegram-чат/канал. Расширены функции в `/lib/telegram.ts` для поддержки передачи кастомного токена и ID чата. В `.env.local` добавлены настройки `TELEGRAM_ADMIN_TEST_BOT_TOKEN` и `TELEGRAM_ADMIN_TEST_CHAT_ID` с токеном бота и ID группы, предоставленными пользователем. Добавлен чекбокс обязательного согласия с правилами перед началом теста в `/app/admin-test/page.tsx` с соответствующей валидацией. Исправлен баг с невидимым (белым) цветом текста в поле ввода ФИО, добавлен класс `text-slate-900`.
 
 ## 6. Final Deliverable: "SEO_AUDIT_REPORT.md"
 After implementation, generate a report containing:

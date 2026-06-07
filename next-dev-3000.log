@@ -105,3 +105,58 @@
  ✓ Compiled in 1568ms (1632 modules)
  ✓ Compiled in 2.3s (1632 modules)
  ✓ Compiled in 1115ms (845 modules)
+   Reload env: .env.local
+ ✓ Compiled in 1855ms (1632 modules)
+ ✓ Compiled in 2.1s (1632 modules)
+ ✓ Compiled in 1033ms (845 modules)
+ ✓ Compiled in 1469ms (845 modules)
+ ✓ Compiled in 1278ms (845 modules)
+ ○ Compiling /api/admin-test ...
+ ✓ Compiled /api/admin-test in 735ms (810 modules)
+📝 Received technical test results
+📨 Sending test result for: Иванов Иван Иванович
+🔍 Telegram Debug:
+  Token exists: true
+  Chat ID exists: true
+  Chat ID value: -1003809725960
+📤 Sending message to Telegram...
+📥 Telegram API Response: {
+  ok: true,
+  result: {
+    message_id: 434,
+    from: {
+      id: 8739669921,
+      is_bot: true,
+      first_name: 'CAMERAS',
+      username: 'cyberx_camera_cintrol_bot'
+    },
+    chat: { id: -1003809725960, title: 'Крысоловка', type: 'supergroup' },
+    date: 1780793841,
+    text: '📋 РЕЗУЛЬТАТЫ ТЕСТА АДМИНИСТРАТОРА\n' +
+      '👤 ФИО: Иванов Иван Иванович\n' +
+      '🏢 Клуб: Алтуфьево 🔹\n' +
+      '📊 Очки: 18 / 20 (90%)\n' +
+      '🚦 Статус: ✅ ПРОЙДЕН (Допущен к работе)\n' +
+      '📅 Дата сдачи (МСК): 07.06.2026, 03:57:19\n' +
+      '\n' +
+      '\n' +
+      '❌ Разбор ошибок (2):\n' +
+      '1. [Правила клуба] Можно ли есть за компьютерами?\n' +
+      '• Выбранный ответ: Да, конечно\n' +
+      '• Правильный ответ: Нет, штраф\n' +
+      '\n' +
+      '2. [Касса] Как пробить энергетик?\n' +
+      '• Выбранный ответ: Через терминал\n' +
+      '• Правильный ответ: Через Лангейм и терминал',
+    entities: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object]
+    ]
+  }
+}
+✅ Message sent successfully!

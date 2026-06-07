@@ -1,7 +1,7 @@
 // Telegram Bot API for sending notifications
-export async function sendTelegramMessage(text: string): Promise<boolean> {
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+export async function sendTelegramMessage(text: string, customToken?: string, customChatId?: string): Promise<boolean> {
+    const token = customToken || process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = customChatId || process.env.TELEGRAM_CHAT_ID;
 
     console.log("🔍 Telegram Debug:");
     console.log("  Token exists:", !!token);

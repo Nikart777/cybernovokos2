@@ -10,6 +10,11 @@ import { QUESTIONS } from './questions';
 export default function AdminTestPage() {
     const [started, setStarted] = useState(false);
     const [club, setClub] = useState<'altufevo' | 'novokosino' | null>(null);
+    const [fullName, setFullName] = useState('');
+    const [validationError, setValidationError] = useState(false);
+    const [rulesAccepted, setRulesAccepted] = useState(false);
+    const [rulesError, setRulesError] = useState(false);
+    const [sendingStatus, setSendingStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
     
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -19,6 +24,26 @@ export default function AdminTestPage() {
     const [mistakes, setMistakes] = useState<{questionIdx: number, selectedIdx: number}[]>([]);
 
     const handleStart = (selectedClub: 'altufevo' | 'novokosino') => {
+        const trimmed = fullName.trim();
+        const words = trimmed.split(/\s+/).filter(Boolean);
+        let hasError = false;
+        
+        if (words.length < 2 || trimmed.length < 5) {
+            setValidationError(true);
+            hasError = true;
+        } else {
+            setValidationError(false);
+        }
+        
+        if (!rulesAccepted) {
+            setRulesError(true);
+            hasError = true;
+        } else {
+            setRulesError(false);
+        }
+
+        if (hasError) return;
+
         setClub(selectedClub);
         setStarted(true);
     };
@@ -36,6 +61,41 @@ export default function AdminTestPage() {
         }
     };
 
+    const sendResults = async (finalScore: number, finalMistakes: typeof mistakes, selectedClub: 'altufevo' | 'novokosino') => {
+        setSendingStatus('sending');
+        try {
+            const mappedMistakes = finalMistakes.map(m => ({
+                question: QUESTIONS[m.questionIdx].question,
+                section: QUESTIONS[m.questionIdx].section,
+                selectedAnswer: QUESTIONS[m.questionIdx].options[m.selectedIdx],
+                correctAnswer: QUESTIONS[m.questionIdx].options[QUESTIONS[m.questionIdx].correct]
+            }));
+
+            const res = await fetch('/api/admin-test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fullName: fullName.trim(),
+                    club: selectedClub,
+                    score: finalScore,
+                    totalQuestions: QUESTIONS.length,
+                    mistakes: mappedMistakes
+                })
+            });
+
+            if (res.ok) {
+                setSendingStatus('sent');
+            } else {
+                setSendingStatus('error');
+            }
+        } catch (err) {
+            console.error("Error sending test results:", err);
+            setSendingStatus('error');
+        }
+    };
+
     const nextQuestion = () => {
         setSelectedOption(null);
         setShowExplanation(false);
@@ -44,6 +104,9 @@ export default function AdminTestPage() {
             setCurrentQuestion(curr => curr + 1);
         } else {
             setCompleted(true);
+            if (club) {
+                sendResults(score, mistakes, club);
+            }
         }
     };
 
@@ -56,6 +119,11 @@ export default function AdminTestPage() {
         setShowExplanation(false);
         setCompleted(false);
         setMistakes([]);
+        setFullName('');
+        setValidationError(false);
+        setRulesAccepted(false);
+        setRulesError(false);
+        setSendingStatus('idle');
     };
 
     // === ЭКРАН СТАРТА ===
@@ -85,6 +153,52 @@ export default function AdminTestPage() {
                     </p>
 
                     <div className="space-y-6 bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100">
+                        <div className="text-left mb-6">
+                            <label htmlFor="fullName" className="block font-tactic font-black text-xs text-slate-400 uppercase tracking-widest mb-2">
+                                Введите ваши ФИО (Фамилия Имя Отчество):
+                            </label>
+                            <input
+                                id="fullName"
+                                type="text"
+                                placeholder="Иванов Иван Иванович"
+                                value={fullName}
+                                onChange={(e) => {
+                                    setFullName(e.target.value);
+                                    if (validationError) setValidationError(false);
+                                }}
+                                className={`w-full px-5 py-4 bg-slate-50 border-2 ${
+                                    validationError ? 'border-rose-500 focus:ring-rose-500/50' : 'border-slate-200 focus:border-indigo-600 focus:ring-indigo-600/50'
+                                } rounded-2xl outline-none font-chakra text-slate-900 text-base transition-all shadow-inner`}
+                            />
+                            {validationError && (
+                                <p className="text-rose-500 text-xs font-chakra font-bold mt-2">
+                                    Пожалуйста, введите корректно Фамилию, Имя и Отчество (минимум 2 слова).
+                                </p>
+                            )}
+                        </div>
+
+                        <div className="text-left mb-6">
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input 
+                                    type="checkbox" 
+                                    checked={rulesAccepted}
+                                    onChange={(e) => {
+                                        setRulesAccepted(e.target.checked);
+                                        if (rulesError) setRulesError(false);
+                                    }}
+                                    className={`mt-1 w-5 h-5 rounded border-2 ${rulesError ? 'border-rose-500' : 'border-slate-300'} text-indigo-600 focus:ring-indigo-600 transition-all cursor-pointer`}
+                                />
+                                <span className="font-chakra text-sm text-slate-600 leading-tight pt-0.5">
+                                    Я подтверждаю, что внимательно прочитал(а) все правила, инструкции и регламенты, полностью понял(а) их содержание и согласен(на) неукоснительно им следовать.
+                                </span>
+                            </label>
+                            {rulesError && (
+                                <p className="text-rose-500 text-xs font-chakra font-bold mt-2">
+                                    Для прохождения теста необходимо подтвердить согласие с правилами.
+                                </p>
+                            )}
+                        </div>
+
                         <h3 className="font-tactic font-black text-xl uppercase text-slate-400">Выберите клуб стажировки:</h3>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <button 
@@ -131,12 +245,30 @@ export default function AdminTestPage() {
                         <span className="text-slate-400">/ {QUESTIONS.length}</span>
                     </div>
 
-                    <p className="font-chakra text-slate-600 mb-10 text-lg">
+                    <p className="font-chakra text-slate-600 mb-6 text-lg">
                         {passed 
                             ? 'Вы отлично усвоили материалы регламента. Вы готовы приступить к работе администратором. Сообщите старшему администратору о прохождении теста.' 
                             : `Допускается не более 2-х ошибок. Вы сделали ${QUESTIONS.length - score}. Рекомендуем еще раз внимательно прочитать правила и попробовать снова.`
                         }
                     </p>
+
+                    <div className="mb-8 font-chakra text-sm font-bold flex justify-center">
+                        {sendingStatus === 'sending' && (
+                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 animate-pulse">
+                                🔄 Отправка результатов старшему администратору...
+                            </span>
+                        )}
+                        {sendingStatus === 'sent' && (
+                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600">
+                                ✅ Результаты успешно отправлены в рабочий чат!
+                            </span>
+                        )}
+                        {sendingStatus === 'error' && (
+                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-rose-50 border border-rose-100 text-rose-600">
+                                ⚠️ Не удалось отправить результаты в Telegram.
+                            </span>
+                        )}
+                    </div>
 
                     <div className="flex flex-col gap-4">
                         {passed ? (
