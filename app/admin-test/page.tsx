@@ -149,7 +149,7 @@ export default function AdminTestPage() {
                     
                     <p className="font-chakra text-lg text-slate-600 mb-12 max-w-xl mx-auto border-x-4 border-indigo-200 px-6">
                         Тест содержит <strong className="text-slate-900">{QUESTIONS.length} вопросов</strong> по всем разделам правил. 
-                        Для допуска к полноценной работе требуется набрать минимум {QUESTIONS.length - 2} правильных ответов.
+                        Для допуска к полноценной работе требуется набрать минимум {QUESTIONS.length - 4} правильных ответов.
                     </p>
 
                     <div className="space-y-6 bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100">
@@ -223,7 +223,7 @@ export default function AdminTestPage() {
 
     // === ЭКРАН РЕЗУЛЬТАТОВ ===
     if (completed) {
-        const passTarget = QUESTIONS.length - 2;
+        const passTarget = QUESTIONS.length - 4;
         const passed = score >= passTarget;
 
         return (
@@ -248,7 +248,7 @@ export default function AdminTestPage() {
                     <p className="font-chakra text-slate-600 mb-6 text-lg">
                         {passed 
                             ? 'Вы отлично усвоили материалы регламента. Вы готовы приступить к работе администратором. Сообщите старшему администратору о прохождении теста.' 
-                            : `Допускается не более 2-х ошибок. Вы сделали ${QUESTIONS.length - score}. Рекомендуем еще раз внимательно прочитать правила и попробовать снова.`
+                            : `Допускается не более 4-х ошибок. Вы сделали ${QUESTIONS.length - score}. Рекомендуем еще раз внимательно прочитать правила и попробовать снова.`
                         }
                     </p>
 

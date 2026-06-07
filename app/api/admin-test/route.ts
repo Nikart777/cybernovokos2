@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         }
 
         const clubName = club === 'altufevo' ? 'Алтуфьево 🔹' : club === 'novokosino' ? 'Новокосино 🔺' : 'Неизвестно';
-        const passTarget = totalQuestions - 2;
+        const passTarget = totalQuestions - 4;
         const passed = score >= passTarget;
         const percentage = Math.round((score / totalQuestions) * 100);
         
