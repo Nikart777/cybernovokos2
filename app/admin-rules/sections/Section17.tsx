@@ -18,14 +18,15 @@ export const Section17 = () => {
     ];
 
     const novokosinoGames = [
-        { name: 'Assetto Corsa', desc: 'Универсальная игра с модами на графику, шашки по городу.', tags: ['Можно вдвоём', 'Свой сервер'] },
-        { name: 'CarX Street Online', desc: 'Аркада, дрифт, свободная езда.', tags: ['Можно вдвоём'] },
+        { name: 'Assetto Corsa', desc: 'Универсальная игра с модами на графику, шашки по городу.', tags: ['Можно несколько игроков', 'Свой сервер'] },
+        { name: 'CarX Street Online', desc: 'Аркада, дрифт, свободная езда.', tags: ['Можно несколько игроков'] },
         { name: 'Forza Horizon 5', desc: 'Город, гонки.', tags: ['Одиночный заезд'] },
-        { name: 'Euro Truck Simulator 2', desc: 'Навыки дальнобойщика, длинные рейсы, фуры, грузы.', tags: ['Можно вдвоём'] },
+        { name: 'Forza Horizon 6', desc: 'Новейшая часть популярной гоночной аркады.', tags: ['Можно несколько игроков'] },
+        { name: 'Euro Truck Simulator 2', desc: 'Навыки дальнобойщика, длинные рейсы, фуры, грузы.', tags: ['Можно несколько игроков'] },
         { name: 'BeamNG.drive', desc: 'Физика, краш-тесты, эксперименты.', tags: ['На одного'] },
-        { name: 'Assetto Corsa DiRT Rally 2.0', desc: 'Реалистичное ралли и бездорожье.', tags: ['Можно вдвоём'] },
+        { name: 'DiRT Rally 2.0', desc: 'Реалистичное ралли и бездорожье.', tags: ['Можно несколько игроков'] },
         { name: 'City Car Driving', desc: 'Обучение вождению, экзамен ГАИ, билеты.', tags: ['На одного'] },
-        { name: 'Wreckfest 2', desc: 'Краш-гонки, разрушения и драйв.', tags: ['Можно вдвоём'] },
+        { name: 'Wreckfest 2', desc: 'Краш-гонки, разрушения и драйв.', tags: ['Можно несколько игроков'] },
     ];
 
     const guides = [
@@ -148,7 +149,7 @@ export const Section17 = () => {
                                     <h5 className="font-tactic italic text-white uppercase">{game.name}</h5>
                                     <div className="flex flex-wrap gap-1 justify-end shrink-0">
                                         {game.tags.map((tag, t) => (
-                                            <span key={t} className={`text-[10px] uppercase font-chakra font-bold px-2 py-0.5 rounded border ${tag.includes('вдвоём') ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : tag === 'Свой сервер' ? 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20' : 'bg-slate-700/50 text-slate-300 border-slate-600'}`}>
+                                            <span key={t} className={`text-[10px] uppercase font-chakra font-bold px-2 py-0.5 rounded border ${tag.includes('вдвоём') || tag.includes('несколько игроков') ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : tag === 'Свой сервер' ? 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20' : 'bg-slate-700/50 text-slate-300 border-slate-600'}`}>
                                                 {tag}
                                             </span>
                                         ))}
@@ -177,7 +178,7 @@ export const Section17 = () => {
                                     <h5 className="font-tactic italic text-white uppercase">{game.name}</h5>
                                     <div className="flex flex-wrap gap-1 justify-end shrink-0">
                                         {game.tags.map((tag, t) => (
-                                            <span key={t} className={`text-[10px] uppercase font-chakra font-bold px-2 py-0.5 rounded border ${tag.includes('вдвоём') ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : tag === 'Свой сервер' ? 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20' : 'bg-slate-700/50 text-slate-300 border-slate-600'}`}>
+                                            <span key={t} className={`text-[10px] uppercase font-chakra font-bold px-2 py-0.5 rounded border ${tag.includes('вдвоём') || tag.includes('несколько игроков') ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : tag === 'Свой сервер' ? 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20' : 'bg-slate-700/50 text-slate-300 border-slate-600'}`}>
                                                 {tag}
                                             </span>
                                         ))}

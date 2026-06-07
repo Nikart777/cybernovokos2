@@ -157,8 +157,9 @@ export default function AdminRulesClient() {
                         </div>
                         
                         {/* Правый блок: Быстрые ссылки, Поиск + Кнопка */}
-                        <div className="w-full lg:w-auto shrink-0 flex flex-col sm:flex-row items-center gap-4 relative">
-                            <div className="hidden xl:flex items-center gap-3 mr-2">
+                        <div className="w-full xl:w-auto flex flex-col items-start lg:items-end gap-4 relative shrink-0">
+                            
+                            <div className="hidden xl:flex flex-wrap items-center justify-end gap-3">
                                 <a 
                                     href="https://cyberx-novokosino.ru/mouse-test" 
                                     target="_blank"
@@ -185,50 +186,52 @@ export default function AdminRulesClient() {
                                 </a>
                             </div>
 
-                            <Link 
-                                href="/admin-test" 
-                                className="w-full sm:w-auto h-12 px-6 bg-[#FF2E63] hover:bg-[#E62A5A] text-white font-chakra font-bold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-[0_5px_20px_-5px_rgba(255,46,99,0.4)] hover:shadow-[0_8px_25px_-5px_rgba(255,46,99,0.5)] flex items-center justify-center gap-2 z-20"
-                            >
-                                ПРОЙТИ ТЕСТ <ArrowRight size={16} />
-                            </Link>
-
-                            <div className="w-full sm:w-80 relative">
-                                <div className="relative z-20">
-                                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                                    <input 
-                                        type="text" 
-                                        placeholder="Поиск по разделам..."
-                                        value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 focus:border-[#FF2E63] focus:ring-1 focus:ring-[#FF2E63]/50 rounded-2xl outline-none font-chakra text-sm transition-all shadow-sm"
-                                />
-                            </div>
-                            {/* Выпадающий список поиска */}
-                            {activeSearchQuery.length > 0 && (
-                                <div className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white border border-slate-200 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden font-chakra text-sm flex flex-col z-[100]">
-                                    {searchResults.length > 0 ? (
-                                        <div className="max-h-[300px] overflow-y-auto [scrollbar-width:thin]">
-                                            {searchResults.map(s => (
-                                                <button
-                                                    key={s.id}
-                                                    onClick={() => {
-                                                        setActiveSection(s.id);
-                                                        setSearchQuery('');
-                                                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                                                    }}
-                                                    className="w-full px-4 py-3 text-left hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors flex flex-col"
-                                                >
-                                                    <span className="font-bold text-slate-800">{s.label}</span>
-                                                    <span className="text-[10px] text-slate-400 mt-1 line-clamp-1">{s.keywords}</span>
-                                                </button>
-                                            ))}
+                            <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                                <div className="w-full sm:w-72 relative">
+                                    <div className="relative z-20">
+                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                        <input 
+                                            type="text" 
+                                            placeholder="Поиск по разделам..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 focus:border-[#FF2E63] focus:ring-1 focus:ring-[#FF2E63]/50 rounded-2xl outline-none font-chakra text-sm transition-all shadow-sm"
+                                        />
+                                    </div>
+                                    {/* Выпадающий список поиска */}
+                                    {activeSearchQuery.length > 0 && (
+                                        <div className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white border border-slate-200 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden font-chakra text-sm flex flex-col z-[100]">
+                                            {searchResults.length > 0 ? (
+                                                <div className="max-h-[300px] overflow-y-auto [scrollbar-width:thin]">
+                                                    {searchResults.map(s => (
+                                                        <button
+                                                            key={s.id}
+                                                            onClick={() => {
+                                                                setActiveSection(s.id);
+                                                                setSearchQuery('');
+                                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                            }}
+                                                            className="w-full px-4 py-3 text-left hover:bg-slate-50 border-b border-slate-100 last:border-0 transition-colors flex flex-col"
+                                                        >
+                                                            <span className="font-bold text-slate-800">{s.label}</span>
+                                                            <span className="text-[10px] text-slate-400 mt-1 line-clamp-1">{s.keywords}</span>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div className="p-4 text-slate-500 text-center bg-slate-50/50">Ничего не найдено</div>
+                                            )}
                                         </div>
-                                    ) : (
-                                        <div className="p-4 text-slate-500 text-center bg-slate-50/50">Ничего не найдено</div>
                                     )}
                                 </div>
-                            )}
-                        </div>
+
+                                <Link 
+                                    href="/admin-test" 
+                                    className="w-full sm:w-auto h-12 px-8 bg-[#FF2E63] hover:bg-[#E62A5A] text-white font-tactic font-black italic text-base sm:text-lg uppercase tracking-wider rounded-2xl transition-all shadow-[0_0_20px_rgba(255,46,99,0.5)] hover:shadow-[0_0_30px_rgba(255,46,99,0.7)] flex items-center justify-center gap-3 z-20 ring-4 ring-[#FF2E63]/20 hover:ring-[#FF2E63]/40"
+                                >
+                                    ПРОЙТИ ТЕСТ <ArrowRight size={20} />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     {/* Mobile Tabs */}

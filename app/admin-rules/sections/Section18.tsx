@@ -1,6 +1,7 @@
 import React from 'react';
 import { GraduationCap, LogIn, MonitorSpeaker, Users, LogOut, ArrowRight, Clock, Target } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
+import { QUESTIONS } from '../../admin-test/questions';
 
 interface Section18Props {
     setActiveSection?: (id: string) => void;
@@ -199,7 +200,7 @@ export function Section18({ setActiveSection }: Section18Props) {
                 </h3>
                 
                 <p className="text-center text-slate-600 max-w-lg mb-4 font-chakra">
-                    Пройдите итоговое тестирование из 18 сложных вопросов, чтобы подтвердить усвоение всех регламентов и готовность к полноценной работе.
+                    Пройдите итоговое тестирование из {QUESTIONS.length} сложных вопросов, чтобы подтвердить усвоение всех регламентов и готовность к полноценной работе.
                 </p>
 
                 <a 
