@@ -470,13 +470,6 @@ function ZoneCard({
                                 );
                             })}
                         </div>
-                        
-                        <button 
-                            onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="pointer-events-auto w-full py-4 md:py-5 rounded-xl md:rounded-2xl bg-white/10 hover:bg-[#FF2E63] border border-white/15 hover:border-[#FF2E63] font-chakra font-black text-xs md:text-sm lg:text-base uppercase tracking-widest text-white transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 group shadow-lg hover:shadow-[0_0_25px_rgba(255,46,99,0.5)]"
-                        >
-                            ЗАБРОНИРОВАТЬ <ChevronRight size={18} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1.5 transition-all duration-300" />
-                        </button>
                     </div>
 
                 </div>
