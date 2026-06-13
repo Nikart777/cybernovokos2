@@ -67,8 +67,6 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
         target: targetRef,
     });
     
-    // Перемещаем карточки по горизонтали: от 0% до такого значения, чтобы последняя карточка встала по центру/краю.
-    // 9 карточек.
     const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
 
     const [activePriceTab, setActivePriceTab] = useState<'week' | 'end'>('week');
@@ -169,7 +167,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
             image: '/zones/common-1.webp',
             images: ['/zones/common-1.webp', '/zones/common-2.webp', '/zones/common-3.webp'],
             icon: Monitor,
-            color: '#555555',
+            color: '#FFFFFF',
             specs: ['RTX 4060', '144 Гц', '24.5"'],
             prices: getPricesForZone('common') || { oneHour: { week: 150, end: 170 }, threeHours: { week: 410, end: 470 }, fiveHours: { week: 630, end: 730 } },
             isCommon: true,
@@ -278,7 +276,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     return (
         <section ref={targetRef} className="relative h-[600vh] bg-[#050505]" id="zones">
             <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#080808] to-[#050505] pointer-events-none" />
+                <div className="absolute inset-0 bg-[#050505] pointer-events-none" />
                 
                 <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
                     style={{
@@ -287,9 +285,6 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     }}
                 />
 
-                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#B900FF]/10 blur-[150px] md:blur-[200px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#00F0FF]/10 blur-[150px] md:blur-[200px] rounded-full pointer-events-none" />
-
                 <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center mb-6 mt-16 md:mt-24 shrink-0">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -297,45 +292,48 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                         viewport={{ once: true }}
                         className="flex flex-col items-center text-center"
                     >
-                        <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-none text-white italic drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                            9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_30px_rgba(255,46,99,0.8)]">Площадок</span>
+                        <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-none text-white italic">
+                            9 <span className="text-[#FF2E63]">Площадок</span>
                         </h2>
-                        <p className="mt-4 text-[#00F0FF] font-chakra font-bold tracking-widest uppercase text-xs md:text-sm flex items-center gap-2 bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/30 backdrop-blur-md">
-                            СКРОЛЛЬТЕ ВНИЗ <ChevronRight size={16} className="animate-pulse" />
+                        <p className="mt-4 text-white/50 font-chakra font-bold tracking-widest uppercase text-xs md:text-sm flex items-center gap-2 border border-white/10 bg-[#111] px-4 py-2 skew-x-[-12deg]">
+                            <span className="skew-x-[12deg] flex items-center gap-2">СКРОЛЛЬТЕ ВНИЗ <ChevronRight size={16} className="text-[#FF2E63] animate-pulse" /></span>
                         </p>
                     </motion.div>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-2xl mt-6">
-                        <div className="flex items-center gap-3 px-5 h-12 rounded-full bg-[#111] border border-white/10 w-full sm:w-auto justify-center backdrop-blur-md shadow-lg">
-                            <Clock size={16} className="text-[#00F0FF]" />
-                            <span className="font-chakra font-bold text-xs text-white/60 uppercase">
-                                {isWeekend ? 'Выходной' : 'Будний день'}
-                            </span>
-                            <div className="w-[1px] h-3 bg-white/10" />
-                            <span className="font-chakra font-bold text-xs text-white">
-                                {currentTime.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
-                            </span>
+                        <div className="flex items-center gap-3 px-5 h-12 bg-[#111] border-2 border-white/10 w-full sm:w-auto justify-center skew-x-[-12deg]">
+                            <div className="skew-x-[12deg] flex items-center gap-3">
+                                <Clock size={16} className="text-[#FF2E63]" />
+                                <span className="font-chakra font-bold text-xs text-white/60 uppercase">
+                                    {isWeekend ? 'Выходной' : 'Будний день'}
+                                </span>
+                                <div className="w-[2px] h-3 bg-white/20" />
+                                <span className="font-chakra font-bold text-xs text-white">
+                                    {currentTime.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
+                                </span>
+                            </div>
                         </div>
 
-                        <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative h-12 w-full sm:w-[240px] items-center shrink-0 backdrop-blur-md shadow-lg">
+                        <div className="bg-[#111] p-1 border-2 border-white/10 flex relative h-12 w-full sm:w-[240px] items-center shrink-0 skew-x-[-12deg]">
                             <motion.div
-                                className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
+                                className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] z-0"
                                 initial={false}
                                 animate={{ x: activePriceTab === 'end' ? '100%' : '0%' }}
                                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                             />
-                            <button onClick={() => setActivePriceTab('week')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
-                            <button onClick={() => setActivePriceTab('end')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
+                            <button onClick={() => setActivePriceTab('week')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors skew-x-[12deg] ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
+                            <button onClick={() => setActivePriceTab('end')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors skew-x-[12deg] ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="relative w-full z-20 flex items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
-                    <motion.div style={{ x }} className="flex gap-6 md:gap-10 px-4 md:px-10 h-full w-max items-center will-change-transform transform-gpu">
-                        {zones.map((zone) => (
-                            <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-full shrink-0 flex items-center">
+                    <motion.div style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center will-change-transform transform-gpu">
+                        {zones.map((zone, idx) => (
+                            <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-[95%] shrink-0 flex items-center">
                                 <ZoneCard 
                                     zone={zone} 
+                                    idx={idx + 1}
                                     status={getZoneStatus(zone.langameTitle)} 
                                     activePriceTab={activePriceTab} 
                                     getCurrentPrice={getCurrentPrice} 
@@ -351,18 +349,19 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
 
 function ZoneCard({ 
     zone, 
+    idx,
     status,
     activePriceTab,
     getCurrentPrice
 }: { 
     zone: ZoneWithPrice;
+    idx: number;
     status: ClubZone | undefined;
     activePriceTab: 'week' | 'end';
     getCurrentPrice: (prices: any) => { price: number; appPrice: number; label: string };
 }) {
     const [imgIdx, setImgIdx] = useState(0);
     
-    // Очень легкая смена картинок (без тяжелых библиотек)
     useEffect(() => {
         const interval = setInterval(() => {
             setImgIdx((prev) => (prev + 1) % zone.images.length);
@@ -375,104 +374,120 @@ function ZoneCard({
     const isFull = totalPc > 0 && freePc === 0;
     const isAllFree = totalPc > 0 && freePc === totalPc;
 
-    let statusBg = isFull ? 'bg-[#FF2E63]/20 border-[#FF2E63]/40' : isAllFree ? 'bg-[#00FF7F]/20 border-[#00FF7F]/40' : 'bg-[#FF8C00]/20 border-[#FF8C00]/40';
-    let statusText = isFull ? 'text-[#FF2E63] md:drop-shadow-[0_0_10px_rgba(255,46,99,0.6)]' : isAllFree ? 'text-[#00FF7F] md:drop-shadow-[0_0_10px_rgba(0,255,127,0.6)]' : 'text-[#FF8C00] md:drop-shadow-[0_0_10px_rgba(255,140,0,0.6)]';
+    const statusColor = isFull ? '#FF2E63' : isAllFree ? '#00FF7F' : '#FF8C00';
+    const statusLabel = isFull ? 'ПИТ-СТОП ЗАНЯТ' : 'СВОБОДНО';
 
     return (
-        <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 bg-[#0A0A0A] group md:shadow-2xl flex flex-col md:flex-row transform-gpu">
-            {/* Изображения как фон */}
-            <div className="absolute inset-0 w-full h-full">
-                {zone.images.map((src, idx) => (
-                    <div 
-                        key={src}
-                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === imgIdx ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
-                    >
-                        <Image src={src} alt={zone.name} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-[4s]" />
+        <div className="relative w-full h-full bg-[#0A0A0A] border-2 border-white/10 group flex flex-col md:flex-row transform-gpu overflow-hidden">
+            {/* Картинка: Жесткий диагональный срез на десктопе */}
+            <div className="relative w-full md:w-[55%] h-[40%] md:h-full shrink-0 z-0">
+                <div className="absolute inset-0 md:[clip-path:polygon(0_0,100%_0,85%_100%,0_100%)]">
+                    {zone.images.map((src, i) => (
+                        <div 
+                            key={src}
+                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === imgIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                        >
+                            <Image src={src} alt={zone.name} fill className="object-cover" />
+                        </div>
+                    ))}
+                    {/* Градиент для затемнения подложки номера */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 md:hidden z-20" />
+                </div>
+                
+                {/* Номер зоны поверх картинки */}
+                <div className="absolute top-4 left-4 z-30 flex items-center">
+                    <div className="bg-[#FF2E63] text-black font-tactic italic font-black text-3xl px-3 py-1 skew-x-[-12deg]">
+                        <span className="block skew-x-[12deg] leading-none">{String(idx).padStart(2, '0')}</span>
                     </div>
-                ))}
-                {/* Градиент для читаемости текста. На мобильном снизу вверх, на десктопе - слева направо + снизу вверх */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent md:bg-gradient-to-r md:from-[#0A0A0A] md:via-[#0A0A0A]/80 md:to-transparent z-10" />
+                    {zone.isNew && <div className="ml-2 bg-[#00F0FF] text-black font-chakra font-black text-[10px] px-2 py-1 skew-x-[-12deg] uppercase"><span className="block skew-x-[12deg]">NEW</span></div>}
+                    {zone.isPopular && <div className="ml-2 bg-[#FFD700] text-black font-chakra font-black text-[10px] px-2 py-1 skew-x-[-12deg] uppercase"><span className="block skew-x-[12deg] flex items-center gap-1"><Star size={10}/>HIT</span></div>}
+                </div>
             </div>
 
-            {/* Контент карточки - поверх фона */}
-            <div className="relative z-20 flex flex-col justify-between w-full h-full p-5 md:p-8 lg:p-12">
+            {/* Контент (Панель телеметрии) */}
+            <div className="relative z-20 flex flex-col justify-between w-full md:w-[45%] h-[60%] md:h-full p-4 md:p-6 lg:p-8 bg-[#0A0A0A] md:-ml-[10%]">
                 
-                {/* ВЕРХНЯЯ ЧАСТЬ: Иконка и Бейджи */}
-                <div className="flex justify-between items-start w-full">
-                    <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-black/50 md:backdrop-blur-md border border-white/10 shadow-xl">
-                        <zone.icon size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" style={{ color: zone.color }} />
+                {/* Заголовок */}
+                <div className="mb-4">
+                    <h3 className="font-tactic font-black text-3xl sm:text-4xl lg:text-5xl uppercase text-white leading-none italic group-hover:text-[#FF2E63] transition-colors">{zone.name}</h3>
+                    <p className="font-chakra font-bold tracking-widest text-[10px] md:text-xs text-white/50 uppercase mt-2 border-l-2 border-[#FF2E63] pl-2">{zone.description}</p>
+                </div>
+                
+                {/* Телеметрия (Характеристики) */}
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                    {zone.specs.map((spec, i) => (
+                        <div key={i} className="bg-[#111] border border-white/5 p-2 flex flex-col justify-center skew-x-[-6deg]">
+                            <span className="skew-x-[6deg] font-chakra font-bold text-[9px] text-white/40 uppercase tracking-widest">SPEC 0{i+1}</span>
+                            <span className="skew-x-[6deg] font-tactic text-sm text-white uppercase italic mt-1 truncate">{spec}</span>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Табло свободных мест (STATUS) */}
+                <div className="border border-white/10 bg-[#111] p-3 md:p-4 mb-4 flex items-center justify-between skew-x-[-6deg]">
+                    <div className="skew-x-[6deg] flex flex-col">
+                        <span className="font-chakra font-black text-[10px] uppercase text-white/40 tracking-widest">STATUS</span>
+                        <span className="font-tactic text-xs italic mt-1" style={{ color: statusColor }}>{statusLabel}</span>
                     </div>
-                    
-                    <div className="flex gap-2 flex-col items-end">
-                        {zone.isNew && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(0,240,255,0.3)]">NEW</div>}
-                        {zone.isPopular && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(255,46,99,0.3)] flex items-center gap-1"><Star size={12} fill="currentColor"/>HIT</div>}
-                        {zone.isSimRacing && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(255,140,0,0.3)]">PRO</div>}
+                    <div className="skew-x-[6deg] flex items-end gap-1">
+                        <span className="font-tactic font-black text-3xl leading-none" style={{ color: statusColor }}>{status ? freePc : '-'}</span>
+                        <span className="font-chakra text-xs text-white/30 font-bold mb-1">/ {status ? totalPc : '-'}</span>
                     </div>
                 </div>
 
-                {/* НИЖНЯЯ ЧАСТЬ: Информация и Цены */}
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8 mt-auto w-full">
-                    
-                    {/* Левая колонка: Текст и Статус */}
-                    <div className="flex flex-col w-full md:w-[45%] lg:w-[50%]">
-                        <h3 className="font-tactic font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-white mb-2 leading-none md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] group-hover:text-[#00F0FF] transition-colors">{zone.name}</h3>
-                        <p className="font-inter text-sm md:text-base lg:text-lg text-white/70 mb-4 md:mb-6 line-clamp-2 md:line-clamp-3 leading-snug">{zone.description}</p>
-                        
-                        <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
-                            {zone.specs.map((spec, i) => (
-                                <span key={i} className="px-3 py-1.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-[10px] md:text-xs font-chakra font-bold uppercase tracking-wider text-white md:backdrop-blur-md shadow-md">{spec}</span>
-                            ))}
-                        </div>
-
-                        {/* Статус бар */}
-                        <div className={`px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border flex items-center justify-between md:backdrop-blur-md shadow-lg ${statusBg}`}>
-                            <span className="text-[10px] md:text-xs font-chakra font-bold uppercase tracking-widest text-white/60">Свободно ПК</span>
-                            <div className="flex items-baseline gap-1.5 md:gap-2">
-                                <span className={`font-tactic font-black text-2xl md:text-3xl lg:text-4xl leading-none ${statusText}`}>
-                                    {status ? freePc : '-'}
-                                </span>
-                                <span className="font-chakra font-bold text-xs md:text-sm text-white/40">
-                                    / {status ? totalPc : '-'}
-                                </span>
-                            </div>
-                        </div>
+                {/* Табло цен (PIT STOP TARIFFS) */}
+                <div className="mt-auto">
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="h-[2px] flex-1 bg-white/10" />
+                        <span className="font-chakra font-bold text-[9px] tracking-[0.2em] text-white/30 uppercase">TARIFFS / {activePriceTab === 'week' ? 'WEEKDAY' : 'WEEKEND'}</span>
+                        <div className="h-[2px] flex-1 bg-white/10" />
                     </div>
-
-                    {/* Правая колонка: Цены и Кнопка */}
-                    <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[50%] lg:w-[45%]">
-                        <div className="grid grid-cols-3 gap-2 md:gap-3 md:backdrop-blur-md">
-                            {[
-                                { label: '1 ЧАС', key: 'oneHour' },
-                                { label: '3 ЧАСА', key: 'threeHours' },
-                                { label: '5 ЧАСОВ', key: 'fiveHours' }
-                            ].map((pkg, i) => {
-                                const p = zone.prices?.[pkg.key as keyof typeof zone.prices]?.[activePriceTab] || 0;
-                                let appP = p;
-                                if (p > 0) {
-                                    if (p <= 300) appP = p - 20;
-                                    else if (p <= 800) appP = p - 50;
-                                    else appP = p - 100;
-                                }
-                                
-                                const isMain = i === 0;
-                                return (
-                                    <div key={pkg.key} className={`p-3 md:p-4 rounded-xl md:rounded-2xl border flex flex-col justify-center items-center text-center shadow-lg ${isMain ? 'border-[#00F0FF]/40 bg-gradient-to-br from-[#00F0FF]/15 to-[#B900FF]/15' : 'border-white/10 bg-black/40'}`}>
-                                        <span className={`text-[9px] md:text-[10px] font-chakra font-bold uppercase tracking-widest mb-1 ${isMain ? 'text-[#00F0FF]' : 'text-white/50'}`}>
+                    <div className="grid grid-cols-3 gap-2">
+                        {[
+                            { label: '1 ЧАС', key: 'oneHour' },
+                            { label: '3 ЧАСА', key: 'threeHours' },
+                            { label: '5 ЧАСОВ', key: 'fiveHours' }
+                        ].map((pkg, i) => {
+                            const p = zone.prices?.[pkg.key as keyof typeof zone.prices]?.[activePriceTab] || 0;
+                            let appP = p;
+                            if (p > 0) {
+                                if (p <= 300) appP = p - 20;
+                                else if (p <= 800) appP = p - 50;
+                                else appP = p - 100;
+                            }
+                            
+                            const isMain = i === 0;
+                            return (
+                                <div key={pkg.key} className={`p-2 flex flex-col items-center justify-center border-b-2 skew-x-[-6deg] ${isMain ? 'bg-gradient-to-t from-[#FF2E63]/20 to-transparent border-[#FF2E63]' : 'bg-[#111] border-white/20'}`}>
+                                    <div className="skew-x-[6deg] flex flex-col items-center">
+                                        <span className={`font-chakra font-black text-[9px] uppercase tracking-widest mb-1 ${isMain ? 'text-[#FF2E63]' : 'text-white/40'}`}>
                                             {pkg.label}
                                         </span>
-                                        <span className={`font-tactic font-black text-xl md:text-2xl lg:text-3xl leading-none mb-1 ${isMain ? 'text-[#00F0FF] md:drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]' : 'text-white'}`}>
+                                        <span className={`font-tactic font-black text-xl leading-none ${isMain ? 'text-white' : 'text-white/80'}`}>
                                             {appP}₽
                                         </span>
-                                        <span className="text-[9px] md:text-[10px] font-bold text-white/30 line-through leading-none">
+                                        {p > 0 && <span className="font-chakra font-bold text-[8px] text-white/30 line-through mt-1">
                                             {p}₽
-                                        </span>
+                                        </span>}
                                     </div>
-                                );
-                            })}
-                        </div>
+                                </div>
+                            );
+                        })}
                     </div>
-
                 </div>
+
+            </div>
+            
+            {/* Декоративные диагональные полосы в стиле гоночного трека */}
+            <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none opacity-20 hidden md:block">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0L100 50V100L0 0H50Z" fill="url(#stripes)"/>
+                    <defs>
+                        <pattern id="stripes" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+                            <line x1="0" y="0" x2="0" y2="10" stroke="white" strokeWidth="4"/>
+                        </pattern>
+                    </defs>
+                </svg>
             </div>
         </div>
     );
