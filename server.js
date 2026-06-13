@@ -4,6 +4,10 @@ const next = require('next');
 const path = require('path');
 const fs = require('fs');
 
+// Load environment variables manually for custom server
+const { loadEnvConfig } = require('@next/env');
+loadEnvConfig(process.cwd());
+
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;
@@ -44,23 +48,11 @@ app.prepare().then(() => {
             const oneHourAgo = Date.now() - 3600000;
             const initialLength = data.lobbies.length;
 
-            // Cleanup logic:
-            // 1. Remove waiting lobbies older than 1 hour (anti-spam)
-            // 2. Clear ALL lobbies at 05:00 AM MSC (Moscow Time is UTC+3)
-
             const now = new Date();
-            // Get Moscow time hours
             const mscHours = (now.getUTCHours() + 3) % 24;
 
-            // If it's 05:00 AM (and we haven't cleared yet - simple check is strict time window)
-            // Ideally we check if last_cleanup was today, but for simple loop:
-            // We can just wipe everything if hour == 5.
-            // BUT this will wipe active games at 5 AM. User said "matches are cleaned at 05:00". So yes.
-
             let shouldWipeAll = false;
-            if (mscHours === 5 && now.getMinutes() < 5) { // 5-minute window to ensure we catch it
-                 // We rely on the fact that this runs every minute.
-                 // To avoid repeated wiping in that window, maybe acceptable or check status.
+            if (mscHours === 5 && now.getMinutes() < 5) {
                  shouldWipeAll = true;
             }
 

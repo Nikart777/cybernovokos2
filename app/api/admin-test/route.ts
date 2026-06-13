@@ -47,7 +47,7 @@ export async function POST(req: Request) {
             mistakesText
         ].join("\n");
 
-        const subject = `Результаты теста администратора: ${fullName}`;
+        const subject = `пройден тест CYBERX`;
         const htmlMessage = message.replace(/\n/g, '<br/>');
 
         const success = await sendEmail(subject, message, htmlMessage);

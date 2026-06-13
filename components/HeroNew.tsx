@@ -211,7 +211,7 @@ export default function HeroNew() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative h-[560svh] bg-[#050505] text-white"
+      className="relative h-[300svh] md:h-[450svh] lg:h-[560svh] bg-[#050505] text-white"
     >
       <div className="sticky top-0 isolate h-[100svh] overflow-hidden px-4 pb-12 pt-24 sm:px-6 lg:px-8 lg:pt-28">
         <div className="absolute inset-0 z-0">

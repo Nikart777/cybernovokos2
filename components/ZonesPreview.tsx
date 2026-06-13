@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue } from 'framer-motion';
-import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, ArrowRight, Clock, Heart, X } from 'lucide-react';
+import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, ArrowRight, Clock, Heart, X, Hand } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -328,9 +328,12 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     transition={{ duration: 0.8 }}
                     className="mb-4 md:mb-6 flex flex-col items-center text-center"
                 >
-                    <h2 className="font-tactic font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.85] text-white italic">
-                        9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF]">Площадок</span>
+                    <h2 className="font-tactic font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.85] text-white italic drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                        9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_20px_rgba(255,46,99,0.5)]">Площадок</span>
                     </h2>
+                    <p className="mt-3 font-chakra font-bold text-xs sm:text-sm md:text-base text-[#00F0FF] uppercase tracking-widest drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] animate-pulse md:hidden">
+                        Свайпай карточки, чтобы выбрать
+                    </p>
                 </motion.div>
 
                 {/* Controls and Toggles Row */}
@@ -391,9 +394,12 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                                 }).reverse()}
                             </AnimatePresence>
 
-                            {/* Action Buttons for Desktop */}
-                            <div className="absolute -bottom-24 left-0 right-0 flex flex-col items-center z-[200] md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-auto md:-right-32 lg:-right-36 md:w-24">
-                                <span className="font-chakra font-bold text-[10px] md:text-xs text-white/50 uppercase tracking-widest mb-3 text-center">Свайпай <br className="hidden md:block" />или жми</span>
+                            {/* Action Buttons */}
+                            <div className="absolute -bottom-20 left-0 right-0 flex flex-col items-center z-[200] md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-auto md:-right-36 lg:-right-40 md:w-28">
+                                <span className="font-chakra font-black text-[13px] md:text-sm text-white uppercase tracking-[0.2em] mb-4 text-center bg-gradient-to-r from-[#FF2E63]/90 to-[#B900FF]/90 px-6 py-2.5 rounded-full border border-white/50 shadow-[0_0_30px_rgba(255,46,99,0.6)] md:animate-none md:bg-transparent md:border-transparent md:shadow-none md:p-0 drop-shadow-md">
+                                    <span className="md:hidden">СВАЙПАЙ</span>
+                                    <span className="hidden md:inline">Свайпай <br />или жми</span>
+                                </span>
                                 <div className="flex gap-6 md:flex-col md:gap-6">
                                     <button 
                                         onClick={() => handleSwipe('left', zones[currentIndex])}
@@ -564,7 +570,7 @@ function SwipeableCard({
 
             {/* Bottom Content Container */}
             <div className="absolute bottom-0 left-0 right-0 md:w-[50%] lg:w-[45%] md:h-full p-6 md:p-8 z-10 flex flex-col md:justify-end pointer-events-none">
-                <h3 className="font-tactic font-black text-3xl md:text-4xl lg:text-5xl uppercase text-white mb-2 md:mb-4 leading-tight">{zone.name}</h3>
+                <h3 className="font-tactic font-black text-3xl md:text-4xl lg:text-5xl uppercase text-white mb-2 md:mb-4 leading-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">{zone.name}</h3>
                 <p className="font-inter text-xs md:text-sm lg:text-base text-white/70 mb-4 md:mb-6 leading-relaxed max-w-sm">{zone.description}</p>
 
                 {/* Specs */}
@@ -635,6 +641,27 @@ function SwipeableCard({
             >
                 СКИП
             </motion.div>
+
+            {/* Swipe hint for mobile */}
+            {isFront && (
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 1, 0] }}
+                    transition={{ delay: 1, duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                    className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-50 md:hidden bg-black/50 backdrop-blur-[2px]"
+                >
+                    <span className="font-tactic text-3xl text-white uppercase mb-6 tracking-widest drop-shadow-[0_0_20px_rgba(255,255,255,1)]">
+                        СВАЙПАЙ
+                    </span>
+                    <div className="flex items-center gap-4 opacity-100">
+                        <ChevronRight className="w-12 h-12 text-[#FF2E63] rotate-180 drop-shadow-[0_0_20px_rgba(255,46,99,0.9)]" />
+                        <motion.div animate={{ x: [-40, 40, -40] }} transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}>
+                            <Hand className="w-16 h-16 text-white drop-shadow-[0_0_25px_rgba(255,255,255,1)]" />
+                        </motion.div>
+                        <ChevronRight className="w-12 h-12 text-[#00F0FF] drop-shadow-[0_0_20px_rgba(0,240,255,0.9)]" />
+                    </div>
+                </motion.div>
+            )}
         </motion.div>
     );
 }

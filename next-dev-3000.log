@@ -160,3 +160,40 @@
   }
 }
 ✅ Message sent successfully!
+ ✓ Compiled in 972ms (845 modules)
+ ✓ Compiled in 1692ms (1632 modules)
+ ✓ Compiled in 1066ms (845 modules)
+ ✓ Compiled in 915ms (845 modules)
+ ✓ Compiled in 2.6s (845 modules)
+ ✓ Compiled in 910ms (845 modules)
+ ✓ Compiled in 4s (1632 modules)
+ ✓ Compiled in 2s (1632 modules)
+ ✓ Compiled in 1035ms (845 modules)
+ ✓ Compiled in 4.5s (1626 modules)
+ ✓ Compiled in 1582ms (842 modules)
+ ✓ Compiled in 1929ms (1626 modules)
+ ✓ Compiled in 3.3s (1626 modules)
+ ✓ Compiled in 1996ms (1626 modules)
+ ✓ Compiled in 2.7s (1626 modules)
+ ✓ Compiled in 1399ms (1626 modules)
+ ✓ Compiled in 2.1s (1626 modules)
+ ✓ Compiled in 1286ms (1626 modules)
+ ✓ Compiled in 1140ms (1626 modules)
+ ✓ Compiled in 2.2s (1626 modules)
+ ✓ Compiled in 6.2s (1635 modules)
+ ✓ Compiled in 735ms (842 modules)
+ ✓ Compiled in 2.6s (1635 modules)
+ ✓ Compiled in 1331ms (842 modules)
+ ✓ Compiled in 1053ms (1622 modules)
+   Reload env: .env.local
+ ✓ Compiled in 637ms (1612 modules)
+ ✓ Compiled in 1144ms (842 modules)
+   Reload env: .env.local
+ ✓ Compiled in 600ms (1612 modules)
+   Reload env: .env.local
+ ✓ Compiled in 418ms (1612 modules)
+ ○ Compiling /manifest.webmanifest ...
+ ✓ Compiled /manifest.webmanifest in 1543ms (815 modules)
+ ○ Compiling /api/club-status ...
+ ✓ Compiled /api/club-status in 1848ms (847 modules)
+[?25h
