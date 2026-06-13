@@ -330,8 +330,8 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     </div>
                 </div>
 
-                <div className="relative w-full z-20 flex items-center mb-10 h-[65vh] min-h-[500px] max-h-[800px]">
-                    <motion.div style={{ x }} className="flex gap-6 md:gap-10 px-4 md:px-10 h-full w-max items-center">
+                <div className="relative w-full z-20 flex items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
+                    <motion.div style={{ x }} className="flex gap-6 md:gap-10 px-4 md:px-10 h-full w-max items-center will-change-transform transform-gpu">
                         {zones.map((zone) => (
                             <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-full shrink-0 flex items-center">
                                 <ZoneCard 
@@ -376,10 +376,10 @@ function ZoneCard({
     const isAllFree = totalPc > 0 && freePc === totalPc;
 
     let statusBg = isFull ? 'bg-[#FF2E63]/20 border-[#FF2E63]/40' : isAllFree ? 'bg-[#00FF7F]/20 border-[#00FF7F]/40' : 'bg-[#FF8C00]/20 border-[#FF8C00]/40';
-    let statusText = isFull ? 'text-[#FF2E63] drop-shadow-[0_0_10px_rgba(255,46,99,0.6)]' : isAllFree ? 'text-[#00FF7F] drop-shadow-[0_0_10px_rgba(0,255,127,0.6)]' : 'text-[#FF8C00] drop-shadow-[0_0_10px_rgba(255,140,0,0.6)]';
+    let statusText = isFull ? 'text-[#FF2E63] md:drop-shadow-[0_0_10px_rgba(255,46,99,0.6)]' : isAllFree ? 'text-[#00FF7F] md:drop-shadow-[0_0_10px_rgba(0,255,127,0.6)]' : 'text-[#FF8C00] md:drop-shadow-[0_0_10px_rgba(255,140,0,0.6)]';
 
     return (
-        <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 bg-[#0A0A0A] group shadow-2xl flex flex-col md:flex-row">
+        <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 bg-[#0A0A0A] group md:shadow-2xl flex flex-col md:flex-row transform-gpu">
             {/* Изображения как фон */}
             <div className="absolute inset-0 w-full h-full">
                 {zone.images.map((src, idx) => (
@@ -399,14 +399,14 @@ function ZoneCard({
                 
                 {/* ВЕРХНЯЯ ЧАСТЬ: Иконка и Бейджи */}
                 <div className="flex justify-between items-start w-full">
-                    <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-black/50 backdrop-blur-md border border-white/10 shadow-xl">
+                    <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-black/50 md:backdrop-blur-md border border-white/10 shadow-xl">
                         <zone.icon size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" style={{ color: zone.color }} />
                     </div>
                     
                     <div className="flex gap-2 flex-col items-end">
-                        {zone.isNew && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,240,255,0.3)]">NEW</div>}
-                        {zone.isPopular && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40 backdrop-blur-md shadow-[0_0_15px_rgba(255,46,99,0.3)] flex items-center gap-1"><Star size={12} fill="currentColor"/>HIT</div>}
-                        {zone.isSimRacing && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/40 backdrop-blur-md shadow-[0_0_15px_rgba(255,140,0,0.3)]">PRO</div>}
+                        {zone.isNew && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(0,240,255,0.3)]">NEW</div>}
+                        {zone.isPopular && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(255,46,99,0.3)] flex items-center gap-1"><Star size={12} fill="currentColor"/>HIT</div>}
+                        {zone.isSimRacing && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/40 md:backdrop-blur-md md:shadow-[0_0_15px_rgba(255,140,0,0.3)]">PRO</div>}
                     </div>
                 </div>
 
@@ -415,17 +415,17 @@ function ZoneCard({
                     
                     {/* Левая колонка: Текст и Статус */}
                     <div className="flex flex-col w-full md:w-[45%] lg:w-[50%]">
-                        <h3 className="font-tactic font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-white mb-2 leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] group-hover:text-[#00F0FF] transition-colors">{zone.name}</h3>
+                        <h3 className="font-tactic font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-white mb-2 leading-none md:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] group-hover:text-[#00F0FF] transition-colors">{zone.name}</h3>
                         <p className="font-inter text-sm md:text-base lg:text-lg text-white/70 mb-4 md:mb-6 line-clamp-2 md:line-clamp-3 leading-snug">{zone.description}</p>
                         
                         <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                             {zone.specs.map((spec, i) => (
-                                <span key={i} className="px-3 py-1.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-[10px] md:text-xs font-chakra font-bold uppercase tracking-wider text-white backdrop-blur-md shadow-md">{spec}</span>
+                                <span key={i} className="px-3 py-1.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-[10px] md:text-xs font-chakra font-bold uppercase tracking-wider text-white md:backdrop-blur-md shadow-md">{spec}</span>
                             ))}
                         </div>
 
                         {/* Статус бар */}
-                        <div className={`px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border flex items-center justify-between backdrop-blur-md shadow-lg ${statusBg}`}>
+                        <div className={`px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border flex items-center justify-between md:backdrop-blur-md shadow-lg ${statusBg}`}>
                             <span className="text-[10px] md:text-xs font-chakra font-bold uppercase tracking-widest text-white/60">Свободно ПК</span>
                             <div className="flex items-baseline gap-1.5 md:gap-2">
                                 <span className={`font-tactic font-black text-2xl md:text-3xl lg:text-4xl leading-none ${statusText}`}>
@@ -440,7 +440,7 @@ function ZoneCard({
 
                     {/* Правая колонка: Цены и Кнопка */}
                     <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[50%] lg:w-[45%]">
-                        <div className="grid grid-cols-3 gap-2 md:gap-3 backdrop-blur-md">
+                        <div className="grid grid-cols-3 gap-2 md:gap-3 md:backdrop-blur-md">
                             {[
                                 { label: '1 ЧАС', key: 'oneHour' },
                                 { label: '3 ЧАСА', key: 'threeHours' },
@@ -460,7 +460,7 @@ function ZoneCard({
                                         <span className={`text-[9px] md:text-[10px] font-chakra font-bold uppercase tracking-widest mb-1 ${isMain ? 'text-[#00F0FF]' : 'text-white/50'}`}>
                                             {pkg.label}
                                         </span>
-                                        <span className={`font-tactic font-black text-xl md:text-2xl lg:text-3xl leading-none mb-1 ${isMain ? 'text-[#00F0FF] drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]' : 'text-white'}`}>
+                                        <span className={`font-tactic font-black text-xl md:text-2xl lg:text-3xl leading-none mb-1 ${isMain ? 'text-[#00F0FF] md:drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]' : 'text-white'}`}>
                                             {appP}₽
                                         </span>
                                         <span className="text-[9px] md:text-[10px] font-bold text-white/30 line-through leading-none">
