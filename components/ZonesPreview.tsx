@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, Clock } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -62,7 +62,15 @@ function calculateAppPrice(basePrice: number): number {
 }
 
 export default function ZonesPreview({ pricingData }: { pricingData?: PricingData }) {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
+    
+    // Перемещаем карточки по горизонтали: от 0% до такого значения, чтобы последняя карточка встала по центру/краю.
+    // 9 карточек.
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+
     const [activePriceTab, setActivePriceTab] = useState<'week' | 'end'>('week');
     const [clubZones, setClubZones] = useState<ClubZone[] | null>(null);
     
@@ -95,23 +103,6 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
         fetchData();
         const interval = setInterval(fetchData, 60000);
         return () => clearInterval(interval);
-    }, []);
-
-    // Поддержка горизонтального скролла колесиком мыши на десктопе
-    useEffect(() => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
-
-        const handleWheel = (e: WheelEvent) => {
-            // Если крутим колесико по вертикали, скроллим по горизонтали
-            if (e.deltaY !== 0 && Math.abs(e.deltaX) === 0) {
-                e.preventDefault();
-                container.scrollLeft += e.deltaY;
-            }
-        };
-
-        container.addEventListener('wheel', handleWheel, { passive: false });
-        return () => container.removeEventListener('wheel', handleWheel);
     }, []);
 
     const getZoneStatus = (langameTitle: string): ClubZone | undefined => {
@@ -285,76 +276,73 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     ];
 
     return (
-        <section className="relative bg-[#050505] py-16 md:py-24 overflow-hidden" id="zones">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#080808] to-[#050505] pointer-events-none" />
-            
-            <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
-                style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
-                    backgroundSize: '72px 72px',
-                }}
-            />
+        <section ref={targetRef} className="relative h-[600vh] bg-[#050505]" id="zones">
+            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#080808] to-[#050505] pointer-events-none" />
+                
+                <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                    style={{
+                        backgroundImage: 'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
+                        backgroundSize: '72px 72px',
+                    }}
+                />
 
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#B900FF]/10 blur-[200px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#B900FF]/10 blur-[150px] md:blur-[200px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#00F0FF]/10 blur-[150px] md:blur-[200px] rounded-full pointer-events-none" />
 
-            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center mb-8 shrink-0">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-4 md:mb-6 flex flex-col items-center text-center"
-                >
-                    <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.85] text-white italic drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                        9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_30px_rgba(255,46,99,0.8)]">Площадок</span>
-                    </h2>
-                    <p className="mt-4 text-[#00F0FF] font-chakra font-bold tracking-widest uppercase text-sm animate-pulse flex items-center gap-2 bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/30">
-                        Свайпайте зоны <ChevronRight size={16} />
-                    </p>
-                </motion.div>
+                <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center mb-6 mt-16 md:mt-24 shrink-0">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex flex-col items-center text-center"
+                    >
+                        <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-none text-white italic drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                            9 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF] drop-shadow-[0_0_30px_rgba(255,46,99,0.8)]">Площадок</span>
+                        </h2>
+                        <p className="mt-4 text-[#00F0FF] font-chakra font-bold tracking-widest uppercase text-xs md:text-sm flex items-center gap-2 bg-[#00F0FF]/10 px-4 py-2 rounded-full border border-[#00F0FF]/30 backdrop-blur-md">
+                            СКРОЛЛЬТЕ ВНИЗ <ChevronRight size={16} className="animate-pulse" />
+                        </p>
+                    </motion.div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-2xl mt-4">
-                    <div className="flex items-center gap-3 px-5 h-12 rounded-full bg-[#111] border border-white/10 w-full sm:w-auto justify-center">
-                        <Clock size={16} className="text-[#00F0FF]" />
-                        <span className="font-chakra font-bold text-xs text-white/60 uppercase">
-                            {isWeekend ? 'Выходной' : 'Будний день'}
-                        </span>
-                        <div className="w-[1px] h-3 bg-white/10" />
-                        <span className="font-chakra font-bold text-xs text-white">
-                            {currentTime.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
-                        </span>
-                    </div>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-2xl mt-6">
+                        <div className="flex items-center gap-3 px-5 h-12 rounded-full bg-[#111] border border-white/10 w-full sm:w-auto justify-center backdrop-blur-md shadow-lg">
+                            <Clock size={16} className="text-[#00F0FF]" />
+                            <span className="font-chakra font-bold text-xs text-white/60 uppercase">
+                                {isWeekend ? 'Выходной' : 'Будний день'}
+                            </span>
+                            <div className="w-[1px] h-3 bg-white/10" />
+                            <span className="font-chakra font-bold text-xs text-white">
+                                {currentTime.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                        </div>
 
-                    <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative h-12 w-full sm:w-[240px] items-center shrink-0">
-                        <motion.div
-                            className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
-                            initial={false}
-                            animate={{ x: activePriceTab === 'end' ? '100%' : '0%' }}
-                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                        />
-                        <button onClick={() => setActivePriceTab('week')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
-                        <button onClick={() => setActivePriceTab('end')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
+                        <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative h-12 w-full sm:w-[240px] items-center shrink-0 backdrop-blur-md shadow-lg">
+                            <motion.div
+                                className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
+                                initial={false}
+                                animate={{ x: activePriceTab === 'end' ? '100%' : '0%' }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                            />
+                            <button onClick={() => setActivePriceTab('week')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'week' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Будни</button>
+                            <button onClick={() => setActivePriceTab('end')} className={`flex-1 relative z-10 h-full text-xs font-chakra font-black uppercase tracking-wider transition-colors ${activePriceTab === 'end' ? 'text-white' : 'text-gray-500 hover:text-white'}`}>Выходные</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="relative w-full z-20">
-                <div 
-                    ref={scrollContainerRef}
-                    className="flex gap-4 md:gap-8 px-4 md:px-8 w-full overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 pt-4"
-                    style={{ scrollBehavior: 'smooth' }}
-                >
-                    {zones.map((zone) => (
-                        <div key={zone.id} className="snap-center shrink-0 w-[90vw] md:w-[85vw] lg:w-[85vw] max-w-[1200px] h-[580px] md:h-[650px] lg:h-[700px]">
-                            <ZoneCard 
-                                zone={zone} 
-                                status={getZoneStatus(zone.langameTitle)} 
-                                activePriceTab={activePriceTab} 
-                                getCurrentPrice={getCurrentPrice} 
-                            />
-                        </div>
-                    ))}
-                    {/* Пустой блок для отступа в конце скролла */}
-                    <div className="shrink-0 w-4 md:w-8" />
+                <div className="relative w-full z-20 flex items-center mb-10 h-[65vh] min-h-[500px] max-h-[800px]">
+                    <motion.div style={{ x }} className="flex gap-6 md:gap-10 px-4 md:px-10 h-full w-max items-center">
+                        {zones.map((zone) => (
+                            <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-full shrink-0 flex items-center">
+                                <ZoneCard 
+                                    zone={zone} 
+                                    status={getZoneStatus(zone.langameTitle)} 
+                                    activePriceTab={activePriceTab} 
+                                    getCurrentPrice={getCurrentPrice} 
+                                />
+                            </div>
+                        ))}
+                    </motion.div>
                 </div>
             </div>
         </section>
@@ -374,11 +362,11 @@ function ZoneCard({
 }) {
     const [imgIdx, setImgIdx] = useState(0);
     
-    // Легкая анимация изображений
+    // Очень легкая смена картинок (без тяжелых библиотек)
     useEffect(() => {
         const interval = setInterval(() => {
             setImgIdx((prev) => (prev + 1) % zone.images.length);
-        }, 3500);
+        }, 4000);
         return () => clearInterval(interval);
     }, [zone.images.length]);
 
@@ -387,60 +375,72 @@ function ZoneCard({
     const isFull = totalPc > 0 && freePc === 0;
     const isAllFree = totalPc > 0 && freePc === totalPc;
 
-    let statusBg = isFull ? 'bg-[#FF2E63]/30 border-[#FF2E63]/50' : isAllFree ? 'bg-[#00FF7F]/30 border-[#00FF7F]/50' : 'bg-[#FF8C00]/30 border-[#FF8C00]/50';
-    let statusText = isFull ? 'text-[#FF2E63] drop-shadow-[0_0_10px_rgba(255,46,99,0.8)]' : isAllFree ? 'text-[#00FF7F] drop-shadow-[0_0_10px_rgba(0,255,127,0.8)]' : 'text-[#FF8C00] drop-shadow-[0_0_10px_rgba(255,140,0,0.8)]';
+    let statusBg = isFull ? 'bg-[#FF2E63]/20 border-[#FF2E63]/40' : isAllFree ? 'bg-[#00FF7F]/20 border-[#00FF7F]/40' : 'bg-[#FF8C00]/20 border-[#FF8C00]/40';
+    let statusText = isFull ? 'text-[#FF2E63] drop-shadow-[0_0_10px_rgba(255,46,99,0.6)]' : isAllFree ? 'text-[#00FF7F] drop-shadow-[0_0_10px_rgba(0,255,127,0.6)]' : 'text-[#FF8C00] drop-shadow-[0_0_10px_rgba(255,140,0,0.6)]';
 
     return (
-        <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden border-2 border-white/10 bg-[#111] group shadow-2xl">
-            {/* Оптимизированная смена изображений без тяжелых AnimatePresence */}
-            {zone.images.map((src, idx) => (
-                <div 
-                    key={src}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === imgIdx ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
-                >
-                    <Image src={src} alt={zone.name} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
-                </div>
-            ))}
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent h-full" />
-
-            <div className="absolute top-6 left-6 right-6 md:top-10 md:left-10 flex justify-between items-start z-10 pointer-events-none">
-                <div className="p-4 md:p-6 rounded-3xl bg-black/60 border border-white/20 backdrop-blur-md shadow-lg">
-                    <zone.icon size={40} className="md:w-12 md:h-12" style={{ color: zone.color }} />
-                </div>
-                <div className="flex gap-3 flex-col items-end">
-                    {zone.isNew && <div className="px-5 py-2 md:py-3 rounded-full text-xs md:text-sm font-chakra font-black uppercase bg-[#00F0FF]/30 text-[#00F0FF] border border-[#00F0FF]/50 shadow-[0_0_20px_rgba(0,240,255,0.5)]">NEW</div>}
-                    {zone.isPopular && <div className="px-5 py-2 md:py-3 rounded-full text-xs md:text-sm font-chakra font-black uppercase bg-[#FF2E63]/30 text-[#FF2E63] border border-[#FF2E63]/50 shadow-[0_0_20px_rgba(255,46,99,0.5)] flex items-center gap-2"><Star size={14} fill="currentColor"/>HIT</div>}
-                    {zone.isSimRacing && <div className="px-5 py-2 md:py-3 rounded-full text-xs md:text-sm font-chakra font-black uppercase bg-[#FF8C00]/30 text-[#FF8C00] border border-[#FF8C00]/50 shadow-[0_0_20px_rgba(255,140,0,0.5)]">PRO</div>}
-                </div>
+        <div className="relative w-full h-full rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 bg-[#0A0A0A] group shadow-2xl flex flex-col md:flex-row">
+            {/* Изображения как фон */}
+            <div className="absolute inset-0 w-full h-full">
+                {zone.images.map((src, idx) => (
+                    <div 
+                        key={src}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === imgIdx ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
+                    >
+                        <Image src={src} alt={zone.name} fill className="object-cover group-hover:scale-[1.02] transition-transform duration-[4s]" />
+                    </div>
+                ))}
+                {/* Градиент для читаемости текста. На мобильном снизу вверх, на десктопе - слева направо + снизу вверх */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent md:bg-gradient-to-r md:from-[#0A0A0A] md:via-[#0A0A0A]/80 md:to-transparent z-10" />
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 z-10 flex flex-col justify-end pointer-events-none h-full">
-                <h3 className="font-tactic font-black text-4xl md:text-6xl lg:text-7xl uppercase text-white mb-3 md:mb-5 leading-none drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] group-hover:text-[#00F0FF] transition-colors">{zone.name}</h3>
-                <p className="font-inter text-sm md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed max-w-3xl">{zone.description}</p>
-
-                <div className="flex flex-wrap gap-3 md:gap-4 mb-6 md:mb-10">
-                    {zone.specs.map((spec, i) => (
-                        <span key={i} className="px-4 py-2 md:px-6 md:py-3 rounded-xl bg-black/60 border border-white/20 text-xs md:text-base font-chakra font-bold uppercase tracking-wider text-white backdrop-blur-md shadow-lg">{spec}</span>
-                    ))}
+            {/* Контент карточки - поверх фона */}
+            <div className="relative z-20 flex flex-col justify-between w-full h-full p-5 md:p-8 lg:p-12">
+                
+                {/* ВЕРХНЯЯ ЧАСТЬ: Иконка и Бейджи */}
+                <div className="flex justify-between items-start w-full">
+                    <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-black/50 backdrop-blur-md border border-white/10 shadow-xl">
+                        <zone.icon size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" style={{ color: zone.color }} />
+                    </div>
+                    
+                    <div className="flex gap-2 flex-col items-end">
+                        {zone.isNew && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,240,255,0.3)]">NEW</div>}
+                        {zone.isPopular && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40 backdrop-blur-md shadow-[0_0_15px_rgba(255,46,99,0.3)] flex items-center gap-1"><Star size={12} fill="currentColor"/>HIT</div>}
+                        {zone.isSimRacing && <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-chakra font-black uppercase bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/40 backdrop-blur-md shadow-[0_0_15px_rgba(255,140,0,0.3)]">PRO</div>}
+                    </div>
                 </div>
 
-                <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between w-full">
-                    {/* Status Box */}
-                    <div className={`px-6 py-5 md:py-6 md:px-8 rounded-3xl border flex flex-col justify-center backdrop-blur-md shadow-lg ${statusBg} md:w-1/3 shrink-0`}>
-                        <span className="text-xs md:text-sm lg:text-base font-chakra font-bold uppercase tracking-widest text-white/80 mb-2">Свободно ПК</span>
-                        <div className="flex items-baseline gap-2">
-                            <span className={`font-tactic font-black text-4xl md:text-5xl lg:text-6xl ${statusText}`}>
-                                {status ? freePc : '-'}
-                            </span>
-                            <span className="font-chakra font-bold text-sm md:text-xl text-white/60">
-                                / {status ? totalPc : '-'}
-                            </span>
+                {/* НИЖНЯЯ ЧАСТЬ: Информация и Цены */}
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8 mt-auto w-full">
+                    
+                    {/* Левая колонка: Текст и Статус */}
+                    <div className="flex flex-col w-full md:w-[45%] lg:w-[50%]">
+                        <h3 className="font-tactic font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-white mb-2 leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] group-hover:text-[#00F0FF] transition-colors">{zone.name}</h3>
+                        <p className="font-inter text-sm md:text-base lg:text-lg text-white/70 mb-4 md:mb-6 line-clamp-2 md:line-clamp-3 leading-snug">{zone.description}</p>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+                            {zone.specs.map((spec, i) => (
+                                <span key={i} className="px-3 py-1.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 text-[10px] md:text-xs font-chakra font-bold uppercase tracking-wider text-white backdrop-blur-md shadow-md">{spec}</span>
+                            ))}
+                        </div>
+
+                        {/* Статус бар */}
+                        <div className={`px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border flex items-center justify-between backdrop-blur-md shadow-lg ${statusBg}`}>
+                            <span className="text-[10px] md:text-xs font-chakra font-bold uppercase tracking-widest text-white/60">Свободно ПК</span>
+                            <div className="flex items-baseline gap-1.5 md:gap-2">
+                                <span className={`font-tactic font-black text-2xl md:text-3xl lg:text-4xl leading-none ${statusText}`}>
+                                    {status ? freePc : '-'}
+                                </span>
+                                <span className="font-chakra font-bold text-xs md:text-sm text-white/40">
+                                    / {status ? totalPc : '-'}
+                                </span>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-4 md:w-[60%] shrink-0">
-                        <div className="grid grid-cols-3 gap-3 md:gap-4 backdrop-blur-md">
+                    {/* Правая колонка: Цены и Кнопка */}
+                    <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[50%] lg:w-[45%]">
+                        <div className="grid grid-cols-3 gap-2 md:gap-3 backdrop-blur-md">
                             {[
                                 { label: '1 ЧАС', key: 'oneHour' },
                                 { label: '3 ЧАСА', key: 'threeHours' },
@@ -456,14 +456,14 @@ function ZoneCard({
                                 
                                 const isMain = i === 0;
                                 return (
-                                    <div key={pkg.key} className={`p-4 md:p-5 rounded-2xl border flex flex-col justify-center items-center text-center shadow-lg ${isMain ? 'border-[#00F0FF]/50 bg-gradient-to-br from-[#00F0FF]/20 to-[#B900FF]/20' : 'border-white/10 bg-black/60'}`}>
-                                        <span className={`text-[10px] md:text-sm font-chakra font-bold uppercase tracking-widest mb-1.5 md:mb-2 ${isMain ? 'text-[#00F0FF]' : 'text-white/60'}`}>
+                                    <div key={pkg.key} className={`p-3 md:p-4 rounded-xl md:rounded-2xl border flex flex-col justify-center items-center text-center shadow-lg ${isMain ? 'border-[#00F0FF]/40 bg-gradient-to-br from-[#00F0FF]/15 to-[#B900FF]/15' : 'border-white/10 bg-black/40'}`}>
+                                        <span className={`text-[9px] md:text-[10px] font-chakra font-bold uppercase tracking-widest mb-1 ${isMain ? 'text-[#00F0FF]' : 'text-white/50'}`}>
                                             {pkg.label}
                                         </span>
-                                        <span className={`font-tactic font-black text-2xl md:text-4xl leading-none mb-1 md:mb-2 ${isMain ? 'text-[#00F0FF] drop-shadow-[0_0_15px_rgba(0,240,255,0.6)]' : 'text-white'}`}>
+                                        <span className={`font-tactic font-black text-xl md:text-2xl lg:text-3xl leading-none mb-1 ${isMain ? 'text-[#00F0FF] drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]' : 'text-white'}`}>
                                             {appP}₽
                                         </span>
-                                        <span className="text-[10px] md:text-sm font-bold text-white/40 line-through leading-none">
+                                        <span className="text-[9px] md:text-[10px] font-bold text-white/30 line-through leading-none">
                                             {p}₽
                                         </span>
                                     </div>
@@ -473,11 +473,12 @@ function ZoneCard({
                         
                         <button 
                             onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="pointer-events-auto w-full py-5 md:py-6 rounded-2xl bg-white/10 hover:bg-[#FF2E63] border border-white/20 hover:border-[#FF2E63] font-chakra font-black text-sm md:text-lg uppercase tracking-widest text-white transition-all duration-300 flex items-center justify-center gap-3 group shadow-lg hover:shadow-[0_0_30px_rgba(255,46,99,0.6)]"
+                            className="pointer-events-auto w-full py-4 md:py-5 rounded-xl md:rounded-2xl bg-white/10 hover:bg-[#FF2E63] border border-white/15 hover:border-[#FF2E63] font-chakra font-black text-xs md:text-sm lg:text-base uppercase tracking-widest text-white transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 group shadow-lg hover:shadow-[0_0_25px_rgba(255,46,99,0.5)]"
                         >
-                            ЗАБРОНИРОВАТЬ МЕСТО <ChevronRight size={24} className="opacity-70 group-hover:opacity-100 group-hover:translate-x-3 transition-all duration-300" />
+                            ЗАБРОНИРОВАТЬ <ChevronRight size={18} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1.5 transition-all duration-300" />
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>

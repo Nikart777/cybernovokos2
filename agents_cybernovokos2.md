@@ -82,3 +82,5 @@ After implementation, generate a report containing:
    - Suggestion to use Lighthouse (DevTools) to check the final SEO score [37].
 
 - 13.06.2026: Изменена концепция слайдера зон в ZonesPreview.tsx на горизонтальный скролл с большими карточками (snap-x), удален Tinder-стиль для повышения удобства на десктопе.
+
+- 13.06.2026: UI/UX редизайн ZoneCard (вертикальный лейаут для мобильных) и возврат липкого горизонтального скролла с оптимизацией производительности в ZonesPreview.tsx.
