@@ -33,17 +33,30 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#050505] text-white relative">
-      <Header />
-      <Hero />
-      {pricingData && <ZonesPreview pricingData={pricingData} />}
-      <CertificateBanner />
-      <PromotionsNew />
-      <Reviews />
-      <FAQ />
-      <SEOBlock />
-      <Contacts />
-      <Footer />
+    <main className="min-h-screen flex flex-col bg-transparent text-white relative">
+      {/* Единый стильный фон всей страницы */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#030305]">
+        {/* Кибер-сетка с затуханием к краям */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+        
+        {/* Неоновые акценты (свечения) */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#FF2E63]/15 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[#00F0FF]/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-[40%] right-[10%] w-[30vw] h-[30vw] bg-[#7000FF]/10 rounded-full blur-[120px]"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col w-full">
+        <Header />
+        <Hero />
+        {pricingData && <ZonesPreview pricingData={pricingData} />}
+        <CertificateBanner />
+        <PromotionsNew />
+        <Reviews />
+        <FAQ />
+        <SEOBlock />
+        <Contacts />
+        <Footer />
+      </div>
     </main>
   );
 }

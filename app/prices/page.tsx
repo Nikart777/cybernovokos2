@@ -74,12 +74,12 @@ export default async function PricesPage() {
         <main className="min-h-screen flex flex-col bg-[#050505] text-white">
             <SchemaMarkup schema={pricesSchema} />
             <Header />
-            <div className="pt-32 px-4 md:px-10 max-w-[1400px] mx-auto w-full flex-grow">
-                <section className="mb-12">
-                    <h1 className="font-tactic font-black text-4xl md:text-7xl uppercase mb-6 text-[#FF2E63]">
+            <div className="pt-24 md:pt-32 px-4 md:px-10 max-w-[1400px] mx-auto w-full flex-grow">
+                <section className="mb-8 md:mb-12">
+                    <h1 className="font-tactic font-black text-3xl sm:text-4xl md:text-7xl uppercase mb-4 md:mb-6 text-[#FF2E63] leading-none">
                         Прайс-лист
                     </h1>
-                    <p className="font-chakra font-bold text-lg md:text-xl text-white/70 max-w-3xl mb-8 uppercase tracking-wide">
+                    <p className="font-chakra font-bold text-sm sm:text-base md:text-xl text-white/70 max-w-3xl mb-6 md:mb-8 uppercase tracking-wide leading-relaxed">
                         Выбирай свою зону и врывайся в игру. Лучшее железо в Новокосино по доступным ценам.
                     </p>
                 </section>

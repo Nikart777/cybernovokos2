@@ -1,10 +1,12 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+
 import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, Clock } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { PricingData } from '@/app/lib/types';
+
 
 type ClubZone = {
   id: number;
@@ -274,8 +276,8 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     ];
 
     return (
-        <section ref={targetRef} className="relative h-[600vh] bg-[#050505]" id="zones">
-            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+        <section ref={targetRef} className="relative md:h-[600vh] bg-[#050505]" id="zones">
+            <div className="md:sticky md:top-0 md:h-screen w-full flex flex-col justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-[#050505] pointer-events-none" />
                 
                 <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -285,22 +287,44 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     }}
                 />
 
-                <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center mb-6 mt-16 md:mt-24 shrink-0">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="flex flex-col items-center text-center"
-                    >
-                        <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-none text-white italic">
-                            9 <span className="text-[#FF2E63]">Площадок</span>
-                        </h2>
-                        <p className="mt-4 text-white/50 font-chakra font-bold tracking-widest uppercase text-xs md:text-sm flex items-center gap-2 border border-white/10 bg-[#111] px-4 py-2 skew-x-[-12deg]">
-                            <span className="skew-x-[12deg] flex items-center gap-2">СКРОЛЛЬТЕ ВНИЗ <ChevronRight size={16} className="text-[#FF2E63] animate-pulse" /></span>
-                        </p>
-                    </motion.div>
+                <div className="container mx-auto px-4 relative z-10 flex flex-col xl:flex-row items-center xl:items-end justify-between mb-6 md:mb-10 mt-8 md:mt-12 shrink-0 gap-6 xl:gap-8">
+                    
+                    {/* Compact Title Section */}
+                    <div className="flex flex-col items-center xl:items-start relative w-full xl:w-auto overflow-hidden">
+                        <div className="flex items-center gap-4 sm:gap-6">
+                            {/* 9 */}
+                            <motion.div 
+                                initial={{ x: "-100%", skewX: -20, opacity: 0 }}
+                                whileInView={{ x: 0, skewX: 0, opacity: 1 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                className="flex items-end font-tactic font-black uppercase italic leading-none"
+                            >
+                                <span className="text-[5.5rem] md:text-[7rem] lg:text-[8rem] text-[#FF2E63] drop-shadow-[0_0_20px_rgba(255,46,99,0.5)]">9</span>
+                            </motion.div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-2xl mt-6">
+                            {/* ИГРОВЫХ ПЛОЩАДОК */}
+                            <motion.div 
+                                initial={{ x: "100%", skewX: 20, opacity: 0 }}
+                                whileInView={{ x: 0, skewX: 0, opacity: 1 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
+                                className="flex flex-col justify-center font-tactic font-black uppercase italic leading-none mt-2"
+                            >
+                                <span className="text-2xl sm:text-3xl md:text-4xl text-[#00F0FF] drop-shadow-[0_0_15px_rgba(0,240,255,0.3)] mb-1">ИГРОВЫХ</span>
+                                <span className="text-2xl sm:text-3xl md:text-4xl text-white">ПЛОЩАДОК</span>
+                            </motion.div>
+                        </div>
+                        
+                        {/* Speed Line Divider */}
+                        <motion.div 
+                            initial={{ scaleX: 0, opacity: 0 }}
+                            whileInView={{ scaleX: 1, opacity: 1 }}
+                            transition={{ duration: 0.8, ease: "circOut", delay: 0.3 }}
+                            className="w-full h-[3px] bg-gradient-to-r from-[#FF2E63] via-[#00F0FF] to-transparent shadow-[0_0_10px_#00F0FF] origin-left mt-2 md:mt-4"
+                        />
+                    </div>
+
+                    {/* Filters Section */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full xl:w-auto shrink-0">
                         <div className="flex items-center gap-3 px-5 h-12 bg-[#111] border-2 border-white/10 w-full sm:w-auto justify-center skew-x-[-12deg]">
                             <div className="skew-x-[12deg] flex items-center gap-3">
                                 <Clock size={16} className="text-[#FF2E63]" />
@@ -327,7 +351,23 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     </div>
                 </div>
 
-                <div className="relative w-full z-20 flex items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
+                {/* MOBILE TRACK: cards stacked vertically */}
+                <div className="md:hidden relative w-full z-20 flex flex-col pb-20 px-4 gap-6 pt-4">
+                    {zones.map((zone, idx) => (
+                        <div key={zone.id} className="w-full">
+                            <ZoneCard 
+                                zone={zone} 
+                                idx={idx + 1}
+                                status={getZoneStatus(zone.langameTitle)} 
+                                activePriceTab={activePriceTab} 
+                                getCurrentPrice={getCurrentPrice} 
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* DESKTOP TRACK: Framer Motion Sticky Scroll */}
+                <div className="hidden md:flex relative w-full z-20 items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
                     <motion.div style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center will-change-transform transform-gpu">
                         {zones.map((zone, idx) => (
                             <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-[95%] shrink-0 flex items-center">
@@ -378,9 +418,9 @@ function ZoneCard({
     const statusLabel = isFull ? 'ПИТ-СТОП ЗАНЯТ' : 'СВОБОДНО';
 
     return (
-        <div className="relative w-full h-full bg-[#0A0A0A] border-2 border-white/10 group flex flex-col md:flex-row transform-gpu overflow-hidden">
+        <div className="relative w-full h-auto md:h-full bg-[#0A0A0A] border-2 border-white/10 group flex flex-col md:flex-row transform-gpu overflow-hidden">
             {/* Картинка: Жесткий диагональный срез на десктопе */}
-            <div className="relative w-full md:w-[55%] h-[40%] md:h-full shrink-0 z-0">
+            <div className="relative w-full h-[220px] md:w-[55%] md:h-full shrink-0 z-0">
                 <div className="absolute inset-0 md:[clip-path:polygon(0_0,100%_0,85%_100%,0_100%)]">
                     {zone.images.map((src, i) => (
                         <div 
@@ -405,7 +445,7 @@ function ZoneCard({
             </div>
 
             {/* Контент (Панель телеметрии) */}
-            <div className="relative z-20 flex flex-col justify-between w-full md:w-[45%] h-[60%] md:h-full p-4 md:p-6 lg:p-8 bg-[#0A0A0A] md:-ml-[10%]">
+            <div className="relative z-20 flex flex-col justify-between w-full md:w-[45%] h-auto md:h-full p-4 md:p-6 lg:p-8 bg-[#0A0A0A] md:-ml-[10%]">
                 
                 {/* Заголовок */}
                 <div className="mb-4">
@@ -439,7 +479,7 @@ function ZoneCard({
                 <div className="mt-auto">
                     <div className="flex items-center gap-2 mb-2">
                         <div className="h-[2px] flex-1 bg-white/10" />
-                        <span className="font-chakra font-bold text-[9px] tracking-[0.2em] text-white/30 uppercase">TARIFFS / {activePriceTab === 'week' ? 'WEEKDAY' : 'WEEKEND'}</span>
+                        <span className="font-chakra font-bold text-[9px] tracking-[0.2em] text-white/30 uppercase">ТАРИФЫ / {activePriceTab === 'week' ? 'БУДНИ' : 'ВЫХОДНЫЕ'}</span>
                         <div className="h-[2px] flex-1 bg-white/10" />
                     </div>
                     <div className="grid grid-cols-3 gap-2">
@@ -458,17 +498,36 @@ function ZoneCard({
                             
                             const isMain = i === 0;
                             return (
-                                <div key={pkg.key} className={`p-2 flex flex-col items-center justify-center border-b-2 skew-x-[-6deg] ${isMain ? 'bg-gradient-to-t from-[#FF2E63]/20 to-transparent border-[#FF2E63]' : 'bg-[#111] border-white/20'}`}>
-                                    <div className="skew-x-[6deg] flex flex-col items-center">
-                                        <span className={`font-chakra font-black text-[9px] uppercase tracking-widest mb-1 ${isMain ? 'text-[#FF2E63]' : 'text-white/40'}`}>
+                                <div key={pkg.key} className={`py-2 px-1 flex flex-col items-center justify-between border-b-2 skew-x-[-6deg] h-full ${isMain ? 'bg-gradient-to-t from-[#FF2E63]/20 to-transparent border-[#FF2E63]' : 'bg-[#111] border-white/20'}`}>
+                                    <div className="skew-x-[6deg] w-full flex flex-col items-center h-full">
+                                        {/* Label */}
+                                        <span className={`font-chakra font-black text-[10px] md:text-[11px] uppercase tracking-widest mb-2 text-center ${isMain ? 'text-[#FF2E63]' : 'text-white/40'}`}>
                                             {pkg.label}
                                         </span>
-                                        <span className={`font-tactic font-black text-xl leading-none ${isMain ? 'text-white' : 'text-white/80'}`}>
-                                            {appP}₽
-                                        </span>
-                                        {p > 0 && <span className="font-chakra font-bold text-[8px] text-white/30 line-through mt-1">
-                                            {p}₽
-                                        </span>}
+                                        
+                                        {/* App Price */}
+                                        <div className="flex flex-col items-center mb-2">
+                                            <span className="bg-[#FF2E63] text-white font-chakra font-bold text-[7px] px-1.5 py-[2px] uppercase rounded-sm tracking-wider mb-1.5 leading-none shadow-[0_0_10px_rgba(255,46,99,0.3)]">
+                                                В приложении
+                                            </span>
+                                            <span className={`font-tactic font-black text-xl md:text-2xl leading-none ${isMain ? 'text-white' : 'text-white/80'}`}>
+                                                {appP}₽
+                                            </span>
+                                        </div>
+                                        
+                                        {/* Cashier Price */}
+                                        {p > 0 ? (
+                                            <div className="flex flex-col items-center opacity-50 mt-auto pt-1.5 border-t border-white/10 w-[80%] mx-auto">
+                                                <span className="font-chakra font-bold text-[7px] text-white uppercase tracking-wider mb-1 leading-none">
+                                                    На кассе
+                                                </span>
+                                                <span className="font-tactic font-bold text-xs text-white line-through decoration-[#FF2E63] leading-none">
+                                                    {p}₽
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div className="mt-auto h-[22px] w-full"></div>
+                                        )}
                                     </div>
                                 </div>
                             );

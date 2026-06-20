@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MapPin, Gamepad2, MessageSquare } from "lucide-react";
+import { Phone, Gamepad2, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function StickyBar() {
@@ -46,30 +46,36 @@ export default function StickyBar() {
           <div className="flex gap-2">
             <a
               href="tel:+79851289538"
-              className="flex flex-col items-center justify-center w-[65px] bg-[#1a1a1a]/80 backdrop-blur-xl border border-white/10 rounded-xl text-white active:scale-95 transition-transform hover:bg-white/10"
+              className="flex flex-col items-center justify-center w-[65px] bg-[#111] border-2 border-white/10 skew-x-[-6deg] text-white active:scale-95 transition-transform"
             >
-              <Phone size={20} className="mb-[2px] text-white" />
-              <span className="text-[9px] font-inter font-bold uppercase tracking-wide opacity-70">Звонок</span>
+              <div className="skew-x-[6deg] flex flex-col items-center">
+                <Phone size={18} className="mb-1 text-white/70" />
+                <span className="text-[8px] font-chakra font-black uppercase tracking-widest text-white/70">Звонок</span>
+              </div>
             </a>
 
             <button
               onClick={openChat}
-              className="flex flex-col items-center justify-center w-[65px] bg-[#1a1a1a]/80 backdrop-blur-xl border border-white/10 rounded-xl text-white active:scale-95 transition-transform hover:bg-white/10"
+              className="flex flex-col items-center justify-center w-[65px] bg-[#111] border-2 border-white/10 skew-x-[-6deg] text-white active:scale-95 transition-transform"
             >
-              <MessageSquare size={20} className="mb-[2px] text-[#FF0055]" />
-              <span className="text-[9px] font-inter font-bold uppercase tracking-wide opacity-70">Чат</span>
+              <div className="skew-x-[6deg] flex flex-col items-center">
+                <MessageSquare size={18} className="mb-1 text-[#FF2E63]" />
+                <span className="text-[8px] font-chakra font-black uppercase tracking-widest text-white/70">Чат</span>
+              </div>
             </button>
           </div>
 
           <button
             onClick={openBooking}
-            className="flex-grow relative overflow-hidden bg-gradient-to-r from-[#FF0055] to-[#CC0099] rounded-xl flex items-center justify-center gap-2 shadow-[0_5px_20px_rgba(255,0,85,0.4)] active:scale-95 transition-transform group"
+            className="flex-grow relative overflow-hidden bg-[#FF2E63] border-2 border-[#FF2E63] flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,46,99,0.4)] active:scale-95 transition-transform skew-x-[-6deg]"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] translate-x-[-150%] animate-[shine_3s_infinite]" />
-            <Gamepad2 size={24} className="text-white relative z-10 fill-white/20" />
-            <span className="font-chakra font-black text-xl uppercase tracking-widest text-white relative z-10 text-shadow-sm">
-              БРОНЬ
-            </span>
+            <div className="absolute inset-0 bg-white/20 skew-x-[-20deg] translate-x-[-150%] animate-[shine_3s_infinite]" />
+            <div className="skew-x-[6deg] flex items-center gap-2">
+                <Gamepad2 size={24} className="text-white relative z-10" />
+                <span className="font-tactic font-black italic text-lg uppercase tracking-wide text-white relative z-10 mt-1">
+                БРОНЬ
+                </span>
+            </div>
           </button>
         </motion.div>
       )}

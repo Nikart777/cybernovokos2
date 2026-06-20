@@ -1,52 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Moon, Trophy, Users, ChevronRight, Star, Gift, Zap, Sparkles } from "lucide-react";
+import { Moon, Trophy, Users, ChevronRight, Gift, Zap } from "lucide-react";
 import { useState } from "react";
 
 const promotions = [
   {
     id: "newbie",
-    label: "CYBERX ПРОМОКОД",
+    label: "ПРОМОКОД",
     title: "400₽ НА СТАРТ",
-    desc: "Ищешь промокод на первое посещение? Всё проще: дарим 400 бонусов за регистрацию автоматически.",
+    desc: "Дарим 400 бонусов за регистрацию.",
     icon: Gift,
     color: "#FF2E63",
-    gradient: "from-[#FF2E63] to-[#FF0055]",
-    btn: "Условия",
+    btn: "УСЛОВИЯ",
     action: "open-promo-newbie"
   },
   {
     id: "friend",
     label: "РЕФЕРАЛКА",
     title: "ПРИВЕДИ ДРУГА",
-    desc: "Твой друг получит 800 бонусов на старт, а ты — 5% с его пополнений вечно. Пассивный доход в бонусах.",
+    desc: "Твой друг получит 800 бонусов, а ты — 5% кэшбэка вечно.",
     icon: Users,
     color: "#FF7A00",
-    gradient: "from-[#FF7A00] to-[#FF8C00]",
-    btn: "Механика",
+    btn: "МЕХАНИКА",
     action: "open-promo-friend"
   },
   {
     id: "night",
     label: "ВЫГОДА",
     title: "НОЧНЫЕ ПАКЕТЫ",
-    desc: "Отдаем ночные часы по себестоимости. Играй до рассвета с максимальной выгодой.",
+    desc: "Отдаем ночные часы по себестоимости.",
     icon: Moon,
     color: "#B900FF",
-    gradient: "from-[#B900FF] to-[#7F00FF]",
-    btn: "Цены",
+    btn: "ЦЕНЫ",
     action: "open-promo-night"
   },
   {
     id: "cashback",
     label: "ЛОЯЛЬНОСТЬ",
     title: "КЭШБЭК ДО 20%",
-    desc: "Копи баллы за каждую игру и оплачивай ими до 100% времени. Больше играешь — круче статус.",
+    desc: "Больше играешь — круче статус и выше процент.",
     icon: Trophy,
     color: "#00F0FF",
-    gradient: "from-[#00F0FF] to-[#0088FF]",
-    btn: "Ранги",
+    btn: "РАНГИ",
     action: "open-promo-cashback"
   }
 ];
@@ -59,196 +55,102 @@ export default function PromotionsNew() {
   };
 
   return (
-    <section id="promotions" className="relative w-full py-24 md:py-32 bg-[#0a0a0a] overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#050505] to-[#0a0a0a]" />
+    <section id="promotions" className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden border-t-2 border-white/5">
+      <div className="absolute inset-0 bg-[#050505] pointer-events-none" />
       
-      {/* Animated Grid */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
+          backgroundSize: '100px 100px',
         }}
       />
 
-      {/* Gradient Orbs - Static to save performance */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#FF2E63]/10 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#B900FF]/10 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-24"
+          className="mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] mb-6">
-            <Sparkles size={16} className="text-[#FF2E63]" />
-            <span className="font-chakra font-bold text-xs text-white/60 tracking-wide uppercase">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-1.5 h-1.5 bg-[#00F0FF]" />
+            <span className="font-chakra font-bold text-xs text-white/40 tracking-widest uppercase">
               Акции и Бонусы
             </span>
-            <Sparkles size={16} className="text-[#00F0FF]" />
           </div>
           
-          <h2 className="font-tactic font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.85] text-white mb-4 italic">
-            Лутай <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] via-[#B900FF] to-[#00F0FF]">Бонусы</span>
+          <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-7xl uppercase leading-[0.85] text-white italic">
+            ЛУТАЙ <span className="text-transparent" style={{ WebkitTextStroke: '2px #00F0FF' }}>БОНУСЫ</span>
           </h2>
-          
-          <p className="font-inter text-base md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-            Максимальная выгода для твоих игр. Промокоды, кэшбэк, рефералка и ночные пакеты.
-          </p>
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {promotions.map((promo, i) => (
             <motion.div
               key={promo.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               onMouseEnter={() => setHoveredId(promo.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative bg-[#0f0f0f] border border-white/[0.08] rounded-3xl p-6 flex flex-col items-center text-center overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl h-full"
-              style={{
-                boxShadow: hoveredId === promo.id 
-                  ? `0 20px 60px -15px ${promo.color}40` 
-                  : '0 10px 40px -15px rgba(0,0,0,0.5)'
-              }}
+              className="group relative bg-[#0a0a0a] border-2 border-white/10 p-6 flex flex-col skew-x-[-6deg] transition-colors duration-300 hover:border-white/30 h-full"
             >
-              {/* Hover Glow Background */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ 
-                  background: `radial-gradient(circle at center, ${promo.color}20, transparent 70%)` 
-                }}
-              />
+              <div className="skew-x-[6deg] flex flex-col h-full">
+                  {/* Color Line Top */}
+                  <div className="absolute top-0 left-0 w-full h-1 opacity-50 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: promo.color }} />
 
-              {/* Animated Border Gradient */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className={`absolute inset-[1px] rounded-3xl bg-gradient-to-b ${promo.gradient} opacity-20`} />
+                  {/* Icon & Label */}
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 bg-[#111] border border-white/5 flex items-center justify-center skew-x-[-6deg] group-hover:bg-white/5 transition-colors">
+                        <promo.icon size={24} style={{ color: promo.color }} className="skew-x-[6deg] group-hover:scale-110 transition-transform" />
+                    </div>
+                    <span className="font-chakra text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:text-white/80 transition-colors">
+                      {promo.label}
+                    </span>
+                  </div>
+
+                  {/* Text */}
+                  <h3 className="font-tactic font-black text-2xl text-white uppercase italic leading-none mb-3">
+                    {promo.title}
+                  </h3>
+                  <p className="font-chakra text-xs text-white/50 leading-relaxed font-bold uppercase mb-8 flex-grow">
+                    {promo.desc}
+                  </p>
+
+                  {/* Button */}
+                  <button
+                    onClick={() => handleOpen(promo.action)}
+                    className="mt-auto flex items-center justify-between w-full bg-[#111] border border-white/10 px-4 py-3 group-hover:border-white/30 transition-colors"
+                  >
+                    <span className="font-tactic font-black text-sm uppercase italic text-white/80 group-hover:text-white">
+                      {promo.btn}
+                    </span>
+                    <ChevronRight size={16} style={{ color: promo.color }} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
               </div>
-
-              {/* Top Glow Spot */}
-              <div
-                className="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[150px] h-[150px] blur-[80px] opacity-0 group-hover:opacity-40 transition-opacity duration-500"
-                style={{ backgroundColor: promo.color }}
-              />
-
-              {/* Icon Box */}
-              <motion.div
-                className="relative w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                style={{
-                  backgroundColor: `${promo.color}15`,
-                  borderColor: `${promo.color}30`,
-                  color: promo.color
-                }}
-              >
-                <promo.icon size={28} />
-                <div className="absolute inset-0 blur-xl opacity-20" style={{ backgroundColor: promo.color }} />
-                
-                {/* Sparkle effect on hover */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={hoveredId === promo.id ? { scale: 1, opacity: 1 } : {}}
-                  className="absolute -top-1 -right-1"
-                >
-                  <Star size={12} className="text-[#FFD700] fill-[#FFD700]" />
-                </motion.div>
-              </motion.div>
-
-              {/* Label */}
-              <span
-                className="font-mono text-[9px] font-bold uppercase tracking-widest mb-3 opacity-60 group-hover:opacity-100 transition-opacity"
-                style={{ color: promo.color }}
-              >
-                {promo.label}
-              </span>
-
-              {/* Title */}
-              <h3 className="font-tactic font-bold text-xl md:text-2xl text-white uppercase mb-3 leading-none break-words w-full">
-                {promo.title}
-              </h3>
-
-              {/* Desc */}
-              <p className="font-inter text-xs text-gray-400 leading-relaxed mb-6 line-clamp-4 flex-grow">
-                {promo.desc}
-              </p>
-
-              {/* Button */}
-              <button
-                onClick={() => handleOpen(promo.action)}
-                className="mt-auto relative px-6 py-3 rounded-xl border border-white/20 font-chakra font-bold text-xs uppercase tracking-wider text-white overflow-hidden transition-all duration-300 hover:border-transparent group/btn w-full"
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(135deg, ${promo.color}, ${promo.color}dd)` }}
-                />
-                <span className="relative z-10 flex items-center justify-center gap-2 group-hover/btn:text-black transition-colors">
-                  {promo.btn}
-                  <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                </span>
-              </button>
-
-              {/* Floating particles on hover */}
-              {hoveredId === promo.id && (
-                <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ 
-                        opacity: 0, 
-                        y: '100%', 
-                        x: Math.random() * 100 - 50 
-                      }}
-                      animate={{ 
-                        opacity: [0, 1, 0], 
-                        y: '-100%',
-                      }}
-                      transition={{ 
-                        duration: 1 + Math.random(), 
-                        delay: i * 0.1,
-                        repeat: Infinity 
-                      }}
-                      className="absolute w-1 h-1 rounded-full"
-                      style={{ 
-                        left: `${30 + i * 10}%`, 
-                        bottom: '10%',
-                        backgroundColor: promo.color 
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
             </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <p className="font-inter text-sm text-white/40 mb-4">
-            Все акции доступны в мобильном приложении
-          </p>
+        <div className="mt-12 flex justify-end">
           <a
             href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+            className="group flex items-center gap-3 bg-[#111] border-2 border-white/10 px-6 py-4 skew-x-[-12deg] hover:border-[#FF2E63] transition-colors"
           >
-            <Zap size={16} className="text-[#FF2E63]" />
-            Скачать приложение
+            <div className="skew-x-[12deg] flex items-center gap-3">
+                <Zap size={20} className="text-[#FF2E63] group-hover:animate-pulse" />
+                <span className="font-tactic font-black text-sm uppercase italic text-white">Скачать приложение</span>
+            </div>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -2,8 +2,18 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, Smartphone, ChevronRight, Apple } from "lucide-react";
-import { PricingData, ZoneData, PriceItem } from "@/app/lib/types";
+import { Clock, Smartphone, ChevronRight } from "lucide-react";
+import { PricingData, PriceItem } from "@/app/lib/types";
+import Image from "next/image";
+
+const zonePhotos: Record<string, string[]> = {
+  common: ["/zones/common-1.webp", "/zones/common-2.webp", "/zones/common-3.webp"],
+  bootcamp: ["/zones/bootcamp-std-1.webp", "/zones/bootcamp-std-2.webp", "/zones/bootcamp-1.webp"],
+  vip_duo: ["/zones/bootcamp-1.webp", "/zones/duo-1.webp", "/zones/duo-2.webp"],
+  solo: ["/zones/solo-premium-1.webp", "/zones/solo-pro-1.webp", "/zones/solo-premium-2.webp"],
+  tv: ["/zones/ps5-3.webp", "/zones/ps5-1.webp", "/zones/ps5-4.webp"],
+  simracing: ["/zones/sim-1.webp", "/zones/sim-2.webp", "/zones/sim-3.webp"],
+};
 
 // --- ХЕЛПЕРЫ ---
 function calculateAppPrice(basePrice: number): number {
@@ -26,11 +36,11 @@ export default function Prices({ data }: { data: PricingData }) {
   const activeZone = data.zones.find(z => z.id === activeZoneId) || data.zones[0];
 
   return (
-    <section className="relative w-full bg-[#050505] pb-20 px-4 md:px-10">
+    <section className="relative w-full bg-[#050505] pb-16 md:pb-20">
       <div className="max-w-[1200px] mx-auto">
 
         {/* --- TABS (NAVIGATION) --- */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="-mx-4 px-4 md:mx-0 md:px-0 flex md:flex-wrap md:justify-center gap-2 mb-6 md:mb-8 overflow-x-auto md:overflow-visible pb-2 scrollbar-hide snap-x">
           {data.zones.map((zone) => (
             <button
               key={zone.id}
@@ -39,7 +49,7 @@ export default function Prices({ data }: { data: PricingData }) {
                 setShowAbonnements(false);
               }}
               className={`
-                relative px-5 py-3 rounded-xl font-chakra font-bold text-sm uppercase tracking-wider transition-all duration-300
+                relative shrink-0 snap-start px-4 md:px-5 py-3 rounded-xl font-chakra font-bold text-xs md:text-sm uppercase tracking-wider transition-all duration-300
                 ${activeZoneId === zone.id && !showAbonnements
                   ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   : "bg-[#111] text-gray-500 hover:text-white border border-white/10 hover:border-white/30"}
@@ -52,7 +62,7 @@ export default function Prices({ data }: { data: PricingData }) {
             <button
               onClick={() => setShowAbonnements(true)}
               className={`
-                relative px-5 py-3 rounded-xl font-chakra font-bold text-sm uppercase tracking-wider transition-all duration-300
+                relative shrink-0 snap-start px-4 md:px-5 py-3 rounded-xl font-chakra font-bold text-xs md:text-sm uppercase tracking-wider transition-all duration-300
                 ${showAbonnements
                   ? "bg-[#FF2E63] text-white shadow-[0_0_20px_rgba(255,46,99,0.3)]"
                   : "bg-[#111] text-[#FF2E63] hover:text-white border border-[#FF2E63]/20 hover:border-[#FF2E63]/40"}
@@ -66,8 +76,8 @@ export default function Prices({ data }: { data: PricingData }) {
         {!showAbonnements ? (
           <>
             {/* --- SWITCHER (WEEKDAY / WEEKEND) --- */}
-            <div className="flex justify-center mb-12">
-              <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative w-[240px]">
+            <div className="flex justify-center mb-8 md:mb-12">
+              <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative w-[240px] max-w-full">
                 <motion.div
                   className="absolute top-1 bottom-1 w-[116px] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
                   initial={false}
@@ -91,15 +101,17 @@ export default function Prices({ data }: { data: PricingData }) {
             </div>
 
             {/* --- ACTIVE ZONE INFO --- */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-6 md:mb-8">
               <h2 className="sr-only">Цены на услуги компьютерного клуба в Новокосино</h2>
-              <h3 className="font-tactic font-black text-3xl md:text-5xl text-white uppercase mb-2 drop-shadow-lg">
+              <h3 className="font-tactic font-black text-2xl sm:text-3xl md:text-5xl text-white uppercase mb-2 drop-shadow-lg leading-none">
                 {activeZone.name}
               </h3>
-              <p className="font-mono text-xs md:text-sm text-[#FF2E63] tracking-[0.2em] uppercase opacity-90">
+              <p className="font-mono text-[10px] sm:text-xs md:text-sm text-[#FF2E63] tracking-[0.12em] md:tracking-[0.2em] uppercase opacity-90 leading-relaxed">
                 {activeZone.desc}
               </p>
             </div>
+
+            <ZoneGallery zoneId={activeZone.id} zoneName={activeZone.name} />
 
             {/* --- PRICE GRID --- */}
             <AnimatePresence mode="wait">
@@ -111,13 +123,13 @@ export default function Prices({ data }: { data: PricingData }) {
                 transition={{ duration: 0.2 }}
               >
                 {activeZone.subZones ? (
-                  <div className="space-y-16">
+                  <div className="space-y-8 md:space-y-16">
                     {activeZone.subZones.map((section, idx) => (
-                      <div key={idx} className="border border-white/5 rounded-3xl p-6 md:p-8 bg-[#0e0e0e]">
-                        <h4 className="font-tactic font-bold text-2xl text-white uppercase tracking-wide mb-8 text-center border-b border-white/10 pb-4">
+                      <div key={idx} className="border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-8 bg-[#0e0e0e]">
+                        <h4 className="font-tactic font-bold text-xl md:text-2xl text-white uppercase tracking-wide mb-5 md:mb-8 text-center border-b border-white/10 pb-4">
                           {section.name}
                         </h4>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16">
                           {section.categories.map((cat, cIdx) => (
                             <PriceColumn key={cIdx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
                           ))}
@@ -126,7 +138,7 @@ export default function Prices({ data }: { data: PricingData }) {
                     ))}
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16">
                     {activeZone.categories?.map((cat, idx) => (
                       <PriceColumn key={idx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
                     ))}
@@ -140,10 +152,10 @@ export default function Prices({ data }: { data: PricingData }) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
           >
             {data.abonnements.map((abon, idx) => (
-              <div key={idx} className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+              <div key={idx} className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-2xl md:rounded-3xl p-5 md:p-8 flex flex-col items-center text-center relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF2E63]/5 blur-3xl group-hover:bg-[#FF2E63]/10 transition-colors" />
                 <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-[0.3em] mb-4">Abonnement</span>
                 <h4 className="font-tactic font-black text-3xl text-white mb-2">{abon.name}</h4>
@@ -173,16 +185,16 @@ export default function Prices({ data }: { data: PricingData }) {
         )}
 
         {/* --- APP BANNER --- */}
-        <div className="mt-20 relative overflow-hidden rounded-2xl border border-[#FF2E63]/30 bg-[#111]">
+        <div className="mt-12 md:mt-20 relative overflow-hidden rounded-2xl border border-[#FF2E63]/30 bg-[#111]">
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-gradient-to-l from-[#FF2E63]/10 to-transparent" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between p-8 md:p-10 gap-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between p-5 sm:p-8 md:p-10 gap-6 md:gap-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
               <div className="bg-[#FF2E63] p-4 rounded-2xl text-white shadow-[0_0_30px_#FF2E63]">
                 <Smartphone size={36} />
               </div>
               <div className="text-center md:text-left">
-                <h4 className="font-tactic font-black text-2xl md:text-3xl text-white uppercase mb-2">
+                <h4 className="font-tactic font-black text-xl sm:text-2xl md:text-3xl text-white uppercase mb-2 leading-tight">
                   Скидка 5% в приложении
                 </h4>
                 <p className="font-inter text-sm text-gray-400 max-w-md mb-4 md:mb-0">
@@ -221,17 +233,55 @@ export default function Prices({ data }: { data: PricingData }) {
 
 // --- ВСПОМОГАТЕЛЬНЫЕ КОМПОНЕНТЫ ---
 
+function ZoneGallery({ zoneId, zoneName }: { zoneId: string; zoneName: string }) {
+  const photos = zonePhotos[zoneId] || zonePhotos.common;
+
+  return (
+    <motion.div
+      key={zoneId}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="grid grid-cols-2 md:grid-cols-3 grid-rows-[190px_110px] md:grid-rows-1 gap-2 md:gap-3 mb-8 md:mb-12"
+    >
+      {photos.map((photo, index) => (
+        <div
+          key={photo}
+          className={`relative overflow-hidden border border-white/10 bg-[#111] ${
+            index === 0
+              ? "col-span-2 md:col-span-1 row-span-1 md:h-[230px] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
+              : `h-[110px] md:h-[230px] ${index === 2 ? "rounded-br-2xl md:rounded-r-2xl" : "rounded-bl-2xl md:rounded-none"}`
+          }`}
+        >
+          <Image
+            src={photo}
+            alt={`${zoneName} — фото игровой зоны ${index + 1}`}
+            fill
+            sizes={index === 0 ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 768px) 50vw, 33vw"}
+            className="object-cover transition-transform duration-700 hover:scale-105"
+            priority={index === 0}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+          <span className="absolute bottom-2 left-3 font-chakra font-black text-[9px] text-white/70 uppercase tracking-[0.18em]">
+            0{index + 1}
+          </span>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
 function PriceColumn({ title, items, isWeekend, color }: { title: string, items: PriceItem[], isWeekend: boolean, color: string }) {
   return (
-    <div className={`bg-[#0A0A0A] border border-white/5 rounded-2xl p-6 md:p-8 ${!items ? 'hidden' : ''}`}>
-      <div className="flex items-center gap-3 mb-8">
+    <div className={`bg-[#0A0A0A] border border-white/5 rounded-2xl p-4 sm:p-5 md:p-8 ${!items ? 'hidden' : ''}`}>
+      <div className="flex items-center gap-3 mb-5 md:mb-8">
         <div className="p-2 rounded-lg bg-opacity-10" style={{ backgroundColor: `${color}20`, color: color }}>
           <Clock size={20} />
         </div>
-        <h4 className="font-tactic font-bold text-xl text-white uppercase tracking-wide">{title}</h4>
+        <h4 className="font-tactic font-bold text-lg md:text-xl text-white uppercase tracking-wide leading-tight">{title}</h4>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {items?.map((item, idx) => (
           <PriceRow key={idx} item={item} isWeekend={isWeekend} />
         ))}
@@ -246,35 +296,35 @@ function PriceRow({ item, isWeekend }: { item: PriceItem, isWeekend: boolean }) 
 
   return (
     <div className={`
-      relative group flex items-center justify-between p-4 rounded-xl border transition-all duration-300
+      relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 p-3 sm:p-4 rounded-xl border transition-all duration-300
       ${item.isNight
         ? "bg-gradient-to-r from-[#1a0510] to-transparent border-[#FF2E63]/30 hover:border-[#FF2E63]"
         : "bg-[#111] border-white/5 hover:border-white/20"}
     `}>
       {/* Time Info */}
       <div className="flex flex-col">
-        <span className={`font-tactic font-black text-xl uppercase ${item.isNight ? 'text-[#FF2E63]' : 'text-white'}`}>
+        <span className={`font-tactic font-black text-base sm:text-xl uppercase leading-none ${item.isNight ? 'text-[#FF2E63]' : 'text-white'}`}>
           {item.time}
         </span>
-        <span className="font-chakra font-bold text-xs text-gray-500 mt-1 flex items-center gap-2">
+        <span className="font-chakra font-bold text-[10px] sm:text-xs text-gray-500 mt-1.5 flex items-center gap-2 whitespace-nowrap">
           {item.hours}
           {item.isNight && <span className="bg-[#FF2E63] text-white text-[9px] px-1.5 rounded font-bold">HIT</span>}
         </span>
       </div>
 
       {/* Price Info */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
 
         {/* Старая цена */}
         <div className="flex flex-col items-end opacity-50">
-          <span className="font-inter text-[10px] font-bold text-gray-400 uppercase tracking-wider">В клубе</span>
-          <span className="font-chakra font-bold text-lg text-gray-300 decoration-red-500/50 line-through decoration-2">
+          <span className="font-inter text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap">В клубе</span>
+          <span className="font-chakra font-bold text-sm sm:text-lg text-gray-300 decoration-red-500/50 line-through decoration-2">
             {basePrice}₽
           </span>
         </div>
 
         {/* Разделитель */}
-        <div className="w-[1px] h-8 bg-white/10" />
+        <div className="w-[1px] h-8 bg-white/10 shrink-0" />
 
         {/* Новая цена */}
         <div className="flex flex-col items-end relative">
@@ -284,7 +334,7 @@ function PriceRow({ item, isWeekend }: { item: PriceItem, isWeekend: boolean }) 
           </div>
 
           {/* Убрали слово "App", оставили только цифры */}
-          <span className="font-tactic font-black text-2xl text-white">
+          <span className="font-tactic font-black text-xl sm:text-2xl text-white whitespace-nowrap">
             {appPrice}₽
           </span>
         </div>

@@ -1,138 +1,137 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { MapPin, Phone, MessageSquare, Clock, Smartphone, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Clock, MessageSquare, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-const contactMethods = [
-    {
-        icon: Phone,
-        title: 'Телефон',
-        value: '+7 (985) 128-95-38',
-        href: 'tel:+79851289538',
-        color: '#FF2E63'
-    },
-    {
-        icon: MessageSquare,
-        title: 'Telegram',
-        value: '@CyberXNovokos',
-        href: 'https://t.me/CyberXNovokos',
-        color: '#00F0FF'
-    },
-    {
-        icon: MapPin,
-        title: 'Адрес',
-        value: 'ул. Новокосинская, 32',
-        href: 'https://yandex.ru/maps/-/CLhuNRiq',
-        color: '#B900FF'
-    }
+const contacts = [
+  {
+    icon: Phone,
+    label: "ТЕЛЕФОН",
+    value: "+7 (985) 128-95-38",
+    sub: "Бронь / Поддержка",
+    href: "tel:+79851289538"
+  },
+  {
+    icon: MessageSquare,
+    label: "ТЕЛЕГРАМ",
+    value: "@CyberXNovokos",
+    sub: "Онлайн Администратор",
+    href: "https://t.me/CyberXNovokos"
+  },
+  {
+    icon: MapPin,
+    label: "ЛОКАЦИЯ",
+    value: "НОВОКОСИНСКАЯ 32",
+    sub: "ТЦ Новокосино, 2 этаж",
+    href: "https://yandex.ru/maps/-/CTATeV~u"
+  },
+  {
+    icon: Clock,
+    label: "ГРАФИК",
+    value: "24 / 7",
+    sub: "Без выходных",
+    href: null
+  }
 ];
 
 export default function Contacts() {
-    return (
-        <section id="contacts" className="py-24 bg-[#050505] relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-8"
-                        >
-                            <h2 className="font-tactic font-black text-4xl md:text-7xl uppercase italic text-white leading-none mb-6">
-                                МЫ НА <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] to-[#B900FF]">КОННЕКТЕ</span>
-                            </h2>
-                            <p className="font-chakra font-bold text-white/40 uppercase tracking-widest max-w-md">
-                                Приходи играть, бронируй место через приложение или просто заглядывай в гости 24/7.
-                            </p>
-                        </motion.div>
+  return (
+    <section id="contacts" className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden border-t-2 border-white/5">
+      {/* Background FX */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(255,46,99,0.05)_0%,transparent_70%)]" />
+      </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-                            {contactMethods.map((item, idx) =>
-                                item.href ? (
-                                    <motion.a
-                                        key={idx}
-                                        href={item.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        viewport={{ once: true }}
-                                        className="bg-neutral-900/50 border border-white/5 p-6 rounded-3xl hover:border-white/20 transition-all group"
-                                    >
-                                        <div
-                                            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-                                            style={{ backgroundColor: `${item.color}10`, color: item.color }}
-                                        >
-                                            <item.icon size={24} />
-                                        </div>
-                                        <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">{item.title}</div>
-                                        <div className="font-chakra font-black text-sm text-white uppercase tracking-wider">{item.value}</div>
-                                    </motion.a>
-                                ) : (
-                                    <motion.button
-                                        key={idx}
-                                        onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        viewport={{ once: true }}
-                                        className="bg-neutral-900/50 border border-[#FF2E63]/20 p-6 rounded-3xl hover:border-[#FF2E63]/50 transition-all group text-left"
-                                    >
-                                        <div
-                                            className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-                                            style={{ backgroundColor: `${item.color}10`, color: item.color }}
-                                        >
-                                            <item.icon size={24} />
-                                        </div>
-                                        <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">{item.title}</div>
-                                        <div className="font-chakra font-black text-sm text-white uppercase tracking-wider">{item.value}</div>
-                                    </motion.button>
-                                )
-                            )}
+      <div className="container mx-auto max-w-[1400px] px-4 md:px-10 relative z-10">
+        
+        {/* Header */}
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-chakra font-black text-[10px] text-[#FF2E63] tracking-widest uppercase bg-[#111] border border-[#FF2E63]/20 px-2 py-1 skew-x-[-6deg]">
+              <span className="block skew-x-[6deg]">НА СВЯЗИ</span>
+            </span>
+          </div>
+          <h2 className="font-tactic font-black text-4xl md:text-7xl text-white uppercase leading-[0.85] italic">
+            КОНТАКТЫ <br className="hidden md:block" />
+            <span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.5)" }}>И ЛОКАЦИЯ</span>
+          </h2>
+        </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                viewport={{ once: true }}
-                                className="bg-neutral-900/50 border border-white/5 p-6 rounded-3xl"
-                            >
-                                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-[#FF2E63]/10 text-[#FF2E63]">
-                                    <Clock size={24} />
-                                </div>
-                                <div className="font-chakra font-black text-[10px] uppercase text-white/30 tracking-widest mb-1">Режим работы</div>
-                                <div className="font-chakra font-black text-sm text-white uppercase tracking-wider italic">24/7 КРУГЛОСУТОЧНО</div>
-                            </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          
+          {/* Contacts Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-max">
+            {contacts.map((c, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative bg-[#0A0A0A] border-2 border-white/10 hover:border-[#FF2E63] transition-colors p-6 skew-x-[-6deg]"
+              >
+                  <div className="skew-x-[6deg]">
+                    <div className="flex justify-between items-start mb-6">
+                        <div className="w-12 h-12 bg-[#111] border border-white/10 flex items-center justify-center text-[#FF2E63] group-hover:scale-110 transition-transform">
+                            <c.icon size={20} />
                         </div>
-
-                        <div className="flex flex-wrap gap-4">
-                            <button
-                                onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                                className="inline-flex items-center gap-4 bg-[#FF2E63] px-8 py-5 rounded-2xl font-tactic font-black text-lg uppercase italic tracking-widest hover:scale-105 transition-all text-white shadow-[0_10px_30px_rgba(255,46,99,0.3)]"
-                            >
-                                <Smartphone size={24} />
-                                Бронь в приложении
-                                <ChevronRight size={20} />
-                            </button>
+                        <div className="font-chakra font-black text-[9px] text-white/30 uppercase tracking-widest">
+                            {c.label}
                         </div>
-
+                    </div>
+                    
+                    <div className="font-tactic italic font-black text-xl text-white uppercase mb-1">
+                        {c.value}
+                    </div>
+                    <div className="font-chakra text-[10px] font-bold text-white/50 uppercase tracking-widest">
+                        {c.sub}
                     </div>
 
-                    <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-[40px] overflow-hidden border border-white/10 group">
-                        <iframe
-                            src="https://yandex.ru/map-widget/v1/?ll=37.867172%2C55.741887&z=17&pt=37.867172,55.741887,pm2rdm"
-                            width="100%"
-                            height="100%"
-                            frameBorder="0"
-                            className="grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                        ></iframe>
-                        <div className="absolute inset-0 pointer-events-none border-[20px] border-[#050505] rounded-[40px]" />
-                    </div>
-                </div>
+                    {c.href && (
+                        <a href={c.href} target={c.href.startsWith('http') ? '_blank' : '_self'} className="absolute inset-0 z-10" />
+                    )}
+
+                    {c.href && (
+                        <div className="absolute bottom-4 right-4 text-white/20 group-hover:text-[#FF2E63] transition-colors">
+                            <ChevronRight size={20} />
+                        </div>
+                    )}
+                  </div>
+              </motion.div>
+            ))}
+
+            <div className="sm:col-span-2">
+                <a
+                  href="https://yandex.ru/maps/-/CTATeV~u"
+                  target="_blank"
+                  className="group relative w-full inline-flex items-center justify-center gap-4 px-8 py-5 bg-[#FF2E63] border-2 border-[#FF2E63] skew-x-[-6deg] hover:bg-transparent hover:text-[#FF2E63] transition-colors"
+                >
+                  <div className="skew-x-[6deg] flex items-center gap-4">
+                      <span className="font-tactic font-black italic text-sm md:text-lg text-white group-hover:text-[#FF2E63] uppercase">ПОСТРОИТЬ МАРШРУТ</span>
+                      <MapPin size={20} className="text-white group-hover:text-[#FF2E63]" />
+                  </div>
+                </a>
             </div>
-        </section>
-    );
+          </div>
+
+          {/* Map */}
+          <div className="relative w-full h-[400px] lg:h-full min-h-[400px] border-2 border-white/10 bg-[#111] overflow-hidden" 
+               style={{ clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}>
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=37.867178%2C55.742007&z=17&pt=37.867178,55.742007,pm2rdm"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              className="absolute inset-0 w-full h-full grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              title="CyberX Новокосино на Яндекс.Картах"
+            />
+            
+            {/* Overlay grid on map edges */}
+            <div className="absolute inset-0 pointer-events-none border-[10px] border-[#050505]" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 }

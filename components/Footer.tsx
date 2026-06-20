@@ -48,7 +48,7 @@ export default function Footer() {
                             <a href="https://www.tiktok.com/@cyberxnovokosino" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="TikTok">
                                 <TikTokIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://yandex.ru/maps/-/CPA4UJ~I" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Яндекс.Карты">
+                            <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Яндекс.Карты">
                                 <MapPinned size={18} className="text-[#FF2E63]" />
                             </a>
                             <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all flex items-center justify-center" title="2GIS">

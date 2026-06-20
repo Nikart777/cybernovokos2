@@ -64,7 +64,7 @@ export default function ContactsPage() {
                                 <h3 className="font-chakra font-bold text-white uppercase mb-2">Ориентир</h3>
                                 <p className="text-xs text-gray-500 mb-6 font-inter leading-relaxed">Вход в CYBERX рядом с магазином DNS. Работаем на всей площади этажа.</p>
                                 <a
-                                    href="https://yandex.ru/maps/-/CLhuNRiq"
+                                    href="https://yandex.ru/maps/-/CTATeV~u"
                                     target="_blank"
                                     className="py-4 bg-[#FF2E63] rounded-xl font-chakra font-black text-sm uppercase tracking-wider hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] transition-all active:scale-95"
                                 >
