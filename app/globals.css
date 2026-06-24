@@ -5,6 +5,9 @@
 /* --- Базовые настройки --- */
 :root {
   --foreground-rgb: 255, 255, 255;
+  --shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-border-hover: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  --shadow-border-accent: 0 0 0 1px rgba(255, 46, 99, 0.32), 0 18px 60px rgba(255, 46, 99, 0.16);
 }
 
 html {
@@ -24,6 +27,25 @@ body {
   color: rgb(var(--foreground-rgb));
   background: #050505;
   overflow-x: hidden;
+}
+
+@layer utilities {
+  .shadow-border {
+    box-shadow: var(--shadow-border);
+  }
+
+  .shadow-border-hover {
+    box-shadow: var(--shadow-border-hover);
+  }
+
+  .shadow-border-accent {
+    box-shadow: var(--shadow-border-accent);
+  }
+
+  .image-outline-dark {
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    outline-offset: -1px;
+  }
 }
 
 /* Кастомный скроллбар */

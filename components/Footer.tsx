@@ -36,22 +36,22 @@ export default function Footer() {
                         </p>
                         <h4 className="font-tactic font-black text-white uppercase mb-4 tracking-widest text-xs italic">Мы в соцсетях</h4>
                         <div className="flex flex-wrap items-center gap-3">
-                            <a href="https://t.me/CyberXNovokos" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram канал">
+                            <a href="https://t.me/CyberXNovokos" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Telegram канал">
                                 <TelegramIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://t.me/cyberxn32" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Telegram чат">
+                            <a href="https://t.me/cyberxn32" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Telegram чат">
                                 <TelegramIcon size={18} className="text-[#00F0FF]" />
                             </a>
-                            <a href="https://vk.com/club224403383" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all flex items-center justify-center" title="VK">
+                            <a href="https://vk.com/club224403383" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96] flex items-center justify-center" title="VK">
                                 <span className="text-[#0077FF] font-chakra font-black text-sm">VK</span>
                             </a>
-                            <a href="https://www.tiktok.com/@cyberxnovokosino" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="TikTok">
+                            <a href="https://www.tiktok.com/@cyberxnovokosino" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="TikTok">
                                 <TikTokIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all" title="Яндекс.Карты">
+                            <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Яндекс.Карты">
                                 <MapPinned size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-all flex items-center justify-center" title="2GIS">
+                            <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96] flex items-center justify-center" title="2GIS">
                                 <span className="text-[#00D664] font-chakra font-black text-xs">2GIS</span>
                             </a>
                         </div>
@@ -136,13 +136,13 @@ export default function Footer() {
                         href="https://art-vision.online/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative flex items-center gap-4 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl transition-all duration-500 hover:bg-white hover:text-black overflow-hidden order-1 md:order-2"
+                        className="group relative flex items-center gap-4 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl transition-[transform,background-color,color,border-color] duration-300 hover:bg-white hover:text-black overflow-hidden order-1 md:order-2 active:scale-[0.96]"
                     >
                         <div className="flex flex-col items-end">
                             <span className="text-[8px] font-chakra font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">Сайт разработан</span>
                             <span className="text-xs font-tactic font-black uppercase tracking-tighter italic">ART.VISION</span>
                         </div>
-                        <div className="w-10 h-10 rounded-xl bg-[#FF2E63] flex items-center justify-center group-hover:rotate-[360deg] transition-all duration-700 shadow-[0_0_20px_rgba(255,46,99,0.3)]">
+                        <div className="w-10 h-10 rounded-xl bg-[#FF2E63] flex items-center justify-center group-hover:rotate-[360deg] transition-transform duration-700 shadow-[0_0_20px_rgba(255,46,99,0.3)]">
                             <ChevronRight size={20} className="text-white group-hover:text-black transition-colors" />
                         </div>
                         <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF2E63] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />

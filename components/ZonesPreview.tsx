@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, Clock } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
@@ -325,20 +325,20 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
 
                     {/* Filters Section */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full xl:w-auto shrink-0">
-                        <div className="flex items-center gap-3 px-5 h-12 bg-[#111] border-2 border-white/10 w-full sm:w-auto justify-center skew-x-[-12deg]">
+                        <div className="flex items-center gap-3 px-5 h-12 bg-[#111] shadow-border w-full sm:w-auto justify-center skew-x-[-12deg]">
                             <div className="skew-x-[12deg] flex items-center gap-3">
                                 <Clock size={16} className="text-[#FF2E63]" />
                                 <span className="font-chakra font-bold text-xs text-white/60 uppercase">
                                     {isWeekend ? 'Выходной' : 'Будний день'}
                                 </span>
                                 <div className="w-[2px] h-3 bg-white/20" />
-                                <span className="font-chakra font-bold text-xs text-white">
+                                <span className="font-chakra font-bold text-xs text-white tabular-nums">
                                     {currentTime.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
                                 </span>
                             </div>
                         </div>
 
-                        <div className="bg-[#111] p-1 border-2 border-white/10 flex relative h-12 w-full sm:w-[240px] items-center shrink-0 skew-x-[-12deg]">
+                        <div className="bg-[#111] p-1 shadow-border flex relative h-12 w-full sm:w-[240px] items-center shrink-0 skew-x-[-12deg]">
                             <motion.div
                                 className="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#FF2E63] z-0"
                                 initial={false}
@@ -368,7 +368,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
 
                 {/* DESKTOP TRACK: Framer Motion Sticky Scroll */}
                 <div className="hidden md:flex relative w-full z-20 items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
-                    <motion.div style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center will-change-transform transform-gpu">
+                    <motion.div style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center transform-gpu">
                         {zones.map((zone, idx) => (
                             <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-[95%] shrink-0 flex items-center">
                                 <ZoneCard 
@@ -418,7 +418,7 @@ function ZoneCard({
     const statusLabel = isFull ? 'ПИТ-СТОП ЗАНЯТ' : 'СВОБОДНО';
 
     return (
-        <div className="relative w-full h-auto md:h-full bg-[#0A0A0A] border-2 border-white/10 group flex flex-col md:flex-row transform-gpu overflow-hidden">
+        <div className="relative w-full h-auto md:h-full bg-[#0A0A0A] shadow-border group flex flex-col md:flex-row transform-gpu overflow-hidden">
             {/* Картинка: Жесткий диагональный срез на десктопе */}
             <div className="relative w-full h-[220px] md:w-[55%] md:h-full shrink-0 z-0">
                 <div className="absolute inset-0 md:[clip-path:polygon(0_0,100%_0,85%_100%,0_100%)]">
@@ -427,7 +427,7 @@ function ZoneCard({
                             key={src}
                             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === imgIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                         >
-                            <Image src={src} alt={zone.name} fill className="object-cover" />
+                            <Image src={src} alt={zone.name} fill className="object-cover image-outline-dark" />
                         </div>
                     ))}
                     {/* Градиент для затемнения подложки номера */}
@@ -437,7 +437,7 @@ function ZoneCard({
                 {/* Номер зоны поверх картинки */}
                 <div className="absolute top-4 left-4 z-30 flex items-center">
                     <div className="bg-[#FF2E63] text-black font-tactic italic font-black text-3xl px-3 py-1 skew-x-[-12deg]">
-                        <span className="block skew-x-[12deg] leading-none">{String(idx).padStart(2, '0')}</span>
+                        <span className="block skew-x-[12deg] leading-none tabular-nums">{String(idx).padStart(2, '0')}</span>
                     </div>
                     {zone.isNew && <div className="ml-2 bg-[#00F0FF] text-black font-chakra font-black text-[10px] px-2 py-1 skew-x-[-12deg] uppercase"><span className="block skew-x-[12deg]">NEW</span></div>}
                     {zone.isPopular && <div className="ml-2 bg-[#FFD700] text-black font-chakra font-black text-[10px] px-2 py-1 skew-x-[-12deg] uppercase"><span className="block skew-x-[12deg] flex items-center gap-1"><Star size={10}/>HIT</span></div>}
@@ -449,8 +449,8 @@ function ZoneCard({
                 
                 {/* Заголовок */}
                 <div className="mb-4">
-                    <h3 className="font-tactic font-black text-3xl sm:text-4xl lg:text-5xl uppercase text-white leading-none italic group-hover:text-[#FF2E63] transition-colors">{zone.name}</h3>
-                    <p className="font-chakra font-bold tracking-widest text-[10px] md:text-xs text-white/50 uppercase mt-2 border-l-2 border-[#FF2E63] pl-2">{zone.description}</p>
+                    <h3 className="font-tactic font-black text-3xl sm:text-4xl lg:text-5xl uppercase text-white leading-none italic text-balance group-hover:text-[#FF2E63] transition-colors">{zone.name}</h3>
+                    <p className="font-chakra font-bold tracking-widest text-[10px] md:text-xs text-white/50 uppercase mt-2 border-l-2 border-[#FF2E63] pl-2 text-pretty">{zone.description}</p>
                 </div>
                 
                 {/* Телеметрия (Характеристики) */}
@@ -464,14 +464,14 @@ function ZoneCard({
                 </div>
 
                 {/* Табло свободных мест (STATUS) */}
-                <div className="border border-white/10 bg-[#111] p-3 md:p-4 mb-4 flex items-center justify-between skew-x-[-6deg]">
+                <div className="bg-[#111] shadow-border p-3 md:p-4 mb-4 flex items-center justify-between skew-x-[-6deg]">
                     <div className="skew-x-[6deg] flex flex-col">
                         <span className="font-chakra font-black text-[10px] uppercase text-white/40 tracking-widest">STATUS</span>
                         <span className="font-tactic text-xs italic mt-1" style={{ color: statusColor }}>{statusLabel}</span>
                     </div>
                     <div className="skew-x-[6deg] flex items-end gap-1">
-                        <span className="font-tactic font-black text-3xl leading-none" style={{ color: statusColor }}>{status ? freePc : '-'}</span>
-                        <span className="font-chakra text-xs text-white/30 font-bold mb-1">/ {status ? totalPc : '-'}</span>
+                        <span className="font-tactic font-black text-3xl leading-none tabular-nums" style={{ color: statusColor }}>{status ? freePc : '-'}</span>
+                        <span className="font-chakra text-xs text-white/30 font-bold mb-1 tabular-nums">/ {status ? totalPc : '-'}</span>
                     </div>
                 </div>
 
@@ -510,7 +510,7 @@ function ZoneCard({
                                             <span className="bg-[#FF2E63] text-white font-chakra font-bold text-[7px] px-1.5 py-[2px] uppercase rounded-sm tracking-wider mb-1.5 leading-none shadow-[0_0_10px_rgba(255,46,99,0.3)]">
                                                 В приложении
                                             </span>
-                                            <span className={`font-tactic font-black text-xl md:text-2xl leading-none ${isMain ? 'text-white' : 'text-white/80'}`}>
+                                            <span className={`font-tactic font-black text-xl md:text-2xl leading-none tabular-nums ${isMain ? 'text-white' : 'text-white/80'}`}>
                                                 {appP}₽
                                             </span>
                                         </div>
@@ -521,7 +521,7 @@ function ZoneCard({
                                                 <span className="font-chakra font-bold text-[7px] text-white uppercase tracking-wider mb-1 leading-none">
                                                     На кассе
                                                 </span>
-                                                <span className="font-tactic font-bold text-xs text-white line-through decoration-[#FF2E63] leading-none">
+                                                <span className="font-tactic font-bold text-xs text-white line-through decoration-[#FF2E63] leading-none tabular-nums">
                                                     {p}₽
                                                 </span>
                                             </div>

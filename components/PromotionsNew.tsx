@@ -82,7 +82,7 @@ export default function PromotionsNew() {
             </span>
           </div>
           
-          <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-7xl uppercase leading-[0.85] text-white italic">
+          <h2 className="font-tactic font-black text-4xl sm:text-5xl md:text-7xl uppercase leading-[0.85] text-white italic text-balance">
             ЛУТАЙ <span className="text-transparent" style={{ WebkitTextStroke: '2px #00F0FF' }}>БОНУСЫ</span>
           </h2>
         </motion.div>
@@ -98,7 +98,7 @@ export default function PromotionsNew() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               onMouseEnter={() => setHoveredId(promo.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative bg-[#0a0a0a] border-2 border-white/10 p-6 flex flex-col skew-x-[-6deg] transition-colors duration-300 hover:border-white/30 h-full"
+              className="group relative bg-[#0a0a0a] shadow-border p-6 flex flex-col skew-x-[-6deg] transition-[box-shadow] duration-150 ease-out hover:shadow-border-hover h-full"
             >
               <div className="skew-x-[6deg] flex flex-col h-full">
                   {/* Color Line Top */}
@@ -115,17 +115,17 @@ export default function PromotionsNew() {
                   </div>
 
                   {/* Text */}
-                  <h3 className="font-tactic font-black text-2xl text-white uppercase italic leading-none mb-3">
+                  <h3 className="font-tactic font-black text-2xl text-white uppercase italic leading-none mb-3 text-balance">
                     {promo.title}
                   </h3>
-                  <p className="font-chakra text-xs text-white/50 leading-relaxed font-bold uppercase mb-8 flex-grow">
+                  <p className="font-chakra text-xs text-white/50 leading-relaxed font-bold uppercase mb-8 flex-grow text-pretty">
                     {promo.desc}
                   </p>
 
                   {/* Button */}
                   <button
                     onClick={() => handleOpen(promo.action)}
-                    className="mt-auto flex items-center justify-between w-full bg-[#111] border border-white/10 px-4 py-3 group-hover:border-white/30 transition-colors"
+                    className="mt-auto flex items-center justify-between w-full bg-[#111] shadow-border px-4 py-3 group-hover:shadow-border-hover transition-[transform,box-shadow] duration-150 ease-out active:scale-[0.96]"
                   >
                     <span className="font-tactic font-black text-sm uppercase italic text-white/80 group-hover:text-white">
                       {promo.btn}
@@ -143,7 +143,7 @@ export default function PromotionsNew() {
             href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 bg-[#111] border-2 border-white/10 px-6 py-4 skew-x-[-12deg] hover:border-[#FF2E63] transition-colors"
+            className="group flex items-center gap-3 bg-[#111] shadow-border px-6 py-4 skew-x-[-12deg] hover:shadow-border-hover transition-[transform,box-shadow] duration-150 ease-out active:scale-[0.96]"
           >
             <div className="skew-x-[12deg] flex items-center gap-3">
                 <Zap size={20} className="text-[#FF2E63] group-hover:animate-pulse" />

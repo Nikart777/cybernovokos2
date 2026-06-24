@@ -74,7 +74,7 @@ export default function HeroNew() {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-40 saturate-125 scale-105"
+            className="object-cover opacity-40 saturate-125 scale-105 image-outline-dark"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0.7)_40%,rgba(5,5,5,0.4)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.8)_0%,rgba(5,5,5,0.1)_48%,#050505_100%)]" />
@@ -90,7 +90,7 @@ export default function HeroNew() {
             className="w-full"
           >
             {/* LOGO & STATUS */}
-            <div className="mb-4 md:mb-6 inline-flex flex-wrap items-center gap-2 sm:gap-3 border-2 border-white/10 bg-[#111] px-3 sm:px-4 py-2 skew-x-[-12deg] max-w-[90vw]">
+            <div className="mb-4 md:mb-6 inline-flex flex-wrap items-center gap-2 sm:gap-3 bg-[#111] shadow-border px-3 sm:px-4 py-2 skew-x-[-12deg] max-w-[90vw]">
               <div className="skew-x-[12deg] flex flex-wrap items-center gap-2 sm:gap-3">
                 <Image src="/logo new.png" alt="CyberX Новокосино" width={32} height={32} className="h-4 sm:h-6 w-auto object-contain shrink-0" />
                 <div className="w-[2px] h-3 sm:h-4 bg-[#FF2E63] hidden min-[380px]:block" />
@@ -105,7 +105,7 @@ export default function HeroNew() {
             </div>
             
             {/* H1 HEADER */}
-            <h1 className="font-tactic text-[1.8rem] min-[360px]:text-[2rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-black uppercase italic leading-[0.9] tracking-normal text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+            <h1 className="font-tactic text-[1.8rem] min-[360px]:text-[2rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-black uppercase italic leading-[0.9] tracking-normal text-white text-balance drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
               ТВОЙ ВЕЧЕР <br/>
               <span className="text-transparent hidden md:inline" style={{ WebkitTextStroke: '2px #FF2E63' }}>НАЧИНАЕТСЯ</span>
               <span className="text-transparent md:hidden" style={{ WebkitTextStroke: '1px #FF2E63' }}>НАЧИНАЕТСЯ</span> <br/>
@@ -115,7 +115,7 @@ export default function HeroNew() {
             {/* TELEMETRY HUD (SPECS) */}
             <div className="mt-6 mb-6 md:mb-8 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-5xl">
               {specs.map((spec, i) => (
-                <div key={i} className="bg-[#111] border-2 border-white/10 p-2 sm:p-3 md:p-4 flex flex-col justify-center skew-x-[-6deg] hover:border-[#FF2E63]/50 transition-colors group">
+                <div key={i} className="bg-[#111] shadow-border p-2 sm:p-3 md:p-4 flex flex-col justify-center skew-x-[-6deg] hover:shadow-border-hover transition-[box-shadow] duration-150 ease-out group">
                     <div className="skew-x-[6deg] flex flex-col">
                         <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
                             <spec.icon size={14} style={{ color: spec.color }} className="group-hover:scale-110 transition-transform" />
@@ -132,7 +132,7 @@ export default function HeroNew() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 hidden md:flex">
               <button
                 onClick={openBooking}
-                className="group relative inline-flex h-12 min-[380px]:h-14 md:h-16 items-center justify-center bg-[#FF2E63] px-6 sm:px-8 border-2 border-[#FF2E63] skew-x-[-12deg] transition-all hover:bg-[#FF2E63]/80 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-95"
+                className="group relative inline-flex h-12 min-[380px]:h-14 md:h-16 items-center justify-center bg-[#FF2E63] px-6 sm:px-8 shadow-border-accent skew-x-[-12deg] transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-[0.96]"
               >
                 <div className="skew-x-[12deg] flex items-center gap-2 sm:gap-3">
                   <Smartphone className="h-4 w-4 sm:h-5 sm:w-5 text-white" />

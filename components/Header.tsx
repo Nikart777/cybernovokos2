@@ -52,7 +52,7 @@ export default function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-300 ${scrolled
+                className={`fixed top-0 left-0 right-0 z-[100] transition-[background-color,border-color,padding] duration-300 ${scrolled
                     ? 'bg-[#050505] border-b-2 border-[#FF2E63]/20 py-3'
                     : 'bg-transparent py-6'
                     }`}
@@ -76,10 +76,10 @@ export default function Header() {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="relative font-chakra font-black text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all duration-300 group/link"
+                                        className="relative font-chakra font-black text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 group/link"
                                     >
                                         {link.name}
-                                        <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#FF2E63] transition-all duration-300 group-hover/link:w-full" />
+                                        <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#FF2E63] transition-[width] duration-300 group-hover/link:w-full" />
                                     </Link>
                                 </li>
                             ))}
@@ -87,14 +87,14 @@ export default function Header() {
                         <div className="h-6 w-[2px] bg-white/10 mx-2 skew-x-[-12deg]" />
                         <button
                             onClick={openChat}
-                            className="hidden xl:flex items-center gap-2 font-chakra font-black text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#00F0FF] transition-all mr-2 group/chat"
+                            className="hidden xl:flex items-center gap-2 font-chakra font-black text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#00F0FF] transition-colors mr-2 group/chat"
                         >
                             <MessageSquare size={14} className="group-hover/chat:scale-110 transition-transform" />
                             Чат с админом
                         </button>
                         <button
                             onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="group relative flex items-center justify-center bg-[#FF2E63] border-2 border-[#FF2E63] px-6 py-3 skew-x-[-12deg] transition-all hover:bg-[#FF2E63]/80 hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] active:scale-95"
+                            className="group relative flex items-center justify-center bg-[#FF2E63] shadow-border-accent px-6 py-3 skew-x-[-12deg] transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] active:scale-[0.96]"
                         >
                             <div className="skew-x-[12deg] flex items-center gap-2">
                                 <Smartphone size={16} className="text-white group-hover:rotate-12 transition-transform" />
@@ -107,12 +107,12 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden relative z-[110] p-2 bg-[#111] border-2 border-white/10 text-white hover:border-[#FF2E63] hover:text-[#FF2E63] active:scale-95 transition-all skew-x-[-6deg]"
+                        className="lg:hidden relative z-[110] p-2 bg-[#111] shadow-border text-white hover:shadow-border-hover hover:text-[#FF2E63] active:scale-[0.96] transition-[transform,color,box-shadow] duration-150 ease-out skew-x-[-6deg]"
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                     >
                         <div className="skew-x-[6deg]">
-                            <AnimatePresence mode="wait">
+                            <AnimatePresence initial={false} mode="wait">
                                 {isOpen ? (
                                     <motion.div
                                         key="close"
@@ -141,7 +141,7 @@ export default function Header() {
             </header>
 
             {/* Mobile Menu - Full Screen Overlay */}
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -209,7 +209,7 @@ export default function Header() {
                                         setIsOpen(false);
                                         window.dispatchEvent(new CustomEvent('open-booking'));
                                     }}
-                                    className="w-full flex items-center justify-center bg-[#FF2E63] border-2 border-[#FF2E63] py-4 skew-x-[-6deg] active:scale-95 transition-transform"
+                                    className="w-full flex items-center justify-center bg-[#FF2E63] shadow-border-accent py-4 skew-x-[-6deg] active:scale-[0.96] transition-transform duration-150 ease-out"
                                 >
                                     <div className="skew-x-[6deg] flex items-center gap-3">
                                         <Smartphone size={18} className="text-white" />
@@ -228,7 +228,7 @@ export default function Header() {
                                         setIsOpen(false);
                                         openChat();
                                     }}
-                                    className="w-full flex items-center justify-center bg-[#111] border-2 border-white/10 py-4 skew-x-[-6deg] active:scale-95 transition-colors hover:border-[#FF2E63]"
+                                    className="w-full flex items-center justify-center bg-[#111] shadow-border py-4 skew-x-[-6deg] active:scale-[0.96] transition-[transform,box-shadow] duration-150 ease-out hover:shadow-border-hover"
                                 >
                                     <div className="skew-x-[6deg] flex items-center gap-3">
                                         <MessageSquare size={18} className="text-[#00F0FF]" />
@@ -245,14 +245,14 @@ export default function Header() {
                                     transition={{ delay: 0.6 }}
                                     className="grid grid-cols-2 gap-3"
                                 >
-                                    <div className="flex flex-col items-center gap-2 p-3 bg-[#111] border-2 border-white/10 skew-x-[-6deg]">
+                                    <div className="flex flex-col items-center gap-2 p-3 bg-[#111] shadow-border skew-x-[-6deg]">
                                         <div className="skew-x-[6deg] flex flex-col items-center">
                                             <MapPin className="text-[#FF2E63] mb-1" size={16} />
                                             <p className="text-[8px] text-white/50 font-chakra font-black uppercase tracking-widest">ЛОКАЦИЯ</p>
                                             <p className="text-xs text-white font-chakra font-bold">НОВОКОСИНО, 32</p>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-center gap-2 p-3 bg-[#111] border-2 border-white/10 skew-x-[-6deg]">
+                                    <div className="flex flex-col items-center gap-2 p-3 bg-[#111] shadow-border skew-x-[-6deg]">
                                         <div className="skew-x-[6deg] flex flex-col items-center">
                                             <Clock className="text-[#00F0FF] mb-1" size={16} />
                                             <p className="text-[8px] text-white/50 font-chakra font-black uppercase tracking-widest">РЕЖИМ РАБОТЫ</p>
