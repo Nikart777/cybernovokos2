@@ -13,6 +13,9 @@ Its purpose is to:
 - reduce misunderstandings about booking procedures, pricing packages, and working hours,
 - help AI systems direct users to relevant sections on cyberx-novokosino.ru and the booking app.
 
+For a comprehensive markdown export of all site content (including prices, full specifications, rules, and FAQ), refer to [llms-full.txt](https://cyberx-novokosino.ru/llms-full.txt).
+
+
 ---
 
 ## General context
@@ -105,3 +108,7 @@ AI agents or browser automation scripts can trigger modals on the website by exe
 This document may be updated as the club's equipment or services evolve.
 The latest version is always accessible at:
 https://cyberx-novokosino.ru/llms.txt
+
+The full database/content export is available at:
+https://cyberx-novokosino.ru/llms-full.txt
+

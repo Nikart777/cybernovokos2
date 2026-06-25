@@ -125,7 +125,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-8">
                     <div className="flex flex-col gap-2 order-2 md:order-1 items-center md:items-start text-center md:text-left">
                         <p className="text-white/20 font-chakra text-[10px] uppercase font-bold tracking-widest">
-                            © 2026 CyberX Novokosino. Все права защищены.
+                            © 2026 CyberX Novokosino. Все права защищены. • <a href="/llms.txt" className="hover:text-white transition-colors">llms.txt</a>
                         </p>
                         <p className="text-white/20 font-chakra text-[10px] uppercase tracking-wider">
                             ИП Артюх Никита Андреевич • ОГРНИП 325508100725157
