@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
 
 // Define the available legal documents
 const DOCUMENTS: Record<string, { title: string; filename: string }> = {
@@ -96,9 +99,22 @@ export default function LegalDocumentPage({ params }: { params: { slug: string }
         };
 
         return (
-            <article className="prose-container">
-                {renderContent()}
-            </article>
+            <div className="flex flex-col">
+                <div className="mb-8 self-start">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF2E63] text-white font-chakra font-black text-xs uppercase tracking-widest transition-all skew-x-[-12deg] hover:bg-[#FF2E63]/80 hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] active:scale-[0.98] select-none"
+                    >
+                        <span className="skew-x-[12deg] flex items-center gap-1.5">
+                            <ArrowLeft size={14} className="stroke-[3px]" />
+                            Назад на главную
+                        </span>
+                    </Link>
+                </div>
+                <article className="prose-container">
+                    {renderContent()}
+                </article>
+            </div>
         );
 
     } catch (error) {
