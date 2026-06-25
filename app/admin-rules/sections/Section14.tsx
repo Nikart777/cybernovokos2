@@ -237,24 +237,35 @@ export function Section14() {
                             <h4 className="font-bold flex items-center gap-2">
                                 <AlertCircle size={18} className="text-amber-600" /> Инструкция по исправлению:
                             </h4>
-                            <ol className="list-decimal list-inside space-y-2 text-xs">
+                            <ol className="list-decimal list-inside space-y-2.5 text-xs">
                                 <li>
-                                    Введите стандартный пароль BIOS (<strong>не хранится в открытом коде</strong>, уточняйте в базе паролей клуба).
+                                    При перезагрузке ПК зажмите и удерживайте клавишу <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">Del</kbd>, чтобы зайти в настройки BIOS. Если система просит пароль уже при входе в BIOS, введите стандартный пароль администратора (уточняйте в базе паролей клуба).
                                 </li>
                                 <li>
-                                    Зайдите в настройки BIOS (при перезагрузке зажмите клавишу <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">Del</kbd>).
+                                    В интерфейсе BIOS перейдите в расширенный режим <strong className="text-rose-600">Advanced Mode</strong> (обычно для этого нужно нажать клавишу <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">F2</kbd> или кликнуть по соответствующей кнопке на экране).
                                 </li>
                                 <li>
-                                    Перейдите во вкладку <strong className="text-slate-900">Boot</strong> (убедитесь, что вы находитесь в режиме <strong className="text-slate-900">Advanced Mode</strong>).
+                                    В верхней панели меню перейдите в раздел (вкладку) <strong className="text-slate-900">Boot</strong>.
                                 </li>
                                 <li>
-                                    Найдите параметр <strong className="text-rose-600">Security Option</strong> и измените его значение с <code className="bg-slate-100 px-1 py-0.5 rounded text-rose-600 font-bold">System</code> на <code className="bg-slate-100 px-1 py-0.5 rounded text-emerald-600 font-bold">Setup</code>.
+                                    Найдите строку (параметр) <strong className="text-rose-600">Security Option</strong> и обязательно выберите для неё значение <code className="bg-slate-100 px-1 py-0.5 rounded text-emerald-600 font-bold">Setup</code> (вместо значения <code className="bg-slate-100 px-1 py-0.5 rounded text-rose-600 font-bold">System</code>).
                                 </li>
                                 <li>
-                                    Нажмите <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">F10</kbd> для сохранения настроек и выхода. В появившемся окне сохранения <strong className="text-slate-900">Save & Exit Setup</strong> проверьте список изменений: должна отображаться строка <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">Security Option [System] → [Setup]</code>.
+                                    <strong>Проверка пароля:</strong>
+                                    <ul className="list-disc list-inside ml-4 mt-1 space-y-1 text-slate-600">
+                                        <li>
+                                            Если пароля в BIOS вообще не было установлено (например, настройки полностью сбросились к заводским), то в этом же разделе найдите параметр <strong className="text-slate-900">Set Administrator Password</strong> и установите стандартный пароль клуба (см. базу паролей).
+                                        </li>
+                                        <li>
+                                            Если пароль уже был установлен ранее, ничего с паролями делать не нужно, просто переходите к сохранению.
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    Нажмите <strong className="text-emerald-600">Yes</strong> для подтверждения. ПК перезагрузится, после чего пароль при загрузке компьютера запрашиваться перестанет и начнется штатный запуск Windows.
+                                    Нажмите клавишу <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">F10</kbd> для сохранения настроек и перезагрузки.
+                                </li>
+                                <li>
+                                    На экране появится окно подтверждения <strong className="text-slate-900">Save & Exit Setup</strong> с перечнем изменений. Убедитесь, что там указано <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">Security Option [System] → [Setup]</code> (как на картинке справа), и нажмите кнопку <strong className="text-emerald-600">Yes</strong>.
                                 </li>
                             </ol>
                         </div>
