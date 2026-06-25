@@ -169,6 +169,9 @@ export default function RootLayout({
             <head>
                 <SchemaMarkup schema={businessSchema} />
 
+                {/* Discovery for LLMs */}
+                <link rel="llms" href="/llms.txt" />
+
                 {/* Resource Hints for Performance */}
                 <link rel="preconnect" href="https://mc.yandex.ru" />
                 <link rel="dns-prefetch" href="https://mc.yandex.ru" />
