@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Target, Monitor, Wrench, ShieldAlert, Cpu, HardDrive, Mouse, BotMessageSquare, AlertCircle, RefreshCw, Layers, FileDown, ExternalLink, Terminal } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
@@ -187,7 +188,7 @@ export function Section14() {
                         </div>
                         <div>
                             <span className="text-[10px] font-chakra font-bold uppercase tracking-widest text-rose-100 block mb-1">Пароль от BIOS (Новокосино)</span>
-                            <span className="font-tactic text-3xl md:text-4xl tracking-[0.05em] drop-shadow-md">cyber 1</span>
+                            <span className="font-tactic text-base md:text-lg tracking-[0.05em] drop-shadow-md">См. в базе паролей клуба</span>
                         </div>
                     </div>
 
@@ -218,6 +219,59 @@ export function Section14() {
                         <p className="text-xs font-chakra">
                             ПКМ на красный значок “G” в трее Windows → Выбрать <strong>«Тех. стоп»</strong>.
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Настройка пароля BIOS при загрузке */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm mb-12">
+                <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900 mb-4 flex items-center gap-3">
+                    <Cpu className="text-rose-500" /> Запрос пароля BIOS при загрузке ПК
+                </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div className="lg:col-span-7 font-chakra text-sm text-slate-700 space-y-4">
+                        <p>
+                            Если при включении ПК Windows не загружается, а на экране появляется окно ввода пароля BIOS, это означает, что в настройках материнской платы сбит режим безопасности.
+                        </p>
+                        <div className="bg-amber-50 border border-amber-200 text-amber-900 rounded-2xl p-5 space-y-2">
+                            <h4 className="font-bold flex items-center gap-2">
+                                <AlertCircle size={18} className="text-amber-600" /> Инструкция по исправлению:
+                            </h4>
+                            <ol className="list-decimal list-inside space-y-2 text-xs">
+                                <li>
+                                    Введите стандартный пароль BIOS (<strong>не хранится в открытом коде</strong>, уточняйте в базе паролей клуба).
+                                </li>
+                                <li>
+                                    Зайдите в настройки BIOS (при перезагрузке зажмите клавишу <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">Del</kbd>).
+                                </li>
+                                <li>
+                                    Перейдите во вкладку <strong className="text-slate-900">Boot</strong> (убедитесь, что вы находитесь в режиме <strong className="text-slate-900">Advanced Mode</strong>).
+                                </li>
+                                <li>
+                                    Найдите параметр <strong className="text-rose-600">Security Option</strong> и измените его значение с <code className="bg-slate-100 px-1 py-0.5 rounded text-rose-600 font-bold">System</code> на <code className="bg-slate-100 px-1 py-0.5 rounded text-emerald-600 font-bold">Setup</code>.
+                                </li>
+                                <li>
+                                    Нажмите <kbd className="px-1.5 py-0.5 bg-white border rounded text-slate-800">F10</kbd> для сохранения настроек и выхода. В появившемся окне сохранения <strong className="text-slate-900">Save & Exit Setup</strong> проверьте список изменений: должна отображаться строка <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-800">Security Option [System] → [Setup]</code>.
+                                </li>
+                                <li>
+                                    Нажмите <strong className="text-emerald-600">Yes</strong> для подтверждения. ПК перезагрузится, после чего пароль при загрузке компьютера запрашиваться перестанет и начнется штатный запуск Windows.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div className="lg:col-span-5 flex flex-col items-center">
+                        <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-md max-w-full bg-slate-950 p-1">
+                            <Image
+                                src="/instruktsiya/bios.jpg"
+                                alt="Настройка Security Option в BIOS Gigabyte"
+                                width={600}
+                                height={450}
+                                className="rounded-xl object-contain hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <span className="text-[10px] text-slate-400 font-mono mt-2 text-center uppercase tracking-wider block">
+                            Экран сохранения настроек в BIOS Gigabyte
+                        </span>
                     </div>
                 </div>
             </div>
