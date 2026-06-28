@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "CyberX Новокосино | Главная | Цены, Промокоды, RTX 5070",
   description: "Ищете компьютерный клуб в Новокосино (Москва)? ✅ Забирай промокод на первое посещение! ⚡ Топовые игровые ПК на RTX 5070, мониторы 400 Гц. 📍 ул. Новокосинская, 32. 🕒 Работаем 24/7. Смотреть цены...",
   alternates: {
-    canonical: "https://cyberx-novokosino.ru",
+    canonical: "https://cyberx-novokosino.ru/",
   },
 };
 

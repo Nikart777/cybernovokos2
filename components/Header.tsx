@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const desktopNavLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
-    { name: 'Акции', href: '/#promotions' },
+    { name: 'Промокод', href: '/promo' },
     { name: 'Блог', href: '/blog' },
     { name: 'Контакты', href: '/contacts' },
 ];
@@ -17,7 +17,7 @@ const desktopNavLinks = [
 const mobileNavLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
     { name: 'Цены', href: '/prices' },
-    { name: 'Акции', href: '/#promotions' },
+    { name: 'Промокод', href: '/promo' },
     { name: 'Сертификаты', href: '/certificate' },
     { name: 'Контакты', href: '/contacts' },
 ];
