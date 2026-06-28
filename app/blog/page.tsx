@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, MapPin, Search } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Блог CyberX Новокосино | Цены, промокод, автосимулятор",
+  title: "Блог: цены, промокод, автосимулятор",
   description:
     "Блог CyberX Новокосино: полезные гайды для геймеров Москвы, цены CyberX, промокод на первое посещение, автосимулятор Cyber X и выбор зоны клуба.",
   alternates: {

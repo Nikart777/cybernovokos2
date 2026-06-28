@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Moon, Trophy, Users, ChevronRight, Gift, Zap } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const promotions = [
   {
@@ -139,6 +140,15 @@ export default function PromotionsNew() {
 
         {/* Bottom CTA */}
         <div className="mt-12 flex justify-end">
+          <Link
+            href="/promo"
+            className="group mr-4 flex items-center gap-3 bg-[#111] shadow-border px-6 py-4 skew-x-[-12deg] hover:shadow-border-hover transition-[transform,box-shadow] duration-150 ease-out active:scale-[0.96]"
+          >
+            <div className="skew-x-[12deg] flex items-center gap-3">
+                <Gift size={20} className="text-[#00F0FF]" />
+                <span className="font-tactic font-black text-sm uppercase italic text-white">Все условия</span>
+            </div>
+          </Link>
           <a
             href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
             target="_blank"
