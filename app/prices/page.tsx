@@ -9,7 +9,7 @@ import { PricingData } from "../lib/types";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
 export const metadata: Metadata = {
-    title: "Цены на услуги киберклуба | CyberX Новокосино | Москва",
+    title: "Цены на услуги киберклуба в Новокосино | Москва",
     description: "Актуальные цены и тарифы компьютерного клуба CyberX Новокосино. Пакеты 'Утро', 'День', 'Вечер' и 'Ночь'. Скидки за бронирование в приложении. Работаем 24/7.",
     keywords: ["цены компьютерный клуб Новокосино", "тарифы CyberX", "стоимость игры в приставку Москва", "ночные пакеты киберклуб"],
     alternates: {

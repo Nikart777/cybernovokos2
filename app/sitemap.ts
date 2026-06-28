@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [
         {
-            url: baseUrl, // Главная страница обычно без слеша в строке
+            url: `${baseUrl}/`, // Совпадает с canonical главной страницы
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 1,
@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: 'monthly', // Контакты меняются редко
             priority: 0.5,
+        },
+        {
+            url: `${baseUrl}/promo`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.85,
         },
         {
             url: `${baseUrl}/simracing`, // Убрали слеш

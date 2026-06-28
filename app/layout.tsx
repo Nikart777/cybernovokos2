@@ -107,6 +107,16 @@ export const metadata: Metadata = {
         yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || 'cd200b561d2e01f0',
         google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'IZVh2DMG0VJFUAK_GWOa5xpAq8v1PoooDPuaRl8O2RM',
     },
+    icons: {
+        icon: [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+            { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+        ],
+        apple: [
+            { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        ],
+    },
 };
 
 export default function RootLayout({
@@ -187,10 +197,12 @@ export default function RootLayout({
                 />
                 <Script id="google-analytics" strategy="afterInteractive">
                     {`
+            if (location.hostname === 'cyberx-novokosino.ru' || location.hostname === 'www.cyberx-novokosino.ru') {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-T6L6MKR798');
+            }
           `}
                 </Script>
 
@@ -199,6 +211,7 @@ export default function RootLayout({
                     type="text/javascript"
                     dangerouslySetInnerHTML={{
                         __html: `
+    if (location.hostname === 'cyberx-novokosino.ru' || location.hostname === 'www.cyberx-novokosino.ru') {
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -207,6 +220,7 @@ export default function RootLayout({
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105894251', 'ym');
 
     ym(105894251, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    }
                         `
                     }}
                 />
