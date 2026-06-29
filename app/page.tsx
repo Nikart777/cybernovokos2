@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  // deploy pipeline smoke test (2026-06-29)
   const filePath = path.join(process.cwd(), "data", "prices.json");
   let pricingData: PricingData | undefined;
 
