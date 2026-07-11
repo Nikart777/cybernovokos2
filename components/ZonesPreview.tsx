@@ -1,11 +1,12 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
 
 import { Monitor, Users, Tv, Gauge, ChevronRight, Gamepad2, Crown, Star, Clock } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { PricingData } from '@/app/lib/types';
+import { useSectionProgress } from '@/components/hooks/useSectionProgress';
 
 
 type ClubZone = {
@@ -64,12 +65,28 @@ function calculateAppPrice(basePrice: number): number {
 }
 
 export default function ZonesPreview({ pricingData }: { pricingData?: PricingData }) {
-    const targetRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-    });
-    
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+    const targetRef = useRef<HTMLElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+    // Reliable scroll driver (framer's useScroll proved flaky on this site):
+    // horizontal travel is derived from the real track width.
+    const p = useSectionProgress(targetRef);
+    const [dist, setDist] = useState(0);
+
+    useEffect(() => {
+        const measure = () => {
+            if (!trackRef.current) return;
+            setDist(Math.max(0, trackRef.current.scrollWidth - window.innerWidth));
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        const t = setTimeout(measure, 400);
+        return () => {
+            window.removeEventListener('resize', measure);
+            clearTimeout(t);
+        };
+    }, []);
+
+    const x = useTransform(p, [0, 1], [0, -dist]);
 
     const [activePriceTab, setActivePriceTab] = useState<'week' | 'end'>('week');
     const [clubZones, setClubZones] = useState<ClubZone[] | null>(null);
@@ -276,7 +293,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     ];
 
     return (
-        <section ref={targetRef} className="relative md:h-[600vh] bg-[#050505]" id="zones">
+        <section ref={targetRef} className="relative md:h-[800vh] bg-[#050505]" id="zones">
             <div className="md:sticky md:top-0 md:h-screen w-full flex flex-col justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-[#050505] pointer-events-none" />
                 
@@ -366,21 +383,31 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
                     ))}
                 </div>
 
-                {/* DESKTOP TRACK: Framer Motion Sticky Scroll */}
+                {/* DESKTOP TRACK: scroll-driven horizontal travel */}
                 <div className="hidden md:flex relative w-full z-20 items-center mb-10 md:mb-0 pb-24 md:pb-0 h-[65vh] min-h-[500px] max-h-[800px]">
-                    <motion.div style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center transform-gpu">
+                    <motion.div ref={trackRef} style={{ x }} className="flex gap-8 md:gap-12 px-4 md:px-10 h-full w-max items-center transform-gpu will-change-transform">
                         {zones.map((zone, idx) => (
                             <div key={zone.id} className="w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1100px] h-[95%] shrink-0 flex items-center">
-                                <ZoneCard 
-                                    zone={zone} 
+                                <ZoneCard
+                                    zone={zone}
                                     idx={idx + 1}
-                                    status={getZoneStatus(zone.langameTitle)} 
-                                    activePriceTab={activePriceTab} 
-                                    getCurrentPrice={getCurrentPrice} 
+                                    status={getZoneStatus(zone.langameTitle)}
+                                    activePriceTab={activePriceTab}
+                                    getCurrentPrice={getCurrentPrice}
                                 />
                             </div>
                         ))}
                     </motion.div>
+                </div>
+
+                {/* Progress rail (desktop pin only) */}
+                <div className="hidden md:block absolute bottom-6 left-0 right-0 z-30 px-6">
+                    <div className="mx-auto h-[3px] w-full max-w-xs overflow-hidden rounded-full bg-white/10">
+                        <motion.div
+                            style={{ scaleX: p }}
+                            className="h-full w-full origin-left rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF2E63]"
+                        />
+                    </div>
                 </div>
             </div>
         </section>

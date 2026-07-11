@@ -1,15 +1,11 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import {
-  ChevronsDown,
-  Clock3,
-  Cpu,
-  MonitorUp,
-  Smartphone,
-  Trophy,
-} from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useTransform, MotionValue } from 'framer-motion';
+import { Clock3, Cpu, MonitorUp, Smartphone, Trophy } from 'lucide-react';
 import Image from 'next/image';
+import ScrollSequence from '@/components/ScrollSequence';
+import { useSectionProgress } from '@/components/hooks/useSectionProgress';
 
 const specs = [
   { label: 'RTX 5070', text: 'УЛЬТРА ГРАФИКА', icon: Cpu, color: '#00F0FF' },
@@ -18,154 +14,172 @@ const specs = [
   { label: '400 БОНУСОВ', text: 'НА ПЕРВЫЙ ВИЗИТ', icon: Trophy, color: '#FFD700' },
 ];
 
-function SignalGrid() {
+/** One telemetry tile that snaps in during its own slice of the scroll. */
+function SpecTile({ p, spec, i }: { p: MotionValue<number>; spec: (typeof specs)[0]; i: number }) {
+  const start = 0.36 + i * 0.06;
+  const opacity = useTransform(p, [start, start + 0.06], [0, 1]);
+  const y = useTransform(p, [start, start + 0.06], [46, 0]);
+  const Icon = spec.icon;
+
   return (
-    <>
-      <div
-        className="absolute inset-0 opacity-[0.09]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
-          backgroundSize: '72px 72px',
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.045]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(0,240,255,0.75) 1px, transparent 1px), linear-gradient(90deg, rgba(255,46,99,0.55) 1px, transparent 1px)',
-          backgroundSize: '18px 18px',
-        }}
-      />
-      <div className="absolute left-0 right-0 top-0 h-32 bg-gradient-to-b from-transparent via-[#00F0FF]/10 to-transparent" />
-      {[14, 31, 52, 75].map((top, index) => (
-        <motion.div
-          key={top}
-          aria-hidden="true"
-          className="absolute left-0 h-px bg-gradient-to-r from-transparent via-[#FF2E63] to-transparent"
-          style={{ top: `${top}%`, width: `${26 + index * 7}%` }}
-          animate={{ x: ['-45vw', '120vw'], opacity: [0, 0.8, 0] }}
-          transition={{
-            duration: 3.6 + index * 0.4,
-            repeat: Infinity,
-            ease: 'linear',
-            delay: index * 0.42,
-          }}
-        />
-      ))}
-    </>
+    <motion.div
+      style={{ opacity, y }}
+      className="bg-[#111]/90 shadow-border p-4 md:p-6 flex flex-col justify-center skew-x-[-6deg] backdrop-blur-sm"
+    >
+      <div className="skew-x-[6deg] flex flex-col">
+        <div className="mb-2 flex items-center gap-2">
+          <Icon size={16} style={{ color: spec.color }} />
+          <span className="font-chakra text-[9px] font-bold uppercase tracking-widest text-white/40">
+            SPEC 0{i + 1}
+          </span>
+        </div>
+        <span className="font-tactic text-xl md:text-3xl uppercase italic leading-none text-white">
+          {spec.label}
+        </span>
+        <span className="mt-1.5 font-chakra text-[9px] md:text-xs font-bold uppercase tracking-wider leading-tight text-white/60">
+          {spec.text}
+        </span>
+      </div>
+    </motion.div>
   );
 }
 
 export default function HeroNew() {
-  const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const p = useSectionProgress(ref);
 
   const openBooking = () => {
     window.dispatchEvent(new CustomEvent('open-booking'));
   };
 
+  // Extra dim while the HUD assembles so tiles stay readable.
+  const dimOpacity = useTransform(p, [0.22, 0.4, 0.85, 1], [0, 0.35, 0.35, 0.5]);
+
+  // Act 1 — headline.
+  const h1Opacity = useTransform(p, [0, 0.22, 0.3], [1, 1, 0]);
+  const h1Y = useTransform(p, [0, 0.3], [0, -70]);
+
+  // Act 2 — telemetry HUD assembles.
+  const hudOpacity = useTransform(p, [0.28, 0.34, 0.62, 0.7], [0, 1, 1, 0]);
+  const hudHeadY = useTransform(p, [0.28, 0.36], [30, 0]);
+
+  // Act 3 — call to action (cross-fades with the HUD, no dead gap).
+  const ctaOpacity = useTransform(p, [0.66, 0.76, 1, 1], [0, 1, 1, 1]);
+  const ctaY = useTransform(p, [0.66, 0.8], [46, 0]);
+  // The act-3 layer covers the screen; only let it catch clicks once visible.
+  const ctaPointer = useTransform(p, (v) => (v > 0.66 ? 'auto' : 'none'));
+
+  const rail = useTransform(p, [0, 1], [0, 1]);
+
   return (
-    <div className="bg-[#050505] text-white">
-      <section id="hero" className="relative min-h-[85svh] md:min-h-[100svh] flex flex-col justify-center overflow-hidden px-4 pt-28 pb-20 md:pt-24 md:pb-16 sm:px-6 lg:px-8 border-b-2 border-[#FF2E63]/20">
+    <section ref={ref} id="hero" className="relative h-[320vh] bg-[#050505] border-b-2 border-[#FF2E63]/20">
+      <div className="sticky top-0 flex h-screen w-full flex-col overflow-hidden pt-[90px]">
+        {/* Scroll-scrubbed frame sequence (twinbru-style) */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/main.webp"
-            alt="Интерьер компьютерного клуба CyberX Новокосино"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-40 saturate-125 scale-105 image-outline-dark"
+          <ScrollSequence
+            progress={p}
+            base="/frames/hero/"
+            count={140}
+            className="absolute inset-0 h-full w-full opacity-90 image-outline-dark"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0.7)_40%,rgba(5,5,5,0.4)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.8)_0%,rgba(5,5,5,0.1)_48%,#050505_100%)]" />
+          {/* Light readability gradients — keep the video visible */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.65)_0%,rgba(5,5,5,0.3)_45%,rgba(5,5,5,0.05)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.6)_0%,rgba(5,5,5,0)_40%,#050505_100%)]" />
+          {/* Corner shade masking the AI watermark baked into the frames */}
+          <div
+            aria-hidden
+            className="absolute bottom-0 right-0 h-[24rem] w-[30rem] bg-[radial-gradient(ellipse_at_bottom_right,rgba(5,5,5,0.98)_0%,rgba(5,5,5,0.85)_40%,transparent_72%)]"
+          />
+          <motion.div style={{ opacity: dimOpacity }} className="absolute inset-0 bg-[#050505]" />
         </div>
 
-        <SignalGrid />
-
-        <div className="container relative z-10 mx-auto max-w-7xl flex flex-col justify-center h-full">
-          <motion.div
-            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full"
-          >
-            {/* LOGO & STATUS */}
-            <div className="mb-4 md:mb-6 inline-flex flex-wrap items-center gap-2 sm:gap-3 bg-[#111] shadow-border px-3 sm:px-4 py-2 skew-x-[-12deg] max-w-[90vw]">
-              <div className="skew-x-[12deg] flex flex-wrap items-center gap-2 sm:gap-3">
-                <Image src="/logo new.png" alt="CyberX Новокосино" width={32} height={32} className="h-4 sm:h-6 w-auto object-contain shrink-0" />
-                <div className="w-[2px] h-3 sm:h-4 bg-[#FF2E63] hidden min-[380px]:block" />
-                <span className="font-chakra text-[9px] sm:text-xs font-black uppercase tracking-widest text-white whitespace-nowrap">
-                  Новокосинская, 32
-                </span>
-                <span className="flex items-center gap-1 font-chakra text-[9px] sm:text-xs font-black uppercase tracking-widest text-[#00F0FF] whitespace-nowrap">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse shrink-0" />
-                  ONLINE 24/7
-                </span>
-              </div>
+        {/* Address plate — always present, top-left */}
+        <div className="container relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="inline-flex max-w-[90vw] flex-wrap items-center gap-2 skew-x-[-12deg] bg-[#111] px-3 py-2 shadow-border sm:gap-3 sm:px-4">
+            <div className="flex flex-wrap items-center gap-2 skew-x-[12deg] sm:gap-3">
+              <Image src="/logo new.png" alt="CyberX Новокосино" width={32} height={32} className="h-4 w-auto shrink-0 object-contain sm:h-6" />
+              <div className="hidden h-3 w-[2px] bg-[#FF2E63] min-[380px]:block sm:h-4" />
+              <span className="whitespace-nowrap font-chakra text-[9px] font-black uppercase tracking-widest text-white sm:text-xs">
+                Новокосинская, 32
+              </span>
+              <span className="whitespace-nowrap font-chakra text-[9px] font-black uppercase tracking-widest text-[#00F0FF] sm:text-xs">
+                ● ONLINE 24/7
+              </span>
             </div>
-            
-            {/* H1 HEADER */}
-            <h1 className="font-tactic text-[1.8rem] min-[360px]:text-[2rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-black uppercase italic leading-[0.9] tracking-normal text-white text-balance drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-              ТВОЙ ВЕЧЕР <br/>
-              <span className="text-transparent hidden md:inline" style={{ WebkitTextStroke: '2px #FF2E63' }}>НАЧИНАЕТСЯ</span>
-              <span className="text-transparent md:hidden" style={{ WebkitTextStroke: '1px #FF2E63' }}>НАЧИНАЕТСЯ</span> <br/>
-              ЗДЕСЬ
-            </h1>
-            
-            {/* TELEMETRY HUD (SPECS) */}
-            <div className="mt-6 mb-6 md:mb-8 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-5xl">
-              {specs.map((spec, i) => (
-                <div key={i} className="bg-[#111] shadow-border p-2 sm:p-3 md:p-4 flex flex-col justify-center skew-x-[-6deg] hover:shadow-border-hover transition-[box-shadow] duration-150 ease-out group">
-                    <div className="skew-x-[6deg] flex flex-col">
-                        <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
-                            <spec.icon size={14} style={{ color: spec.color }} className="group-hover:scale-110 transition-transform" />
-                            <span className="font-chakra font-bold text-[9px] text-white/40 uppercase tracking-widest">SPEC 0{i+1}</span>
-                        </div>
-                        <span className="font-tactic text-base min-[380px]:text-lg md:text-2xl text-white uppercase italic leading-none">{spec.label}</span>
-                        <span className="font-chakra text-[8px] min-[380px]:text-[10px] md:text-xs text-white/60 font-bold uppercase tracking-wider mt-1 leading-tight">{spec.text}</span>
-                    </div>
-                </div>
-              ))}
-            </div>
-
-            {/* ACTION AREA */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 hidden md:flex">
-              <button
-                onClick={openBooking}
-                className="group relative inline-flex h-12 min-[380px]:h-14 md:h-16 items-center justify-center bg-[#FF2E63] px-6 sm:px-8 shadow-border-accent skew-x-[-12deg] transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-[0.96]"
-              >
-                <div className="skew-x-[12deg] flex items-center gap-2 sm:gap-3">
-                  <Smartphone className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-                  <span className="font-tactic font-black text-xs min-[380px]:text-sm md:text-lg uppercase italic text-white leading-none mt-1">
-                    ЗАБРОНИРОВАТЬ МЕСТО
-                  </span>
-                </div>
-              </button>
-              <div className="hidden sm:flex flex-col ml-2">
-                <span className="font-chakra text-[9px] text-white/40 uppercase font-black tracking-widest border-l-2 border-[#FF2E63] pl-2 mb-1">
-                  АВТОМАТИЧЕСКАЯ ПОСАДКА
-                </span>
-                <span className="font-chakra text-[9px] text-white/40 uppercase font-black tracking-widest border-l-2 border-[#00F0FF] pl-2">
-                  БЕЗ ОЖИДАНИЯ В ОЧЕРЕДИ
-                </span>
-              </div>
-            </div>
-
-          </motion.div>
+          </div>
         </div>
 
-        {/* Scroll Cue */}
+        {/* Act 1 — headline */}
         <motion.div
-          className="absolute bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          style={{ opacity: h1Opacity, y: h1Y }}
+          className="pointer-events-none container relative z-10 mx-auto flex max-w-7xl flex-1 flex-col justify-center px-4 sm:px-6 lg:px-8"
         >
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
-            <ChevronsDown className="h-6 w-6 text-[#FF2E63]" />
-          </motion.div>
+          <h1 className="font-tactic text-[2.2rem] min-[360px]:text-[2.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-black uppercase italic leading-[0.9] text-white text-balance drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+            ТВОЙ ВЕЧЕР <br />
+            <span className="hidden text-transparent md:inline" style={{ WebkitTextStroke: '2px #FF2E63' }}>НАЧИНАЕТСЯ</span>
+            <span className="text-transparent md:hidden" style={{ WebkitTextStroke: '1px #FF2E63' }}>НАЧИНАЕТСЯ</span> <br />
+            ЗДЕСЬ
+          </h1>
+          <p className="mt-5 max-w-md font-chakra text-xs font-bold uppercase tracking-[0.25em] text-white/50 md:text-sm">
+            Компьютерный клуб CyberX · Новокосино
+          </p>
         </motion.div>
-      </section>
-    </div>
+
+        {/* Act 2 — telemetry HUD */}
+        <motion.div
+          style={{ opacity: hudOpacity }}
+          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 pt-[90px] sm:px-6"
+        >
+          <motion.div style={{ y: hudHeadY }} className="mb-8 text-center">
+            <span className="mb-3 inline-block skew-x-[-12deg] bg-[#111] px-4 py-1.5 font-chakra text-[10px] font-black uppercase tracking-[0.3em] text-[#00F0FF] shadow-border">
+              <span className="block skew-x-[12deg]">Телеметрия клуба</span>
+            </span>
+            <h2 className="font-tactic text-3xl font-black uppercase italic leading-[0.95] text-white md:text-5xl">
+              Железо, которое <span className="text-[#FF2E63]">тащит</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid w-full max-w-3xl grid-cols-2 gap-3 md:gap-5">
+            {specs.map((spec, i) => (
+              <SpecTile key={spec.label} p={p} spec={spec} i={i} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Act 3 — CTA */}
+        <motion.div
+          style={{ opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointer }}
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 pt-[90px] text-center sm:px-6"
+        >
+          <h2 className="font-tactic text-4xl font-black uppercase italic leading-[0.9] text-white md:text-7xl">
+            Погнали?
+          </h2>
+          <p className="mt-4 font-chakra text-[10px] font-black uppercase tracking-[0.25em] text-white/50 md:text-xs">
+            Автоматическая посадка · Без ожидания в очереди
+          </p>
+          <button
+            onClick={openBooking}
+            className="group relative mt-8 inline-flex h-14 skew-x-[-12deg] items-center justify-center bg-[#FF2E63] px-8 shadow-border-accent transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-[0.96] md:h-16 md:px-10"
+          >
+            <div className="flex skew-x-[12deg] items-center gap-3">
+              <Smartphone className="h-5 w-5 text-white" />
+              <span className="mt-1 font-tactic text-sm font-black uppercase italic leading-none text-white md:text-lg">
+                Забронировать место
+              </span>
+            </div>
+          </button>
+        </motion.div>
+
+        {/* Progress rail */}
+        <div className="absolute bottom-24 left-0 right-0 z-30 px-6 md:bottom-10">
+          <div className="mx-auto h-[3px] w-full max-w-xs overflow-hidden rounded-full bg-white/10">
+            <motion.div
+              style={{ scaleX: rail }}
+              className="h-full w-full origin-left rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF2E63]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
