@@ -152,7 +152,7 @@ export default function GiftCalculator() {
                 {step === 4 && (
                     <div className="animate-fade-in flex flex-col items-center text-center py-8">
                         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#FF2E63]/20 to-[#B900FF]/20 border border-[#FF2E63]/50 flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(255,46,99,0.3)] relative group">
-                            <div className="absolute inset-0 bg-[#FF2E63] rounded-full blur-2xl opacity-20 animate-[pulse_3s_ease-in-out_infinite]"></div>
+                            <div className="absolute inset-0 bg-[#FF2E63] rounded-full blur-2xl opacity-20"></div>
                             <span className="text-5xl">🎯</span>
                         </div>
 

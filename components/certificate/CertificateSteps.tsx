@@ -4,11 +4,14 @@ import { Send } from "lucide-react";
 export default function CertificateSteps({ telegramUrl, telegramText }: { telegramUrl: string, telegramText: string }) {
     return (
         <section className="px-6 py-24 relative overflow-hidden">
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF2E63]/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#B900FF]/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
-                <div className="absolute inset-0 bg-[#050505]/80 backdrop-blur-3xl"></div>
-            </div>
+            <div
+                aria-hidden
+                className="absolute inset-0 z-0 pointer-events-none"
+                style={{
+                    background:
+                        "radial-gradient(40% 40% at 85% 0%, rgba(255,46,99,0.12), transparent 70%), radial-gradient(40% 40% at 15% 100%, rgba(185,0,255,0.12), transparent 70%)",
+                }}
+            />
 
             <div className="container mx-auto max-w-5xl relative z-10 text-center">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-tactic italic uppercase font-black text-white mb-16 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
@@ -47,17 +50,35 @@ export default function CertificateSteps({ telegramUrl, telegramText }: { telegr
                     </div>
                 </div>
 
-                <div className="mt-16 flex justify-center pb-8 border-t border-white/5 pt-12">
-                    <a
-                        href={`${telegramUrl}?text=${telegramText}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex w-full md:w-auto items-center justify-center gap-3 bg-gradient-to-r from-[#FF2E63] to-[#B900FF] border border-white/10 text-white font-chakra italic uppercase py-5 px-10 rounded-2xl font-black text-lg shadow-[0_10px_30px_rgba(255,46,99,0.4)] hover:shadow-[0_15px_40px_rgba(255,46,99,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 relative overflow-hidden"
-                    >
-                        <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:animate-[shine_0.75s_ease-in-out]" />
-                        <Send className="w-6 h-6 md:w-7 md:h-7 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
-                        <span>ОФОРМИТЬ В TELEGRAM</span>
-                    </a>
+                {/* Final call to action */}
+                <div className="mt-20 flex flex-col items-center gap-6 border-t border-white/5 pt-16">
+                    <p className="font-chakra text-xs uppercase tracking-[0.35em] text-[#00F0FF]">
+                        Осталось только написать
+                    </p>
+                    <h3 className="max-w-3xl font-tactic italic uppercase font-black text-white text-3xl md:text-5xl leading-[0.95]">
+                        Подари эмоции,<br className="md:hidden" /> которые он <span className="text-[#FF2E63]">запомнит</span>
+                    </h3>
+
+                    <div className="relative mt-2">
+                        {/* glow ring */}
+                        <div
+                            aria-hidden
+                            className="pointer-events-none absolute -inset-4 rounded-[28px] opacity-60 blur-2xl"
+                            style={{ background: "linear-gradient(90deg, #FF2E63, #B900FF)" }}
+                        />
+                        <a
+                            href={`${telegramUrl}?text=${telegramText}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-r from-[#FF2E63] to-[#B900FF] px-12 py-6 font-chakra italic font-black uppercase text-white text-xl md:text-2xl shadow-[0_18px_50px_rgba(255,46,99,0.5)] transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98]"
+                        >
+                            <div className="absolute inset-0 -translate-x-full bg-white/25 group-hover:animate-[shine_0.75s_ease-in-out]" />
+                            <Send className="h-6 w-6 md:h-7 md:w-7 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                            <span>Оформить в Telegram</span>
+                        </a>
+                    </div>
+
+                    <p className="font-inter text-sm text-slate-400">Ответим за пару минут · оформим онлайн</p>
                 </div>
             </div>
         </section>

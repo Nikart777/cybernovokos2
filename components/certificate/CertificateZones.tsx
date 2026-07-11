@@ -248,9 +248,15 @@ export default function CertificateZones() {
                 </div>
             </div>
 
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#00F0FF] blur-[200px] opacity-[0.03] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#FF2E63] blur-[200px] opacity-[0.03] rounded-full pointer-events-none" />
+            {/* Background Decor — static gradient (cheap, no giant blur filter) */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                    background:
+                        "radial-gradient(40% 40% at 90% 5%, rgba(0,240,255,0.05), transparent 70%), radial-gradient(40% 40% at 10% 95%, rgba(255,46,99,0.05), transparent 70%)",
+                }}
+            />
         </section>
     );
 }

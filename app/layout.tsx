@@ -227,7 +227,7 @@ export default function RootLayout({
                 <noscript><div><img src="https://mc.yandex.ru/watch/105894251" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
                 {/* /Yandex.Metrika counter */}
             </head>
-            <body className="bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white antialiased overflow-x-hidden">
+            <body className="bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white antialiased overflow-x-clip">
                 {children}
 
                 {/* Глобальные UI компоненты */}
