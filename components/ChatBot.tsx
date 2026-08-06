@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, Bot, User, Loader2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface Message {
     role: "user" | "assistant";
@@ -10,6 +11,7 @@ interface Message {
 }
 
 export default function ChatBot() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         { role: "assistant", content: "Привет! Я администратор CyberX Новокосино. Чем могу помочь?" }
@@ -62,6 +64,8 @@ export default function ChatBot() {
             setIsLoading(false);
         }
     };
+
+    if (pathname?.startsWith("/menu")) return null;
 
     return (
         <>

@@ -3,8 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Gamepad2, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function StickyBar() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [isNearBottom, setIsNearBottom] = useState(false);
 
@@ -32,6 +34,8 @@ export default function StickyBar() {
   const openChat = () => {
     window.dispatchEvent(new CustomEvent("open-chat"));
   };
+
+  if (pathname?.startsWith("/menu")) return null;
 
   return (
     <AnimatePresence>

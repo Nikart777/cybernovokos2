@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Cookie } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function CookieBanner() {
+    const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -21,6 +23,8 @@ export default function CookieBanner() {
         localStorage.setItem("cookie-consent", "accepted");
         setIsVisible(false);
     };
+
+    if (pathname?.startsWith("/menu")) return null;
 
     return (
         <AnimatePresence initial={false}>
