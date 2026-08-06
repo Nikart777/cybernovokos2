@@ -15,6 +15,11 @@ export interface OrderHoursRow {
     hours: string;
 }
 
+export interface PenaltyRow {
+    label: string;
+    price: number;
+}
+
 // Классический список табаков — переиспользуется в нескольких позициях меню
 export const CLASSIC_TOBACCO_LIST: string[] = [
     "Banger",
@@ -81,4 +86,10 @@ export const ORDER_HOURS: OrderHoursRow[] = [
     { days: "ПН–ЧТ", hours: "14:00–03:00" },
     { days: "ПТ, СБ", hours: "14:00–06:00" },
     { days: "ВС", hours: "14:00–03:00" },
+];
+
+// Штрафы за порчу инвентаря
+export const PENALTIES: PenaltyRow[] = [
+    { label: "Разбитая колба", price: 1500 },
+    { label: "Разбитая чаша", price: 1000 },
 ];

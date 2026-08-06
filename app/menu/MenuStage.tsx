@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
-import { STEAM_COCKTAILS, ORDER_HOURS, type MenuTheme } from "@/data/hookah-menu";
+import { STEAM_COCKTAILS, ORDER_HOURS, PENALTIES, type MenuTheme } from "@/data/hookah-menu";
 
 /**
  * Цвет позиции: classic — холодная сталь, premium — золото,
@@ -103,31 +103,43 @@ export default function MenuStage() {
                     <br className="lg:hidden" /> <span className="menu-title-outline">коктейли</span>
                 </h1>
 
-                <section className="mt-12 md:mt-16 lg:mt-0 lg:shrink-0">
-                    <span className="inline-block skew-x-[-12deg] bg-[#111] px-3 py-1.5 shadow-border lg:hidden">
-                        <span className="block skew-x-[12deg] font-chakra text-[9px] font-black uppercase tracking-[0.3em] text-[#FF2E63] md:text-[10px]">
-                            Заказы принимаются
+                <div className="mt-12 flex flex-col gap-5 md:mt-16 lg:mt-0 lg:shrink-0 lg:flex-row lg:items-start lg:gap-[clamp(1.25rem,2.5vw,2.5rem)]">
+                    {/* Возрастное ограничение — обязательная маркировка */}
+                    <span
+                        aria-label="Строго 18 плюс"
+                        className="inline-flex shrink-0 skew-x-[-12deg] items-center self-start border border-[#FF2E63]/60 bg-[#FF2E63]/10 px-3 py-1.5 lg:px-[clamp(0.6rem,1.4vh,0.9rem)] lg:py-[clamp(0.3rem,0.9vh,0.55rem)]"
+                    >
+                        <span className="block skew-x-[12deg] font-tactic text-base font-black italic leading-none text-[#FF2E63] lg:text-[clamp(0.8rem,2vh,1.25rem)]">
+                            18+
                         </span>
                     </span>
 
-                    <div className="mt-4 inline-block w-full max-w-[22rem] skew-x-[-12deg] bg-[#111]/90 px-5 py-4 shadow-border lg:mt-0 lg:w-auto lg:max-w-none lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none">
-                        <div className="flex skew-x-[12deg] flex-col gap-2 lg:flex-row lg:gap-[clamp(1rem,2vw,2rem)]">
-                            {ORDER_HOURS.map((row) => (
-                                <div
-                                    key={row.days}
-                                    className="flex items-baseline justify-between gap-4 lg:flex-col lg:items-end lg:justify-start lg:gap-1"
-                                >
-                                    <span className="font-chakra text-[10px] font-bold uppercase tracking-[0.2em] text-white/45 md:text-xs lg:text-[clamp(8px,1.15vh,10px)]">
-                                        {row.days}
-                                    </span>
-                                    <span className="font-tactic text-sm font-black uppercase italic tabular-nums text-white md:text-lg lg:text-[clamp(0.75rem,1.7vh,1rem)]">
-                                        {row.hours}
-                                    </span>
-                                </div>
-                            ))}
+                    <section className="lg:shrink-0">
+                        <span className="inline-block skew-x-[-12deg] bg-[#111] px-3 py-1.5 shadow-border lg:hidden">
+                            <span className="block skew-x-[12deg] font-chakra text-[9px] font-black uppercase tracking-[0.3em] text-[#FF2E63] md:text-[10px]">
+                                Заказы принимаются
+                            </span>
+                        </span>
+
+                        <div className="mt-4 inline-block w-full max-w-[22rem] skew-x-[-12deg] bg-[#111]/90 px-5 py-4 shadow-border lg:mt-0 lg:w-auto lg:max-w-none lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none">
+                            <div className="flex skew-x-[12deg] flex-col gap-2 lg:flex-row lg:gap-[clamp(1rem,2vw,2rem)]">
+                                {ORDER_HOURS.map((row) => (
+                                    <div
+                                        key={row.days}
+                                        className="flex items-baseline justify-between gap-4 lg:flex-col lg:items-end lg:justify-start lg:gap-1"
+                                    >
+                                        <span className="font-chakra text-[10px] font-bold uppercase tracking-[0.2em] text-white/45 md:text-xs lg:text-[clamp(8px,1.15vh,10px)]">
+                                            {row.days}
+                                        </span>
+                                        <span className="font-tactic text-sm font-black uppercase italic tabular-nums text-white md:text-lg lg:text-[clamp(0.75rem,1.7vh,1rem)]">
+                                            {row.hours}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </header>
 
             {/* ── Позиции ── */}
@@ -197,11 +209,23 @@ export default function MenuStage() {
                 })}
             </ul>
 
-            {/* Как заказать */}
-            <p className="order-2 mt-6 flex items-center gap-3 font-chakra text-[10px] font-bold uppercase tracking-[0.22em] text-white/45 md:text-xs lg:order-3 lg:mt-[clamp(0.75rem,2.4vh,1.75rem)] lg:text-[clamp(9px,1.3vh,11px)]">
-                <span aria-hidden="true" className="h-[1px] w-6 shrink-0 bg-[#FF2E63]" />
-                Для заказа обратитесь к администратору
-            </p>
+            {/* Подвал: как заказать + штрафы за инвентарь */}
+            <div className="order-2 mt-6 flex flex-col gap-3 lg:order-3 lg:mt-[clamp(0.75rem,2.4vh,1.75rem)] lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+                <p className="flex items-center gap-3 font-chakra text-[10px] font-bold uppercase tracking-[0.22em] text-white/45 md:text-xs lg:text-[clamp(9px,1.3vh,11px)]">
+                    <span aria-hidden="true" className="h-[1px] w-6 shrink-0 bg-[#FF2E63]" />
+                    Для заказа обратитесь к администратору
+                </p>
+
+                <p className="flex flex-wrap items-center gap-x-4 gap-y-1 font-chakra text-[9px] font-bold uppercase tracking-[0.18em] text-white/35 md:text-[11px] lg:text-[clamp(8px,1.2vh,10px)]">
+                    <span className="text-[#FF2E63]">Штраф</span>
+                    {PENALTIES.map((row) => (
+                        <span key={row.label}>
+                            {row.label} —{" "}
+                            <span className="text-white/70">{row.price.toLocaleString("ru-RU")} ₽</span>
+                        </span>
+                    ))}
+                </p>
+            </div>
         </>
     );
 }
