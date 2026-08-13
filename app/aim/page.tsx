@@ -600,7 +600,7 @@ export default function AimGamePage() {
                   {/* ACTIONS */}
                   <div className="flex flex-col gap-3 relative z-10 pb-10 md:pb-0">
                     <a
-                      href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
+                      href="/download"
                       target="_blank"
                       className="w-full py-4 bg-[#FF2E63] hover:bg-white hover:text-black text-white font-chakra font-bold text-lg uppercase rounded-lg transition-all shadow-[0_0_30px_rgba(255,46,99,0.4)] flex items-center justify-center gap-3"
                     >

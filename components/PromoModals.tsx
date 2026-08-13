@@ -229,7 +229,7 @@ export default function PromoModals() {
                    </div>
 
                    <a 
-                     href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" target="_blank"
+                     href="/download" target="_blank"
                      className="block w-full py-4 mt-8 bg-[#FF0055] text-white font-chakra font-bold text-center uppercase rounded-xl hover:bg-white hover:text-black transition-colors shadow-[0_5px_20px_rgba(255,0,85,0.4)]"
                    >
                      Зарегистрироваться

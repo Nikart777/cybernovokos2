@@ -1,11 +1,33 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Smartphone, MessageCircle, Gamepad2, Check, Coins, Phone, Zap, Download, Star, Sparkles } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CalendarCheck, Gift, MessageCircle, ShieldCheck, Smartphone, Trophy, X } from "lucide-react";
+
+const appLink = "/download";
+
+const benefits = [
+  {
+    icon: Gift,
+    title: "400 бонусов сразу",
+    text: "Начислим автоматически после регистрации.",
+  },
+  {
+    icon: Trophy,
+    title: "До 20% стоимости - бонусами",
+    text: "Используйте бонусы на игровое время с первого визита.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Бронь без звонков",
+    text: "Выберите свободное место и время в приложении CyberX.",
+  },
+];
 
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -14,317 +36,125 @@ export default function BookingModal() {
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
   }, [isOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Backdrop */}
-          <motion.div
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+          <motion.button
+            type="button"
+            aria-label="Закрыть окно бронирования"
+            onClick={() => setIsOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-black/95 backdrop-blur-xl"
+            className="absolute inset-0 cursor-default bg-[#050505]/90 backdrop-blur-md"
           />
-          
-          {/* Анимированные молнии на фоне */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: '-100%' }}
-                animate={{ 
-                  opacity: [0, 0.3, 0],
-                  x: ['-100%', '200%'],
-                }}
-                transition={{
-                  duration: 2 + Math.random() * 2,
-                  delay: i * 0.3,
-                  repeat: Infinity,
-                  repeatDelay: 3 + Math.random() * 2,
-                }}
-                className="absolute h-[2px] bg-gradient-to-r from-transparent via-[#00F0FF] to-transparent"
-                style={{
-                  top: `${20 + i * 15}%`,
-                  width: `${100 + Math.random() * 200}px`,
-                }}
-              />
-            ))}
-          </div>
 
-          {/* Модальное окно */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            exit={{ opacity: 0, scale: 0.8, rotateY: 30 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="relative w-full max-w-[900px] bg-[#0f0f1a] border border-white/10 rounded-[2.5rem] overflow-hidden shadow-[0_0_100px_rgba(255,46,99,0.3)] flex flex-col md:flex-row max-h-[90vh]"
+            initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.98 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="relative grid max-h-[calc(100dvh-2rem)] w-full max-w-[540px] overflow-y-auto rounded-[28px] border border-white/15 bg-[#0d0d0d] shadow-[0_28px_100px_rgba(0,0,0,0.62)] lg:max-w-[940px] lg:grid-cols-[0.9fr_1.1fr]"
           >
-            {/* Градиентная рамка - на заднем плане */}
-            <div className="absolute inset-0 rounded-[2.5rem] opacity-30 pointer-events-none -z-10"
-              style={{
-                background: 'linear-gradient(135deg, #FF2E63 0%, transparent 25%, #B900FF 50%, transparent 75%, #00F0FF 100%)',
-                backgroundSize: '300% 300%',
-                animation: 'gradient-rotate 4s ease infinite',
-              }}
-            />
-            
-            <style jsx>{`
-              @keyframes gradient-rotate {
-                0%, 100% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-              }
-            `}</style>
-
-            {/* Кнопка закрытия */}
-            <motion.button
+            <button
+              type="button"
               onClick={() => setIsOpen(false)}
-              whileHover={{ scale: 1.1, rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
-              className="absolute top-4 right-4 z-50 bg-[#1a1a2e] border border-white/20 p-2.5 rounded-full text-white hover:bg-[#FF2E63] transition-colors"
+              aria-label="Закрыть"
+              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#101010]/90 text-white transition hover:bg-white hover:text-[#111] active:scale-[0.96]"
             >
-              <X size={20} />
-            </motion.button>
+              <X size={19} />
+            </button>
 
-            {/* ЛЕВАЯ КОЛОНКА: ВИЗУАЛ */}
-            <div className="relative w-full md:w-[45%] h-[280px] md:h-auto overflow-hidden flex items-center justify-center bg-[#1a1a2e]">
-              {/* Сетка */}
-              <div 
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                  backgroundSize: '30px 30px',
-                }}
+            <div className="relative block h-[208px] overflow-hidden sm:h-[250px] lg:h-auto lg:min-h-full">
+              <Image
+                src="/zones/bootcamp-2.webp"
+                alt="Игровая зона CyberX Новокосино"
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover"
               />
-
-              {/* 3D Phone Mockup */}
-              <motion.div
-                initial={{ y: 50, opacity: 0, rotateX: -20 }}
-                animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                transition={{ duration: 1, delay: 0.2, type: 'spring' }}
-                className="relative z-10 w-[180px] md:w-[220px]"
-              >
-                {/* Свечение за телефоном */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#FF2E63] via-[#B900FF] to-[#00F0FF] blur-[50px] opacity-40" />
-                
-                {/* Телефон */}
-                <div className="relative bg-[#0a0a1a] rounded-[2rem] p-1.5 border-2 border-white/10 shadow-2xl">
-                  {/* Экран */}
-                  <div className="bg-[#0f0f1a] rounded-[1.8rem] overflow-hidden h-[320px] md:h-[380px]">
-                    {/* Статус бар */}
-                    <div className="flex items-center justify-between px-4 py-2 text-[9px] text-white/40">
-                      <span>9:41</span>
-                      <div className="flex items-center gap-1">
-                        <span>📶</span>
-                        <span>🔋</span>
-                      </div>
-                    </div>
-                    
-                    {/* Контент на экране */}
-                    <div className="p-4">
-                      {/* Логотип */}
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.5, type: 'spring' }}
-                        className="text-center mb-4"
-                      >
-                        <div className="text-2xl font-black bg-gradient-to-r from-[#FF2E63] via-[#B900FF] to-[#00F0FF] bg-clip-text text-transparent">
-                          CYBERX
-                        </div>
-                        <div className="text-[7px] text-white/30 uppercase tracking-widest mt-1">Novokosino</div>
-                      </motion.div>
-                      
-                      {/* Кнопки приложений */}
-                      <div className="space-y-2">
-                        {['SOLO PREMIUM', 'SOLO PRO', 'DUO ZONE', 'BOOTCAMP'].map((zone, i) => (
-                          <motion.div
-                            key={zone}
-                            initial={{ x: -50, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.7 + i * 0.1 }}
-                            className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/5"
-                          >
-                            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#FF2E63] to-[#B900FF] flex items-center justify-center">
-                              <Gamepad2 size={12} className="text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-[7px] text-white font-bold">{zone}</div>
-                              <div className="text-[5px] text-white/30">от {(230 + i * 50)}₽</div>
-                            </div>
-                            <Check size={10} className="text-[#00F0FF]" />
-                          </motion.div>
-                        ))}
-                      </div>
-                      
-                      {/* CTA на экране */}
-                      <motion.div
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 1.2 }}
-                        className="mt-3 p-2.5 rounded-lg bg-gradient-to-r from-[#FF2E63] to-[#B900FF] text-center"
-                      >
-                        <div className="text-[7px] text-white font-bold uppercase">-5% в приложении</div>
-                      </motion.div>
-                    </div>
-                  </div>
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.05),rgba(8,8,8,0.86)),linear-gradient(90deg,rgba(255,46,99,0.08),transparent)]" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#FF2E63]/45 bg-[#160d10]/90 px-3 py-2 font-chakra text-[10px] font-black uppercase tracking-[0.14em] text-[#FF2E63] backdrop-blur">
+                  <Smartphone size={14} />
+                  CyberX Новокосино
                 </div>
-              </motion.div>
-
-              {/* Плавающие иконки */}
-              <motion.div
-                animate={{ y: [-10, 10, -10], rotate: [0, 5, 0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-20 left-8 p-2.5 rounded-xl bg-[#FF2E63]/20 border border-[#FF2E63]/30"
-              >
-                <Zap size={20} className="text-[#FF2E63]" />
-              </motion.div>
-              
-              <motion.div
-                animate={{ y: [10, -10, 10], rotate: [0, -5, 0, 5, 0] }}
-                transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                className="absolute bottom-32 right-8 p-2.5 rounded-xl bg-[#00F0FF]/20 border border-[#00F0FF]/30"
-              >
-                <Star size={20} className="text-[#00F0FF]" />
-              </motion.div>
+              </div>
             </div>
 
-            {/* ПРАВАЯ КОЛОНКА: КОНТЕНТ */}
-            <div className="w-full md:w-[55%] p-6 md:p-8 flex flex-col">
-              {/* Бейдж */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-wrap items-center gap-2 mb-6"
-              >
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FF2E63]/10 border border-[#FF2E63]/30">
-                  <Sparkles size={12} className="text-[#FF2E63]" />
-                  <span className="text-[9px] font-chakra font-black text-white uppercase tracking-widest">
-                    Мгновенная бронь
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/30">
-                  <Download size={12} className="text-[#00F0FF]" />
-                  <span className="text-[9px] font-chakra font-black text-white uppercase tracking-widest">
-                    -5% в приложении
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Заголовок */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mb-6"
-              >
-                <h3 className="font-tactic font-black text-2xl md:text-4xl text-white uppercase leading-[0.9] mb-2">
-                  Забирай своё
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF2E63] via-[#B900FF] to-[#00F0FF]">
-                    игровое место
-                  </span>
-                </h3>
-                <p className="font-inter text-sm text-white/50 leading-relaxed">
-                  Бронируй за 10 секунд • Плати бонусами • Получай кэшбэк
+            <div className="p-5 sm:p-8 md:p-10">
+              <div className="pr-12">
+                <span className="font-chakra text-[10px] font-black uppercase tracking-[0.16em] text-[#FF2E63]">Ваш первый визит</span>
+                <h2 id="booking-modal-title" className="mt-2 font-tactic text-3xl font-black uppercase italic leading-[0.95] text-white sm:text-4xl">
+                  400 бонусов<br />на старт
+                </h2>
+                <p className="mt-3 max-w-lg font-chakra text-sm leading-relaxed text-white/65">
+                  Получите их сразу после регистрации в приложении и используйте уже при первом посещении.
                 </p>
-              </motion.div>
-
-              {/* Преимущества */}
-              <div className="grid grid-cols-1 gap-2 mb-6">
-                {[
-                  { icon: Gamepad2, color: '#FF2E63', title: 'Без звонков', desc: 'Выбирай место на схеме зала' },
-                  { icon: Zap, color: '#00F0FF', title: 'Мгновенно', desc: 'Подтверждение за 10 секунд' },
-                  { icon: Coins, color: '#B900FF', title: 'Кэшбэк 5%', desc: 'Бонусами с каждого посещения' },
-                ].map((feature, i) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="group flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5"
-                  >
-                    <div 
-                      className="p-2 rounded-lg shrink-0"
-                      style={{ backgroundColor: `${feature.color}20` }}
-                    >
-                      <feature.icon size={18} style={{ color: feature.color }} />
-                    </div>
-                    <div>
-                      <h4 className="font-chakra font-bold text-white text-xs uppercase mb-0.5">{feature.title}</h4>
-                      <p className="text-xs text-white/40 leading-relaxed">{feature.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
               </div>
 
-              {/* Кнопки */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="mt-auto space-y-3"
-              >
-                {/* Основная кнопка */}
-                <motion.a
-                  href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
+              <div className="mt-6 grid gap-2.5 lg:mt-7 lg:gap-3">
+                {benefits.map((benefit, index) => {
+                  const Icon = benefit.icon;
+                  return (
+                    <div key={benefit.title} className={`gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3 lg:gap-4 lg:p-4 ${index === 2 ? "hidden lg:flex" : "flex"}`}>
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FF2E63]/12 text-[#FF2E63] lg:h-10 lg:w-10">
+                        <Icon size={18} />
+                      </div>
+                      <div>
+                        <h3 className="font-tactic text-sm font-black uppercase italic text-white lg:text-base">{benefit.title}</h3>
+                        <p className="mt-0.5 font-chakra text-[11px] leading-relaxed text-white/55 lg:mt-1 lg:text-xs">{benefit.text}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 hidden items-start gap-3 rounded-2xl border border-white/10 bg-[#111] p-4 lg:flex">
+                <ShieldCheck className="mt-0.5 shrink-0 text-[#FF2E63]" size={18} />
+                <p className="font-chakra text-xs leading-relaxed text-white/60">
+                  1 бонус = 1 ₽. Используйте бонусы сразу после регистрации для оплаты до 20% игрового времени. DRIVE X оплачивается основным балансом.
+                </p>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-7">
+                <a
+                  href={appLink}
                   target="_blank"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative flex items-center justify-center gap-3 w-full py-4 rounded-xl overflow-hidden bg-gradient-to-r from-[#FF2E63] to-[#B900FF]"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#FF2E63] px-5 font-tactic text-sm font-black uppercase italic tracking-wide text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#ff4778] active:translate-y-0 active:scale-[0.98]"
                 >
-                  <Smartphone size={18} className="group-hover:rotate-12 transition-transform" />
-                  <span className="font-chakra font-black text-sm uppercase tracking-wider text-white">
-                    Скачать приложение
-                  </span>
-                </motion.a>
-                
-                {/* Платформы */}
-                <div className="flex justify-center items-center gap-4 text-white/30">
-                  <div className="flex items-center gap-1.5">
-                    <svg viewBox="0 0 384 512" fill="currentColor" className="w-3.5 h-3.5" />
-                    <span className="text-[9px] font-chakra font-bold uppercase text-white/50">iOS</span>
-                  </div>
-                  <div className="w-[1px] h-3 bg-white/10" />
-                  <div className="flex items-center gap-1.5">
-                    <svg viewBox="0 0 576 512" fill="currentColor" className="w-3.5 h-3.5" />
-                    <span className="text-[9px] font-chakra font-bold uppercase text-white/50">Android</span>
-                  </div>
-                </div>
-
-                {/* Быстрые действия */}
-                <div className="grid grid-cols-2 gap-2">
-                  <motion.a
-                    href="tel:+79851289538"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF2E63]/40 transition-all group"
-                  >
-                    <Phone size={18} className="mb-1 text-[#FF2E63] group-hover:scale-110 transition-transform" />
-                    <span className="font-chakra font-bold text-[9px] uppercase text-white/70">Позвонить</span>
-                  </motion.a>
-
-                  <motion.a
-                    href="https://t.me/CyberXNovokos"
-                    target="_blank"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-[#0088cc]/40 transition-all group"
-                  >
-                    <MessageCircle size={18} className="mb-1 text-[#0088cc] group-hover:scale-110 transition-transform" />
-                    <span className="font-chakra font-bold text-[9px] uppercase text-white/70">Telegram</span>
-                  </motion.a>
-                </div>
-              </motion.div>
+                  <Smartphone size={18} />
+                  Получить 400 бонусов
+                </a>
+                <a
+                  href="https://t.me/CyberXNovokos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden min-h-14 items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/[0.04] px-5 font-tactic text-sm font-black uppercase italic tracking-wide text-white transition duration-200 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.08] active:translate-y-0 active:scale-[0.98] sm:inline-flex"
+                >
+                  <MessageCircle size={18} />
+                  Спросить в Telegram
+                  <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

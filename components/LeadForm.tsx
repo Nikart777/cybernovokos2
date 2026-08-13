@@ -66,7 +66,7 @@ export default function LeadForm() {
                 </div>
                 <p className="text-xs text-gray-400 mt-4 font-inter text-center leading-relaxed">
                     Р’РІРµРґРё СЌС‚РѕС‚ РїСЂРѕРјРѕРєРѕРґ РІ РєР»СѓР±Рµ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё<br />
-                    РёР»Рё РІ РїСЂРёР»РѕР¶РµРЅРёРё <a href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" target="_blank" rel="noopener noreferrer" className="text-[#00ff88] font-tactic italic hover:underline">CYBERX</a> (РІС‹Р±РµСЂРёС‚Рµ CYBERX РЅРѕРІРѕРєРѕСЃРёРЅРѕ)
+                    РёР»Рё РІ РїСЂРёР»РѕР¶РµРЅРёРё <a href="/download" target="_blank" rel="noopener noreferrer" className="text-[#00ff88] font-tactic italic hover:underline">CYBERX</a> (РІС‹Р±РµСЂРёС‚Рµ CYBERX РЅРѕРІРѕРєРѕСЃРёРЅРѕ)
                 </p>
             </div>
         );

@@ -53,17 +53,6 @@ interface ZoneWithPrice {
     isCommon?: boolean;
 }
 
-function calculateAppPrice(basePrice: number): number {
-    const discountPrice = basePrice * 0.95;
-    const rounded = Math.round(discountPrice);
-    const lastDigit = rounded % 10;
-    if (lastDigit > 6) {
-        return rounded + (10 - lastDigit);
-    } else {
-        return rounded - lastDigit;
-    }
-}
-
 export default function ZonesPreview({ pricingData }: { pricingData?: PricingData }) {
     const targetRef = useRef<HTMLElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
@@ -168,11 +157,10 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
     };
 
     const getCurrentPrice = (prices: any) => {
-        if (!prices) return { price: 0, appPrice: 0, label: '1 час' };
+        if (!prices) return { price: 0, label: '1 час' };
         const basePrice = activePriceTab === 'week' ? prices.oneHour.week : prices.oneHour.end;
         return { 
             price: basePrice, 
-            appPrice: calculateAppPrice(basePrice), 
             label: '1 час' 
         };
     };
@@ -425,7 +413,7 @@ function ZoneCard({
     idx: number;
     status: ClubZone | undefined;
     activePriceTab: 'week' | 'end';
-    getCurrentPrice: (prices: any) => { price: number; appPrice: number; label: string };
+    getCurrentPrice: (prices: any) => { price: number; label: string };
 }) {
     const [imgIdx, setImgIdx] = useState(0);
     
@@ -516,13 +504,6 @@ function ZoneCard({
                             { label: '5 ЧАСОВ', key: 'fiveHours' }
                         ].map((pkg, i) => {
                             const p = zone.prices?.[pkg.key as keyof typeof zone.prices]?.[activePriceTab] || 0;
-                            let appP = p;
-                            if (p > 0) {
-                                if (p <= 300) appP = p - 20;
-                                else if (p <= 800) appP = p - 50;
-                                else appP = p - 100;
-                            }
-                            
                             const isMain = i === 0;
                             return (
                                 <div key={pkg.key} className={`py-2 px-1 flex flex-col items-center justify-between border-b-2 skew-x-[-6deg] h-full ${isMain ? 'bg-gradient-to-t from-[#FF2E63]/20 to-transparent border-[#FF2E63]' : 'bg-[#111] border-white/20'}`}>
@@ -532,29 +513,11 @@ function ZoneCard({
                                             {pkg.label}
                                         </span>
                                         
-                                        {/* App Price */}
-                                        <div className="flex flex-col items-center mb-2">
-                                            <span className="bg-[#FF2E63] text-white font-chakra font-bold text-[7px] px-1.5 py-[2px] uppercase rounded-sm tracking-wider mb-1.5 leading-none shadow-[0_0_10px_rgba(255,46,99,0.3)]">
-                                                В приложении
-                                            </span>
+                                        <div className="flex flex-1 items-center justify-center">
                                             <span className={`font-tactic font-black text-xl md:text-2xl leading-none tabular-nums ${isMain ? 'text-white' : 'text-white/80'}`}>
-                                                {appP}₽
+                                                {p}₽
                                             </span>
                                         </div>
-                                        
-                                        {/* Cashier Price */}
-                                        {p > 0 ? (
-                                            <div className="flex flex-col items-center opacity-50 mt-auto pt-1.5 border-t border-white/10 w-[80%] mx-auto">
-                                                <span className="font-chakra font-bold text-[7px] text-white uppercase tracking-wider mb-1 leading-none">
-                                                    На кассе
-                                                </span>
-                                                <span className="font-tactic font-bold text-xs text-white line-through decoration-[#FF2E63] leading-none tabular-nums">
-                                                    {p}₽
-                                                </span>
-                                            </div>
-                                        ) : (
-                                            <div className="mt-auto h-[22px] w-full"></div>
-                                        )}
                                     </div>
                                 </div>
                             );

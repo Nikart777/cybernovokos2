@@ -15,19 +15,6 @@ const zonePhotos: Record<string, string[]> = {
   simracing: ["/zones/sim-1.webp", "/zones/sim-2.webp", "/zones/sim-3.webp"],
 };
 
-// --- ХЕЛПЕРЫ ---
-function calculateAppPrice(basePrice: number): number {
-  const discountPrice = basePrice * 0.95; // Скидка 5%
-  const rounded = Math.round(discountPrice); // Округляем до целого
-  const lastDigit = rounded % 10;
-
-  if (lastDigit > 6) {
-    return rounded + (10 - lastDigit); // Округляем вверх до 10
-  } else {
-    return rounded - lastDigit; // Округляем вниз до 10
-  }
-}
-
 export default function Prices({ data }: { data: PricingData }) {
   const [activeZoneId, setActiveZoneId] = useState(data.zones[0]?.id || "common");
   const [isWeekend, setIsWeekend] = useState(false);
@@ -40,7 +27,7 @@ export default function Prices({ data }: { data: PricingData }) {
       <div className="max-w-[1200px] mx-auto">
 
         {/* --- TABS (NAVIGATION) --- */}
-        <div className="-mx-4 px-4 md:mx-0 md:px-0 flex md:flex-wrap md:justify-center gap-2 mb-6 md:mb-8 overflow-x-auto md:overflow-visible pb-2 scrollbar-hide snap-x">
+        <div className="hidden">
           {data.zones.map((zone) => (
             <button
               key={zone.id}
@@ -73,6 +60,7 @@ export default function Prices({ data }: { data: PricingData }) {
           )}
         </div>
 
+        <div className="hidden">
         {!showAbonnements ? (
           <>
             {/* --- SWITCHER (WEEKDAY / WEEKEND) --- */}
@@ -183,6 +171,91 @@ export default function Prices({ data }: { data: PricingData }) {
             ))}
           </motion.div>
         )}
+        </div>
+
+        <div className="block">
+          <div className="flex justify-center mb-10 md:mb-16">
+            <div className="bg-[#111] p-1 rounded-full border border-white/10 flex relative w-[240px] max-w-full">
+              <motion.div
+                className="absolute top-1 bottom-1 w-[116px] bg-[#FF2E63] rounded-full z-0 shadow-[0_0_15px_#FF2E63]"
+                initial={false}
+                animate={{ x: isWeekend ? 116 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+              <button onClick={() => setIsWeekend(false)} className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${!isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}>
+                БУДНИ
+              </button>
+              <button onClick={() => setIsWeekend(true)} className={`relative z-10 w-1/2 py-3 text-center font-chakra font-black text-sm uppercase tracking-wider transition-colors duration-300 ${isWeekend ? 'text-white' : 'text-gray-500 hover:text-white'}`}>
+                ВЫХОДНЫЕ
+              </button>
+            </div>
+          </div>
+
+          <h2 className="sr-only">Цены на услуги компьютерного клуба в Новокосино</h2>
+          <div className="space-y-20 md:space-y-28">
+            {data.zones.map((zone) => (
+              <section key={zone.id} className="scroll-mt-28">
+                <div className="text-center mb-8 md:mb-10">
+                  <h3 className="font-tactic font-black text-3xl md:text-5xl text-white uppercase mb-3 drop-shadow-lg leading-none">
+                    {zone.name}
+                  </h3>
+                  <p className="font-mono text-[10px] md:text-sm text-[#FF2E63] tracking-[0.12em] md:tracking-[0.2em] uppercase opacity-90 leading-relaxed">
+                    {zone.desc}
+                  </p>
+                </div>
+
+                <ZoneGallery zoneId={zone.id} zoneName={zone.name} />
+
+                {zone.subZones ? (
+                  <div className="space-y-8 md:space-y-14">
+                    {zone.subZones.map((section, idx) => (
+                      <div key={idx} className="border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-8 bg-[#0e0e0e]">
+                        <h4 className="font-tactic font-bold text-xl md:text-2xl text-white uppercase tracking-wide mb-5 md:mb-8 text-center border-b border-white/10 pb-4">
+                          {section.name}
+                        </h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16">
+                          {section.categories.map((cat, cIdx) => (
+                            <PriceColumn key={cIdx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16">
+                    {zone.categories?.map((cat, idx) => (
+                      <PriceColumn key={idx} title={cat.title} items={cat.items} isWeekend={isWeekend} color={cat.color} />
+                    ))}
+                  </div>
+                )}
+              </section>
+            ))}
+          </div>
+
+          {data.abonnements && data.abonnements.length > 0 && (
+            <section className="mt-20 md:mt-28">
+              <h3 className="font-tactic font-black text-3xl md:text-5xl text-center text-[#FF2E63] uppercase mb-8 md:mb-10 leading-none">АБОНЕМЕНТЫ</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {data.abonnements.map((abon, idx) => (
+                  <div key={idx} className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF2E63]/5 blur-3xl group-hover:bg-[#FF2E63]/10 transition-colors" />
+                    <span className="font-mono text-[10px] text-[#FF2E63] uppercase tracking-[0.3em] mb-4">Abonnement</span>
+                    <h4 className="font-tactic font-black text-3xl text-white mb-2">{abon.name}</h4>
+                    <div className="w-full space-y-4 my-6 py-4 border-y border-white/5">
+                      {abon.prices.map((price, priceIndex) => (
+                        <div key={priceIndex} className="flex justify-between items-center">
+                          <span className="font-chakra font-bold text-[10px] uppercase text-gray-500">{price.zone}</span>
+                          <span className="font-tactic font-black text-2xl text-white">{price.value}₽</span>
+                        </div>
+                      ))}
+                    </div>
+                    <span className="font-chakra font-bold text-xs uppercase tracking-widest text-gray-500">Срок действия: {abon.validity}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
 
         {/* --- APP BANNER --- */}
         <div className="mt-12 md:mt-20 relative overflow-hidden rounded-2xl border border-[#FF2E63]/30 bg-[#111]">
@@ -195,10 +268,10 @@ export default function Prices({ data }: { data: PricingData }) {
               </div>
               <div className="text-center md:text-left">
                 <h4 className="font-tactic font-black text-xl sm:text-2xl md:text-3xl text-white uppercase mb-2 leading-tight">
-                  Скидка 5% в приложении
+                  Скачать приложение CyberX
                 </h4>
                 <p className="font-inter text-sm text-gray-400 max-w-md mb-4 md:mb-0">
-                  Цены в прайсе указаны без учета скидки. В приложении дешевле + копятся бонусы.
+                  Бронируйте места и управляйте визитами онлайн.
                 </p>
 
                 <div className="flex items-center justify-center md:justify-start gap-4 text-white/50 text-[10px] font-bold uppercase tracking-wider mt-2">
@@ -216,7 +289,7 @@ export default function Prices({ data }: { data: PricingData }) {
             </div>
 
             <a
-              href="https://redirect.appmetrica.yandex.com/serve/965634439310753772"
+              href="/download"
               target="_blank"
               className="flex items-center gap-3 px-8 py-4 bg-white text-black font-chakra font-black text-lg uppercase tracking-wider rounded-xl hover:bg-[#FF2E63] hover:text-white hover:shadow-[0_0_30px_#FF2E63] transition-all duration-300 w-full md:w-auto justify-center"
             >
@@ -292,8 +365,6 @@ function PriceColumn({ title, items, isWeekend, color }: { title: string, items:
 
 function PriceRow({ item, isWeekend }: { item: PriceItem, isWeekend: boolean }) {
   const basePrice = isWeekend ? item.end : item.week;
-  const appPrice = calculateAppPrice(basePrice);
-
   return (
     <div className={`
       relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 p-3 sm:p-4 rounded-xl border transition-all duration-300
@@ -313,32 +384,10 @@ function PriceRow({ item, isWeekend }: { item: PriceItem, isWeekend: boolean }) 
       </div>
 
       {/* Price Info */}
-      <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-
-        {/* Старая цена */}
-        <div className="flex flex-col items-end opacity-50">
-          <span className="font-inter text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap">В клубе</span>
-          <span className="font-chakra font-bold text-sm sm:text-lg text-gray-300 decoration-red-500/50 line-through decoration-2">
-            {basePrice}₽
-          </span>
-        </div>
-
-        {/* Разделитель */}
-        <div className="w-[1px] h-8 bg-white/10 shrink-0" />
-
-        {/* Новая цена */}
-        <div className="flex flex-col items-end relative">
-          {/* Badge -5% */}
-          <div className="absolute -top-3 -right-2 bg-[#FF2E63] text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-[0_0_10px_rgba(255,46,99,0.3)] transform rotate-3">
-            -5%
-          </div>
-
-          {/* Убрали слово "App", оставили только цифры */}
-          <span className="font-tactic font-black text-xl sm:text-2xl text-white whitespace-nowrap">
-            {appPrice}₽
-          </span>
-        </div>
-
+      <div className="flex items-center">
+        <span className="font-tactic font-black text-xl sm:text-2xl text-white whitespace-nowrap">
+          {basePrice}₽
+        </span>
       </div>
     </div>
   )

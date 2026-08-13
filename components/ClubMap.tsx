@@ -202,7 +202,7 @@ export default function ClubMap() {
            
            <div className="flex flex-col items-center gap-3 shrink-0">
              <a 
-               href="https://redirect.appmetrica.yandex.com/serve/965634439310753772" 
+               href="/download"
                target="_blank"
                className="flex items-center gap-3 px-8 py-3 bg-[#FF2E63] text-white font-chakra font-bold text-sm uppercase rounded-xl hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,46,99,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] whitespace-nowrap"
              >
