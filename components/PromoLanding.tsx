@@ -7,14 +7,18 @@ import {
   ArrowRight,
   BadgeCheck,
   CircleDollarSign,
+  Copy,
   Gamepad2,
   Gift,
+  Infinity,
   Medal,
+  Percent,
   ShoppingBag,
   ShieldCheck,
   Smartphone,
   Sparkles,
   Trophy,
+  UserPlus,
   UsersRound,
   WalletCards,
 } from "lucide-react";
@@ -58,6 +62,24 @@ const topUpBonuses = [
   { bonus: "+350", balance: "3 000-9 000 ₽", access: "Платина, Бриллиант" },
 ];
 
+const referralSteps = [
+  {
+    icon: Copy,
+    title: "Возьми промокод",
+    text: "Зайди в личный кабинет на ПК в клубе, открой раздел «Пригласить друга» и скопируй свой уникальный код.",
+  },
+  {
+    icon: UserPlus,
+    title: "Друг получает 800",
+    text: "400 стандартных бонусов за регистрацию и ещё 400 бонусов за твой промокод — всего 800 на старт.",
+  },
+  {
+    icon: Percent,
+    title: "Ты получаешь 5%",
+    text: "Пять процентов от всех пополнений друга начисляются тебе бонусами всегда. Пополнение на 1 000 ₽ — это 50 бонусов тебе.",
+  },
+];
+
 const faqs = [
   {
     question: "Как получить 400 бонусов CyberX?",
@@ -80,9 +102,14 @@ const faqs = [
       "Для подходящих групп гостей бонусы начисляются автоматически: +100 при пополнении от 1 000 ₽, +250 от 2 000 ₽ и +350 от 3 000 ₽. Точный уровень и диапазон пополнения указаны в таблице на странице.",
   },
   {
-    question: "Есть ли промокод CyberX на первое посещение?",
+    question: "Как получить 800 бонусов по промокоду друга?",
     answer:
-      "400 стартовых бонусов выдаются за первую регистрацию. Если у вас есть код друга, укажите его при регистрации: это отдельная реферальная программа с дополнительными условиями.",
+      "Новый гость получает 400 стандартных бонусов за регистрацию и ещё 400 после ввода уникального кода друга — всего 800 бонусов на старт. Код находится в личном кабинете пригласившего гостя на ПК клуба, в разделе «Пригласить друга».",
+  },
+  {
+    question: "Что получает тот, кто пригласил друга?",
+    answer:
+      "Пригласившему гостю всегда начисляются 5% бонусами от всех пополнений друга. Например, при пополнении на 1 000 ₽ вы получите 50 бонусов.",
   },
 ];
 
@@ -252,6 +279,82 @@ export default function PromoLanding() {
               </p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="relative isolate px-4 py-16 md:px-10 md:py-24">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_50%,rgba(255,46,99,0.12),transparent_30%),radial-gradient(circle_at_82%_45%,rgba(0,240,255,0.08),transparent_28%)]" />
+        <div className="mx-auto max-w-[1400px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0b0b0d] shadow-[0_30px_100px_rgba(0,0,0,0.38)]">
+          <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
+            <Reveal className="relative min-h-[390px] overflow-hidden lg:min-h-full">
+              <Image
+                src="/images/promo/referral-friends.webp"
+                alt="Два друга получают бонусы по реферальной программе CyberX"
+                fill
+                sizes="(max-width: 1024px) 100vw, 46vw"
+                className="object-cover object-[58%_center]"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,7,7,0.03)_35%,rgba(7,7,7,0.82)_100%)] lg:bg-[linear-gradient(90deg,rgba(7,7,7,0.04)_45%,rgba(11,11,13,0.92)_100%)]" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3 md:bottom-7 md:left-7 md:right-7">
+                <div className="rounded-2xl border border-white/15 bg-black/55 px-4 py-3 backdrop-blur-xl">
+                  <span className="block font-chakra text-[9px] font-black uppercase tracking-[0.16em] text-white/50">Другу на старт</span>
+                  <strong className="mt-1 block font-tactic text-3xl font-black italic leading-none text-white">400 + 400 = <span className="text-[#FF2E63]">800</span></strong>
+                </div>
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-[#00F0FF]/40 bg-[#00F0FF]/10 text-[#00F0FF] backdrop-blur-xl">
+                  <Infinity size={30} strokeWidth={2.4} />
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="relative p-6 md:p-9 lg:p-12">
+              <div className="pointer-events-none absolute right-0 top-0 h-44 w-44 bg-[#FF2E63]/10 blur-[70px]" />
+              <Reveal>
+                <div className="flex items-center gap-3 font-chakra text-xs font-black uppercase tracking-[0.16em] text-[#00F0FF]">
+                  <UsersRound size={17} />
+                  Реферальная программа
+                </div>
+                <h2 className="mt-5 max-w-2xl font-tactic text-4xl font-black uppercase italic leading-[0.96] md:text-6xl">
+                  Приведи друга.
+                  <span className="block text-[#FF2E63]">Выгодно обоим.</span>
+                </h2>
+                <p className="mt-5 max-w-xl font-chakra text-base leading-relaxed text-white/65">
+                  Играйте вместе: друг начинает с 800 бонусов, а ты получаешь бонусы с каждого его пополнения.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 space-y-3">
+                {referralSteps.map((step, index) => {
+                  const Icon = step.icon;
+
+                  return (
+                    <Reveal key={step.title} delay={index * 0.06}>
+                      <article className="group grid grid-cols-[42px_minmax(0,1fr)] gap-4 rounded-[18px] border border-white/10 bg-white/[0.035] p-4 transition duration-300 hover:border-[#FF2E63]/35 hover:bg-[#FF2E63]/[0.055] md:grid-cols-[48px_minmax(0,1fr)] md:p-5">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF2E63]/10 text-[#FF2E63] ring-1 ring-[#FF2E63]/20 md:h-12 md:w-12">
+                          <Icon size={20} />
+                        </div>
+                        <div className="min-w-0">
+                          <div>
+                            <h3 className="font-tactic text-xl font-black uppercase italic leading-tight text-white md:text-2xl">{step.title}</h3>
+                          </div>
+                          <p className="mt-2 font-chakra text-sm leading-relaxed text-white/60">{step.text}</p>
+                        </div>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
+
+              <Reveal className="mt-5">
+                <div className="flex flex-col gap-3 rounded-[18px] border border-[#00F0FF]/25 bg-[#00F0FF]/[0.055] p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center gap-3">
+                    <Trophy className="shrink-0 text-[#00F0FF]" size={22} />
+                    <p className="font-chakra text-sm font-bold leading-relaxed text-white/80">Код — в личном кабинете на ПК клуба</p>
+                  </div>
+                  <strong className="shrink-0 font-tactic text-2xl font-black uppercase italic text-[#00F0FF]">5% всегда</strong>
+                </div>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
