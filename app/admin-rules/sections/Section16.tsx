@@ -56,7 +56,7 @@ export function Section16() {
                                 <span className="font-bold text-rose-600 whitespace-nowrap ml-4">Сумма возврата</span>
                             </li>
                             <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Не проведена доплата в программе за PS5 (>2/4 чел)</span>
+                                <span className="text-slate-700">Не проведена доплата в программе за PS5 (&gt;2/4 чел)</span>
                                 <span className="font-bold text-rose-600 whitespace-nowrap ml-4">300 ₽</span>
                             </li>
                         </ul>
@@ -199,6 +199,5 @@ export function Section16() {
         </section>
     );
 }
-
 
 

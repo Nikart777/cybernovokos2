@@ -6,38 +6,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [
         {
-            url: `${baseUrl}/`, // Совпадает с canonical главной страницы
-            lastModified: new Date(),
+            url: `${baseUrl}/`,
+            lastModified: new Date('2026-07-14'),
             changeFrequency: 'weekly',
             priority: 1,
         },
         {
-            url: `${baseUrl}/prices`, // Убрали слеш
-            lastModified: new Date(),
+            url: `${baseUrl}/prices`,
+            lastModified: new Date('2026-08-13'),
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/contacts`, // Убрали слеш
-            lastModified: new Date(),
-            changeFrequency: 'monthly', // Контакты меняются редко
+            url: `${baseUrl}/contacts`,
+            lastModified: new Date('2026-07-14'),
+            changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/promo`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-08-13'),
             changeFrequency: 'weekly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/simracing`, // Убрали слеш
-            lastModified: new Date(),
+            url: `${baseUrl}/simracing`,
+            lastModified: new Date('2026-07-14'),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
             url: `${baseUrl}/blog`,
-            lastModified: new Date(),
+            lastModified: new Date(Math.max(...blogPosts.map((post) => new Date(post.updated).getTime()))),
             changeFrequency: 'weekly',
             priority: 0.75,
         },
@@ -49,27 +49,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
         {
             url: `${baseUrl}/mouse-test`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-03-26'),
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/certificate`,
-            lastModified: new Date(),
+            lastModified: new Date('2026-07-14'),
             changeFrequency: 'monthly',
             priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/llms.txt`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.3,
-        },
-        {
-            url: `${baseUrl}/llms-full.txt`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.3,
         },
     ];
 }

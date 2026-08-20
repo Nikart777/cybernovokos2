@@ -138,7 +138,7 @@ export default function BookingModal() {
                 <a
                   href={appLink}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#FF2E63] px-5 font-tactic text-sm font-black uppercase italic tracking-wide text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#ff4778] active:translate-y-0 active:scale-[0.98]"
                 >
                   <Smartphone size={18} />

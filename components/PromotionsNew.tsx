@@ -152,7 +152,7 @@ export default function PromotionsNew() {
           <a
             href="/download"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="group flex items-center gap-3 bg-[#111] shadow-border px-6 py-4 skew-x-[-12deg] hover:shadow-border-hover transition-[transform,box-shadow] duration-150 ease-out active:scale-[0.96]"
           >
             <div className="skew-x-[12deg] flex items-center gap-3">

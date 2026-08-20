@@ -7,5 +7,10 @@ export function GET(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? "";
   const destination = /android/i.test(userAgent) ? googlePlayUrl : appStoreUrl;
 
-  return NextResponse.redirect(destination);
+  const response = NextResponse.redirect(destination);
+  response.headers.set("Cache-Control", "private, no-store");
+  response.headers.set("Vary", "User-Agent");
+  response.headers.set("X-Robots-Tag", "noindex, nofollow");
+
+  return response;
 }

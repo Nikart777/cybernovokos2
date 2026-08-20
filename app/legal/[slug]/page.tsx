@@ -22,6 +22,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
     return {
         title: doc.title,
+        description: `${doc.title} компьютерного клуба CyberX Новокосино.`,
+        alternates: {
+            canonical: `https://cyberx-novokosino.ru/legal/${params.slug}`,
+        },
     };
 }
 

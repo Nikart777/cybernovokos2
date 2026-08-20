@@ -602,6 +602,7 @@ export default function AimGamePage() {
                     <a
                       href="/download"
                       target="_blank"
+                      rel="nofollow noopener noreferrer"
                       className="w-full py-4 bg-[#FF2E63] hover:bg-white hover:text-black text-white font-chakra font-bold text-lg uppercase rounded-lg transition-all shadow-[0_0_30px_rgba(255,46,99,0.4)] flex items-center justify-center gap-3"
                     >
                       <Smartphone size={20} />

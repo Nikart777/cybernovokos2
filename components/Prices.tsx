@@ -291,6 +291,7 @@ export default function Prices({ data }: { data: PricingData }) {
             <a
               href="/download"
               target="_blank"
+              rel="nofollow noopener noreferrer"
               className="flex items-center gap-3 px-8 py-4 bg-white text-black font-chakra font-black text-lg uppercase tracking-wider rounded-xl hover:bg-[#FF2E63] hover:text-white hover:shadow-[0_0_30px_#FF2E63] transition-all duration-300 w-full md:w-auto justify-center"
             >
               Скачать

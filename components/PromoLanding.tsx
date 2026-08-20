@@ -132,7 +132,7 @@ export default function PromoLanding() {
               <a
                 href={appLink}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="nofollow noopener noreferrer"
                 className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#FF2E63] py-2 pl-6 pr-2 font-tactic text-sm font-black uppercase italic tracking-wide text-white transition duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:bg-[#ff4778] active:translate-y-0 active:scale-[0.98]"
               >
                 <Smartphone size={19} />
@@ -393,7 +393,7 @@ export default function PromoLanding() {
             <a
               href={appLink}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="inline-flex min-h-14 shrink-0 items-center justify-center gap-3 rounded-2xl bg-white px-7 font-tactic text-sm font-black uppercase italic tracking-wide text-[#111] transition duration-200 hover:-translate-y-0.5 hover:bg-[#FF2E63] hover:text-white active:translate-y-0 active:scale-[0.98]"
             >
               <Gift size={18} />

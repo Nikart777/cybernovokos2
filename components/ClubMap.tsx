@@ -204,6 +204,7 @@ export default function ClubMap() {
              <a 
                href="/download"
                target="_blank"
+               rel="nofollow noopener noreferrer"
                className="flex items-center gap-3 px-8 py-3 bg-[#FF2E63] text-white font-chakra font-bold text-sm uppercase rounded-xl hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,46,99,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] whitespace-nowrap"
              >
                <Smartphone size={18} />
