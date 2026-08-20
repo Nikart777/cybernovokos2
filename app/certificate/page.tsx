@@ -38,9 +38,12 @@ export default function CertificatePage() {
       name: "Москва",
     },
     offers: {
-      "@type": "Offer",
+      "@type": "AggregateOffer",
       url: "https://cyberx-novokosino.ru/certificate",
       priceCurrency: "RUB",
+      lowPrice: "1000",
+      highPrice: "5000",
+      offerCount: 3,
       availability: "https://schema.org/InStock",
       seller: {
         "@type": "LocalBusiness",
