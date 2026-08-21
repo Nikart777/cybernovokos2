@@ -107,10 +107,10 @@ export default function PromoModals() {
                       <div>ДР Бонус</div>
                    </div>
                    <div className="space-y-2">
-                      <RankRow name="БРОНЗА" hours="0-56" cashback="1%" bonus="-" color="#CD7F32" />
-                      <RankRow name="СЕРЕБРО" hours="57-167" cashback="3%" bonus="100" color="#C0C0C0" />
-                      <RankRow name="ЗОЛОТО" hours="168-334" cashback="5%" bonus="200" color="#FFD700" />
-                      <RankRow name="ПЛАТИНА" hours="335-603" cashback="10%" bonus="300" color="#00BFFF" />
+                      <RankRow name="БРОНЗА" hours="0-24" cashback="3%" bonus="-" color="#CD7F32" />
+                      <RankRow name="СЕРЕБРО" hours="25-89" cashback="5%" bonus="100" color="#C0C0C0" />
+                      <RankRow name="ЗОЛОТО" hours="90-349" cashback="7%" bonus="200" color="#FFD700" />
+                      <RankRow name="ПЛАТИНА" hours="350-603" cashback="10%" bonus="300" color="#00BFFF" />
                       <RankRow name="БРИЛЛИАНТ" hours="604+" cashback="20%" bonus="400" color="#FF2E63" isMax />
                    </div>
                    <div className="mt-8 border-t border-white/10 pt-6">
@@ -220,11 +220,6 @@ export default function PromoModals() {
                       <div className="flex items-center gap-3 text-left p-3 rounded-xl bg-white/5">
                          <div className="bg-[#FF0055] w-2 h-2 rounded-full shrink-0" />
                          <span className="text-sm text-gray-300">Действует на любые ПК </span>
-                      </div>
-                      {/* Обновленное условие */}
-                      <div className="flex items-center gap-3 text-left p-3 rounded-xl bg-white/5">
-                         <div className="bg-[#FF0055] w-2 h-2 rounded-full shrink-0" />
-                         <span className="text-sm text-gray-300">Для использования бонусов необходима полная регистрация у администратора в клубе</span>
                       </div>
                    </div>
 

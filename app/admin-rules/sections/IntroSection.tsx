@@ -32,10 +32,10 @@ export const IntroSection = ({
     ];
 
     const BONUS_SYSTEM_DATA = [
-        { status: 'Бронза', hours: '1-56', bonus: '1%', bdBonus: '0', badgeColor: 'bg-[#CD7F32]/10 text-[#8B4513] border-[#CD7F32]/30', glow: 'group-hover:bg-[#CD7F32]/5' },
-        { status: 'Серебро', hours: '57-167', bonus: '3%', bdBonus: '100', badgeColor: 'bg-slate-400/10 text-slate-600 border-slate-400/30', glow: 'group-hover:bg-slate-400/5' },
-        { status: 'Золото', hours: '168-334', bonus: '5%', bdBonus: '200', badgeColor: 'bg-[#FFD700]/10 text-[#DAA520] border-[#FFD700]/40', glow: 'group-hover:bg-[#FFD700]/10' },
-        { status: 'Платина', hours: '335-603', bonus: '10%', bdBonus: '300', badgeColor: 'bg-[#E5E4E2]/50 text-[#718096] border-[#B0C4DE]', glow: 'group-hover:bg-[#B0C4DE]/10' },
+        { status: 'Бронза', hours: '1-24', bonus: '3%', bdBonus: '0', badgeColor: 'bg-[#CD7F32]/10 text-[#8B4513] border-[#CD7F32]/30', glow: 'group-hover:bg-[#CD7F32]/5' },
+        { status: 'Серебро', hours: '25-89', bonus: '5%', bdBonus: '100', badgeColor: 'bg-slate-400/10 text-slate-600 border-slate-400/30', glow: 'group-hover:bg-slate-400/5' },
+        { status: 'Золото', hours: '90-349', bonus: '7%', bdBonus: '200', badgeColor: 'bg-[#FFD700]/10 text-[#DAA520] border-[#FFD700]/40', glow: 'group-hover:bg-[#FFD700]/10' },
+        { status: 'Платина', hours: '350-603', bonus: '10%', bdBonus: '300', badgeColor: 'bg-[#E5E4E2]/50 text-[#718096] border-[#B0C4DE]', glow: 'group-hover:bg-[#B0C4DE]/10' },
         { status: 'Бриллиант', hours: '604+', bonus: '20%', bdBonus: '400', badgeColor: 'bg-[#00F0FF]/10 text-[#0ea5e9] border-[#00F0FF]/40', glow: 'group-hover:bg-[#00F0FF]/5' },
     ];
 
@@ -94,20 +94,6 @@ export const IntroSection = ({
                         <p className="mb-4">
                             Бонусы — это дополнительный баланс клиента, отображаемый рядом с основным в личном кабинете. Бонусы начисляются по специальным предложениям клуба и при каждой игровой сессии клиента в зависимости от его статуса в системе лояльности. <strong className="text-indigo-600 bg-indigo-100/50 px-1.5 py-0.5 rounded border border-indigo-200">1 бонус = 1 рубль</strong>.
                         </p>
-
-                        <div className="bg-white p-4 rounded-2xl border border-indigo-100 mb-4">
-                            <strong className="text-indigo-900 block mb-2 uppercase tracking-wide text-xs font-bold">Условия использования бонусов:</strong>
-                            <ul className="space-y-2">
-                                <li className="flex gap-2 items-start">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
-                                    <span>Чтобы бонусами можно было платить, клиент должен пройти <strong className="text-indigo-700">полную регистрацию</strong> у администратора (показать документ, удостоверяющий личность).</span>
-                                </li>
-                                <li className="flex gap-2 items-start">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
-                                    <span>Администратор в клубе проверяет данные и завершает регистрацию (подтверждает аккаунт).</span>
-                                </li>
-                            </ul>
-                        </div>
 
                         <div className="flex gap-3 items-center bg-rose-50 border border-rose-100 text-rose-800 p-3 sm:p-4 rounded-2xl">
                             <div className="w-8 h-8 shrink-0 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center">
@@ -172,7 +158,7 @@ export const IntroSection = ({
                             Оплата тарифов бонусными баллами доступна для обоих клубов (Новокосино и Алтуфьево) на одинаковых условиях. Разрешенный процент списания зависит от выбранного тарифа:
                         </p>
                         
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col items-center text-center group hover:border-[#FF2E63]/30 hover:shadow-md transition-all">
                                 <div className="text-[10px] font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Базовый тариф</div>
                                 <div className="font-tactic font-black italic text-slate-900 text-2xl mb-1">1 ЧАС</div>
@@ -188,7 +174,15 @@ export const IntroSection = ({
                             <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col items-center text-center group hover:border-[#FF2E63]/30 hover:shadow-md transition-all">
                                 <div className="text-[10px] font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Пакет</div>
                                 <div className="font-tactic font-black italic text-slate-900 text-2xl mb-1">5 ЧАСОВ</div>
-                                <div className="mt-3 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-orange-500/10 text-orange-600 font-chakra font-bold text-sm border border-orange-500/20">Списание 15%</div>
+                                <div className="mt-3 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-[#FF2E63]/10 text-[#FF2E63] font-chakra font-bold text-sm border border-[#FF2E63]/20">Списание 20%</div>
+                            </div>
+
+                            <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col items-center text-center group hover:border-slate-400/40 hover:shadow-md transition-all">
+                                <div className="text-[10px] font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Пакет</div>
+                                <div className="font-tactic font-black italic text-slate-900 text-2xl mb-1">НОЧЬ</div>
+                                <div className="mt-3 inline-flex items-center gap-1.5 justify-center px-4 py-1.5 rounded-xl bg-slate-200/70 text-slate-600 font-chakra font-bold text-sm border border-slate-300">
+                                    <X size={14} strokeWidth={3} /> Бонусы не списываются
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -221,21 +215,51 @@ export const IntroSection = ({
                                 </div>
                             </div>
 
+                            <div className="mb-4 flex items-start gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4">
+                                <div className="w-8 h-8 shrink-0 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+                                    <Trophy size={15} />
+                                </div>
+                                <p className="font-chakra text-amber-100 text-sm leading-relaxed">
+                                    <strong className="text-amber-300 uppercase tracking-wide">Важно:</strong> автобонусы при пополнении баланса начисляются только гостям со статусом <strong className="text-white">«Серебро»</strong> и выше. Гостям со статусом «Бронза» бонус за пополнение не начисляется.
+                                </p>
+                            </div>
+
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-2 border-slate-800 hover:border-fuchsia-500/50 rounded-2xl p-5 flex flex-row md:flex-col justify-between items-center text-center transition-all group shadow-sm hover:shadow-[0_0_20px_rgba(217,70,239,0.15)]">
                                     <div className="text-[10px] sm:mb-2 font-chakra font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-300">Пополнение</div>
-                                    <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">1000 ₽</div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">1000 ₽</div>
+                                        <div className="md:hidden text-[10px] font-chakra font-bold uppercase tracking-wider text-slate-400">Серебро и выше</div>
+                                    </div>
                                     <div className="mt-0 sm:mt-3 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-fuchsia-500/20 text-fuchsia-400 font-tactic italic uppercase tracking-wider text-sm border border-fuchsia-500/50 shadow-[0_0_10px_rgba(217,70,239,0.3)]">Бонус +100</div>
+                                    <div className="hidden md:flex mt-4 pt-3 w-full items-center justify-center gap-1.5 border-t border-slate-700/70 text-[10px] font-chakra font-black uppercase tracking-[0.15em] text-slate-400">
+                                        <Trophy size={11} className="text-slate-500" />
+                                        От статуса <span className="text-slate-200">Серебро</span>
+                                    </div>
                                 </div>
                                 <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-2 border-slate-800 hover:border-fuchsia-400/60 rounded-2xl p-5 flex flex-row md:flex-col justify-between items-center text-center transition-all group shadow-sm hover:shadow-[0_0_20px_rgba(217,70,239,0.2)]">
                                     <div className="text-[10px] sm:mb-2 font-chakra font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-300">Пополнение</div>
-                                    <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">2000 ₽</div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">2000 ₽</div>
+                                        <div className="md:hidden text-[10px] font-chakra font-bold uppercase tracking-wider text-slate-400">Золото и выше</div>
+                                    </div>
                                     <div className="mt-0 sm:mt-3 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-fuchsia-500/20 text-fuchsia-400 font-tactic italic uppercase tracking-wider text-sm border border-fuchsia-500/50 shadow-[0_0_15px_rgba(217,70,239,0.4)]">Бонус +250</div>
+                                    <div className="hidden md:flex mt-4 pt-3 w-full items-center justify-center gap-1.5 border-t border-slate-700/70 text-[10px] font-chakra font-black uppercase tracking-[0.15em] text-slate-400">
+                                        <Trophy size={11} className="text-slate-500" />
+                                        От статуса <span className="text-slate-200">Золото</span>
+                                    </div>
                                 </div>
                                 <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-2 border-slate-800 hover:border-fuchsia-300/70 rounded-2xl p-5 flex flex-row md:flex-col justify-between items-center text-center transition-all group shadow-sm hover:shadow-[0_0_20px_rgba(217,70,239,0.3)]">
                                     <div className="text-[10px] sm:mb-2 font-chakra font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-300">Пополнение</div>
-                                    <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">3000 ₽</div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="font-tactic font-black italic tracking-widest text-white text-2xl mb-1">3000 ₽</div>
+                                        <div className="md:hidden text-[10px] font-chakra font-bold uppercase tracking-wider text-slate-400">Платина и выше</div>
+                                    </div>
                                     <div className="mt-0 sm:mt-3 inline-flex items-center justify-center px-4 py-1.5 rounded-xl bg-fuchsia-500/20 text-fuchsia-400 font-tactic italic uppercase tracking-wider text-sm border border-fuchsia-500/50 shadow-[0_0_20px_rgba(217,70,239,0.5)]">Бонус +350</div>
+                                    <div className="hidden md:flex mt-4 pt-3 w-full items-center justify-center gap-1.5 border-t border-slate-700/70 text-[10px] font-chakra font-black uppercase tracking-[0.15em] text-slate-400">
+                                        <Trophy size={11} className="text-slate-500" />
+                                        От статуса <span className="text-slate-200">Платина</span>
+                                    </div>
                                 </div>
                             </div>
 
