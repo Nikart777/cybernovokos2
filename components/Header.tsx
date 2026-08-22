@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Smartphone, MapPin, Clock, MessageSquare } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 const desktopNavLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
@@ -23,20 +24,19 @@ const mobileNavLinks = [
 ];
 
 export default function Header() {
+    const pathname = usePathname();
+    const isPromoPage = pathname === '/promo';
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { scrollY } = useScroll();
 
     const openChat = () => {
         window.dispatchEvent(new CustomEvent('open-chat'));
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    useMotionValueEvent(scrollY, 'change', (latest) => {
+        setScrolled(latest > 20);
+    });
 
     useEffect(() => {
         if (isOpen) {
@@ -92,17 +92,34 @@ export default function Header() {
                             <MessageSquare size={14} className="group-hover/chat:scale-110 transition-transform" />
                             Чат с админом
                         </button>
-                        <button
-                            onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="group relative flex items-center justify-center bg-[#FF2E63] shadow-border-accent px-6 py-3 skew-x-[-12deg] transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] active:scale-[0.96]"
-                        >
-                            <div className="skew-x-[12deg] flex items-center gap-2">
-                                <Smartphone size={16} className="text-white group-hover:rotate-12 transition-transform" />
-                                <span className="font-tactic font-black text-[11px] uppercase italic text-white leading-none mt-1">
-                                    ЗАБРОНИРОВАТЬ
-                                </span>
-                            </div>
-                        </button>
+                        {isPromoPage ? (
+                            <a
+                                href="/download"
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                className="group relative flex min-h-11 items-center justify-center bg-[#FF2E63] px-6 py-3 skew-x-[-12deg] transition-[transform,background-color] duration-150 ease-out hover:bg-[#ff5d86] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-[0.96]"
+                            >
+                                <div className="skew-x-[12deg] flex items-center gap-2">
+                                    <Smartphone size={16} className="text-[#090909] group-hover:rotate-12 transition-transform" />
+                                    <span className="font-tactic font-black text-[11px] uppercase italic text-[#090909] leading-none mt-1">
+                                        СКАЧАТЬ CYBERX
+                                    </span>
+                                    <span className="sr-only"> (откроется в новой вкладке)</span>
+                                </div>
+                            </a>
+                        ) : (
+                            <button
+                                onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
+                                className="group relative flex items-center justify-center bg-[#FF2E63] shadow-border-accent px-6 py-3 skew-x-[-12deg] transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_20px_rgba(255,46,99,0.5)] active:scale-[0.96]"
+                            >
+                                <div className="skew-x-[12deg] flex items-center gap-2">
+                                    <Smartphone size={16} className="text-white group-hover:rotate-12 transition-transform" />
+                                    <span className="font-tactic font-black text-[11px] uppercase italic text-white leading-none mt-1">
+                                        ЗАБРОНИРОВАТЬ
+                                    </span>
+                                </div>
+                            </button>
+                        )}
                     </nav>
 
                     {/* Mobile Menu Button */}
@@ -201,23 +218,44 @@ export default function Header() {
                             {/* Bottom Section */}
                             <div className="w-full max-w-sm mx-auto space-y-4 mt-8">
                                 {/* Booking Button */}
-                                <motion.button
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.4 }}
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        window.dispatchEvent(new CustomEvent('open-booking'));
-                                    }}
-                                    className="w-full flex items-center justify-center bg-[#FF2E63] shadow-border-accent py-4 skew-x-[-6deg] active:scale-[0.96] transition-transform duration-150 ease-out"
-                                >
-                                    <div className="skew-x-[6deg] flex items-center gap-3">
-                                        <Smartphone size={18} className="text-white" />
-                                        <span className="font-tactic font-black text-sm uppercase italic text-white mt-1">
-                                            ЗАБРОНИРОВАТЬ МЕСТО
-                                        </span>
-                                    </div>
-                                </motion.button>
+                                {isPromoPage ? (
+                                    <motion.a
+                                        href="/download"
+                                        target="_blank"
+                                        rel="nofollow noopener noreferrer"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.4 }}
+                                        onClick={() => setIsOpen(false)}
+                                        className="w-full flex items-center justify-center bg-[#FF2E63] py-4 skew-x-[-6deg] active:scale-[0.96] transition-transform duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                    >
+                                        <div className="skew-x-[6deg] flex items-center gap-3">
+                                            <Smartphone size={18} className="text-[#090909]" />
+                                            <span className="font-tactic font-black text-sm uppercase italic text-[#090909] mt-1">
+                                                СКАЧАТЬ CYBERX
+                                            </span>
+                                            <span className="sr-only"> (откроется в новой вкладке)</span>
+                                        </div>
+                                    </motion.a>
+                                ) : (
+                                    <motion.button
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.4 }}
+                                        onClick={() => {
+                                            setIsOpen(false);
+                                            window.dispatchEvent(new CustomEvent('open-booking'));
+                                        }}
+                                        className="w-full flex items-center justify-center bg-[#FF2E63] shadow-border-accent py-4 skew-x-[-6deg] active:scale-[0.96] transition-transform duration-150 ease-out"
+                                    >
+                                        <div className="skew-x-[6deg] flex items-center gap-3">
+                                            <Smartphone size={18} className="text-white" />
+                                            <span className="font-tactic font-black text-sm uppercase italic text-white mt-1">
+                                                ЗАБРОНИРОВАТЬ МЕСТО
+                                            </span>
+                                        </div>
+                                    </motion.button>
+                                )}
 
                                 {/* Chat Button */}
                                 <motion.button

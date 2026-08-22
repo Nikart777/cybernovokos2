@@ -5,7 +5,13 @@ const googlePlayUrl = "https://redirect.appmetrica.yandex.com/serve/245723835301
 
 export function GET(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? "";
-  const destination = /android/i.test(userAgent) ? googlePlayUrl : appStoreUrl;
+  const isAndroid = /android/i.test(userAgent);
+  const isAppleMobile = /iPhone|iPad|iPod/i.test(userAgent);
+  const destination = isAndroid
+    ? googlePlayUrl
+    : isAppleMobile
+      ? appStoreUrl
+      : new URL("/download/select", request.url);
 
   const response = NextResponse.redirect(destination);
   response.headers.set("Cache-Control", "private, no-store");

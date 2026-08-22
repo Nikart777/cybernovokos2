@@ -23,8 +23,8 @@ export default function Footer() {
     return (
         <footer className="bg-black border-t border-white/5 pt-16 pb-8">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
-                    <div className="md:col-span-1 border-r border-white/5 pr-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 mb-16">
+                    <div className="md:col-span-2 xl:col-span-1 border-r-0 xl:border-r border-white/5 xl:pr-8">
                         <Link href="/" className="inline-block mb-6">
                             <div className="flex items-baseline">
                                 <span className="font-tactic font-black text-2xl tracking-tighter text-white uppercase italic">CYBER</span>
@@ -87,7 +87,7 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div className="md:col-span-2">
+                    <div className="md:col-span-2 xl:col-span-2">
                         <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Контакты</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="flex flex-col gap-6">
