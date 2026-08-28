@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "org": "CyberX Community, Алтуфьевское шоссе 72 (permalink 108414541367)",
+    "saved": "2026-08-25",
+    "note": "Бэкап раздела «Товары и услуги» перед заменой на XLSX (scripts/generate-altufevo-xlsx.py). Источник позиций — TYCOON."
+  },
+  "items": [
+    {
+      "id": "58438470570",
+      "title": "DUO 5 часов",
+      "desc": null,
+      "price": 840,
+      "group": "DUO",
+      "popular": false,
+      "volume": "5 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2994796/2a000001994db8bea623f3b48ae53cfa5f04/orig"
+    },
+    {
+      "id": "58438470266",
+      "title": "SOLO 3 часа",
+      "desc": null,
+      "price": 540,
+      "group": "SOLO (1 чел.)",
+      "popular": false,
+      "volume": "3 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2791887/2a000001994db757851a995a91603e5db006/orig"
+    },
+    {
+      "id": "39431225392",
+      "title": "🏁 Автосимулятор 2 часа",
+      "desc": "2 часа на пределе сцепления.\nТрасса твоя. Гонки — твой путь. Тормозов нет.",
+      "price": 980,
+      "group": "Автосимулятор",
+      "popular": false,
+      "volume": "120 Minute",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2790747/2a000001994dbdd720c0d9342862ce031bf0/orig"
+    },
+    {
+      "id": "39431225379",
+      "title": "🏁 Автосимулятор 1 час",
+      "desc": "Разогрей мотор и жми до упора.\nИдеально, чтобы ворваться, сделать круги и оставить соперников в пыли.",
+      "price": 570,
+      "group": "Автосимулятор",
+      "popular": true,
+      "volume": "60 Minute",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/3911103/2a000001994da6c0ecb0ec74b471d4157c57/orig"
+    },
+    {
+      "id": "6807354263",
+      "title": "PS5 VIP 5 ЧАСОВ",
+      "desc": "Максимум удовольствия от Next-Gen.\nДля тех, кто хочет с головой погрузиться в мир эксклюзивов.",
+      "price": 1250,
+      "group": "PS5 (Будни)",
+      "popular": false,
+      "volume": "5 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/218134/2a000001994dc13d3a9311844b765d2a0308/orig"
+    },
+    {
+      "id": "6807344288",
+      "title": "PS5 VIP 1 ЧАС",
+      "desc": "Залететь, залипнуть, затащить.\nЧас с PS5 — и больше ничего не нужно.",
+      "price": 350,
+      "group": "PS5 (Будни)",
+      "popular": true,
+      "volume": "1 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/218134/2a000001994dc0105fdfdbde5f422f70244c/orig"
+    },
+    {
+      "id": "6807199990",
+      "title": "💥 BOOTCAMP 3 ЧАСА",
+      "desc": "Твоя тройка часов в тишине и фокусе.\nБез очередей, без шума — только игра.",
+      "price": 460,
+      "group": "VIP",
+      "popular": false,
+      "volume": "3 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2413620/2a000001994dbb45e1f56e9baff2c7d8e5f8/orig"
+    },
+    {
+      "id": "6807193499",
+      "title": "🧨 STANDART 5 ЧАСОВ",
+      "desc": "Идеально для длинной игры в компании.\nВремя пролетит незаметно.",
+      "price": 630,
+      "group": "STANDART",
+      "popular": false,
+      "volume": "5 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2790747/2a000001994dbc8114c3cf2864685f5d5caa/orig"
+    },
+    {
+      "id": "6807183925",
+      "title": "🧨 STANDART 3 ЧАСА",
+      "desc": "Оптимальный геймерский сеанс.\nХватает и на калибровку, и на пару боёв.",
+      "price": 410,
+      "group": "STANDART",
+      "popular": false,
+      "volume": "3 Hour",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2790747/2a000001994dbc8114c3cf2864685f5d5caa/orig"
+    }
+  ]
+}

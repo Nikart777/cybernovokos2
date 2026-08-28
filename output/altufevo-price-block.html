@@ -1,0 +1,423 @@
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   ⚡ CYBERX PRICE (V7.0 - TACTIC SANS)
+   ========================================= */
+:root {
+    --pr-accent: #FF2E63;
+    --pr-bg-dark: #0a0a0a;
+    --pr-card-bg: #111111;
+    --pr-border: #333333;
+
+    /* ШРИФТЫ */
+    /* TacticSans должен быть подключен глобально на вашем сайте */
+    --pr-font-main: 'TacticSans', sans-serif;
+    --pr-font-num: 'Chakra Petch', sans-serif; /* Для цифр цен */
+}
+
+.cx-price-wrapper {
+    background-color: var(--pr-bg-dark);
+    padding: 60px 15px;
+    font-family: var(--pr-font-main);
+}
+.cx-price-container { max-width: 1200px; margin: 0 auto; position: relative; }
+
+/* --- TABS NAVIGATION --- */
+.cx-tabs-wrapper { position: relative; margin-bottom: 30px; }
+.cx-tabs-mask {
+    position: relative; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+.cx-tabs-scroll {
+    overflow-x: auto; padding: 10px 20px 20px 5px;
+    display: flex; gap: 15px;
+    scrollbar-width: none; -ms-overflow-style: none;
+}
+.cx-tabs-scroll::-webkit-scrollbar { display: none; }
+
+/* SWIPE HINT */
+.cx-swipe-hint {
+    display: none; position: absolute; right: 5px; top: 22px; z-index: 50;
+    background: rgba(255, 46, 99, 0.9); color: #fff; font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px; padding: 6px 12px; border-radius: 20px;
+    pointer-events: none; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: pulseSwipe 2s infinite; transition: opacity 0.3s;
+}
+@keyframes pulseSwipe { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+
+/* TAB BUTTONS */
+.cx-tab-btn {
+    background: rgba(255,255,255,0.03); border: 1px solid #444;
+    padding: 12px 30px; color: #888;
+    font-family: var(--pr-font-main);
+    font-size: 16px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; cursor: pointer; transition: 0.3s;
+    white-space: nowrap; transform: skewX(-20deg); border-radius: 4px;
+    flex-shrink: 0;
+}
+.cx-tab-btn span { display: block; transform: skewX(20deg); }
+.cx-tab-btn.active {
+    background: var(--pr-accent); border-color: var(--pr-accent);
+    color: #fff; box-shadow: 0 0 20px rgba(255, 46, 99, 0.4); z-index: 2;
+}
+
+/* --- SWITCHER --- */
+.cx-switcher-box { display: flex; justify-content: center; margin-bottom: 40px; }
+.cx-switcher {
+    background: #1a1a1a; border: 1px solid #333; border-radius: 50px;
+    display: flex; padding: 4px; position: relative; overflow: hidden;
+}
+.cx-switch-btn {
+    padding: 10px 25px; cursor: pointer; z-index: 2;
+    font-family: var(--pr-font-main); font-weight: 700; font-size: 14px; text-transform: uppercase;
+    color: #666; transition: 0.3s; min-width: 110px; text-align: center; letter-spacing: 0.5px;
+}
+.cx-switch-btn.active { color: #fff; }
+.cx-switch-bg {
+    position: absolute; top: 4px; left: 4px; height: calc(100% - 8px); width: calc(50% - 4px);
+    background: #333; border-radius: 50px; transition: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); z-index: 1;
+}
+.cx-switcher[data-state="weekend"] .cx-switch-bg { transform: translateX(100%); background: var(--pr-accent); }
+
+/* --- CONTENT --- */
+.cx-zone-content { display: none; animation: slideUp 0.4s ease; }
+.cx-zone-content.active { display: block; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.cx-zone-header { text-align: center; margin-bottom: 30px; }
+.cx-zone-title {
+    font-family: var(--pr-font-main); color: #fff; font-size: 36px; font-weight: 900;
+    text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px;
+}
+.cx-zone-specs {
+    display: inline-block; color: #bbb; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 8px 18px; border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.5; font-family: var(--pr-font-main);
+}
+/* Цифры в спеках (например 4070) оставляем TacticSans или меняем на Chakra если нужно.
+   TacticSans обычно хорошо справляется с цифрами. Оставим TacticSans для целостности строки */
+.cx-zone-specs span {
+    color: var(--pr-accent);
+    font-weight: 700;
+}
+
+.cx-section-title {
+    font-family: var(--pr-font-main); color: #fff; font-size: 18px; font-weight: 700;
+    margin-bottom: 20px; padding-left: 15px; border-left: 4px solid var(--pr-accent);
+    text-transform: uppercase; letter-spacing: 1px;
+    background: linear-gradient(90deg, rgba(255,46,99,0.1) 0%, transparent 100%);
+    padding-top: 6px; padding-bottom: 6px;
+}
+.cx-sub-header {
+    text-align: center; margin: 50px 0 20px; border-top: 1px solid #333; padding-top: 30px;
+}
+.cx-sub-title {
+    font-family: var(--pr-font-main); color: #fff; font-size: 24px; font-weight: 800;
+    text-transform: uppercase; display: inline-block;
+    border-bottom: 2px solid var(--pr-accent); padding-bottom: 5px;
+}
+
+.cx-price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 40px; }
+
+.cx-price-card {
+    background: var(--pr-card-bg); border: 1px solid var(--pr-border);
+    border-radius: 12px; padding: 20px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    transition: 0.3s; position: relative; overflow: hidden;
+}
+.cx-price-card:hover { transform: translateY(-5px); border-color: var(--pr-accent); box-shadow: 0 10px 30px rgba(255, 46, 99, 0.15); }
+
+/* Заголовок карточки */
+.cx-p-time {
+    font-family: var(--pr-font-main); font-weight: 800; letter-spacing: 1px;
+    font-size: 28px; color: #fff; margin: 0 0 5px 0; line-height: 1; text-transform: uppercase;
+}
+
+.cx-p-hours {
+    font-family: var(--pr-font-num); /* Время цифрами - Chakra Petch */
+    font-size: 14px; color: #888; margin-bottom: 15px;
+    font-weight: 600; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+/* СТАРАЯ ЦЕНА */
+
+
+/* НОВАЯ ЦЕНА */
+.cx-app-price {
+    font-family: var(--pr-font-num); /* Цифры Chakra Petch */
+    font-size: 46px; color: var(--pr-accent);
+    font-weight: 700; line-height: 1.1;
+    text-shadow: 0 0 20px rgba(255, 46, 99, 0.3);
+    margin-top: 5px;
+}
+.cx-app-price span {
+    font-family: var(--pr-font-main); /* Знак рубля - TacticSans */
+    font-size: 24px; color: #fff; margin-left: 4px; font-weight: 400;
+}
+
+
+.cx-card-night { background: radial-gradient(circle at top right, rgba(255,46,99,0.1), transparent 70%), #111; border: 1px solid rgba(255,46,99,0.3); }
+
+/* BANNER */
+.cx-cta-banner {
+    background: linear-gradient(90deg, #141414 0%, #1a050a 100%);
+    border: 1px solid rgba(255, 46, 99, 0.4); border-radius: 16px; padding: 20px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5); cursor: pointer; transition: 0.3s;
+}
+.cx-cta-banner:hover { transform: scale(1.01); border-color: var(--pr-accent); box-shadow: 0 0 30px rgba(255,46,99,0.2); }
+.cx-cta-text h4 { font-family: var(--pr-font-main); font-weight: 800; color: #fff; font-size: 20px; margin: 0 0 5px 0; text-transform: uppercase; }
+.cx-cta-text p { font-family: var(--pr-font-main); color: #999; margin: 0; font-size: 13px; }
+.cx-cta-text span { color: var(--pr-accent); font-family: var(--pr-font-num); font-size: 22px; font-weight: 700; }
+.cx-cta-btn {
+    padding: 14px 30px; background: var(--pr-accent); color: #fff;
+    font-family: var(--pr-font-main); font-size: 16px; font-weight: 800;
+    text-transform: uppercase; border-radius: 8px; border: none;
+    box-shadow: 0 5px 20px rgba(255, 46, 99, 0.4); white-space: nowrap; margin-left: 20px;
+}
+
+/* DISCLAIMER FOOTER */
+.cx-price-footer {
+    margin-top: 30px; border-top: 1px solid #222; padding-top: 20px;
+    text-align: center;
+}
+.cx-footer-note {
+    color: #666; font-size: 11px; font-weight: 600; text-transform: uppercase;
+    line-height: 1.6; letter-spacing: 0.5px; opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .cx-swipe-hint { display: block; }
+    .cx-tabs-mask { margin-left: -15px; margin-right: -15px; padding: 0 15px; }
+    .cx-price-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .cx-price-card { padding: 15px 5px; }
+    .cx-p-time { font-size: 18px; }
+    .cx-app-price { font-size: 32px; }
+    .cx-cta-banner { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+    .cx-cta-btn { width: 100%; margin: 0; }
+    .cx-footer-note { font-size: 10px; }
+}
+</style>
+
+<div class="cx-price-wrapper" id="price">
+    <div class="cx-price-container">
+
+        <div class="cx-tabs-wrapper">
+            <div class="cx-swipe-hint" id="swipeHint">СВАЙП ➔</div>
+            <div class="cx-tabs-mask">
+                <div class="cx-tabs-scroll" id="tabsScroll">
+                    <button class="cx-tab-btn active" onclick="switchZone('common', this)"><span>ОБЩИЙ</span></button>
+                    <button class="cx-tab-btn" onclick="switchZone('bootcamp', this)"><span>VIP BOOTCAMP</span></button>
+                    <button class="cx-tab-btn" onclick="switchZone('duo', this)"><span>DUO</span></button>
+                    <button class="cx-tab-btn" onclick="switchZone('solo', this)"><span>SOLO</span></button>
+                    <button class="cx-tab-btn" onclick="switchZone('tv', this)"><span>TV & PS5</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cx-switcher-box">
+            <div class="cx-switcher" id="priceSwitcher" data-state="weekday">
+                <div class="cx-switch-bg"></div>
+                <div class="cx-switch-btn active" onclick="setPriceMode('weekday')">БУДНИ</div>
+                <div class="cx-switch-btn" onclick="setPriceMode('weekend')">ВЫХОДНЫЕ</div>
+            </div>
+        </div>
+
+        <div class="cx-zone-content active" id="common">
+            <div class="cx-zone-header">
+                <h2 class="cx-zone-title">ОБЩИЙ ЗАЛ</h2>
+                <div class="cx-zone-specs"><span>RTX 5060</span> • 240 Hz • 24"</div>
+            </div>
+
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="140" data-end="160"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 15:00</div><div class="cx-price-display" data-week="380" data-end="440"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 14:00</div><div class="cx-price-display" data-week="580" data-end="670"></div></div>
+            </div>
+
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="160" data-end="180"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">15:00 - 08:00</div><div class="cx-price-display" data-week="430" data-end="490"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">14:00 - 08:00</div><div class="cx-price-display" data-week="690" data-end="790"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="700" data-end="800"></div></div>
+            </div>
+        </div>
+
+        <div class="cx-zone-content" id="bootcamp">
+            <div class="cx-zone-header">
+                <h2 class="cx-zone-title">VIP BOOTCAMP</h2>
+                <div class="cx-zone-specs">5 МЕСТ • <span>RTX 5070</span> • 240 Hz • 24.5"</div>
+            </div>
+
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="160" data-end="190"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 15:00</div><div class="cx-price-display" data-week="440" data-end="520"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 14:00</div><div class="cx-price-display" data-week="660" data-end="790"></div></div>
+            </div>
+
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="180" data-end="220"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">15:00 - 08:00</div><div class="cx-price-display" data-week="500" data-end="630"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">14:00 - 08:00</div><div class="cx-price-display" data-week="750" data-end="950"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="850" data-end="990"></div></div>
+            </div>
+        </div>
+
+        <div class="cx-zone-content" id="duo">
+            <div class="cx-zone-header">
+                <h2 class="cx-zone-title">DUO (2 МЕСТА)</h2>
+                <div class="cx-zone-specs"><span>RTX 4070 SUPER</span> • 360 Hz • 24.5"</div>
+            </div>
+
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="220" data-end="250"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 15:00</div><div class="cx-price-display" data-week="600" data-end="690"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 14:00</div><div class="cx-price-display" data-week="910" data-end="1040"></div></div>
+            </div>
+
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">17:00 - 08:00</div><div class="cx-price-display" data-week="240" data-end="300"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="660" data-end="850"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">14:00 - 08:00</div><div class="cx-price-display" data-week="1000" data-end="1160"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="1150" data-end="1390"></div></div>
+            </div>
+        </div>
+
+        <div class="cx-zone-content" id="solo">
+            <div class="cx-zone-header">
+                <h2 class="cx-zone-title">SOLO (3 КОМНАТЫ)</h2>
+                <div class="cx-zone-specs"><span>RTX 4070 SUPER</span> • 240 Hz • 27" 2K</div>
+            </div>
+
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 17:00</div><div class="cx-price-display" data-week="220" data-end="250"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="600" data-end="690"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 14:00</div><div class="cx-price-display" data-week="910" data-end="1040"></div></div>
+            </div>
+
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">17:00 - 08:00</div><div class="cx-price-display" data-week="240" data-end="300"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">15:00 - 08:00</div><div class="cx-price-display" data-week="660" data-end="850"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">14:00 - 08:00</div><div class="cx-price-display" data-week="1000" data-end="1160"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="1150" data-end="1390"></div></div>
+            </div>
+        </div>
+
+        <div class="cx-zone-content" id="tv">
+            <div class="cx-zone-header">
+                <h2 class="cx-zone-title">TV & PS5</h2>
+                <div class="cx-zone-specs">70" TV • До 2 (Стандарт) или 4 (VIP) человек</div>
+            </div>
+
+            <div class="cx-sub-header"><span class="cx-sub-title">АРЕНДА TV (Стандарт)</span></div>
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="290" data-end="350"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="670" data-end="840"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="990" data-end="1260"></div></div>
+            </div>
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="400" data-end="450"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="960" data-end="1080"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="1360" data-end="1500"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="1250" data-end="1450"></div></div>
+            </div>
+
+            <div class="cx-sub-header"><span class="cx-sub-title">TV VIP КОМНАТА</span></div>
+            <h3 class="cx-section-title">Утро и День (08:00 - 16:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="350" data-end="400"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="810" data-end="960"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">08:00 - 16:00</div><div class="cx-price-display" data-week="1250" data-end="1400"></div></div>
+            </div>
+            <h3 class="cx-section-title">Вечер и Ночь (16:00 - 08:00)</h3>
+            <div class="cx-price-grid">
+                <div class="cx-price-card"><div class="cx-p-time">1 ЧАС</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="500" data-end="600"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">3 ЧАСА</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="1200" data-end="1400"></div></div>
+                <div class="cx-price-card"><div class="cx-p-time">5 ЧАСОВ</div><div class="cx-p-hours">16:00 - 08:00</div><div class="cx-price-display" data-week="1600" data-end="1700"></div></div>
+                <div class="cx-price-card cx-card-night"><div class="cx-p-time">НОЧЬ</div><div class="cx-p-hours">22:00 - 08:00</div><div class="cx-price-display" data-week="1400" data-end="1600"></div></div>
+            </div>
+        </div>
+
+        <div class="cx-cta-banner" onclick="openModal()">
+            <div class="cx-cta-text">
+                <h4>Копи <span>бонусы</span> за каждую игру</h4>
+                <p>Бронируй место и оплачивай время бонусами в приложении CyberX</p>
+            </div>
+            <button class="cx-cta-btn">Бронировать</button>
+        </div>
+
+        <div class="cx-price-footer">
+            <div class="cx-footer-note">*ВЫХОДНЫЕ - С 17:00 ПЯТНИЦЫ (ИЛИ ПРЕДПРАЗДНИЧНОГО ДНЯ) ДО 08:00 ПОНЕДЕЛЬНИКА (ИЛИ ПОСЛЕ ПРАЗДНИКОВ)</div>
+            <div class="cx-footer-note">ДОПЛАТА на TV +100₽ ЗА КАЖДОГО ДОПОЛНИТЕЛЬНОГО ЧЕЛОВЕКА</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+let currentMode = 'weekday';
+
+// Switch Tabs
+function switchZone(zoneId, btn) {
+    document.querySelectorAll('.cx-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cx-zone-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(zoneId).classList.add('active');
+    updatePrices();
+}
+
+// Switch Mode (Weekday/Weekend)
+function setPriceMode(mode) {
+    currentMode = mode;
+    const switcher = document.getElementById('priceSwitcher');
+    const btns = switcher.querySelectorAll('.cx-switch-btn');
+    switcher.setAttribute('data-state', mode);
+    btns.forEach(btn => btn.classList.remove('active'));
+    if (mode === 'weekday') btns[0].classList.add('active');
+    else btns[1].classList.add('active');
+    updatePrices();
+}
+
+// UPDATE PRICES LOGIC
+function updatePrices() {
+    const activeZone = document.querySelector('.cx-zone-content.active');
+    const displays = activeZone.querySelectorAll('.cx-price-display');
+    displays.forEach(display => {
+        const price = parseInt(currentMode === 'weekday' ? display.getAttribute('data-week') : display.getAttribute('data-end'));
+        display.innerHTML = `<div class="cx-app-price">${price}<span>₽</span></div>`;
+    });
+}
+
+// Swipe Hint Logic
+const tabsScroll = document.getElementById('tabsScroll');
+const swipeHint = document.getElementById('swipeHint');
+
+tabsScroll.addEventListener('scroll', function() {
+    if (swipeHint.style.opacity !== '0') {
+        swipeHint.style.opacity = '0';
+        setTimeout(() => { swipeHint.style.display = 'none'; }, 300);
+    }
+});
+
+// Init
+document.addEventListener("DOMContentLoaded", function() {
+    setPriceMode('weekday');
+});
+</script>

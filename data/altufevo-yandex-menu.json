@@ -1,0 +1,438 @@
+{
+  "_meta": {
+    "org": "CyberX Community, Алтуфьевское шоссе 72 (permalink 108414541367)",
+    "source": "Цены из LANGAME Master API (public_api, клуб CyberX-Nash id=3), справочники в output/langame-cyberx52.json. Поле langame=[zone_id,packet_id]; {MIN}/{MAX} в desc подставляются генератором.",
+    "site": "https://cyberx.moscow"
+  },
+  "categories": [
+    "Общий зал — игровые ПК",
+    "VIP BOOTCAMP — комната на 5 игроков",
+    "DUO — места для двоих",
+    "SOLO — приватные игровые комнаты",
+    "PlayStation 5 — TV зона",
+    "PS5 — VIP комната на компанию",
+    "Автосимуляторы",
+    "Абонементы",
+    "Подарочные сертификаты"
+  ],
+  "items": [
+    {
+      "id": "standard-1h",
+      "cat": "Общий зал — игровые ПК",
+      "price": 120,
+      "max": 180,
+      "popular": true,
+      "name": "Игровой ПК RTX 5060, 240 Гц — 1 час (Общий зал)",
+      "desc": "Час за мощным игровым компьютером в клубе CyberX в Алтуфьево: RTX 5060, монитор 240 Гц, 20 мест. Днём в будни — {MIN} ₽, вечером и в выходные — до {MAX} ₽. За каждую игру начисляем бонусы — ими можно оплачивать игровое время.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2994796/2a000001a0391fe30a3f78919ccf8fda2818/orig",
+      "langame": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "standard-3h",
+      "cat": "Общий зал — игровые ПК",
+      "price": 320,
+      "max": 490,
+      "popular": false,
+      "name": "Игровой ПК RTX 5060 — пакет 3 часа (Общий зал)",
+      "desc": "Пакет на 3 часа выгоднее почасовой оплаты: от {MIN} ₽ в будни, до {MAX} ₽ вечером и в выходные. CS2, Dota 2, Fortnite, Valorant уже установлены. Компьютерный клуб у метро Алтуфьево, Москва (СВАО).",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/19300642/2a000001a039200282ac339c407c44b7d71d/orig",
+      "langame": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "standard-5h",
+      "cat": "Общий зал — игровые ПК",
+      "price": 490,
+      "max": 790,
+      "popular": false,
+      "name": "Игровой ПК RTX 5060 — пакет 5 часов (Общий зал)",
+      "desc": "Длинная сессия для марафона с друзьями: 5 часов от {MIN} ₽, в выходные — до {MAX} ₽. 300+ FPS в шутерах, бар со снеками и напитками. Круглосуточно в ТЦ «НАШ», Алтуфьевское шоссе 72.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/20222640/2a000001a0397d36c7a87bb157176c7819e0/orig",
+      "langame": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "standard-night",
+      "cat": "Общий зал — игровые ПК",
+      "price": 650,
+      "max": 750,
+      "popular": true,
+      "name": "Ночь в компьютерном клубе — Общий зал (RTX 5060)",
+      "desc": "Ночной пакет с 22:00 до 08:00: вся ночь игры за {MIN} ₽ в будни и {MAX} ₽ в выходные — ночные часы отдаём почти по себестоимости. Клуб в Алтуфьево работает 24/7.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/20340178/2a000001a0392127a121ccb87629301e5cc5/orig",
+      "langame": [
+        1,
+        6
+      ]
+    },
+    {
+      "id": "vipbootcamp-1h",
+      "cat": "VIP BOOTCAMP — комната на 5 игроков",
+      "price": 150,
+      "max": 220,
+      "popular": true,
+      "name": "Игровой ПК RTX 5070, 240 Гц — 1 час (VIP BOOTCAMP)",
+      "desc": "Флагманская комната на 5 ПК: RTX 5070, мониторы ZOWIE 240 Гц, топовая периферия Logitech. От {MIN} ₽ с человека в час, вечером и в выходные — до {MAX} ₽. Играй с командой без посторонних.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/13852611/2a000001a0392236c399867a119e574147fe/orig",
+      "langame": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "vipbootcamp-3h",
+      "cat": "VIP BOOTCAMP — комната на 5 игроков",
+      "price": 390,
+      "max": 630,
+      "popular": false,
+      "name": "VIP BOOTCAMP на 3 часа — комната для команды",
+      "desc": "Три часа в изолированной буткемп-комнате впятером: свой войс, никого лишнего, полная концентрация на игре. От {MIN} ₽ за место, в пик — до {MAX} ₽. Компьютерный клуб CyberX, Алтуфьево (СВАО).",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/4472294/2a000001a039224f114dbd3fe2c261053bb0/orig",
+      "langame": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "vipbootcamp-5h",
+      "cat": "VIP BOOTCAMP — комната на 5 игроков",
+      "price": 590,
+      "max": 950,
+      "popular": false,
+      "name": "VIP BOOTCAMP на 5 часов — турнирная подготовка",
+      "desc": "Пять часов командной игры как у про-составов: 5 одинаковых машин на RTX 5070, стабильный интернет, шумоизоляция. От {MIN} ₽ с игрока, до {MAX} ₽ в выходные. Комнату можно забронировать целиком.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/20222640/2a000001a03922639e1470f25f6be8081e71/orig",
+      "langame": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "vipbootcamp-night",
+      "cat": "VIP BOOTCAMP — комната на 5 игроков",
+      "price": 850,
+      "max": 990,
+      "popular": false,
+      "name": "Ночь в VIP BOOTCAMP — комната на 5 игроков",
+      "desc": "Ночной пакет 22:00–08:00 в отдельной комнате для пятерых: {MIN} ₽ с человека в будни, {MAX} ₽ в выходные. Вся ночь на праки и катки — комната ваша до утра.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/17791271/2a000001a03922790683e77b236ada4268bc/orig",
+      "langame": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "duo-1h",
+      "cat": "DUO — места для двоих",
+      "price": 220,
+      "max": 300,
+      "popular": false,
+      "name": "Игровые места для двоих — 1 час (DUO, 360 Гц)",
+      "desc": "Приватная зона DUO на два ПК: RTX 4070 Super и турнирные мониторы ZOWIE 360 Гц — самые быстрые экраны клуба. От {MIN} ₽ за место в час, вечером и в выходные — до {MAX} ₽. Личный кондиционер и приватность.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/20222640/2a000001a03922942e3216202345e3e8aca5/orig",
+      "langame": [
+        5,
+        1
+      ]
+    },
+    {
+      "id": "duo-3h",
+      "cat": "DUO — места для двоих",
+      "price": 600,
+      "max": 850,
+      "popular": false,
+      "name": "DUO пакет 3 часа — играем вдвоём",
+      "desc": "Три часа кооператива на соседних машинах: Dota 2, CS2, It Takes Two — что угодно. От {MIN} ₽ с человека в будни, до {MAX} ₽ в выходные. Уютная зона для двоих в клубе CyberX, Алтуфьево.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/10118156/2a000001a03922ae32390b9a1df71779b22e/orig",
+      "langame": [
+        5,
+        2
+      ]
+    },
+    {
+      "id": "duo-5h",
+      "cat": "DUO — места для двоих",
+      "price": 910,
+      "max": 1160,
+      "popular": false,
+      "name": "DUO пакет 5 часов — марафон на двоих",
+      "desc": "Пять часов игры бок о бок: от {MIN} ₽ с человека, в выходные — до {MAX} ₽. Картинка 360 Гц, быстрая зарядка для телефона, полная приватность. Идеально для свидания в геймерском формате.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/13944716/2a000001a03922d9b898d89c5b562782316f/orig",
+      "langame": [
+        5,
+        3
+      ]
+    },
+    {
+      "id": "duo-night",
+      "cat": "DUO — места для двоих",
+      "price": 1150,
+      "max": 1390,
+      "popular": false,
+      "name": "Ночь вдвоём — зона DUO (RTX 4070 Super)",
+      "desc": "Ночной пакет 22:00–08:00 для двоих: {MIN} ₽ с человека в будни, {MAX} ₽ в выходные. Вся ночь кооператива в клубе, который никогда не закрывается. Бибирево и Алтуфьево — мы рядом.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/10118156/2a000001a03922f22adeab923ccf55b4e8f9/orig",
+      "langame": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "solo-1h",
+      "cat": "SOLO — приватные игровые комнаты",
+      "price": 220,
+      "max": 300,
+      "popular": true,
+      "name": "Игровая комната SOLO, 27\" 2K — 1 час",
+      "desc": "Личная закрытая комната: RTX 4070 Super, монитор Gigabyte 27\" 2K 240 Гц, мышь G Pro X Wireless, свой кондиционер и кронштейн под удобный угол экрана. Час — от {MIN} ₽, в пик — до {MAX} ₽.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2994796/2a000001a03923c2c047fdd799d9db990009/orig",
+      "langame": [
+        5,
+        1
+      ]
+    },
+    {
+      "id": "solo-3h",
+      "cat": "SOLO — приватные игровые комнаты",
+      "price": 600,
+      "max": 850,
+      "popular": false,
+      "name": "SOLO комната на 3 часа — приватный гейминг",
+      "desc": "Три часа в одной из трёх соло-комнат: играй рейтинг, стримь, записывай контент — никто не заглянет через плечо. От {MIN} ₽ в будни, до {MAX} ₽ в выходные. Клуб CyberX в Алтуфьево.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/9854027/2a000001a03923e3e1a8b64458db3318be86/orig",
+      "langame": [
+        5,
+        2
+      ]
+    },
+    {
+      "id": "solo-5h",
+      "cat": "SOLO — приватные игровые комнаты",
+      "price": 910,
+      "max": 1160,
+      "popular": false,
+      "name": "SOLO комната на 5 часов — полное погружение",
+      "desc": "Полноценная сессия в личной комнате с 2K-монитором: от {MIN} ₽, в выходные — до {MAX} ₽. Тишина, свой климат, быстрая зарядка. Такой формат в СВАО ещё поискать.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/5235338/2a000001a03923fd6394fe4ca78c0ef25e33/orig",
+      "langame": [
+        5,
+        3
+      ]
+    },
+    {
+      "id": "solo-night",
+      "cat": "SOLO — приватные игровые комнаты",
+      "price": 1150,
+      "max": 1390,
+      "popular": false,
+      "name": "Ночь в SOLO комнате — RTX 4070 Super",
+      "desc": "Ночной пакет 22:00–08:00 в отдельной комнате: {MIN} ₽ в будни, {MAX} ₽ в выходные. Максимальная приватность — как дома, только железо мощнее.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/16345524/2a000001a03924221f82b0502ec106c8cf5f/orig",
+      "langame": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "ps5-std-1h",
+      "cat": "PlayStation 5 — TV зона",
+      "price": 250,
+      "max": 450,
+      "popular": true,
+      "name": "Поиграть в PS5 — 1 час (4K TV 70\")",
+      "desc": "Зона PlayStation 5 с огромным 70\" экраном: EA FC, UFC, Mortal Kombat и 700+ игр. Час — от {MIN} ₽ (до 2 человек), вечером и в выходные — до {MAX} ₽. Каждый дополнительный гость +100 ₽.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/10253960/2a000001a039244500030d842d4d036d3641/orig",
+      "langame": [
+        4,
+        1
+      ]
+    },
+    {
+      "id": "ps5-std-3h",
+      "cat": "PlayStation 5 — TV зона",
+      "price": 550,
+      "max": 1080,
+      "popular": false,
+      "name": "PS5 на 3 часа — FIFA, UFC и 700+ игр",
+      "desc": "Три часа на PlayStation 5 перед 70-дюймовым 4K-экраном: турнир по EA FC или вечер файтингов вдвоём. От {MIN} ₽ в будни, до {MAX} ₽ в выходные. Диваны, пуфы и правильная атмосфера.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2994796/2a000001a039247b268c2e54b31c2aaac6a6/orig",
+      "langame": [
+        4,
+        2
+      ]
+    },
+    {
+      "id": "ps5-std-5h",
+      "cat": "PlayStation 5 — TV зона",
+      "price": 950,
+      "max": 1500,
+      "popular": false,
+      "name": "PS5 на 5 часов — вечер с друзьями",
+      "desc": "Пять часов консольного гейминга: от {MIN} ₽, в выходные — до {MAX} ₽. Библиотека на 700+ игр, включая свежие хиты. Отличный формат встречи — Алтуфьево, ТЦ «НАШ».",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/19300642/2a000001a03924cae3b14d8c49d9d5fd090f/orig",
+      "langame": [
+        4,
+        3
+      ]
+    },
+    {
+      "id": "ps5-std-night",
+      "cat": "PlayStation 5 — TV зона",
+      "price": 1250,
+      "max": 1450,
+      "popular": false,
+      "name": "Ночь на PS5 — TV зона (22:00–08:00)",
+      "desc": "Ночной пакет на PlayStation 5: {MIN} ₽ в будни, {MAX} ₽ в выходные. Вся ночь игр на большом экране — пока район спит, вы рубитесь в EA FC.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/13944716/2a000001a03924dfa176cd9387033f144e93/orig",
+      "langame": [
+        4,
+        6
+      ]
+    },
+    {
+      "id": "ps5-vip-1h",
+      "cat": "PS5 — VIP комната на компанию",
+      "price": 300,
+      "max": 600,
+      "popular": false,
+      "name": "PS5 в VIP комнате — 1 час (до 4 человек)",
+      "desc": "Отдельная TV-комната с PlayStation 5 и 70\" экраном для компании до 4 человек: своя атмосфера, никого чужого. Час — от {MIN} ₽, вечером и в выходные — до {MAX} ₽.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/13672565/2a000001a03925017603ffd4a8368ca5e10e/orig",
+      "langame": [
+        9,
+        1
+      ]
+    },
+    {
+      "id": "ps5-vip-3h",
+      "cat": "PS5 — VIP комната на компанию",
+      "price": 650,
+      "max": 1400,
+      "popular": false,
+      "name": "TV VIP комната с PS5 — 3 часа",
+      "desc": "Три часа в закрытой комнате: файтинги и спортсимы своей компанией, громко и весело. От {MIN} ₽ в будни, до {MAX} ₽ в выходные. Формат для свиданий и посиделок с друзьями.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a000001a039251a0ce46c78226fa0415d27/orig",
+      "langame": [
+        9,
+        2
+      ]
+    },
+    {
+      "id": "ps5-vip-5h",
+      "cat": "PS5 — VIP комната на компанию",
+      "price": 1100,
+      "max": 1700,
+      "popular": false,
+      "name": "TV VIP на 5 часов — праздник с PS5",
+      "desc": "Пять часов в приватной комнате с PS5 — готовый день рождения в компьютерном клубе: от {MIN} ₽ в будни, до {MAX} ₽ в выходные. Компания до четырёх человек, дальше +100 ₽ за гостя.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/2994796/2a000001a03925416c8d4d8c1804ee401dc5/orig",
+      "langame": [
+        9,
+        3
+      ]
+    },
+    {
+      "id": "ps5-vip-night",
+      "cat": "PS5 — VIP комната на компанию",
+      "price": 1400,
+      "max": 1600,
+      "popular": false,
+      "name": "Ночь в TV VIP комнате с PS5",
+      "desc": "Ночной пакет 22:00–08:00 в отдельной комнате с PlayStation 5: {MIN} ₽ в будни, {MAX} ₽ в выходные. Ночная тусовка на 70 дюймах без соседей.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/17791271/2a000001a0392558accfe164c71fc35546ec/orig",
+      "langame": [
+        9,
+        6
+      ]
+    },
+    {
+      "id": "simracing-1h",
+      "cat": "Автосимуляторы",
+      "price": 570,
+      "max": null,
+      "popular": true,
+      "name": "Автосимулятор гонок — 1 час (кокпит, Force Feedback)",
+      "url": "https://cyberx.moscow/cyberracing",
+      "desc": "Профессиональный гоночный симулятор в Алтуфьево: кокпит с ковшом, руль MOZA с обратной связью, металлические педали, 55\" 4K экран. Час — {MIN} ₽. Assetto Corsa и F1 — почувствуй настоящую трассу.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/17791271/2a000001a03925d01bdf6cd6945e047e54ea/orig",
+      "langame": [
+        11,
+        63
+      ]
+    },
+    {
+      "id": "simracing-2h",
+      "cat": "Автосимуляторы",
+      "price": 980,
+      "max": null,
+      "popular": false,
+      "name": "Автосимулятор — 2 часа заездов",
+      "url": "https://cyberx.moscow/cyberracing",
+      "desc": "Два часа за рулём симрейсинг-кокпита — {MIN} ₽. Успеешь освоить трассу, настроить болид и поставить личный рекорд. Топовый ПК, графика на ультра, вибрация и полное погружение.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/20222640/2a000001a03925e5b4d56fa90d21d94fdbe3/orig",
+      "langame": [
+        11,
+        61
+      ]
+    },
+    {
+      "id": "abonement-day",
+      "cat": "Абонементы",
+      "price": 3100,
+      "max": null,
+      "popular": false,
+      "name": "Абонемент «Сутки» — 24 часа игры",
+      "desc": "24 часа игрового времени одним пакетом — от {MIN} ₽ в зависимости от зоны. Трать часы когда удобно: днём, вечером или ночью. Выгоднее разовых посещений, если играешь регулярно. Клуб CyberX, Алтуфьево.",
+      "langame": [
+        1,
+        18
+      ],
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/21065090/2a000001a0398ef8091a1b22fc770f4e0886/orig"
+    },
+    {
+      "id": "abonement-50h",
+      "cat": "Абонементы",
+      "price": 5500,
+      "max": null,
+      "popular": false,
+      "name": "Абонемент 50 часов — для постоянных игроков",
+      "desc": "50 часов игры от {MIN} ₽ — почасовая цена заметно ниже обычной. Часы списываются только когда играешь. Оформление на ресепшене или в приложении CyberX. Алтуфьево, ТЦ «НАШ».",
+      "langame": [
+        1,
+        45
+      ],
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/10118156/2a000001a0398ee2a5e961ee06ad3a5b851e/orig"
+    },
+    {
+      "id": "abonement-100h",
+      "cat": "Абонементы",
+      "price": 7900,
+      "max": null,
+      "popular": true,
+      "name": "Абонемент 100 часов — максимальная выгода",
+      "desc": "100 часов игры от {MIN} ₽ — самый выгодный тариф клуба: час выходит дешевле сотки. Для тех, кто в клубе как дома. Компьютерный клуб CyberX в Алтуфьево (СВАО).",
+      "langame": [
+        1,
+        22
+      ],
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/10324913/2a000001a0398ece1890b64b0ce6d706c1d8/orig"
+    },
+    {
+      "id": "certificate",
+      "cat": "Подарочные сертификаты",
+      "price": 1000,
+      "max": null,
+      "popular": false,
+      "name": "Сертификат в компьютерный клуб — подарочный",
+      "desc": "Подарочный сертификат CyberX Алтуфьево — подарок геймеру, который точно зайдёт: часы игры, ночные пакеты, PS5 или автосимулятор на выбор получателя. Номинал от 1000 ₽ под любой бюджет — оформление на ресепшене или в приложении.",
+      "photo": "https://avatars.mds.yandex.net/get-sprav-products/19300642/2a000001a0398eb76cbb2f21cac72161dbf0/orig"
+    }
+  ]
+}

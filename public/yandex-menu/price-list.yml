@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog>
+    <shop>
+        <categories>
+            <category id="1">Общий зал — игровые ПК</category>
+            <category id="2">BOOTCAMP — комната на 5 игроков</category>
+            <category id="3">VIP зал</category>
+            <category id="4">DUO — места для двоих</category>
+            <category id="5">SOLO — приватные игровые комнаты</category>
+            <category id="6">PlayStation 5 — TV зона</category>
+            <category id="7">PS5 — отдельная VIP комната</category>
+            <category id="8">Автосимуляторы</category>
+            <category id="9">Абонементы</category>
+            <category id="10">Подарочные сертификаты</category>
+        </categories>
+        <offers>
+            <offer id="standard-1h">
+                <name>Игровой ПК RTX 4060, 144 Гц — 1 час (Общий зал)</name>
+                <price>150</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/standard-1h.jpg</picture>
+                <description>Час за мощным игровым компьютером в клубе CyberX в Новокосино: RTX 4060, монитор BenQ 144 Гц, периферия Logitech. Днём в будни — 150 ₽, вечером и в выходные — до 200 ₽. В зале 13 мест — свободное найдётся почти всегда.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="standard-3h">
+                <name>Игровой ПК RTX 4060 — пакет 3 часа (Общий зал)</name>
+                <price>410</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/standard-3h.jpg</picture>
+                <description>Пакет на 3 часа выгоднее почасовой оплаты: от 410 ₽ в будни, до 530 ₽ вечером и в выходные. CS2, Dota 2, Fortnite, Valorant уже установлены. Компьютерный клуб у метро Новокосино, Москва (ВАО).</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="standard-5h">
+                <name>Игровой ПК RTX 4060 — пакет 5 часов (Общий зал)</name>
+                <price>630</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/standard-5h.jpg</picture>
+                <description>Длинная сессия для марафона с друзьями: 5 часов от 630 ₽, в выходные — до 830 ₽. Удобные кресла Cougar, кондиционер, снеки и напитки на баре. Любые онлайн-игры на высоких настройках.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="standard-night">
+                <name>Ночь в компьютерном клубе — Общий зал (RTX 4060)</name>
+                <price>700</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>1</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/standard-night.jpg</picture>
+                <description>Ночной пакет с 22:00 до 08:00: вся ночь игры за 700 ₽ в будни и 850 ₽ в выходные — дешевле, чем те же часы днём. Клуб в Новокосино работает круглосуточно.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="bootcamp-1h">
+                <name>Игровой ПК для команды — 1 час (BOOTCAMP, 5 мест)</name>
+                <price>170</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/bootcamp-1h.jpg</picture>
+                <description>Отдельная комната на 5 ПК для игры с командой: RTX 4060, мониторы 144 Гц и общий войс без посторонних. От 170 ₽ с человека в час, вечером и в выходные — до 210 ₽. Идеально для праков и каток с друзьями.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="bootcamp-3h">
+                <name>BOOTCAMP на 3 часа — командная комната (RTX 4060)</name>
+                <price>460</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/bootcamp-3h.jpg</picture>
+                <description>Три часа в закрытой комнате впятером: свой микроклимат, никого лишнего, полная концентрация на игре. От 460 ₽ за место, в пиковые часы — до 580 ₽. Компьютерный клуб CyberX, Новокосинская 32.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="bootcamp-5h">
+                <name>BOOTCAMP на 5 часов — турнирная подготовка</name>
+                <price>700</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/bootcamp-5h.jpg</picture>
+                <description>Пять часов командной игры в формате буткемпа, как у про-составов: комната на 5 машин, одинаковое железо, стабильный интернет. От 700 ₽ с игрока, до 900 ₽ в выходные. Комнату можно забронировать целиком.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="bootcamp-night">
+                <name>Ночь в BOOTCAMP — комната на 5 игроков</name>
+                <price>850</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>2</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/bootcamp-night.jpg</picture>
+                <description>Ночной пакет 22:00–08:00 в отдельной комнате для пятерых: 850 ₽ с человека в будни, 950 ₽ в выходные. Вся ночь на праки и катки — комната полностью ваша до утра.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="vip-1h">
+                <name>Игровой ПК RTX 4070, 240 Гц — 1 час (VIP)</name>
+                <price>190</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/vip-1h.jpg</picture>
+                <description>VIP-зал компьютерного клуба: RTX 4070, монитор Samsung 240 Гц, кресла Cougar. Час игры от 190 ₽, вечером и в выходные — до 250 ₽. Меньше соседей — больше комфорта.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="vip-3h">
+                <name>VIP пакет 3 часа — RTX 4070, 240 Гц</name>
+                <price>520</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/vip-3h.jpg</picture>
+                <description>Три часа на топовом железе: плавные сотни FPS в CS2 и Valorant, игры грузятся мгновенно. От 520 ₽ в будни, до 700 ₽ в выходные. Москва, район Новокосино.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="vip-5h">
+                <name>VIP пакет 5 часов — игровой компьютер 240 Гц</name>
+                <price>780</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/vip-5h.jpg</picture>
+                <description>Полдня в VIP-зале для тех, кто играет всерьёз: от 780 ₽, в выходные — до 1100 ₽. RTX 4070 тянет любые новинки на ультра. Еду и напитки принесут прямо к месту.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="vip-night">
+                <name>Ночь в VIP-зале — RTX 4070, 240 Гц</name>
+                <price>950</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>3</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/vip-night.jpg</picture>
+                <description>Ночной пакет 22:00–08:00 в VIP: 950 ₽ в будни, 1050 ₽ в выходные. Тихий зал, топовое железо и кофе на баре под утро. Круглосуточный клуб в Новокосино.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="duo-1h">
+                <name>Игровые места для двоих — 1 час (DUO)</name>
+                <price>190</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>4</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/duo-1h.jpg</picture>
+                <description>Парная зона DUO: два ПК рядом (RTX 4060, мониторы 240 Гц), чтобы играть вдвоём — на свидании, с другом или братом. От 190 ₽ за место в час, вечером и в выходные — до 250 ₽.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="duo-3h">
+                <name>DUO пакет 3 часа — играем вдвоём</name>
+                <price>520</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>4</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/duo-3h.jpg</picture>
+                <description>Три часа кооператива на соседних машинах: It Takes Two, Dota 2, CS2 — что угодно. От 520 ₽ с человека в будни, до 700 ₽ в выходные. Уютный парный угол в клубе CyberX, Новокосино.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="duo-5h">
+                <name>DUO пакет 5 часов — марафон на двоих</name>
+                <price>780</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>4</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/duo-5h.jpg</picture>
+                <description>Пять часов игры бок о бок: от 780 ₽ с человека, в выходные и вечером — до 1100 ₽. Мониторы 240 Гц, удобная парная посадка, снеки и напитки на баре.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="duo-night">
+                <name>Ночь вдвоём — зона DUO (2 ПК рядом)</name>
+                <price>950</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>4</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/duo-night.jpg</picture>
+                <description>Ночной пакет 22:00–08:00 для двоих геймеров: 950 ₽ с человека в будни, 1050 ₽ в выходные. Вся ночь кооператива в клубе, который не закрывается никогда.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="solo-1h">
+                <name>Игровая комната SOLO, RTX 5070 — 1 час</name>
+                <price>230</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>5</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/solo-1h.jpg</picture>
+                <description>Приватная комната с самым мощным железом клуба: RTX 5070, монитор 400 Гц (PRO) или 27&quot; 2K 240 Гц (PREMIUM), мышь G PRO X Superlight, свой кондиционер. Час — от 230 ₽, в пик — до 300 ₽.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="solo-3h">
+                <name>SOLO комната на 3 часа — RTX 5070, 400 Гц</name>
+                <price>630</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>5</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/solo-3h.jpg</picture>
+                <description>Три часа в личной игровой комнате без посторонних: играй рейтинг, стримь, записывай контент. От 630 ₽ в будни, до 850 ₽ в выходные. Такого железа в Новокосино больше нет ни у кого.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="solo-5h">
+                <name>SOLO комната на 5 часов — приватный гейминг</name>
+                <price>950</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>5</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/solo-5h.jpg</picture>
+                <description>Полноценная соло-сессия в комнате PREMIUM с 2K-монитором: от 950 ₽, в выходные — до 1300 ₽. Тишина, свой климат, беспроводная периферия и зарядка для телефона под рукой.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="solo-night">
+                <name>Ночь в SOLO комнате — RTX 5070</name>
+                <price>1300</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>5</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/solo-night.jpg</picture>
+                <description>Ночной пакет 22:00–08:00 в отдельной комнате: 1300 ₽ в будни, 1450 ₽ в выходные. Максимальная приватность и топовое железо — как дома, только в разы мощнее.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-std-1h">
+                <name>Поиграть в PS5 — 1 час (4K TV 55&quot;)</name>
+                <price>340</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>6</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-std-1h.jpg</picture>
+                <description>Зона PlayStation 5 с большим 4K-экраном и диванами: EA FC 26, UFC 5, Mortal Kombat. Час — от 340 ₽, вечером и в выходные — до 450 ₽. Геймпадов DualSense хватит на всю компанию.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-std-3h">
+                <name>PS5 на 3 часа — FIFA, UFC, Mortal Kombat</name>
+                <price>780</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>6</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-std-3h.jpg</picture>
+                <description>Три часа на PlayStation 5 перед 55&quot; экраном: турнир по EA FC или вечер файтингов с друзьями. От 780 ₽ в будни, до 1060 ₽ в выходные. Приходите компанией — диванов хватит всем.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-std-5h">
+                <name>PS5 на 5 часов — вечер с друзьями</name>
+                <price>1180</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>6</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-std-5h.jpg</picture>
+                <description>Пять часов консольного гейминга: от 1180 ₽, в выходные — до 1620 ₽. Большая библиотека игр PS5, включая свежие релизы. Отличный формат дня рождения или встречи старой компании.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-std-night">
+                <name>Ночь на PS5 — TV зона (22:00–08:00)</name>
+                <price>1800</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>6</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-std-night.jpg</picture>
+                <description>Ночной пакет на PlayStation 5: 1800 ₽ в будни, 2125 ₽ в выходные. Вся ночь EA FC, UFC и Tekken на большом экране — пока город спит, вы забиваете голы.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-vip-1h">
+                <name>PS5 в отдельной комнате — 1 час (TV VIP)</name>
+                <price>390</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>7</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-vip-1h.jpg</picture>
+                <description>Приватная комната с PlayStation 5, большим телевизором и мягким диваном: своя атмосфера, никого чужого. Час — от 390 ₽, вечером и в выходные — до 520 ₽. Комната одна — бронируйте заранее.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-vip-3h">
+                <name>TV VIP комната с PS5 — 3 часа</name>
+                <price>910</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>7</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-vip-3h.jpg</picture>
+                <description>Три часа в закрытой TV-комнате: файтинги и спортсимы своей компанией, громко и весело. От 910 ₽ в будни, до 1300 ₽ в выходные. Формат для свиданий и посиделок с друзьями.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-vip-5h">
+                <name>TV VIP на 5 часов — праздник с PS5</name>
+                <price>1350</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>7</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-vip-5h.jpg</picture>
+                <description>Пять часов в отдельной комнате с PS5 — готовый формат дня рождения в компьютерном клубе: от 1350 ₽ в будни, до 1880 ₽ в выходные. День рождения, девичник или просто вечер — комната ваша.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="ps5-vip-night">
+                <name>Ночь в TV VIP комнате с PS5</name>
+                <price>2075</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>7</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-vip-night.jpg</picture>
+                <description>Ночной пакет 22:00–08:00 в приватной комнате с PlayStation 5: 2075 ₽ в будни, 2450 ₽ в выходные. Ночная тусовка на большом экране без соседей.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="simracing-1h">
+                <name>Автосимулятор гонок — 1 час (кокпит, руль MOZA)</name>
+                <price>580</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>8</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/simracing-1h.jpg</picture>
+                <description>Профессиональный гоночный симулятор в Москве: спортивный ковш, руль с обратной связью MOZA, педали и 55&quot; экран. Час — от 580 ₽ в будни, 850 ₽ в выходные. Assetto Corsa и F1 — почувствуй настоящую трассу.</description>
+                <url>https://cyberx-novokosino.ru/simracing</url>
+            </offer>
+            <offer id="simracing-2h">
+                <name>Автосимулятор — 2 часа заездов</name>
+                <price>980</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>8</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/simracing-2h.jpg</picture>
+                <description>Два часа за рулём симрейсинг-кокпита: от 980 ₽ в будни, до 1290 ₽ в выходные. Успеете освоить трассу, настроить болид и поставить личный рекорд. Кокпитов четыре — можно гоняться с друзьями.</description>
+                <url>https://cyberx-novokosino.ru/simracing</url>
+            </offer>
+            <offer id="simracing-3h">
+                <name>Автосимулятор — 3 часа, гонки с друзьями</name>
+                <price>1350</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>8</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/simracing-3h.jpg</picture>
+                <description>Три часа гонок на автосимуляторах: свои чемпионаты, дуэли, дрифт. От 1350 ₽ в будни, до 1650 ₽ в выходные. Единственные проф. кокпиты в Новокосино: RTX 5070 Ti и экран 120 Гц.</description>
+                <url>https://cyberx-novokosino.ru/simracing</url>
+            </offer>
+            <offer id="abonement-day">
+                <name>Абонемент «Сутки» — 24 часа игры</name>
+                <price>2900</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>9</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/abonement-day.jpg</picture>
+                <description>24 часа игрового времени, которые можно тратить 7 дней как удобно. Общий зал — 2900 ₽, VIP/BOOTCAMP — 3500 ₽, SOLO — 4200 ₽. Выгоднее разовых посещений, если играешь регулярно.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="abonement-50h">
+                <name>Абонемент 50 часов — для постоянных игроков</name>
+                <price>5100</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>9</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/abonement-50h.jpg</picture>
+                <description>50 часов на 20 дней — почасовая цена падает почти вдвое. Общий зал — 5100 ₽, VIP/BOOTCAMP — 6300 ₽, SOLO — 7500 ₽. Часы списываются только когда играешь.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="abonement-100h">
+                <name>Абонемент 100 часов — максимальная выгода</name>
+                <price>8500</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>9</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/abonement-100h.jpg</picture>
+                <description>100 часов игры с действием 45 дней — самый выгодный тариф клуба. Общий зал — 8500 ₽, VIP/BOOTCAMP — 10500 ₽, SOLO — 12500 ₽. Для тех, кто в клубе как дома.</description>
+                <url>https://cyberx-novokosino.ru/prices</url>
+            </offer>
+            <offer id="certificate">
+                <name>Сертификат в компьютерный клуб — подарочный</name>
+                <price>1000</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>10</categoryId>
+                <picture>https://cyberx-novokosino.ru/yandex-menu/certificate.jpg</picture>
+                <description>Подарочный сертификат CyberX Новокосино номиналом от 1000 до 5000 ₽: часы игры, ночные пакеты, PS5 или автосимулятор — получатель выберет сам. Оформление на сайте за пару минут.</description>
+                <url>https://cyberx-novokosino.ru/certificate</url>
+            </offer>
+        </offers>
+    </shop>
+</yml_catalog>

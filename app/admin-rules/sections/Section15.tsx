@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gift, CreditCard, MessageCircle, AlertTriangle, MonitorSmartphone, Clock, PartyPopper } from 'lucide-react';
+import { Gift, CreditCard, MessageCircle, AlertTriangle, PartyPopper, Phone, Send } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
 export function Section15() {
@@ -14,7 +14,7 @@ export function Section15() {
                         Подарочные <span className="text-pink-500">сертификаты</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Правила оформления, шаблоны ответов для клиентов и строгий алгоритм активации баланса через руководство.
+                        Как принять заявку, объяснить механику сертификата и передать её руководителю.
                     </p>
                 </div>
             </div>
@@ -25,22 +25,18 @@ export function Section15() {
                     <div className="rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col overflow-hidden h-full">
                         <div className="bg-slate-900 p-6 flex items-center gap-3 text-white border-b border-slate-800">
                             <PartyPopper className="text-amber-400" size={24} />
-                            <h3 className="font-tactic font-black text-xl uppercase italic">Оформление (Шаблон для клиента)</h3>
+                            <h3 className="font-tactic font-black text-xl uppercase italic">Как работает сертификат</h3>
                         </div>
                         <div className="p-6 md:p-8 flex-1 bg-slate-50 font-chakra text-sm text-slate-700 space-y-4">
-                            <p className="font-bold text-slate-900">Отправляйте этот текст при запросе покупки:</p>
+                            <p className="font-bold text-slate-900">Объясните это клиенту при обращении по телефону или в Telegram:</p>
                             
                             <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm space-y-3">
-                                <p>🎁 У нас можно приобрести электронные подарочные сертификаты!</p>
-                                <p>Сам сертификат не имеет стоимости — Вы выбираете только номинал, который будет полностью зачислен на баланс получателя.</p>
-                                <p>✨ <strong>Полная свобода:</strong> Сертификат распространяется на любую зону (STANDARD, BOOTCAMP, VIP, TV-зоны или зона автосимуляторов).</p>
-                                <p>⏳ <em>Пример: сертификат на 5 000 ₽ — покроет примерно 30 часов игры.</em></p>
+                                <p>🎁 Подарочный сертификат — это красивая электронная карточка с промокодом, привязанным к номеру телефона получателя.</p>
+                                <p>Вы оплачиваете выбранный номинал, руководитель подтверждает оплату и сам отправляет сертификат по контактам, которые были получены при заявке.</p>
+                                <p>Получатель регистрируется в приложении <strong>CYBERX</strong> или непосредственно в клубе, вводит промокод — и вся сумма зачисляется на его баланс.</p>
+                                <p>✨ Средства можно тратить на любые зоны клуба и в онлайн-магазине: напитки, сэндвичи, снеки и другие товары.</p>
                                 <hr className="border-slate-100 my-2" />
-                                <p><strong>📝 Как оформить заказ:</strong><br/>Сообщите желаемый номинал, и мы вышлем реквизиты. (Действует только в нашем клубе).</p>
-                                <p>После оплаты направьте нам:<br/>
-                                📱 Номер телефона и Telegram-ник получателя<br/>
-                                📅 Желаемую дату отправки<br/>
-                                ✍️ Ваше имя и пожелания (от кого подарок)</p>
+                                <p><strong>📝 Чтобы оформить заказ:</strong><br/>сообщите желаемый номинал и контакты получателя. Реквизиты для оплаты предоставит руководство.</p>
                             </div>
 
                             {/* Ссылки на сайты */}
@@ -74,7 +70,7 @@ export function Section15() {
                     </div>
                 </div>
 
-                {/* ДЛЯ АДМИНОВ (Строгие правила) */}
+                {/* ДЛЯ АДМИНОВ */}
                 <div className="flex flex-col gap-6">
                     <div className="rounded-3xl border-2 border-rose-100 bg-rose-50/50 p-6 md:p-8 shadow-sm h-full flex flex-col justify-center relative overflow-hidden">
                         
@@ -89,60 +85,58 @@ export function Section15() {
 
                             <div className="bg-white border border-rose-100 rounded-2xl p-5">
                                 <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
-                                    <CreditCard size={16} /> 1. При продаже
+                                    <Send size={16} /> 1. Сразу передайте заявку руководителю
                                 </h4>
                                 <p className="font-chakra text-sm text-slate-700">
-                                    Обязательно написать руководству, <strong>какая планируется сумма и когда</strong> клиент собирается оплатить сертификат.
+                                    Как только клиент интересуется сертификатом по телефону или в Telegram, сообщите руководителю, что поступила заявка, и передайте <strong>контакты клиента</strong>.
                                 </p>
                             </div>
 
                             <div className="bg-white border border-rose-100 rounded-2xl p-5">
                                 <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
-                                    <MonitorSmartphone size={16} /> 2. При активации
+                                    <Phone size={16} /> 2. Если клиент позвонил
                                 </h4>
-                                <div className="font-chakra text-sm text-slate-700 space-y-3">
-                                    <p className="bg-rose-50 text-rose-800 px-3 py-1 rounded-md text-xs font-bold inline-block mb-1">Время: 08:00 - 23:00</p>
-                                    <ol className="list-decimal list-inside space-y-2">
-                                        <li>Уточнить, зарегистрирован ли гость.</li>
-                                        <li>Если нет — <strong className="text-rose-600">обязательная регистрация</strong> (только потом пополнение).</li>
-                                        <li><strong>Сразу</strong> написать в общий чат: <br/>
-                                            <code className="bg-slate-100 text-slate-800 px-2 py-1 rounded block mt-1 text-xs">«Гость с сертификатом 5000 ₽ у меня, требуется пополнение»</code>
-                                        </li>
-                                        <li>Дождаться, когда будет удаленно пополнен баланс.</li>
-                                    </ol>
-                                </div>
+                                <p className="font-chakra text-sm text-slate-700">
+                                    Коротко объясните механику: после оплаты руководитель подтвердит её и отправит сертификат получателю. Промокод активируется после регистрации в приложении CYBERX или непосредственно в клубе.
+                                </p>
+                            </div>
+
+                            <div className="bg-white border border-rose-100 rounded-2xl p-5">
+                                <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
+                                    <CreditCard size={16} /> 3. Дальше действует руководитель
+                                </h4>
+                                <p className="font-chakra text-sm text-slate-700">
+                                    Администратор <strong>не принимает оплату, не активирует баланс и не отправляет сертификат получателю</strong>. После передачи заявки никаких дополнительных действий не требуется.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* ИНСТРУКЦИЯ ПО АКТИВАЦИИ ДЛЯ КЛИЕНТА */}
+            {/* ВАЖНО ДЛЯ АДМИНА */}
             <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900 mb-6 flex items-center gap-3">
-                <MessageCircle className="text-emerald-500" /> Инструкция для отправки получателю
+                <MessageCircle className="text-emerald-500" /> Что важно помнить
             </h3>
             
             <div className="rounded-3xl border border-emerald-200 bg-emerald-50/50 p-6 md:p-8 shadow-sm mb-12">
                 <p className="font-chakra text-sm text-emerald-800 mb-4">
-                    Отправляйте этот текст вместе с сертификатом:
+                    Эта информация нужна, чтобы уверенно ответить на вопросы. Отправлять её получателю не нужно.
                 </p>
                 <div className="bg-white rounded-2xl border border-emerald-100 p-5 font-chakra text-sm text-slate-700 space-y-4 shadow-sm">
-                    <p className="font-bold text-emerald-600">Как активировать сертификат:</p>
-                    <p>Активация и зачисление средств на баланс доступны как на месте так и удаленно ежедневно с 08:00 до 23:00. Для этого понадобится всего пара шагов:</p>
+                    <p className="font-bold text-emerald-600">Сертификат и промокод:</p>
+                    <p>Руководитель отправляет получателю красивую карточку сертификата с промокодом, привязанным к его номеру телефона.</p>
                     
                     <div className="flex gap-4 items-start">
                         <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</div>
-                        <p>Зарегистрируйтесь в системе через приложение <strong>CYBERX APP</strong> (при регистрации обязательно выберите наш клуб).</p>
+                        <p>Получатель регистрируется через приложение <strong>CYBERX</strong> или непосредственно в клубе.</p>
                     </div>
 
                     <div className="flex gap-4 items-start">
                         <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</div>
                         <div>
-                            <p className="font-bold mb-2">Активируйте баланс одним из удобных способов:</p>
-                            <ul className="space-y-2">
-                                <li className="flex items-start gap-2"><Clock size={14} className="text-emerald-500 mt-1 shrink-0"/> <span><strong>Удаленно:</strong> позвоните в клуб с телефона, который указан в сертификате и скажите что хотите пополнить баланс.</span></li>
-                                <li className="flex items-start gap-2"><MonitorSmartphone size={14} className="text-emerald-500 mt-1 shrink-0"/> <span><strong>В клубе:</strong> просто покажите сертификат с экрана телефона администратору.</span></li>
-                            </ul>
+                            <p className="font-bold mb-2">После ввода промокода:</p>
+                            <p>Номинал зачисляется на баланс. Им можно оплатить любые зоны клуба и покупки в онлайн-магазине, включая напитки, сэндвичи, снеки и другие товары.</p>
                         </div>
                     </div>
                 </div>

