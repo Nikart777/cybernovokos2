@@ -2,19 +2,66 @@ import React from 'react';
 import { Trophy, Flame, Ban, TrendingUp, Sun, Moon, AlertTriangle, MonitorPlay, Camera, MessageSquare, Star, Plus, Minus, DollarSign } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
-const DAY_SHIFT = [
+type Tier = { range: string; percent: string; status: string };
+
+// НОВОКОСИНО — пороги без изменений
+const NOVOKOSINO_DAY: Tier[] = [
     { range: '0 — 1 499 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
     { range: '1 500+ ₽', percent: '10%', status: '💪 DOMINATING' },
     { range: '2 600+ ₽', percent: '20%', status: '😈 GODLIKE' },
     { range: '3 700+ ₽', percent: '25%', status: '👑 RAMPAGE' },
 ];
 
-const NIGHT_SHIFT = [
+const NOVOKOSINO_NIGHT: Tier[] = [
     { range: '0 — 1 099 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
     { range: '1 100+ ₽', percent: '10%', status: '💪 DOMINATING' },
     { range: '1 600+ ₽', percent: '20%', status: '😈 GODLIKE' },
     { range: '2 700+ ₽', percent: '25%', status: '👑 RAMPAGE' },
 ];
+
+// АЛТУФЬЕВО — свои пороги
+const ALTUFYEVO_DAY: Tier[] = [
+    { range: '0 — 999 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
+    { range: '1 000 — 1 499 ₽', percent: '10%', status: '💪 DOMINATING' },
+    { range: '1 500 — 2 599 ₽', percent: '20%', status: '😈 GODLIKE' },
+    { range: '2 600+ ₽', percent: '25%', status: '👑 RAMPAGE' },
+];
+
+const ALTUFYEVO_NIGHT: Tier[] = [
+    { range: '0 — 1 199 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
+    { range: '1 200 — 2 499 ₽', percent: '10%', status: '💪 DOMINATING' },
+    { range: '2 500 — 3 999 ₽', percent: '20%', status: '😈 GODLIKE' },
+    { range: '4 000+ ₽', percent: '25%', status: '👑 RAMPAGE' },
+];
+
+function ShiftTable({ tiers, kind }: { tiers: Tier[]; kind: 'day' | 'night' }) {
+    const isDay = kind === 'day';
+    return (
+        <div className="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden">
+            <div className={`px-5 py-4 border-b border-slate-100 flex items-center gap-3 ${isDay ? 'bg-gradient-to-r from-blue-50 to-cyan-50' : 'bg-gradient-to-r from-indigo-50 to-purple-50'}`}>
+                {isDay ? <Sun size={20} className="text-blue-500" /> : <Moon size={20} className="text-indigo-500" />}
+                <span className={`font-tactic font-black uppercase italic ${isDay ? 'text-blue-900' : 'text-indigo-900'}`}>
+                    {isDay ? 'Дневная смена' : 'Ночная смена'}
+                </span>
+            </div>
+            <div className="p-2">
+                {tiers.map((tier, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl hover:bg-white transition-colors group">
+                        <div className="font-chakra text-sm font-bold text-slate-700">{tier.range}</div>
+                        <div className="flex items-center gap-4">
+                            <div className={`font-tactic font-black text-[10px] md:text-xs uppercase text-slate-400 w-24 text-right transition-colors ${isDay ? 'group-hover:text-blue-500' : 'group-hover:text-indigo-500'}`}>
+                                {tier.status}
+                            </div>
+                            <div className="w-14 text-right font-tactic font-black text-emerald-500 text-lg italic">
+                                {tier.percent}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 export function Section8() {
     return (
@@ -73,7 +120,7 @@ export function Section8() {
                         <span className="w-10 h-10 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center">🍔</span>
                         Премия за продажи бара
                     </h3>
-                    <p className="font-chakra text-slate-400 text-xs uppercase tracking-widest font-bold mb-6 ml-[52px]">Таблица для Новокосино</p>
+                    <p className="font-chakra text-slate-400 text-xs uppercase tracking-widest font-bold mb-6 ml-[52px]">Пороги отличаются по клубам — смотри свой</p>
 
                     <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8 shadow-sm">
                         <div className="flex items-start gap-4">
@@ -93,51 +140,37 @@ export function Section8() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Дневная смена */}
-                        <div className="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden">
-                            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 px-5 py-4 border-b border-slate-100 flex items-center gap-3">
-                                <Sun size={20} className="text-blue-500" />
-                                <span className="font-tactic font-black text-blue-900 uppercase italic">Дневная смена</span>
-                            </div>
-                            <div className="p-2">
-                                {DAY_SHIFT.map((tier, idx) => (
-                                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl hover:bg-white transition-colors group">
-                                        <div className="font-chakra text-sm font-bold text-slate-700">{tier.range}</div>
-                                        <div className="flex items-center gap-4">
-                                            <div className="font-tactic font-black text-[10px] md:text-xs uppercase text-slate-400 group-hover:text-blue-500 transition-colors w-24 text-right">
-                                                {tier.status}
-                                            </div>
-                                            <div className="w-14 text-right font-tactic font-black text-emerald-500 text-lg italic">
-                                                {tier.percent}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                    {/* НОВОКОСИНО */}
+                    <div className="mb-8">
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="font-tactic font-black uppercase italic text-lg text-slate-900">Новокосино</span>
+                            <span className="h-px flex-1 bg-slate-200" />
+                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <ShiftTable tiers={NOVOKOSINO_DAY} kind="day" />
+                            <ShiftTable tiers={NOVOKOSINO_NIGHT} kind="night" />
+                        </div>
+                    </div>
+
+                    {/* АЛТУФЬЕВО */}
+                    <div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="font-tactic font-black uppercase italic text-lg text-slate-900">Алтуфьево</span>
+                            <span className="h-px flex-1 bg-slate-200" />
+                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <ShiftTable tiers={ALTUFYEVO_DAY} kind="day" />
+                            <ShiftTable tiers={ALTUFYEVO_NIGHT} kind="night" />
                         </div>
 
-                        {/* Ночная смена */}
-                        <div className="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden">
-                            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 px-5 py-4 border-b border-slate-100 flex items-center gap-3">
-                                <Moon size={20} className="text-indigo-500" />
-                                <span className="font-tactic font-black text-indigo-900 uppercase italic">Ночная смена</span>
+                        <div className="mt-4 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <div className="shrink-0 w-8 h-8 rounded-lg bg-slate-200 text-slate-500 flex items-center justify-center">
+                                <Ban size={16} />
                             </div>
-                            <div className="p-2">
-                                {NIGHT_SHIFT.map((tier, idx) => (
-                                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl hover:bg-white transition-colors group">
-                                        <div className="font-chakra text-sm font-bold text-slate-700">{tier.range}</div>
-                                        <div className="flex items-center gap-4">
-                                            <div className="font-tactic font-black text-[10px] md:text-xs uppercase text-slate-400 group-hover:text-indigo-500 transition-colors w-24 text-right">
-                                                {tier.status}
-                                            </div>
-                                            <div className="w-14 text-right font-tactic font-black text-emerald-500 text-lg italic">
-                                                {tier.percent}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                            <p className="font-chakra text-slate-600 text-sm leading-relaxed">
+                                <strong className="text-slate-900">Премии за абонементы в Алтуфьево нет.</strong> Бонус за продажу абонементов
+                                действует только в Новокосино — он введён там для стимуляции продаж.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -156,9 +189,15 @@ export function Section8() {
                             <div>
                                 <h5 className="font-tactic font-black text-sm uppercase text-slate-900">Продажа абонементов</h5>
                                 <p className="font-chakra text-slate-600 text-sm mt-1 mb-2">За каждую активную продажу абонемента начисляется бонус.</p>
-                                <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-violet-600 bg-violet-50 px-2 py-1 rounded-md">
-                                    <Plus size={12}/> 10% от стоимости
-                                </span>
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-violet-600 bg-violet-50 px-2 py-1 rounded-md">
+                                        <Plus size={12}/> 10% от стоимости
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-1 rounded-md">
+                                        только Новокосино
+                                    </span>
+                                </div>
+                                <p className="font-chakra text-slate-500 text-xs mt-2">В Алтуфьево премии за абонементы нет.</p>
                             </div>
                         </div>
 
