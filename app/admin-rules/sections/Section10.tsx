@@ -1,28 +1,73 @@
 import React from 'react';
 import Image from 'next/image';
-import { AlertTriangle, PowerOff, ShieldAlert, Users, Server, MessageSquareWarning, Zap, ZoomIn } from 'lucide-react';
+import { ClipboardList, Camera, CheckCircle2, Calculator, CreditCard, Receipt, FileSignature, MonitorCheck, Refrigerator, Smartphone, ZoomIn } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
-const FORCE_MAJEURE_STEPS = [
+const SHIFT_CLOSE_STEPS = [
     {
-        title: "Сообщить руководству",
-        description: "Незамедлительно уведомить руководство о происшествии в рабочем чате.",
-        icon: ShieldAlert
+        title: "Краткий отчет на терминале",
+        description: "Сделать краткий отчет на банковском терминале. Сверить общую сумму с суммой безналичных в программе. Суммы должны быть одинаковые.",
+        icon: CreditCard,
+        color: "text-blue-500",
+        bgColor: "bg-blue-50"
     },
     {
-        title: "Успокоить клиентов",
-        description: "Принести извинения клиентам, сообщить об аварии на линии. Успокоить, что каждому будет начислена компенсация.",
-        icon: Users
+        title: "Фото ПО «Текущий отчет»",
+        description: "Сделать фото окна программы с итогами смены (текущий отчет) СТРОГО до нажатия кнопки «Закрыть смену».",
+        icon: MonitorCheck,
+        color: "text-indigo-500",
+        bgColor: "bg-indigo-50",
+        requiresPhoto: true,
+        images: ['/instruktsiya/programma-zakritie.jpg']
     },
     {
-        title: "Сбор логнов",
-        description: "Собрать у всех находящихся в клубе клиентов их логины (аккаунты) и отправить списком в чат для начисления.",
-        icon: MessageSquareWarning
+        title: "Сверка итогов терминала",
+        description: "На банковском терминале закрыть смену (сверка итогов).",
+        icon: Receipt,
+        color: "text-purple-500",
+        bgColor: "bg-purple-50"
     },
     {
-        title: "Восстановление работы",
-        description: "Дождаться включения электричества. Подождать загрузки маршрутизаторов и роутера, после чего включить гостевые ПК.",
-        icon: Server
+        title: "Закрытие в Langame",
+        description: "Нажать «Закрыть смену» в программе langame.",
+        icon: MonitorCheck,
+        color: "text-slate-500",
+        bgColor: "bg-slate-50"
+    },
+    {
+        title: "Фото чеков",
+        description: "Сделать фото распечатанного чека кассы и банковского терминала рядом.",
+        icon: Camera,
+        color: "text-violet-500",
+        bgColor: "bg-violet-50",
+        requiresPhoto: true,
+        images: ['/instruktsiya/cheki.jpg']
+    },
+    {
+        title: "Лист учета смен",
+        description: "Полностью заполнить лист учета смен, поставить подпись и сделать фото документа.",
+        icon: FileSignature,
+        color: "text-fuchsia-500",
+        bgColor: "bg-fuchsia-50",
+        requiresPhoto: true,
+        images: ['/instruktsiya/list-otchetnosti.jpg']
+    },
+    {
+        title: "Фото витрины",
+        description: "Отправить общее фото заполненного холодильника и витрины с товарами.",
+        icon: Refrigerator,
+        color: "text-pink-500",
+        bgColor: "bg-pink-50",
+        requiresPhoto: true,
+        images: ['/instruktsiya/holodilnik.jpg', '/instruktsiya/vitrina.jpg']
+    },
+    {
+        title: "Рабочее место",
+        description: "Оставить после себя порядок. Отправить фото убранного рабочего места администратора.",
+        icon: CheckCircle2,
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-50",
+        requiresPhoto: true
     }
 ];
 
@@ -37,86 +82,102 @@ export function Section10({ setZoomedImage }: Section10Props) {
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
-                    <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
-                        <AlertTriangle className="text-orange-500 hidden sm:block" size={48} />
-                        Форс-<span className="text-orange-500">Мажор</span>
+                    <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3">
+                        Закрытие <span className="text-teal-500">Смены</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Инструкция по действиям в случае непредвиденных обстоятельств, таких как отключение электричества или падение интернет-соединения в клубе.
+                        Детальная отчетность — залог отсутствия штрафов и правильного расчета зарплаты. Все нижеперечисленные действия и фотографии необходимо отправлять в рабочий чат.
                     </p>
+                </div>
+                <div className="shrink-0 bg-slate-900 rounded-3xl p-4 md:px-6 flex items-center justify-center gap-4 text-white shadow-xl shadow-teal-500/10">
+                    <Smartphone size={32} className="text-teal-400" />
+                    <div>
+                        <div className="text-[10px] font-chakra font-black uppercase tracking-widest text-teal-400 mb-1">Куда отправлять?</div>
+                        <div className="font-tactic font-black text-lg md:text-xl italic">РАБОЧИЙ ЧАТ</div>
+                    </div>
                 </div>
             </div>
 
-            <div className="rounded-3xl border border-orange-200 bg-orange-50/50 overflow-hidden shadow-sm mb-12">
-                <div className="bg-orange-500 px-6 py-4 flex items-center justify-between border-b border-orange-600">
-                    <div className="flex items-center gap-3 text-white">
-                        <PowerOff className="animate-pulse" size={24} />
-                        <h3 className="font-tactic font-black uppercase text-xl italic tracking-wider">Алгоритм при сбое (Свет / Интернет)</h3>
-                    </div>
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10 mb-12 shadow-sm">
+                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-slate-100">
+                    <ClipboardList className="text-teal-500" size={24} />
+                    <h3 className="font-tactic font-black text-xl md:text-2xl uppercase italic text-slate-900">Чек-лист закрытия</h3>
                 </div>
-                
-                <div className="p-6 md:p-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                        {FORCE_MAJEURE_STEPS.map((step, idx) => {
+
+                <div className="relative">
+                    {/* Vertical Line for Timeline */}
+                    <div className="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-slate-100 hidden sm:block"></div>
+                    
+                    <div className="space-y-6">
+                        {SHIFT_CLOSE_STEPS.map((step, idx) => {
                             const Icon = step.icon;
                             return (
-                                <div key={idx} className="flex gap-4 p-5 rounded-2xl bg-white border border-orange-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                                    <div className="shrink-0 w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center">
-                                        <Icon size={24} />
+                                <div key={idx} className="relative flex flex-col sm:flex-row gap-4 sm:gap-8 group">
+                                    {/* Number / Timeline Node */}
+                                    <div className="shrink-0 z-10 flex items-center space-x-4 sm:space-x-0">
+                                        <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl ${step.bgColor} border-4 border-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                                            <span className={`font-tactic font-black text-lg md:text-2xl italic ${step.color}`}>{idx + 1}</span>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div className="text-xs font-tactic font-black text-orange-500 italic mb-1">Шаг {idx + 1}</div>
-                                        <h4 className="font-tactic font-black uppercase text-slate-900 text-sm mb-2">{step.title}</h4>
-                                        <p className="font-chakra text-slate-600 text-sm leading-relaxed">{step.description}</p>
+                                    
+                                    {/* Content Card */}
+                                    <div className={`flex-1 rounded-2xl border bg-slate-50 p-5 md:p-6 transition-colors ${step.requiresPhoto ? 'border-indigo-100 group-hover:border-indigo-300 group-hover:bg-indigo-50/30' : 'border-slate-100 group-hover:border-teal-200 group-hover:bg-white'} `}>
+                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                            <div>
+                                                <h4 className="font-tactic font-black uppercase text-sm md:text-base text-slate-800 mb-2 flex items-center gap-2">
+                                                    {step.title}
+                                                </h4>
+                                                <p className="font-chakra text-slate-600 text-sm leading-relaxed">
+                                                    {step.description}
+                                                </p>
+                                                {step.images && step.images.length > 0 && (
+                                                    <div className="mt-4 flex gap-3 overflow-x-auto pb-2 snap-x">
+                                                        {step.images.map((imgUrl, i) => (
+                                                            <div 
+                                                                key={i} 
+                                                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-white flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-indigo-300 transition-all snap-start"
+                                                                onClick={() => setZoomedImage?.(imgUrl)}
+                                                            >
+                                                                <Image 
+                                                                    src={imgUrl} 
+                                                                    alt={`${step.title} Пример ${i + 1}`} 
+                                                                    width={200} 
+                                                                    height={150} 
+                                                                    className="h-[100px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity" 
+                                                                />
+                                                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                                                    <ZoomIn size={14} />
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
+                                            {/* Badge Requires Photo */}
+                                            {step.requiresPhoto ? (
+                                                <div className="shrink-0 inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-3 py-1.5 rounded-xl border border-indigo-200/50 self-start">
+                                                    <Camera size={14} />
+                                                    <span className="text-[10px] sm:text-xs font-chakra font-black uppercase tracking-wider">Сделать фото</span>
+                                                </div>
+                                            ) : (
+                                                <div className="shrink-0 inline-flex items-center gap-2 bg-slate-200 text-slate-500 px-3 py-1.5 rounded-xl border border-slate-300 self-start">
+                                                    <Icon size={14} />
+                                                    <span className="text-[10px] sm:text-xs font-chakra font-black uppercase tracking-wider">Действие</span>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             );
                         })}
-                    </div>
-
-                    <div className="mt-8 pt-6 border-t border-orange-200">
-                        <div className="flex flex-col md:flex-row gap-6 p-6 sm:p-8 rounded-3xl bg-white border-2 border-orange-200 shadow-sm">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-[#FF2E63] shrink-0">
-                                        <Zap size={20} />
-                                    </div>
-                                    <div>
-                                        <div className="text-[10px] font-chakra font-black uppercase tracking-widest text-[#FF2E63]">Важно для Новокосино</div>
-                                        <h4 className="font-tactic font-black uppercase text-slate-900 text-lg">Проверка Электрощитка</h4>
-                                    </div>
-                                </div>
-                                <p className="font-chakra text-slate-600 text-sm leading-relaxed">
-                                    При проблемах с электричеством в первую очередь необходимо проверить состояние электрощитка. 
-                                    Особое внимание обратите на <strong>два верхних главных автомата</strong> — они должны быть 
-                                    подняты вверх, как и все остальные автоматы на панели.
-                                </p>
-                            </div>
-                            <div className="shrink-0 w-full sm:w-64">
-                                <div 
-                                    className="relative rounded-2xl overflow-hidden border-2 border-slate-100 bg-slate-50 cursor-zoom-in group shadow-sm hover:shadow-md hover:border-orange-300 transition-all aspect-[4/3] flex items-center justify-center"
-                                    onClick={() => setZoomedImage?.('/instruktsiya/electro-shitok.jpg')}
-                                >
-                                    <Image 
-                                        src="/instruktsiya/electro-shitok.jpg" 
-                                        alt="Электрощиток Новокосино" 
-                                        fill
-                                        className="object-cover group-hover:opacity-90 transition-opacity" 
-                                    />
-                                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <div className="absolute top-3 right-3 p-2 bg-white/95 rounded-xl shadow-sm text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-105">
-                                        <ZoomIn size={16} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
-                    Раздел 9/14
+                    Раздел 8/14
                 </p>
             </div>
         </section>

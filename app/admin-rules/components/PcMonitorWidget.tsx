@@ -340,10 +340,10 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                     <span className="font-bold">Memory Integrity (HVCI) выключен</span> — защита ядра Windows отключена, это может мешать запуску Faceit AC на некоторых конфигурациях.
                                     {onNavigate && (
                                       <button
-                                        onClick={() => onNavigate('section14')}
+                                        onClick={() => onNavigate('section15')}
                                         className="ml-1.5 underline text-amber-700 font-bold hover:text-amber-900 transition-colors"
                                       >
-                                        → Раздел 14: Ошибки античитов
+                                        → Раздел 15: Ошибки античитов
                                       </button>
                                     )}
                                   </div>
@@ -371,10 +371,10 @@ export function PcMonitorWidget({ onNavigate }: PcMonitorWidgetProps = {}) {
                                 <span className="font-chakra text-xs text-blue-800 flex-1">Обновите Windows по инструкции Раздела 14</span>
                                 {onNavigate && (
                                   <button
-                                    onClick={() => onNavigate('section14')}
+                                    onClick={() => onNavigate('section15')}
                                     className="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-chakra font-bold text-xs px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
                                   >
-                                    → Раздел 14
+                                    → Раздел 15
                                   </button>
                                 )}
                               </div>

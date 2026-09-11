@@ -1,203 +1,155 @@
 import React from 'react';
-import { ShieldAlert, Receipt, Sparkles, BrainCog, AlertOctagon, Frown } from 'lucide-react';
+import { Gift, CreditCard, MessageCircle, AlertTriangle, PartyPopper, Phone, Send } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
 export function Section16() {
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="16" label="Раздел" />
-
+            
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
                     <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
-                        <ShieldAlert className="text-red-500 hidden sm:block" size={48} />
-                        Нарушения и <span className="text-red-500">штрафы</span>
+                        <Gift className="text-pink-500 hidden sm:block" size={48} />
+                        Подарочные <span className="text-pink-500">сертификаты</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Система материальной и дисциплинарной ответственности за несоблюдение стандартов и правил клуба CYBERX.
+                        Как принять заявку, объяснить механику сертификата и передать её руководителю.
                     </p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                {/* ДЛЯ КЛИЕНТОВ (Шаблоны) */}
+                <div className="flex flex-col gap-6">
+                    <div className="rounded-3xl border border-slate-200 bg-white shadow-sm flex flex-col overflow-hidden h-full">
+                        <div className="bg-slate-900 p-6 flex items-center gap-3 text-white border-b border-slate-800">
+                            <PartyPopper className="text-amber-400" size={24} />
+                            <h3 className="font-tactic font-black text-xl uppercase italic">Как работает сертификат</h3>
+                        </div>
+                        <div className="p-6 md:p-8 flex-1 bg-slate-50 font-chakra text-sm text-slate-700 space-y-4">
+                            <p className="font-bold text-slate-900">Объясните это клиенту при обращении по телефону или в Telegram:</p>
+                            
+                            <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm space-y-3">
+                                <p>🎁 Подарочный сертификат — это красивая электронная карточка с промокодом, привязанным к номеру телефона получателя.</p>
+                                <p>Вы оплачиваете выбранный номинал, руководитель подтверждает оплату и сам отправляет сертификат по контактам, которые были получены при заявке.</p>
+                                <p>Получатель регистрируется в приложении <strong>CYBERX</strong> или непосредственно в клубе, вводит промокод — и вся сумма зачисляется на его баланс.</p>
+                                <p>✨ Средства можно тратить на любые зоны клуба и в онлайн-магазине: напитки, сэндвичи, снеки и другие товары.</p>
+                                <hr className="border-slate-100 my-2" />
+                                <p><strong>📝 Чтобы оформить заказ:</strong><br/>сообщите желаемый номинал и контакты получателя. Реквизиты для оплаты предоставит руководство.</p>
+                            </div>
 
-                {/* ФИНАНСОВЫЕ НАРУШЕНИЯ */}
-                <div className="bg-white rounded-3xl border border-rose-200 shadow-sm overflow-hidden flex flex-col">
-                    <div className="bg-rose-50 p-5 flex items-center gap-3 border-b border-rose-100">
-                        <Receipt className="text-rose-600" size={24} />
-                        <h3 className="font-tactic font-black text-lg uppercase text-rose-900">Касса и Финансы</h3>
-                    </div>
-                    <div className="p-5 font-chakra text-sm">
-                        <ul className="divide-y divide-rose-100">
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Несход наличных в кассе</span>
-                                <span className="font-bold text-rose-600 whitespace-nowrap ml-4">Сумма несхода</span>
-                            </li>
-                            <li className="flex justify-between items-start py-3">
-                                <div className="text-slate-700">
-                                    <span className="block mb-1">Несход при инвентаризации бара</span>
-                                    <span className="text-xs text-rose-800 bg-rose-100/50 border border-rose-200 rounded px-2 py-1 inline-block mt-0.5 leading-tight">
-                                        <strong>Систематический</strong> (если руководство приехало &gt;2 раз и есть несходы) = <strong className="font-black">Сумма несхода × 2</strong>
-                                    </span>
+                            {/* Ссылки на сайты */}
+                            <div className="bg-indigo-50 border border-indigo-200 p-5 rounded-2xl shadow-sm mt-4">
+                                <h4 className="font-tactic text-indigo-800 uppercase text-xs mb-3">Страницы сертификатов на сайте</h4>
+                                <div className="space-y-2 text-indigo-900 font-chakra font-bold text-sm">
+                                    <div className="flex flex-col">
+                                        <span className="text-xs uppercase tracking-widest text-indigo-600/80">Алтуфьево</span>
+                                        <a href="https://cyberx.moscow/certificate" target="_blank" rel="noreferrer" className="hover:text-indigo-600 underline">
+                                            cyberx.moscow/certificate
+                                        </a>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="text-xs uppercase tracking-widest text-indigo-600/80">Новокосино</span>
+                                        <a href="https://cyberx-novokosino.ru/certificate" target="_blank" rel="noreferrer" className="hover:text-indigo-600 underline">
+                                            cyberx-novokosino.ru/certificate
+                                        </a>
+                                    </div>
                                 </div>
-                                <span className="font-bold text-rose-600 whitespace-nowrap ml-4 mt-0.5">Сумма несхода</span>
-                            </li>
-                            <li className="flex justify-between items-start py-3">
-                                <div className="text-slate-700">
-                                    <span className="block mb-1">Инкассация наличных без согласования</span>
-                                    <span className="text-xs text-rose-800 bg-rose-100/50 border border-rose-200 rounded px-2 py-1 inline-block mt-0.5 leading-tight">
-                                        В том числе, если оформлена трата на нужды клуба (инвентарь, бумага), но <strong>нет отчетного чека</strong>
-                                    </span>
-                                </div>
-                                <span className="font-bold text-rose-600 whitespace-nowrap ml-4 mt-0.5">Сумма инкассации</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Возврат денег клиенту без согласования руководства</span>
-                                <span className="font-bold text-rose-600 whitespace-nowrap ml-4">Сумма возврата</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Не проведена доплата в программе за PS5 (&gt;2/4 чел)</span>
-                                <span className="font-bold text-rose-600 whitespace-nowrap ml-4">300 ₽</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            </div>
 
-                {/* ЧИСТОТА И ПОРЯДОК */}
-                <div className="bg-white rounded-3xl border border-orange-200 shadow-sm overflow-hidden flex flex-col">
-                    <div className="bg-orange-50 p-5 flex items-center gap-3 border-b border-orange-100">
-                        <Sparkles className="text-orange-600" size={24} />
-                        <h3 className="font-tactic font-black text-lg uppercase text-orange-900">Порядок и Чистота</h3>
-                    </div>
-                    <div className="p-5 font-chakra text-sm">
-                        <ul className="divide-y divide-orange-100">
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700 font-bold">Пропущенная уборка клуба</span>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">500 ₽</span>
-                            </li>
-                            <li className="flex justify-between items-start py-3">
-                                <div className="text-slate-700">
-                                    <strong className="block mb-1 text-slate-900">Грязное игровое место ПК:</strong>
-                                    Стул не придвинут, наушники не крючке, монитор не придвинут к стене, крошки на столе, <u className="decoration-orange-400">нет влажной салфетки на клавиатуре</u>.
-                                </div>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">200 ₽ / ПК</span>
-                            </li>
-                            <li className="flex justify-between items-start py-3">
-                                <div className="text-slate-700">
-                                    <strong className="block mb-1 text-slate-900">Грязная зона TV (PS5):</strong>
-                                    Бочка сдвинута, мусор на столе/диване/полу, нет 2 влажных салфеток.
-                                </div>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">200 ₽ / TV</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Грязные джойстики</span>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">100 ₽ / шт</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Неаккуратная выкладка товара в холодильнике</span>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">200 ₽</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Отсутствие актуальных ценников</span>
-                                <span className="font-bold text-orange-600 whitespace-nowrap ml-4">50 ₽ / ценник</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* РАБОЧИЙ ПРОЦЕСС */}
-                <div className="bg-white rounded-3xl border border-violet-200 shadow-sm overflow-hidden flex flex-col">
-                    <div className="bg-violet-50 p-5 flex items-center gap-3 border-b border-violet-100">
-                        <BrainCog className="text-violet-600" size={24} />
-                        <h3 className="font-tactic font-black text-lg uppercase text-violet-900">Рабочий Процесс</h3>
-                    </div>
-                    <div className="p-5 font-chakra text-sm">
-                        <ul className="divide-y divide-violet-100">
-                            <li className="flex justify-between items-start py-3 gap-4">
-                                <span className="text-slate-700 w-2/3">Массово необновленные ПК ночная смена</span>
-                                <span className="font-bold text-violet-600 whitespace-nowrap">1 000 ₽</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Не обновлены обязательные игры на ПК</span>
-                                <span className="font-bold text-violet-600 whitespace-nowrap ml-4">200 ₽ / ПК</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Куртка на кресле администратора</span>
-                                <span className="font-bold text-violet-600 whitespace-nowrap ml-4">400 ₽</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700">Отсутствие фоновой музыки в клубе</span>
-                                <span className="font-bold text-violet-600 whitespace-nowrap ml-4">600 ₽</span>
-                            </li>
-                            <li className="flex justify-between items-center py-3">
-                                <span className="text-slate-700 font-bold text-rose-600">Посетитель спит в клубе без оплаченного времени</span>
-                                <span className="font-black text-rose-600 whitespace-nowrap ml-4">3 000 ₽</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* КРИТИЧЕСКИЕ НАРУШЕНИЯ */}
-                <div className="bg-slate-900 rounded-3xl shadow-[0_0_20px_rgba(225,29,72,0.3)] overflow-hidden flex flex-col border border-red-900 mt-0 lg:-mt-12 relative z-10 lg:scale-105">
-                    <div className="bg-red-600 p-5 flex items-center gap-3">
-                        <AlertOctagon className="text-white" size={28} />
-                        <h3 className="font-tactic font-black text-xl uppercase italic text-white flex-1 drop-shadow-md">КРИТИЧЕСКИЕ НАРУШЕНИЯ</h3>
-                    </div>
-                    <div className="p-6 font-chakra text-sm space-y-6">
-
-                        {/* Сон на рабочем месте */}
-                        <div className="border-b border-slate-700 pb-5">
-                            <h4 className="font-bold text-rose-400 mb-3 text-base flex items-center gap-2 uppercase tracking-wide">
-                                <Frown size={18} /> Сон на рабочем месте
-                            </h4>
-                            <div className="flex flex-col gap-2">
-                                <div className="flex gap-4 items-center bg-white/5 p-2 rounded-lg">
-                                    <span className="bg-slate-700 text-slate-300 px-3 py-1 rounded text-xs font-bold uppercase w-20 text-center">1й раз</span>
-                                    <span className="text-slate-300">Строгое предупреждение</span>
-                                </div>
-                                <div className="flex gap-4 items-center bg-white/5 p-2 rounded-lg">
-                                    <span className="bg-orange-600 text-white px-3 py-1 rounded text-xs font-bold uppercase w-20 text-center">2й раз</span>
-                                    <span className="text-orange-300 font-bold">Штраф 5 000 ₽</span>
-                                </div>
-                                <div className="flex gap-4 items-center bg-red-900/40 p-2 rounded-lg border border-red-500/20">
-                                    <span className="bg-red-600 text-white px-3 py-1 rounded text-xs font-bold uppercase w-20 text-center">3й раз</span>
-                                    <span className="text-red-400 font-black">Увольнение (без з/п)</span>
+                            {/* Реквизиты и отчетность */}
+                            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mt-4">
+                                <h4 className="font-tactic text-amber-800 uppercase text-xs mb-2">Реквизиты для оплаты</h4>
+                                <div className="text-amber-900 bg-amber-100/50 p-3 rounded-lg font-bold">
+                                    Банк ВТБ — перевод по номеру телефона Никиты. <br/>
+                                    <span className="text-xs font-normal text-amber-700">Запросите реквизиты у руководства.</span>
                                 </div>
                             </div>
                         </div>
-
-                        {/* Увольнения */}
-                        <ul className="space-y-4">
-                            <li>
-                                <div className="text-slate-300 mb-1">Воровство: Взятие денег из кассы на свои нужды без согласования руководства</div>
-                                <div className="text-red-400 font-black uppercase text-xs tracking-widest bg-red-950 inline-block px-3 py-1 border border-red-900 rounded">Увольнение</div>
-                            </li>
-                            <li>
-                                <div className="text-slate-300 mb-1">Нахождение на рабочем месте в нетрезвом состоянии</div>
-                                <div className="text-red-400 font-black uppercase text-xs tracking-widest bg-red-950 inline-block px-3 py-1 border border-red-900 rounded">Увольнение</div>
-                            </li>
-                            <li>
-                                <div className="text-slate-300 mb-1">Невыход на смену без предупреждения менее чем за 2 дня</div>
-                                <div className="text-red-400 font-black uppercase text-xs tracking-widest bg-red-950 inline-block px-3 py-1 border border-red-900 rounded">Увольнение (без з/п)</div>
-                            </li>
-                            <li>
-                                <div className="text-slate-300 mb-1">Уведомление об увольнении менее чем за 14 дней</div>
-                                <div className="text-red-400 font-black flex items-center flex-wrap gap-2 uppercase text-xs tracking-widest mt-2">
-                                    <span className="bg-red-950 px-3 py-1 border border-red-900 rounded">Увольнение без з/п</span>
-                                    <span className="text-slate-500 lowercase">или</span>
-                                    <span className="bg-orange-950 text-orange-400 px-3 py-1 border border-orange-900 rounded">50% от з/п</span>
-                                    <span className="text-slate-500 normal-case tracking-normal ml-1">(на усмотрение рук-ва)</span>
-                                </div>
-                            </li>
-                        </ul>
-
                     </div>
                 </div>
 
+                {/* ДЛЯ АДМИНОВ */}
+                <div className="flex flex-col gap-6">
+                    <div className="rounded-3xl border-2 border-rose-100 bg-rose-50/50 p-6 md:p-8 shadow-sm h-full flex flex-col justify-center relative overflow-hidden">
+                        
+                        <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+                            <AlertTriangle size={160} className="text-rose-600" />
+                        </div>
+
+                        <div className="relative z-10 space-y-6">
+                            <h3 className="font-tactic font-black text-2xl uppercase italic text-rose-600 mb-2 border-b-2 border-rose-200 pb-4">
+                                🛑 АЛГОРИТМ ДЛЯ АДМИНА
+                            </h3>
+
+                            <div className="bg-white border border-rose-100 rounded-2xl p-5">
+                                <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
+                                    <Send size={16} /> 1. Сразу передайте заявку руководителю
+                                </h4>
+                                <p className="font-chakra text-sm text-slate-700">
+                                    Как только клиент интересуется сертификатом по телефону или в Telegram, сообщите руководителю, что поступила заявка, и передайте <strong>контакты клиента</strong>.
+                                </p>
+                            </div>
+
+                            <div className="bg-white border border-rose-100 rounded-2xl p-5">
+                                <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
+                                    <Phone size={16} /> 2. Если клиент позвонил
+                                </h4>
+                                <p className="font-chakra text-sm text-slate-700">
+                                    Коротко объясните механику: после оплаты руководитель подтвердит её и отправит сертификат получателю. Промокод активируется после регистрации в приложении CYBERX или непосредственно в клубе.
+                                </p>
+                            </div>
+
+                            <div className="bg-white border border-rose-100 rounded-2xl p-5">
+                                <h4 className="font-chakra font-bold text-rose-900 mb-2 flex items-center gap-2">
+                                    <CreditCard size={16} /> 3. Дальше действует руководитель
+                                </h4>
+                                <p className="font-chakra text-sm text-slate-700">
+                                    Администратор <strong>не принимает оплату, не активирует баланс и не отправляет сертификат получателю</strong>. После передачи заявки никаких дополнительных действий не требуется.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            {/* ВАЖНО ДЛЯ АДМИНА */}
+            <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900 mb-6 flex items-center gap-3">
+                <MessageCircle className="text-emerald-500" /> Что важно помнить
+            </h3>
+            
+            <div className="rounded-3xl border border-emerald-200 bg-emerald-50/50 p-6 md:p-8 shadow-sm mb-12">
+                <p className="font-chakra text-sm text-emerald-800 mb-4">
+                    Эта информация нужна, чтобы уверенно ответить на вопросы. Отправлять её получателю не нужно.
+                </p>
+                <div className="bg-white rounded-2xl border border-emerald-100 p-5 font-chakra text-sm text-slate-700 space-y-4 shadow-sm">
+                    <p className="font-bold text-emerald-600">Сертификат и промокод:</p>
+                    <p>Руководитель отправляет получателю красивую карточку сертификата с промокодом, привязанным к его номеру телефона.</p>
+                    
+                    <div className="flex gap-4 items-start">
+                        <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</div>
+                        <p>Получатель регистрируется через приложение <strong>CYBERX</strong> или непосредственно в клубе.</p>
+                    </div>
+
+                    <div className="flex gap-4 items-start">
+                        <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</div>
+                        <div>
+                            <p className="font-bold mb-2">После ввода промокода:</p>
+                            <p>Номинал зачисляется на баланс. Им можно оплатить любые зоны клуба и покупки в онлайн-магазине, включая напитки, сэндвичи, снеки и другие товары.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-16 pt-8 flex justify-end">
+                <p className="text-xs font-chakra font-bold text-emerald-500 uppercase tracking-widest bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100">
+                    Окончание инструкции
+                </p>
+            </div>
         </section>
     );
 }
+
 
 

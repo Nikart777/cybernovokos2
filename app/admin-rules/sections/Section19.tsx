@@ -1,350 +1,227 @@
 import React from 'react';
-import Image from 'next/image';
-import {
-    KeyRound,
-    Gamepad2,
-    Monitor,
-    MousePointerClick,
-    Search,
-    CheckCircle2,
-    AlertTriangle,
-    User,
-    ZoomIn,
-    ArrowRight,
-    ExternalLink,
-} from 'lucide-react';
+import { GraduationCap, LogIn, MonitorSpeaker, Users, LogOut, ArrowRight, Clock, Target } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
+import { QUESTIONS } from '../../admin-test/questions';
 
-const ISSUE_STEPS = [
-    {
-        title: 'Найти ПК гостя',
-        description: '«Управление ПК» → найти карточку ПК гостя (ПК занят, идёт таймер).',
-        icon: Monitor,
-        color: 'text-emerald-500',
-        bgColor: 'bg-emerald-50',
-        images: [{ src: '/instruktsiya/langame-pc-card.webp', width: 1912, height: 996 }],
-    },
-    {
-        title: 'Открыть меню карточки',
-        description: 'Нажать стрелку-меню в углу карточки → пункт «Игр. аккаунты».',
-        icon: MousePointerClick,
-        color: 'text-teal-500',
-        bgColor: 'bg-teal-50',
-        images: [{ src: '/instruktsiya/langame-pc-menu.webp', width: 297, height: 488 }],
-    },
-    {
-        title: 'Выбрать аккаунт',
-        description: 'В окне «Активировать игровой аккаунт на N» ввести название игры в поиск или выбрать лаунчер (Steam, Epic Games, Battle.net…).',
-        icon: Search,
-        color: 'text-cyan-500',
-        bgColor: 'bg-cyan-50',
-        images: [{ src: '/instruktsiya/langame-pc-account-modal.webp', width: 1907, height: 994 }],
-    },
-    {
-        title: 'Подтвердить выдачу',
-        description: 'Нажать зелёную кнопку нужного аккаунта → подтвердить. Аккаунт закрепится за ПК, лаунчер/игра запустятся сами по настройке запуска.',
-        icon: KeyRound,
-        color: 'text-emerald-600',
-        bgColor: 'bg-emerald-50',
-    },
-    {
-        title: 'Проверить вход',
-        description: (
-            <>
-                Проверить на ПК гостя: лаунчер открылся и вошёл <strong className="text-slate-900">без ручного ввода логина/пароля</strong>. В Админ ПО аккаунт отображается как занятый. Если просит пароль — см. блок «Если аккаунт не выдаётся».
-            </>
-        ),
-        icon: CheckCircle2,
-        color: 'text-green-600',
-        bgColor: 'bg-green-50',
-    },
-];
+interface Section19Props {
+    setActiveSection?: (id: string) => void;
+}
 
-export function Section19({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
+export function Section19({ setActiveSection }: Section19Props) {
+    const handleRef = (id: string) => {
+        if (setActiveSection) {
+            setActiveSection(id);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="19" label="Раздел" />
-
+            
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
                     <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
-                        <KeyRound className="text-emerald-500 hidden sm:block" size={48} />
-                        Игровые <span className="text-emerald-500">аккаунты</span>
+                        <GraduationCap className="text-indigo-500 hidden sm:block" size={48} />
+                        План <span className="text-indigo-500">Стажировки</span>
                     </h2>
-                    <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Как выдать гостю клубный аккаунт (Steam, Epic, Battle.net и др.) через Админ ПО Langame и что делать, если аккаунт не выдаётся.
+                    <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl flex items-center gap-2">
+                        <Clock className="text-slate-400" size={16} /> Расчетное время стажировки: <strong className="text-slate-800">3-4 часа</strong>
                     </p>
                 </div>
             </div>
 
-            {/* БЛОК A — ГЛАВНОЕ */}
-            <div className="rounded-3xl bg-slate-900 text-white p-6 md:p-8 shadow-sm mb-12">
-                <div className="flex items-center gap-3 mb-6">
-                    <AlertTriangle className="text-emerald-400" size={24} />
-                    <h3 className="font-tactic font-black text-xl md:text-2xl uppercase italic">Главное</h3>
-                </div>
-                <ul className="space-y-4 font-chakra text-sm text-slate-300">
-                    <li className="flex items-start gap-3">
-                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">1</span>
-                        <span>Аккаунт выдаётся <strong className="text-white">только на занятый ПК</strong>. ПК свободен → сначала посадить гостя (начать сеанс), потом выдавать.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">2</span>
-                        <span>Выданный аккаунт становится <strong className="text-white">занятым</strong>: другой гость его не получит, пока он используется на этом ПК.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">3</span>
-                        <span>Игры, аккаунты и настройки запуска на домене настраивает руководство. На смене админ только <strong className="text-white">выдаёт</strong>.</span>
-                    </li>
-                </ul>
-            </div>
-
-            {/* БЛОК B — ВЫДАЧА АККАУНТА НА ПК ГОСТЯ */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10 mb-12 shadow-sm">
-                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-slate-100">
-                    <Gamepad2 className="text-emerald-500" size={24} />
-                    <h3 className="font-tactic font-black text-xl md:text-2xl uppercase italic text-slate-900">Выдача аккаунта на ПК гостя</h3>
-                </div>
-
-                <div className="relative">
-                    <div className="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-slate-100 hidden sm:block"></div>
-
-                    <div className="space-y-6">
-                        {ISSUE_STEPS.map((step, idx) => {
-                            const Icon = step.icon;
-                            return (
-                                <div key={idx} className="relative flex flex-col sm:flex-row gap-4 sm:gap-8 group">
-                                    {/* Number / Timeline Node */}
-                                    <div className="shrink-0 z-10 flex items-center space-x-4 sm:space-x-0">
-                                        <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl ${step.bgColor} border-4 border-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
-                                            <span className={`font-tactic font-black text-lg md:text-2xl italic ${step.color}`}>{idx + 1}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Content Card */}
-                                    <div className="flex-1 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:p-6 group-hover:border-emerald-200 group-hover:bg-white transition-colors">
-                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                                            <div>
-                                                <h4 className="font-tactic font-black uppercase text-sm md:text-base text-slate-800 mb-2 flex items-center gap-2">
-                                                    {step.title}
-                                                </h4>
-                                                <p className="font-chakra text-slate-600 text-sm leading-relaxed">
-                                                    {step.description}
-                                                </p>
-                                                {step.images && step.images.length > 0 && (
-                                                    <div className="mt-4 flex gap-3 overflow-x-auto pb-2 snap-x">
-                                                        {step.images.map((img, i) => (
-                                                            <div
-                                                                key={i}
-                                                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-white flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
-                                                                onClick={() => setZoomedImage?.(img.src)}
-                                                            >
-                                                                <Image
-                                                                    src={img.src}
-                                                                    alt={`${step.title} — пример`}
-                                                                    width={img.width}
-                                                                    height={img.height}
-                                                                    unoptimized
-                                                                    className="h-[100px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
-                                                                />
-                                                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                                                    <ZoomIn size={14} />
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            <div className="shrink-0 inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-xl border border-emerald-200/50 self-start">
-                                                <Icon size={14} />
-                                                <span className="text-[10px] sm:text-xs font-chakra font-black uppercase tracking-wider">Шаг {idx + 1}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {/* ЭТАП 1 */}
+                <div className="bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110">
+                        <LogIn size={100} />
                     </div>
-                </div>
-            </div>
-
-            {/* БЛОК C — ДВА СПРАВОЧНИКА В МЕНЮ СЛЕВА */}
-            <div className="grid lg:grid-cols-2 gap-8 mb-6">
-                {/* Аккаунты игр */}
-                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
-                    <div className="flex items-center gap-3 mb-4">
-                        <Gamepad2 className="text-emerald-500" size={22} />
-                        <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты игр</h3>
+                    <div className="flex items-center gap-3 mb-6 relative z-10">
+                        <div className="w-10 h-10 rounded-xl bg-slate-900 text-white font-tactic font-black text-xl italic flex items-center justify-center">1</div>
+                        <h3 className="font-tactic font-black uppercase text-xl text-slate-900">Начало работы</h3>
                     </div>
-                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
-                        Список игр клуба. Кнопка «Занять» напротив игры — система сама подберёт свободный аккаунт под игру и запустит её на ПК. Найти игру: поиск или кнопка «Полный список игр».
-                    </p>
-                    <div className="mt-auto flex gap-3 overflow-x-auto pb-1 snap-x">
-                        {[
-                            { src: '/instruktsiya/langame-accounts-games.webp', width: 1912, height: 995, alt: 'Вкладка «Аккаунты игр» — таблица игр с кнопками «Занять»' },
-                            { src: '/instruktsiya/langame-accounts-games-list.webp', width: 1914, height: 996, alt: 'Вкладка «Аккаунты игр» с раскрытым «Полным списком игр»' },
-                        ].map((img, i) => (
-                            <div
-                                key={i}
-                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
-                                onClick={() => setZoomedImage?.(img.src)}
-                            >
-                                <Image
-                                    src={img.src}
-                                    alt={img.alt}
-                                    width={img.width}
-                                    height={img.height}
-                                    unoptimized
-                                    className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
-                                />
-                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                    <ZoomIn size={14} />
-                                </div>
+                    
+                    <ul className="space-y-4 font-chakra text-sm text-slate-600 relative z-10">
+                        <li className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                                <span><strong>Приемка залов с ПК</strong> <br/><span className="text-xs text-slate-500">Аккуратная расстановка кресел, наличие всей периферии.</span></span>
                             </div>
-                        ))}
-                    </div>
+                        </li>
+                        <li className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                                <span><strong>Приемка зоны PS5</strong> <br/><span className="text-xs text-slate-500">Джойстики, диваны, плойки.</span></span>
+                            </div>
+                            <button onClick={() => handleRef('section14')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к 'Зона TV (PS5)' <ArrowRight size={10}/></button>
+                        </li>
+                        <li className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                                <span><strong>Открытие смены</strong> <br/><span className="text-xs text-slate-500">Пересчет кассы и товара в баре (сверка со входом).</span></span>
+                            </div>
+                            <button onClick={() => handleRef('section3')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к 'Открытие смены' <ArrowRight size={10}/></button>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Аккаунты лаунчеров */}
-                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
-                    <div className="flex items-center gap-3 mb-4">
-                        <Monitor className="text-teal-500" size={22} />
-                        <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты лаунчеров</h3>
+                {/* ЭТАП 2 */}
+                <div className="bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm hover:border-blue-200 hover:shadow-md transition-all relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110">
+                        <MonitorSpeaker size={100} />
                     </div>
-                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
-                        Нужны, когда требуется аккаунт конкретного лаунчера (Steam, Epic, Battle.net, Riot…), а не отдельная игра. Выбрать лаунчер сверху → «Занять». Колонка «Доступные игры» показывает, что привязано к аккаунту.
-                    </p>
-                    <div className="mt-auto">
-                        <div
-                            className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-teal-300 transition-all"
-                            onClick={() => setZoomedImage?.('/instruktsiya/langame-accounts-launchers.webp')}
-                        >
-                            <Image
-                                src="/instruktsiya/langame-accounts-launchers.webp"
-                                alt="Вкладка «Аккаунты лаунчеров» — фильтр по лаунчерам и таблица Имя / Лаунчер / Статус / Доступные игры"
-                                width={1909}
-                                height={997}
-                                unoptimized
-                                className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
-                            />
-                            <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                <ZoomIn size={14} />
+                    <div className="flex items-center gap-3 mb-6 relative z-10">
+                        <div className="w-10 h-10 rounded-xl bg-blue-500 text-white font-tactic font-black text-xl italic flex items-center justify-center">2</div>
+                        <h3 className="font-tactic font-black uppercase text-xl text-slate-900">ПО LANGAME</h3>
+                    </div>
+                    
+                    <ul className="space-y-4 font-chakra text-sm text-slate-600 relative z-10">
+                        <li className="flex gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                            <span><strong>Карта клуба:</strong> Назначение, функции управления ПК.</span>
+                        </li>
+                        <li className="flex flex-col gap-2">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                <span><strong>Пополнение баланса / Возвраты:</strong> Механизмы списания и внесения.</span>
                             </div>
+                            <div className="pl-3.5 flex gap-2">
+                                <button onClick={() => handleRef('section5')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Оплата</button>
+                                <button onClick={() => handleRef('section7')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Компенсации</button>
+                            </div>
+                        </li>
+                        <li className="flex flex-col gap-2">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                <span><strong>Аккаунты:</strong> Выдача клубных аккаунтов (Steam, FaceIT) через панель Langame. Создание гостевых (одноразовых) аккаунтов в программе для клиентов, которые отказываются скачивать приложение и регистрироваться.</span>
+                            </div>
+                            <div className="pl-3.5 flex gap-2">
+                                <button onClick={() => handleRef('section8')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Игровые аккаунты</button>
+                            </div>
+                        </li>
+                        <li className="flex flex-col gap-2">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                <span><strong>Онлайн-бронирование:</strong> Отслеживание, активация броней.</span>
+                            </div>
+                            <button onClick={() => handleRef('section4')} className="ml-3.5 self-start text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Бронирование</button>
+                        </li>
+                        <li className="flex flex-col gap-2">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                <span><strong>Бар:</strong> Продажа, учет товаров, онлайн-магазин в клиенте (доставка к ПК). Заказ сэндвичей, приемка.</span>
+                            </div>
+                            <button onClick={() => handleRef('section6')} className="ml-3.5 self-start text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Управление баром</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {/* ЭТАП 3 */}
+                <div className="bg-white border-2 border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm hover:border-[#FF2E63]/30 hover:shadow-md transition-all relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110">
+                        <Users size={100} />
+                    </div>
+                    <div className="flex items-center gap-3 mb-6 relative z-10">
+                        <div className="w-10 h-10 rounded-xl bg-[#FF2E63] text-white font-tactic font-black text-xl italic flex items-center justify-center">3</div>
+                        <h3 className="font-tactic font-black uppercase text-xl text-slate-900">Зал и Клиенты</h3>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 font-chakra text-xs text-slate-600 relative z-10">
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Тарифы, статусы, кэшбек (Премии)
+                            <button onClick={() => handleRef('section9')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Акции и механизмы начисления
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg col-span-1 sm:col-span-2">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Приветствие, регистрация клиента, звонки (Обязанности)
+                            <button onClick={() => handleRef('section2')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
+                        </div>
+                        <div className="flex flex-col gap-1 p-2 bg-slate-50 rounded-lg col-span-1 sm:col-span-2">
+                            <div className="flex items-center gap-2">
+                                <Target size={14} className="text-[#FF2E63] shrink-0" /> <strong>Помощь клиентам (Техподдержка)</strong>
+                                <button onClick={() => handleRef('section15')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
+                            </div>
+                            <span className="text-slate-500 pl-6">ФПС, звук, микрофон, клава, бинды в CS/Dota. Тех. режим.</span>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Обновление игр ПК
+                            <button onClick={() => handleRef('section13')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Фоновая музыка
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Регламент уборки
+                            <button onClick={() => handleRef('section12')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
+                            <Target size={14} className="text-[#FF2E63] shrink-0" /> Штрафы и нарушения
+                            <button onClick={() => handleRef('section17')} className="ml-auto bg-slate-200 hover:bg-slate-300 p-1 rounded transition-colors"><ArrowRight size={12}/></button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mb-12 flex items-center gap-2">
-                <User size={14} className="text-slate-400" /> С этими вкладками работают только администраторы
-            </p>
 
-            {/* БЛОК D — ГОСТЬ МОЖЕТ САМ */}
-            <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 mb-12">
-                <div className="flex items-center gap-3 mb-4">
-                    <User className="text-emerald-500" size={22} />
-                    <h3 className="font-tactic font-black text-xl uppercase italic text-slate-900">Гость может сам</h3>
+                {/* ЭТАП 4 */}
+                <div className="bg-emerald-50 border-2 border-emerald-100 rounded-3xl p-6 md:p-8 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110">
+                        <LogOut size={100} className="text-emerald-500" />
+                    </div>
+                    <div className="flex items-center gap-3 mb-6 relative z-10">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white font-tactic font-black text-xl italic flex items-center justify-center">4</div>
+                        <h3 className="font-tactic font-black uppercase text-xl text-emerald-950">Закрытие смены</h3>
+                    </div>
+                    
+                    <ul className="space-y-4 font-chakra text-sm text-emerald-800 relative z-10">
+                        <li className="flex gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                            <span><strong>Отчётность:</strong> Лист учета смен, отчет по программе Z/X, сверка безнала, остатков бара, фото-отчеты холодильников и терминалов.</span>
+                        </li>
+                        <li className="flex gap-2 mb-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                            <span><strong>Таблица онлайн:</strong> Назначение, внесение данных о выручке за смену, расчет премии.</span>
+                        </li>
+                        <li>
+                            <button onClick={() => handleRef('section10')} className="text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white px-4 py-2 rounded-xl border border-emerald-500 shadow-sm hover:bg-emerald-500 transition-colors flex items-center gap-2">
+                                Перейти к 'Закрытие смены' <ArrowRight size={14}/>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-                <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-6 max-w-3xl">
-                    В личном кабинете на ПК есть кнопка «Выбрать игру». Гость выбирает игру → аккаунт выдаётся и игра запускается автоматически. Если свободного аккаунта нет, гость подойдёт к вам — выдать вручную (см. «Выдача аккаунта на ПК гостя» выше) или предложить другую игру.
+            </div>
+
+            <div className="mt-20 flex flex-col items-center gap-6 pb-12">
+                <div className="flex items-center gap-3 text-slate-500 font-chakra uppercase tracking-widest text-sm font-bold">
+                    <Target size={18} className="text-[#FF2E63]" />
+                    <span>Финальный Этап</span>
+                </div>
+                
+                <h3 className="font-tactic font-black text-3xl text-center text-slate-900 italic uppercase">
+                    Проверка Знаний
+                </h3>
+                
+                <p className="text-center text-slate-600 max-w-lg mb-4 font-chakra">
+                    Пройдите итоговое тестирование из {QUESTIONS.length} сложных вопросов, чтобы подтвердить усвоение всех регламентов и готовность к полноценной работе.
                 </p>
-                <div
-                    className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group max-w-2xl"
-                    onClick={() => setZoomedImage?.('/instruktsiya/langame-lk-choose-game.webp')}
+
+                <a 
+                    href="/admin-test"
+                    className="group relative inline-flex items-center justify-center gap-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white px-10 py-5 rounded-full shadow-[0_10px_40px_rgba(99,102,241,0.4)] hover:shadow-[0_15px_50px_rgba(99,102,241,0.6)] transition-all transform hover:-translate-y-1 font-tactic italic uppercase tracking-wider text-xl overflow-hidden w-full max-w-md"
                 >
-                    <Image
-                        src="/instruktsiya/langame-lk-choose-game.webp"
-                        alt="Кнопка «Выбрать игру» в личном кабинете гостя на ПК"
-                        width={1803}
-                        height={1012}
-                        unoptimized
-                        className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                        <span className="font-chakra text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                            <ZoomIn size={12} /> Нажмите для увеличения
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            {/* БЛОК E — ЕСЛИ АККАУНТ НЕ ВЫДАЁТСЯ */}
-            <div className="rounded-3xl border border-amber-200 bg-white overflow-hidden shadow-sm mb-12">
-                <div className="bg-amber-50 p-6 flex items-center gap-4 border-b border-amber-100">
-                    <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-600 flex items-center justify-center shrink-0">
-                        <AlertTriangle size={24} />
-                    </div>
-                    <div>
-                        <h3 className="font-tactic font-black text-xl uppercase italic text-amber-900 mb-1">Если аккаунт не выдаётся</h3>
-                        <p className="font-chakra text-amber-700 text-sm">Частые причины и что делать на смене</p>
-                    </div>
-                </div>
-
-                <div className="p-6 md:p-8 space-y-4 font-chakra text-sm">
-                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                        <p className="text-slate-800 font-bold">Аккаунт «занят» или его нет среди зелёных кнопок</p>
-                        <p className="text-slate-600 mt-1 flex items-start gap-2">
-                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
-                            Используется на другом ПК или отключён. Выбрать другой аккаунт/игру или дождаться освобождения.
-                        </p>
-                    </div>
-
-                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                        <p className="text-slate-800 font-bold">Игры нет в списке (ни в Админ ПО, ни в ЛК гостя)</p>
-                        <p className="text-slate-600 mt-1 flex items-start gap-2">
-                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
-                            На домене нет игры, аккаунта, привязки или настройки запуска. На смене не чинится: сообщить руководству / техподдержке Langame.
-                        </p>
-                        <button
-                            onClick={() => onNavigate?.('section14')}
-                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded hover:bg-emerald-200 transition-colors"
-                        >
-                            Раздел 14: Техподдержка Langame <ArrowRight size={10} />
-                        </button>
-                    </div>
-
-                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                        <p className="text-slate-800 font-bold">Игра/лаунчер открылись, но автовход не сработал (просит логин и пароль)</p>
-                        <p className="text-slate-600 mt-1 flex items-start gap-2">
-                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
-                            На гостевом ПК нет .NET Desktop Runtime 6.0. Установить, перезагрузить ПК и выдать аккаунт заново. Если не получается — сисадмин.
-                        </p>
-                        <a
-                            href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.36-windows-x64-installer"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-white px-3 py-1.5 rounded hover:bg-slate-700 transition-colors"
-                        >
-                            <ExternalLink size={10} /> Скачать .NET Desktop Runtime 6.0
-                        </a>
-                    </div>
-
-                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
-                        <p className="text-slate-800 font-bold">Steam просит код Guard</p>
-                        <p className="text-slate-600 mt-1 flex items-start gap-2">
-                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
-                            Steam Guard на рабочем телефоне; один Guard — не более 5 устройств.
-                        </p>
-                        <button
-                            onClick={() => onNavigate?.('section12')}
-                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded hover:bg-emerald-200 transition-colors"
-                        >
-                            Раздел 12: Обновления ПК <ArrowRight size={10} />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* ИСТОЧНИК */}
-            <div className="mt-16 pt-8 border-t border-slate-200 flex justify-end">
-                <a
-                    href="https://wiki.langame.ru/books/langame-software/page/vydaca-akkauntov-s-admin-po-i-s-licnogo-kabineta"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-chakra font-bold text-slate-400 hover:text-emerald-600 transition-colors"
-                >
-                    Источник: wiki.langame.ru <ExternalLink size={12} />
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none" />
+                    <span>Начать Технический Тест</span>
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                 </a>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-slate-200 flex justify-between gap-4">
+                <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
+                    Раздел 18/18
+                </p>
             </div>
         </section>
     );

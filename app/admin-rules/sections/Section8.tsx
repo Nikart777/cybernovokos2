@@ -1,312 +1,351 @@
 import React from 'react';
-import { Trophy, Flame, Ban, TrendingUp, Sun, Moon, AlertTriangle, MonitorPlay, Camera, MessageSquare, Star, Plus, Minus, DollarSign } from 'lucide-react';
+import Image from 'next/image';
+import {
+    KeyRound,
+    Gamepad2,
+    Monitor,
+    MousePointerClick,
+    Search,
+    CheckCircle2,
+    AlertTriangle,
+    User,
+    ZoomIn,
+    ArrowRight,
+    ExternalLink,
+} from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
-type Tier = { range: string; percent: string; status: string };
-
-// НОВОКОСИНО — пороги без изменений
-const NOVOKOSINO_DAY: Tier[] = [
-    { range: '0 — 1 499 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
-    { range: '1 500+ ₽', percent: '10%', status: '💪 DOMINATING' },
-    { range: '2 600+ ₽', percent: '20%', status: '😈 GODLIKE' },
-    { range: '3 700+ ₽', percent: '25%', status: '👑 RAMPAGE' },
+const ISSUE_STEPS = [
+    {
+        title: 'Найти ПК гостя',
+        description: '«Управление ПК» → найти карточку ПК гостя (ПК занят, идёт таймер).',
+        icon: Monitor,
+        color: 'text-emerald-500',
+        bgColor: 'bg-emerald-50',
+        images: [{ src: '/instruktsiya/langame-pc-card.webp', width: 1912, height: 996 }],
+    },
+    {
+        title: 'Открыть меню карточки',
+        description: 'Нажать стрелку-меню в углу карточки → пункт «Игр. аккаунты».',
+        icon: MousePointerClick,
+        color: 'text-teal-500',
+        bgColor: 'bg-teal-50',
+        images: [{ src: '/instruktsiya/langame-pc-menu.webp', width: 297, height: 488 }],
+    },
+    {
+        title: 'Выбрать аккаунт',
+        description: 'В окне «Активировать игровой аккаунт на N» ввести название игры в поиск или выбрать лаунчер (Steam, Epic Games, Battle.net…).',
+        icon: Search,
+        color: 'text-cyan-500',
+        bgColor: 'bg-cyan-50',
+        images: [{ src: '/instruktsiya/langame-pc-account-modal.webp', width: 1907, height: 994 }],
+    },
+    {
+        title: 'Подтвердить выдачу',
+        description: 'Нажать зелёную кнопку нужного аккаунта → подтвердить. Аккаунт закрепится за ПК, лаунчер/игра запустятся сами по настройке запуска.',
+        icon: KeyRound,
+        color: 'text-emerald-600',
+        bgColor: 'bg-emerald-50',
+    },
+    {
+        title: 'Проверить вход',
+        description: (
+            <>
+                Проверить на ПК гостя: лаунчер открылся и вошёл <strong className="text-slate-900">без ручного ввода логина/пароля</strong>. В Админ ПО аккаунт отображается как занятый. Если просит пароль — см. блок «Если аккаунт не выдаётся».
+            </>
+        ),
+        icon: CheckCircle2,
+        color: 'text-green-600',
+        bgColor: 'bg-green-50',
+    },
 ];
 
-const NOVOKOSINO_NIGHT: Tier[] = [
-    { range: '0 — 1 099 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
-    { range: '1 100+ ₽', percent: '10%', status: '💪 DOMINATING' },
-    { range: '1 600+ ₽', percent: '20%', status: '😈 GODLIKE' },
-    { range: '2 700+ ₽', percent: '25%', status: '👑 RAMPAGE' },
-];
-
-// АЛТУФЬЕВО — свои пороги
-const ALTUFYEVO_DAY: Tier[] = [
-    { range: '0 — 999 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
-    { range: '1 000 — 1 499 ₽', percent: '10%', status: '💪 DOMINATING' },
-    { range: '1 500 — 2 599 ₽', percent: '20%', status: '😈 GODLIKE' },
-    { range: '2 600+ ₽', percent: '25%', status: '👑 RAMPAGE' },
-];
-
-const ALTUFYEVO_NIGHT: Tier[] = [
-    { range: '0 — 1 199 ₽', percent: '5%', status: '🩸 FIRST BLOOD' },
-    { range: '1 200 — 2 499 ₽', percent: '10%', status: '💪 DOMINATING' },
-    { range: '2 500 — 3 999 ₽', percent: '20%', status: '😈 GODLIKE' },
-    { range: '4 000+ ₽', percent: '25%', status: '👑 RAMPAGE' },
-];
-
-function ShiftTable({ tiers, kind }: { tiers: Tier[]; kind: 'day' | 'night' }) {
-    const isDay = kind === 'day';
-    return (
-        <div className="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden">
-            <div className={`px-5 py-4 border-b border-slate-100 flex items-center gap-3 ${isDay ? 'bg-gradient-to-r from-blue-50 to-cyan-50' : 'bg-gradient-to-r from-indigo-50 to-purple-50'}`}>
-                {isDay ? <Sun size={20} className="text-blue-500" /> : <Moon size={20} className="text-indigo-500" />}
-                <span className={`font-tactic font-black uppercase italic ${isDay ? 'text-blue-900' : 'text-indigo-900'}`}>
-                    {isDay ? 'Дневная смена' : 'Ночная смена'}
-                </span>
-            </div>
-            <div className="p-2">
-                {tiers.map((tier, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl hover:bg-white transition-colors group">
-                        <div className="font-chakra text-sm font-bold text-slate-700">{tier.range}</div>
-                        <div className="flex items-center gap-4">
-                            <div className={`font-tactic font-black text-[10px] md:text-xs uppercase text-slate-400 w-24 text-right transition-colors ${isDay ? 'group-hover:text-blue-500' : 'group-hover:text-indigo-500'}`}>
-                                {tier.status}
-                            </div>
-                            <div className="w-14 text-right font-tactic font-black text-emerald-500 text-lg italic">
-                                {tier.percent}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
-export function Section8() {
+export function Section8({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="8" label="Раздел" />
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
-                    <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3">
-                        Система <span className="text-emerald-500">Премий</span>
+                    <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
+                        <KeyRound className="text-emerald-500 hidden sm:block" size={48} />
+                        Игровые <span className="text-emerald-500">аккаунты</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Твой крутой доход строится на «скиллах» и активных продажах. Чем активнее смена — тем больше денег!
+                        Как выдать гостю клубный аккаунт (Steam, Epic, Battle.net и др.) через Админ ПО Langame и что делать, если аккаунт не выдаётся.
                     </p>
                 </div>
-                <div className="shrink-0 bg-emerald-50 bg-gradient-to-r from-emerald-50 to-emerald-100/50 border border-emerald-200 rounded-3xl p-4 flex items-center justify-center gap-4 text-emerald-900 shadow-sm">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-emerald-500 shadow-inner">
-                        <TrendingUp size={24} />
-                    </div>
-                    <div>
-                        <div className="text-xs font-chakra font-black uppercase tracking-widest text-emerald-600/80 mb-0.5">Базовый фикс</div>
-                        <div className="font-tactic font-black text-xl md:text-2xl italic">2 500 ₽</div>
+            </div>
+
+            {/* БЛОК A — ГЛАВНОЕ */}
+            <div className="rounded-3xl bg-slate-900 text-white p-6 md:p-8 shadow-sm mb-12">
+                <div className="flex items-center gap-3 mb-6">
+                    <AlertTriangle className="text-emerald-400" size={24} />
+                    <h3 className="font-tactic font-black text-xl md:text-2xl uppercase italic">Главное</h3>
+                </div>
+                <ul className="space-y-4 font-chakra text-sm text-slate-300">
+                    <li className="flex items-start gap-3">
+                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">1</span>
+                        <span>Аккаунт выдаётся <strong className="text-white">только на занятый ПК</strong>. ПК свободен → сначала посадить гостя (начать сеанс), потом выдавать.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">2</span>
+                        <span>Выданный аккаунт становится <strong className="text-white">занятым</strong>: другой гость его не получит, пока он используется на этом ПК.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                        <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-tactic font-black text-xs italic mt-0.5">3</span>
+                        <span>Игры, аккаунты и настройки запуска на домене настраивает руководство. На смене админ только <strong className="text-white">выдаёт</strong>.</span>
+                    </li>
+                </ul>
+            </div>
+
+            {/* БЛОК B — ВЫДАЧА АККАУНТА НА ПК ГОСТЯ */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10 mb-12 shadow-sm">
+                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-slate-100">
+                    <Gamepad2 className="text-emerald-500" size={24} />
+                    <h3 className="font-tactic font-black text-xl md:text-2xl uppercase italic text-slate-900">Выдача аккаунта на ПК гостя</h3>
+                </div>
+
+                <div className="relative">
+                    <div className="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-slate-100 hidden sm:block"></div>
+
+                    <div className="space-y-6">
+                        {ISSUE_STEPS.map((step, idx) => {
+                            const Icon = step.icon;
+                            return (
+                                <div key={idx} className="relative flex flex-col sm:flex-row gap-4 sm:gap-8 group">
+                                    {/* Number / Timeline Node */}
+                                    <div className="shrink-0 z-10 flex items-center space-x-4 sm:space-x-0">
+                                        <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl ${step.bgColor} border-4 border-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                                            <span className={`font-tactic font-black text-lg md:text-2xl italic ${step.color}`}>{idx + 1}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Content Card */}
+                                    <div className="flex-1 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:p-6 group-hover:border-emerald-200 group-hover:bg-white transition-colors">
+                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                            <div>
+                                                <h4 className="font-tactic font-black uppercase text-sm md:text-base text-slate-800 mb-2 flex items-center gap-2">
+                                                    {step.title}
+                                                </h4>
+                                                <p className="font-chakra text-slate-600 text-sm leading-relaxed">
+                                                    {step.description}
+                                                </p>
+                                                {step.images && step.images.length > 0 && (
+                                                    <div className="mt-4 flex gap-3 overflow-x-auto pb-2 snap-x">
+                                                        {step.images.map((img, i) => (
+                                                            <div
+                                                                key={i}
+                                                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-white flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
+                                                                onClick={() => setZoomedImage?.(img.src)}
+                                                            >
+                                                                <Image
+                                                                    src={img.src}
+                                                                    alt={`${step.title} — пример`}
+                                                                    width={img.width}
+                                                                    height={img.height}
+                                                                    unoptimized
+                                                                    className="h-[100px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
+                                                                />
+                                                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                                                    <ZoomIn size={14} />
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="shrink-0 inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-xl border border-emerald-200/50 self-start">
+                                                <Icon size={14} />
+                                                <span className="text-[10px] sm:text-xs font-chakra font-black uppercase tracking-wider">Шаг {idx + 1}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
 
-            {/* ГЛАВНАЯ МОТИВАЦИЯ */}
-            <div className="mb-12 rounded-3xl bg-gradient-to-r from-blue-600 to-violet-600 p-8 shadow-xl shadow-blue-500/20 text-white relative overflow-hidden flex flex-col md:flex-row items-center gap-8 justify-between group border border-blue-400/30">
-                <div className="absolute -right-4 -top-4 opacity-[0.07] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700 pointer-events-none">
-                    <Trophy size={200} />
-                </div>
-                <div className="relative z-10 space-y-4 max-w-2xl text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full font-chakra font-bold text-xs uppercase tracking-widest backdrop-blur-sm border border-white/20">
-                        <Star size={14} className="text-yellow-400 fill-yellow-400/50" />
-                        Топовая мотивация
+            {/* БЛОК C — ДВА СПРАВОЧНИКА В МЕНЮ СЛЕВА */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-6">
+                {/* Аккаунты игр */}
+                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
+                    <div className="flex items-center gap-3 mb-4">
+                        <Gamepad2 className="text-emerald-500" size={22} />
+                        <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты игр</h3>
                     </div>
-                    <h3 className="font-tactic font-black text-2xl md:text-4xl italic uppercase drop-shadow-sm">
-                        Бесплатный <span className="text-yellow-400">аккаунт</span>
-                    </h3>
-                    <p className="font-chakra text-blue-100 text-sm md:text-base leading-relaxed">
-                        Стабильно работаешь и показываешь крутые результаты? <strong className="text-white bg-white/10 px-1.5 py-0.5 rounded">Через 3 месяца</strong> после начала работы администратор может получить персональный аккаунт на <strong className="text-white border-b-2 border-yellow-400">абсолютно бесплатное пользование клубом</strong>!
+                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
+                        Список игр клуба. Кнопка «Занять» напротив игры — система сама подберёт свободный аккаунт под игру и запустит её на ПК. Найти игру: поиск или кнопка «Полный список игр».
                     </p>
-                </div>
-                <div className="shrink-0 relative z-10 w-24 h-24 md:w-32 md:h-32 bg-white/10 rounded-2xl md:rounded-[2rem] flex items-center justify-center backdrop-blur-md border border-white/20 shadow-inner group-hover:bg-white/20 transition-all duration-300 group-hover:-translate-y-2">
-                    <MonitorPlay size={48} className="text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
-                </div>
-            </div>
-
-            {/* БЛОК БАРА И ЛК */}
-            <div className="relative mb-12 rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-                <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                    <Flame size={200} />
-                </div>
-                
-                <div className="p-6 md:p-8 relative z-10">
-                    <h3 className="font-tactic font-black uppercase italic text-2xl mb-2 flex items-center gap-3">
-                        <span className="w-10 h-10 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center">🍔</span>
-                        Премия за продажи бара
-                    </h3>
-                    <p className="font-chakra text-slate-400 text-xs uppercase tracking-widest font-bold mb-6 ml-[52px]">Пороги отличаются по клубам — смотри свой</p>
-
-                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8 shadow-sm">
-                        <div className="flex items-start gap-4">
-                            <div className="shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-amber-500 shadow-sm mt-1">
-                                <MonitorPlay size={20} />
-                            </div>
-                            <div>
-                                <h4 className="font-tactic font-black text-amber-900 uppercase text-sm mb-2">Очень важно: Личный Кабинет</h4>
-                                <p className="font-chakra text-slate-700 text-sm mb-3">
-                                    Продажи через <strong>Личный кабинет гостя</strong> напрямую учитываются в вашей выручке! Обязательно рассказывайте об этой функции клиентам — это удобно для них и моментально повышает ваш итоговый чек.
-                                </p>
-                                <div className="inline-flex items-center gap-2 px-3 py-2 bg-red-100 text-red-700 rounded-lg text-xs font-chakra font-bold">
-                                    <AlertTriangle size={14} />
-                                    <span>ВНИМАНИЕ: Заказ из ЛК необходимо строго обязательно приносить гостю за его компьютер!</span>
+                    <div className="mt-auto flex gap-3 overflow-x-auto pb-1 snap-x">
+                        {[
+                            { src: '/instruktsiya/langame-accounts-games.webp', width: 1912, height: 995, alt: 'Вкладка «Аккаунты игр» — таблица игр с кнопками «Занять»' },
+                            { src: '/instruktsiya/langame-accounts-games-list.webp', width: 1914, height: 996, alt: 'Вкладка «Аккаунты игр» с раскрытым «Полным списком игр»' },
+                        ].map((img, i) => (
+                            <div
+                                key={i}
+                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
+                                onClick={() => setZoomedImage?.(img.src)}
+                            >
+                                <Image
+                                    src={img.src}
+                                    alt={img.alt}
+                                    width={img.width}
+                                    height={img.height}
+                                    unoptimized
+                                    className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
+                                />
+                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                    <ZoomIn size={14} />
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* НОВОКОСИНО */}
-                    <div className="mb-8">
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="font-tactic font-black uppercase italic text-lg text-slate-900">Новокосино</span>
-                            <span className="h-px flex-1 bg-slate-200" />
-                        </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <ShiftTable tiers={NOVOKOSINO_DAY} kind="day" />
-                            <ShiftTable tiers={NOVOKOSINO_NIGHT} kind="night" />
-                        </div>
-                    </div>
-
-                    {/* АЛТУФЬЕВО */}
-                    <div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="font-tactic font-black uppercase italic text-lg text-slate-900">Алтуфьево</span>
-                            <span className="h-px flex-1 bg-slate-200" />
-                        </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <ShiftTable tiers={ALTUFYEVO_DAY} kind="day" />
-                            <ShiftTable tiers={ALTUFYEVO_NIGHT} kind="night" />
-                        </div>
-
-                        <div className="mt-4 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                            <div className="shrink-0 w-8 h-8 rounded-lg bg-slate-200 text-slate-500 flex items-center justify-center">
-                                <Ban size={16} />
-                            </div>
-                            <p className="font-chakra text-slate-600 text-sm leading-relaxed">
-                                <strong className="text-slate-900">Премии за абонементы в Алтуфьево нет.</strong> Бонус за продажу абонементов
-                                действует только в Новокосино — он введён там для стимуляции продаж.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                {/* ДОП. БОНУСЫ */}
-                <div>
-                    <h4 className="flex items-center gap-2 text-xs font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-5">
-                        <Trophy size={14} />
-                        Дополнительные Бонусы и Штрафы
-                    </h4>
-                    <div className="space-y-4">
-                        <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm flex items-start gap-4">
-                            <div className="shrink-0 w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center">🎟️</div>
-                            <div>
-                                <h5 className="font-tactic font-black text-sm uppercase text-slate-900">Продажа абонементов</h5>
-                                <p className="font-chakra text-slate-600 text-sm mt-1 mb-2">За каждую активную продажу абонемента начисляется бонус.</p>
-                                <div className="flex flex-wrap items-center gap-2">
-                                    <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-violet-600 bg-violet-50 px-2 py-1 rounded-md">
-                                        <Plus size={12}/> 10% от стоимости
-                                    </span>
-                                    <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-slate-500 bg-slate-100 px-2 py-1 rounded-md">
-                                        только Новокосино
-                                    </span>
-                                </div>
-                                <p className="font-chakra text-slate-500 text-xs mt-2">В Алтуфьево премии за абонементы нет.</p>
-                            </div>
-                        </div>
-
-                        <div className="bg-white rounded-3xl p-5 border border-emerald-200 shadow-sm flex items-start gap-4 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none"><Star size={64}/></div>
-                            <div className="shrink-0 w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                                <MessageSquare size={20} />
-                            </div>
-                            <div className="relative z-10">
-                                <h5 className="font-tactic font-black text-sm uppercase text-slate-900">Положительный отзыв</h5>
-                                <p className="font-chakra text-slate-600 text-sm mt-1 mb-2">Крутой, развернутый отзыв клиента (Яндекс / 2GIS) с ФОТО и указанием Вашего Имени.</p>
-                                <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">
-                                    <Plus size={12}/> 250 ₽
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="bg-rose-50 border border-rose-100 rounded-3xl p-5 shadow-sm flex items-start gap-4">
-                            <div className="shrink-0 w-10 h-10 rounded-xl bg-white text-rose-500 shadow-sm flex items-center justify-center">
-                                <Ban size={20} />
-                            </div>
-                            <div>
-                                <h5 className="font-tactic font-black text-sm uppercase text-rose-900">Негативный отзыв</h5>
-                                <p className="font-chakra text-rose-700/80 text-sm mt-1 mb-2">Если получен обоснованно плохой отзыв из-за косяков на смене, штрафуется каждый администратор.</p>
-                                <span className="inline-flex items-center gap-1 font-chakra font-black text-xs uppercase tracking-wider text-white bg-rose-500 px-2 py-1 rounded-md">
-                                    <Minus size={12}/> 150 ₽
-                                </span>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* ПРОБКОВЫЙ СБОР */}
-                <div>
-                    <h4 className="flex items-center gap-2 text-xs font-chakra font-black uppercase tracking-[0.2em] text-rose-500 mb-5">
-                        <Ban size={14} />
-                        Пробковый сбор
-                    </h4>
-                    <div className="rounded-3xl border-2 border-rose-100 bg-white p-6 shadow-sm">
-                        <div className="mb-6 flex items-start gap-4">
-                            <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center mt-1 shrink-0">
-                                <span className="font-tactic font-black text-xl line-through">🥤</span>
-                            </div>
-                            <div>
-                                <h5 className="font-tactic font-black text-rose-900 uppercase italic text-lg mb-2">Полный запрет с 1 мая</h5>
-                                <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
-                                    Вводится полный запрет на принесенные с собой напитки и еду без оплаты пробкового взноса.
-                                </p>
-                                <div className="inline-flex items-center gap-2 bg-rose-600 text-white rounded-xl px-4 py-2 font-chakra font-bold text-sm shadow-md shadow-rose-600/20">
-                                    <span>Размер взноса:</span> <span className="font-tactic italic text-lg ml-1">100 ₽</span> <span className="text-xs font-normal opacity-80">(с клиента)</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="border-t border-slate-100 pt-5 space-y-3">
-                            <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-xl mb-3">
-                                <p className="font-chakra text-sm font-bold text-emerald-800 mb-1">💰 Пробковый сбор идёт в учёт вашей премии!</p>
-                                <p className="font-chakra text-xs text-emerald-700 leading-relaxed">Пробивайте товар (пробковый сбор) для <strong>каждого клиента</strong> со своими напитками — это напрямую увеличивает вашу выручку и премию за бар.</p>
-                            </div>
-                            <p className="font-chakra text-sm font-bold text-slate-700 w-full mb-3">Ваша дисциплина в этом вопросе напрямую влияет на увеличение выплат за ваш бар!</p>
-                            <div className="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 shrink-0 flex items-center justify-center"><Camera size={12} /></div>
-                                <p className="font-chakra text-xs text-slate-600 leading-relaxed">Постоянный мониторинг по камерам видеонаблюдения и обязательный регулярный физический обход игровых залов.</p>
-                            </div>
-                        </div>
+                {/* Аккаунты лаунчеров */}
+                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
+                    <div className="flex items-center gap-3 mb-4">
+                        <Monitor className="text-teal-500" size={22} />
+                        <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты лаунчеров</h3>
                     </div>
-                </div>
-            </div>
-
-            {/* ИТОГОВЫЙ РАСЧЕТ FORMULA */}
-            <div className="rounded-3xl bg-slate-900 text-white overflow-hidden shadow-xl shadow-slate-900/20">
-                <div className="p-6 md:px-10 md:py-8 border-b border-white/10 flex items-center justify-between">
-                    <div>
-                        <h4 className="flex items-center gap-2 text-xs font-chakra font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
-                            <DollarSign size={14} />
-                            Калькуляция
-                        </h4>
-                        <h3 className="font-tactic font-black uppercase italic text-2xl md:text-3xl text-white">Итоговый расчет</h3>
-                    </div>
-                </div>
-                <div className="p-6 md:p-10 bg-gradient-to-br from-slate-900 to-slate-800">
-                    <p className="font-chakra text-slate-400 text-sm md:text-base mb-6 text-center md:text-left">
-                        Ваша итоговая зарплата вычисляется просто и прозрачно:
+                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
+                        Нужны, когда требуется аккаунт конкретного лаунчера (Steam, Epic, Battle.net, Riot…), а не отдельная игра. Выбрать лаунчер сверху → «Занять». Колонка «Доступные игры» показывает, что привязано к аккаунту.
                     </p>
-                    
-                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-y-4 gap-x-2 md:gap-x-4 font-tactic font-black text-sm md:text-lg uppercase">
-                        <span className="px-4 py-2 bg-white/10 rounded-xl border border-white/5 shadow-inner">Оклад</span>
-                        <span className="text-emerald-400"><Plus size={20}/></span>
-                        <span className="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-xl border border-emerald-500/20">Бар</span>
-                        <span className="text-emerald-400"><Plus size={20}/></span>
-                        <span className="px-4 py-2 bg-violet-500/20 text-violet-400 rounded-xl border border-violet-500/20">Абонементы</span>
-                        <span className="text-rose-400"><Minus size={20}/></span>
-                        <span className="px-4 py-2 bg-rose-500/20 text-rose-400 rounded-xl border border-rose-500/20">Штрафы</span>
-                        <span className="text-emerald-400"><Plus size={20}/></span>
-                        <span className="px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-xl border border-emerald-500/20 flex gap-2 items-center">
-                            Отзывы <Star size={16}/>
+                    <div className="mt-auto">
+                        <div
+                            className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-teal-300 transition-all"
+                            onClick={() => setZoomedImage?.('/instruktsiya/langame-accounts-launchers.webp')}
+                        >
+                            <Image
+                                src="/instruktsiya/langame-accounts-launchers.webp"
+                                alt="Вкладка «Аккаунты лаунчеров» — фильтр по лаунчерам и таблица Имя / Лаунчер / Статус / Доступные игры"
+                                width={1909}
+                                height={997}
+                                unoptimized
+                                className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
+                            />
+                            <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                <ZoomIn size={14} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mb-12 flex items-center gap-2">
+                <User size={14} className="text-slate-400" /> С этими вкладками работают только администраторы
+            </p>
+
+            {/* БЛОК D — ГОСТЬ МОЖЕТ САМ */}
+            <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 mb-12">
+                <div className="flex items-center gap-3 mb-4">
+                    <User className="text-emerald-500" size={22} />
+                    <h3 className="font-tactic font-black text-xl uppercase italic text-slate-900">Гость может сам</h3>
+                </div>
+                <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-6 max-w-3xl">
+                    В личном кабинете на ПК есть кнопка «Выбрать игру». Гость выбирает игру → аккаунт выдаётся и игра запускается автоматически. Если свободного аккаунта нет, гость подойдёт к вам — выдать вручную (см. «Выдача аккаунта на ПК гостя» выше) или предложить другую игру.
+                </p>
+                <div
+                    className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group max-w-2xl"
+                    onClick={() => setZoomedImage?.('/instruktsiya/langame-lk-choose-game.webp')}
+                >
+                    <Image
+                        src="/instruktsiya/langame-lk-choose-game.webp"
+                        alt="Кнопка «Выбрать игру» в личном кабинете гостя на ПК"
+                        width={1803}
+                        height={1012}
+                        unoptimized
+                        className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                        <span className="font-chakra text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <ZoomIn size={12} /> Нажмите для увеличения
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
-                <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
-                    Раздел 7/14
-                </p>
+            {/* БЛОК E — ЕСЛИ АККАУНТ НЕ ВЫДАЁТСЯ */}
+            <div className="rounded-3xl border border-amber-200 bg-white overflow-hidden shadow-sm mb-12">
+                <div className="bg-amber-50 p-6 flex items-center gap-4 border-b border-amber-100">
+                    <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-600 flex items-center justify-center shrink-0">
+                        <AlertTriangle size={24} />
+                    </div>
+                    <div>
+                        <h3 className="font-tactic font-black text-xl uppercase italic text-amber-900 mb-1">Если аккаунт не выдаётся</h3>
+                        <p className="font-chakra text-amber-700 text-sm">Частые причины и что делать на смене</p>
+                    </div>
+                </div>
+
+                <div className="p-6 md:p-8 space-y-4 font-chakra text-sm">
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                        <p className="text-slate-800 font-bold">Аккаунт «занят» или его нет среди зелёных кнопок</p>
+                        <p className="text-slate-600 mt-1 flex items-start gap-2">
+                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
+                            Используется на другом ПК или отключён. Выбрать другой аккаунт/игру или дождаться освобождения.
+                        </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                        <p className="text-slate-800 font-bold">Игры нет в списке (ни в Админ ПО, ни в ЛК гостя)</p>
+                        <p className="text-slate-600 mt-1 flex items-start gap-2">
+                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
+                            На домене нет игры, аккаунта, привязки или настройки запуска. На смене не чинится: сообщить руководству / техподдержке Langame.
+                        </p>
+                        <button
+                            onClick={() => onNavigate?.('section15')}
+                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded hover:bg-emerald-200 transition-colors"
+                        >
+                            Раздел 15: Техподдержка Langame <ArrowRight size={10} />
+                        </button>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                        <p className="text-slate-800 font-bold">Игра/лаунчер открылись, но автовход не сработал (просит логин и пароль)</p>
+                        <p className="text-slate-600 mt-1 flex items-start gap-2">
+                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
+                            На гостевом ПК нет .NET Desktop Runtime 6.0. Установить, перезагрузить ПК и выдать аккаунт заново. Если не получается — сисадмин.
+                        </p>
+                        <a
+                            href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.36-windows-x64-installer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-white px-3 py-1.5 rounded hover:bg-slate-700 transition-colors"
+                        >
+                            <ExternalLink size={10} /> Скачать .NET Desktop Runtime 6.0
+                        </a>
+                    </div>
+
+                    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                        <p className="text-slate-800 font-bold">Steam просит код Guard</p>
+                        <p className="text-slate-600 mt-1 flex items-start gap-2">
+                            <ArrowRight size={14} className="shrink-0 mt-0.5 text-slate-400" />
+                            Steam Guard на рабочем телефоне; один Guard — не более 5 устройств.
+                        </p>
+                        <button
+                            onClick={() => onNavigate?.('section13')}
+                            className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded hover:bg-emerald-200 transition-colors"
+                        >
+                            Раздел 13: Обновления ПК <ArrowRight size={10} />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* ИСТОЧНИК */}
+            <div className="mt-16 pt-8 border-t border-slate-200 flex justify-end">
+                <a
+                    href="https://wiki.langame.ru/books/langame-software/page/vydaca-akkauntov-s-admin-po-i-s-licnogo-kabineta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-chakra font-bold text-slate-400 hover:text-emerald-600 transition-colors"
+                >
+                    Источник: wiki.langame.ru <ExternalLink size={12} />
+                </a>
             </div>
         </section>
     );
 }
-
-
-

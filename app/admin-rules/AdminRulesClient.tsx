@@ -38,18 +38,18 @@ const SECTIONS_NAV = [
     { id: 'section5', label: '5. Пополнение баланса', keywords: 'оплата перевод пополнение сбер тинькофф qr сбп наличные безнал терминал обман мошенник' },
     { id: 'section6', label: '6. Управление баром', keywords: 'бар продажа холодильник инвентаризация микроволновка сэндвич энергетик сроки годности списание' },
     { id: 'section7', label: '7. Компенсации', keywords: 'компенсация возврат манибэк лаг вылет перезагрузка фризы жалоба клиент недоволен доплата' },
-    { id: 'section8', label: '8. Система премий', keywords: 'премия выручка план бонус kpi мотивация зарплата порог' },
-    { id: 'section9', label: '9. Закрытие смены', keywords: 'закрытие смены инкассация подсчет кассы сейф отчет excel таблица эксель терминал z-отчет x-отчет' },
-    { id: 'section10', label: '10. Форс-мажор', keywords: 'пожар полиция скорая драка конфликт пьяный неадекват кража нет света отключили интернет потоп роутер свич' },
-    { id: 'section11', label: '11. Уборка и контроль', keywords: 'уборка чек-лист пыль мусор монитор мышка клавиатура туалет бумага мыло проверка свет' },
-    { id: 'section12', label: '12. Обновления ПК', keywords: 'обновление игр стим steam cs dota valorant pubg тех режим sdi драйвера диски лан гейм обои wallpaper cyberx фирменные синхронизация runme' },
-    { id: 'section13', label: '13. Зона TV (PS5)', labelSearch: 'Зона TV (PS5)', keywords: 'тв tv пс5 ps5 плойка консоль телевизор джойстик геймпад fifa ufc mk мортал комбат аккаунт' },
-    { id: 'section14', label: '14. Технические вопросы', keywords: 'техподдержка синий экран фейсит faceit windows bios secure boot память ошибки мышь сенсор звук' },
-    { id: 'section15', label: '15. Подарочные сертификаты', keywords: 'сертификат подарочный подарок номинал активация' },
-    { id: 'section16', label: '16. Нарушения и штрафы', keywords: 'штраф увольнение наказание вычет несход касса опоздание грязь нарушение' },
-    { id: 'section17', label: '17. Автосимуляторы', keywords: 'автосим руль педали база коробка передач моза moza pit house assetto corsa carx forza beamng dirt rally city car driving' },
-    { id: 'section18', label: '18. План стажировки', keywords: 'стажировка стажер план тестирование тест обучение 3-4 часа начало' },
-    { id: 'section19', label: '19. Игровые аккаунты', keywords: 'аккаунт аккаунты игровые игровой лаунчер лаунчеры steam стим epic battle.net riot выдача выдать занять занят langame лангейм админ по личный кабинет выбрать игру автовход net runtime guard' },
+    { id: 'section8', label: '8. Игровые аккаунты', keywords: 'аккаунт аккаунты игровые игровой лаунчер лаунчеры steam стим epic battle.net riot выдача выдать занять занят langame лангейм админ по личный кабинет выбрать игру автовход net runtime guard' },
+    { id: 'section9', label: '9. Система премий', keywords: 'премия выручка план бонус kpi мотивация зарплата порог' },
+    { id: 'section10', label: '10. Закрытие смены', keywords: 'закрытие смены инкассация подсчет кассы сейф отчет excel таблица эксель терминал z-отчет x-отчет' },
+    { id: 'section11', label: '11. Форс-мажор', keywords: 'пожар полиция скорая драка конфликт пьяный неадекват кража нет света отключили интернет потоп роутер свич' },
+    { id: 'section12', label: '12. Уборка и контроль', keywords: 'уборка чек-лист пыль мусор монитор мышка клавиатура туалет бумага мыло проверка свет' },
+    { id: 'section13', label: '13. Обновления ПК', keywords: 'обновление игр стим steam cs dota valorant pubg тех режим sdi драйвера диски лан гейм обои wallpaper cyberx фирменные синхронизация runme' },
+    { id: 'section14', label: '14. Зона TV (PS5)', labelSearch: 'Зона TV (PS5)', keywords: 'тв tv пс5 ps5 плойка консоль телевизор джойстик геймпад fifa ufc mk мортал комбат аккаунт' },
+    { id: 'section15', label: '15. Технические вопросы', keywords: 'техподдержка синий экран фейсит faceit windows bios secure boot память ошибки мышь сенсор звук' },
+    { id: 'section16', label: '16. Подарочные сертификаты', keywords: 'сертификат подарочный подарок номинал активация' },
+    { id: 'section17', label: '17. Нарушения и штрафы', keywords: 'штраф увольнение наказание вычет несход касса опоздание грязь нарушение' },
+    { id: 'section18', label: '18. Автосимуляторы', keywords: 'автосим руль педали база коробка передач моза moza pit house assetto corsa carx forza beamng dirt rally city car driving' },
+    { id: 'section19', label: '19. План стажировки', keywords: 'стажировка стажер план тестирование тест обучение 3-4 часа начало' },
 ];
 
 /* ─────────────────────────────────────────────
@@ -311,18 +311,18 @@ export default function AdminRulesClient() {
                             <Section6 setZoomedImage={setZoomedImage} configData={configData} isEditing={isEditing} updateNovokosinoRow={updateNovokosinoRow} updateAltufevoRow={updateAltufevoRow} />
                         )}
                         {activeSection === 'section7' && <Section7 />}
-                        {activeSection === 'section8' && <Section8 />}
-                        {activeSection === 'section9' && <Section9 setZoomedImage={setZoomedImage} />}
+                        {activeSection === 'section8' && <Section8 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
+                        {activeSection === 'section9' && <Section9 />}
                         {activeSection === 'section10' && <Section10 setZoomedImage={setZoomedImage} />}
-                        {activeSection === 'section11' && <Section11 />}
-                        {activeSection === 'section12' && <Section12 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
-                        {activeSection === 'section13' && <Section13 />}
+                        {activeSection === 'section11' && <Section11 setZoomedImage={setZoomedImage} />}
+                        {activeSection === 'section12' && <Section12 />}
+                        {activeSection === 'section13' && <Section13 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
                         {activeSection === 'section14' && <Section14 />}
                         {activeSection === 'section15' && <Section15 />}
                         {activeSection === 'section16' && <Section16 />}
-                        {activeSection === 'section17' && <Section17 setActiveSection={setActiveSection} />}
+                        {activeSection === 'section17' && <Section17 />}
                         {activeSection === 'section18' && <Section18 setActiveSection={setActiveSection} />}
-                        {activeSection === 'section19' && <Section19 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
+                        {activeSection === 'section19' && <Section19 setActiveSection={setActiveSection} />}
 
                         {/* Pagination Button */}
                         {(() => {

