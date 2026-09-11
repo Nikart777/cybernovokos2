@@ -24,6 +24,7 @@ import { Section15 } from './sections/Section15';
 import { Section16 } from './sections/Section16';
 import { Section17 } from './sections/Section17';
 import { Section18 } from './sections/Section18';
+import { Section19 } from './sections/Section19';
 
 /* ─────────────────────────────────────────────
    DATA
@@ -48,6 +49,7 @@ const SECTIONS_NAV = [
     { id: 'section16', label: '16. Нарушения и штрафы', keywords: 'штраф увольнение наказание вычет несход касса опоздание грязь нарушение' },
     { id: 'section17', label: '17. Автосимуляторы', keywords: 'автосим руль педали база коробка передач моза moza pit house assetto corsa carx forza beamng dirt rally city car driving' },
     { id: 'section18', label: '18. План стажировки', keywords: 'стажировка стажер план тестирование тест обучение 3-4 часа начало' },
+    { id: 'section19', label: '19. Игровые аккаунты', keywords: 'аккаунт аккаунты игровые игровой лаунчер лаунчеры steam стим epic battle.net riot выдача выдать занять занят langame лангейм админ по личный кабинет выбрать игру автовход net runtime guard' },
 ];
 
 /* ─────────────────────────────────────────────
@@ -319,7 +321,8 @@ export default function AdminRulesClient() {
                         {activeSection === 'section15' && <Section15 />}
                         {activeSection === 'section16' && <Section16 />}
                         {activeSection === 'section17' && <Section17 setActiveSection={setActiveSection} />}
-                        {activeSection === 'section18' && <Section18 />}
+                        {activeSection === 'section18' && <Section18 setActiveSection={setActiveSection} />}
+                        {activeSection === 'section19' && <Section19 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
 
                         {/* Pagination Button */}
                         {(() => {

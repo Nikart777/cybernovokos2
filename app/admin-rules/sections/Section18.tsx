@@ -91,9 +91,14 @@ export function Section18({ setActiveSection }: Section18Props) {
                                 <button onClick={() => handleRef('section7')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Компенсации</button>
                             </div>
                         </li>
-                        <li className="flex gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
-                            <span><strong>Аккаунты:</strong> Выдача клубных аккаунтов (Steam, FaceIT) через панель Langame. Создание гостевых (одноразовых) аккаунтов в программе для клиентов, которые отказываются скачивать приложение и регистрироваться.</span>
+                        <li className="flex flex-col gap-2">
+                            <div className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                <span><strong>Аккаунты:</strong> Выдача клубных аккаунтов (Steam, FaceIT) через панель Langame. Создание гостевых (одноразовых) аккаунтов в программе для клиентов, которые отказываются скачивать приложение и регистрироваться.</span>
+                            </div>
+                            <div className="pl-3.5 flex gap-2">
+                                <button onClick={() => handleRef('section19')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Игровые аккаунты</button>
+                            </div>
                         </li>
                         <li className="flex flex-col gap-2">
                             <div className="flex items-start gap-2">
