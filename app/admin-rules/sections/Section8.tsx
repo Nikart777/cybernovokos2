@@ -123,44 +123,44 @@ export function Section8({ setZoomedImage, onNavigate }: { setZoomedImage?: (src
 
                                     {/* Content Card */}
                                     <div className="flex-1 rounded-2xl border border-slate-100 bg-slate-50 p-5 md:p-6 group-hover:border-emerald-200 group-hover:bg-white transition-colors">
-                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                                            <div>
-                                                <h4 className="font-tactic font-black uppercase text-sm md:text-base text-slate-800 mb-2 flex items-center gap-2">
-                                                    {step.title}
-                                                </h4>
-                                                <p className="font-chakra text-slate-600 text-sm leading-relaxed">
-                                                    {step.description}
-                                                </p>
-                                                {step.images && step.images.length > 0 && (
-                                                    <div className="mt-4 flex gap-3 overflow-x-auto pb-2 snap-x">
-                                                        {step.images.map((img, i) => (
-                                                            <div
-                                                                key={i}
-                                                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-white flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
-                                                                onClick={() => setZoomedImage?.(img.src)}
-                                                            >
-                                                                <Image
-                                                                    src={img.src}
-                                                                    alt={`${step.title} — пример`}
-                                                                    width={img.width}
-                                                                    height={img.height}
-                                                                    unoptimized
-                                                                    className="h-[100px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
-                                                                />
-                                                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                                                    <ZoomIn size={14} />
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            <div className="shrink-0 inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-xl border border-emerald-200/50 self-start">
+                                        <div className="flex items-start justify-between gap-4 mb-3">
+                                            <h4 className="font-tactic font-black uppercase text-sm md:text-base text-slate-800 flex items-center gap-2">
+                                                {step.title}
+                                            </h4>
+                                            <div className="shrink-0 inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-xl border border-emerald-200/50">
                                                 <Icon size={14} />
                                                 <span className="text-[10px] sm:text-xs font-chakra font-black uppercase tracking-wider">Шаг {idx + 1}</span>
                                             </div>
                                         </div>
+                                        <p className="font-chakra text-slate-600 text-sm leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                        {step.images && step.images.length > 0 && (
+                                            <div className="mt-4 flex flex-wrap gap-4">
+                                                {step.images.map((img, i) => {
+                                                    const isPortrait = img.height > img.width;
+                                                    return (
+                                                        <div
+                                                            key={i}
+                                                            className={`relative border border-slate-200 rounded-xl overflow-hidden bg-white cursor-zoom-in group/img shadow-sm hover:shadow-md hover:border-emerald-300 transition-all ${isPortrait ? 'w-full max-w-[280px]' : 'w-full max-w-2xl'}`}
+                                                            onClick={() => setZoomedImage?.(img.src)}
+                                                        >
+                                                            <Image
+                                                                src={img.src}
+                                                                alt={`${step.title} — пример`}
+                                                                width={img.width}
+                                                                height={img.height}
+                                                                unoptimized
+                                                                className="w-full h-auto object-contain group-hover/img:opacity-90 transition-opacity"
+                                                            />
+                                                            <div className="absolute top-3 right-3 p-2 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                                                <ZoomIn size={16} />
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             );
@@ -170,54 +170,56 @@ export function Section8({ setZoomedImage, onNavigate }: { setZoomedImage?: (src
             </div>
 
             {/* БЛОК C — ДВА СПРАВОЧНИКА В МЕНЮ СЛЕВА */}
-            <div className="grid lg:grid-cols-2 gap-8 mb-6">
+            <div className="space-y-8 mb-6">
                 {/* Аккаунты игр */}
-                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
+                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8">
                     <div className="flex items-center gap-3 mb-4">
                         <Gamepad2 className="text-emerald-500" size={22} />
                         <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты игр</h3>
                     </div>
-                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
+                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-6 max-w-3xl">
                         Список игр клуба. Кнопка «Занять» напротив игры — система сама подберёт свободный аккаунт под игру и запустит её на ПК. Найти игру: поиск или кнопка «Полный список игр».
                     </p>
-                    <div className="mt-auto flex gap-3 overflow-x-auto pb-1 snap-x">
+                    <div className="grid md:grid-cols-2 gap-4">
                         {[
-                            { src: '/instruktsiya/langame-accounts-games.webp', width: 1912, height: 995, alt: 'Вкладка «Аккаунты игр» — таблица игр с кнопками «Занять»' },
-                            { src: '/instruktsiya/langame-accounts-games-list.webp', width: 1914, height: 996, alt: 'Вкладка «Аккаунты игр» с раскрытым «Полным списком игр»' },
+                            { src: '/instruktsiya/langame-accounts-games.webp', width: 1912, height: 995, alt: 'Вкладка «Аккаунты игр» — таблица игр с кнопками «Занять»', caption: 'Список игр с кнопками «Занять»' },
+                            { src: '/instruktsiya/langame-accounts-games-list.webp', width: 1914, height: 996, alt: 'Вкладка «Аккаунты игр» с раскрытым «Полным списком игр»', caption: '«Полный список игр»' },
                         ].map((img, i) => (
-                            <div
-                                key={i}
-                                className="relative shrink-0 border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-emerald-300 transition-all snap-start"
-                                onClick={() => setZoomedImage?.(img.src)}
-                            >
-                                <Image
-                                    src={img.src}
-                                    alt={img.alt}
-                                    width={img.width}
-                                    height={img.height}
-                                    unoptimized
-                                    className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
-                                />
-                                <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                    <ZoomIn size={14} />
+                            <div key={i}>
+                                <div
+                                    className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 cursor-zoom-in group/img shadow-sm hover:shadow-md hover:border-emerald-300 transition-all"
+                                    onClick={() => setZoomedImage?.(img.src)}
+                                >
+                                    <Image
+                                        src={img.src}
+                                        alt={img.alt}
+                                        width={img.width}
+                                        height={img.height}
+                                        unoptimized
+                                        className="w-full h-auto object-contain group-hover/img:opacity-90 transition-opacity"
+                                    />
+                                    <div className="absolute top-3 right-3 p-2 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                        <ZoomIn size={16} />
+                                    </div>
                                 </div>
+                                <p className="text-xs font-chakra text-slate-400 mt-2 text-center">{img.caption}</p>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Аккаунты лаунчеров */}
-                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8 flex flex-col">
+                <div className="rounded-3xl border border-slate-200 bg-white shadow-sm p-6 md:p-8">
                     <div className="flex items-center gap-3 mb-4">
                         <Monitor className="text-teal-500" size={22} />
                         <h3 className="font-tactic font-black text-lg uppercase italic text-slate-900">Аккаунты лаунчеров</h3>
                     </div>
-                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-4">
+                    <p className="font-chakra text-slate-600 text-sm leading-relaxed mb-6 max-w-3xl">
                         Нужны, когда требуется аккаунт конкретного лаунчера (Steam, Epic, Battle.net, Riot…), а не отдельная игра. Выбрать лаунчер сверху → «Занять». Колонка «Доступные игры» показывает, что привязано к аккаунту.
                     </p>
-                    <div className="mt-auto">
+                    <div className="max-w-2xl">
                         <div
-                            className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center p-1 cursor-zoom-in group/img shadow-sm hover:shadow hover:border-teal-300 transition-all"
+                            className="relative border border-slate-200 rounded-xl overflow-hidden bg-slate-50 cursor-zoom-in group/img shadow-sm hover:shadow-md hover:border-teal-300 transition-all"
                             onClick={() => setZoomedImage?.('/instruktsiya/langame-accounts-launchers.webp')}
                         >
                             <Image
@@ -226,10 +228,10 @@ export function Section8({ setZoomedImage, onNavigate }: { setZoomedImage?: (src
                                 width={1909}
                                 height={997}
                                 unoptimized
-                                className="h-[140px] w-auto object-contain rounded-lg group-hover/img:opacity-90 transition-opacity"
+                                className="w-full h-auto object-contain group-hover/img:opacity-90 transition-opacity"
                             />
-                            <div className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                                <ZoomIn size={14} />
+                            <div className="absolute top-3 right-3 p-2 bg-white/90 rounded-lg shadow-sm text-slate-600 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                <ZoomIn size={16} />
                             </div>
                         </div>
                     </div>
@@ -249,7 +251,7 @@ export function Section8({ setZoomedImage, onNavigate }: { setZoomedImage?: (src
                     В личном кабинете на ПК есть кнопка «Выбрать игру». Гость выбирает игру → аккаунт выдаётся и игра запускается автоматически. Если свободного аккаунта нет, гость подойдёт к вам — выдать вручную (см. «Выдача аккаунта на ПК гостя» выше) или предложить другую игру.
                 </p>
                 <div
-                    className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group max-w-2xl"
+                    className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md cursor-zoom-in group"
                     onClick={() => setZoomedImage?.('/instruktsiya/langame-lk-choose-game.webp')}
                 >
                     <Image
