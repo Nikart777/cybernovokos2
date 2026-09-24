@@ -9,6 +9,7 @@ import PromoModals from "@/components/PromoModals";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ChatBot from "@/components/ChatBot";
 import CookieBanner from "@/components/CookieBanner";
+import { GOOGLE_MAPS_URL } from "@/lib/googleBusiness";
 
 // Локальные шрифты Tactic Sans
 const tacticSans = localFont({
@@ -126,8 +127,9 @@ export default function RootLayout({
 }) {
     const businessSchema = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "CyberX Новокосино",
+        "@type": "InternetCafe",
+        "name": "CyberX Community",
+        "alternateName": ["CyberX Новокосино", "Компьютерный клуб CyberX Новокосино"],
         "image": "https://cyberx-novokosino.ru/og-image.jpg",
         "@id": "https://cyberx-novokosino.ru",
         "url": "https://cyberx-novokosino.ru",
@@ -135,9 +137,9 @@ export default function RootLayout({
         "priceRange": "100RUB - 1000RUB",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Новокосинская ул., 32, этаж 2",
+            "streetAddress": "ул. Новокосинская, 32, ТЦ «Новокосино», 2 этаж",
             "addressLocality": "Москва",
-            "postalCode": "111673",
+            "postalCode": "111672",
             "addressCountry": "RU"
         },
         "geo": {
@@ -145,6 +147,7 @@ export default function RootLayout({
             "latitude": 55.741887,
             "longitude": 37.867172
         },
+        "hasMap": GOOGLE_MAPS_URL,
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
@@ -165,7 +168,8 @@ export default function RootLayout({
             "https://vk.com/club224403383",
             "https://www.tiktok.com/@cyberxnovokosino",
             "https://yandex.ru/maps/-/CPA4UJ~I",
-            "https://go.2gis.com/EjmFC"
+            "https://go.2gis.com/EjmFC",
+            GOOGLE_MAPS_URL
         ],
         "parentOrganization": {
             "@type": "Organization",
@@ -226,6 +230,39 @@ export default function RootLayout({
                 />
                 <noscript><div><img src="https://mc.yandex.ru/watch/105894251" style={{ position: 'absolute', left: '-9999px' }} alt="" /></div></noscript>
                 {/* /Yandex.Metrika counter */}
+
+                {/* События кликов для GA4 и Метрики: звонок, Telegram, карты, отзыв в Google, бронь */}
+                <Script id="cx-click-tracking" strategy="afterInteractive">
+                    {`
+    (function () {
+        var YM_ID = 105894251;
+        function send(name, params) {
+            params = params || {};
+            try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
+            try { if (typeof window.ym === 'function') window.ym(YM_ID, 'reachGoal', name, params); } catch (e) {}
+        }
+        window.cxTrack = send;
+        window.addEventListener('open-booking', function () { send('open_booking'); });
+        document.addEventListener('click', function (e) {
+            if (location.pathname.indexOf('/admin') === 0) return;
+            var t = e.target;
+            if (!t || !t.closest) return;
+            var a = t.closest('a[href]');
+            if (!a) return;
+            var track = a.getAttribute('data-track');
+            if (track) return send(track);
+            var h = a.getAttribute('href') || '';
+            if (/^\\/download(\\/|\\?|$)/.test(h) || /appmetrica\\.yandex|apps\\.apple\\.com|play\\.google\\.com|rustore\\.ru/.test(h)) return send('click_booking', { method: 'app' });
+            if (h.indexOf('tel:') === 0) return send('click_phone');
+            if (/t\\.me\\//.test(h)) return send('click_telegram');
+            if (/writereview/.test(h)) return send('click_review_google');
+            if (/google\\.[a-z.]+\\/maps|maps\\.google\\./.test(h)) return send('click_map', { map: 'google' });
+            if (/yandex\\.ru\\/maps/.test(h)) return send('click_map', { map: 'yandex' });
+            if (/2gis/.test(h)) return send('click_map', { map: '2gis' });
+        }, true);
+    })();
+                    `}
+                </Script>
             </head>
             <body className="bg-[#050505] text-white selection:bg-[#FF2E63] selection:text-white antialiased overflow-x-clip">
                 {children}

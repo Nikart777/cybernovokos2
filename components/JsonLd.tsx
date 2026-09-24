@@ -15,7 +15,7 @@ export default function JsonLd() {
             "@type": "PostalAddress",
             "streetAddress": "Новокосинская ул., 32, этаж 2",
             "addressLocality": "Москва",
-            "postalCode": "111673",
+            "postalCode": "111672",
             "addressCountry": "RU"
         },
         "geo": {

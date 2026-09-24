@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { MapPin, Phone, ChevronRight, MapPinned } from 'lucide-react';
+import { GOOGLE_MAPS_URL } from '@/lib/googleBusiness';
 
 const links = [
     { name: 'Главная', href: '/' },
@@ -48,11 +49,17 @@ export default function Footer() {
                             <a href="https://www.tiktok.com/@cyberxnovokosino" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="TikTok">
                                 <TikTokIcon size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Яндекс.Карты">
+                        </div>
+                        <h4 className="font-tactic font-black text-white uppercase mt-6 mb-4 tracking-widest text-xs italic">Мы на картах</h4>
+                        <div className="flex flex-wrap items-center gap-3">
+                            <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Яндекс.Карты" aria-label="Яндекс.Карты">
                                 <MapPinned size={18} className="text-[#FF2E63]" />
                             </a>
-                            <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96] flex items-center justify-center" title="2GIS">
+                            <a href="https://go.2gis.com/EjmFC" target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96] flex items-center justify-center" title="2GIS" aria-label="2GIS">
                                 <span className="text-[#00D664] font-chakra font-black text-xs">2GIS</span>
+                            </a>
+                            <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96] flex items-center justify-center" title="Google Карты" aria-label="Google Карты">
+                                <span className="text-[#4285F4] font-chakra font-black text-xs">GOOGLE</span>
                             </a>
                         </div>
                     </div>

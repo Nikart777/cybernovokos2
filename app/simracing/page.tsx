@@ -38,7 +38,7 @@ export default function SimracingPage() {
             "@type": "PostalAddress",
             "streetAddress": "ул. Новокосинская, 32",
             "addressLocality": "Москва",
-            "postalCode": "111673",
+            "postalCode": "111672",
             "addressCountry": "RU"
         },
         "url": "https://cyberx-novokosino.ru/simracing",

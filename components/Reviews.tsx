@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Quote, MapPin, Gamepad2, Clock, Trophy, Star, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { GOOGLE_REVIEW_URL } from "@/lib/googleBusiness";
 
 const reviews = [
   {
@@ -19,7 +20,7 @@ const reviews = [
     id: 2,
     name: "Cyber_Koshka",
     avatar: "/images/social-hub/5.png",
-    source: "Google Maps",
+    source: "Гость клуба",
     text: "Лучшая аренда PS5! Брали VIP-комнату. Экран огромный, джойстики чистые. Респект админам за помощь с настройкой.",
     stats: { game: "UFC 5", rank: "СЕРЕБРО", hours: "120ч" },
     color: "#C0C0C0" // Silver
@@ -79,17 +80,29 @@ export default function Reviews() {
           </h2>
         </div>
 
-        {/* Rating Badge */}
-        <div className="flex items-center gap-5 bg-[#111] border-2 border-white/10 px-6 py-4 skew-x-[-6deg]">
-          <div className="skew-x-[6deg] flex items-center gap-5">
-              <div className="text-right">
-                <div className="font-tactic italic font-black text-4xl text-white leading-none">5.0</div>
-                <div className="text-[10px] font-chakra text-white/50 uppercase tracking-widest font-black">Яндекс / 2GIS</div>
-              </div>
-              <div className="flex text-[#FF2E63] gap-1">
-                {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
-              </div>
+        <div className="flex flex-col items-start md:items-end gap-4">
+          {/* Rating Badge */}
+          <div className="flex items-center gap-5 bg-[#111] border-2 border-white/10 px-6 py-4 skew-x-[-6deg]">
+            <div className="skew-x-[6deg] flex items-center gap-5">
+                <div className="text-right">
+                  <div className="font-tactic italic font-black text-4xl text-white leading-none">5.0</div>
+                  <div className="text-[10px] font-chakra text-white/50 uppercase tracking-widest font-black">Яндекс / 2GIS</div>
+                </div>
+                <div className="flex text-[#FF2E63] gap-1">
+                  {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
+                </div>
+            </div>
           </div>
+
+          {/* Отзыв в Google — без бонуса: Google запрещает отзывы за вознаграждение */}
+          <a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-chakra font-black text-[10px] uppercase tracking-widest text-white/60 hover:text-[#FF2E63] border-b border-white/20 hover:border-[#FF2E63] transition-colors"
+          >
+            Оставить отзыв в Google <ChevronRight size={12} />
+          </a>
         </div>
       </div>
 
@@ -106,6 +119,7 @@ export default function Reviews() {
           <a
             href="https://yandex.ru/maps/-/CLWX5MIq"
             target="_blank"
+            data-track="click_review_yandex"
             className="snap-center shrink-0 group relative w-[300px] md:w-[380px] h-full min-h-[300px] bg-[#FF2E63] p-1 flex flex-col skew-x-[-6deg] transition-transform hover:-translate-y-2"
           >
             <div className="relative z-10 w-full h-full bg-[#111] p-8 flex flex-col items-center justify-center border border-white/20">

@@ -2,6 +2,7 @@
 
 import { MapPin, Phone, Clock, MessageSquare, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { GOOGLE_MAPS_URL, GOOGLE_ROUTE_URL } from "@/lib/googleBusiness";
 
 const contacts = [
   {
@@ -111,6 +112,15 @@ export default function Contacts() {
                       <MapPin size={20} className="text-white group-hover:text-[#FF2E63]" />
                   </div>
                 </a>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-chakra font-black text-[10px] uppercase tracking-widest">
+                  <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-[#FF2E63] border-b border-white/20 hover:border-[#FF2E63] transition-colors">
+                    Google Карты
+                  </a>
+                  <span className="text-white/20" aria-hidden="true">{"//"}</span>
+                  <a href={GOOGLE_ROUTE_URL} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-[#FF2E63] border-b border-white/20 hover:border-[#FF2E63] transition-colors">
+                    Маршрут в Google
+                  </a>
+                </div>
             </div>
           </div>
 
