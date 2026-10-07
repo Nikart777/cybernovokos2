@@ -1,0 +1,7066 @@
+{
+  "schema": "cyberx.engineering-handoff-model-audit.v1",
+  "createdAt": "2026-10-02T14:18:50.610510",
+  "auditMode": "OFFLINE_READ_ONLY; no Archicad API calls; no changes to project or active manifest",
+  "project": {
+    "port": 19723,
+    "projectName": "Клуб3_планировка_вариант_11",
+    "projectType": "solo",
+    "archicadVersion": "26",
+    "tapirVersion": "1.5.9",
+    "projectPath": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_планировка_вариант_11.pln",
+    "warning": null
+  },
+  "authoritativeArtifacts": {
+    "file": {
+      "path": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_планировка_вариант_11.pln",
+      "sizeBytes": 12509744,
+      "modifiedLocal": "2026-10-02T13:49:15"
+    },
+    "journal": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\build-journal.json",
+      "sizeBytes": 164659,
+      "modifiedLocal": "2026-10-02T13:47:47.247479"
+    },
+    "furnitureJournal": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\furniture-journal.json",
+      "sizeBytes": 207012,
+      "modifiedLocal": "2026-10-02T13:47:47.258999"
+    },
+    "spec": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\layout-spec.json",
+      "sizeBytes": 180588,
+      "modifiedLocal": "2026-10-02T13:47:47.302808"
+    },
+    "status": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\task-state.json",
+      "sizeBytes": 1055,
+      "modifiedLocal": "2026-10-02T13:50:13.796263"
+    },
+    "finishes": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\layout-v01\\revision-07-finishes\\application-journal.json",
+      "sizeBytes": 29033,
+      "modifiedLocal": "2026-09-30T18:38:10.895369"
+    },
+    "ceiling": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\ceiling-journal.json",
+      "sizeBytes": 5658,
+      "modifiedLocal": "2026-10-02T13:50:13.789765"
+    },
+    "latestSavedVariant": {
+      "path": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_планировка_вариант_11.pln",
+      "sizeBytes": 12509744,
+      "modifiedLocal": "2026-10-02T13:49:15"
+    },
+    "equipmentSpec": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\equipment-spec.json",
+      "sizeBytes": 257328,
+      "modifiedLocal": "2026-10-02T13:47:47.294000"
+    },
+    "equipmentJournal": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\equipment-journal.json",
+      "sizeBytes": 602267,
+      "modifiedLocal": "2026-10-02T13:47:47.282011"
+    },
+    "verification": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\verification.json",
+      "sizeBytes": 12834,
+      "modifiedLocal": "2026-10-02T13:46:15.981365"
+    },
+    "planImage": {
+      "path": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_Планировка_обмеры_02-10-2026.png",
+      "sizeBytes": 428855,
+      "modifiedLocal": "2026-10-02T13:47:47.944885"
+    },
+    "electricalPointsSpec": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\electrical-points-spec.json",
+      "sizeBytes": 79647,
+      "modifiedLocal": "2026-10-02T13:47:47.307061"
+    },
+    "electricalPointsJournal": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\export\\electrical-points-journal.json",
+      "sizeBytes": 191436,
+      "modifiedLocal": "2026-10-02T13:47:47.314769"
+    },
+    "electricalPointsVerification": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\verification.json",
+      "sizeBytes": 12834,
+      "modifiedLocal": "2026-10-02T13:46:15.981365"
+    },
+    "latestModelSnapshot": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\after.json",
+      "sizeBytes": 709578,
+      "modifiedLocal": "2026-10-02T13:45:29.599343"
+    },
+    "electricalPointsSchedule": {
+      "path": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_Розеточные_точки_ведомость.csv",
+      "sizeBytes": 9515,
+      "modifiedLocal": "2026-10-02T13:47:47.345832"
+    },
+    "measurementSource": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\measurements.json",
+      "sizeBytes": 24456,
+      "modifiedLocal": "2026-10-02T13:41:48.078211"
+    },
+    "activeManifest": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\active-layout.json",
+      "role": "Current pointer; re-read at the next session start."
+    },
+    "nativeGdlParameters": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\after-gdl.json",
+      "sizeBytes": 34841862,
+      "role": "Full object/lamp/door parameter readback. Large file: parse selectively, do not print in full."
+    },
+    "preProjectionFullVerification": {
+      "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\verification.json",
+      "role": "Earlier full measured-plan consistency audit; combine with latest projection delta audit, not a design-code compliance certificate."
+    }
+  },
+  "sourcePriority": [
+    "At next session start, inspect the actual open project and any user edits first, then confirm the current PLN path.",
+    "The saved active PLN and a fresh native snapshot are the engineering/BIM source; active-layout.json points to the last synchronized exports.",
+    "Current JSON exports map GUIDs to semantic equipment. They support planning; do not replay old journals as scripts.",
+    "PNG, previous variants, original sketches and older journals are references only. Do not rebuild the current project from a PNG or old variant."
+  ],
+  "lastSave": {
+    "method": "user_Ctrl_S",
+    "userConfirmed": true,
+    "fileUpdatedAfterFinalSnapshot": true,
+    "mtime": "2026-10-02T13:49:15",
+    "sizeBytes": 12509744,
+    "project": "C:\\Users\\avtos\\YandexDisk\\CYBERX\\Клуб3\\План помещения\\Клуб3_планировка_вариант_11.pln"
+  },
+  "lastGeometryVerification": {
+    "path": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\club3-plan\\remeasure-20261002\\projection-40cm\\verification.json",
+    "status": "PASS",
+    "scope": "Requested 37x40 cm projection, slab contours, neon detour and unchanged retained equipment; geometric check only."
+  },
+  "modelCounts": {
+    "nativeElements": 402,
+    "nativeTypes": {
+      "Wall": 47,
+      "Column": 7,
+      "Door": 12,
+      "Object": 275,
+      "Lamp": 15,
+      "Slab": 2,
+      "Dimension": 21,
+      "Text": 1,
+      "Zone": 11,
+      "Elevation": 4,
+      "ColumnSegment": 7
+    },
+    "gamingWorkstations": 26,
+    "gamingAllocation": {
+      "solo": 5,
+      "duo": 6,
+      "bootcamp": 5,
+      "commonHall": 10
+    },
+    "adminWorkstations": 1,
+    "racingSimulators": 4,
+    "simulatorScreenInches": 55,
+    "simulatorComputerTowers": 4,
+    "consoleStations": 2,
+    "consoleScreenInches": 65,
+    "receptionScreens": 2,
+    "receptionScreenInches": 32,
+    "activeDrinksFridges": 1,
+    "reservedSecondFridgeSocket": 1,
+    "socketBlocks": 41,
+    "individualSocketOutlets": 144,
+    "gamingSocketBlocks": 26,
+    "gamingSocketOutlets": 104,
+    "simulatorSocketBlocks": 4,
+    "simulatorSocketOutlets": 16,
+    "consoleSocketBlocks": 2,
+    "consoleSocketOutlets": 8,
+    "receptionSocketBlocks": 9,
+    "receptionSocketOutlets": 16,
+    "nativeLuminaires": 15,
+    "genericCeilingLuminaires": 10,
+    "graffitiSpots": 1,
+    "receptionPendants": 4,
+    "neonSegments": 62,
+    "wifiAccessPoints": 1,
+    "warning": "Do not count old samples on layer46. Computer towers inside custom rack/simulator GDL parts are not separate native objects."
+  },
+  "rooms": [
+    {
+      "key": "solo_01",
+      "name": "Соло 01",
+      "source_guid": "35C7E53D-E5B9-4A05-ACCD-5230460B2EE2",
+      "size_m": [
+        2.0,
+        1.4000000000000004
+      ],
+      "area_m2": 2.799999999999997,
+      "pc": 1,
+      "polygon": [
+        [
+          10.2,
+          3.54
+        ],
+        [
+          10.2,
+          4.94
+        ],
+        [
+          8.2,
+          4.94
+        ],
+        [
+          8.2,
+          3.54
+        ]
+      ]
+    },
+    {
+      "key": "solo_02",
+      "name": "Соло 02",
+      "source_guid": "2EDD74DE-9C13-4CE1-90B2-8282A05A00B3",
+      "size_m": [
+        2.0,
+        1.4000000000000004
+      ],
+      "area_m2": 2.8000000000000043,
+      "pc": 1,
+      "polygon": [
+        [
+          10.2,
+          5.04
+        ],
+        [
+          10.2,
+          6.44
+        ],
+        [
+          8.2,
+          6.44
+        ],
+        [
+          8.2,
+          5.04
+        ]
+      ]
+    },
+    {
+      "key": "solo_03",
+      "name": "Соло 03",
+      "source_guid": "C95FB188-4260-483E-BA1B-D08BA22A2E18",
+      "size_m": [
+        2.0,
+        1.4000000000000004
+      ],
+      "area_m2": 2.79999999999999,
+      "pc": 1,
+      "polygon": [
+        [
+          10.2,
+          6.54
+        ],
+        [
+          10.2,
+          7.94
+        ],
+        [
+          8.2,
+          7.94
+        ],
+        [
+          8.2,
+          6.54
+        ]
+      ]
+    },
+    {
+      "key": "solo_04",
+      "name": "Соло 04",
+      "source_guid": "62F49A22-3C3B-48B3-9AC6-0D708D157950",
+      "size_m": [
+        2.0,
+        1.4000000000000004
+      ],
+      "area_m2": 2.799999999999997,
+      "pc": 1,
+      "polygon": [
+        [
+          10.2,
+          8.04
+        ],
+        [
+          10.2,
+          9.44
+        ],
+        [
+          8.2,
+          9.44
+        ],
+        [
+          8.2,
+          8.04
+        ]
+      ]
+    },
+    {
+      "key": "solo_05",
+      "name": "Соло 05",
+      "source_guid": "3A0EDCE1-B5C8-436D-B33F-204A6CEF6FE8",
+      "size_m": [
+        2.0,
+        1.4000000000000004
+      ],
+      "area_m2": 2.8000000000000114,
+      "pc": 1,
+      "polygon": [
+        [
+          10.2,
+          9.54
+        ],
+        [
+          10.2,
+          10.94
+        ],
+        [
+          8.2,
+          10.94
+        ],
+        [
+          8.2,
+          9.54
+        ]
+      ]
+    },
+    {
+      "key": "duo_01",
+      "name": "Дуо 01",
+      "source_guid": "CB5A90BA-DCB5-4821-94F9-DC977052F881",
+      "size_m": [
+        1.965,
+        2.6400000000000006
+      ],
+      "area_m2": 5.1876,
+      "pc": 2,
+      "polygon": [
+        [
+          2.415,
+          16.28
+        ],
+        [
+          0.45,
+          16.28
+        ],
+        [
+          0.45,
+          13.64
+        ],
+        [
+          2.415,
+          13.64
+        ]
+      ]
+    },
+    {
+      "key": "duo_02",
+      "name": "Дуо 02",
+      "source_guid": "38A8D697-8EF5-4C60-8242-8AAD47DDBBF4",
+      "size_m": [
+        1.9849999999999999,
+        2.6400000000000006
+      ],
+      "area_m2": 5.240400000000001,
+      "pc": 2,
+      "polygon": [
+        [
+          4.5,
+          13.64
+        ],
+        [
+          4.5,
+          16.28
+        ],
+        [
+          2.515,
+          16.28
+        ],
+        [
+          2.515,
+          13.64
+        ]
+      ]
+    },
+    {
+      "key": "duo_03",
+      "name": "Дуо 03",
+      "source_guid": "2F9693C7-108F-4BA3-86DE-4CEFE01EDF46",
+      "size_m": [
+        2.0,
+        2.5
+      ],
+      "area_m2": 5.0,
+      "pc": 2,
+      "polygon": [
+        [
+          10.2,
+          11.04
+        ],
+        [
+          10.2,
+          13.54
+        ],
+        [
+          8.2,
+          13.54
+        ],
+        [
+          8.2,
+          11.04
+        ]
+      ]
+    },
+    {
+      "key": "bootcamp",
+      "name": "Буткемп",
+      "source_guid": "95258A0C-DEF8-46AD-AB8D-03DB84A3B237",
+      "size_m": [
+        5.6,
+        2.6400000000000006
+      ],
+      "area_m2": 14.604000000000013,
+      "pc": 5,
+      "polygon": [
+        [
+          10.2,
+          13.64
+        ],
+        [
+          10.2,
+          16.28
+        ],
+        [
+          5.37,
+          16.28
+        ],
+        [
+          5.37,
+          15.98
+        ],
+        [
+          4.77,
+          15.98
+        ],
+        [
+          4.77,
+          16.28
+        ],
+        [
+          4.6,
+          16.28
+        ],
+        [
+          4.6,
+          13.64
+        ]
+      ]
+    },
+    {
+      "key": "ps_vip",
+      "name": "PS VIP",
+      "source_guid": "515F1AA0-9C36-43FD-B922-684577C47996",
+      "size_m": [
+        2.49,
+        2.6
+      ],
+      "area_m2": 6.474000000000002,
+      "pc": 0,
+      "polygon": [
+        [
+          2.6,
+          6.37
+        ],
+        [
+          0.11,
+          6.37
+        ],
+        [
+          0.11,
+          3.77
+        ],
+        [
+          2.6,
+          3.77
+        ]
+      ]
+    },
+    {
+      "key": "ps_standard",
+      "name": "PS Standard",
+      "source_guid": "1F4ECC42-5A01-445E-BD59-BF7B9DD44031",
+      "size_m": [
+        2.1999999999999993,
+        2.1
+      ],
+      "area_m2": 4.620000000000001,
+      "pc": 0,
+      "polygon": [
+        [
+          8.1,
+          2.1
+        ],
+        [
+          5.9,
+          2.1
+        ],
+        [
+          5.9,
+          0
+        ],
+        [
+          8.1,
+          0
+        ]
+      ]
+    }
+  ],
+  "equipmentPlacement": {
+    "workstations": [
+      {
+        "key": "solo_01",
+        "room": "solo_01",
+        "origin": [
+          9.35,
+          4.79
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "FCBA5F7A-CF49-4135-95A9-DEECF0C2D06C"
+      },
+      {
+        "key": "solo_02",
+        "room": "solo_02",
+        "origin": [
+          9.35,
+          6.29
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "6660542D-A10D-49BB-8E49-F0FF41CFCEE9"
+      },
+      {
+        "key": "solo_03",
+        "room": "solo_03",
+        "origin": [
+          9.35,
+          7.79
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "B00F5771-AC20-4AEE-8237-A0C0F626BA61"
+      },
+      {
+        "key": "solo_04",
+        "room": "solo_04",
+        "origin": [
+          9.35,
+          9.29
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "A7EF4EA2-CB05-48FA-AC61-826EE515CC63"
+      },
+      {
+        "key": "solo_05",
+        "room": "solo_05",
+        "origin": [
+          9.35,
+          10.79
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "76F785EA-08D7-428F-A72C-31F59A284CD7"
+      },
+      {
+        "key": "duo_01_1",
+        "room": "duo_01",
+        "origin": [
+          1.3,
+          13.86
+        ],
+        "angle": 1.570796327,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "A0DDBE95-4365-468A-821C-A637DBFCD25C"
+      },
+      {
+        "key": "duo_01_2",
+        "room": "duo_01",
+        "origin": [
+          1.3,
+          14.96
+        ],
+        "angle": 1.570796327,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "51FF46AC-5FFF-44C5-AA29-315B24F992D5"
+      },
+      {
+        "key": "duo_02_1",
+        "room": "duo_02",
+        "origin": [
+          3.365,
+          13.86
+        ],
+        "angle": 1.570796327,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "DF01725B-CD76-41C5-8A3A-21D72C44724F"
+      },
+      {
+        "key": "duo_02_2",
+        "room": "duo_02",
+        "origin": [
+          3.365,
+          14.96
+        ],
+        "angle": 1.570796327,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "D910463B-D73F-4B06-B4DE-660D1F669187"
+      },
+      {
+        "key": "duo_03_1",
+        "room": "duo_03",
+        "origin": [
+          9.35,
+          12.29
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "17965D26-477A-43C9-A5E1-0D41BF20C323"
+      },
+      {
+        "key": "duo_03_2",
+        "room": "duo_03",
+        "origin": [
+          9.35,
+          13.39
+        ],
+        "angle": 4.71238898,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "83081D3C-350D-472A-9805-C24FC7E61CC9"
+      },
+      {
+        "key": "boot_1",
+        "room": "bootcamp",
+        "origin": [
+          4.65,
+          15.1
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "E5330A1F-FAB5-46EE-9153-CE86341BC89E"
+      },
+      {
+        "key": "boot_2",
+        "room": "bootcamp",
+        "origin": [
+          5.75,
+          15.1
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "B1EA7394-07B1-4EF3-84C8-420F136D7B7E"
+      },
+      {
+        "key": "boot_3",
+        "room": "bootcamp",
+        "origin": [
+          6.85,
+          15.1
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "3E408B0C-52CE-43B8-B071-3F17EF0050DC"
+      },
+      {
+        "key": "boot_4",
+        "room": "bootcamp",
+        "origin": [
+          7.95,
+          15.1
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "58539FBB-1ED9-40E6-9690-8394B66A51A4"
+      },
+      {
+        "key": "boot_5",
+        "room": "bootcamp",
+        "origin": [
+          9.05,
+          15.1
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "source_guid": "F5DB63C2-F05B-4066-A979-1A90CA526BD6"
+      },
+      {
+        "key": "hall_row_s1",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          1.1,
+          9.93
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О01",
+        "source_guid": "C318D35D-30C2-4ABA-949F-20A8944ADBF7"
+      },
+      {
+        "key": "hall_row_n1",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          2.2,
+          11.69
+        ],
+        "angle": 3.141592654,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О02",
+        "source_guid": "6CE5B2C8-1C02-4960-9317-79D7726C8AE4"
+      },
+      {
+        "key": "hall_row_s2",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          2.2,
+          9.93
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О03",
+        "source_guid": "A9CA9E2D-47FD-4D9A-8341-7297A63532A3"
+      },
+      {
+        "key": "hall_row_n2",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          3.3,
+          11.69
+        ],
+        "angle": 3.141592654,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О04",
+        "source_guid": "02584B44-D441-4DA6-BA26-5032E38A6435"
+      },
+      {
+        "key": "hall_row_s3",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          3.3,
+          9.93
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О05",
+        "source_guid": "659B96F6-E892-411F-8166-C6680F0689B9"
+      },
+      {
+        "key": "hall_row_n3",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          4.4,
+          11.69
+        ],
+        "angle": 3.141592654,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О06",
+        "source_guid": "E6CEFA29-EA80-448B-B861-B5D72B6D1882"
+      },
+      {
+        "key": "hall_row_s4",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          4.4,
+          9.93
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О07",
+        "source_guid": "59A7A857-59FA-4986-84CD-D8DF24F92D32"
+      },
+      {
+        "key": "hall_row_n4",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          5.5,
+          11.69
+        ],
+        "angle": 3.141592654,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О08",
+        "source_guid": "256FB63E-7B10-48F6-8B48-BFCB36AA8FAC"
+      },
+      {
+        "key": "hall_row_s5",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          5.5,
+          9.93
+        ],
+        "angle": 0,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О09",
+        "source_guid": "78F27DD4-13DB-424F-BA11-75F75C67DEBD"
+      },
+      {
+        "key": "hall_row_n5",
+        "room": "common_hall",
+        "group": "single_island_10",
+        "origin": [
+          6.6,
+          11.69
+        ],
+        "angle": 3.141592654,
+        "desk_dimensions": [
+          1.1,
+          0.85,
+          0.75
+        ],
+        "chair_tuck": 0.15,
+        "label": "О10",
+        "source_guid": "72EE477F-E027-42B2-9CD0-600019B1B281"
+      }
+    ],
+    "deskSize_m": [
+      1.1,
+      0.85,
+      0.75
+    ],
+    "towerArrangement": {
+      "soloAndDuo": "11 towers on wall shelves; tower base/support top z=1.70 m. Shelf object base z=1.45 m and height0.25 m.",
+      "bootcamp": "One-sided five-computer metal rack; room width5.60 m, desk row5.50 m; 40 mm tube was intended (not40 cm).",
+      "commonHall": "One double-sided ten-computer metal rack; two opposed rows of five desks.",
+      "simulators": "Towers at floor level near TVs; four socket outlets per simulator behind screen."
+    },
+    "selectedEquipmentRefs": [
+      {
+        "key": "reception/tv_1",
+        "kind": "tv32",
+        "library": "CYBERX Flat TV 26",
+        "room": "reception",
+        "source_guid": "EE6BD832-D257-49DE-9F61-AB5FF4C55557",
+        "position": [
+          4.703791701,
+          7.145,
+          1.65
+        ],
+        "dimensions": [
+          0.732416597,
+          0.065,
+          0.422484336
+        ],
+        "angle": 0
+      },
+      {
+        "key": "reception/tv_2",
+        "kind": "tv32",
+        "library": "CYBERX Flat TV 26",
+        "room": "reception",
+        "source_guid": "DE5A0059-44ED-42EA-BC20-838C610B523A",
+        "position": [
+          4.703791702,
+          7.145,
+          2.13
+        ],
+        "dimensions": [
+          0.732416597,
+          0.065,
+          0.422484336
+        ],
+        "angle": 0
+      },
+      {
+        "key": "solo_01/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "solo_01",
+        "source_guid": "232FB46F-6005-414C-927A-23F6BA5E1EE9",
+        "position": [
+          9.7,
+          4.415,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_01/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "solo_01",
+        "source_guid": "6F21D335-9064-40E5-A4D6-673F2BC06A34",
+        "position": [
+          9.74,
+          4.32,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_02/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "solo_02",
+        "source_guid": "BB4E70D7-BFBD-44CF-8AE9-A54C58A7CE2A",
+        "position": [
+          9.7,
+          5.915,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_02/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "solo_02",
+        "source_guid": "EA14C4E5-FE46-4B2E-8E60-9AAB3C871B88",
+        "position": [
+          9.74,
+          5.82,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_03/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "solo_03",
+        "source_guid": "B1D4FB12-BEDF-4C0A-B513-BD95CE79FEF3",
+        "position": [
+          9.7,
+          7.415,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_03/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "solo_03",
+        "source_guid": "6C2D5784-B437-443E-9AAB-94FEEADA1FF4",
+        "position": [
+          9.74,
+          7.32,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_04/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "solo_04",
+        "source_guid": "AF03C6DD-0A6D-438C-9C43-827C34848575",
+        "position": [
+          9.7,
+          8.915,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_04/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "solo_04",
+        "source_guid": "B8A9A21F-F5F3-4CC3-8386-6333853B673D",
+        "position": [
+          9.74,
+          8.82,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_05/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "solo_05",
+        "source_guid": "DDD8A0C1-939F-4E74-A591-9615C77AED8A",
+        "position": [
+          9.7,
+          10.415,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "solo_05/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "solo_05",
+        "source_guid": "F0DE3864-1E08-428E-983F-34A5A5136AFB",
+        "position": [
+          9.74,
+          10.32,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "duo_01_1/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_01",
+        "source_guid": "CEF71568-2D0C-483F-B25C-5213DF6A62B6",
+        "position": [
+          0.95,
+          14.235,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_01_1/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_01",
+        "source_guid": "68FE5D26-F82C-40FF-B436-15DE952FA57B",
+        "position": [
+          0.91,
+          14.33,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_01_2/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_01",
+        "source_guid": "0641BB46-3BD3-4CC9-BD37-FF01AA7659FA",
+        "position": [
+          0.95,
+          15.335,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_01_2/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_01",
+        "source_guid": "F86F0274-4332-4F77-A3FB-38D58A3C7CD4",
+        "position": [
+          0.91,
+          15.43,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_02_1/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_02",
+        "source_guid": "DAA260FE-A518-4A5E-B507-C5F3F9A979ED",
+        "position": [
+          3.015,
+          14.235,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_02_1/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_02",
+        "source_guid": "97FDB3E5-412C-43AD-8A1E-07F781119827",
+        "position": [
+          2.975,
+          14.33,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_02_2/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_02",
+        "source_guid": "6025D678-9E2A-4700-B0B1-B9E753231B73",
+        "position": [
+          3.015,
+          15.335,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_02_2/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_02",
+        "source_guid": "14573396-B9BB-4999-9631-C800F7A848FB",
+        "position": [
+          2.975,
+          15.43,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "duo_03_1/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_03",
+        "source_guid": "279C31B9-6D60-4D1A-B099-3CBD3C0EBD49",
+        "position": [
+          9.7,
+          11.915,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "duo_03_1/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_03",
+        "source_guid": "D37937EF-1C36-4BD9-8167-D1CBC14758C5",
+        "position": [
+          9.74,
+          11.82,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "duo_03_2/pc_shelf",
+        "kind": "pc_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "duo_03",
+        "source_guid": "CF25EDC1-0840-4B24-954E-3CA9840F2325",
+        "position": [
+          9.7,
+          13.015,
+          1.45
+        ],
+        "dimensions": [
+          0.35,
+          0.5,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "duo_03_2/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "duo_03",
+        "source_guid": "1BAB23B3-41C8-449C-9B57-4DC3DEA328D4",
+        "position": [
+          9.74,
+          12.92,
+          1.7
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "bootcamp/pc_rack",
+        "kind": "pc_rack_5",
+        "library": "CYBERX Bootcamp PC Rack 5 26",
+        "room": "bootcamp",
+        "source_guid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+        "position": [
+          4.61,
+          15.48,
+          0
+        ],
+        "dimensions": [
+          5.58,
+          0.48,
+          2.08
+        ],
+        "angle": 0
+      },
+      {
+        "key": "admin/pc_tower",
+        "kind": "pc_tower",
+        "library": "Системный Блок PC 26",
+        "room": "reception",
+        "source_guid": "B52C3B78-E11C-4BC0-AA74-C595DC22F468",
+        "position": [
+          5.6,
+          5.55,
+          0
+        ],
+        "dimensions": [
+          0.18,
+          0.4,
+          0.38
+        ],
+        "angle": 0
+      },
+      {
+        "key": "ps_vip/console_shelf",
+        "kind": "console_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "ps_vip",
+        "source_guid": "AD65256A-49D7-4CF7-B680-B9CBD7F8879D",
+        "position": [
+          0.57,
+          4.82,
+          0.45
+        ],
+        "dimensions": [
+          0.5,
+          0.32,
+          0.25
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "ps_vip/console",
+        "kind": "console",
+        "library": "CYBERX Console Horizontal 26",
+        "room": "ps_vip",
+        "source_guid": "61E457D7-FF6F-4253-885C-9B1F03FDD3E5",
+        "position": [
+          0.55,
+          4.875,
+          0.7
+        ],
+        "dimensions": [
+          0.39,
+          0.26,
+          0.104
+        ],
+        "angle": 1.570796327
+      },
+      {
+        "key": "common_hall/wifi",
+        "kind": "wifi_ap",
+        "library": "CYBERX Ceiling WiFi AP 26",
+        "room": "common_hall",
+        "source_guid": "E1CCD682-FB36-4C1A-B157-4B1C726DE2C7",
+        "position": [
+          6.71,
+          6.71,
+          4.06
+        ],
+        "dimensions": [
+          0.18,
+          0.18,
+          0.04
+        ],
+        "angle": 0
+      },
+      {
+        "key": "ps_standard/console_shelf",
+        "kind": "console_shelf",
+        "library": "CYBERX PC Wall Shelf 26",
+        "room": "ps_standard",
+        "source_guid": "3DF0D839-E968-4257-BD43-27B7134AA2D4",
+        "position": [
+          7.78,
+          1.26751521,
+          0.45
+        ],
+        "dimensions": [
+          0.5,
+          0.32,
+          0.25
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "ps_standard/console",
+        "kind": "console",
+        "library": "CYBERX Console Horizontal 26",
+        "room": "ps_standard",
+        "source_guid": "D1953FFB-A059-4B3A-B893-B10FB201905A",
+        "position": [
+          7.8,
+          1.21251521,
+          0.7
+        ],
+        "dimensions": [
+          0.39,
+          0.26,
+          0.104
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "ps_standard/tv",
+        "kind": "tv65",
+        "library": "CYBERX Flat TV 26",
+        "room": "ps_standard",
+        "source_guid": "9D1F1C5F-70F9-4540-BCE0-916A9F558FF8",
+        "position": [
+          8.035,
+          1.749000816,
+          1
+        ],
+        "dimensions": [
+          1.462971212,
+          0.065,
+          0.833421307
+        ],
+        "angle": 4.71238898
+      },
+      {
+        "key": "reception/drinks_fridge",
+        "kind": "drinks_fridge",
+        "library": "CYBERX Drinks Fridge Large 26",
+        "room": "reception",
+        "source_guid": "75CFAF24-4185-485D-9658-BE213AA67EC9",
+        "position": [
+          5.45,
+          7.65,
+          0
+        ],
+        "dimensions": [
+          0.7,
+          0.7,
+          2
+        ],
+        "angle": 0
+      },
+      {
+        "key": "reception/tv_bracket_1",
+        "kind": "tv_bracket",
+        "library": "CYBERX TV Compact Column Bracket 26",
+        "room": "reception",
+        "source_guid": "43CFFB20-141F-47D1-8130-D07C00BEA123",
+        "position": [
+          4.95,
+          7.21,
+          1.761242168
+        ],
+        "dimensions": [
+          0.24,
+          0.06,
+          0.2
+        ],
+        "angle": 0
+      },
+      {
+        "key": "reception/tv_bracket_2",
+        "kind": "tv_bracket",
+        "library": "CYBERX TV Compact Column Bracket 26",
+        "room": "reception",
+        "source_guid": "208C4842-AFFB-4C6E-B7D1-3C54FCB0C02E",
+        "position": [
+          4.95,
+          7.21,
+          2.241242168
+        ],
+        "dimensions": [
+          0.24,
+          0.06,
+          0.2
+        ],
+        "angle": 0
+      },
+      {
+        "key": "entry/coat_rack",
+        "kind": "coat_rack",
+        "library": "Вешалка Настенная 26",
+        "room": "common_hall",
+        "source_guid": "89CF2A6D-7504-459B-89D9-7283D7993F92",
+        "position": [
+          2.2,
+          7.88,
+          1.5
+        ],
+        "dimensions": [
+          0.9,
+          0.2,
+          0.3
+        ],
+        "angle": 3.141592654
+      }
+    ],
+    "furnitureRefs": [
+      {
+        "key": "hall_pc_rack",
+        "guid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX PC Rack Double 10 26",
+        "origin": {
+          "x": 1.1,
+          "y": 10.47,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 5.5,
+          "y": 0.68,
+          "z": 0
+        }
+      },
+      {
+        "key": "ps_vip/tv",
+        "guid": "E9F37122-A792-4038-969B-94EF57ADF637",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Flat TV 26",
+        "origin": {
+          "x": 0.39,
+          "y": 4.345,
+          "z": 1
+        },
+        "dimensions": {
+          "x": 1.45,
+          "y": 0.14,
+          "z": 0
+        }
+      },
+      {
+        "key": "ps_vip/sofa",
+        "guid": "C13382DD-A334-4580-980E-A0D34E155D1F",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "Диван 26",
+        "origin": {
+          "x": 1.65,
+          "y": 6.145,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 2.15,
+          "y": 0.9,
+          "z": 0
+        }
+      },
+      {
+        "key": "ps_standard/sofa",
+        "guid": "8E7F7A74-B28C-4028-8ADD-D5E60530FB33",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "Диван 26",
+        "origin": {
+          "x": 6.85,
+          "y": 0.21751521,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 1.6,
+          "y": 0.9,
+          "z": 0
+        }
+      },
+      {
+        "key": "admin/monitor",
+        "guid": "38A5EA3B-BC01-4AF7-9A8D-4DF86AEF03BE",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "Монитор (LCD) 26",
+        "origin": {
+          "x": 5.97915,
+          "y": 5.82,
+          "z": 0.75
+        },
+        "dimensions": {
+          "x": 0.5283,
+          "y": 0.1761,
+          "z": 0
+        }
+      },
+      {
+        "key": "admin/pc_chair",
+        "guid": "F78EFD6C-397A-4DB5-9C6A-A114B6B0B4B9",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "Стул Офисный 01 26",
+        "origin": {
+          "x": 5.3,
+          "y": 5.67,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 0.83,
+          "y": 0.79,
+          "z": 0
+        }
+      },
+      {
+        "key": "reception",
+        "guid": "C63FADA9-E028-48A0-9D88-E43BD8D3BBDA",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Reception Drywall V14 26",
+        "origin": {
+          "x": 4,
+          "y": 5.37,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 2.9,
+          "y": 3.05,
+          "z": 0
+        }
+      },
+      {
+        "key": "simulator_01",
+        "guid": "689FBD68-4C60-4030-9CDA-3B05F51387F8",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Racing Simulator 55 26",
+        "origin": {
+          "x": 1.18,
+          "y": 1.91,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.8,
+          "z": 0
+        }
+      },
+      {
+        "key": "simulator_02",
+        "guid": "A9C54FAA-C69A-401B-A338-B5452FB8A66B",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Racing Simulator 55 26",
+        "origin": {
+          "x": 2.5,
+          "y": 1.91,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.8,
+          "z": 0
+        }
+      },
+      {
+        "key": "simulator_03",
+        "guid": "79E2BE83-446F-4FA8-843D-54619A9ACEA6",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Racing Simulator 55 26",
+        "origin": {
+          "x": 3.82,
+          "y": 1.91,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.8,
+          "z": 0
+        }
+      },
+      {
+        "key": "simulator_04",
+        "guid": "32D11414-009F-4671-8A4A-4A43AF71F514",
+        "nativeType": "Object",
+        "layerIndex": 54,
+        "library": "CYBERX Racing Simulator 55 26",
+        "origin": {
+          "x": 5.14,
+          "y": 1.91,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.8,
+          "z": 0
+        }
+      }
+    ],
+    "fridge": {
+      "size": [
+        0.7,
+        0.7,
+        2
+      ],
+      "concept": true,
+      "supplyPointToDesign": true,
+      "ratedPower": "TBD from selected appliance",
+      "position": [
+        5.45,
+        7.65,
+        0
+      ],
+      "native_bbox": {
+        "xMin": 5.45,
+        "yMin": 7.65,
+        "xMax": 6.15,
+        "yMax": 8.35,
+        "zMin": 0,
+        "zMax": 2
+      },
+      "source_guid": "75CFAF24-4185-485D-9658-BE213AA67EC9",
+      "actualObject": {
+        "key": "reception/drinks_fridge",
+        "kind": "drinks_fridge",
+        "library": "CYBERX Drinks Fridge Large 26",
+        "position": [
+          5.45,
+          7.65,
+          0
+        ],
+        "dimensions": [
+          0.7,
+          0.7,
+          2
+        ],
+        "angle": 0,
+        "params": {
+          "A": 0.7,
+          "B": 0.7,
+          "zzyzx": 2,
+          "contourPen": 1,
+          "bodyThickness": 0.035,
+          "baseHeight": 0.16,
+          "headerHeight": 0.14,
+          "glassThickness": 0.008,
+          "bodyMaterial": 148,
+          "glassMaterial": 24,
+          "bottleMaterial": 40,
+          "capMaterial": 148
+        },
+        "layer": "equipment",
+        "room": "reception",
+        "source_guid": "75CFAF24-4185-485D-9658-BE213AA67EC9",
+        "physical_footprint": [
+          5.45,
+          7.65,
+          6.15,
+          8.35
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      }
+    },
+    "fridgeSecond": "Only reserved outlet R05. A second70 cm fridge does not fit next to the modeled unit; location/model must be resolved.",
+    "smallAppliances": "Kettle, coffee machine, microwave confirmed by user; outlet positions present, physical appliance bodies and actual ratings not selected."
+  },
+  "lighting": {
+    "nativeLuminaires": [
+      {
+        "key": "ceiling/L01",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          3.35,
+          1.05,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "2F7A8FEE-35DB-4BF6-9389-9508C9493AC5",
+        "physical_footprint": [
+          3.35,
+          1.05,
+          3.75,
+          1.4500000000000002
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L02",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          9.15,
+          2.9,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "1BD164C1-9939-4663-89E4-52CFA2A1CECF",
+        "physical_footprint": [
+          9.15,
+          2.9,
+          9.55,
+          3.3
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L03",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          2.6,
+          3.05,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "9AA78B1B-DA86-4136-AAF6-7E7BD029F73E",
+        "physical_footprint": [
+          2.6,
+          3.05,
+          3.0,
+          3.4499999999999997
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L04",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          6.5,
+          4.25,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "764F0A98-00E4-4E28-941D-DD67B0ECC1F8",
+        "physical_footprint": [
+          6.5,
+          4.25,
+          6.9,
+          4.65
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L05",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          3.4,
+          6.75,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "38857E75-EE93-4F4F-897C-62B403C0F342",
+        "physical_footprint": [
+          3.4,
+          6.75,
+          3.8,
+          7.15
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L06",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          6.5,
+          6.75,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "029C2421-C8A1-4019-AF6F-26E0369316CA",
+        "physical_footprint": [
+          6.5,
+          6.75,
+          6.9,
+          7.15
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L07",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          3.5,
+          8.9,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "5601C94F-E735-461B-B575-94AC7F1D3055",
+        "physical_footprint": [
+          3.5,
+          8.9,
+          3.9,
+          9.3
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L08",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          3.9,
+          12.7,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "BC65A48F-EFB3-4857-BE76-E2B4ECF17C74",
+        "physical_footprint": [
+          3.9,
+          12.7,
+          4.3,
+          13.1
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L09",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          7.35,
+          10.75,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "0B343A7A-9AA4-45D8-A4EF-002194AE91E3",
+        "physical_footprint": [
+          7.35,
+          10.75,
+          7.75,
+          11.15
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "ceiling/L10",
+        "library": "Потолочный Светильник 26",
+        "position": [
+          0.55,
+          2.95,
+          4.1
+        ],
+        "diameter": 0.4,
+        "height": 0.08,
+        "room": "common_hall",
+        "dimensions": [
+          0.4,
+          0.4,
+          0.08
+        ],
+        "angle": 0,
+        "source_guid": "80A8F32A-0253-442C-877B-9ADD794F3F89",
+        "physical_footprint": [
+          0.55,
+          2.95,
+          0.9500000000000001,
+          3.35
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "key": "accent/G01",
+        "library": "Направленный Потолочный Светильник 26",
+        "position": [
+          9.15,
+          2.5,
+          4.1
+        ],
+        "target": [
+          9.15,
+          3.44,
+          1.8
+        ],
+        "tiltFromDown_deg": 23.664399596413176,
+        "purpose": "Graffiti on south-facing lower wall of Solo1, visible from main bottom entrance",
+        "gdl_angles_degrees": {
+          "rotAngleX": 0,
+          "rz": 180.0,
+          "rx": -66.33560040358682,
+          "real_rx": 293.6643995964132
+        },
+        "dimensions": [
+          0.105,
+          0.15,
+          0.205
+        ],
+        "angle": 0,
+        "source_guid": "2E7936A6-419E-4478-A615-C7F7F45093C1",
+        "physical_footprint": [
+          9.15,
+          2.5,
+          9.255,
+          2.65
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "code": "LR01",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          4.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "key": "reception/pendant_1",
+        "type": "Lamp",
+        "dimensions": [
+          0.12,
+          0.12,
+          1.45
+        ],
+        "angle": 0,
+        "layer": "ceiling",
+        "room": "reception",
+        "source_guid": "DF3A49EA-6CFD-4617-B83B-DDC56045B164",
+        "params": {
+          "A": 0.12,
+          "B": 0.12,
+          "ZZYZX": 1.45,
+          "strSuspenderType": "Кабель",
+          "iSuspenderType": 1,
+          "diameter1": 0.12,
+          "shadeheight": 0.22,
+          "matFrame": 148,
+          "matShadeOut": 148,
+          "matShadeIn": 151,
+          "gs_light_intensity": 100,
+          "gs_light_switch": "On",
+          "iShadeType": 4,
+          "strShadeType": "Тип 4"
+        },
+        "height": 1.45,
+        "physical_footprint": [
+          4.45,
+          5.67,
+          4.57,
+          5.79
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "code": "LR02",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          5.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "key": "reception/pendant_2",
+        "type": "Lamp",
+        "dimensions": [
+          0.12,
+          0.12,
+          1.45
+        ],
+        "angle": 0,
+        "layer": "ceiling",
+        "room": "reception",
+        "source_guid": "1D671899-1CF1-42E2-9161-2B82FD8D9459",
+        "params": {
+          "A": 0.12,
+          "B": 0.12,
+          "ZZYZX": 1.45,
+          "strSuspenderType": "Кабель",
+          "iSuspenderType": 1,
+          "diameter1": 0.12,
+          "shadeheight": 0.22,
+          "matFrame": 148,
+          "matShadeOut": 148,
+          "matShadeIn": 151,
+          "gs_light_intensity": 100,
+          "gs_light_switch": "On",
+          "iShadeType": 4,
+          "strShadeType": "Тип 4"
+        },
+        "height": 1.45,
+        "physical_footprint": [
+          5.45,
+          5.67,
+          5.57,
+          5.79
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "code": "LR03",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          6.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "key": "reception/pendant_3",
+        "type": "Lamp",
+        "dimensions": [
+          0.12,
+          0.12,
+          1.45
+        ],
+        "angle": 0,
+        "layer": "ceiling",
+        "room": "reception",
+        "source_guid": "72B7DE43-E160-4FAC-8EAE-59E79C002730",
+        "params": {
+          "A": 0.12,
+          "B": 0.12,
+          "ZZYZX": 1.45,
+          "strSuspenderType": "Кабель",
+          "iSuspenderType": 1,
+          "diameter1": 0.12,
+          "shadeheight": 0.22,
+          "matFrame": 148,
+          "matShadeOut": 148,
+          "matShadeIn": 151,
+          "gs_light_intensity": 100,
+          "gs_light_switch": "On",
+          "iShadeType": 4,
+          "strShadeType": "Тип 4"
+        },
+        "height": 1.45,
+        "physical_footprint": [
+          6.45,
+          5.67,
+          6.57,
+          5.79
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      },
+      {
+        "code": "LR04",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          4.35,
+          6.77,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над рабочим плечом",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "key": "reception/pendant_4",
+        "type": "Lamp",
+        "dimensions": [
+          0.12,
+          0.12,
+          1.45
+        ],
+        "angle": 0,
+        "layer": "ceiling",
+        "room": "reception",
+        "source_guid": "544C0D6A-8577-414F-AA32-496B2C52EE7E",
+        "params": {
+          "A": 0.12,
+          "B": 0.12,
+          "ZZYZX": 1.45,
+          "strSuspenderType": "Кабель",
+          "iSuspenderType": 1,
+          "diameter1": 0.12,
+          "shadeheight": 0.22,
+          "matFrame": 148,
+          "matShadeOut": 148,
+          "matShadeIn": 151,
+          "gs_light_intensity": 100,
+          "gs_light_switch": "On",
+          "iShadeType": 4,
+          "strShadeType": "Тип 4"
+        },
+        "height": 1.45,
+        "physical_footprint": [
+          4.35,
+          6.77,
+          4.47,
+          6.89
+        ],
+        "footprint_basis": "Placement rectangle from GDL A/B; native library parts can contain offsets outside it."
+      }
+    ],
+    "pendants": [
+      {
+        "code": "LR01",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          4.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "source_guid": "DF3A49EA-6CFD-4617-B83B-DDC56045B164"
+      },
+      {
+        "code": "LR02",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          5.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "source_guid": "1D671899-1CF1-42E2-9161-2B82FD8D9459"
+      },
+      {
+        "code": "LR03",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          6.45,
+          5.67,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над стойкой",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "source_guid": "72B7DE43-E160-4FAC-8EAE-59E79C002730"
+      },
+      {
+        "code": "LR04",
+        "kind": "pendant_cylinder",
+        "library": "Подвесной Светильник 26",
+        "position": [
+          4.35,
+          6.77,
+          4.1
+        ],
+        "suspension": 1.45,
+        "bottom": 2.65,
+        "diameter": 0.12,
+        "bodyHeight": 0.22,
+        "purpose": "Подвесной свет над рабочим плечом",
+        "switchGroup": "Ресепшн — подвесы",
+        "photometry": "Модель размещения; мощность и светораспределение уточняются по выбранному светильнику",
+        "source_guid": "544C0D6A-8577-414F-AA32-496B2C52EE7E"
+      }
+    ],
+    "graffiti": {
+      "key": "accent/G01",
+      "library": "Направленный Потолочный Светильник 26",
+      "position": [
+        9.15,
+        2.5,
+        4.1
+      ],
+      "target": [
+        9.15,
+        3.44,
+        1.8
+      ],
+      "tiltFromDown_deg": 23.664399596413176,
+      "purpose": "Graffiti on south-facing lower wall of Solo1, visible from main bottom entrance",
+      "gdl_angles_degrees": {
+        "rotAngleX": 0,
+        "rz": 180.0,
+        "rx": -66.33560040358682,
+        "real_rx": 293.6643995964132
+      }
+    },
+    "neonSection_mm": [
+      8,
+      16
+    ],
+    "neonVoltage_V": 12,
+    "neonTotalModelLength_m": 137.904333172,
+    "neonByColor": {
+      "warm": {
+        "segments": 42,
+        "length_m": 87.521
+      },
+      "blue": {
+        "segments": 20,
+        "length_m": 50.383333172
+      }
+    },
+    "neonByZone": {
+      "solo_01": {
+        "segments": 4,
+        "length_m": 6.52
+      },
+      "solo_02": {
+        "segments": 4,
+        "length_m": 6.52
+      },
+      "solo_03": {
+        "segments": 4,
+        "length_m": 6.52
+      },
+      "solo_04": {
+        "segments": 4,
+        "length_m": 6.52
+      },
+      "solo_05": {
+        "segments": 4,
+        "length_m": 6.52
+      },
+      "duo_01": {
+        "segments": 4,
+        "length_m": 8.93
+      },
+      "duo_02": {
+        "segments": 4,
+        "length_m": 8.97
+      },
+      "duo_03": {
+        "segments": 4,
+        "length_m": 8.72
+      },
+      "bootcamp": {
+        "segments": 4,
+        "length_m": 15.385
+      },
+      "ps_vip": {
+        "segments": 4,
+        "length_m": 9.922
+      },
+      "common_hall": {
+        "segments": 16,
+        "length_m": 43.943333172
+      },
+      "ps_standard": {
+        "segments": 2,
+        "length_m": 2.994
+      },
+      "reception": {
+        "segments": 4,
+        "length_m": 6.44
+      }
+    },
+    "neonSegments": [
+      {
+        "key": "neon/solo_01/01",
+        "zone": "solo_01",
+        "a": [
+          8.235,
+          3.571
+        ],
+        "b": [
+          10.165,
+          3.571
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "42859EAD-0019-4730-A605-1D8D95B1C99D"
+      },
+      {
+        "key": "neon/solo_01/02",
+        "zone": "solo_01",
+        "a": [
+          10.169,
+          3.575
+        ],
+        "b": [
+          10.168999999727212,
+          4.905
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "BCAD8E2E-ED1A-404D-98B5-5099A37EC1EA"
+      },
+      {
+        "key": "neon/solo_01/03",
+        "zone": "solo_01",
+        "a": [
+          10.165,
+          4.909
+        ],
+        "b": [
+          8.235,
+          4.908999999208301
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "F42036E0-7E2B-4287-94AE-9216D187E6C1"
+      },
+      {
+        "key": "neon/solo_01/04",
+        "zone": "solo_01",
+        "a": [
+          8.231,
+          4.905
+        ],
+        "b": [
+          8.230999999488363,
+          3.575
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "A22D6248-08CD-4D74-90D2-EEE959D30027"
+      },
+      {
+        "key": "neon/solo_02/05",
+        "zone": "solo_02",
+        "a": [
+          8.235,
+          5.071
+        ],
+        "b": [
+          10.165,
+          5.071
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "A799F18D-65FB-4DF3-99C0-788C24439CB2"
+      },
+      {
+        "key": "neon/solo_02/06",
+        "zone": "solo_02",
+        "a": [
+          10.169,
+          5.075
+        ],
+        "b": [
+          10.168999999727212,
+          6.405
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "F391E5AC-4C95-4808-882E-0F3591B326CB"
+      },
+      {
+        "key": "neon/solo_02/07",
+        "zone": "solo_02",
+        "a": [
+          10.165,
+          6.409
+        ],
+        "b": [
+          8.235,
+          6.408999999208301
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "F45A401A-6063-407E-9317-7CD2C063A375"
+      },
+      {
+        "key": "neon/solo_02/08",
+        "zone": "solo_02",
+        "a": [
+          8.231,
+          6.405
+        ],
+        "b": [
+          8.230999999488363,
+          5.075
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "361A0009-525B-4EDB-9572-07343B242838"
+      },
+      {
+        "key": "neon/solo_03/09",
+        "zone": "solo_03",
+        "a": [
+          8.235,
+          6.571
+        ],
+        "b": [
+          10.165,
+          6.571
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "C0335B55-99F1-4F85-BA1A-530658C6BFB1"
+      },
+      {
+        "key": "neon/solo_03/10",
+        "zone": "solo_03",
+        "a": [
+          10.169,
+          6.575
+        ],
+        "b": [
+          10.168999999727212,
+          7.905
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "260FBA2F-AC7C-4253-8C9C-0F7DCE46489F"
+      },
+      {
+        "key": "neon/solo_03/11",
+        "zone": "solo_03",
+        "a": [
+          10.165,
+          7.909
+        ],
+        "b": [
+          8.235,
+          7.908999999208301
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "4721152D-1AD6-42A4-BF18-094571CB08E4"
+      },
+      {
+        "key": "neon/solo_03/12",
+        "zone": "solo_03",
+        "a": [
+          8.231,
+          7.905
+        ],
+        "b": [
+          8.230999999488363,
+          6.575
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "198AD8F8-3C9F-43F6-88DB-E729029040F3"
+      },
+      {
+        "key": "neon/solo_04/13",
+        "zone": "solo_04",
+        "a": [
+          8.235,
+          8.071
+        ],
+        "b": [
+          10.165,
+          8.071
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "A0BDB9B4-70B8-4D9E-9B20-DF16BA37F188"
+      },
+      {
+        "key": "neon/solo_04/14",
+        "zone": "solo_04",
+        "a": [
+          10.169,
+          8.075
+        ],
+        "b": [
+          10.168999999727212,
+          9.405
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "479ECEF8-5A7C-4C47-9BCF-8C848D329905"
+      },
+      {
+        "key": "neon/solo_04/15",
+        "zone": "solo_04",
+        "a": [
+          10.165,
+          9.409
+        ],
+        "b": [
+          8.235,
+          9.408999999208302
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "DAA0CA81-0B76-40AA-BB4C-BF6CBD7B6801"
+      },
+      {
+        "key": "neon/solo_04/16",
+        "zone": "solo_04",
+        "a": [
+          8.231,
+          9.405
+        ],
+        "b": [
+          8.230999999488363,
+          8.075
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "D966B1F6-16B4-43CF-B03B-952BE6BA6A00"
+      },
+      {
+        "key": "neon/solo_05/17",
+        "zone": "solo_05",
+        "a": [
+          8.235,
+          9.571
+        ],
+        "b": [
+          10.165,
+          9.571
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "B3401A9E-1ED7-42ED-9FAC-21ED408CB065"
+      },
+      {
+        "key": "neon/solo_05/18",
+        "zone": "solo_05",
+        "a": [
+          10.169,
+          9.575
+        ],
+        "b": [
+          10.168999999727212,
+          10.905
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "C8D0BAF4-97B2-440A-8CB3-ADD773FBE439"
+      },
+      {
+        "key": "neon/solo_05/19",
+        "zone": "solo_05",
+        "a": [
+          10.165,
+          10.909
+        ],
+        "b": [
+          8.235,
+          10.908999999208302
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "6269F456-5E8F-4B42-94F2-7A49CAC6AED0"
+      },
+      {
+        "key": "neon/solo_05/20",
+        "zone": "solo_05",
+        "a": [
+          8.231,
+          10.905
+        ],
+        "b": [
+          8.230999999488363,
+          9.575
+        ],
+        "length_m": 1.33,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "0BC606D0-E640-4219-AB56-B53CF25EF061"
+      },
+      {
+        "key": "neon/duo_01/21",
+        "zone": "duo_01",
+        "a": [
+          0.485,
+          13.671
+        ],
+        "b": [
+          2.38,
+          13.671
+        ],
+        "length_m": 1.895,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "583A0F1F-4431-4BF2-B29B-5AFE42040138"
+      },
+      {
+        "key": "neon/duo_01/22",
+        "zone": "duo_01",
+        "a": [
+          2.384,
+          13.675
+        ],
+        "b": [
+          2.383999999472884,
+          16.245
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "5DB161AF-BED7-4DF0-8047-92D844BF18FD"
+      },
+      {
+        "key": "neon/duo_01/23",
+        "zone": "duo_01",
+        "a": [
+          2.38,
+          16.249
+        ],
+        "b": [
+          0.4849999999999999,
+          16.248999999222658
+        ],
+        "length_m": 1.895,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "8B359D5F-A55C-4699-8536-A4F7C4A714BF"
+      },
+      {
+        "key": "neon/duo_01/24",
+        "zone": "duo_01",
+        "a": [
+          0.481,
+          16.245
+        ],
+        "b": [
+          0.4809999990113472,
+          13.675
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "CBF79D20-F4D9-4C7C-90F5-95F2D244405B"
+      },
+      {
+        "key": "neon/duo_02/25",
+        "zone": "duo_02",
+        "a": [
+          2.55,
+          13.671
+        ],
+        "b": [
+          4.465,
+          13.671
+        ],
+        "length_m": 1.915,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "F5A7BF89-ABA5-4017-ACFC-4FA73D3F706D"
+      },
+      {
+        "key": "neon/duo_02/26",
+        "zone": "duo_02",
+        "a": [
+          4.469,
+          13.675
+        ],
+        "b": [
+          4.468999999472884,
+          16.245
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "25318062-1885-4CA9-83DE-6D426ED119CA"
+      },
+      {
+        "key": "neon/duo_02/27",
+        "zone": "duo_02",
+        "a": [
+          4.465,
+          16.249
+        ],
+        "b": [
+          2.55,
+          16.24899999921445
+        ],
+        "length_m": 1.915,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "83C9EEDE-880F-4327-9327-395946B19931"
+      },
+      {
+        "key": "neon/duo_02/28",
+        "zone": "duo_02",
+        "a": [
+          2.546,
+          16.245
+        ],
+        "b": [
+          2.545999999011347,
+          13.675
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "85BD2BC5-BC2C-4C45-A68F-75DFF7D45F6F"
+      },
+      {
+        "key": "neon/duo_03/29",
+        "zone": "duo_03",
+        "a": [
+          8.235,
+          11.071
+        ],
+        "b": [
+          10.165,
+          11.071
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "927BEF81-D5B5-4FBB-8DE9-53267508AE2E"
+      },
+      {
+        "key": "neon/duo_03/30",
+        "zone": "duo_03",
+        "a": [
+          10.169,
+          11.075
+        ],
+        "b": [
+          10.1689999995016,
+          13.504999999999999
+        ],
+        "length_m": 2.43,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "18687CC8-7F29-4FA0-ACED-DE763F8E0747"
+      },
+      {
+        "key": "neon/duo_03/31",
+        "zone": "duo_03",
+        "a": [
+          10.165,
+          13.509
+        ],
+        "b": [
+          8.235,
+          13.508999999208301
+        ],
+        "length_m": 1.93,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "612458BD-2548-4119-86E5-B708515F2E1D"
+      },
+      {
+        "key": "neon/duo_03/32",
+        "zone": "duo_03",
+        "a": [
+          8.231,
+          13.505
+        ],
+        "b": [
+          8.230999999065205,
+          11.075000000000001
+        ],
+        "length_m": 2.43,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "8F5A1B18-E5BB-43D1-9F01-60D3BD38E616"
+      },
+      {
+        "key": "neon/bootcamp/33",
+        "zone": "bootcamp",
+        "a": [
+          4.635,
+          13.671
+        ],
+        "b": [
+          10.165,
+          13.671
+        ],
+        "length_m": 5.53,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "99A3D3ED-21A8-4EAA-BCCA-373A3A01A5F4"
+      },
+      {
+        "key": "neon/bootcamp/34",
+        "zone": "bootcamp",
+        "a": [
+          10.169,
+          13.675
+        ],
+        "b": [
+          10.168999999472884,
+          16.245
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "AD750CFA-A9FF-42EE-979C-162042BD923E"
+      },
+      {
+        "key": "neon/bootcamp/35",
+        "zone": "bootcamp",
+        "a": [
+          10.165,
+          16.249
+        ],
+        "b": [
+          5.449999999999999,
+          16.248999998065873
+        ],
+        "length_m": 4.715,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "5F59014F-D26D-4BE3-B95B-57182DE53FAC"
+      },
+      {
+        "key": "neon/bootcamp/36",
+        "zone": "bootcamp",
+        "a": [
+          4.631,
+          16.245
+        ],
+        "b": [
+          4.6309999990113475,
+          13.675
+        ],
+        "length_m": 2.57,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "5A2184B3-D4F0-4063-834E-B03E9EA76ED0"
+      },
+      {
+        "key": "neon/ps_vip/37",
+        "zone": "ps_vip",
+        "a": [
+          0.134,
+          3.801
+        ],
+        "b": [
+          2.565,
+          3.801
+        ],
+        "length_m": 2.431,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Ceiling contour; west segment is ceiling-supported above glazing, not attached to glass",
+        "source_guid": "B56FD8C9-04F2-48AD-AA93-5FFD94635C8B"
+      },
+      {
+        "key": "neon/ps_vip/38",
+        "zone": "ps_vip",
+        "a": [
+          2.569,
+          3.805
+        ],
+        "b": [
+          2.5689999994810884,
+          6.335
+        ],
+        "length_m": 2.53,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Ceiling contour; west segment is ceiling-supported above glazing, not attached to glass",
+        "source_guid": "F620FE9A-5984-4DA0-987D-58C9D0C958D0"
+      },
+      {
+        "key": "neon/ps_vip/39",
+        "zone": "ps_vip",
+        "a": [
+          2.565,
+          6.339
+        ],
+        "b": [
+          0.1339999999999999,
+          6.338999999002787
+        ],
+        "length_m": 2.431,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Ceiling contour; west segment is ceiling-supported above glazing, not attached to glass",
+        "source_guid": "A0133FA2-284B-4D15-9698-84BD3353C8E7"
+      },
+      {
+        "key": "neon/ps_vip/40",
+        "zone": "ps_vip",
+        "a": [
+          0.13,
+          6.335
+        ],
+        "b": [
+          0.1299999990267348,
+          3.805
+        ],
+        "length_m": 2.53,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Ceiling contour; west segment is ceiling-supported above glazing, not attached to glass",
+        "source_guid": "F66AA2AC-FAB1-4370-B2D0-2F960F1ACDBF"
+      },
+      {
+        "key": "neon/common_hall/41",
+        "zone": "common_hall",
+        "a": [
+          0.04,
+          0.036
+        ],
+        "b": [
+          5.29,
+          0.036
+        ],
+        "length_m": 5.25,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "source_guid": "1DD1ACB9-CE2F-4A7F-AA86-EF99A7357A94"
+      },
+      {
+        "key": "neon/common_hall/46",
+        "zone": "common_hall",
+        "a": [
+          10.164,
+          0.1
+        ],
+        "b": [
+          10.163999999571333,
+          2.19
+        ],
+        "length_m": 2.09,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "85E5FE6D-403B-494A-BD7F-5FECDDDA661D"
+      },
+      {
+        "key": "neon/common_hall/47",
+        "zone": "common_hall",
+        "a": [
+          10.164,
+          2.95
+        ],
+        "b": [
+          10.163999999907704,
+          3.4000000000000004
+        ],
+        "length_m": 0.45,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "3C37AA36-7870-4A26-84E9-399A23F6E102"
+      },
+      {
+        "key": "neon/common_hall/48",
+        "zone": "common_hall",
+        "a": [
+          10.16,
+          3.404
+        ],
+        "b": [
+          8.06,
+          3.4039999991385654
+        ],
+        "length_m": 2.1,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "8B0592BB-00C1-41AE-BAC2-3B273C71A9BB"
+      },
+      {
+        "key": "neon/common_hall/49",
+        "zone": "common_hall",
+        "a": [
+          8.064,
+          3.4
+        ],
+        "b": [
+          8.063999997928455,
+          13.5
+        ],
+        "length_m": 10.1,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "429FDC72-A068-4419-9806-57C58EBE7AAE"
+      },
+      {
+        "key": "neon/common_hall/50",
+        "zone": "common_hall",
+        "a": [
+          8.06,
+          13.504
+        ],
+        "b": [
+          1.1100000000000003,
+          13.503999997149062
+        ],
+        "length_m": 6.95,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "05A238F4-7A46-4E5C-9268-678FC6E792B0"
+      },
+      {
+        "key": "neon/common_hall/51",
+        "zone": "common_hall",
+        "a": [
+          1.106,
+          13.5
+        ],
+        "b": [
+          1.105999999176764,
+          11.36
+        ],
+        "length_m": 2.14,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "376C3716-5948-43E4-BDF7-F67DE775C055"
+      },
+      {
+        "key": "neon/common_hall/52",
+        "zone": "common_hall",
+        "a": [
+          1.11,
+          11.364
+        ],
+        "b": [
+          0.4900000000000001,
+          11.363999999745673
+        ],
+        "length_m": 0.62,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "F9EC4D1F-6EB5-46E2-B7E1-AF744B020684"
+      },
+      {
+        "key": "neon/common_hall/53",
+        "zone": "common_hall",
+        "a": [
+          0.486,
+          11.36
+        ],
+        "b": [
+          0.485999998653201,
+          7.859
+        ],
+        "length_m": 3.501,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "3BA2F2BE-7AA7-4D0E-87B0-2AB827C2BB70"
+      },
+      {
+        "key": "neon/common_hall/54",
+        "zone": "common_hall",
+        "a": [
+          0.855,
+          7.393
+        ],
+        "b": [
+          0.15000000000000002,
+          7.392999999710804
+        ],
+        "length_m": 0.705,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "source_guid": "9436CD27-6D44-4728-858A-2E86694E2B3B"
+      },
+      {
+        "key": "neon/common_hall/55",
+        "zone": "common_hall",
+        "a": [
+          0.14,
+          6.506
+        ],
+        "b": [
+          2.74,
+          6.506
+        ],
+        "length_m": 2.6,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "source_guid": "EF06DFB0-F2FD-4998-BF08-9A3897C1D6AB"
+      },
+      {
+        "key": "neon/common_hall/56",
+        "zone": "common_hall",
+        "a": [
+          2.736,
+          6.51
+        ],
+        "b": [
+          2.7359999988920936,
+          3.63
+        ],
+        "length_m": 2.88,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "source_guid": "A34F22F7-6EC6-412B-AC18-59E5AC86C43C"
+      },
+      {
+        "key": "neon/common_hall/57",
+        "zone": "common_hall",
+        "a": [
+          2.74,
+          3.634
+        ],
+        "b": [
+          0.14000000000000012,
+          3.633999998933462
+        ],
+        "length_m": 2.6,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "source_guid": "C691F981-EC7A-48BA-9889-EEB13BD33B6C"
+      },
+      {
+        "key": "neon/ps_standard/58",
+        "zone": "ps_standard",
+        "a": [
+          5.908,
+          0.04
+        ],
+        "b": [
+          5.907999999579128,
+          2.092
+        ],
+        "length_m": 2.052,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 2.2,
+        "mounting": "Inner face of mirrored upper-left G-shaped PS Standard privacy screen",
+        "source_guid": "735E82FB-4751-4387-B04E-2CBBFAD9929A"
+      },
+      {
+        "key": "neon/ps_standard/59",
+        "zone": "ps_standard",
+        "a": [
+          5.908,
+          2.092
+        ],
+        "b": [
+          6.8500000000000005,
+          2.092
+        ],
+        "length_m": 0.942,
+        "color": "warm",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 2.2,
+        "mounting": "Inner face of mirrored upper-left G-shaped PS Standard privacy screen",
+        "source_guid": "B09D4AD3-9641-454B-A3A4-165DA55AAA40"
+      },
+      {
+        "key": "neon/common_hall/60",
+        "zone": "common_hall",
+        "a": [
+          0.486,
+          7.855
+        ],
+        "b": [
+          0.859,
+          7.855
+        ],
+        "length_m": 0.373,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Solid south face of upper wind screen, toward entry corridor; breaks at the column",
+        "source_guid": "B3609151-4CAB-49D0-9911-41086D886D5E"
+      },
+      {
+        "key": "neon/common_hall/61",
+        "zone": "common_hall",
+        "a": [
+          1.545666828,
+          7.806
+        ],
+        "b": [
+          2.66,
+          7.806
+        ],
+        "length_m": 1.114333172,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ],
+        "top_z": 3.2,
+        "mounting": "Solid south face of upper wind screen, toward entry corridor; breaks at the column",
+        "source_guid": "847CA7CE-8AB4-43B3-BC67-4937F0A1775D"
+      },
+      {
+        "key": "neon/reception/62",
+        "zone": "reception",
+        "source_guid": "FF39F303-3519-48A6-8558-43C3DD5CBF96",
+        "a": [
+          4.02,
+          5.362
+        ],
+        "b": [
+          6.879999999999999,
+          5.362
+        ],
+        "length_m": 2.86,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ]
+      },
+      {
+        "key": "neon/reception/63",
+        "zone": "reception",
+        "source_guid": "93EEF337-C4CD-4836-8C15-35E0526BCE21",
+        "a": [
+          4,
+          5.39
+        ],
+        "b": [
+          3.999999999618508,
+          7.25
+        ],
+        "length_m": 1.86,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ]
+      },
+      {
+        "key": "neon/reception/64",
+        "zone": "reception",
+        "source_guid": "4A05920D-B804-4653-BD74-8D0A2FCD424C",
+        "a": [
+          6.908,
+          5.39
+        ],
+        "b": [
+          6.907999999803101,
+          6.35
+        ],
+        "length_m": 0.96,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ]
+      },
+      {
+        "key": "neon/reception/65",
+        "zone": "reception",
+        "source_guid": "4695A9D7-9F9B-4443-AC27-A6880ECFFF89",
+        "a": [
+          6.908,
+          7.19
+        ],
+        "b": [
+          6.9079999998441215,
+          7.95
+        ],
+        "length_m": 0.76,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ]
+      },
+      {
+        "key": "neon/common_hall/projection_face",
+        "zone": "common_hall",
+        "source_guid": "A9A2161C-749F-44FE-B10C-A55FF54700AD",
+        "a": [
+          0.851,
+          7.859
+        ],
+        "b": [
+          0.8509999998191958,
+          7.389
+        ],
+        "length_m": 0.47,
+        "color": "blue",
+        "voltage": 12,
+        "section_mm": [
+          8,
+          16
+        ]
+      }
+    ],
+    "intent": "Warm white in rooms; blue contour in common hall and reception. No perimeter strip on common-hall glazing; no column outline lighting. RGB/RGBW remains an option contingent on actual product.",
+    "notYetDesigned": [
+      "Actual luminaire model and IES/LDT photometry",
+      "Watts, efficacy, CCT/CRI/glare/pulsation values",
+      "Illuminance calculation",
+      "Emergency and evacuation lighting",
+      "Switches and control groups",
+      "Neon W/m, driver/controller positions and sizes",
+      "12 V feed lengths, injection points, voltage drop and accessible maintenance",
+      "Electrical circuits and protections"
+    ],
+    "lengthCaution": "Model segment lengths are not procurement/cable lengths; add product-specific cut increment, connection and installation allowances only after product choice. Existing room/hall summary fields are geographic grouping, not a color grouping."
+  },
+  "electricalPoints": {
+    "coordinateUnits": "m",
+    "heightDatum": "Outlet FACE CENTER above finished floor; do not use object insertion point as installation center.",
+    "pointIdsNotCircuitIds": true,
+    "semantics": {
+      "PC01-PC26": "26 gaming stations;4 outlets each",
+      "S01-S04": "4 simulators;4 outlets each",
+      "P01-P02": "PS VIP / PS Standard;4 outlets each",
+      "R01-R09": "Reception end-point labels, not branch-circuit numbers"
+    },
+    "library": "CYBERX Wall Socket Point 26",
+    "points": [
+      {
+        "code": "P01",
+        "zone": "PS VIP",
+        "outletCount": 4,
+        "faceCenter": [
+          0.29499999996882426,
+          5.47,
+          0.8500000000000001
+        ],
+        "normal": "east",
+        "origin": [
+          0.295,
+          5.318,
+          0.807
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Медиагруппа PS VIP",
+        "loads": [
+          "ТВ 65",
+          "PlayStation",
+          "Зарядка контроллеров",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "708B7AF4-48FC-4939-866F-04249DDCE233"
+      },
+      {
+        "code": "P02",
+        "zone": "PS Standard",
+        "outletCount": 4,
+        "faceCenter": [
+          8.054999999941527,
+          1.5,
+          0.8500000000000001
+        ],
+        "normal": "west",
+        "origin": [
+          8.055,
+          1.652,
+          0.807
+        ],
+        "angle": 4.71238898,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Медиагруппа PS Standard",
+        "loads": [
+          "ТВ 65",
+          "PlayStation",
+          "Зарядка контроллеров",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "DA7F1648-4066-48E4-BF38-C6D9B74F197F"
+      },
+      {
+        "code": "PC01",
+        "stationKey": "solo_01",
+        "room": "solo_01",
+        "zone": "Соло 01",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Соло 01 — solo_01: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          4.24,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          4.392,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            4.24
+          ],
+          "nearbyShelf": {
+            "elementGuid": "232FB46F-6005-414C-927A-23F6BA5E1EE9",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              4.415,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "FCBA5F7A-CF49-4135-95A9-DEECF0C2D06C",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            4.79,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "9EF63B6E-3274-4039-80A8-D9A2493204AE",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            4.50415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "6F21D335-9064-40E5-A4D6-673F2BC06A34",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            4.32,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 4.088,
+          "yMax": 4.392,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "AF718B04-6309-4B0D-BE30-C67CD70E1FCC"
+      },
+      {
+        "code": "PC02",
+        "stationKey": "solo_02",
+        "room": "solo_02",
+        "zone": "Соло 02",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Соло 02 — solo_02: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          5.74,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          5.892,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            5.74
+          ],
+          "nearbyShelf": {
+            "elementGuid": "BB4E70D7-BFBD-44CF-8AE9-A54C58A7CE2A",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              5.915,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "6660542D-A10D-49BB-8E49-F0FF41CFCEE9",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            6.29,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "E71100A6-D3D4-4C03-A5BC-5D35E0C73B35",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            6.00415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "EA14C4E5-FE46-4B2E-8E60-9AAB3C871B88",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            5.82,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 5.588,
+          "yMax": 5.892,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "8DBF7D82-FB9C-4BDD-9A4E-CA4E8F39AA79"
+      },
+      {
+        "code": "PC03",
+        "stationKey": "solo_03",
+        "room": "solo_03",
+        "zone": "Соло 03",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Соло 03 — solo_03: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          7.24,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          7.392,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            7.24
+          ],
+          "nearbyShelf": {
+            "elementGuid": "B1D4FB12-BEDF-4C0A-B513-BD95CE79FEF3",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              7.415,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "B00F5771-AC20-4AEE-8237-A0C0F626BA61",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            7.79,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "F9D3D100-E936-41B8-AABC-7062D8CCF0A3",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            7.50415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "6C2D5784-B437-443E-9AAB-94FEEADA1FF4",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            7.32,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 7.088,
+          "yMax": 7.392,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "F9E4E596-06DE-482D-8BDB-1EC7B8499E11"
+      },
+      {
+        "code": "PC04",
+        "stationKey": "solo_04",
+        "room": "solo_04",
+        "zone": "Соло 04",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Соло 04 — solo_04: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          8.74,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          8.892,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            8.739999999999998
+          ],
+          "nearbyShelf": {
+            "elementGuid": "AF03C6DD-0A6D-438C-9C43-827C34848575",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              8.915,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "A7EF4EA2-CB05-48FA-AC61-826EE515CC63",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            9.29,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "A7032027-8231-4403-AF96-FE3DBA74C33B",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            9.00415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "B8A9A21F-F5F3-4CC3-8386-6333853B673D",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            8.82,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 8.588,
+          "yMax": 8.892,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "C663BA7D-8965-4FEF-BA16-69E5441EC119"
+      },
+      {
+        "code": "PC05",
+        "stationKey": "solo_05",
+        "room": "solo_05",
+        "zone": "Соло 05",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Соло 05 — solo_05: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          10.24,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          10.392,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            10.239999999999998
+          ],
+          "nearbyShelf": {
+            "elementGuid": "DDD8A0C1-939F-4E74-A591-9615C77AED8A",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              10.415,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "76F785EA-08D7-428F-A72C-31F59A284CD7",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            10.79,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "2A0F9B4F-37B1-4261-B2C9-63FD1A5F7DDE",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            10.50415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "F0DE3864-1E08-428E-983F-34A5A5136AFB",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            10.32,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 10.088,
+          "yMax": 10.392,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "FF54E5C0-606A-4B22-AA0B-8FC1F75C03B4"
+      },
+      {
+        "code": "PC06",
+        "stationKey": "duo_01_1",
+        "room": "duo_01",
+        "zone": "Дуо 01",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 01 — duo_01_1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          0.48999999996882426,
+          14.409999999999998,
+          1.25
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ],
+        "origin": [
+          0.49,
+          14.258,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 1.570796327,
+        "support": {
+          "type": "wall",
+          "elementGuid": "6A21765F-D08D-4173-887B-36DC20D3D83E",
+          "supportFace": [
+            0.43,
+            14.410000000000002
+          ],
+          "nearbyShelf": {
+            "elementGuid": "CEF71568-2D0C-483F-B25C-5213DF6A62B6",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              0.93,
+              14.235,
+              1.45
+            ],
+            "angle": 1.570796327
+          }
+        },
+        "desk": {
+          "elementGuid": "A0DDBE95-4365-468A-821C-A637DBFCD25C",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            1.28,
+            13.86,
+            0
+          ],
+          "angle": 1.570796327
+        },
+        "monitor": {
+          "elementGuid": "409CE2F1-C8D5-4D65-A8BC-FE22A85DDB07",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            0.66,
+            14.14585,
+            0.75
+          ],
+          "angle": 1.570796327
+        },
+        "tower": {
+          "elementGuid": "68FE5D26-F82C-40FF-B436-15DE952FA57B",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            0.89,
+            14.33,
+            1.7
+          ],
+          "angle": 1.570796327
+        },
+        "physicalBounds": {
+          "xMin": 0.43,
+          "xMax": 0.47,
+          "yMin": 14.258,
+          "yMax": 14.562,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "C92E2D6A-8813-4C05-8FDC-2336DD62E46E"
+      },
+      {
+        "code": "PC07",
+        "stationKey": "duo_01_2",
+        "room": "duo_01",
+        "zone": "Дуо 01",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 01 — duo_01_2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          0.48999999996882426,
+          15.51,
+          1.25
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ],
+        "origin": [
+          0.49,
+          15.358,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 1.570796327,
+        "support": {
+          "type": "wall",
+          "elementGuid": "6A21765F-D08D-4173-887B-36DC20D3D83E",
+          "supportFace": [
+            0.43,
+            15.510000000000002
+          ],
+          "nearbyShelf": {
+            "elementGuid": "0641BB46-3BD3-4CC9-BD37-FF01AA7659FA",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              0.93,
+              15.335,
+              1.45
+            ],
+            "angle": 1.570796327
+          }
+        },
+        "desk": {
+          "elementGuid": "51FF46AC-5FFF-44C5-AA29-315B24F992D5",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            1.28,
+            14.96,
+            0
+          ],
+          "angle": 1.570796327
+        },
+        "monitor": {
+          "elementGuid": "A136184D-AFC4-442E-A65A-982F9AE02DE5",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            0.66,
+            15.24585,
+            0.75
+          ],
+          "angle": 1.570796327
+        },
+        "tower": {
+          "elementGuid": "F86F0274-4332-4F77-A3FB-38D58A3C7CD4",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            0.89,
+            15.43,
+            1.7
+          ],
+          "angle": 1.570796327
+        },
+        "physicalBounds": {
+          "xMin": 0.43,
+          "xMax": 0.47,
+          "yMin": 15.358,
+          "yMax": 15.662,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "D15459A1-F1EA-475B-A33F-93643211E49F"
+      },
+      {
+        "code": "PC08",
+        "stationKey": "duo_02_1",
+        "room": "duo_02",
+        "zone": "Дуо 02",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 02 — duo_02_1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          2.5549999999688247,
+          14.409999999999998,
+          1.25
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ],
+        "origin": [
+          2.555,
+          14.258,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 1.570796327,
+        "support": {
+          "type": "wall",
+          "elementGuid": "85C0BDCF-57F0-4457-8198-1AA039123CB9",
+          "supportFace": [
+            2.515,
+            14.410000000000002
+          ],
+          "nearbyShelf": {
+            "elementGuid": "DAA260FE-A518-4A5E-B507-C5F3F9A979ED",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              3.015,
+              14.235,
+              1.45
+            ],
+            "angle": 1.570796327
+          }
+        },
+        "desk": {
+          "elementGuid": "DF01725B-CD76-41C5-8A3A-21D72C44724F",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            3.365,
+            13.86,
+            0
+          ],
+          "angle": 1.570796327
+        },
+        "monitor": {
+          "elementGuid": "6A471565-39C9-4699-9B51-E74FD71A25C7",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            2.745,
+            14.14585,
+            0.75
+          ],
+          "angle": 1.570796327
+        },
+        "tower": {
+          "elementGuid": "97FDB3E5-412C-43AD-8A1E-07F781119827",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            2.975,
+            14.33,
+            1.7
+          ],
+          "angle": 1.570796327
+        },
+        "physicalBounds": {
+          "xMin": 2.515,
+          "xMax": 2.555,
+          "yMin": 14.258,
+          "yMax": 14.562,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "05414A8E-A176-4722-B689-CB4F1EDE3B7C"
+      },
+      {
+        "code": "PC09",
+        "stationKey": "duo_02_2",
+        "room": "duo_02",
+        "zone": "Дуо 02",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 02 — duo_02_2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          2.5549999999688247,
+          15.51,
+          1.25
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ],
+        "origin": [
+          2.555,
+          15.358,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 1.570796327,
+        "support": {
+          "type": "wall",
+          "elementGuid": "85C0BDCF-57F0-4457-8198-1AA039123CB9",
+          "supportFace": [
+            2.515,
+            15.510000000000002
+          ],
+          "nearbyShelf": {
+            "elementGuid": "6025D678-9E2A-4700-B0B1-B9E753231B73",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              3.015,
+              15.335,
+              1.45
+            ],
+            "angle": 1.570796327
+          }
+        },
+        "desk": {
+          "elementGuid": "D910463B-D73F-4B06-B4DE-660D1F669187",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            3.365,
+            14.96,
+            0
+          ],
+          "angle": 1.570796327
+        },
+        "monitor": {
+          "elementGuid": "C7CB779A-5229-4AB1-93B5-D3EE1B20E6C1",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            2.745,
+            15.24585,
+            0.75
+          ],
+          "angle": 1.570796327
+        },
+        "tower": {
+          "elementGuid": "14573396-B9BB-4999-9631-C800F7A848FB",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            2.975,
+            15.43,
+            1.7
+          ],
+          "angle": 1.570796327
+        },
+        "physicalBounds": {
+          "xMin": 2.515,
+          "xMax": 2.555,
+          "yMin": 15.358,
+          "yMax": 15.662,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "A99536E6-4868-4A27-B8AC-5C029F76025D"
+      },
+      {
+        "code": "PC10",
+        "stationKey": "duo_03_1",
+        "room": "duo_03",
+        "zone": "Дуо 03",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 03 — duo_03_1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          11.74,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          11.892,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            11.739999999999998
+          ],
+          "nearbyShelf": {
+            "elementGuid": "279C31B9-6D60-4D1A-B099-3CBD3C0EBD49",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              11.915,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "17965D26-477A-43C9-A5E1-0D41BF20C323",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            12.29,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "7A248ECC-7287-4763-9FA3-0ADEDC9D1302",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            12.00415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "D37937EF-1C36-4BD9-8167-D1CBC14758C5",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            11.82,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 11.588,
+          "yMax": 11.892,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "DB222044-4218-44F1-8ABB-0F314432CF2B"
+      },
+      {
+        "code": "PC11",
+        "stationKey": "duo_03_2",
+        "room": "duo_03",
+        "zone": "Дуо 03",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Дуо 03 — duo_03_2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          10.159999999941528,
+          12.840000000000002,
+          1.25
+        ],
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "origin": [
+          10.16,
+          12.992,
+          1.207
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 4.71238898,
+        "support": {
+          "type": "wall",
+          "elementGuid": "EF993511-3E36-4756-8B55-F463B6D9E1F7",
+          "supportFace": [
+            10.2,
+            12.84
+          ],
+          "nearbyShelf": {
+            "elementGuid": "CF25EDC1-0840-4B24-954E-3CA9840F2325",
+            "library": "CYBERX PC Wall Shelf 26",
+            "origin": [
+              9.7,
+              13.015,
+              1.45
+            ],
+            "angle": 4.71238898
+          }
+        },
+        "desk": {
+          "elementGuid": "83081D3C-350D-472A-9805-C24FC7E61CC9",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.35,
+            13.39,
+            0
+          ],
+          "angle": 4.71238898
+        },
+        "monitor": {
+          "elementGuid": "F068C662-4E63-4514-982B-C3857C439CC1",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.97,
+            13.10415,
+            0.75
+          ],
+          "angle": 4.71238898
+        },
+        "tower": {
+          "elementGuid": "1BAB23B3-41C8-449C-9B57-4DC3DEA328D4",
+          "library": "Системный Блок PC 26",
+          "origin": [
+            9.74,
+            12.92,
+            1.7
+          ],
+          "angle": 4.71238898
+        },
+        "physicalBounds": {
+          "xMin": 10.16,
+          "xMax": 10.2,
+          "yMin": 12.688,
+          "yMax": 12.992,
+          "zMin": 1.207,
+          "zMax": 1.2930000000000001
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "469F235B-0139-4E06-B7CD-4887515BFA72"
+      },
+      {
+        "code": "PC12",
+        "stationKey": "boot_1",
+        "room": "bootcamp",
+        "zone": "Буткемп",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Буткемп — boot_1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          5.2,
+          15.44,
+          1.66
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          5.048,
+          15.44,
+          1.617
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "library": "CYBERX Bootcamp PC Rack 5 26",
+          "origin": [
+            4.61,
+            15.48,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_front_rail",
+          "supportFaceY": 15.48,
+          "railZ": [
+            1.64,
+            1.68
+          ],
+          "mountingNote": "Attach block to continuous upper tube; bracket/fasteners to be detailed."
+        },
+        "desk": {
+          "elementGuid": "E5330A1F-FAB5-46EE-9153-CE86341BC89E",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            4.65,
+            15.1,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "90183346-8AE1-4716-9E3A-65B90131CF8F",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            4.93585,
+            15.72,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "bay": 1,
+          "baseZ": 1.7
+        },
+        "physicalBounds": {
+          "xMin": 5.048,
+          "xMax": 5.352,
+          "yMin": 15.44,
+          "yMax": 15.479999999999999,
+          "zMin": 1.617,
+          "zMax": 1.703
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "EA310ACB-9044-44C8-BC70-C9D7992C16BD"
+      },
+      {
+        "code": "PC13",
+        "stationKey": "boot_2",
+        "room": "bootcamp",
+        "zone": "Буткемп",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Буткемп — boot_2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          6.3,
+          15.44,
+          1.66
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          6.148,
+          15.44,
+          1.617
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "library": "CYBERX Bootcamp PC Rack 5 26",
+          "origin": [
+            4.61,
+            15.48,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_front_rail",
+          "supportFaceY": 15.48,
+          "railZ": [
+            1.64,
+            1.68
+          ],
+          "mountingNote": "Attach block to continuous upper tube; bracket/fasteners to be detailed."
+        },
+        "desk": {
+          "elementGuid": "B1EA7394-07B1-4EF3-84C8-420F136D7B7E",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            5.75,
+            15.1,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "26878512-BCA5-4D85-BEF2-C40973A3165F",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            6.03585,
+            15.72,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "bay": 2,
+          "baseZ": 1.7
+        },
+        "physicalBounds": {
+          "xMin": 6.148,
+          "xMax": 6.452,
+          "yMin": 15.44,
+          "yMax": 15.479999999999999,
+          "zMin": 1.617,
+          "zMax": 1.703
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "8CBFC9A2-9C0E-4CB6-B790-47E27D6E73C3"
+      },
+      {
+        "code": "PC14",
+        "stationKey": "boot_3",
+        "room": "bootcamp",
+        "zone": "Буткемп",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Буткемп — boot_3: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          7.4,
+          15.44,
+          1.66
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          7.248,
+          15.44,
+          1.617
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "library": "CYBERX Bootcamp PC Rack 5 26",
+          "origin": [
+            4.61,
+            15.48,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_front_rail",
+          "supportFaceY": 15.48,
+          "railZ": [
+            1.64,
+            1.68
+          ],
+          "mountingNote": "Attach block to continuous upper tube; bracket/fasteners to be detailed."
+        },
+        "desk": {
+          "elementGuid": "3E408B0C-52CE-43B8-B071-3F17EF0050DC",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            6.85,
+            15.1,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "7E0DE8F2-D844-4F4D-A4A6-41BAD4D2E101",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            7.13585,
+            15.72,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "bay": 3,
+          "baseZ": 1.7
+        },
+        "physicalBounds": {
+          "xMin": 7.248,
+          "xMax": 7.5520000000000005,
+          "yMin": 15.44,
+          "yMax": 15.479999999999999,
+          "zMin": 1.617,
+          "zMax": 1.703
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "00A7275C-D7B4-4335-A303-BF194AA9E4E0"
+      },
+      {
+        "code": "PC15",
+        "stationKey": "boot_4",
+        "room": "bootcamp",
+        "zone": "Буткемп",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Буткемп — boot_4: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          8.5,
+          15.44,
+          1.66
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          8.348,
+          15.44,
+          1.617
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "library": "CYBERX Bootcamp PC Rack 5 26",
+          "origin": [
+            4.61,
+            15.48,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_front_rail",
+          "supportFaceY": 15.48,
+          "railZ": [
+            1.64,
+            1.68
+          ],
+          "mountingNote": "Attach block to continuous upper tube; bracket/fasteners to be detailed."
+        },
+        "desk": {
+          "elementGuid": "58539FBB-1ED9-40E6-9690-8394B66A51A4",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            7.95,
+            15.1,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "8158D48F-C0F9-4257-9C4A-DD6E50A67AAF",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            8.23585,
+            15.72,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "bay": 4,
+          "baseZ": 1.7
+        },
+        "physicalBounds": {
+          "xMin": 8.348,
+          "xMax": 8.652000000000001,
+          "yMin": 15.44,
+          "yMax": 15.479999999999999,
+          "zMin": 1.617,
+          "zMax": 1.703
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "E51913BD-1F6F-4FB0-990F-FC674F4F855C"
+      },
+      {
+        "code": "PC16",
+        "stationKey": "boot_5",
+        "room": "bootcamp",
+        "zone": "Буткемп",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Буткемп — boot_5: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          9.6,
+          15.44,
+          1.66
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          9.448,
+          15.44,
+          1.617
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "library": "CYBERX Bootcamp PC Rack 5 26",
+          "origin": [
+            4.61,
+            15.48,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_front_rail",
+          "supportFaceY": 15.48,
+          "railZ": [
+            1.64,
+            1.68
+          ],
+          "mountingNote": "Attach block to continuous upper tube; bracket/fasteners to be detailed."
+        },
+        "desk": {
+          "elementGuid": "F5DB63C2-F05B-4066-A979-1A90CA526BD6",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            9.05,
+            15.1,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "146785C5-4DB3-4A3E-B48F-E6695091B448",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            9.33585,
+            15.72,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "A307D5DF-EAF9-4E29-AB76-800675DED2C9",
+          "bay": 5,
+          "baseZ": 1.7
+        },
+        "physicalBounds": {
+          "xMin": 9.448,
+          "xMax": 9.752,
+          "yMin": 15.44,
+          "yMax": 15.479999999999999,
+          "zMin": 1.617,
+          "zMax": 1.703
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "A2F799C9-A1DB-475B-B97F-06792035E854"
+      },
+      {
+        "code": "PC17",
+        "stationKey": "hall_row_s1",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_s1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          1.65,
+          10.43,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          1.498,
+          10.43,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 10.47,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "C318D35D-30C2-4ABA-949F-20A8944ADBF7",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            1.1,
+            9.93,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "7D0B7932-E757-4445-AC14-869D195C8219",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            1.38585,
+            10.55,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 1,
+          "row": "south",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 1.498,
+          "xMax": 1.802,
+          "yMin": 10.43,
+          "yMax": 10.469999999999999,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "C9616584-8713-471D-9C4D-5ED4D98D2FC8"
+      },
+      {
+        "code": "PC18",
+        "stationKey": "hall_row_n1",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_n1: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          1.6500000000000001,
+          11.189999999937648,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin": [
+          1.802,
+          11.19,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 3.141592654,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 11.15,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "6CE5B2C8-1C02-4960-9317-79D7726C8AE4",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            2.2,
+            11.69,
+            0
+          ],
+          "angle": 3.141592654
+        },
+        "monitor": {
+          "elementGuid": "5269D674-5C00-457A-BC5A-4DB59B30CCFA",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            1.91415,
+            11.07,
+            0.75
+          ],
+          "angle": 3.141592654
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 1,
+          "row": "north",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 1.498,
+          "xMax": 1.802,
+          "yMin": 11.15,
+          "yMax": 11.19,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "0EB9EFDF-86E3-41E5-8EBF-36234995A21C"
+      },
+      {
+        "code": "PC19",
+        "stationKey": "hall_row_s2",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_s2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          2.75,
+          10.43,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          2.598,
+          10.43,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 10.47,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "A9CA9E2D-47FD-4D9A-8341-7297A63532A3",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            2.2,
+            9.93,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "5ED9A437-2DE1-461D-A21F-0F9D3C52AD70",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            2.48585,
+            10.55,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 2,
+          "row": "south",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 2.598,
+          "xMax": 2.9019999999999997,
+          "yMin": 10.43,
+          "yMax": 10.469999999999999,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "0AD7D0B7-DDA9-4626-90AB-6992D4BA74E4"
+      },
+      {
+        "code": "PC20",
+        "stationKey": "hall_row_n2",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_n2: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          2.75,
+          11.189999999937648,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin": [
+          2.902,
+          11.19,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 3.141592654,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 11.15,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "02584B44-D441-4DA6-BA26-5032E38A6435",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            3.3,
+            11.69,
+            0
+          ],
+          "angle": 3.141592654
+        },
+        "monitor": {
+          "elementGuid": "F3A3B5FF-6952-49BA-A8F2-EA45D9BDA4B1",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            3.01415,
+            11.07,
+            0.75
+          ],
+          "angle": 3.141592654
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 2,
+          "row": "north",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 2.5980000000000003,
+          "xMax": 2.902,
+          "yMin": 11.15,
+          "yMax": 11.19,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "47B9730B-A60A-40D4-BF7A-C14D3FB1A42C"
+      },
+      {
+        "code": "PC21",
+        "stationKey": "hall_row_s3",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_s3: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          3.85,
+          10.43,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          3.698,
+          10.43,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 10.47,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "659B96F6-E892-411F-8166-C6680F0689B9",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            3.3,
+            9.93,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "30F5767E-B016-4A3D-913E-1FDE62756223",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            3.58585,
+            10.55,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 3,
+          "row": "south",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 3.698,
+          "xMax": 4.002,
+          "yMin": 10.43,
+          "yMax": 10.469999999999999,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "74D98E98-90D9-45ED-9AE5-B6572C83D138"
+      },
+      {
+        "code": "PC22",
+        "stationKey": "hall_row_n3",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_n3: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          3.8499999999999996,
+          11.189999999937648,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin": [
+          4.002,
+          11.19,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 3.141592654,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 11.15,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "E6CEFA29-EA80-448B-B861-B5D72B6D1882",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            4.4,
+            11.69,
+            0
+          ],
+          "angle": 3.141592654
+        },
+        "monitor": {
+          "elementGuid": "5765596F-A9EE-47D5-88AD-7389475F2A89",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            4.11415,
+            11.07,
+            0.75
+          ],
+          "angle": 3.141592654
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 3,
+          "row": "north",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 3.698,
+          "xMax": 4.002,
+          "yMin": 11.15,
+          "yMax": 11.19,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "7F0965F8-7374-4F46-9A70-E2BD57B77759"
+      },
+      {
+        "code": "PC23",
+        "stationKey": "hall_row_s4",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_s4: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          4.95,
+          10.43,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          4.798,
+          10.43,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 10.47,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "59A7A857-59FA-4986-84CD-D8DF24F92D32",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            4.4,
+            9.93,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "C1E00F7A-697D-4462-86C1-A5C29A8B4836",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            4.68585,
+            10.55,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 4,
+          "row": "south",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 4.798,
+          "xMax": 5.102,
+          "yMin": 10.43,
+          "yMax": 10.469999999999999,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "DC94D08D-A71B-4427-8B50-F0D168EACA68"
+      },
+      {
+        "code": "PC24",
+        "stationKey": "hall_row_n4",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_n4: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          4.95,
+          11.189999999937648,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin": [
+          5.102,
+          11.19,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 3.141592654,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 11.15,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "256FB63E-7B10-48F6-8B48-BFCB36AA8FAC",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            5.5,
+            11.69,
+            0
+          ],
+          "angle": 3.141592654
+        },
+        "monitor": {
+          "elementGuid": "F437619E-E70D-4FD0-B89E-E8F5A5CFA750",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            5.21415,
+            11.07,
+            0.75
+          ],
+          "angle": 3.141592654
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 4,
+          "row": "north",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 4.798,
+          "xMax": 5.102,
+          "yMin": 11.15,
+          "yMax": 11.19,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "8C653F4F-6821-46AD-B62E-A6DE7374D718"
+      },
+      {
+        "code": "PC25",
+        "stationKey": "hall_row_s5",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_s5: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          6.05,
+          10.43,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "origin": [
+          5.898,
+          10.43,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 0,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 10.47,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "78F27DD4-13DB-424F-BA11-75F75C67DEBD",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            5.5,
+            9.93,
+            0
+          ],
+          "angle": 0
+        },
+        "monitor": {
+          "elementGuid": "8DE64524-901D-4371-8BEF-7D7C203BC98D",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            5.78585,
+            10.55,
+            0.75
+          ],
+          "angle": 0
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 5,
+          "row": "south",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 5.898,
+          "xMax": 6.202,
+          "yMin": 10.43,
+          "yMax": 10.469999999999999,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "CECD902A-E6C2-4AD4-BDA8-08F7FDC717BB"
+      },
+      {
+        "code": "PC26",
+        "stationKey": "hall_row_n5",
+        "room": "common_hall",
+        "zone": "Общий зал",
+        "outletCount": 4,
+        "count": 4,
+        "purpose": "Общий зал — hall_row_n5: ПК, монитор, периферия, резерв",
+        "faceCenter": [
+          6.05,
+          11.189999999937648,
+          1.3179999999999998
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin": [
+          6.202,
+          11.19,
+          1.275
+        ],
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "angle": 3.141592654,
+        "support": {
+          "elementGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "library": "CYBERX PC Rack Double 10 26",
+          "origin": [
+            1.1,
+            10.47,
+            0
+          ],
+          "angle": 0,
+          "type": "metal_rack_upper_rail",
+          "supportFaceY": 11.15,
+          "railZ": [
+            1.298,
+            1.338
+          ],
+          "mountingNote": "Shelf thickness in source GDL is 0.012 m, not 0.020 m; fasten block to upper longitudinal tube."
+        },
+        "desk": {
+          "elementGuid": "72EE477F-E027-42B2-9CD0-600019B1B281",
+          "library": "CYBERX Gaming Desk 26",
+          "origin": [
+            6.6,
+            11.69,
+            0
+          ],
+          "angle": 3.141592654
+        },
+        "monitor": {
+          "elementGuid": "9205E7CB-E915-43A6-9442-220907312CFB",
+          "library": "Монитор (LCD) 26",
+          "origin": [
+            6.31415,
+            11.07,
+            0.75
+          ],
+          "angle": 3.141592654
+        },
+        "tower": {
+          "integratedInRackGuid": "36A1179A-05C1-4DB3-BBBB-E5330FAB4CC3",
+          "bay": 5,
+          "row": "north",
+          "baseZ": 1.35
+        },
+        "physicalBounds": {
+          "xMin": 5.898,
+          "xMax": 6.202,
+          "yMin": 11.15,
+          "yMax": 11.19,
+          "zMin": 1.275,
+          "zMax": 1.361
+        },
+        "cablingNote": "Route along wall/rack from this group to monitor and tower. Verify actual leads and protective devices separately; no circuit rating or guaranteed lead length specified.",
+        "loads": [
+          "Системный блок",
+          "Монитор",
+          "Периферия",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "CD01A4C8-EBFA-414B-8FEE-D4022B8A6123"
+      },
+      {
+        "code": "R01",
+        "zone": "Ресепшн",
+        "outletCount": 6,
+        "faceCenter": [
+          5.9,
+          5.454999999908524,
+          0.5800000000000001
+        ],
+        "normal": "north",
+        "origin": [
+          6.123,
+          5.455,
+          0.537
+        ],
+        "angle": 3.141592654,
+        "dimensions": [
+          0.446,
+          0.04,
+          0.086
+        ],
+        "purpose": "Рабочее место администратора",
+        "loads": [
+          "ПК",
+          "Монитор",
+          "Касса/терминал",
+          "Периферия",
+          "Резерв",
+          "Резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "BED49F19-4DFC-44FE-BBD2-A8479E5E8F38"
+      },
+      {
+        "code": "R02",
+        "zone": "Ресепшн",
+        "outletCount": 2,
+        "faceCenter": [
+          5.414999999983387,
+          7.44,
+          1.8399999999999999
+        ],
+        "normal": "east",
+        "origin": [
+          5.415,
+          7.359,
+          1.797
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.162,
+          0.04,
+          0.086
+        ],
+        "purpose": "Нижний информационный ТВ",
+        "loads": [
+          "ТВ 32",
+          "Медиаплеер / резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "779A9E37-49A7-45D9-A6FD-DB0D81A64940"
+      },
+      {
+        "code": "R03",
+        "zone": "Ресепшн",
+        "outletCount": 2,
+        "faceCenter": [
+          5.414999999983387,
+          7.74,
+          2.3200000000000003
+        ],
+        "normal": "east",
+        "origin": [
+          5.415,
+          7.659,
+          2.277
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.162,
+          0.04,
+          0.086
+        ],
+        "purpose": "Верхний информационный ТВ",
+        "loads": [
+          "ТВ 32",
+          "Медиаплеер / резерв"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "BF91E645-CB97-4956-A797-15E0D4B3AE6D"
+      },
+      {
+        "code": "R04",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          6.319999999999999,
+          8.3,
+          0.44999999999999996
+        ],
+        "normal": "south",
+        "origin": [
+          6.2745,
+          8.3,
+          0.407
+        ],
+        "angle": 0,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Холодильник 1",
+        "loads": [
+          "Холодильник с напитками"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "C4BB2A58-4BBC-4705-87C9-0EA81EE97E2C"
+      },
+      {
+        "code": "R05",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          6.609999999999999,
+          8.3,
+          0.44999999999999996
+        ],
+        "normal": "south",
+        "origin": [
+          6.5645,
+          8.3,
+          0.407
+        ],
+        "angle": 0,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Резерв: холодильник 2",
+        "loads": [
+          "Холодильник 2 — место и габарит уточнить"
+        ],
+        "reserve": true,
+        "replaces": null,
+        "source_guid": "3F7FDB7F-6EAA-4E67-9BD7-DBB18E68431B"
+      },
+      {
+        "code": "R06",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          4.084999999990668,
+          6.069999999999999,
+          0.92
+        ],
+        "normal": "east",
+        "origin": [
+          4.085,
+          6.0245,
+          0.877
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Чайник",
+        "loads": [
+          "Чайник"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "EAFA1E4B-5A8E-460C-AFBF-595BE2D9E2A3"
+      },
+      {
+        "code": "R07",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          4.084999999990668,
+          6.5,
+          0.92
+        ],
+        "normal": "east",
+        "origin": [
+          4.085,
+          6.4545,
+          0.877
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Кофемашина",
+        "loads": [
+          "Кофемашина"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "4A2D751E-0692-48C3-B9DB-6DD22F2962B5"
+      },
+      {
+        "code": "R08",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          4.084999999990668,
+          7.05,
+          0.92
+        ],
+        "normal": "east",
+        "origin": [
+          4.085,
+          7.0045,
+          0.877
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Микроволновая печь",
+        "loads": [
+          "Микроволновая печь"
+        ],
+        "reserve": false,
+        "replaces": null,
+        "source_guid": "5420B8B1-F79E-422D-B0E9-25CDA50EE006"
+      },
+      {
+        "code": "R09",
+        "zone": "Ресепшн",
+        "outletCount": 1,
+        "faceCenter": [
+          4.084999999990668,
+          7.79,
+          0.92
+        ],
+        "normal": "east",
+        "origin": [
+          4.085,
+          7.7445,
+          0.877
+        ],
+        "angle": 1.570796327,
+        "dimensions": [
+          0.091,
+          0.04,
+          0.086
+        ],
+        "purpose": "Резерв бытовых приборов",
+        "loads": [
+          "Резерв бытовых приборов"
+        ],
+        "reserve": true,
+        "replaces": null,
+        "source_guid": "29C618DB-7EFC-4867-84F2-D4F56183B967"
+      },
+      {
+        "code": "S01",
+        "zone": "Автосимуляторы",
+        "outletCount": 4,
+        "faceCenter": [
+          0.6799999999999999,
+          0.044999999937648555,
+          1.15
+        ],
+        "normal": "north",
+        "origin": [
+          0.832,
+          0.045,
+          1.107
+        ],
+        "angle": 3.141592654,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Автосимулятор 1 — за ТВ",
+        "loads": [
+          "ТВ 55",
+          "Системный блок",
+          "Рулевая база",
+          "Периферия / резерв"
+        ],
+        "reserve": false,
+        "replaces": "7BACE9E2-13CA-485C-95DC-C8A5AD6AB72F",
+        "source_guid": "4BD0FDB7-2B7C-4ED0-B045-5172B6EC45F9"
+      },
+      {
+        "code": "S02",
+        "zone": "Автосимуляторы",
+        "outletCount": 4,
+        "faceCenter": [
+          2.0,
+          0.044999999937648555,
+          1.15
+        ],
+        "normal": "north",
+        "origin": [
+          2.152,
+          0.045,
+          1.107
+        ],
+        "angle": 3.141592654,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Автосимулятор 2 — за ТВ",
+        "loads": [
+          "ТВ 55",
+          "Системный блок",
+          "Рулевая база",
+          "Периферия / резерв"
+        ],
+        "reserve": false,
+        "replaces": "5515B717-091A-4509-AE5A-DC7DDCC5EA6A",
+        "source_guid": "BDEBF6E6-096B-4D02-BC56-D375B1B8D878"
+      },
+      {
+        "code": "S03",
+        "zone": "Автосимуляторы",
+        "outletCount": 4,
+        "faceCenter": [
+          3.32,
+          0.044999999937648555,
+          1.15
+        ],
+        "normal": "north",
+        "origin": [
+          3.472,
+          0.045,
+          1.107
+        ],
+        "angle": 3.141592654,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Автосимулятор 3 — за ТВ",
+        "loads": [
+          "ТВ 55",
+          "Системный блок",
+          "Рулевая база",
+          "Периферия / резерв"
+        ],
+        "reserve": false,
+        "replaces": "4755C4F4-F6AA-4925-B773-AC7FCFD5F551",
+        "source_guid": "01749761-EAE1-40D4-A296-E69E960336E4"
+      },
+      {
+        "code": "S04",
+        "zone": "Автосимуляторы",
+        "outletCount": 4,
+        "faceCenter": [
+          4.64,
+          0.044999999937648555,
+          1.15
+        ],
+        "normal": "north",
+        "origin": [
+          4.792,
+          0.045,
+          1.107
+        ],
+        "angle": 3.141592654,
+        "dimensions": [
+          0.304,
+          0.04,
+          0.086
+        ],
+        "purpose": "Автосимулятор 4 — за ТВ",
+        "loads": [
+          "ТВ 55",
+          "Системный блок",
+          "Рулевая база",
+          "Периферия / резерв"
+        ],
+        "reserve": false,
+        "replaces": "541F8ADE-475C-4046-A6BF-EC43A1EE1052",
+        "source_guid": "7942ACE2-CDD3-4D3F-AA88-42EF2B8AAAA6"
+      }
+    ],
+    "notes": [
+      "Все отметки розеток указаны по центру лицевой панели от чистого пола.",
+      "Силовые группы, кабели, защита и мощности будут определены в ЭОМ по фактическим приборам.",
+      "Вторая точка холодильника является резервом; второй холодильник шириной 70см рядом с текущим не помещается.",
+      "Бытовые приборы подтверждены: чайник, кофемашина, микроволновка; точки подписаны, корпуса без выбранных габаритов не добавлены.",
+      "Старые горизонтальные блоки четырёх симуляторов заменяются настенными, число розеток сохраняется."
+    ],
+    "inlet": {
+      "code": "IN-01",
+      "guid": "FA6FAD14-EC31-40ED-9D71-0ED847C5A7A7",
+      "position_m": [
+        0.76,
+        12.42,
+        0
+      ],
+      "meaning": "User-designated prospective supply/input breaker location within technical shaft.",
+      "modelType": "2D GDL annotation; not a designed switchboard or a selected protective device.",
+      "landlordApproved": false,
+      "rating": null,
+      "sourceFeeder": null,
+      "unknowns": [
+        "Landlord technical conditions and permission for installation in shaft",
+        "Exact upstream source, ownership boundary and metering",
+        "Voltage/phases, earthing system, fault currents and upstream protective apparatus",
+        "Switchboard dimensions, working clearance and access",
+        "Cable route and fire stopping"
+      ],
+      "allocatedPower": {
+        "value_kW": 40,
+        "status": "confirmed_by_user_as_contract_value",
+        "source": "User message: выделенная мощность по договору40квт",
+        "sourceDate": "2026-10-02",
+        "formalContractReceived": false,
+        "note": "Use40 kW as the user-confirmed contractual limit for preliminary load balance; obtain the contract/technical conditions for formal issue. Voltage, phases, earthing, fault currents and upstream apparatus remain unknown. Do not infer the main breaker rating from40 kW alone."
+      }
+    },
+    "missingEngineering": [
+      "Formal contract/technical conditions supporting user-confirmed40 kW, and remaining source parameters",
+      "Equipment rated powers and operation modes",
+      "Load schedule with demand/coincidence basis",
+      "Distribution architecture and board/circuit schedule",
+      "Phase balance",
+      "Circuit identifiers linked to every point and every consumer",
+      "Cable types/cross sections/routes/lengths/install methods",
+      "Breaker/RCD/RCBO ratings and characteristics",
+      "Short-circuit and automatic disconnection calculations",
+      "Voltage-drop and thermal-derating calculations",
+      "Protective earthing and bonding, metal rack bonding assessment",
+      "Selectivity and upstream coordination",
+      "Lightning/surge protection interface when applicable",
+      "LED drivers/controllers and actual power feed points",
+      "Switch/control devices",
+      "Emergency lighting and fire-system interfaces",
+      "HVAC equipment power/control supplies",
+      "IT/POS/router/switch/UPS/CCTV/security and cleaning-service points after brief"
+    ],
+    "important": "144 outlets are144 connection positions, not144 independent circuits and not144 identical rated loads. No nominal currents/cable sizes may be inferred from the count alone."
+  },
+  "geometryAndAssumptions": {
+    "confirmedByUser": {
+      "overallInside_m": [
+        10.2,
+        16.28
+      ],
+      "existingHeight_m": 4.1,
+      "mainPartitionHeight_m": 3.2,
+      "landlordMaxPartitionHeight_m": 3.85,
+      "mainPartitionThickness_m": 0.1,
+      "leftGlazingClearPanel_m": 1.42,
+      "leftGlazingVerticalProfile_m": 0.08,
+      "plannedStreetDoor_m": 0.8,
+      "bottomDoor_m": 1.6,
+      "bottomRightWallToDoor_m": 0.34,
+      "projectionDepth_m": 0.37,
+      "projectionToColumnClear_m": 0.44,
+      "contractAllocatedPower_kW": 40
+    },
+    "adoptedNotExactlyMeasured": {
+      "projectionAlongWall_m": 0.4,
+      "basis": "User: draw it, no more than40cm; adopted at upper bound."
+    },
+    "derived": {
+      "lowerColumnBottomFromFloorPlanBottom_m": 2.27,
+      "mainLeftWallX_m": 0.45,
+      "projectionXFace_m": 0.82,
+      "modelFloorContourArea_m2": 160.6562
+    },
+    "areaCaution": "160.6562 m2 is current modeled floor/ceiling polygon area after shaft/projection cutouts. It is not a certified cadastral or final net usable room area and includes footprints of internal elements.",
+    "mainPartitionsGapToCeiling_m": 0.9,
+    "lowScreens_m": [
+      1.8,
+      2.2
+    ],
+    "coordinateFrame": {
+      "yDirection": "up the floor plan",
+      "xDirection": "right",
+      "zDirection": "up",
+      "origin": "Lower-left interior corner of overall shell; lower-left glazing interior plane x=0; bottom interior boundary y=0",
+      "note": "Coordinates describe physical faces; native wall reference lines require thickness and flip conversion."
+    },
+    "designBrief": {
+      "location": "Bалашиха, торговый центр, первый этаж",
+      "operatingHours": "24/7",
+      "minors": "Admission stated until22:00; operational/legal regime requires separate validation",
+      "food": "Packaged/prepared food and drinks; kettle/coffee machine/microwave at admin desk"
+    },
+    "lifeSafetyOccupancy": "26 PC seats,4 simulator seats and PS sofa seating are layout counts only. Calculate and approve occupancy/egress, including staff, waiting visitors and accessible use; do not treat seat count as approved capacity."
+  },
+  "hvacReadiness": {
+    "existingModelHVAC": "No engineering HVAC system established by these exports.",
+    "availableInputs": [
+      "Room geometry and partitions",
+      "Planned equipment locations",
+      "Nominal seat allocation",
+      "Operating24/7",
+      "Existing height4.10; main partitions3.20; gap0.90"
+    ],
+    "missingInputs": [
+      "Landlord supply/exhaust capacities, allowable connection points and schedules",
+      "Existing ventilation/heating/AC as-built documents",
+      "Outdoor-unit locations and facade constraints",
+      "Equipment actual heat release and simultaneous occupancy",
+      "Design indoor conditions and outdoor climate inputs",
+      "Thermal properties, solar/glazing loads, adjacent-space conditions",
+      "Heating supply parameters",
+      "Condensate disposal",
+      "Fire dampers/smoke control/fire alarm interface",
+      "Acoustic/vibration constraints and permitted plant noise",
+      "Required zone independence and service access"
+    ],
+    "coordination": [
+      "HVAC electrical loads and start currents must enter EOM schedule",
+      "Ducts and cable trays must coordinate in0.90 m gap and around luminaires",
+      "Partition acoustic design and above-partition air transfer require joint AR/OV review",
+      "Do not assume a split AC supplies outdoor air"
+    ]
+  },
+  "arReadiness": {
+    "status": "Current layout and BIM architectural base are developed; this is not confirmation that a complete signed AR set or regulatory compliance review already exists.",
+    "mustReview": [
+      "New street facade opening authorization and structural/glazing details",
+      "Fire strategy and egress/accessibility",
+      "Partition assemblies, acoustics, head details below existing ceiling and permitted height",
+      "Door schedule and fire/accessibility requirements",
+      "Finish fire-performance evidence",
+      "Penetrations, engineering shafts and servicing",
+      "Existing conditions/survey versus adopted dimensions",
+      "Sheets, title blocks, schedules, details and coordinated revision register"
+    ]
+  },
+  "engineeringNextSessionWorkflow": [
+    "Read this audit, active-layout.json and the handoff brief. Check files still exist and compare timestamps before touching model.",
+    "Connect read-only; verify exactly one active Archicad instance and expected projectPath. If the user edited model since snapshot, extract and reconcile those edits before using stored coordinates.",
+    "Save current user state and create a separately named engineering working copy with native Save As; retain clean baseline and libraries. Do not reopen an archival variant to bypass current user edits.",
+    "Take fresh GUID/details/GDL snapshot and preserve an immutable before-state plus a change journal. Keep one writer to the live model; other agents work offline.",
+    "Audit end-point placements, selected equipment and source data. Build load schedule with every unknown explicitly marked; never invent landlord approval, nominal powers or cable/protection ratings.",
+    "Develop EOM and OV calculations and coordinated design. Existing point labels stay stable; add separate board/circuit identifiers and traceability fields.",
+    "Build dedicated layer/view/layout combinations and standard sheets, associate schedules with GUIDs and use actual model geometry. PNG is a preview only.",
+    "Verify end-to-end point-to-consumer-to-circuit correspondence, native positions/heights, clashes, calculations and sheet references; independently review engineering decisions.",
+    "Save and verify native success plus file update. If connector save fails, use supported GUI workflow after reading computer-use skill, or ask user for Ctrl+S and verify resulting file timestamp. Never report saved from API-call completion alone.",
+    "Publish review PDF and editable source plus calculation/load/cable/board registers; identify unresolved engineering inputs so preliminary sheets are not represented as construction-approved documentation."
+  ],
+  "connector": {
+    "root": "C:\\Users\\avtos\\.codex\\integrations\\archicad26",
+    "python": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\.venv\\Scripts\\python.exe",
+    "bridge": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\room_bridge.py",
+    "server": "C:\\Users\\avtos\\.codex\\integrations\\archicad26\\.venv\\Scripts\\archicad-server.exe",
+    "usage": "from room_bridge import connect, OUT; async with connect() as ac: await ac.call(command, params, label=...)",
+    "readCommands": [
+      "elements_get_all_elements (paginated)",
+      "elements_get_details_of_elements",
+      "elements_get_gdl_parameters_of_elements",
+      "elements_get3_d_bounding_boxes"
+    ],
+    "schemas": "Bridge loads actual archicad_get_command_schema and writes schema/log files under club3-plan; inspect schemas before constructing any new mutation.",
+    "saveCommand": "project_save_project; unreliable in observed session. Last final save was user Ctrl+S with file-time confirmation.",
+    "scope": "Tapir-mediated native model connection, not a turnkey engineering calculation or standards-compliance solver.",
+    "guiSkill": "C:/Users/avtos/.codex/plugins/cache/openai-bundled/computer-use/26.924.22138/skills/computer-use/SKILL.md",
+    "guiState": "GUI operation was used after earlier tool difficulties; rediscover supported tools and read current skill before GUI use. A modal dialog or unfinished mouse input can block native edits."
+  },
+  "layers": {
+    "furniture": {
+      "attributeId": {
+        "guid": "F8AF5937-3F98-41A7-A957-80B5F540511C"
+      },
+      "index": 54,
+      "name": "Клуб3 - В01 - Расстановка мебели",
+      "modificationTime": 0
+    },
+    "equipmentAndLighting": {
+      "lighting": {
+        "attributeId": {
+          "guid": "67C5EC06-F31D-4199-98EF-7265004B63BB"
+        },
+        "index": 67,
+        "name": "Клуб3 - Свет - Неон 8x16 12В",
+        "isHidden": false,
+        "isLocked": false,
+        "isWireframe": false,
+        "intersectionGroupNr": 80
+      },
+      "ceiling": {
+        "attributeId": {
+          "guid": "8410F981-1856-44E9-929D-F1FFD06F3CBF"
+        },
+        "index": 68,
+        "name": "Клуб3 - Свет - Потолочные светильники",
+        "isHidden": false,
+        "isLocked": false,
+        "isWireframe": false,
+        "intersectionGroupNr": 81
+      },
+      "equipment": {
+        "attributeId": {
+          "guid": "9AF2EE81-F78B-4804-B5A9-4632D650BD2D"
+        },
+        "index": 69,
+        "name": "Клуб3 - Электроприборы и полки",
+        "isHidden": false,
+        "isLocked": false,
+        "isWireframe": false,
+        "intersectionGroupNr": 82
+      },
+      "electrical_points": {
+        "attributeId": {
+          "guid": "F1991190-1106-42E2-B8CE-A90E8D0039B9"
+        },
+        "index": 70,
+        "name": "Клуб3 - ЭОМ - Розеточные точки",
+        "isHidden": false,
+        "isLocked": false,
+        "isWireframe": false,
+        "intersectionGroupNr": 95
+      }
+    },
+    "sampleLayer46": {
+      "excludeFromEngineeringCounts": true,
+      "elements": [
+        {
+          "guid": "83626EC6-54BA-4936-9764-6B31351939DB",
+          "type": "Object",
+          "library": "Стул Офисный 01 26"
+        },
+        {
+          "guid": "AE2577D7-8468-4C9A-A877-0C2413B5E2D3",
+          "type": "Object",
+          "library": "Монитор (LCD) 26"
+        },
+        {
+          "guid": "6B4AF7C3-E853-496A-9D8E-8BA3FE7ECFBF",
+          "type": "Object",
+          "library": "Клавиатура PC 26"
+        },
+        {
+          "guid": "06A40386-5A9A-4488-9D9D-A23E7FD88D52",
+          "type": "Object",
+          "library": "Мышь (Apple) 26"
+        },
+        {
+          "guid": "C720ED12-5A56-406D-A7F3-CC8670A27D9F",
+          "type": "Object",
+          "library": "Системный Блок PC 26"
+        },
+        {
+          "guid": "EF7676B1-3BBA-460D-B6E9-8E4551443BD4",
+          "type": "Object",
+          "library": "Стул Барный 26"
+        },
+        {
+          "guid": "2B7649D4-F9F8-44B7-96CE-204236850DB0",
+          "type": "Object",
+          "library": "Стол Прямоугольный 01 26"
+        },
+        {
+          "guid": "8496298E-4360-45A9-BFDD-1C098DB3D20D",
+          "type": "Object",
+          "library": "Диван 26"
+        },
+        {
+          "guid": "E2DD0275-0F48-41B9-8079-FA96621E8A2A",
+          "type": "Object",
+          "library": "Пуф 01 26"
+        },
+        {
+          "guid": "E0BE49A5-EB37-4CE9-8138-2DCF400F282F",
+          "type": "Object",
+          "library": "CYBERX Gaming Desk 26"
+        },
+        {
+          "guid": "6CD4297F-3AE8-480D-9E46-D626C30E9DB4",
+          "type": "Object",
+          "library": "CYBERX PC Rack Double 26"
+        },
+        {
+          "guid": "A72F6463-7733-4C0A-8C92-9E7D7618D8F9",
+          "type": "Object",
+          "library": "CYBERX PC Rack Wall 26"
+        },
+        {
+          "guid": "F6A80E6F-439B-4B2D-916B-6E7272F6DE7C",
+          "type": "Object",
+          "library": "CYBERX Flat TV 26"
+        },
+        {
+          "guid": "102CD497-C18C-4FF9-ADC8-F670CF692EB9",
+          "type": "Object",
+          "library": "CYBERX Wall Coat Hanger 26"
+        },
+        {
+          "guid": "9A442025-AD4E-4F6A-BBF1-1EEB8A19120B",
+          "type": "Object",
+          "library": "CYBERX Wall Shelf 26"
+        },
+        {
+          "guid": "221B5ED6-064C-4F85-903A-0E68C777B697",
+          "type": "Object",
+          "library": "CYBERX Reception U 26"
+        },
+        {
+          "guid": "19EA3623-69D9-403E-9597-0CA276EFD988",
+          "type": "Object",
+          "library": "CYBERX Display Case 26"
+        },
+        {
+          "guid": "D7E85248-144C-4CED-9071-D8BC3C009572",
+          "type": "Object",
+          "library": "CYBERX Drinks Fridge 26"
+        }
+      ]
+    }
+  },
+  "offlineChecks": {
+    "all41PointGuidsInSnapshot": true,
+    "allEquipmentSpecGuidsInSnapshot": true,
+    "neon62": true,
+    "nativeLamp15": true,
+    "noLiveApiCalled": true
+  },
+  "futureUnknownsSummary": [
+    "Landlord technical specifications and connection conditions",
+    "Actual electrical equipment powers/models",
+    "HVAC sources/capacities and heat/airflow calculations",
+    "Electrical network ratings and protection/cable design",
+    "Light photometry and emergency lighting",
+    "Second fridge placement",
+    "Life-safety/accessibility/occupancy review",
+    "Formal complete AR/EOM/OV set and required authorizations"
+  ]
+}

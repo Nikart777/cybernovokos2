@@ -1,0 +1,12 @@
+altufevo: ps5-vip-night: 1400 → 1700 ₽
+altufevo: ps5-vip-5h: 1250 → 1200 ₽
+altufevo: ps5-vip-3h: 810 → 800 ₽
+altufevo: удалена позиция ps5-std-night
+altufevo: удалена позиция ps5-std-5h
+altufevo: удалена позиция ps5-std-3h
+altufevo: удалена позиция ps5-std-1h
+altufevo: solo-night: 1150 → 1200 ₽
+altufevo: solo-5h: 910 → 900 ₽
+altufevo: duo-night: 1150 → 1200 ₽
+altufevo: duo-5h: 910 → 900 ₽
+altufevo: standard-night: 700 → 750 ₽

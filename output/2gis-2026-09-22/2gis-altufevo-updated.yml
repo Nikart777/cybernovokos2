@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='utf-8'?>
+<yml_catalog date="2026-09-22 12:00">
+  <shop>
+    <name>CyberX Алтуфьево</name>
+    <company>CyberX Community</company>
+    <currencies>
+      <currency id="RUB" rate="1" />
+    </currencies>
+    <categories>
+      <category id="1">Подарочные сертификаты</category>
+      <category id="2">Абонементы</category>
+      <category id="3">Автосимуляторы</category>
+      <category id="4">PlayStation 5, TV VIP</category>
+      <category id="5">Игровые ПК — SOLO</category>
+      <category id="6">Игровые ПК — DUO</category>
+      <category id="7">Игровые ПК — VIP BOOTCAMP</category>
+      <category id="8">Игровые ПК — Общий зал</category>
+    </categories>
+    <offers>
+      <offer id="altcertificate" available="true">
+        <name>Подарочный сертификат в компьютерный клуб — 1000 ₽</name>
+        <price>1000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>1</categoryId>
+        <description>Подарочный сертификат номиналом 1000 ₽ на услуги компьютерного клуба. Игровые ПК, PlayStation 5 и автосимуляторы. Другие номиналы и условия использования уточняйте у администратора.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/23b1f2c7-5f79-4c52-84a2-20966ed1d605.jpg</picture>
+      </offer>
+      <offer id="altabonement100h" available="true">
+        <name>Абонемент на игровые ПК — 100 часов</name>
+        <price>7900</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>100 часов игрового времени. Базовая стоимость 7900 ₽; стоимость зависит от выбранной игровой зоны. Условия применения абонемента уточняйте у администратора.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/c124b4f9-460e-4063-8db7-fae520988e9d.jpg</picture>
+      </offer>
+      <offer id="altabonement50h" available="true">
+        <name>Абонемент на игровые ПК — 50 часов</name>
+        <price>5500</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>50 часов игрового времени. Базовая стоимость 5500 ₽; стоимость зависит от выбранной игровой зоны. Условия применения абонемента уточняйте у администратора.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/dc38f653-c2c4-4ae1-9323-7d0c064daf22.jpg</picture>
+      </offer>
+      <offer id="altabonementday" available="true">
+        <name>Абонемент на игровые ПК — 24 часа</name>
+        <price>3100</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>24 часа игрового времени. Базовая стоимость 3100 ₽; стоимость зависит от выбранной игровой зоны. Условия применения абонемента уточняйте у администратора.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/9fc7a8b2-c326-4a8f-a831-a16f52bf45a9.jpg</picture>
+      </offer>
+      <offer id="altsimracing2h" available="true">
+        <name>Автосимулятор — 2 часа, будни</name>
+        <price>980</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 2 часа: будни 980 ₽, выходные 1190 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/cyberracing</url>
+        <picture>https://cachizer2.2gis.com/market/68cd76f8-616e-472d-8dce-fd80ac56c124.jpg</picture>
+      </offer>
+      <offer id="altsimracing1h" available="true">
+        <name>Автосимулятор — 1 час, будни</name>
+        <price>570</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 1 час: будни 570 ₽, выходные 750 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/cyberracing</url>
+        <picture>https://cachizer1.2gis.com/market/27d10ed3-6bc0-482a-815f-6ddf94255d4f.jpg</picture>
+      </offer>
+      <offer id="altps5vipnight" available="true">
+        <name>PlayStation 5, TV VIP — ночь 13 часов, 22:00–11:00</name>
+        <price>1700</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. Ночь 22:00–11:00: будни 1700 ₽, выходные 1900 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/c05d6d33-ef8a-43e0-bafe-73899b2677ca.jpg</picture>
+      </offer>
+      <offer id="altps5vip5h" available="true">
+        <name>PlayStation 5, TV VIP — 5 часов, будни 04:00–16:00</name>
+        <price>1200</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 1200 ₽, выходные 1400 ₽. 16:00–04:00: будни 1400 ₽, выходные 1700 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/6e526715-c296-45dd-8144-24035e87bb7f.jpg</picture>
+      </offer>
+      <offer id="altps5vip3h" available="true">
+        <name>PlayStation 5, TV VIP — 3 часа, будни 04:00–16:00</name>
+        <price>800</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 800 ₽, выходные 1000 ₽. 16:00–04:00: будни 1200 ₽, выходные 1500 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/f825512a-7651-4b0b-8813-8a215480a0ba.jpg</picture>
+      </offer>
+      <offer id="altps5vip1h" available="true">
+        <name>PlayStation 5, TV VIP — 1 час, будни 04:00–16:00</name>
+        <price>350</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 350 ₽, выходные 400 ₽. 16:00–04:00: будни 500 ₽, выходные 630 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/26acd243-70d5-49dc-bc79-c7144bd11f62.jpg</picture>
+      </offer>
+      <offer id="altsolonight" available="true">
+        <name>Игровой ПК SOLO — ночь 13 часов, 22:00–11:00</name>
+        <price>1200</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 4070 Super, монитор 27″, 2K, 240 Гц. Всего 3 комнаты. Ночь 22:00–11:00: будни 1200 ₽, выходные 1450 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/bed172d4-d740-45dc-90b0-aeb29cb51e3e.jpg</picture>
+      </offer>
+      <offer id="altsolo5h" available="true">
+        <name>Игровой ПК SOLO — 5 часов, будни 04:00–16:00</name>
+        <price>900</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 4070 Super, монитор 27″, 2K, 240 Гц. Всего 3 комнаты. 04:00–16:00: будни 900 ₽, выходные 1080 ₽. 16:00–04:00: будни 1050 ₽, выходные 1290 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/3ca259df-c996-4a20-90f0-22966734bb95.jpg</picture>
+      </offer>
+      <offer id="altsolo3h" available="true">
+        <name>Игровой ПК SOLO — 3 часа, будни 04:00–16:00</name>
+        <price>600</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 4070 Super, монитор 27″, 2K, 240 Гц. Всего 3 комнаты. 04:00–16:00: будни 600 ₽, выходные 720 ₽. 16:00–04:00: будни 690 ₽, выходные 850 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/9e20a972-de2c-4678-8b81-d09256a81743.jpg</picture>
+      </offer>
+      <offer id="altsolo1h" available="true">
+        <name>Игровой ПК SOLO — 1 час, будни 04:00–16:00</name>
+        <price>220</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 4070 Super, монитор 27″, 2K, 240 Гц. Всего 3 комнаты. 04:00–16:00: будни 220 ₽, выходные 260 ₽. 16:00–04:00: будни 250 ₽, выходные 310 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/1e5a6c6f-1b4e-4131-aa16-22deb5223974.jpg</picture>
+      </offer>
+      <offer id="altduonight" available="true">
+        <name>Игровой ПК DUO — ночь 13 часов, 22:00–11:00</name>
+        <price>1200</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Комната на 2 ПК. RTX 4070 Super, монитор 24,5″, 360 Гц. Ночь 22:00–11:00: будни 1200 ₽, выходные 1450 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/3fed2f9a-fab8-4bed-b50d-5801913e731f.jpg</picture>
+      </offer>
+      <offer id="altduo5h" available="true">
+        <name>Игровой ПК DUO — 5 часов, будни 04:00–16:00</name>
+        <price>900</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Комната на 2 ПК. RTX 4070 Super, монитор 24,5″, 360 Гц. 04:00–16:00: будни 900 ₽, выходные 1080 ₽. 16:00–04:00: будни 1050 ₽, выходные 1290 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/ad07c28d-6a8b-49fe-9586-542bdcbaa20e.jpg</picture>
+      </offer>
+      <offer id="altduo3h" available="true">
+        <name>Игровой ПК DUO — 3 часа, будни 04:00–16:00</name>
+        <price>600</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Комната на 2 ПК. RTX 4070 Super, монитор 24,5″, 360 Гц. 04:00–16:00: будни 600 ₽, выходные 720 ₽. 16:00–04:00: будни 690 ₽, выходные 850 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/80baeef9-7e1b-45d6-846d-4ce9c18587a7.jpg</picture>
+      </offer>
+      <offer id="altduo1h" available="true">
+        <name>Игровой ПК DUO — 1 час, будни 04:00–16:00</name>
+        <price>220</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Комната на 2 ПК. RTX 4070 Super, монитор 24,5″, 360 Гц. 04:00–16:00: будни 220 ₽, выходные 260 ₽. 16:00–04:00: будни 250 ₽, выходные 310 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/4fcdd4c9-493a-4746-bb0b-43417be3e13c.jpg</picture>
+      </offer>
+      <offer id="altvipbootcampnight" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — ночь 13 часов, 22:00–11:00</name>
+        <price>850</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 5070, монитор 24,5″, 240 Гц. Ночь 22:00–11:00: будни 850 ₽, выходные 1050 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/521c7c31-bc81-48fd-a81a-a7ce3b598d99.jpg</picture>
+      </offer>
+      <offer id="altvipbootcamp5h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 5 часов, будни 04:00–16:00</name>
+        <price>660</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 5070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 660 ₽, выходные 790 ₽. 16:00–04:00: будни 750 ₽, выходные 990 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/7728946c-50c3-4551-8923-5a6965bef8de.jpg</picture>
+      </offer>
+      <offer id="altvipbootcamp3h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 3 часа, будни 04:00–16:00</name>
+        <price>440</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 5070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 440 ₽, выходные 520 ₽. 16:00–04:00: будни 500 ₽, выходные 660 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/058c374a-3072-4376-b083-9691ff4a5723.jpg</picture>
+      </offer>
+      <offer id="altvipbootcamp1h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 1 час, будни 04:00–16:00</name>
+        <price>160</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 5070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 160 ₽, выходные 190 ₽. 16:00–04:00: будни 180 ₽, выходные 230 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/36bda134-de5b-4dea-b311-cabbf6ef3b4f.jpg</picture>
+      </offer>
+      <offer id="altstandardnight" available="true">
+        <name>Игровой ПК Общий зал — ночь 13 часов, 22:00–11:00</name>
+        <price>750</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Игровой ПК RTX 5060, монитор 24″, 240 Гц. Ночь 22:00–11:00: будни 750 ₽, выходные 850 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/0bbebb10-37d7-4300-938b-27521c423896.jpg</picture>
+      </offer>
+      <offer id="altstandard5h" available="true">
+        <name>Игровой ПК Общий зал — 5 часов, будни 04:00–16:00</name>
+        <price>580</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Игровой ПК RTX 5060, монитор 24″, 240 Гц. 04:00–16:00: будни 580 ₽, выходные 670 ₽. 16:00–04:00: будни 730 ₽, выходные 820 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer3.2gis.com/market/4fcc2df2-8cca-42fe-adf9-20b8f84ec5ac.jpg</picture>
+      </offer>
+      <offer id="altstandard3h" available="true">
+        <name>Игровой ПК Общий зал — 3 часа, будни 04:00–16:00</name>
+        <price>380</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Игровой ПК RTX 5060, монитор 24″, 240 Гц. 04:00–16:00: будни 380 ₽, выходные 440 ₽. 16:00–04:00: будни 460 ₽, выходные 510 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer2.2gis.com/market/a30ffc09-0607-4908-979c-e5eb89d403b6.jpg</picture>
+      </offer>
+      <offer id="altstandard1h" available="true">
+        <name>Игровой ПК Общий зал — 1 час, будни 04:00–16:00</name>
+        <price>140</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Игровой ПК RTX 5060, монитор 24″, 240 Гц. 04:00–16:00: будни 140 ₽, выходные 160 ₽. 16:00–04:00: будни 170 ₽, выходные 190 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/#price</url>
+        <picture>https://cachizer1.2gis.com/market/211d096a-c360-492b-8963-3aceb16fcf8c.jpg</picture>
+      </offer>
+      <offer id="altsimracing3h" available="true">
+        <name>Автосимулятор — 3 часа, будни</name>
+        <price>1330</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 3 часа: будни 1330 ₽, выходные 1550 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx.moscow/cyberracing</url>
+        <picture>https://cachizer1.2gis.com/market/4806a6f3-c4b1-4e0c-ac0b-74f239352b7c.jpg</picture>
+      </offer>
+    </offers>
+  </shop>
+</yml_catalog>

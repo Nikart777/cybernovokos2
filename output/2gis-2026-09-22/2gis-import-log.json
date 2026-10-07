@@ -1,0 +1,250 @@
+[
+  {
+    "branch": "altufevo",
+    "id": "standard-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "standard-3h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "standard-night"
+  },
+  {
+    "branch": "altufevo",
+    "id": "standard-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "standard-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "standard-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "standard-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "standard-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "simracing-2h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "simracing-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "simracing-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "simracing-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "simracing-2h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "simracing-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "abonement-100h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "abonement-50h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "abonement-day"
+  },
+  {
+    "branch": "novokosino",
+    "id": "abonement-100h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "abonement-50h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "abonement-day"
+  },
+  {
+    "branch": "altufevo",
+    "id": "certificate"
+  },
+  {
+    "branch": "novokosino",
+    "id": "certificate"
+  },
+  {
+    "branch": "altufevo",
+    "id": "vipbootcamp-night"
+  },
+  {
+    "branch": "altufevo",
+    "id": "vipbootcamp-5h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "vipbootcamp-3h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "vipbootcamp-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "duo-night"
+  },
+  {
+    "branch": "altufevo",
+    "id": "duo-5h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "duo-3h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "duo-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "solo-night"
+  },
+  {
+    "branch": "altufevo",
+    "id": "solo-5h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "solo-3h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "solo-1h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "ps5-vip-night"
+  },
+  {
+    "branch": "altufevo",
+    "id": "ps5-vip-5h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "ps5-vip-3h"
+  },
+  {
+    "branch": "altufevo",
+    "id": "ps5-vip-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "duo-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "duo-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "duo-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "duo-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "solo-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "solo-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "solo-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "solo-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "vip-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "vip-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "vip-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "vip-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "bootcamp-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "bootcamp-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "bootcamp-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "bootcamp-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-vip-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-vip-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-vip-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-vip-1h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-std-night"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-std-5h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-std-3h"
+  },
+  {
+    "branch": "novokosino",
+    "id": "ps5-std-1h"
+  }
+]

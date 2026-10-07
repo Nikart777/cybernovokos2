@@ -1,0 +1,498 @@
+[
+  {
+    "uiId": "products-caf3b386-943a-4812-9bd1-0a6c1b155eba",
+    "branch": "altufevo",
+    "id": "standard-1h",
+    "name": "Игровой ПК Общий зал — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/211d096a-c360-492b-8963-3aceb16fcf8c.jpg"
+  },
+  {
+    "uiId": "products-1850c5c4-f854-42d8-98c6-1309e350fae0",
+    "branch": "altufevo",
+    "id": "certificate",
+    "name": "Подарочный сертификат в компьютерный клуб — 1000 ₽",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer3.2gis.com/market/23b1f2c7-5f79-4c52-84a2-20966ed1d605.jpg"
+  },
+  {
+    "uiId": "products-de62ba3f-b0c2-4591-a5df-cfd0e562c54a",
+    "branch": "altufevo",
+    "id": "abonement-100h",
+    "name": "Абонемент на игровые ПК — 100 часов",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/c124b4f9-460e-4063-8db7-fae520988e9d.jpg"
+  },
+  {
+    "uiId": "products-8ab92e45-eadc-4062-8a20-2be191c49b26",
+    "branch": "altufevo",
+    "id": "abonement-50h",
+    "name": "Абонемент на игровые ПК — 50 часов",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/dc38f653-c2c4-4ae1-9323-7d0c064daf22.jpg"
+  },
+  {
+    "uiId": "products-c8418499-c1c9-408a-a40a-a3b0330353e9",
+    "branch": "altufevo",
+    "id": "abonement-day",
+    "name": "Абонемент на игровые ПК — 24 часа",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/9fc7a8b2-c326-4a8f-a831-a16f52bf45a9.jpg"
+  },
+  {
+    "uiId": "products-910d2fa5-3ef3-4d12-b793-5057436fed52",
+    "branch": "altufevo",
+    "id": "simracing-2h",
+    "name": "Автосимулятор — 2 часа, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/68cd76f8-616e-472d-8dce-fd80ac56c124.jpg"
+  },
+  {
+    "uiId": "products-341bfdb9-a945-4c44-bbc0-2e86b5fe0859",
+    "branch": "altufevo",
+    "id": "simracing-1h",
+    "name": "Автосимулятор — 1 час, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/27d10ed3-6bc0-482a-815f-6ddf94255d4f.jpg"
+  },
+  {
+    "uiId": "products-579889a1-28aa-47e2-b0e0-b6c23601e3e7",
+    "branch": "altufevo",
+    "id": "ps5-vip-night",
+    "name": "PlayStation 5, TV VIP — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-services-2.jpg",
+    "image": "https://cachizer1.2gis.com/market/c05d6d33-ef8a-43e0-bafe-73899b2677ca.jpg"
+  },
+  {
+    "uiId": "products-b77efc73-7e47-480e-b193-03df749c62ab",
+    "branch": "altufevo",
+    "id": "ps5-vip-5h",
+    "name": "PlayStation 5, TV VIP — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-services-2.jpg",
+    "image": "https://cachizer2.2gis.com/market/6e526715-c296-45dd-8144-24035e87bb7f.jpg"
+  },
+  {
+    "uiId": "products-c785c9c2-97fd-4197-bd82-e4098660c6b4",
+    "branch": "altufevo",
+    "id": "ps5-vip-3h",
+    "name": "PlayStation 5, TV VIP — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-services-2.jpg",
+    "image": "https://cachizer3.2gis.com/market/f825512a-7651-4b0b-8813-8a215480a0ba.jpg"
+  },
+  {
+    "uiId": "products-81fa7af0-e9d4-44e7-8e34-c1753c055604",
+    "branch": "altufevo",
+    "id": "ps5-vip-1h",
+    "name": "PlayStation 5, TV VIP — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-services-2.jpg",
+    "image": "https://cachizer1.2gis.com/market/26acd243-70d5-49dc-bc79-c7144bd11f62.jpg"
+  },
+  {
+    "uiId": "products-c68f6bef-a3d4-41b0-b113-4f7a430a3607",
+    "branch": "altufevo",
+    "id": "solo-night",
+    "name": "Игровой ПК SOLO — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-4.jpg",
+    "image": "https://cachizer1.2gis.com/market/bed172d4-d740-45dc-90b0-aeb29cb51e3e.jpg"
+  },
+  {
+    "uiId": "products-eef91e67-c832-4905-ba76-de1bb9698c6b",
+    "branch": "altufevo",
+    "id": "solo-5h",
+    "name": "Игровой ПК SOLO — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-4.jpg",
+    "image": "https://cachizer1.2gis.com/market/3ca259df-c996-4a20-90f0-22966734bb95.jpg"
+  },
+  {
+    "uiId": "products-d8769e97-1033-47ce-9ab0-56b94912c839",
+    "branch": "altufevo",
+    "id": "solo-3h",
+    "name": "Игровой ПК SOLO — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-4.jpg",
+    "image": "https://cachizer2.2gis.com/market/9e20a972-de2c-4678-8b81-d09256a81743.jpg"
+  },
+  {
+    "uiId": "products-84db4089-446b-479c-aff6-ff9c809e3b1e",
+    "branch": "altufevo",
+    "id": "solo-1h",
+    "name": "Игровой ПК SOLO — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-4.jpg",
+    "image": "https://cachizer1.2gis.com/market/1e5a6c6f-1b4e-4131-aa16-22deb5223974.jpg"
+  },
+  {
+    "uiId": "products-1fb29b87-8e39-46b0-a77a-bc36360a4995",
+    "branch": "altufevo",
+    "id": "duo-night",
+    "name": "Игровой ПК DUO — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-3.jpg",
+    "image": "https://cachizer3.2gis.com/market/3fed2f9a-fab8-4bed-b50d-5801913e731f.jpg"
+  },
+  {
+    "uiId": "products-7b256bbd-2d0c-4f8e-a464-93131613d951",
+    "branch": "altufevo",
+    "id": "duo-5h",
+    "name": "Игровой ПК DUO — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-3.jpg",
+    "image": "https://cachizer2.2gis.com/market/ad07c28d-6a8b-49fe-9586-542bdcbaa20e.jpg"
+  },
+  {
+    "uiId": "products-edc1c368-5e2a-4e5d-bee4-9c26ec32339f",
+    "branch": "altufevo",
+    "id": "duo-3h",
+    "name": "Игровой ПК DUO — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-3.jpg",
+    "image": "https://cachizer2.2gis.com/market/80baeef9-7e1b-45d6-846d-4ce9c18587a7.jpg"
+  },
+  {
+    "uiId": "products-9208e620-f154-4680-8026-2ea4b6e61b80",
+    "branch": "altufevo",
+    "id": "duo-1h",
+    "name": "Игровой ПК DUO — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-3.jpg",
+    "image": "https://cachizer3.2gis.com/market/4fcdd4c9-493a-4746-bb0b-43417be3e13c.jpg"
+  },
+  {
+    "uiId": "products-35c3fdad-4ebc-4e47-b6d0-99d13231f0e2",
+    "branch": "altufevo",
+    "id": "vipbootcamp-night",
+    "name": "Игровой ПК VIP BOOTCAMP — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/521c7c31-bc81-48fd-a81a-a7ce3b598d99.jpg"
+  },
+  {
+    "uiId": "products-1c668e15-97bd-44d8-99c0-5bf67c075807",
+    "branch": "altufevo",
+    "id": "vipbootcamp-5h",
+    "name": "Игровой ПК VIP BOOTCAMP — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-1.jpg",
+    "image": "https://cachizer3.2gis.com/market/7728946c-50c3-4551-8923-5a6965bef8de.jpg"
+  },
+  {
+    "uiId": "products-07f2fb04-7693-4168-b8f5-b09e831a46e0",
+    "branch": "altufevo",
+    "id": "vipbootcamp-3h",
+    "name": "Игровой ПК VIP BOOTCAMP — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-1.jpg",
+    "image": "https://cachizer3.2gis.com/market/058c374a-3072-4376-b083-9691ff4a5723.jpg"
+  },
+  {
+    "uiId": "products-72250990-c22e-4f2b-88d2-4db7eb908b3a",
+    "branch": "altufevo",
+    "id": "vipbootcamp-1h",
+    "name": "Игровой ПК VIP BOOTCAMP — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/36bda134-de5b-4dea-b311-cabbf6ef3b4f.jpg"
+  },
+  {
+    "uiId": "products-8e0dedb1-d07a-4421-923d-1d10154e9f61",
+    "branch": "altufevo",
+    "id": "standard-night",
+    "name": "Игровой ПК Общий зал — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/0bbebb10-37d7-4300-938b-27521c423896.jpg"
+  },
+  {
+    "uiId": "products-de23fe38-c075-4cd5-a2ab-37e0a3068bc5",
+    "branch": "altufevo",
+    "id": "standard-5h",
+    "name": "Игровой ПК Общий зал — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer3.2gis.com/market/4fcc2df2-8cca-42fe-adf9-20b8f84ec5ac.jpg"
+  },
+  {
+    "uiId": "products-21c93acf-456f-4673-b259-b90a2d61e139",
+    "branch": "altufevo",
+    "id": "standard-3h",
+    "name": "Игровой ПК Общий зал — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-interior-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/a30ffc09-0607-4908-979c-e5eb89d403b6.jpg"
+  },
+  {
+    "uiId": "products-d9508b6b-89d9-4363-89d8-75f3c0afdd84",
+    "branch": "altufevo",
+    "id": "simracing-3h",
+    "name": "Автосимулятор — 3 часа, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/altufevo-devices-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/4806a6f3-c4b1-4e0c-ac0b-74f239352b7c.jpg"
+  },
+  {
+    "uiId": "products-a4be4cf1-21db-4728-934d-a533d1e51238",
+    "branch": "novokosino",
+    "id": "certificate",
+    "name": "Подарочный сертификат в компьютерный клуб — 1000 ₽",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/10d7f232-84ad-431b-b650-6d3cfc8b69b0.jpg"
+  },
+  {
+    "uiId": "products-022e742c-137c-44a8-ab0a-fcf55ce034ca",
+    "branch": "novokosino",
+    "id": "abonement-100h",
+    "name": "Абонемент на игровые ПК — 100 часов",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer3.2gis.com/market/2f12ec6f-9e46-4603-b602-1c4d4e930ce3.jpg"
+  },
+  {
+    "uiId": "products-3a12108a-b55f-4f73-9875-22fe73d6c0c0",
+    "branch": "novokosino",
+    "id": "abonement-50h",
+    "name": "Абонемент на игровые ПК — 50 часов",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer3.2gis.com/market/e7383a85-6b87-4cf1-a588-e0492c1fd65e.jpg"
+  },
+  {
+    "uiId": "products-85d7e8cf-cac3-4f64-9175-f16b2d863825",
+    "branch": "novokosino",
+    "id": "abonement-day",
+    "name": "Абонемент на игровые ПК — 24 часа",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/acb2ffa4-430d-4141-a09b-0439b9f56c43.jpg"
+  },
+  {
+    "uiId": "products-fdbc3261-9268-4299-bd6e-d81d5012929a",
+    "branch": "novokosino",
+    "id": "simracing-3h",
+    "name": "Автосимулятор — 3 часа, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-8.jpg",
+    "image": "https://cachizer1.2gis.com/market/299cbd76-5c62-4da4-8fd3-73797ded86c8.jpg"
+  },
+  {
+    "uiId": "products-9e1b2e3e-c0c0-4578-adfe-ee6d7ca58cc0",
+    "branch": "novokosino",
+    "id": "simracing-2h",
+    "name": "Автосимулятор — 2 часа, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-8.jpg",
+    "image": "https://cachizer2.2gis.com/market/0bda9d76-186c-46ef-8701-20dba5b60569.jpg"
+  },
+  {
+    "uiId": "products-5248d3a0-a649-4840-899b-e6b11f8dcc3b",
+    "branch": "novokosino",
+    "id": "simracing-1h",
+    "name": "Автосимулятор — 1 час, будни",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-8.jpg",
+    "image": "https://cachizer2.2gis.com/market/7b4b15fc-2f95-490f-b354-f580ebad0e57.jpg"
+  },
+  {
+    "uiId": "products-207339ac-f958-4187-b832-577ed0fb142a",
+    "branch": "novokosino",
+    "id": "ps5-vip-night",
+    "name": "PlayStation 5, TV VIP — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-6.jpg",
+    "image": "https://cachizer1.2gis.com/market/049fce4e-b872-405a-8f96-2d3ea697689d.jpg"
+  },
+  {
+    "uiId": "products-a5da2de9-6612-4661-a462-eaaf4668c954",
+    "branch": "novokosino",
+    "id": "ps5-vip-5h",
+    "name": "PlayStation 5, TV VIP — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-6.jpg",
+    "image": "https://cachizer1.2gis.com/market/e38eed32-86e9-4607-88f9-15de2085c284.jpg"
+  },
+  {
+    "uiId": "products-d7206827-588b-408e-8ec8-08d5f648fd60",
+    "branch": "novokosino",
+    "id": "ps5-vip-3h",
+    "name": "PlayStation 5, TV VIP — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-6.jpg",
+    "image": "https://cachizer3.2gis.com/market/cdca9bfb-29d5-4c53-93d8-2f987fac8eb4.jpg"
+  },
+  {
+    "uiId": "products-cf70a8c7-c7a9-4750-ae72-e694586d1dc6",
+    "branch": "novokosino",
+    "id": "ps5-vip-1h",
+    "name": "PlayStation 5, TV VIP — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-6.jpg",
+    "image": "https://cachizer2.2gis.com/market/3c9c52a5-490f-429f-bb08-dd589b296fcd.jpg"
+  },
+  {
+    "uiId": "products-0660484d-54e1-4a0c-8f6b-6251a441c73e",
+    "branch": "novokosino",
+    "id": "ps5-std-night",
+    "name": "PlayStation 5, TV-зона — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-2.jpg",
+    "image": "https://cachizer2.2gis.com/market/5b0fd6cb-4f2b-4a6e-8dbc-c8b3cae7ed36.jpg"
+  },
+  {
+    "uiId": "products-ddbec522-3d25-4fe3-b073-8156f8af6e15",
+    "branch": "novokosino",
+    "id": "ps5-std-5h",
+    "name": "PlayStation 5, TV-зона — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-2.jpg",
+    "image": "https://cachizer2.2gis.com/market/ed60aae7-4154-424e-b987-f6501c861b91.jpg"
+  },
+  {
+    "uiId": "products-2c00e0df-be64-44a0-adab-23426aaabf3a",
+    "branch": "novokosino",
+    "id": "ps5-std-3h",
+    "name": "PlayStation 5, TV-зона — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-2.jpg",
+    "image": "https://cachizer1.2gis.com/market/7bc9d2d0-a61f-41a8-b724-4b52e09efe45.jpg"
+  },
+  {
+    "uiId": "products-4a57aebe-9245-4f5c-a5b7-44749f6f2770",
+    "branch": "novokosino",
+    "id": "ps5-std-1h",
+    "name": "PlayStation 5, TV-зона — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-2.jpg",
+    "image": "https://cachizer2.2gis.com/market/936458c7-4c2b-4aae-8667-f11ffdc98dd0.jpg"
+  },
+  {
+    "uiId": "products-e46ce161-ce0f-4ec9-b65f-f286fa5046ae",
+    "branch": "novokosino",
+    "id": "solo-night",
+    "name": "Игровой ПК SOLO — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-3.jpg",
+    "image": "https://cachizer1.2gis.com/market/08cb6380-164a-41dd-8baf-467cdf05aa0c.jpg"
+  },
+  {
+    "uiId": "products-e5da8921-5acc-43cc-ab21-635f2452f08c",
+    "branch": "novokosino",
+    "id": "solo-5h",
+    "name": "Игровой ПК SOLO — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-3.jpg",
+    "image": "https://cachizer2.2gis.com/market/e785abe7-b33e-4fbe-8d4a-43f7b4e0a5ce.jpg"
+  },
+  {
+    "uiId": "products-1847bf34-4140-4220-b368-adf84da06f9c",
+    "branch": "novokosino",
+    "id": "solo-3h",
+    "name": "Игровой ПК SOLO — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-3.jpg",
+    "image": "https://cachizer1.2gis.com/market/7ebd56f9-6968-4190-8203-34a02a669e16.jpg"
+  },
+  {
+    "uiId": "products-85d07ca8-4b82-49a2-ad6b-421d9713095f",
+    "branch": "novokosino",
+    "id": "solo-1h",
+    "name": "Игровой ПК SOLO — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-3.jpg",
+    "image": "https://cachizer2.2gis.com/market/6d477ae4-6ac1-419b-aa68-0cbb98a10e24.jpg"
+  },
+  {
+    "uiId": "products-6260a6c0-bb69-43bd-8acd-552ad1e55f04",
+    "branch": "novokosino",
+    "id": "duo-night",
+    "name": "Игровой ПК DUO — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-4.jpg",
+    "image": "https://cachizer1.2gis.com/market/cd569680-ce46-4b84-9c0e-9fa78ca4f88b.jpg"
+  },
+  {
+    "uiId": "products-faf1137d-29dc-4c32-ac25-952ec57c2a5c",
+    "branch": "novokosino",
+    "id": "duo-5h",
+    "name": "Игровой ПК DUO — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-4.jpg",
+    "image": "https://cachizer2.2gis.com/market/e32ef79c-977b-4260-bec2-3afb9416bb34.jpg"
+  },
+  {
+    "uiId": "products-979351d4-f217-4196-9739-927497743bc2",
+    "branch": "novokosino",
+    "id": "duo-3h",
+    "name": "Игровой ПК DUO — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-4.jpg",
+    "image": "https://cachizer2.2gis.com/market/93834c1c-78d9-44c5-9fc0-888afb12ae79.jpg"
+  },
+  {
+    "uiId": "products-51e99318-f9e1-4a26-ab2d-05ac86e33be2",
+    "branch": "novokosino",
+    "id": "duo-1h",
+    "name": "Игровой ПК DUO — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-4.jpg",
+    "image": "https://cachizer2.2gis.com/market/58482b51-9d55-4b39-8af7-d455fd53e2aa.jpg"
+  },
+  {
+    "uiId": "products-e2530a8e-da65-4ea3-bd7b-ded6bfe1a022",
+    "branch": "novokosino",
+    "id": "vip-night",
+    "name": "Игровой ПК VIP BOOTCAMP — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/3cb8f8f8-da36-4529-a52d-b6cacec86ca2.jpg"
+  },
+  {
+    "uiId": "products-c3178dbc-4dd8-456b-8ae1-43493fe61bf1",
+    "branch": "novokosino",
+    "id": "vip-5h",
+    "name": "Игровой ПК VIP BOOTCAMP — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer3.2gis.com/market/1c51ee84-c0c8-47e5-9d18-7e5987f63e24.jpg"
+  },
+  {
+    "uiId": "products-a81e107e-4c07-4cd6-8ae1-208bbbe0f080",
+    "branch": "novokosino",
+    "id": "vip-3h",
+    "name": "Игровой ПК VIP BOOTCAMP — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer1.2gis.com/market/e389489a-a4ac-4c0c-b6e6-a21643a6c02c.jpg"
+  },
+  {
+    "uiId": "products-d939ce55-15d8-45df-a315-674febc970b4",
+    "branch": "novokosino",
+    "id": "vip-1h",
+    "name": "Игровой ПК VIP BOOTCAMP — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/9cbcc8a9-c827-4a2c-858d-a92e99796e33.jpg"
+  },
+  {
+    "uiId": "products-149ec2a4-d081-4770-8a31-eadaf1b5ece5",
+    "branch": "novokosino",
+    "id": "bootcamp-night",
+    "name": "Игровой ПК BOOTCAMP — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer3.2gis.com/market/226082b5-2ea2-4fa3-86b7-7094537cd79c.jpg"
+  },
+  {
+    "uiId": "products-6b16f47b-699f-4af5-aba6-f12671ba13c4",
+    "branch": "novokosino",
+    "id": "bootcamp-5h",
+    "name": "Игровой ПК BOOTCAMP — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/0a76c9c6-856a-48fc-81d3-52dda1ca7369.jpg"
+  },
+  {
+    "uiId": "products-1483ce1e-25bd-4c67-bdc2-9111c4cf09b6",
+    "branch": "novokosino",
+    "id": "bootcamp-3h",
+    "name": "Игровой ПК BOOTCAMP — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer2.2gis.com/market/e97ff15e-d1e7-4f20-96d5-5ea64aedf288.jpg"
+  },
+  {
+    "uiId": "products-12326353-0637-4770-9aae-2877f066bdcb",
+    "branch": "novokosino",
+    "id": "bootcamp-1h",
+    "name": "Игровой ПК BOOTCAMP — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-1.jpg",
+    "image": "https://cachizer3.2gis.com/market/2c1fc699-0300-459a-9f99-1dd9594fcc83.jpg"
+  },
+  {
+    "uiId": "products-c77b34f8-3087-440d-9e64-01c4152dd11a",
+    "branch": "novokosino",
+    "id": "standard-night",
+    "name": "Игровой ПК Общий зал — ночь 13 часов, 22:00–11:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/a226296b-277e-4723-b9e5-e0856ed0dcdb.jpg"
+  },
+  {
+    "uiId": "products-59ed98f7-6ddc-4210-8334-2b43c1326c05",
+    "branch": "novokosino",
+    "id": "standard-5h",
+    "name": "Игровой ПК Общий зал — 5 часов, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/a0c30ce4-e1a8-4aa9-ab77-6d82479f508e.jpg"
+  },
+  {
+    "uiId": "products-3457d5f3-8703-4e44-8378-089a7064f350",
+    "branch": "novokosino",
+    "id": "standard-3h",
+    "name": "Игровой ПК Общий зал — 3 часа, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer1.2gis.com/market/94317c46-8ecb-4a39-8eca-f3d38c1b0e46.jpg"
+  },
+  {
+    "uiId": "products-3cebd0ee-a078-410e-9b80-4194b9ab5bde",
+    "branch": "novokosino",
+    "id": "standard-1h",
+    "name": "Игровой ПК Общий зал — 1 час, будни 04:00–16:00",
+    "file": "E:/cyberxnovokos2/output/2gis-2026-09-22/service-photos/novokosino-interior-0.jpg",
+    "image": "https://cachizer2.2gis.com/market/b6bfd64f-b12c-4e7a-b4a6-bb4b7723336d.jpg"
+  }
+]

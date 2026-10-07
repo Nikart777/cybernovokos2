@@ -129,6 +129,33 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* Гео- и услуговые посадочные: дают им внутренние ссылки с каждой страницы */}
+                <div className="pt-8 border-t border-white/5 mb-8">
+                    <div className="text-white/30 font-chakra font-black text-[10px] uppercase tracking-widest mb-4">
+                        Откуда к нам приезжают
+                    </div>
+                    <div className="flex flex-wrap gap-x-6 gap-y-3">
+                        <Link href="/kompyuterny-klub/reutov" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            Реутов
+                        </Link>
+                        <Link href="/kompyuterny-klub/novogireevo-perovo" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            Новогиреево и Перово
+                        </Link>
+                        <Link href="/kompyuterny-klub/kosino" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            Косино и Салтыковская
+                        </Link>
+                        <Link href="/kompyuterny-klub/vyhino-zhulebino" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            Выхино и Жулебино
+                        </Link>
+                        <Link href="/playstation" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            PlayStation 5
+                        </Link>
+                        <Link href="/simracing" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
+                            Автосимулятор
+                        </Link>
+                    </div>
+                </div>
+
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 gap-8">
                     <div className="flex flex-col gap-2 order-2 md:order-1 items-center md:items-start text-center md:text-left">
                         <p className="text-white/20 font-chakra text-[10px] uppercase font-bold tracking-widest">

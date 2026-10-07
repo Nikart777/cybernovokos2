@@ -30,6 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.85,
         },
         {
+            url: `${baseUrl}/playstation`,
+            lastModified: new Date('2026-08-31'),
+            changeFrequency: 'monthly',
+            priority: 0.75,
+        },
+        // Гео-страницы под соседние районы: у каждой свой текст, ориентиры и FAQ
+        ...['reutov', 'kosino', 'vyhino-zhulebino', 'novogireevo-perovo'].map((slug) => ({
+            url: `${baseUrl}/kompyuterny-klub/${slug}`,
+            lastModified: new Date('2026-08-31'),
+            changeFrequency: 'monthly' as const,
+            priority: 0.7,
+        })),
+        {
             url: `${baseUrl}/simracing`,
             lastModified: new Date('2026-07-14'),
             changeFrequency: 'monthly',
