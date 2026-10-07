@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='utf-8'?>
+<yml_catalog date="2026-09-22 12:00">
+  <shop>
+    <name>CyberX Новокосино</name>
+    <company>CyberX Community</company>
+    <currencies>
+      <currency id="RUB" rate="1" />
+    </currencies>
+    <categories>
+      <category id="1">Подарочные сертификаты</category>
+      <category id="2">Абонементы</category>
+      <category id="3">Автосимуляторы</category>
+      <category id="4">PlayStation 5, TV VIP</category>
+      <category id="5">PlayStation 5, TV-зона</category>
+      <category id="6">Игровые ПК — SOLO</category>
+      <category id="7">Игровые ПК — DUO</category>
+      <category id="8">Игровые ПК — VIP BOOTCAMP</category>
+      <category id="9">Игровые ПК — BOOTCAMP</category>
+      <category id="10">Игровые ПК — Общий зал</category>
+    </categories>
+    <offers>
+      <offer id="novcertificate" available="true">
+        <name>Подарочный сертификат в компьютерный клуб — 1000 ₽</name>
+        <price>1000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>1</categoryId>
+        <description>Подарочный сертификат номиналом 1000 ₽ на услуги компьютерного клуба. Игровые ПК, PlayStation 5 и автосимуляторы. Другие номиналы и условия использования уточняйте у администратора.</description>
+        <url>https://cyberx-novokosino.ru/certificate</url>
+        <picture>https://cachizer1.2gis.com/market/10d7f232-84ad-431b-b650-6d3cfc8b69b0.jpg</picture>
+      </offer>
+      <offer id="novabonement100h" available="true">
+        <name>Абонемент на игровые ПК — 100 часов</name>
+        <price>8500</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>100 часов игрового времени, срок действия 45 дней. Общий зал: 8500 ₽; VIP/BOOTCAMP: 10500 ₽; SOLO: 12500 ₽. Указана цена для общего зала.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/2f12ec6f-9e46-4603-b602-1c4d4e930ce3.jpg</picture>
+      </offer>
+      <offer id="novabonement50h" available="true">
+        <name>Абонемент на игровые ПК — 50 часов</name>
+        <price>5100</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>50 часов игрового времени, срок действия 20 дней. Общий зал: 5100 ₽; VIP/BOOTCAMP: 6300 ₽; SOLO: 7500 ₽. Указана цена для общего зала.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/e7383a85-6b87-4cf1-a588-e0492c1fd65e.jpg</picture>
+      </offer>
+      <offer id="novabonementday" available="true">
+        <name>Абонемент на игровые ПК — 24 часа</name>
+        <price>2900</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <description>24 часа игрового времени, срок действия 7 дней. Общий зал: 2900 ₽; VIP/BOOTCAMP: 3500 ₽; SOLO: 4200 ₽. Указана цена для общего зала.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/acb2ffa4-430d-4141-a09b-0439b9f56c43.jpg</picture>
+      </offer>
+      <offer id="novsimracing3h" available="true">
+        <name>Автосимулятор — 3 часа, будни</name>
+        <price>1350</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 3 часа: будни 1350 ₽, выходные 1650 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/simracing</url>
+        <picture>https://cachizer1.2gis.com/market/299cbd76-5c62-4da4-8fd3-73797ded86c8.jpg</picture>
+      </offer>
+      <offer id="novsimracing2h" available="true">
+        <name>Автосимулятор — 2 часа, будни</name>
+        <price>980</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 2 часа: будни 980 ₽, выходные 1290 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/simracing</url>
+        <picture>https://cachizer2.2gis.com/market/0bda9d76-186c-46ef-8701-20dba5b60569.jpg</picture>
+      </offer>
+      <offer id="novsimracing1h" available="true">
+        <name>Автосимулятор — 1 час, будни</name>
+        <price>580</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>3</categoryId>
+        <description>Гоночный автосимулятор с рулём и педалями. Пакет 1 час: будни 580 ₽, выходные 850 ₽. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/simracing</url>
+        <picture>https://cachizer2.2gis.com/market/7b4b15fc-2f95-490f-b354-f580ebad0e57.jpg</picture>
+      </offer>
+      <offer id="novps5vipnight" available="true">
+        <name>PlayStation 5, TV VIP — ночь 13 часов, 22:00–11:00</name>
+        <price>2075</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. Ночь 22:00–11:00: будни 2075 ₽, выходные 2450 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/049fce4e-b872-405a-8f96-2d3ea697689d.jpg</picture>
+      </offer>
+      <offer id="novps5vip5h" available="true">
+        <name>PlayStation 5, TV VIP — 5 часов, будни 04:00–16:00</name>
+        <price>1350</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 1350 ₽, выходные 1640 ₽. 16:00–04:00: будни 1540 ₽, выходные 1880 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/e38eed32-86e9-4607-88f9-15de2085c284.jpg</picture>
+      </offer>
+      <offer id="novps5vip3h" available="true">
+        <name>PlayStation 5, TV VIP — 3 часа, будни 04:00–16:00</name>
+        <price>910</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 910 ₽, выходные 1100 ₽. 16:00–04:00: будни 1060 ₽, выходные 1300 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/cdca9bfb-29d5-4c53-93d8-2f987fac8eb4.jpg</picture>
+      </offer>
+      <offer id="novps5vip1h" available="true">
+        <name>PlayStation 5, TV VIP — 1 час, будни 04:00–16:00</name>
+        <price>390</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>4</categoryId>
+        <description>Отдельная комната с PS5 и экраном 70″, до 4 человек. 04:00–16:00: будни 390 ₽, выходные 460 ₽. 16:00–04:00: будни 500 ₽, выходные 520 ₽. Цена за комнату. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/3c9c52a5-490f-429f-bb08-dd589b296fcd.jpg</picture>
+      </offer>
+      <offer id="novps5stdnight" available="true">
+        <name>PlayStation 5, TV-зона — ночь 13 часов, 22:00–11:00</name>
+        <price>1800</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Зона PS5 с экраном 70″, до 2 человек. Ночь 22:00–11:00: будни 1800 ₽, выходные 2125 ₽. Цена за TV-зону. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/5b0fd6cb-4f2b-4a6e-8dbc-c8b3cae7ed36.jpg</picture>
+      </offer>
+      <offer id="novps5std5h" available="true">
+        <name>PlayStation 5, TV-зона — 5 часов, будни 04:00–16:00</name>
+        <price>1180</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Зона PS5 с экраном 70″, до 2 человек. 04:00–16:00: будни 1180 ₽, выходные 1420 ₽. 16:00–04:00: будни 1330 ₽, выходные 1620 ₽. Цена за TV-зону. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/ed60aae7-4154-424e-b987-f6501c861b91.jpg</picture>
+      </offer>
+      <offer id="novps5std3h" available="true">
+        <name>PlayStation 5, TV-зона — 3 часа, будни 04:00–16:00</name>
+        <price>780</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Зона PS5 с экраном 70″, до 2 человек. 04:00–16:00: будни 780 ₽, выходные 960 ₽. 16:00–04:00: будни 890 ₽, выходные 1060 ₽. Цена за TV-зону. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/7bc9d2d0-a61f-41a8-b724-4b52e09efe45.jpg</picture>
+      </offer>
+      <offer id="novps5std1h" available="true">
+        <name>PlayStation 5, TV-зона — 1 час, будни 04:00–16:00</name>
+        <price>340</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>5</categoryId>
+        <description>Зона PS5 с экраном 70″, до 2 человек. 04:00–16:00: будни 340 ₽, выходные 400 ₽. 16:00–04:00: будни 380 ₽, выходные 450 ₽. Цена за TV-зону. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников. Дополнительный гость +100 ₽ при возможности размещения.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/936458c7-4c2b-4aae-8667-f11ffdc98dd0.jpg</picture>
+      </offer>
+      <offer id="novsolonight" available="true">
+        <name>Игровой ПК SOLO — ночь 13 часов, 22:00–11:00</name>
+        <price>1300</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 5070. PRO: 24,5″, 400 Гц; PREMIUM: 27″, 240 Гц. По 2 комнаты каждого типа. Ночь 22:00–11:00: будни 1300 ₽, выходные 1450 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/08cb6380-164a-41dd-8baf-467cdf05aa0c.jpg</picture>
+      </offer>
+      <offer id="novsolo5h" available="true">
+        <name>Игровой ПК SOLO — 5 часов, будни 04:00–16:00</name>
+        <price>950</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 5070. PRO: 24,5″, 400 Гц; PREMIUM: 27″, 240 Гц. По 2 комнаты каждого типа. 04:00–16:00: будни 950 ₽, выходные 1050 ₽. 16:00–04:00: будни 1200 ₽, выходные 1300 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/e785abe7-b33e-4fbe-8d4a-43f7b4e0a5ce.jpg</picture>
+      </offer>
+      <offer id="novsolo3h" available="true">
+        <name>Игровой ПК SOLO — 3 часа, будни 04:00–16:00</name>
+        <price>630</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 5070. PRO: 24,5″, 400 Гц; PREMIUM: 27″, 240 Гц. По 2 комнаты каждого типа. 04:00–16:00: будни 630 ₽, выходные 690 ₽. 16:00–04:00: будни 800 ₽, выходные 850 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/7ebd56f9-6968-4190-8203-34a02a669e16.jpg</picture>
+      </offer>
+      <offer id="novsolo1h" available="true">
+        <name>Игровой ПК SOLO — 1 час, будни 04:00–16:00</name>
+        <price>230</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>6</categoryId>
+        <description>Отдельная комната на 1 игрока. RTX 5070. PRO: 24,5″, 400 Гц; PREMIUM: 27″, 240 Гц. По 2 комнаты каждого типа. 04:00–16:00: будни 230 ₽, выходные 280 ₽. 16:00–04:00: будни 290 ₽, выходные 300 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/6d477ae4-6ac1-419b-aa68-0cbb98a10e24.jpg</picture>
+      </offer>
+      <offer id="novduonight" available="true">
+        <name>Игровой ПК DUO — ночь 13 часов, 22:00–11:00</name>
+        <price>950</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Зона на 2 ПК. RTX 4070, монитор 24,5″, 240 Гц. Ночь 22:00–11:00: будни 950 ₽, выходные 1150 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/cd569680-ce46-4b84-9c0e-9fa78ca4f88b.jpg</picture>
+      </offer>
+      <offer id="novduo5h" available="true">
+        <name>Игровой ПК DUO — 5 часов, будни 04:00–16:00</name>
+        <price>780</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Зона на 2 ПК. RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 780 ₽, выходные 890 ₽. 16:00–04:00: будни 880 ₽, выходные 1100 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/e32ef79c-977b-4260-bec2-3afb9416bb34.jpg</picture>
+      </offer>
+      <offer id="novduo3h" available="true">
+        <name>Игровой ПК DUO — 3 часа, будни 04:00–16:00</name>
+        <price>520</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Зона на 2 ПК. RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 520 ₽, выходные 580 ₽. 16:00–04:00: будни 580 ₽, выходные 700 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/93834c1c-78d9-44c5-9fc0-888afb12ae79.jpg</picture>
+      </offer>
+      <offer id="novduo1h" available="true">
+        <name>Игровой ПК DUO — 1 час, будни 04:00–16:00</name>
+        <price>190</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>7</categoryId>
+        <description>Зона на 2 ПК. RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 190 ₽, выходные 210 ₽. 16:00–04:00: будни 210 ₽, выходные 250 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/58482b51-9d55-4b39-8af7-d455fd53e2aa.jpg</picture>
+      </offer>
+      <offer id="novvipnight" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — ночь 13 часов, 22:00–11:00</name>
+        <price>950</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4070, монитор 24,5″, 240 Гц. Ночь 22:00–11:00: будни 950 ₽, выходные 1150 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/3cb8f8f8-da36-4529-a52d-b6cacec86ca2.jpg</picture>
+      </offer>
+      <offer id="novvip5h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 5 часов, будни 04:00–16:00</name>
+        <price>780</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 780 ₽, выходные 890 ₽. 16:00–04:00: будни 880 ₽, выходные 1100 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/1c51ee84-c0c8-47e5-9d18-7e5987f63e24.jpg</picture>
+      </offer>
+      <offer id="novvip3h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 3 часа, будни 04:00–16:00</name>
+        <price>520</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 520 ₽, выходные 580 ₽. 16:00–04:00: будни 580 ₽, выходные 700 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/e389489a-a4ac-4c0c-b6e6-a21643a6c02c.jpg</picture>
+      </offer>
+      <offer id="novvip1h" available="true">
+        <name>Игровой ПК VIP BOOTCAMP — 1 час, будни 04:00–16:00</name>
+        <price>190</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>8</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4070, монитор 24,5″, 240 Гц. 04:00–16:00: будни 190 ₽, выходные 210 ₽. 16:00–04:00: будни 210 ₽, выходные 250 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/9cbcc8a9-c827-4a2c-858d-a92e99796e33.jpg</picture>
+      </offer>
+      <offer id="novbootcampnight" available="true">
+        <name>Игровой ПК BOOTCAMP — ночь 13 часов, 22:00–11:00</name>
+        <price>850</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>9</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4060, монитор 24,5″, 144 Гц. Ночь 22:00–11:00: будни 850 ₽, выходные 950 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/226082b5-2ea2-4fa3-86b7-7094537cd79c.jpg</picture>
+      </offer>
+      <offer id="novbootcamp5h" available="true">
+        <name>Игровой ПК BOOTCAMP — 5 часов, будни 04:00–16:00</name>
+        <price>700</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>9</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 700 ₽, выходные 800 ₽. 16:00–04:00: будни 790 ₽, выходные 900 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/0a76c9c6-856a-48fc-81d3-52dda1ca7369.jpg</picture>
+      </offer>
+      <offer id="novbootcamp3h" available="true">
+        <name>Игровой ПК BOOTCAMP — 3 часа, будни 04:00–16:00</name>
+        <price>460</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>9</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 460 ₽, выходные 520 ₽. 16:00–04:00: будни 520 ₽, выходные 580 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/e97ff15e-d1e7-4f20-96d5-5ea64aedf288.jpg</picture>
+      </offer>
+      <offer id="novbootcamp1h" available="true">
+        <name>Игровой ПК BOOTCAMP — 1 час, будни 04:00–16:00</name>
+        <price>170</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>9</categoryId>
+        <description>Буткемп на 5 мест. ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 170 ₽, выходные 190 ₽. 16:00–04:00: будни 190 ₽, выходные 210 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer3.2gis.com/market/2c1fc699-0300-459a-9f99-1dd9594fcc83.jpg</picture>
+      </offer>
+      <offer id="novstandardnight" available="true">
+        <name>Игровой ПК Общий зал — ночь 13 часов, 22:00–11:00</name>
+        <price>700</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>10</categoryId>
+        <description>Игровой ПК RTX 4060, монитор 24,5″, 144 Гц. Ночь 22:00–11:00: будни 700 ₽, выходные 850 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/a226296b-277e-4723-b9e5-e0856ed0dcdb.jpg</picture>
+      </offer>
+      <offer id="novstandard5h" available="true">
+        <name>Игровой ПК Общий зал — 5 часов, будни 04:00–16:00</name>
+        <price>630</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>10</categoryId>
+        <description>Игровой ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 630 ₽, выходные 730 ₽. 16:00–04:00: будни 730 ₽, выходные 830 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/a0c30ce4-e1a8-4aa9-ab77-6d82479f508e.jpg</picture>
+      </offer>
+      <offer id="novstandard3h" available="true">
+        <name>Игровой ПК Общий зал — 3 часа, будни 04:00–16:00</name>
+        <price>410</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>10</categoryId>
+        <description>Игровой ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 410 ₽, выходные 470 ₽. 16:00–04:00: будни 470 ₽, выходные 530 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer1.2gis.com/market/94317c46-8ecb-4a39-8eca-f3d38c1b0e46.jpg</picture>
+      </offer>
+      <offer id="novstandard1h" available="true">
+        <name>Игровой ПК Общий зал — 1 час, будни 04:00–16:00</name>
+        <price>150</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>10</categoryId>
+        <description>Игровой ПК RTX 4060, монитор 24,5″, 144 Гц. 04:00–16:00: будни 150 ₽, выходные 170 ₽. 16:00–04:00: будни 170 ₽, выходные 200 ₽. Цена за 1 место. Выходной тариф: с пт 16:00 до вс 22:00; в праздники — с 16:00 предпраздничного дня до 22:00 дня после праздников.</description>
+        <url>https://cyberx-novokosino.ru/prices</url>
+        <picture>https://cachizer2.2gis.com/market/b6bfd64f-b12c-4e7a-b4a6-bb4b7723336d.jpg</picture>
+      </offer>
+    </offers>
+  </shop>
+</yml_catalog>

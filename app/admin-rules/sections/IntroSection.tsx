@@ -487,9 +487,9 @@ export const IntroSection = ({
                         </div>
                         <div 
                             className="relative border border-slate-100 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center p-4 mb-4 mx-2 cursor-zoom-in group/map"
-                            onClick={() => setZoomedImage('/instruktsiya/altufevo_schema_new.png')}
+                            onClick={() => setZoomedImage('/instruktsiya/altufevo_schema_2026.png')}
                         >
-                            <Image src="/instruktsiya/altufevo_schema_new.png" alt="Схема зала Алтуфьево" width={800} height={600} className="w-full max-w-[500px] h-auto object-contain mix-blend-multiply group-hover/map:scale-[1.02] transition-transform duration-300" />
+                            <Image src="/instruktsiya/altufevo_schema_2026.png" alt="Схема зала Алтуфьево" width={800} height={600} className="w-full max-w-[500px] h-auto object-contain mix-blend-multiply group-hover/map:scale-[1.02] transition-transform duration-300" />
                             <div className="absolute top-3 right-3 p-2 bg-white/80 rounded-xl shadow-sm text-slate-500 opacity-0 group-hover/map:opacity-100 transition-opacity">
                                 <ZoomIn size={16} />
                             </div>
@@ -559,16 +559,7 @@ export const IntroSection = ({
                             <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-4 px-2">
                                 <div className="flex items-center gap-2 text-xs font-chakra font-black uppercase tracking-[0.2em] text-[#00439C] mb-1 w-full">
                                     <Gamepad2 size={14} />
-                                    Игровые зоны PS5
-                                </div>
-                                <div className="flex items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 flex-1 min-w-[250px]">
-                                    <div className="w-8 h-8 rounded-lg bg-[#00439C]/10 flex items-center justify-center text-[#00439C]">
-                                        <Monitor size={18} />
-                                    </div>
-                                    <div>
-                                        <div className="font-chakra font-bold text-sm text-slate-900">PS5 Общий зал</div>
-                                        <div className="font-chakra text-xs text-slate-500 mt-0.5">ТВ 65" 4K</div>
-                                    </div>
+                                    Игровая зона PS5
                                 </div>
                                 <div className="flex items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 flex-1 min-w-[250px]">
                                     <div className="w-8 h-8 rounded-lg bg-[#FF2E63]/10 flex items-center justify-center text-[#FF2E63]">
@@ -576,7 +567,7 @@ export const IntroSection = ({
                                     </div>
                                     <div>
                                         <div className="font-chakra font-bold text-sm text-slate-900">PS5 VIP комната</div>
-                                        <div className="font-chakra text-xs text-slate-500 mt-0.5">ТВ 75" 4K + Диван</div>
+                                        <div className="font-chakra text-xs text-slate-500 mt-0.5">ТВ 65" 4K + Диван</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Moon, Terminal, Download, ShieldAlert, Cpu, Gamepad2, HardDrive, AlertTriangle, Wallpaper, MonitorDown, Copy, Check } from 'lucide-react';
+import { Moon, Terminal, Download, ShieldAlert, Gamepad2, AlertTriangle, MonitorDown, Copy, Check } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
-import { PcMonitorWidget } from '../components/PcMonitorWidget';
 
 export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (src: string | null) => void; onNavigate?: (sectionId: string) => void }) {
     const installCommand = 'irm http://82.97.253.207:4200/setup/bootstrap.ps1 | iex';
@@ -91,7 +90,7 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div className="mb-12">
                 {/* ОБНОВЛЕНИЕ ИГР */}
                 <div className="rounded-3xl bg-slate-900 text-white overflow-hidden shadow-sm flex flex-col">
                     <div className="p-6 md:p-8 flex-1">
@@ -140,39 +139,6 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                         <a href="#" className="flex justify-center items-center gap-2 w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-xl font-chakra font-bold transition-colors">
                             Открыть таблицу аккаунтов
                         </a>
-                    </div>
-                </div>
-
-                {/* ОБНОВЛЕНИЕ ДРАЙВЕРОВ */}
-                <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm flex flex-col">
-                    <div className="p-6 md:p-8 flex-1">
-                        <div className="flex items-center gap-3 mb-6">
-                            <Cpu className="text-blue-500" size={28} />
-                            <h3 className="font-tactic font-black text-2xl uppercase italic text-slate-900">Драйвера (SDI)</h3>
-                        </div>
-
-                        <div className="space-y-4 font-chakra text-sm text-slate-600">
-                            <p className="leading-relaxed">
-                                Установка драйверов производится строго через утилиту <strong>Snappy Driver Installer (SDI)</strong>, версия Portable.
-                            </p>
-
-                            <ol className="list-decimal list-inside space-y-3 ml-1">
-                                <li>Скачать с <a href="https://sdi-tool.org/" target="_blank" className="text-blue-500 font-bold hover:underline">sdi-tool.org</a> в папку «Загрузки».</li>
-                                <li>Запустить файл <code>SDI_R2408</code> (версия SDI Lite).</li>
-                                <li>Выбрать сканирование — загрузить <span className="font-bold text-slate-800">индексы новых паков</span>.</li>
-                                <li className="text-rose-600 font-bold bg-rose-50 px-2 py-1 -ml-2 rounded">
-                                    ОБЯЗАТЕЛЬНО создать точку восстановления!
-                                </li>
-                                <li>Выделить нужные драйвера вручную и установить.</li>
-                                <li>Перезагрузить ПК и проверить корректность работы.</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <div className="bg-slate-50 p-4 border-t border-slate-100">
-                        <div className="flex gap-2 p-3 bg-blue-50 border border-blue-100 text-blue-800 rounded-xl font-chakra text-xs">
-                            <Download className="shrink-0" size={16} />
-                            <span>SDI работает без установки, скачивать заново на каждый ПК не нужно — можно использовать с флешки.</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -301,9 +267,6 @@ export function Section12({ setZoomedImage, onNavigate }: { setZoomedImage?: (sr
                     </div>
                 </div>
             </div>
-
-            {/* МОНИТОРИНГ ПК */}
-            <PcMonitorWidget onNavigate={onNavigate} />
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">

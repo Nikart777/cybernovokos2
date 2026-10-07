@@ -54,10 +54,10 @@ export function Section14() {
                 </div>
                 <div>
                     <h3 className="font-tactic font-black text-xl uppercase italic mb-2 text-slate-900">
-                        Программа управления клубом
+                        Технические вопросы и поддержка Langame
                     </h3>
                     <p className="font-chakra text-slate-700 text-sm leading-relaxed">
-                        Все технические вопросы, ошибки и баги, связанные <strong>исключительно с программой управления клубом Langame</strong>, необходимо задавать напрямую в <strong className="text-sky-600">чат техподдержки Langame в Telegram</strong>.
+                        Технические вопросы необходимо задавать в <strong className="text-sky-600">чат техподдержки Langame</strong> через <strong className="text-slate-900">Admin ПО</strong> либо через приложение <strong className="text-slate-900">Langame Business</strong>.
                     </p>
                 </div>
             </div>
