@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 
 const desktopNavLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
+    { name: 'Автосимуляторы', href: '/simracing' },
     { name: 'Цены', href: '/prices' },
     { name: 'Промокод', href: '/promo' },
     { name: 'Блог', href: '/blog' },
@@ -17,6 +18,7 @@ const desktopNavLinks = [
 
 const mobileNavLinks = [
     { name: 'Игровые зоны', href: '/#zones' },
+    { name: 'Автосимуляторы', href: '/simracing' },
     { name: 'Цены', href: '/prices' },
     { name: 'Промокод', href: '/promo' },
     { name: 'Сертификаты', href: '/certificate' },
@@ -49,6 +51,15 @@ export default function Header() {
         };
     }, [isOpen]);
 
+    useEffect(() => {
+        if (!isOpen) return;
+        const closeOnDesktop = () => {
+            if (window.matchMedia('(min-width: 1280px)').matches) setIsOpen(false);
+        };
+        window.addEventListener('resize', closeOnDesktop);
+        return () => window.removeEventListener('resize', closeOnDesktop);
+    }, [isOpen]);
+
     return (
         <>
             <header
@@ -70,13 +81,14 @@ export default function Header() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center gap-10">
-                        <ul className="flex items-center gap-8">
+                    <nav aria-label="Основная навигация" className="hidden xl:flex items-center gap-4 2xl:gap-6">
+                        <ul className="flex items-center gap-5 2xl:gap-6">
                             {desktopNavLinks.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="relative font-chakra font-black text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 group/link"
+                                        prefetch={link.href === '/simracing' ? false : undefined}
+                                        className="relative inline-flex min-h-11 items-center font-chakra font-black text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white focus-visible:text-white transition-colors duration-300 group/link"
                                     >
                                         {link.name}
                                         <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[#FF2E63] transition-[width] duration-300 group-hover/link:w-full" />
@@ -87,7 +99,7 @@ export default function Header() {
                         <div className="h-6 w-[2px] bg-white/10 mx-2 skew-x-[-12deg]" />
                         <button
                             onClick={openChat}
-                            className="hidden xl:flex items-center gap-2 font-chakra font-black text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#00F0FF] transition-colors mr-2 group/chat"
+                            className="hidden 2xl:flex items-center gap-2 font-chakra font-black text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-[#00F0FF] transition-colors mr-2 group/chat"
                         >
                             <MessageSquare size={14} className="group-hover/chat:scale-110 transition-transform" />
                             Чат с админом
@@ -124,9 +136,11 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden relative z-[110] p-2 bg-[#111] shadow-border text-white hover:shadow-border-hover hover:text-[#FF2E63] active:scale-[0.96] transition-[transform,color,box-shadow] duration-150 ease-out skew-x-[-6deg]"
+                        className="xl:hidden relative z-[110] min-h-11 min-w-11 p-2 bg-[#111] shadow-border text-white hover:shadow-border-hover hover:text-[#FF2E63] active:scale-[0.96] transition-[transform,color,box-shadow] duration-150 ease-out skew-x-[-6deg]"
                         onClick={() => setIsOpen(!isOpen)}
-                        aria-label="Toggle menu"
+                        aria-label={isOpen ? 'Закрыть меню' : 'Открыть меню'}
+                        aria-expanded={isOpen}
+                        aria-controls="site-mobile-menu"
                     >
                         <div className="skew-x-[6deg]">
                             <AnimatePresence initial={false} mode="wait">
@@ -165,7 +179,8 @@ export default function Header() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[99] bg-[#050505] lg:hidden"
+                        id="site-mobile-menu"
+                        className="fixed inset-0 z-[99] bg-[#050505] xl:hidden"
                     >
                         {/* Background Grid Pattern */}
                         <div 
@@ -177,13 +192,13 @@ export default function Header() {
                         />
 
                         {/* Menu Content */}
-                        <div className="h-full flex flex-col justify-center px-6 pt-20 pb-10 relative z-10">
+                        <div className="h-full overflow-y-auto flex flex-col px-6 pt-24 pb-10 relative z-10">
                             {/* Logo */}
                             <motion.div
                                 initial={{ opacity: 0, y: -30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4 }}
-                                className="mb-10 flex justify-center"
+                                className="mb-6 flex justify-center"
                             >
                                 <Image
                                     src="/logo new.png"
@@ -195,7 +210,7 @@ export default function Header() {
                             </motion.div>
 
                             {/* Navigation Links */}
-                            <nav className="flex-1 flex flex-col justify-center items-start gap-6 w-full max-w-sm mx-auto">
+                            <nav aria-label="Мобильная навигация" className="flex-1 flex flex-col justify-center items-start gap-3 sm:gap-5 w-full max-w-sm mx-auto">
                                 {mobileNavLinks.map((link, idx) => (
                                     <motion.div
                                         key={link.name}
@@ -206,8 +221,9 @@ export default function Header() {
                                     >
                                         <Link
                                             href={link.href}
+                                            prefetch={link.href === '/simracing' ? false : undefined}
                                             onClick={() => setIsOpen(false)}
-                                            className="block font-tactic font-black text-2xl sm:text-3xl text-white uppercase italic hover:text-[#FF2E63] transition-colors"
+                                            className="flex min-h-11 items-center font-tactic font-black text-[clamp(1rem,5.1vw,1.5rem)] text-white uppercase italic hover:text-[#FF2E63] transition-colors"
                                         >
                                             {link.name}
                                         </Link>
