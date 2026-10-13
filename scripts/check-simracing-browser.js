@@ -68,12 +68,8 @@ async (page) => {
   await page.getByRole('group', { name: 'Фильтр серверов по игре' }).getByRole('button', { name: /Assetto Corsa/ }).click();
   await page.getByRole('button', { name: 'Все режимы (17)', exact: true }).click();
   assert(await page.locator('#server-results article').count() === 17, 'Expected 17 Assetto rooms');
-  const search = page.getByRole('searchbox', { name: 'Найти трассу, режим или машину' });
-  await search.fill('Mustang');
-  assert(await page.locator('#server-results article').count() > 0, 'Search by car model failed');
-  await search.fill('несуществующая-машина-xyz');
-  assert(await page.getByText('Такой режим или машина не найдены').isVisible(), 'Missing empty state');
-  await page.getByRole('button', { name: 'Сбросить поиск' }).click();
+  assert(await page.locator('#games input[type="search"]').count() === 0, 'Removed catalogue search returned');
+  await page.getByRole('group', { name: 'Фильтр серверов по игре' }).getByRole('button', { name: /Все режимы/ }).click();
   await page.getByRole('button', { name: 'МКАД · Шашки с очками', exact: true }).first().click();
   const roomDialog = page.locator('dialog[open]');
   assert(await roomDialog.locator('article').count() === 14, 'MKAD car collection lost entries');
@@ -136,5 +132,5 @@ async (page) => {
   const broken = await page.locator('main img').evaluateAll(images => images.filter(i => i.complete && i.naturalWidth === 0).map(i => i.src));
   assert(broken.length === 0, `Broken images: ${broken.join(', ')}`);
   assert(failures.length === 0, `Browser errors: ${failures.join(', ')}`);
-  return { status: 'PASS', viewports: results, checks: ['menu', 'gallery', 'catalogue 26/17/9', 'car search', 'empty state', '14-car detail', 'dialog keyboard and focus', 'unchanged tariffs', 'booking and focus', 'FAQ', 'canonical', '8 offers', 'reduced motion', 'light/dark brand consistency', 'image loading', 'no browser exceptions'] };
+  return { status: 'PASS', viewports: results, checks: ['menu', 'gallery', 'catalogue 26/17/9 without search', '14-car detail', 'dialog keyboard and focus', 'unchanged tariffs', 'booking and focus', 'FAQ', 'canonical', '8 offers', 'reduced motion', 'light/dark brand consistency', 'image loading', 'no browser exceptions'] };
 }

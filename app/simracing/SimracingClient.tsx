@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Car, Search, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Car, X } from "lucide-react";
 import { CYBERX_SERVER_GAMES, type RoomItem } from "./catalogData";
 import { useModalDialog } from "./useModalDialog";
 
@@ -31,28 +31,13 @@ const clean = (text: string) => text.replace(/\s[—–]\s/g, ", ");
 
 export default function SimracingClient() {
   const [game, setGame] = useState("all");
-  const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState<CatalogRoom | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const results = useMemo(() => {
-    const term = query.trim().toLocaleLowerCase("ru");
-    return orderedRooms.filter(
-      (room) =>
-        (game === "all" || room.gameId === game) &&
-        [
-          room.title,
-          room.subtitle,
-          room.game,
-          ...room.tags,
-          ...room.cars.map((car) => car.name),
-        ]
-          .join(" ")
-          .toLocaleLowerCase("ru")
-          .includes(term),
-    );
-  }, [game, query]);
-  const visible = expanded || query ? results : results.slice(0, 6);
+  const results = orderedRooms.filter(
+    (room) => game === "all" || room.gameId === game,
+  );
+  const visible = expanded ? results : results.slice(0, 6);
   useModalDialog(dialog, selected !== null);
   const openRoom = (room: CatalogRoom) => setSelected(room);
   const closeRoom = () => {
@@ -61,53 +46,33 @@ export default function SimracingClient() {
   };
   return (
     <div className="mt-10">
-      <div className="mb-8 flex flex-col justify-between gap-5 xl:flex-row xl:items-center">
-        <div
-          className="flex flex-wrap gap-2"
-          role="group"
-          aria-label="Фильтр серверов по игре"
-        >
-          {[
-            { id: "all", name: "Все режимы", count: rooms.length },
-            ...CYBERX_SERVER_GAMES.map((item) => ({
-              id: item.id,
-              name: item.name,
-              count: item.rooms.length,
-            })),
-          ].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={game === item.id}
-              className={`min-h-12 rounded-lg border px-4 py-3 text-sm font-semibold transition-colors ${game === item.id ? "border-[#f4f4f6] bg-[#f4f4f6] text-[#0b0c0f]" : "border-white/20 bg-transparent text-[#b4b6c0] hover:border-white/50 hover:text-white"}`}
-              onClick={() => {
-                setGame(item.id);
-                setExpanded(false);
-              }}
-            >
-              {item.name}
-              <span className="ml-2 opacity-65">{item.count}</span>
-            </button>
-          ))}
-        </div>
-        <div className="relative w-full xl:max-w-[310px]">
-          <Search
-            size={18}
-            className="pointer-events-none absolute left-4 top-4 text-[#b4b6c0]"
-            aria-hidden="true"
-          />
-          <label htmlFor="server-search" className="sr-only">
-            Найти трассу, режим или машину
-          </label>
-          <input
-            id="server-search"
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Трасса, режим или машина"
-            className="min-h-12 w-full rounded-lg border border-white/20 bg-[#17191e] py-3 pl-11 pr-4 text-base text-white placeholder:text-[#b4b6c0]"
-          />
-        </div>
+      <div
+        className="mb-8 flex flex-wrap gap-2"
+        role="group"
+        aria-label="Фильтр серверов по игре"
+      >
+        {[
+          { id: "all", name: "Все режимы", count: rooms.length },
+          ...CYBERX_SERVER_GAMES.map((item) => ({
+            id: item.id,
+            name: item.name,
+            count: item.rooms.length,
+          })),
+        ].map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            aria-pressed={game === item.id}
+            className={`min-h-12 rounded-lg border px-4 py-3 text-sm font-semibold transition-colors ${game === item.id ? "border-[#f4f4f6] bg-[#f4f4f6] text-[#0b0c0f]" : "border-white/20 bg-transparent text-[#b4b6c0] hover:border-white/50 hover:text-white"}`}
+            onClick={() => {
+              setGame(item.id);
+              setExpanded(false);
+            }}
+          >
+            {item.name}
+            <span className="ml-2 opacity-65">{item.count}</span>
+          </button>
+        ))}
       </div>
       <p
         className="sr-only"
@@ -115,7 +80,7 @@ export default function SimracingClient() {
         aria-live="polite"
         aria-atomic="true"
       >
-        Найдено режимов: {results.length}. Показано: {visible.length}.
+        Режимов в категории: {results.length}. Показано: {visible.length}.
       </p>
       <div
         id="server-results"
@@ -179,27 +144,7 @@ export default function SimracingClient() {
           </article>
         ))}
       </div>
-      {results.length === 0 && (
-        <div className="rounded-xl border border-white/15 p-8 text-center">
-          <h3 className="text-xl font-semibold">
-            Такой режим или машина не найдены
-          </h3>
-          <p className="mt-3 text-[#b4b6c0]">
-            Попробуйте название трассы или другую модель.
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setQuery("");
-              setGame("all");
-            }}
-            className="sr-button sr-button-secondary mt-6"
-          >
-            Сбросить поиск
-          </button>
-        </div>
-      )}
-      {!query && results.length > 6 && (
+      {results.length > 6 && (
         <div className="mt-10 flex justify-center">
           <button
             type="button"
