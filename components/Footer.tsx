@@ -35,7 +35,7 @@ export default function Footer() {
                         <p className="text-white/40 text-xs font-chakra font-bold leading-relaxed mb-6 uppercase tracking-wider">
                             ТВОЯ ИГРОВАЯ ВСЕЛЕННАЯ <br /> В НОВОКОСИНО. ЛУЧШЕЕ ЖЕЛЕЗО <br /> И АТМОСФЕРА КИБЕРСПОРТА.
                         </p>
-                        <h4 className="font-tactic font-black text-white uppercase mb-4 tracking-widest text-xs italic">Мы в соцсетях</h4>
+                        <h2 className="font-tactic font-black text-white uppercase mb-4 tracking-widest text-xs italic">Мы в соцсетях</h2>
                         <div className="flex flex-wrap items-center gap-3">
                             <a href="https://t.me/CyberXNovokos" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Telegram канал">
                                 <TelegramIcon size={18} className="text-[#FF2E63]" />
@@ -50,7 +50,7 @@ export default function Footer() {
                                 <TikTokIcon size={18} className="text-[#FF2E63]" />
                             </a>
                         </div>
-                        <h4 className="font-tactic font-black text-white uppercase mt-6 mb-4 tracking-widest text-xs italic">Мы на картах</h4>
+                        <h2 className="font-tactic font-black text-white uppercase mt-6 mb-4 tracking-widest text-xs italic">Мы на картах</h2>
                         <div className="flex flex-wrap items-center gap-3">
                             <a href="https://yandex.ru/maps/-/CTATeV~u" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-[#FF2E63]/20 rounded-xl transition-[transform,background-color] duration-150 ease-out active:scale-[0.96]" title="Яндекс.Карты" aria-label="Яндекс.Карты">
                                 <MapPinned size={18} className="text-[#FF2E63]" />
@@ -65,7 +65,7 @@ export default function Footer() {
                     </div>
 
                     <div className="md:col-span-1">
-                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Навигация</h4>
+                        <h2 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Навигация</h2>
                         <div className="flex flex-col gap-4">
                             {links.map((link) => (
                                 <Link
@@ -80,7 +80,7 @@ export default function Footer() {
                     </div>
 
                     <div className="md:col-span-1">
-                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Документы</h4>
+                        <h2 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Документы</h2>
                         <div className="flex flex-col gap-4">
                             {legalDocs.map((doc) => (
                                 <Link
@@ -95,7 +95,7 @@ export default function Footer() {
                     </div>
 
                     <div className="md:col-span-2 xl:col-span-2">
-                        <h4 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Контакты</h4>
+                        <h2 className="font-tactic font-black text-white uppercase mb-8 tracking-widest text-sm italic">Контакты</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-start gap-4">

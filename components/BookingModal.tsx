@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, CalendarCheck, Gift, MessageCircle, ShieldCheck, Smartphone, Trophy, X } from "lucide-react";
 
@@ -28,6 +29,8 @@ const benefits = [
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const isSimracing = usePathname() === '/simracing';
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -39,8 +42,19 @@ export default function BookingModal() {
     if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    modalRef.current?.querySelector<HTMLButtonElement>('button[aria-label="Закрыть"]')?.focus();
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsOpen(false);
+      if (event.key === 'Tab') {
+        const controls = Array.from(modalRef.current?.querySelectorAll<HTMLElement>('button:not([tabindex="-1"]), a[href]') || []).filter(element => element.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (first && (!modalRef.current?.contains(document.activeElement) || (event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last))) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        }
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -49,15 +63,17 @@ export default function BookingModal() {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleEscape);
+      trigger?.focus({ preventScroll: true });
     };
   }, [isOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+        <div ref={modalRef} className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
           <motion.button
             type="button"
+            tabIndex={-1}
             aria-label="Закрыть окно бронирования"
             onClick={() => setIsOpen(false)}
             initial={{ opacity: 0 }}
@@ -84,8 +100,8 @@ export default function BookingModal() {
 
             <div className="relative block h-[208px] overflow-hidden sm:h-[250px] lg:h-auto lg:min-h-full">
               <Image
-                src="/zones/bootcamp-2.webp"
-                alt="Игровая зона CyberX Новокосино"
+                src={isSimracing ? '/racing/editorial/cockpit-5-640.webp' : '/zones/bootcamp-2.webp'}
+                alt={isSimracing ? 'Автосимуляторы CyberX Новокосино' : 'Игровая зона CyberX Новокосино'}
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"
                 className="object-cover"

@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
         {
             url: `${baseUrl}/simracing`,
-            lastModified: new Date('2026-07-14'),
+            lastModified: new Date('2026-10-13'),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
