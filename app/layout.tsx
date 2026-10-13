@@ -14,11 +14,11 @@ import { GOOGLE_MAPS_URL } from "@/lib/googleBusiness";
 // Локальные шрифты Tactic Sans
 const tacticSans = localFont({
     src: [
-        { path: './fonts/TacticSansExd-Lgt.woff', weight: '300', style: 'normal' },
-        { path: './fonts/TacticSansExd-Reg.woff', weight: '400', style: 'normal' },
-        { path: './fonts/TacticSansExd-Bld.woff', weight: '700', style: 'normal' },
-        { path: './fonts/TacticSansExd-Blk.woff', weight: '900', style: 'normal' },
-        { path: './fonts/TacticSansExd-Ult.woff', weight: '950', style: 'normal' },
+        { path: './fonts/TacticSansExd-Lgt.woff2', weight: '300', style: 'normal' },
+        { path: './fonts/TacticSansExd-Reg.woff2', weight: '400', style: 'normal' },
+        { path: './fonts/TacticSansExd-Bld.woff2', weight: '700', style: 'normal' },
+        { path: './fonts/TacticSansExd-Blk.woff2', weight: '900', style: 'normal' },
+        { path: './fonts/TacticSansExd-Ult.woff2', weight: '950', style: 'normal' },
     ],
     variable: '--font-tactic'
 });

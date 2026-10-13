@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Isolated previews/builds can run alongside the regular development server.
+  distDir: process.env.NEXT_BUILD_DIR || '.next',
   reactStrictMode: true,
   async redirects() {
     return [
@@ -44,6 +46,26 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cyberx.moscow',
+      },
+      {
+        protocol: 'https',
+        hostname: 'medprogramcenter.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'v1.pinimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.vkplay.ru',
       },
     ],
   },

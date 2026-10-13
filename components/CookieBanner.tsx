@@ -53,7 +53,7 @@ export default function CookieBanner() {
                                 <Cookie size={22} />
                             </div>
                             <div className="flex-1 pr-8 md:pr-6">
-                                <h4 className="font-chakra font-bold text-white mb-1">Мы используем Cookie</h4>
+                                <h2 className="font-chakra font-bold text-white mb-1">Мы используем Cookie</h2>
                                 <p className="text-white/60 text-xs font-inter mb-4 leading-relaxed text-pretty">
                                     Продолжая использовать сайт, вы соглашаетесь с нашей{' '}
                                     <Link href="/legal/privacy" className="text-[#FF2E63] hover:underline underline-offset-2">

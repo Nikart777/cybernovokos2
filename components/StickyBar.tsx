@@ -31,7 +31,7 @@ export default function StickyBar() {
     window.dispatchEvent(new CustomEvent("open-chat"));
   };
 
-  if (pathname?.startsWith("/menu")) return null;
+  if (pathname?.startsWith("/menu") || pathname === "/simracing") return null;
 
   return (
     <AnimatePresence>
