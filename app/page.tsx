@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/HeroNew";
 import ZonesPreview from "@/components/ZonesPreview";
+import SimracingPreview from "@/components/SimracingPreview";
 import PromotionsNew from "@/components/PromotionsNew";
 import CertificateBanner from "@/components/CertificateBanner";
 import Reviews from "@/components/Reviews";
@@ -46,6 +47,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col w-full">
         <Header />
         <Hero />
+        <SimracingPreview />
         {pricingData && <ZonesPreview pricingData={pricingData} />}
         <CertificateBanner />
         <PromotionsNew />

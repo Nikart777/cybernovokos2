@@ -7,7 +7,7 @@ import { GOOGLE_MAPS_URL } from '@/lib/googleBusiness';
 const links = [
     { name: 'Главная', href: '/' },
     { name: 'Цены', href: '/prices' },
-    { name: 'Sim Racing', href: '/simracing' },
+    { name: 'Автосимуляторы', href: '/simracing' },
     { name: 'Блог', href: '/blog' },
     { name: 'Подарочные сертификаты', href: '/certificate' },
     { name: 'Контакты', href: '/contacts' },
@@ -120,7 +120,7 @@ export default function Footer() {
                             <div className="flex flex-col gap-4">
                                 <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                     <div className="text-[10px] text-white/30 uppercase font-black mb-1">Режим работы</div>
-                                    <div className="text-white font-tactic font-black text-lg skew-x-[-12deg] tracking-wider uppercase">
+                                    <div className="text-white font-tactic font-black text-lg xl:text-sm 2xl:text-lg skew-x-[-12deg] tracking-wider uppercase">
                                         КРУГЛОСУТОЧНО 24/7
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@ export default function Footer() {
                             PlayStation 5
                         </Link>
                         <Link href="/simracing" className="text-white/40 font-chakra text-xs uppercase font-bold hover:text-white transition-colors">
-                            Автосимулятор
+                            Симрейсинг в Новокосино
                         </Link>
                     </div>
                 </div>
