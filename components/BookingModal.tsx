@@ -31,6 +31,15 @@ export default function BookingModal() {
   const reduceMotion = useReducedMotion();
   const modalRef = useRef<HTMLDivElement>(null);
   const isSimracing = usePathname() === '/simracing';
+  const visibleBenefits = isSimracing ? [
+    benefits[0],
+    {
+      icon: Trophy,
+      title: 'До 20% кэшбэка с заезда',
+      text: 'Вернём бонусами на следующие посещения других зон клуба.',
+    },
+    benefits[2],
+  ] : benefits;
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -122,12 +131,14 @@ export default function BookingModal() {
                   400 бонусов<br />на старт
                 </h2>
                 <p className="mt-3 max-w-lg font-chakra text-sm leading-relaxed text-white/65">
-                  Получите их сразу после регистрации в приложении и используйте уже при первом посещении.
+                  {isSimracing
+                    ? '400 бонусов за регистрацию в приложении и до 20% кэшбэка с каждого заезда. Потратить их можно в других зонах клуба.'
+                    : 'Получите их сразу после регистрации в приложении и используйте уже при первом посещении.'}
                 </p>
               </div>
 
               <div className="mt-6 grid gap-2.5 lg:mt-7 lg:gap-3">
-                {benefits.map((benefit, index) => {
+                {visibleBenefits.map((benefit, index) => {
                   const Icon = benefit.icon;
                   return (
                     <div key={benefit.title} className={`gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3 lg:gap-4 lg:p-4 ${index === 2 ? "hidden lg:flex" : "flex"}`}>
@@ -143,10 +154,12 @@ export default function BookingModal() {
                 })}
               </div>
 
-              <div className="mt-6 hidden items-start gap-3 rounded-2xl border border-white/10 bg-[#111] p-4 lg:flex">
+              <div className={`mt-6 items-start gap-3 rounded-2xl border border-white/10 bg-[#111] p-4 ${isSimracing ? 'flex' : 'hidden lg:flex'}`}>
                 <ShieldCheck className="mt-0.5 shrink-0 text-[#FF2E63]" size={18} />
                 <p className="font-chakra text-xs leading-relaxed text-white/60">
-                  1 бонус = 1 ₽. Используйте бонусы сразу после регистрации для оплаты до 20% игрового времени. DRIVE X оплачивается основным балансом.
+                  {isSimracing
+                    ? 'На автосимуляторы бонусы не списываются. Заезды оплачиваются основным балансом. Бонусы за регистрацию и кэшбэк доступны для оплаты в других зонах клуба.'
+                    : '1 бонус = 1 ₽. Используйте бонусы сразу после регистрации для оплаты до 20% игрового времени. DRIVE X оплачивается основным балансом.'}
                 </p>
               </div>
 
@@ -155,7 +168,7 @@ export default function BookingModal() {
                   href={appLink}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#FF2E63] px-5 font-tactic text-sm font-black uppercase italic tracking-wide text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#ff4778] active:translate-y-0 active:scale-[0.98]"
+                  className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#FF2E63] px-5 font-tactic text-sm font-black uppercase italic tracking-wide text-[#0b0c0f] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ff4778] active:translate-y-0 active:scale-[0.98]"
                 >
                   <Smartphone size={18} />
                   Получить 400 бонусов

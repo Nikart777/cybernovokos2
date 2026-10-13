@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
+  Check,
   ChevronLeft,
   ChevronRight,
   Menu,
@@ -188,67 +189,103 @@ export function CockpitGallery() {
     );
   useModalDialog(dialog, zoomed);
   return (
-    <div>
-      <button
-        type="button"
-        className="group relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#17191e] text-left"
-        aria-label={`Увеличить фото: ${photo.alt}`}
-        onClick={() => setZoomed(true)}
-      >
-        <Image
-          src={`/racing/editorial/cockpit-${photo.n}-1280.webp`}
-          alt={photo.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, 60vw"
-          className="object-cover outline outline-1 -outline-offset-1 outline-white/10 transition-transform duration-500 group-hover:scale-[1.025]"
-        />
-      </button>
-      <div className="mt-4 flex items-center justify-between gap-4">
-        <p
-          aria-live="polite"
-          aria-atomic="true"
-          className="text-sm text-[#b4b6c0]"
+    <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+      <div>
+        <button
+          type="button"
+          className="sr-cockpit-frame group relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#17191e] text-left"
+          aria-label={`Увеличить фото: ${photo.alt}`}
+          onClick={() => setZoomed(true)}
         >
-          Фото {selected + 1} из {GALLERY.length} · Наш клуб в Новокосино
-        </p>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            className="sr-icon-button"
-            aria-label="Предыдущее фото"
-            onClick={() => move(-1)}
-          >
-            <ChevronLeft />
-          </button>
-          <button
-            type="button"
-            className="sr-icon-button"
-            aria-label="Следующее фото"
-            onClick={() => move(1)}
-          >
-            <ChevronRight />
-          </button>
+          <picture>
+            <source
+              media="(max-width: 767px)"
+              srcSet={`/racing/editorial/cockpit-${photo.n}-640.webp`}
+            />
+            <Image
+              src={`/racing/editorial/cockpit-${photo.n}-1280.webp`}
+              alt={photo.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="object-cover outline outline-1 -outline-offset-1 outline-white/10 transition-transform duration-500 group-hover:scale-[1.025]"
+            />
+          </picture>
+        </button>
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <p className="text-sm text-[#b4b6c0]">
+            Фото {selected + 1} из {GALLERY.length} · Наш клуб в Новокосино
+          </p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="sr-icon-button"
+              aria-label="Предыдущее фото"
+              onClick={() => move(-1)}
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              type="button"
+              className="sr-icon-button"
+              aria-label="Следующее фото"
+              onClick={() => move(1)}
+            >
+              <ChevronRight />
+            </button>
+          </div>
+        </div>
+        <div className="mt-3 grid grid-cols-5 gap-2">
+          {GALLERY.map((item, index) => (
+            <button
+              key={item.n}
+              type="button"
+              aria-label={`Фото ${index + 1}: ${item.alt}`}
+              aria-pressed={selected === index}
+              onClick={() => setSelected(index)}
+              className={`relative aspect-[4/3] min-h-11 overflow-hidden rounded-md border-2 transition-opacity ${selected === index ? "border-[#ff2e63]" : "border-transparent opacity-60 hover:opacity-100"}`}
+            >
+              <Image
+                src={`/racing/editorial/cockpit-${item.n}-160.webp`}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 18vw, 10vw"
+                className="object-cover"
+              />
+            </button>
+          ))}
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-5 gap-2">
-        {GALLERY.map((item, index) => (
-          <button
-            key={item.n}
-            type="button"
-            aria-label={`Фото ${index + 1}: ${item.alt}`}
-            aria-pressed={selected === index}
-            onClick={() => setSelected(index)}
-            className={`relative aspect-[4/3] min-h-11 overflow-hidden rounded-md border-2 transition-opacity ${selected === index ? "border-[#ff2e63]" : "border-transparent opacity-60 hover:opacity-100"}`}
-          >
-            <Image
-              src={`/racing/editorial/cockpit-${item.n}-160.webp`}
-              alt=""
-              fill
-              sizes="(max-width: 768px) 18vw, 10vw"
-              className="object-cover"
-            />
-          </button>
-        ))}
+      <div className="sr-photo-copy">
+        <div aria-live="polite" aria-atomic="true">
+          <div key={photo.n} className="sr-photo-story" data-photo={photo.n}>
+            <p className="sr-photo-number">
+              0{selected + 1} / 0{GALLERY.length}
+            </p>
+            <h3 className="sr-photo-title font-tactic">{photo.title}</h3>
+            <p className="text-base leading-relaxed text-[#b4b6c0]">
+              {photo.description}
+            </p>
+            <dl className="sr-photo-specs">
+              {photo.specs.map((spec) => (
+                <div key={spec.label}>
+                  <dt>{spec.label}</dt>
+                  <dd>{spec.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+        <div className="mt-7 flex items-start gap-3 text-sm leading-relaxed text-[#d3d4da]">
+          <Check
+            className="mt-0.5 shrink-0 text-[#ff648a]"
+            size={20}
+            aria-hidden="true"
+          />
+          <p>
+            Первый раз за рулём? Поможем с посадкой, объясним управление и
+            подберём комфортный заезд.
+          </p>
+        </div>
       </div>
       <dialog
         ref={dialog}

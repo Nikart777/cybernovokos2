@@ -38,9 +38,25 @@ async (page) => {
   assert(await page.locator('dialog[open]').count() === 0, 'Mobile menu did not close after navigation');
   await page.getByRole('button', { name: 'Следующее фото', exact: true }).click();
   assert((await page.locator('#equipment').innerText()).includes('Фото 2 из 5'), 'Gallery next did not advance');
+  const galleryStates = [
+    [1, 'Весь поворот перед тобой.', '55 дюймов'],
+    [5, 'Четыре места на старте. Твоя компания.', 'До 4 игроков'],
+    [4, 'Чувствуй, где предел сцепления.', 'До 12 Нм'],
+    [2, 'Лови занос. Держи передачу.', 'Отдельный ручник'],
+    [3, 'Твоё место за рулём.', 'Load Cell'],
+  ];
+  for (let index = 0; index < galleryStates.length; index++) {
+    const [photo, title, spec] = galleryStates[index];
+    await page.getByRole('button', { name: new RegExp(`^Фото ${index + 1}:`) }).click();
+    assert(await page.locator('.sr-photo-story').getAttribute('data-photo') === String(photo), 'Gallery story/image mismatch');
+    assert(await page.locator('.sr-photo-title').innerText() === title, `Incorrect description for photo ${photo}`);
+    assert((await page.locator('.sr-photo-specs').innerText()).includes(spec), `Incorrect specs for photo ${photo}`);
+    assert((await page.locator('#equipment .sr-cockpit-frame img').getAttribute('src')).includes(`cockpit-${photo}-`), 'Gallery image did not follow description');
+  }
   await page.getByRole('button', { name: /Увеличить фото:/ }).click();
   assert(await page.locator('dialog[open]').count() === 1, 'Gallery modal did not open');
   await page.keyboard.press('ArrowRight');
+  assert(await page.locator('.sr-photo-story').getAttribute('data-photo') === '1', 'Expanded gallery navigation did not update story');
   await page.keyboard.press('Escape');
   assert(await page.locator('dialog[open]').count() === 0, 'Escape did not close gallery');
 
@@ -78,6 +94,11 @@ async (page) => {
   assert(JSON.stringify(weekdays) === JSON.stringify(['580₽', '980₽', '1350₽', '1900₽']), `Weekday prices changed: ${weekdays}`);
   await page.locator('#tariffs .sr-button').first().click();
   assert(await page.getByRole('dialog', { name: /400 бонусов/ }).isVisible(), 'Booking modal did not open');
+  const bookingCopy = await page.getByRole('dialog', { name: /400 бонусов/ }).innerText();
+  assert(bookingCopy.includes('до 20% кэшбэка с каждого заезда'), 'Ride cashback terms missing');
+  assert(bookingCopy.includes('На автосимуляторы бонусы не списываются.'), 'Simracing bonus exclusion missing on mobile');
+  assert(bookingCopy.includes('в других зонах клуба'), 'Bonus redemption zones missing');
+  assert(!bookingCopy.includes('До 20% стоимости - бонусами'), 'Misleading simracing bonus payment returned');
   for (let i = 0; i < 10; i++) await page.keyboard.press('Tab');
   assert(await page.getByRole('dialog', { name: /400 бонусов/ }).evaluate(el => el.contains(document.activeElement)), 'Focus escaped booking modal');
   await page.keyboard.press('Escape');
@@ -94,8 +115,20 @@ async (page) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   assert(await page.locator('.sr-page').evaluate(el => getComputedStyle(el).backgroundColor) === 'rgb(11, 12, 15)', 'Brand theme changed with OS preference');
   assert(await page.locator('.sr-hero-copy').evaluate(el => getComputedStyle(el).animationName) === 'none', 'Reduced motion is ignored');
+  assert(await page.locator('.sr-light-bank span').first().evaluate(el => getComputedStyle(el).animationName) === 'none', 'Start lights ignore reduced motion');
   await page.emulateMedia({ reducedMotion: 'no-preference', colorScheme: 'dark' });
-  for (const section of ['equipment', 'games', 'other-games', 'tariffs', 'faq', 'location']) {
+  assert(await page.locator('#reviews blockquote').count() === 3, 'Review excerpts missing');
+  assert(await page.locator('#reviews a[href*="98831858695"]').count() === 4, 'Review sources missing or wrong branch');
+  assert(await page.locator('#other-games .sr-game-card:visible').count() === 4, 'Expected four featured game cards');
+  await page.locator('.sr-more-games summary').click();
+  assert(await page.locator('#other-games .sr-game-card:visible').count() === 8, 'Extra game cards did not expand');
+  assert((await page.locator('.sr-game-new').innerText()).includes('Forza Horizon 6'), 'Current Forza edition missing');
+  for (const card of await page.locator('#other-games .sr-game-card').all()) {
+    await card.scrollIntoViewIfNeeded();
+    await card.locator('img').evaluate(image => image.decode());
+  }
+  await page.locator('.sr-more-games summary').click();
+  for (const section of ['equipment', 'club-video', 'games', 'other-games', 'tariffs', 'reviews', 'faq', 'location']) {
     await page.locator(`#${section}`).scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.images].filter(i => { const r = i.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; }).every(i => i.complete));
     await page.screenshot({ path: `${output}/section-${section}.png` });

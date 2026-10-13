@@ -122,7 +122,10 @@ export default function SimracingClient() {
         className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3"
       >
         {visible.map((room) => (
-          <article key={`${room.gameId}-${room.id}`} className="group min-w-0">
+          <article
+            key={`${room.gameId}-${room.id}`}
+            className="sr-race-card group min-w-0"
+          >
             <button
               type="button"
               onClick={() => openRoom(room)}
@@ -137,6 +140,9 @@ export default function SimracingClient() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover outline outline-1 -outline-offset-1 outline-white/10 transition-transform duration-500 group-hover:scale-[1.035]"
               />
+              <span className="sr-race-position" aria-hidden="true">
+                {String(orderedRooms.indexOf(room) + 1).padStart(2, "0")}
+              </span>
             </button>
             <div className="mt-5 flex items-center justify-between gap-3 text-xs font-medium text-[#b4b6c0]">
               <span>{room.game}</span>

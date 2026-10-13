@@ -14,6 +14,8 @@ async function main() {
     }
   }
   await sharp('public/zones/sim-1.webp').resize({ width: 1280 }).avif({ quality: 58 }).toFile(path.join(out, 'cockpit-1-1280.avif'));
+  // Portrait crop for the mobile hero; avoids downloading invisible image sides.
+  await sharp('public/zones/sim-1.webp').extract({ left: 545, top: 0, width: 878, height: 1433 }).resize({ width: 720 }).avif({ quality: 52 }).toFile(path.join(out, 'cockpit-1-mobile.avif'));
   if (process.argv[2]) {
     await sharp(process.argv[2])
       .resize({ width: 1600, withoutEnlargement: true })

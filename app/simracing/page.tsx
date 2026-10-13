@@ -1,18 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  MapPin,
-  Phone,
-  Plus,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin, Phone, Plus } from "lucide-react";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import SimracingClient from "./SimracingClient";
 import SimracingTariffs from "./SimracingTariffs";
+import SimracingReviews from "./SimracingReviews";
+import SimracingGames from "./SimracingGames";
+import SimracingVideo from "./SimracingVideo";
 import {
   BookingButton,
   CockpitGallery,
@@ -26,6 +22,12 @@ import {
   SIMRACING_URL,
 } from "./simracingData";
 import { CYBERX_SERVER_GAMES } from "./catalogData";
+import {
+  RaceDivider,
+  RaceFlag,
+  StartLights,
+  TrackOutline,
+} from "./RacingMarks";
 import "./simracing.css";
 
 const title = "Автосимуляторы и симрейсинг в Москве | CyberX Новокосино";
@@ -34,7 +36,16 @@ const description =
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  keywords: ['автосимуляторы Москва', 'симрейсинг Москва', 'автосимулятор Новокосино', 'гоночный симулятор', 'симрейсинг клуб', 'поиграть на руле Москва', 'Assetto Corsa', 'BeamNG.drive'],
+  keywords: [
+    "автосимуляторы Москва",
+    "симрейсинг Москва",
+    "автосимулятор Новокосино",
+    "гоночный симулятор",
+    "симрейсинг клуб",
+    "поиграть на руле Москва",
+    "Assetto Corsa",
+    "BeamNG.drive",
+  ],
   alternates: { canonical: SIMRACING_URL },
   openGraph: {
     title,
@@ -206,22 +217,36 @@ export default function SimracingPage() {
       <main id="simracing-content">
         <section
           aria-labelledby="simracing-heading"
-          className="relative isolate mt-[72px] min-h-[640px] overflow-hidden md:min-h-[670px] lg:min-h-[min(760px,calc(100svh-72px))]"
+          className="sr-race-hero relative isolate mt-[72px] min-h-[640px] overflow-hidden md:min-h-[670px] lg:min-h-[min(760px,calc(100svh-72px))]"
         >
           <div className="absolute inset-0 -z-20 md:left-[24%]">
-            <Image
-              src="/racing/editorial/cockpit-1-1280.avif"
-              alt="Реальные автосимуляторы CyberX Новокосино: руль MOZA, гоночный кокпит и большой экран"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 76vw"
-              className="sr-hero-photo object-cover"
-            />
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                srcSet="/racing/editorial/cockpit-1-mobile.avif"
+              />
+              <Image
+                src="/racing/editorial/cockpit-1-1280.avif"
+                alt="Реальные автосимуляторы CyberX Новокосино: руль MOZA, гоночный кокпит и большой экран"
+                fill
+                loading="eager"
+                fetchPriority="high"
+                sizes="(max-width: 768px) 100vw, 76vw"
+                className="sr-hero-photo object-cover"
+              />
+            </picture>
           </div>
           <div className="sr-hero-shade absolute inset-0 -z-10" />
+          <div className="sr-hero-livery" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </div>
+          <StartLights />
           <div className="sr-container flex min-h-[640px] flex-col justify-end pb-10 pt-12 md:min-h-[670px] md:justify-center md:pb-16 lg:min-h-[min(760px,calc(100svh-72px))]">
             <div className="sr-hero-copy max-w-4xl">
-              <p className="mb-5 text-xs font-medium uppercase tracking-[0.16em] text-[#f4f4f6]">
+              <p className="sr-hero-kicker mb-5 text-xs font-medium uppercase tracking-[0.16em] text-[#f4f4f6]">
+                <RaceFlag />
                 CyberX Новокосино · 24/7
               </p>
               <h1
@@ -230,11 +255,14 @@ export default function SimracingPage() {
               >
                 Автосимуляторы
                 <br />
-                <span className="text-[#ff2e63]">в Москве</span>
+                <span className="sr-hero-city">в Москве</span>
               </h1>
               <p className="mb-8 mt-6 max-w-[440px] text-base leading-relaxed text-[#d3d4da] md:text-lg">
-                Почувствуй каждый поворот. Руль Direct Drive, четыре гоночных
-                кокпита и заезды с друзьями в Новокосино.
+                <strong className="sr-hero-punch">
+                  Меньше слов. Больше газа.
+                </strong>
+                Руль Direct Drive, четыре гоночных кокпита и заезды с друзьями в
+                Новокосино.
               </p>
               <div className="flex flex-wrap gap-3">
                 <BookingButton />
@@ -247,7 +275,7 @@ export default function SimracingPage() {
           </div>
         </section>
 
-        <div className="border-y border-white/10 bg-[#121419]">
+        <div className="sr-spec-strip border-y border-white/10 bg-[#121419]">
           <dl className="sr-container grid grid-cols-2 gap-y-7 py-7 md:grid-cols-4 md:py-9">
             {[
               { value: "4", label: "кокпита для вашей компании" },
@@ -255,7 +283,7 @@ export default function SimracingPage() {
               { value: "55″", label: "экран 4K · 120 Гц" },
               { value: "от 580 ₽", label: "час за рулём" },
             ].map((item) => (
-              <div key={item.label} className="flex flex-col pr-4">
+              <div key={item.label} className="sr-spec flex flex-col pr-4">
                 <dt className="mt-2 text-xs leading-relaxed text-[#b4b6c0] sm:text-sm">
                   {item.label}
                 </dt>
@@ -266,10 +294,14 @@ export default function SimracingPage() {
             ))}
           </dl>
         </div>
+        <RaceDivider />
 
         <section id="equipment" className="sr-section">
           <div className="sr-container">
             <Reveal>
+              <p className="sr-stage-label">
+                <span>01</span> Почувствуй машину
+              </p>
               <h2 className="sr-title">
                 Садишься в кокпит.
                 <br />И чувствуешь разницу.
@@ -279,56 +311,20 @@ export default function SimracingPage() {
                 усилие. Дорога занимает весь экран. Здесь гонку ощущаешь руками.
               </p>
             </Reveal>
-            <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-              <Reveal>
-                <CockpitGallery />
-              </Reveal>
-              <div className="space-y-8 lg:pt-3">
-                {[
-                  {
-                    title: "Прямой привод. Живая обратная связь.",
-                    text: "MOZA R12 с усилием до 12 Нм передаёт сцепление, неровности и начало заноса. Усилие подстроим под вас.",
-                  },
-                  {
-                    title: "Всё управление под рукой.",
-                    text: "Педали Load Cell, механическая и секвентальная коробки, ручник. Для точного торможения, переключений и дрифта.",
-                  },
-                  {
-                    title: "Большая картинка. Правильная посадка.",
-                    text: "Экран 55″ с разрешением 4K и частотой 120 Гц. Гоночное кресло и жёсткий кокпит помогают сосредоточиться на трассе.",
-                  },
-                ].map((item) => (
-                  <Reveal key={item.title}>
-                    <h3 className="text-lg font-semibold leading-snug md:text-xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 max-w-lg text-base leading-relaxed text-[#b4b6c0]">
-                      {item.text}
-                    </p>
-                  </Reveal>
-                ))}
-                <div className="flex items-start gap-3 border-t border-white/15 pt-6 text-sm leading-relaxed text-[#d3d4da]">
-                  <Check
-                    className="mt-0.5 shrink-0 text-[#ff648a]"
-                    size={20}
-                    aria-hidden="true"
-                  />
-                  <p>
-                    Первый раз за рулём? Поможем с посадкой, объясним управление
-                    и подберём комфортный заезд.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <CockpitGallery />
           </div>
         </section>
 
         <section
-          className="overflow-hidden bg-[#13151a]"
+          id="club-video"
+          className="sr-grid-section overflow-hidden bg-[#13151a]"
           aria-labelledby="together-heading"
         >
           <div className="sr-container grid gap-8 py-14 md:grid-cols-2 md:items-center md:gap-14 md:py-20">
             <Reveal>
+              <span className="sr-grid-number" aria-hidden="true">
+                04
+              </span>
               <p className="mb-5 text-xs uppercase tracking-[0.16em] text-[#ff648a]">
                 Одна компания. Одна стартовая решётка.
               </p>
@@ -349,11 +345,9 @@ export default function SimracingPage() {
                 Выбрать режим
                 <ArrowRight size={18} aria-hidden="true" />
               </a>
-            </Reveal>
-            <Reveal>
-              <div className="relative aspect-[5/4] overflow-hidden rounded-xl">
+              <div className="sr-team-photo relative mt-8 aspect-[16/7] overflow-hidden">
                 <Image
-                  src="/racing/editorial/cockpit-5-1280.webp"
+                  src="/racing/editorial/cockpit-5-640.webp"
                   alt="Ряд автосимуляторов для совместных заездов в CyberX Новокосино"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -361,14 +355,20 @@ export default function SimracingPage() {
                 />
               </div>
             </Reveal>
+            <Reveal>
+              <SimracingVideo />
+            </Reveal>
           </div>
         </section>
 
-        <section id="games" className="sr-section">
+        <section id="games" className="sr-section sr-games-section">
           <div className="sr-container">
             <Reveal>
-              <div className="mb-10 grid items-center gap-5 border-b border-white/15 pb-10 md:grid-cols-[auto_1fr] md:gap-10">
-                <p className="font-tactic text-[100px] font-black leading-none tracking-[-0.07em] text-[#ff2e63] md:text-[160px]">
+              <p className="sr-stage-label">
+                <span>02</span> Выбери свою гонку
+              </p>
+              <div className="sr-grid-intro mb-10 grid items-center gap-5 border-b border-white/15 pb-10 md:grid-cols-[auto_1fr] md:gap-10">
+                <p className="sr-server-number font-tactic text-[100px] font-black leading-none tracking-[-0.07em] md:text-[160px]">
                   {serverCount}
                 </p>
                 <div>
@@ -394,7 +394,7 @@ export default function SimracingPage() {
 
         <section
           id="other-games"
-          className="relative isolate overflow-hidden border-y border-white/10"
+          className="sr-world-section relative isolate overflow-hidden border-y border-white/10"
         >
           <div className="absolute inset-0 -z-20">
             <Image
@@ -406,6 +406,7 @@ export default function SimracingPage() {
             />
           </div>
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(11,12,15,.92),rgba(11,12,15,.35)),linear-gradient(0deg,rgba(11,12,15,.9),transparent)]" />
+          <TrackOutline />
           <div className="sr-container py-16 md:py-24">
             <Reveal>
               <h2 className="sr-title max-w-xl">
@@ -417,39 +418,17 @@ export default function SimracingPage() {
                 Меняй не только машину, но и весь мир вокруг.
               </p>
             </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-7 sm:grid-cols-2 lg:max-w-[850px]">
-              {[
-                {
-                  title: "Forza Horizon 5",
-                  text: "Фестиваль скорости и открытый мир Мексики.",
-                },
-                {
-                  title: "CarX Street / Drift Racing",
-                  text: "Уличные гонки, тюнинг и парный дрифт.",
-                },
-                {
-                  title: "DiRT Rally 2.0 / EA SPORTS WRC",
-                  text: "Гравий, спецучастки и работа со штурманом.",
-                },
-                {
-                  title: "City Car Driving 2",
-                  text: "Городские маршруты и знакомство с управлением.",
-                },
-              ].map((item) => (
-                <div key={item.title} className="border-t border-white/25 pt-5">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#d3d4da]">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
+          <SimracingGames />
         </section>
+        <RaceDivider finish />
 
         <section id="tariffs" className="sr-section">
           <div className="sr-container">
             <Reveal>
+              <p className="sr-stage-label">
+                <span>03</span> Время на старт
+              </p>
               <h2 className="sr-title">Цены на автосимуляторы.</h2>
               <p className="sr-lead">
                 Час на знакомство или целый вечер на трассе. Выбирай свой темп.
@@ -458,6 +437,8 @@ export default function SimracingPage() {
             <SimracingTariffs />
           </div>
         </section>
+
+        <SimracingReviews />
 
         <section id="faq" className="border-t border-white/10">
           <div className="sr-container grid gap-8 py-16 md:grid-cols-[.7fr_1.3fr] md:gap-16 md:py-24">
@@ -494,7 +475,7 @@ export default function SimracingPage() {
           </div>
         </section>
 
-        <section id="location" className="bg-[#15171d]">
+        <section id="location" className="sr-finish-section bg-[#15171d]">
           <div className="sr-container grid gap-10 py-16 md:grid-cols-[1.2fr_1fr] md:gap-16 md:py-24">
             <Reveal>
               <p className="mb-5 text-xs font-medium uppercase tracking-[0.16em] text-[#ff648a]">

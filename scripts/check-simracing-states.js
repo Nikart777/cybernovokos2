@@ -47,16 +47,16 @@ async (page) => {
   // Slow CSS animation and sample exact frames for visual inspection.
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-  await page.locator('.sr-hero-copy').evaluate(el => {
-    el.getAnimations().forEach(animation => { animation.playbackRate = 0.1; animation.currentTime = 0; animation.play(); });
+  await page.locator('.sr-race-hero').evaluate(el => {
+    el.getAnimations({ subtree: true }).forEach(animation => { animation.playbackRate = 0.1; animation.currentTime = 0; animation.play(); });
   });
   for (const progress of [0.1, 0.5, 1]) {
-    await page.locator('.sr-hero-copy').evaluate((el, progress) => {
-      el.getAnimations().forEach(animation => { animation.pause(); animation.currentTime = Number(animation.effect.getTiming().duration) * progress; });
+    await page.locator('.sr-race-hero').evaluate((el, progress) => {
+      el.getAnimations({ subtree: true }).forEach(animation => { animation.pause(); const timing = animation.effect.getTiming(); animation.currentTime = Number(timing.delay) + Number(timing.duration) * progress; });
     }, progress);
     await page.screenshot({ path: `${output}/motion-${progress}.png` });
   }
-  await page.locator('.sr-hero-copy').evaluate(el => el.getAnimations().forEach(animation => animation.finish()));
+  await page.locator('.sr-race-hero').evaluate(el => el.getAnimations({ subtree: true }).forEach(animation => animation.finish()));
   const button = page.locator('main .sr-button').first();
   await button.hover();
   await button.focus();

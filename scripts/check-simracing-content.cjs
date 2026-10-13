@@ -26,6 +26,10 @@ async function main() {
     paths.add(`/racing/editorial/${path.basename(room.cover).replace(/\.[^.]+$/, '.webp')}`);
     room.cars.forEach(car => paths.add(car.image));
   }
+  for (const gameImage of fs.readdirSync(path.join(__dirname, '../public/racing/games'))) {
+    paths.add(`/racing/games/${gameImage}`);
+  }
+  paths.add('/racing/editorial/club-video-poster.webp');
   for (const asset of paths) {
     assert.ok(asset.startsWith('/racing/'), `Unexpected asset path ${asset}`);
     const file = path.join(__dirname, '../public', asset);
