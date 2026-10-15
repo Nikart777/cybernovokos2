@@ -264,8 +264,16 @@ export default function SimracingPage() {
                 Руль Direct Drive, четыре гоночных кокпита и заезды с друзьями в
                 Новокосино.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <BookingButton />
+                <a
+                  href="/download"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="px-4 py-3 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-xs font-chakra font-bold uppercase tracking-wider text-white/80 hover:text-white transition-colors"
+                >
+                  В приложении (+400 бонусов)
+                </a>
                 <a href="#tariffs" className="sr-button sr-button-secondary">
                   Выбрать тариф
                   <ArrowRight size={18} aria-hidden="true" />
@@ -491,8 +499,16 @@ export default function SimracingPage() {
                 Косино или других районов Москвы. Мы открыты каждый день и
                 каждую ночь.
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <BookingButton />
+                <a
+                  href="/download"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="px-4 py-3 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-xs font-chakra font-bold uppercase tracking-wider text-white/80 hover:text-white transition-colors"
+                >
+                  В приложении (+400 бонусов)
+                </a>
               </div>
             </Reveal>
             <div className="flex flex-col justify-center">

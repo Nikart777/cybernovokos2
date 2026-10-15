@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Phone, Clock, MessageSquare, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Clock, MessageSquare, ChevronRight, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { GOOGLE_MAPS_URL, GOOGLE_ROUTE_URL } from "@/lib/googleBusiness";
 
@@ -102,16 +102,29 @@ export default function Contacts() {
             ))}
 
             <div className="sm:col-span-2">
-                <a
-                  href="https://yandex.ru/maps/-/CTATeV~u"
-                  target="_blank"
-                  className="group relative w-full inline-flex items-center justify-center gap-4 px-8 py-5 bg-[#FF2E63] border-2 border-[#FF2E63] skew-x-[-6deg] hover:bg-transparent hover:text-[#FF2E63] transition-colors"
-                >
-                  <div className="skew-x-[6deg] flex items-center gap-4">
-                      <span className="font-tactic font-black italic text-sm md:text-lg text-white group-hover:text-[#FF2E63] uppercase">ПОСТРОИТЬ МАРШРУТ</span>
-                      <MapPin size={20} className="text-white group-hover:text-[#FF2E63]" />
-                  </div>
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="https://langame.ru/cip/umfw9uiydje1ugq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex-1 inline-flex items-center justify-center gap-3 px-6 py-5 bg-[#FF2E63] border-2 border-[#FF2E63] skew-x-[-6deg] hover:bg-[#e02655] transition-all shadow-[0_0_25px_rgba(255,46,99,0.4)]"
+                  >
+                    <div className="skew-x-[6deg] flex items-center gap-2.5">
+                        <Zap size={20} className="text-white fill-white" />
+                        <span className="font-tactic font-black italic text-sm md:text-base text-white uppercase">ОНЛАЙН-БРОНЬ (30 СЕК)</span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://yandex.ru/maps/-/CTATeV~u"
+                    target="_blank"
+                    className="group relative sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-5 bg-white/5 border-2 border-white/10 skew-x-[-6deg] hover:border-[#FF2E63] hover:text-[#FF2E63] transition-colors"
+                  >
+                    <div className="skew-x-[6deg] flex items-center gap-3">
+                        <span className="font-tactic font-black italic text-sm md:text-base text-white group-hover:text-[#FF2E63] uppercase">МАРШРУТ</span>
+                        <MapPin size={20} className="text-white group-hover:text-[#FF2E63]" />
+                    </div>
+                  </a>
+                </div>
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-chakra font-black text-[10px] uppercase tracking-widest">
                   <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-[#FF2E63] border-b border-white/20 hover:border-[#FF2E63] transition-colors">
                     Google Карты

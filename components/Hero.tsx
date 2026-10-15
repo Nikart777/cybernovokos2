@@ -62,22 +62,29 @@ export default function Hero() {
                         Топовый киберклуб в Новокосино: мощные ПК с RTX 5070, мониторы 400Hz и PS5 Lounge. Твой лучший киберспортивный опыт в Москве 24/7.
                     </motion.p>
 
-                    {/* CTA Button */}
+                    {/* CTA Buttons */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="mb-10"
+                        className="mb-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
                     >
+                        <a
+                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative inline-flex items-center gap-2.5 bg-[#FF2E63] hover:bg-[#ff1e57] px-7 sm:px-9 py-4 rounded-full font-chakra font-black text-xs sm:text-sm uppercase tracking-[0.16em] text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-95"
+                        >
+                            <Zap size={18} className="animate-pulse" />
+                            <span>Забронировать онлайн (без регистрации)</span>
+                        </a>
+
                         <button
                             onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                            className="group relative flex items-center gap-3 bg-[#FF2E63] px-10 py-4 rounded-full font-chakra font-black text-sm uppercase tracking-[0.2em] transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-95 overflow-hidden"
+                            className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/15 text-white/80 hover:text-white font-chakra font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95"
                         >
-                            <span className="relative z-10 flex items-center gap-2">
-                                <Smartphone size={18} className="group-hover:rotate-12 transition-transform" />
-                                Забронировать место
-                            </span>
-                            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" style={{ transitionTimingFunction: 'cubic-bezier(0.19, 1, 0.22, 1)' }} />
+                            <Smartphone size={16} className="text-[#00F0FF]" />
+                            <span>Через приложение (+400 бонусов)</span>
                         </button>
                     </motion.div>
 

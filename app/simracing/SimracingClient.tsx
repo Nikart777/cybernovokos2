@@ -285,20 +285,35 @@ export default function SimracingClient() {
                 </details>
               )}
               <div className="mt-6 flex flex-col items-start gap-4 border-t border-white/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                <p className="max-w-sm text-sm text-[#b4b6c0]">
-                  Этот режим доступен на автосимуляторах в нашем клубе.
-                </p>
-                <button
-                  type="button"
-                  className="sr-button"
-                  onClick={() => {
-                    closeRoom();
-                    window.dispatchEvent(new CustomEvent("open-booking"));
-                  }}
-                >
-                  Забронировать заезд
-                  <ArrowUpRight size={19} aria-hidden="true" />
-                </button>
+                <div>
+                  <p className="max-w-sm text-sm text-[#b4b6c0]">
+                    Этот режим доступен на автосимуляторах в нашем клубе.
+                  </p>
+                  <p className="mt-1 text-[11px] font-chakra text-[#00F0FF] uppercase tracking-wider">
+                    ⚡ Онлайн-бронь за 30 сек без регистрации
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <a
+                    href="https://langame.ru/cip/umfw9uiydje1ugq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="sr-button"
+                  >
+                    Забронировать онлайн
+                    <ArrowUpRight size={19} aria-hidden="true" />
+                  </a>
+                  <button
+                    type="button"
+                    className="px-4 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-chakra font-bold uppercase tracking-wider transition-colors"
+                    onClick={() => {
+                      closeRoom();
+                      window.dispatchEvent(new CustomEvent("open-booking"));
+                    }}
+                  >
+                    В приложении
+                  </button>
+                </div>
               </div>
             </div>
           </div>

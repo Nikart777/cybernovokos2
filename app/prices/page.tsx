@@ -7,6 +7,7 @@ import fs from "fs";
 import path from "path";
 import { PricingData } from "../lib/types";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { Zap, Smartphone } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Цены на услуги киберклуба в Новокосино | Москва",
@@ -70,13 +71,40 @@ export default async function PricesPage() {
             <SchemaMarkup schema={pricesSchema} />
             <Header />
             <div className="pt-24 md:pt-32 px-4 md:px-10 max-w-[1400px] mx-auto w-full flex-grow">
-                <section className="mb-8 md:mb-12">
-                    <h1 className="font-tactic font-black text-3xl sm:text-4xl md:text-7xl uppercase mb-4 md:mb-6 text-[#FF2E63] leading-none">
-                        Прайс-лист
-                    </h1>
-                    <p className="font-chakra font-bold text-sm sm:text-base md:text-xl text-white/70 max-w-3xl mb-6 md:mb-8 uppercase tracking-wide leading-relaxed">
-                        Выбирай свою зону и врывайся в игру. Лучшее железо в Новокосино по доступным ценам.
-                    </p>
+                <section className="mb-8 md:mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/10">
+                    <div>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
+                            Клуб CyberX Новокосино · 24/7
+                        </div>
+                        <h1 className="font-tactic font-black text-3xl sm:text-4xl md:text-7xl uppercase mb-3 text-[#FF2E63] leading-none">
+                            Прайс-лист
+                        </h1>
+                        <p className="font-chakra font-bold text-sm sm:text-base md:text-lg text-white/70 max-w-2xl uppercase tracking-wide leading-relaxed">
+                            Выбирай свою зону и врывайся в игру. Лучшее железо в Новокосино по доступным ценам.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 shrink-0">
+                        <a
+                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(255,46,99,0.5)] hover:shadow-[0_0_35px_rgba(255,46,99,0.8)] transition-all"
+                        >
+                            <Zap size={16} className="fill-white" />
+                            <span>Забронировать онлайн</span>
+                        </a>
+                        <a
+                            href="/download"
+                            target="_blank"
+                            rel="nofollow noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-4 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-colors"
+                        >
+                            <Smartphone size={16} />
+                            <span>В приложении (+400 бонусов)</span>
+                        </a>
+                    </div>
                 </section>
 
                 {/* Передаем данные в клиентский компонент */}

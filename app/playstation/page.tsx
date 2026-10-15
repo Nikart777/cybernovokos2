@@ -4,7 +4,7 @@ import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { Metadata } from "next";
 import Link from "next/link";
-import { Tv, DoorClosed, Users, Moon } from "lucide-react";
+import { Tv, DoorClosed, Users, Moon, Zap, Smartphone, Phone, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "PlayStation 5 в клубе — поиграть на PS5 в Москве | CyberX Новокосино",
@@ -167,25 +167,60 @@ export default function PlaystationPage() {
                 </section>
 
                 <section className="mb-20">
-                    <div className="bg-[#0A0A0A] border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                        <div className="max-w-2xl">
+                    <div className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-3xl p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-gradient-to-l from-[#FF2E63]/10 to-transparent pointer-events-none" />
+                        <div className="max-w-2xl relative z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
+                                Онлайн-бронирование без регистрации
+                            </div>
                             <h2 className="font-tactic font-black text-2xl md:text-3xl uppercase mb-3">
-                                Забронировать зону
+                                Забронировать PS5 или VIP-комнату
                             </h2>
-                            <p className="font-inter text-gray-400 leading-relaxed">
+                            <p className="font-inter text-gray-400 leading-relaxed mb-4">
                                 Москва, ул. Новокосинская, 32 — рядом с метро «Новокосино».
-                                Клуб работает круглосуточно. На выходные и VIP-комнату место
-                                лучше занять заранее.
+                                Клуб работает круглосуточно. На выходные и вечернее время зону с PlayStation 5 рекомендуем бронировать онлайн заранее.
                             </p>
+                            <div className="flex flex-wrap items-center gap-4 text-white/50 text-xs font-chakra font-bold uppercase tracking-wider">
+                                <span className="text-[#00F0FF]">⚡ Бронь за 30 сек</span>
+                                <div className="w-[1px] h-3 bg-white/20" />
+                                <span>Без скачивания приложений</span>
+                                <div className="w-[1px] h-3 bg-white/20" />
+                                <span>+400 ₽ при установке приложения</span>
+                            </div>
                         </div>
-                        <a
-                            href="tel:+79851289538"
-                            className="inline-flex items-center gap-3 px-10 py-5 bg-[#FF2E63] text-white font-chakra font-black text-lg uppercase tracking-wider rounded-xl hover:shadow-[0_0_40px_rgba(255,46,99,0.6)] transition-all duration-300 transform -skew-x-12 whitespace-nowrap"
-                        >
-                            <span className="block transform skew-x-12">
-                                +7 (985) 128-95-38
-                            </span>
-                        </a>
+                        <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0 w-full sm:w-auto">
+                            <a
+                                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-base uppercase tracking-wider rounded-xl shadow-[0_0_30px_rgba(255,46,99,0.5)] hover:shadow-[0_0_40px_rgba(255,46,99,0.8)] transition-all duration-300 group"
+                            >
+                                <Zap size={18} className="fill-white" />
+                                <span>Забронировать онлайн</span>
+                                <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                            </a>
+
+                            <div className="flex items-center gap-2">
+                                <a
+                                    href="/download"
+                                    target="_blank"
+                                    rel="nofollow noopener noreferrer"
+                                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-colors"
+                                >
+                                    <Smartphone size={14} />
+                                    <span>Приложение (+400 бонусов)</span>
+                                </a>
+                                <a
+                                    href="tel:+79851289538"
+                                    className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-colors"
+                                    title="Позвонить в клуб"
+                                >
+                                    <Phone size={14} />
+                                    <span>+7 985 128-95-38</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
