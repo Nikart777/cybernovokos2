@@ -486,20 +486,31 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
                     </div>
 
                     <div className="flex gap-2">
+                        <a
+                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 py-2.5 px-3 rounded-xl bg-[#FF2E63] hover:bg-[#e02655] text-white transition-all font-chakra font-black text-[11px] uppercase tracking-[0.12em] shadow-[0_0_15px_rgba(255,46,99,0.3)] hover:shadow-[0_0_25px_rgba(255,46,99,0.5)] flex items-center justify-center gap-1.5 text-center"
+                        >
+                            <Zap size={13} className="fill-white shrink-0" />
+                            <span>Онлайн-бронь</span>
+                        </a>
                         <button
                             onClick={openBooking}
-                            className="flex-1 py-2.5 rounded-xl bg-[#FF2E63] hover:bg-[#FF2E63]/80 text-white transition-all font-chakra font-black text-xs uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(255,46,99,0.3)] hover:shadow-[0_0_25px_rgba(255,46,99,0.5)]"
+                            title="Бронь через приложение с бонусом +400 ₽"
+                            className="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 font-chakra font-bold text-[10px] uppercase tracking-wider transition-all"
                         >
-                            Забронировать
+                            App
                         </button>
                         {/* @ts-ignore */}
                         {config.link && (
                             <Link
                                 // @ts-ignore
                                 href={config.link}
-                                className="w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all"
+                                className="w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all text-white/50 hover:text-[#00F0FF]"
+                                title="Подробнее о зоне"
                             >
-                                <Info size={16} className="text-[#00F0FF]" />
+                                <Info size={16} />
                             </Link>
                         )}
                     </div>

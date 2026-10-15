@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Smartphone, MapPin, Clock, ChevronRight, MessageSquare, Star } from 'lucide-react';
+import { Smartphone, MapPin, Clock, ChevronRight, MessageSquare, Star, Zap } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function CTASection() {
@@ -99,27 +99,34 @@ export default function CTASection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.5 }}
-                            className="flex flex-wrap justify-center gap-4 mb-12"
+                            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12"
                         >
+                            <a
+                                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative flex items-center gap-3 bg-gradient-to-r from-[#FF2E63] to-[#FF2E63]/85 px-8 sm:px-10 py-5 rounded-full font-chakra font-black text-xs sm:text-sm uppercase tracking-[0.16em] text-white transition-all duration-300 hover:shadow-[0_0_50px_rgba(255,46,99,0.5)] hover:scale-105 active:scale-95"
+                            >
+                                <Zap size={18} className="animate-pulse" />
+                                <span>Забронировать онлайн (без регистрации)</span>
+                            </a>
+
                             <button
                                 onClick={() => window.dispatchEvent(new CustomEvent('open-booking'))}
-                                className="group relative flex items-center gap-3 bg-gradient-to-r from-[#FF2E63] to-[#FF2E63]/80 px-10 py-5 rounded-full font-chakra font-black text-sm uppercase tracking-[0.2em] text-white transition-all duration-300 hover:shadow-[0_0_50px_rgba(255,46,99,0.5)] hover:scale-105 active:scale-95 overflow-hidden"
+                                className="group flex items-center gap-2.5 px-6 sm:px-8 py-5 rounded-full bg-white/10 border border-white/20 font-chakra font-bold text-xs sm:text-sm uppercase tracking-[0.14em] text-white hover:bg-white/15 hover:border-white/30 transition-all duration-300 active:scale-95"
                             >
-                                <span className="relative z-10 flex items-center gap-2">
-                                    <Smartphone size={18} className="group-hover:rotate-12 transition-transform" />
-                                    Забронировать место
-                                </span>
-                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                                <Smartphone size={18} className="text-[#00F0FF] group-hover:rotate-12 transition-transform" />
+                                <span>Через приложение (+400 бонусов)</span>
                             </button>
                             
                             <a
                                 href="https://t.me/CyberXNovokos"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-3 px-10 py-5 rounded-full bg-white/10 border border-white/20 font-chakra font-black text-sm uppercase tracking-[0.2em] text-white hover:bg-white/15 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300"
+                                className="group flex items-center gap-2.5 px-6 sm:px-8 py-5 rounded-full bg-white/5 border border-white/10 font-chakra font-bold text-xs sm:text-sm uppercase tracking-[0.14em] text-white/80 hover:text-white hover:bg-white/10 hover:border-white/25 transition-all duration-300"
                             >
-                                <MessageSquare size={18} className="group-hover:scale-110 transition-transform" />
-                                Написать в Telegram
+                                <MessageSquare size={18} className="text-[#00F0FF] group-hover:scale-110 transition-transform" />
+                                <span>Telegram</span>
                             </a>
                         </motion.div>
 

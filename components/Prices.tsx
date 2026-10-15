@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, Smartphone, ChevronRight } from "lucide-react";
+import { Clock, Smartphone, ChevronRight, Zap } from "lucide-react";
 import { PricingData, PriceItem } from "@/app/lib/types";
 import Image from "next/image";
 
@@ -257,46 +257,59 @@ export default function Prices({ data }: { data: PricingData }) {
           )}
         </div>
 
-        {/* --- APP BANNER --- */}
+        {/* --- BOOKING & APP BANNER --- */}
         <div className="mt-12 md:mt-20 relative overflow-hidden rounded-2xl border border-[#FF2E63]/30 bg-[#111]">
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-gradient-to-l from-[#FF2E63]/10 to-transparent" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between p-5 sm:p-8 md:p-10 gap-6 md:gap-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6">
-              <div className="bg-[#FF2E63] p-4 rounded-2xl text-white shadow-[0_0_30px_#FF2E63]">
-                <Smartphone size={36} />
+          <div className="flex flex-col lg:flex-row items-center justify-between p-5 sm:p-8 md:p-10 gap-6 md:gap-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6 text-center md:text-left">
+              <div className="bg-[#FF2E63] p-4 rounded-2xl text-white shadow-[0_0_30px_#FF2E63] shrink-0">
+                <Zap size={36} className="fill-white" />
               </div>
-              <div className="text-center md:text-left">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
+                  Прямая бронь · CyberX Новокосино
+                </div>
                 <h4 className="font-tactic font-black text-xl sm:text-2xl md:text-3xl text-white uppercase mb-2 leading-tight">
-                  Скачать приложение CyberX
+                  Забронируй ПК или PS5 онлайн
                 </h4>
-                <p className="font-inter text-sm text-gray-400 max-w-md mb-4 md:mb-0">
-                  Бронируйте места и управляйте визитами онлайн.
+                <p className="font-inter text-sm text-gray-400 max-w-lg mb-3">
+                  Выбирайте свободное место на интерактивной карте за 30 секунд без регистрации — либо бронируйте в приложении с кэшбэком до 20%.
                 </p>
 
-                <div className="flex items-center justify-center md:justify-start gap-4 text-white/50 text-[10px] font-bold uppercase tracking-wider mt-2">
-                  <div className="flex items-center gap-1.5 hover:text-white transition-colors">
-                    <svg viewBox="0 0 384 512" fill="currentColor" className="w-3 h-3"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" /></svg>
-                    iOS
-                  </div>
+                <div className="flex items-center justify-center md:justify-start gap-4 text-white/50 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="text-[#00F0FF]">⚡ Без регистрации</span>
                   <div className="w-[1px] h-3 bg-white/20"></div>
-                  <div className="flex items-center gap-1.5 hover:text-white transition-colors">
-                    <svg viewBox="0 0 576 512" fill="currentColor" className="w-3 h-3"><path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10l-48.54,84.07a301.25,301.25,0,0,0-246.56,0l-48.54-84.07a10,10,0,1,0-17.27,10l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55" /></svg>
-                    Android
-                  </div>
+                  <span>+400 ₽ в приложении</span>
+                  <div className="w-[1px] h-3 bg-white/20"></div>
+                  <span>iOS / Android</span>
                 </div>
               </div>
             </div>
 
-            <a
-              href="/download"
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              className="flex items-center gap-3 px-8 py-4 bg-white text-black font-chakra font-black text-lg uppercase tracking-wider rounded-xl hover:bg-[#FF2E63] hover:text-white hover:shadow-[0_0_30px_#FF2E63] transition-all duration-300 w-full md:w-auto justify-center"
-            >
-              Скачать
-              <ChevronRight size={20} />
-            </a>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto shrink-0">
+              <a
+                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 px-6 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-sm md:text-base uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(255,46,99,0.5)] hover:shadow-[0_0_35px_rgba(255,46,99,0.8)] transition-all duration-300 justify-center group"
+              >
+                <Zap size={18} className="fill-white" />
+                <span>Забронировать онлайн</span>
+                <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+              </a>
+
+              <a
+                href="/download"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-4 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 hover:border-white/30 font-chakra font-bold text-xs md:text-sm uppercase tracking-wider rounded-xl transition-all duration-300 justify-center"
+              >
+                <Smartphone size={16} />
+                <span>В приложении (+400 бонусов)</span>
+              </a>
+            </div>
           </div>
         </div>
 

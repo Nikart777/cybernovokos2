@@ -23,14 +23,15 @@ export function BookingButton({
   className?: string;
 }) {
   return (
-    <button
-      type="button"
+    <a
+      href="https://langame.ru/cip/umfw9uiydje1ugq"
+      target="_blank"
+      rel="noopener noreferrer"
       className={`sr-button ${className}`}
-      onClick={() => window.dispatchEvent(new CustomEvent("open-booking"))}
     >
       {children}
       <ArrowUpRight size={19} aria-hidden="true" />
-    </button>
+    </a>
   );
 }
 

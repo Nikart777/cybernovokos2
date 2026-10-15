@@ -4,6 +4,7 @@ import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { Metadata } from "next";
 import Link from "next/link";
+import { Zap, Smartphone, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Компьютерный клуб для Выхино и Жулебино — CyberX Новокосино",
@@ -146,6 +147,53 @@ export default function VyhinoZhulebinoPage() {
                             >
                                 Построить маршрут
                             </Link>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mb-20">
+                    <div className="bg-[#0A0A0A] border border-[#FF2E63]/30 rounded-3xl p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-gradient-to-l from-[#FF2E63]/10 to-transparent pointer-events-none" />
+                        <div className="max-w-2xl relative z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
+                                Онлайн-бронирование мест в клубе
+                            </div>
+                            <h2 className="font-tactic font-black text-2xl md:text-3xl uppercase mb-3">
+                                Забронировать ПК или приставку
+                            </h2>
+                            <p className="font-inter text-gray-400 leading-relaxed mb-4">
+                                Выбирайте любое свободное место в клубе на интерактивной карте в режиме реального времени — без регистрации и за 30 секунд. Либо бронируйте в приложении с бонусом +400 ₽.
+                            </p>
+                            <div className="flex flex-wrap items-center gap-4 text-white/50 text-xs font-chakra font-bold uppercase tracking-wider">
+                                <span className="text-[#00F0FF]">⚡ Без регистрации</span>
+                                <div className="w-[1px] h-3 bg-white/20" />
+                                <span>Бронь за 30 сек</span>
+                                <div className="w-[1px] h-3 bg-white/20" />
+                                <span>+400 ₽ при установке приложения</span>
+                            </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0 w-full sm:w-auto">
+                            <a
+                                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-base uppercase tracking-wider rounded-xl shadow-[0_0_30px_rgba(255,46,99,0.5)] hover:shadow-[0_0_40px_rgba(255,46,99,0.8)] transition-all duration-300 group"
+                            >
+                                <Zap size={18} className="fill-white" />
+                                <span>Забронировать онлайн</span>
+                                <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                            </a>
+
+                            <a
+                                href="/download"
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 font-chakra font-bold text-xs uppercase tracking-wider rounded-xl transition-colors"
+                            >
+                                <Smartphone size={15} />
+                                <span>В приложении (+400 бонусов)</span>
+                            </a>
                         </div>
                     </div>
                 </section>
