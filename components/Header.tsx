@@ -30,7 +30,15 @@ export default function Header() {
     const isPromoPage = pathname === '/promo';
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    // A page can ask the header to step aside (e.g. the certificate constructor on phones).
+    const [tucked, setTucked] = useState(false);
     const { scrollY } = useScroll();
+
+    useEffect(() => {
+        const onTuck = (e: Event) => setTucked(Boolean((e as CustomEvent<boolean>).detail));
+        window.addEventListener('cx-header-hide', onTuck);
+        return () => window.removeEventListener('cx-header-hide', onTuck);
+    }, []);
 
     const openChat = () => {
         window.dispatchEvent(new CustomEvent('open-chat'));
@@ -63,10 +71,10 @@ export default function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-[100] transition-[background-color,border-color,padding] duration-300 ${scrolled
+                className={`fixed top-0 left-0 right-0 z-[100] transition-[background-color,border-color,padding,transform] duration-300 ${scrolled
                     ? 'bg-[#050505] border-b-2 border-[#FF2E63]/20 py-3'
                     : 'bg-transparent py-6'
-                    }`}
+                    } ${tucked && !isOpen ? '-translate-y-full' : ''}`}
             >
                 <div className="container mx-auto px-4 flex items-center justify-between max-w-[1400px]">
                     <Link href="/" className="relative z-[110] flex items-center group">

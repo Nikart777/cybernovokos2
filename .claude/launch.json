@@ -4,8 +4,21 @@
     {
       "name": "cyberx-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
+    },
+    {
+      "name": "cyberx-drop",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile",
+        "-Command",
+        "$env:NEXT_BUILD_DIR='.next-drop'; npx next dev -p 3017"
+      ],
+      "port": 3017
     }
   ]
 }
