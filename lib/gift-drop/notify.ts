@@ -39,7 +39,6 @@ export async function emailBuyer(o: GiftOrder): Promise<boolean> {
     if (!process.env.SMTP_HOST || !process.env.SMTP_USER) return false;
     const gift = `${o.baseUrl}${giftPath(o.id)}`;
     const order = `${o.baseUrl}${orderPath(o.id)}`;
-    const to = o.cfg.to.trim();
     const subject = `${o.trial ? "Тест: " : ""}Ваш подарочный сертификат CyberX на ${formatRub(o.amount)}`;
     const text = [
         "Спасибо за покупку!",
@@ -48,9 +47,9 @@ export async function emailBuyer(o: GiftOrder): Promise<boolean> {
         o.bonus ? `Плюс ${o.bonus} бонусов в подарок: начислятся при регистрации в приложении CyberX.` : "",
         "",
         `Ссылка-сюрприз: ${gift}`,
-        "Получатель откроет кейс и увидит ваш сертификат и промокод.",
+        "Отправьте её тому, кому дарите: по ней откроется кейс с вашим сертификатом и промокодом.",
         "",
-        "Как активировать промокод (перешлите получателю):",
+        "Как активировать промокод (перешлите вместе со ссылкой):",
         "",
         "Онлайн, в приложении:",
         "1. Скачайте приложение CyberX.",
@@ -72,7 +71,7 @@ export async function emailBuyer(o: GiftOrder): Promise<boolean> {
 <p style="margin:0 0 6px;color:#a39cc4">Промокод</p>
 <p style="margin:0 0 ${o.bonus ? 8 : 24}px;font-size:28px;font-weight:bold;letter-spacing:3px;color:#fff">${esc(o.code || "")}</p>
 ${o.bonus ? `<p style="margin:0 0 24px;color:#ffe68a;font-weight:bold">+${o.bonus} бонусов в подарок: начислятся при регистрации в приложении CyberX</p>` : ""}
-<p style="margin:0 0 16px;line-height:1.5">Осталось отправить ссылку-сюрприз. ${esc(to || "Получатель")} откроет по ней кейс с вашим дизайном, пожеланием и промокодом.</p>
+<p style="margin:0 0 16px;line-height:1.5">Осталось отправить ссылку-сюрприз. По ней откроется кейс с вашим дизайном, пожеланием и промокодом.</p>
 <p style="margin:0 0 28px"><a href="${gift}" style="display:inline-block;background:#ff2e63;color:#fff;text-decoration:none;font-weight:bold;padding:14px 22px;border-radius:12px">Открыть ссылку-сюрприз</a></p>
 <h2 style="margin:0 0 10px;font-size:18px;color:#fff">Как активировать промокод</h2>
 <p style="margin:0 0 6px;font-weight:bold;color:#7cf5ff">Онлайн, в приложении</p>

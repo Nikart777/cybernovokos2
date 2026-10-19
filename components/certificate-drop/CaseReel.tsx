@@ -12,7 +12,7 @@ type Filler = { title: string; img?: string; rarity: number; cert?: { skin: Skin
 const Z = (id: string) => `/certificate-drop/zones/${id}.webp`;
 const FILLERS: Filler[] = [
     { title: "1 час в общем зале", img: Z("hall"), rarity: 0 },
-    { title: "Энергетик и снек из бара", img: Z("bar"), rarity: 0 },
+    { title: "Напиток и снек из бара", img: Z("bar"), rarity: 0 },
     { title: "PS5, 2 часа", img: Z("ps5"), rarity: 1 },
     { title: "Ночной пакет", img: Z("night"), rarity: 1 },
     { title: "Duo-зал на вечер", img: Z("duo"), rarity: 2 },

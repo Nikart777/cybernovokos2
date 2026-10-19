@@ -30,7 +30,7 @@ const ZONES = [
     { id: "sim", name: "Автосимулятор", note: "руль, педали, кокпит", l: 50, t: 37.5, w: 48, r: -3, z: 4 },
     { id: "duo", name: "Duo", note: "вдвоём с другом", l: 0, t: 50, w: 48, r: -2, z: 3 },
     { id: "bootcamp", name: "Bootcamp", note: "команда на 5 ПК", l: 52, t: 62.5, w: 48, r: 3, z: 2 },
-    { id: "bar", name: "Бар", note: "энергетики, снеки, сэндвичи", l: 4, t: 75, w: 48, r: -2, z: 1 },
+    { id: "bar", name: "Бар", note: "напитки, снеки, сэндвичи", l: 4, t: 75, w: 48, r: -2, z: 1 },
 ];
 const PIECE_H = 0.585;
 
@@ -68,7 +68,12 @@ function Piece({ p, z, i }: { p: MotionValue<number>; z: (typeof ZONES)[number];
             style={{ left: `${z.l}%`, top: `${z.t}%`, width: `${z.w}%`, zIndex: z.z, x, y, scale, rotate, opacity }}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/certificate-drop/zones/${z.id}.webp`} alt="" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+            <img
+                src={`/certificate-drop/zones/${z.id}.webp`}
+                alt={`${z.name} в компьютерном клубе CyberX Новокосино`}
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+            />
             <figcaption className={s.pieceCap}>
                 <b>{z.name}</b>
                 <span>{z.note}</span>
@@ -146,17 +151,20 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                 {/* captions: top on phones, left column on desktop */}
                 <div className={`absolute inset-x-4 top-[88px] h-[33svh] sm:inset-x-8 lg:top-1/2 lg:h-[480px] lg:w-[min(46vw,600px)] lg:-translate-y-1/2 ${side}`}>
                     <Caption p={p} range={[0, 0.13, 0.18]} className="text-center lg:text-left">
-                        <h1 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-white lg:text-[clamp(2.4rem,3.6vw,3.6rem)]`}>
-                            Подарочный сертификат в компьютерный клуб CyberX Новокосино
+                        <h1 className="text-white">
+                            <span className={`${s.display} block text-[clamp(2.1rem,9.4vw,3rem)] leading-[1.02] lg:text-[clamp(3.2rem,5vw,5rem)]`}>
+                                Необычный подарок
+                            </span>
+                            <span className="sr-only">: </span>
+                            <span className="mt-3 block font-inter text-[15px] font-semibold leading-snug text-[#d9d3f5] sm:text-[17px] lg:mt-5 lg:text-[20px]">
+                                Сертификат в компьютерный клуб CyberX&nbsp;Новокосино
+                            </span>
                         </h1>
-                        <p className="mx-auto mt-3 max-w-[44ch] font-inter text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:mt-5 lg:text-[18px]">
-                            Игровые ПК, PS5, автосимулятор, снеки и напитки. Листайте вниз: покажем, каким он будет.
-                        </p>
                     </Caption>
 
                     <Caption p={p} range={[0.16, 0.21, 0.4, 0.44]} className="text-center lg:text-left">
                         <h2 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-white lg:text-[clamp(2.2rem,3.3vw,3.3rem)]`}>
-                            Любой номинал,
+                            Любой номинал,{" "}
                             <br />
                             <span className="whitespace-nowrap">от 1{" "}000{" "}₽</span>
                         </h2>
@@ -182,10 +190,10 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                 >
                     <div>
                         <h2 className={`${s.display} text-[clamp(1.35rem,6vw,2.1rem)] leading-[1.06] text-white lg:text-[clamp(2.1rem,3.1vw,3.1rem)]`}>
-                            Это баланс в компьютерном клубе
+                            Можно потратить на всё в клубе
                         </h2>
                         <p className="mx-auto mt-2.5 max-w-[46ch] font-inter text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:mt-4 lg:text-[18px]">
-                            Получатель тратит его где захочет: от общего зала и приватных комнат до PS5, автосимулятора и бара.
+                            ПК, отдельные комнаты, PS5, автосимулятор и бар. Выбирает тот, кому дарите.
                         </p>
                     </div>
                     <div className="lg:mt-8">

@@ -38,15 +38,14 @@ export const DemoSection = forwardRef<HTMLElement, { cfg: GiftConfig; trigger: n
     { cfg, trigger, onDone },
     ref,
 ) {
-    const to = cfg.to.trim();
     return (
         <section ref={ref} id="open" className="relative z-[2] overflow-hidden border-t border-white/[0.06] py-14 lg:py-28">
             <div className={s.beam} style={{ top: "18%", opacity: 0.55 }} aria-hidden />
             <div className="relative mx-auto max-w-[1280px] px-4 text-center sm:px-6 lg:text-left">
                 <div className="mx-auto max-w-[760px] lg:mx-0">
-                    <h2 className={h2}>{to ? `Так ${to} откроет ваш подарок` : "Так получатель откроет ваш подарок"}</h2>
+                    <h2 className={h2}>Вот как откроется подарок</h2>
                     <p className={`${lead} mx-auto mt-3 max-w-[52ch] lg:mx-0 lg:mt-4`}>
-                        После оплаты вы получите ссылку-сюрприз: по ней откроется такой же кейс с вашим дизайном и промокодом.
+                        После оплаты придёт ссылка. Отправьте её тому, кому дарите: по ней откроется такой же кейс с вашим дизайном и промокодом.
                     </p>
                 </div>
             </div>
@@ -63,7 +62,7 @@ export const DemoSection = forwardRef<HTMLElement, { cfg: GiftConfig; trigger: n
                     className="inline-flex h-12 items-center gap-2 rounded-xl px-4 font-inter text-[15px] font-semibold text-[#c8c1ea] transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                     <ExternalLink className="h-4 w-4" aria-hidden />
-                    Посмотреть страницу получателя
+                    Открыть страницу подарка
                 </a>
             </div>
         </section>
@@ -139,7 +138,7 @@ export function RevealModal({
                                 Сертификат на {digitGroups(cfg.nominal).join(" ")}
                                 <span className="font-inter font-extrabold">&nbsp;₽</span>
                             </h3>
-                            <p className={`${lead} mx-auto mt-4 max-w-[46ch] md:mx-0`}>Такой кейс откроет {cfg.to.trim() || "получатель"}.</p>
+                            <p className={`${lead} mx-auto mt-4 max-w-[46ch] md:mx-0`}>{cfg.to.trim() ? `Такой кейс откроет ${cfg.to.trim()}.` : "Такой кейс откроют по вашей ссылке."}</p>
                             <p className="mx-auto mt-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-3.5 py-2.5 font-inter text-[14px] text-[#c8c1ea] md:mx-0">
                                 <Lock className="h-4 w-4 shrink-0" style={{ color: rarity.color }} aria-hidden />
                                 Промокод на карте откроется после оплаты
@@ -174,6 +173,13 @@ export function RevealModal({
 
 /* ── What the nominal turns into ─────────────────────────────────────── */
 
+const SPEND_ALT: Record<string, string> = {
+    hall: "Общий зал компьютерного клуба CyberX Новокосино",
+    night: "Игровые ПК в компьютерном клубе CyberX Новокосино",
+    sim: "Автосимулятор в компьютерном клубе CyberX Новокосино",
+    ps5: "PS5 в компьютерном клубе CyberX Новокосино",
+};
+
 export function SpendSection({ cfg, update, rates }: { cfg: GiftConfig; update: Update; rates: Rates }) {
     const items = spendOf(cfg.nominal, rates).filter((it) => it.value > 0);
     return (
@@ -189,7 +195,7 @@ export function SpendSection({ cfg, update, rates }: { cfg: GiftConfig; update: 
                             </span>
                         </h2>
                         <p className={`${lead} mt-4 max-w-[54ch]`}>
-                            Любой из вариантов, и на перекус тоже останется: энергетики Monster, Burn и Adrenaline Rush, шоколадки и сэндвичи из бара клуба.
+                            Любой из вариантов, и ещё останется на напитки, шоколадки и сэндвичи из бара.
                         </p>
                     </div>
                     <NominalChips cfg={cfg} update={update} compact />
@@ -201,7 +207,7 @@ export function SpendSection({ cfg, update, rates }: { cfg: GiftConfig; update: 
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={it.img}
-                                alt=""
+                                alt={SPEND_ALT[it.id] ?? "Компьютерный клуб CyberX Новокосино"}
                                 loading="lazy"
                                 decoding="async"
                                 className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -229,12 +235,54 @@ export function SpendSection({ cfg, update, rates }: { cfg: GiftConfig; update: 
     );
 }
 
+/* ── Who it suits: the page's answer to «необычный подарок …» searches ─ */
+
+const GIFT_FOR = [
+    {
+        title: "Мужчине и парню",
+        text: "Если не знаете, что подарить мужчине на день рождения: вечер в Solo-комнате, ночь за игровым ПК или заезд на автосимуляторе с рулём и педалями.",
+    },
+    {
+        title: "Девушке",
+        text: "Для той, кто любит игры или давно хотела попробовать: PS5 на большом экране с диванами, Duo-комната на двоих, снеки и напитки из бара.",
+    },
+    {
+        title: "Другу-геймеру",
+        text: "Тому, у кого всё есть: часы за игровым ПК. Место можно заранее забронировать в приложении CyberX.",
+    },
+    {
+        title: "На двоих и компанией",
+        text: "Duo-комната на двоих или Bootcamp на 5 ПК, чтобы прийти всей командой. Клуб открыт круглосуточно, время найдётся у всех.",
+    },
+];
+
+export function GiftIdeasSection() {
+    return (
+        <section className="relative z-[2] border-t border-white/[0.06] py-20 lg:py-28">
+            <div className="mx-auto max-w-[1280px] px-4 sm:px-6">
+                <h2 className={h2}>Необычный подарок, который не&nbsp;ляжет на&nbsp;полку</h2>
+                <p className={`${lead} mt-4 max-w-[60ch]`}>
+                    Это подарок-впечатление: не нужно угадывать размер и вкус. Где играть, когда и с кем, человек решит сам.
+                </p>
+                <ul className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+                    {GIFT_FOR.map((g) => (
+                        <li key={g.title} className="border-t border-white/15 pt-6">
+                            <h3 className="font-inter text-[19px] font-bold text-white">{g.title}</h3>
+                            <p className="mt-2 max-w-[38ch] font-inter text-[15px] leading-relaxed text-[#a39cc4]">{g.text}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </section>
+    );
+}
+
 /* ── How ordering works (a real sequence, so it is numbered) ─────────── */
 
 const STEPS = [
-    { title: "Соберите сертификат", text: "Номинал, повод, один из девяти дизайнов или своё фото и пожелание." },
-    { title: "Посмотрите, как он откроется", text: "Откройте кейс так, как это сделает получатель, и поправьте детали, если нужно." },
-    { title: "Оплатите и вручите ссылку", text: "Картой или через СБП. Сразу после оплаты получите промокод и ссылку-сюрприз для получателя." },
+    { title: "Соберите сертификат", text: "Выберите сумму, повод, дизайн или своё фото и напишите пожелание." },
+    { title: "Посмотрите, как он откроется", text: "Откройте кейс сами и поправьте, если что-то не нравится." },
+    { title: "Оплатите и вручите ссылку", text: "Картой или через СБП. Сразу после оплаты получите промокод и ссылку, которую можно отправить в подарок." },
 ];
 
 export function StepsSection({ onOpenCase }: { onOpenCase: () => void }) {
@@ -350,7 +398,7 @@ export const FinalSection = forwardRef<HTMLElement, { cfg: GiftConfig; onEdit: (
                             onClick={onEdit}
                             className="mt-2 inline-flex h-12 items-center justify-center self-center rounded-xl px-4 font-inter text-[15px] font-semibold text-[#c8c1ea] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:self-start"
                         >
-                            Изменить макет
+                            Изменить сертификат
                         </button>
                     </div>
                     <p className="mt-6 font-inter text-[14px] leading-relaxed text-[#8f88b3]">

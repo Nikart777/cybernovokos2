@@ -112,7 +112,7 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
 
                             <h2 className="mt-8 font-inter text-[18px] font-bold text-white">Осталось отправить ссылку-сюрприз</h2>
                             <p className="mt-1.5 font-inter text-[15px] text-[#a39cc4]">
-                                {order.cfg.to.trim() || "Получатель"} откроет по ней кейс с вашим дизайном, пожеланием и промокодом.
+                                Отправьте её тому, кому дарите: по ней откроется кейс с вашим дизайном, пожеланием и промокодом.
                             </p>
                             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                                 <CopyLink url={giftUrl} label="Скопировать ссылку" goal="cert_drop_copy_link" className="h-14 rounded-2xl !border-transparent !bg-white !text-[#0d0a1c] hover:!bg-white/90" />
@@ -133,7 +133,7 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                                     className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl px-4 font-inter text-[15px] font-semibold text-[#c8c1ea] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                                 >
                                     <ExternalLink className="h-4 w-4" aria-hidden />
-                                    Открыть как получатель
+                                    Посмотреть, как откроется подарок
                                 </a>
                             </div>
                         </>

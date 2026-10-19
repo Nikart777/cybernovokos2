@@ -6,7 +6,7 @@ import Studio from "./Studio";
 import GiftReveal from "./GiftReveal";
 import Checkout from "./Checkout";
 import IntroScroll from "./IntroScroll";
-import { BuyBar, DemoSection, FaqSection, FinalSection, RevealModal, SpendSection, StepsSection } from "./Sections";
+import { BuyBar, DemoSection, FaqSection, FinalSection, GiftIdeasSection, RevealModal, SpendSection, StepsSection } from "./Sections";
 import { configToQuery, GiftConfig, Rates, rarityOf, track } from "./model";
 
 function useOnScreen(ref: React.RefObject<Element>, margin = "0px") {
@@ -106,6 +106,7 @@ export default function CertificateDrop({ initial, rates, mode, startAtStudio = 
                 <Studio cfg={cfg} update={update} rates={rates} onOpenCase={openCase} onBuy={openCheckout} ctaRef={heroCtaRef} />
                 <DemoSection ref={demoRef} cfg={cfg} trigger={trigger} onDone={() => setRevealOpen(true)} />
                 <SpendSection cfg={cfg} update={update} rates={rates} />
+                <GiftIdeasSection />
                 <StepsSection onOpenCase={openCase} />
                 <FaqSection />
                 <FinalSection ref={finalRef} cfg={cfg} onEdit={editDesign} onBuy={openCheckout} />

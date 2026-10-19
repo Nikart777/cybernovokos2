@@ -27,11 +27,8 @@ export function RollingNumber({ value }: { value: number }) {
                 <span className={s.rollGroup} key={`${groups.length - gi}`} aria-hidden>
                     {Array.from(g).map((ch, ci) => (
                         <span className={s.digit} key={`${g.length - ci}`}>
-                            <span className={s.digitCol} style={{ transform: `translateY(${-Number(ch) * 10}%)` }}>
-                                {"0123456789".split("").map((d) => (
-                                    <span key={d}>{d}</span>
-                                ))}
-                            </span>
+                            {/* The 0–9 strip is CSS content, so robots read the number once, not "0123456789" per digit. */}
+                            <span className={s.digitCol} style={{ transform: `translateY(${-Number(ch) * 10}%)` }} />
                         </span>
                     ))}
                 </span>

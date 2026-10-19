@@ -129,7 +129,7 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
                                     {skinName(cfg.skin)}, {occasionLabel(cfg).toLowerCase()}
                                 </div>
                                 <div className="truncate text-[13px] text-[#8f88b3]">
-                                    {cfg.to.trim() ? `Кому: ${cfg.to.trim()}` : "Имя получателя не указано"}
+                                    {cfg.to.trim() ? `Кому: ${cfg.to.trim()}` : "Без имени"}
                                 </div>
                                 {bonus.active && <div className="mt-1 text-[13px] font-semibold text-[#FFE68A]">{bonusLabel}</div>}
                             </div>

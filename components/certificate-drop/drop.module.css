@@ -726,14 +726,14 @@
 }
 
 .digitCol {
-    display: flex;
-    flex-direction: column;
+    display: block;
     transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.digitCol span {
+.digitCol::before {
+    content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
     display: block;
-    height: 1em;
+    white-space: pre;
     line-height: 1;
     text-align: center;
 }

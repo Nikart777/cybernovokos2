@@ -22,6 +22,7 @@ import {
     rarityOf,
     SKINS,
     spendCombo,
+    barMix,
     track,
     WISH_PRESETS,
 } from "./model";
@@ -97,7 +98,7 @@ function WhoPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp: 
                         value={cfg.to}
                         maxLength={NAME_MAX}
                         autoComplete="off"
-                        placeholder="Имя получателя"
+                        placeholder="Имя"
                         onChange={(e) => update({ to: e.target.value })}
                     />
                 </div>
@@ -511,11 +512,11 @@ function MobileWizard({
                                 className="inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-6 font-inter text-[16px] font-semibold text-white transition-colors active:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
                                 <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
-                                Открыть как получатель
+                                Посмотреть, как откроется подарок
                             </button>
                         </div>
                         <p className="mt-3 text-center font-inter text-[13px] leading-relaxed text-[#8f88b3]">
-                            Оплата картой или через СБП. Промокод и ссылка-сюрприз откроются сразу после оплаты.
+                            Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
                         </p>
                     </motion.div>
                 )}
@@ -551,6 +552,8 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
         if (isTextField(e.target)) setTyping(false);
     };
     const solo = spendCombo(cfg.nominal, rates.solo);
+    // «Хватит на 8 ч в соло-комнате, 2 напитка, шоколадку и сэндвич»: one list, the form that follows «на».
+    const soloBar = barMix(solo.bar, true);
 
 
     return (
@@ -562,7 +565,7 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
                         Соберите свой сертификат
                     </h2>
                     <p className="mx-auto mt-3 hidden max-w-[52ch] font-inter sm:block text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:mt-5 lg:text-[17px]">
-                        Получатель потратит сумму в компьютерном клубе CyberX Новокосино: на игровые ПК, PS5, автосимулятор, снеки и напитки.
+                        Сумму можно потратить в компьютерном клубе CyberX Новокосино: на игровые ПК, PS5, автосимулятор, снеки и напитки.
                     </p>
                 </div>
 
@@ -592,10 +595,11 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
 
                     {solo.units > 0 && (
                         <p className={`relative z-[1] mt-1 text-center font-inter text-[12px] leading-snug text-[#a39cc4] sm:mt-2 sm:text-[14px] ${typing ? "hidden lg:block" : ""}`}>
-                            Хватит, например, на <b className="font-semibold text-white">{solo.units} ч в соло-комнате</b>
+                            Хватит на <b className="font-semibold text-white">{solo.units} ч в соло-комнате</b>
                             {solo.bar > 0 && (
                                 <>
-                                    {" "}и <b className="font-semibold text-[#FFE68A]">{solo.barText}</b>
+                                    {soloBar.includes(" и ") ? ", " : " и "}
+                                    <b className="font-semibold text-[#FFE68A]">{soloBar}</b>
                                 </>
                             )}
                         </p>
@@ -624,11 +628,11 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
                                 className="inline-flex h-16 items-center justify-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-6 font-inter text-[16px] font-semibold text-white transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
                                 <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
-                                Открыть как получатель
+                                Посмотреть, как откроется подарок
                             </button>
                         </div>
                         <p className="mt-3 font-inter text-[13px] leading-relaxed text-[#8f88b3]">
-                            Оплата картой или через СБП. Промокод и ссылка-сюрприз откроются сразу после оплаты.
+                            Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
                         </p>
                     </div>
                 </div>

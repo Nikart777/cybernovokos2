@@ -41,7 +41,7 @@ export default function ActivationGuide({ title = "Как активироват
         <div className="text-left">
             <h2 className="font-inter text-[18px] font-bold text-white">{title}</h2>
             <p className="mt-1 font-inter text-[14px] text-[#a39cc4]">
-                {forRecipient ? "Два способа, выбирай удобный:" : "Два способа, перешлите это получателю вместе со ссылкой:"}
+                {forRecipient ? "Два способа, выбирай удобный:" : "Два способа. Перешлите это вместе со ссылкой:"}
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                 <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5">

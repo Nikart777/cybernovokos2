@@ -8,7 +8,7 @@ import HoloCard from "./HoloCard";
 import CaseReel from "./CaseReel";
 import ActivationGuide from "./ActivationGuide";
 import { Burst, CONFETTI } from "./ui";
-import { configToQuery, digitGroups, GiftConfig, PAGE_PATH, Rates, rarityOf, spendOf, track } from "./model";
+import { barMix, configToQuery, digitGroups, GiftConfig, PAGE_PATH, Rates, rarityOf, spendOf, track } from "./model";
 
 type Stage = "closed" | "spinning" | "open";
 
@@ -52,6 +52,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
     const rarity = rarityOf(cfg.nominal);
     const from = cfg.from.trim();
     const hall = spendOf(cfg.nominal, rates).find((x) => x.id === "hall");
+    const hallBar = hall ? barMix(hall.bar, true) : "";
     const preview = !code;
 
     const open = () => {
@@ -172,7 +173,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                                 </h1>
                                 {hall && (
                                     <p className="mt-3 font-inter text-[16px] text-[#c8c1ea]">
-                                        Например, {hall.value} {hall.unit} за игровым ПК{hall.bar > 0 ? ` и ${hall.barText}` : ""}. Или ночь до утра, PS5, автосимулятор. Как захочешь.
+                                        Хватит на {hall.value} {hall.unit} за игровым ПК{hallBar ? `${hallBar.includes(" и ") ? "," : " и"} ${hallBar}` : ""}. Или на ночь до утра, PS5 и автосимулятор. Как захочешь.
                                     </p>
                                 )}
 
