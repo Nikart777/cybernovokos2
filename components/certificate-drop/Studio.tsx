@@ -275,17 +275,19 @@ function PhotoTile({ cfg, update }: { cfg: GiftConfig; update: Update }) {
             : "С телефона или компьютера, подгоним под сертификат";
 
     return (
-        <div className="col-span-3 lg:col-span-1">
+        <div className="col-span-full">
             <button
                 type="button"
                 role="radio"
                 aria-checked={on}
+                aria-busy={busy}
+                disabled={busy}
                 onClick={onClick}
-                className="group flex w-full items-center gap-3 rounded-xl border border-dashed border-white/20 p-2 text-left transition-colors hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white lg:flex-col lg:gap-1.5 lg:border-0 lg:p-0 lg:text-center"
+                className={`group flex w-full items-center gap-4 rounded-xl border p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+                    on ? "border-[#F1EEFF] bg-white/[0.07]" : "border-white/15 bg-white/[0.04] hover:border-white/35"
+                }`}
             >
-                <span
-                    className={`relative block w-[46px] shrink-0 rounded-[10px] p-[2px] transition-colors lg:w-full ${on ? "bg-white" : "bg-white/10 group-hover:bg-white/30"}`}
-                >
+                <span className={`relative block w-[46px] shrink-0 rounded-[10px] p-[2px] transition-colors ${on ? "bg-white" : "bg-white/10 group-hover:bg-white/30"}`}>
                     {cfg.image ? (
                         <MiniCert skin="photo" image={cfg.image} label={false} className="aspect-[5/7] w-full rounded-[8px]" />
                     ) : (
@@ -300,15 +302,12 @@ function PhotoTile({ cfg, update }: { cfg: GiftConfig; update: Update }) {
                     )}
                 </span>
                 <span className="min-w-0">
-                    <span className={`block font-inter text-[14px] font-semibold leading-none lg:text-[12px] ${on ? "text-white" : "text-[#d9d3f5] lg:text-[#8f88b3]"}`}>
-                        Своё фото
-                    </span>
-                    <span className={`mt-1.5 block font-inter text-[12px] leading-snug lg:hidden ${error ? "text-[#ff8aa8]" : "text-[#8f88b3]"}`} aria-live="polite">
+                    <span className="block font-inter text-[15px] font-bold leading-snug text-white">{cfg.image ? "Своё фото" : "Загрузить своё фото"}</span>
+                    <span className={`mt-1 block font-inter text-[13px] leading-snug ${error ? "text-[#ff8aa8]" : "text-[#a39cc4]"}`} aria-live="polite">
                         {hint}
                     </span>
                 </span>
             </button>
-            {error && <p className="mt-1.5 hidden font-inter text-[12px] leading-snug text-[#ff8aa8] lg:block">{error}</p>}
             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onFile} />
         </div>
     );
@@ -320,6 +319,7 @@ function SkinPanel({ cfg, update }: { cfg: GiftConfig; update: Update; idp?: str
         <div>
             <FieldLabel aside={<span className="font-inter text-[13px] text-[#a39cc4]">{current?.hint}</span>}>Дизайн</FieldLabel>
             <div role="radiogroup" aria-label="Дизайн" className="grid grid-cols-3 gap-2.5 sm:gap-3 lg:grid-cols-5 lg:gap-2.5">
+                <PhotoTile cfg={cfg} update={update} />
                 {SKINS.map((sk) => {
                     const on = cfg.skin === sk.id;
                     return (
@@ -341,7 +341,6 @@ function SkinPanel({ cfg, update }: { cfg: GiftConfig; update: Update; idp?: str
                         </button>
                     );
                 })}
-                <PhotoTile cfg={cfg} update={update} />
             </div>
         </div>
     );
@@ -375,6 +374,7 @@ function WishPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp:
                         key={w}
                         type="button"
                         onClick={() => update({ message: w })}
+                        aria-pressed={cfg.message === w}
                         className={`${chip} h-9 px-3.5 text-[13px] font-medium ${cfg.message === w ? chipOn : chipOff}`}
                     >
                         {w}
@@ -386,75 +386,118 @@ function WishPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp:
 }
 
 
-/* ── Phones: one question at a time, buttons lead forward ────────────── */
+/* ── One question at a time, at every screen width ───────────────────── */
 
 const WIZARD = [
-    { id: "who", title: "Кому дарим?", next: "Далее: дизайн" },
-    { id: "skin", title: "Какой дизайн?", next: "Далее: пожелание" },
-    { id: "wish", title: "Что пожелать?", next: "Далее: номинал" },
-    { id: "nominal", title: "Какой номинал?", next: "" },
+    { id: "who", label: "Кому", title: "Кому дарим?", next: "Далее: дизайн" },
+    { id: "skin", label: "Дизайн", title: "Какой дизайн?", next: "Далее: пожелание" },
+    { id: "wish", label: "Пожелание", title: "Что пожелать?", next: "Далее: номинал" },
+    { id: "nominal", label: "Сумма", title: "Какой номинал?", next: "" },
 ] as const;
 const LAST = WIZARD.length - 1;
 
-function MobileWizard({
+const primaryBtn =
+    "inline-flex h-14 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-2xl bg-[#F1EEFF] px-3 font-inter text-[15px] font-bold leading-tight text-[#0d0a1c] transition-transform active:scale-[0.98] disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0a1c]";
+const secondaryBtn =
+    "inline-flex shrink-0 items-center justify-center gap-1 rounded-2xl border border-white/15 font-inter font-bold text-white transition-colors hover:bg-white/[0.06] active:bg-white/[0.09] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
+
+function CertificateWizard({
     cfg,
     update,
     onBuy,
     onOpenCase,
     stageRef,
+    ctaRef,
 }: {
     cfg: GiftConfig;
     update: Update;
     onBuy: (place: string) => void;
     onOpenCase: () => void;
     stageRef: React.RefObject<HTMLDivElement>;
+    ctaRef: React.Ref<HTMLDivElement>;
 }) {
     const [step, setStep] = useState(0);
     const [dir, setDir] = useState(1);
-    const [picked, setPicked] = useState(false); // nominal chosen → final buttons
+    const [moving, setMoving] = useState(false);
+    const [picked, setPicked] = useState(false); // nominal confirmed → buy buttons
     const boxRef = useRef<HTMLDivElement>(null);
-    const finalRef = useRef<HTMLDivElement>(null);
-    const shownStep = useRef(step);
+    const current = useRef(0);
+    const busy = useRef(false); // blocks a second tap before React has disabled the buttons
+    const frame = useRef<number | null>(null);
 
-    // Each new question lands right under the pinned card.
-    useEffect(() => {
-        // compare with the last shown step (not a "first run" flag: StrictMode runs effects twice)
-        if (shownStep.current === step) return;
-        shownStep.current = step;
-        const el = boxRef.current;
-        if (!el) return;
-        const stage = stageRef.current;
-        const pinned = stage ? parseFloat(getComputedStyle(stage).top) + stage.offsetHeight + 8 : 120;
-        window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - pinned), behavior: "smooth" });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [step]);
+    useEffect(
+        () => () => {
+            if (frame.current !== null) cancelAnimationFrame(frame.current);
+        },
+        [],
+    );
 
     const go = (to: number) => {
-        setDir(to > step ? 1 : -1);
+        const from = current.current;
+        if (busy.current || to < 0 || to > LAST || Math.abs(to - from) !== 1) return;
+        busy.current = true;
+        current.current = to;
+        setMoving(true);
+        setDir(to > from ? 1 : -1);
         setStep(to);
     };
-    const next = () => {
-        track("cert_drop_step", { step: WIZARD[step].id });
+    const next = (skipped = false) => {
+        if (busy.current || step === LAST) return;
+        track("cert_drop_step", { step: WIZARD[step].id, ...(skipped ? { skipped: true } : {}) });
         go(step + 1);
     };
+    // When the new question has slid in, phones bring it right under the pinned card.
+    // Waiting for the animation keeps the next tap from chasing a moving button.
+    const settle = () => {
+        if (!busy.current || current.current !== step) return;
+        if (frame.current !== null) cancelAnimationFrame(frame.current);
+        frame.current = requestAnimationFrame(() => {
+            frame.current = null;
+            if (current.current !== step) return;
+            const el = boxRef.current;
+            if (el && window.matchMedia("(max-width: 1023px)").matches) {
+                const stage = stageRef.current;
+                const pinned = (stage?.offsetHeight ?? 0) + (stage ? Math.max(0, parseFloat(getComputedStyle(stage).top) || 0) : 0) + 12;
+                window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - pinned), behavior: "instant" });
+            }
+            busy.current = false;
+            setMoving(false);
+        });
+    };
     const pick = () => {
-        if (picked) return;
+        if (picked || busy.current) return;
         setPicked(true);
         track("cert_drop_step", { step: "nominal" });
-        window.setTimeout(() => finalRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 150);
     };
 
     const panel = (i: number) => {
-        if (i === 0) return <WhoPanel cfg={cfg} update={update} idp="cm" />;
-        if (i === 1) return <SkinPanel cfg={cfg} update={update} idp="cm" />;
-        if (i === 2) return <WishPanel cfg={cfg} update={update} idp="cm" />;
-        return <NominalPanel cfg={cfg} update={update} idp="cm" onPick={pick} />;
+        if (i === 0) return <WhoPanel cfg={cfg} update={update} idp="cd" />;
+        if (i === 1) return <SkinPanel cfg={cfg} update={update} idp="cd" />;
+        if (i === 2) return <WishPanel cfg={cfg} update={update} idp="cd" />;
+        return <NominalPanel cfg={cfg} update={update} idp="cd" onPick={pick} />;
     };
 
     const st = WIZARD[step];
+    const sum = `${digitGroups(cfg.nominal).join(" ")}\u00A0₽`;
     return (
         <div>
-            <div ref={boxRef} className="overflow-hidden rounded-[22px] border border-white/10 bg-[#151030]/80 p-4">
+            <div ref={boxRef} className="overflow-hidden px-0.5 pb-0.5">
+                <p className="sr-only" aria-live="polite">
+                    Шаг {step + 1} из {WIZARD.length}
+                </p>
+                <ol className={`${s.configProgress} mb-7 grid grid-cols-4 gap-2`} aria-label="Шаги">
+                    {WIZARD.map((item, i) => (
+                        <li
+                            key={item.id}
+                            aria-current={i === step ? "step" : undefined}
+                            data-done={i < step || undefined}
+                            className="min-w-0 font-inter text-[11px] font-semibold sm:text-[12px]"
+                        >
+                            <span className="mb-2 block h-0.5 rounded-full transition-colors" aria-hidden />
+                            {item.label}
+                        </li>
+                    ))}
+                </ol>
                 <AnimatePresence mode="wait" initial={false} custom={dir}>
                     <motion.div
                         key={st.id}
@@ -463,64 +506,69 @@ function MobileWizard({
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: dir * -48, opacity: 0 }}
                         transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+                        onAnimationComplete={settle}
                     >
-                        <div className="mb-4 flex items-center justify-between gap-3">
-                            <h3 className="font-inter text-[18px] font-bold text-white">{st.title}</h3>
-                            {step > 0 && (
-                                <button
-                                    type="button"
-                                    onClick={() => go(step - 1)}
-                                    className="inline-flex h-9 items-center gap-1 rounded-lg px-2 font-inter text-[13px] font-semibold text-[#a39cc4] transition-colors active:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                                >
-                                    <ChevronLeft className="h-4 w-4" aria-hidden />
-                                    Назад
-                                </button>
-                            )}
-                        </div>
+                        <h3 className="mb-4 font-inter text-[22px] font-semibold tracking-[-0.02em] text-white sm:text-[26px]">{st.title}</h3>
                         {panel(step)}
-                        {step < LAST ? (
-                            <button
-                                type="button"
-                                onClick={next}
-                                className="mt-5 inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-[#F1EEFF] font-inter text-[16px] font-bold text-[#0d0a1c] transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#151030]"
-                            >
-                                {st.next}
-                                <ChevronRight className="h-5 w-5" aria-hidden />
-                            </button>
-                        ) : (
-                            !picked && <p className="mt-4 font-inter text-[13px] text-[#a39cc4]">Выберите сумму, и появится кнопка оформления.</p>
-                        )}
                     </motion.div>
                 </AnimatePresence>
+                <div className="mt-5 flex items-stretch gap-2">
+                    {step > 0 && (
+                        <button type="button" disabled={moving} onClick={() => go(step - 1)} className={`${secondaryBtn} h-14 min-w-[92px] px-3 text-[14px]`}>
+                            <ChevronLeft className="h-5 w-5 shrink-0" aria-hidden />
+                            Назад
+                        </button>
+                    )}
+                    {step < LAST ? (
+                        <button type="button" disabled={moving} onClick={() => next()} className={primaryBtn}>
+                            <span>{st.next}</span>
+                            <ChevronRight className="h-5 w-5 shrink-0" aria-hidden />
+                        </button>
+                    ) : !picked ? (
+                        <button type="button" disabled={moving} onClick={pick} className={primaryBtn}>
+                            Оставить <span className="whitespace-nowrap">{sum}</span>
+                        </button>
+                    ) : (
+                        <p className="self-center font-inter text-[14px] font-semibold text-white">Выбрано {sum}</p>
+                    )}
+                </div>
+                {step < LAST && (
+                    <button
+                        type="button"
+                        disabled={moving}
+                        onClick={() => next(true)}
+                        aria-label={`Пропустить шаг «${st.label}»`}
+                        className="mt-1 inline-flex min-h-11 w-full items-center justify-center rounded-lg font-inter text-[14px] font-semibold text-[#a39cc4] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    >
+                        Пропустить
+                    </button>
+                )}
             </div>
 
-            <AnimatePresence initial={false}>
-                {picked && step === LAST && (
-                    <motion.div
-                        ref={finalRef}
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="mt-4"
-                    >
-                        <div className="flex flex-col gap-3">
-                            <BuyButton nominal={cfg.nominal} place="wizard" onBuy={onBuy} size="lg" className="w-full" />
-                            <button
-                                type="button"
-                                onClick={onOpenCase}
-                                className="inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-6 font-inter text-[16px] font-semibold text-white transition-colors active:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                            >
-                                <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
-                                Посмотреть, как откроется подарок
-                            </button>
-                        </div>
-                        <p className="mt-3 text-center font-inter text-[13px] leading-relaxed text-[#8f88b3]">
-                            Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <div ref={ctaRef} className="min-h-px">
+                <AnimatePresence initial={false}>
+                    {picked && step === LAST && !moving && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="mt-4"
+                        >
+                            <div className="flex flex-col gap-3">
+                                <BuyButton nominal={cfg.nominal} place="wizard" onBuy={onBuy} size="lg" className="w-full" />
+                                <button type="button" onClick={onOpenCase} className={`${secondaryBtn} h-14 gap-2.5 px-6 text-[16px] font-semibold`}>
+                                    <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
+                                    Посмотреть, как откроется подарок
+                                </button>
+                            </div>
+                            <p className="mt-3 text-center font-inter text-[13px] leading-relaxed text-[#8f88b3]">
+                                Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
     );
 }
@@ -564,9 +612,6 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
                     <h2 className={`${s.display} text-[clamp(1.4rem,6vw,2.1rem)] leading-[1.08] text-white sm:text-[2.4rem] lg:text-[clamp(2rem,2.7vw,2.8rem)]`}>
                         Соберите свой сертификат
                     </h2>
-                    <p className="mx-auto mt-3 hidden max-w-[52ch] font-inter sm:block text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:mt-5 lg:text-[17px]">
-                        Сумму можно потратить в компьютерном клубе CyberX Новокосино: на игровые ПК, PS5, автосимулятор, снеки и напитки.
-                    </p>
                 </div>
 
                 {/* Stage with the live card */}
@@ -606,35 +651,9 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
                     )}
                 </div>
 
-                {/* Controls: step-by-step wizard on phones, the full form on desktop */}
+                {/* The same four steps on phones and desktops */}
                 <div className="relative z-[1] mt-4 lg:col-start-2 lg:row-start-2 lg:mt-8" onFocus={onFormFocus} onBlur={onFormBlur}>
-                    <div className="lg:hidden">
-                        <MobileWizard cfg={cfg} update={update} onBuy={onBuy} onOpenCase={onOpenCase} stageRef={stageRef} />
-                    </div>
-
-                    <div className="hidden lg:block">
-                        <div className="space-y-7">
-                            <WhoPanel cfg={cfg} update={update} idp="cd" />
-                            <NominalPanel cfg={cfg} update={update} idp="cd" />
-                            <SkinPanel cfg={cfg} update={update} idp="cd" />
-                            <WishPanel cfg={cfg} update={update} idp="cd" />
-                        </div>
-
-                        <div ref={ctaRef} className="mt-8 flex flex-row gap-3">
-                            <BuyButton nominal={cfg.nominal} place="hero" onBuy={onBuy} size="lg" />
-                            <button
-                                type="button"
-                                onClick={onOpenCase}
-                                className="inline-flex h-16 items-center justify-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-6 font-inter text-[16px] font-semibold text-white transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                            >
-                                <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
-                                Посмотреть, как откроется подарок
-                            </button>
-                        </div>
-                        <p className="mt-3 font-inter text-[13px] leading-relaxed text-[#8f88b3]">
-                            Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
-                        </p>
-                    </div>
+                    <CertificateWizard cfg={cfg} update={update} onBuy={onBuy} onOpenCase={onOpenCase} stageRef={stageRef} ctaRef={ctaRef} />
                 </div>
             </div>
         </section>

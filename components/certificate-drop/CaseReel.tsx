@@ -2,48 +2,47 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { animate, motion, useMotionValue, useReducedMotion } from "framer-motion";
-import { CupSoda, Package } from "lucide-react";
+import { Package } from "lucide-react";
 import s from "./drop.module.css";
 import { MiniCert } from "./HoloCard";
 import { GiftConfig, mulberry32, RARITIES, rarityOf, SkinId, SKINS, track } from "./model";
 
-type Filler = { title: string; img?: string; rarity: number; cert?: { skin: SkinId; nominal: number } };
+type Filler = { title: string; img?: string; position?: string; rarity: number; cert?: { skin: SkinId; nominal: number } };
 
 const Z = (id: string) => `/certificate-drop/zones/${id}.webp`;
 const FILLERS: Filler[] = [
     { title: "1 час в общем зале", img: Z("hall"), rarity: 0 },
-    { title: "Напиток и снек из бара", img: Z("bar"), rarity: 0 },
-    { title: "PS5, 2 часа", img: Z("ps5"), rarity: 1 },
+    { title: "Напиток из бара", img: Z("bar"), rarity: 0 },
+    { title: "Любимый снек", img: "/certificate-drop/prizes/snacks.webp", position: "50% 40%", rarity: 0 },
+    { title: "PS5 на двоих, 2 часа", img: "/certificate-drop/prizes/gamepads.webp", position: "58% 50%", rarity: 1 },
     { title: "Ночной пакет", img: Z("night"), rarity: 1 },
     { title: "Duo-зал на вечер", img: Z("duo"), rarity: 2 },
     { title: "Solo-комната, 3 часа", img: Z("solo"), rarity: 2 },
     { title: "Автосимулятор, 1 час", img: Z("sim"), rarity: 3 },
     { title: "Bootcamp на команду", img: Z("bootcamp"), rarity: 3 },
 ];
-const RARITY_WEIGHTS = [0.42, 0.3, 0.17, 0.11];
-
 const LENGTH = 48;
 const WIN = 40;
 
 function buildStrip(seed: number): Filler[] {
     const r = mulberry32(seed);
-    const pickRarity = () => {
-        let x = r();
-        for (let i = 0; i < RARITY_WEIGHTS.length; i++) {
-            if ((x -= RARITY_WEIGHTS[i]) <= 0) return i;
-        }
-        return 0;
-    };
-    return Array.from({ length: LENGTH }, () => {
-        if (r() < 0.16) {
+    const strip: Filler[] = [];
+    let pool: Filler[] = [];
+    while (strip.length < LENGTH) {
+        if (!pool.length) {
             const skin = SKINS[Math.floor(r() * SKINS.length)].id;
             const nominal = [1000, 1500, 2000][Math.floor(r() * 3)];
-            return { title: "Сертификат", rarity: nominal >= 1500 ? 1 : 0, cert: { skin, nominal } };
+            pool = [...FILLERS, { title: "Сертификат", rarity: nominal >= 1500 ? 1 : 0, cert: { skin, nominal } }];
         }
-        const tier = pickRarity();
-        const pool = FILLERS.filter((f) => f.rarity === tier);
-        return pool[Math.floor(r() * pool.length)];
-    });
+        // Every tile shows up before any repeats and never next to its last copy; the gift itself sits at WIN.
+        const recent = strip.slice(-4).map((item) => item.title);
+        const fresh = pool.filter((item) => !recent.includes(item.title));
+        const choices = fresh.length ? fresh : pool;
+        const item = choices[Math.floor(r() * choices.length)];
+        strip.push(item);
+        pool.splice(pool.indexOf(item), 1);
+    }
+    return strip;
 }
 
 type Props = {
@@ -63,7 +62,7 @@ export default function CaseReel({ cfg, trigger = 0, onStart, onDone, place, sho
     const viewRef = useRef<HTMLDivElement>(null);
     const stripRef = useRef<HTMLDivElement>(null);
     const x = useMotionValue(0);
-    const [seed, setSeed] = useState(11);
+    const [seed, setSeed] = useState(73);
     const [spinning, setSpinning] = useState(false);
     const [active, setActive] = useState(-1);
     const items = useMemo(() => buildStrip(seed), [seed]);
@@ -131,7 +130,7 @@ export default function CaseReel({ cfg, trigger = 0, onStart, onDone, place, sho
     };
 
     return (
-        <div className="relative">
+        <div className={`relative ${place === "demo" ? s.reelDemo : ""}`}>
             <div ref={viewRef} className={s.reel}>
                 <span className={s.marker} aria-hidden />
                 <motion.div ref={stripRef} className={s.reelStrip} style={{ x }} aria-hidden>
@@ -141,26 +140,18 @@ export default function CaseReel({ cfg, trigger = 0, onStart, onDone, place, sho
                         return (
                             <div
                                 key={`${seed}-${i}`}
-                                className={`${s.reelItem} ${active === i ? s.reelItemActive : ""}`}
+                                className={`${s.reelItem} ${!isWin && !it.cert ? s.reelPrize : ""} ${active === i ? s.reelItemActive : ""}`}
                                 style={{ "--rc": rc } as React.CSSProperties}
                             >
                                 {isWin ? (
-                                    <MiniCert skin={cfg.skin} image={cfg.image} nominal={cfg.nominal} className="h-full w-full" />
+                                    <MiniCert skin={cfg.skin} image={cfg.image} nominal={cfg.nominal} className={`${s.reelCert} h-full w-full`} />
                                 ) : it.cert ? (
-                                    <MiniCert skin={it.cert.skin} nominal={it.cert.nominal} className="h-full w-full" />
+                                    <MiniCert skin={it.cert.skin} nominal={it.cert.nominal} className={`${s.reelCert} h-full w-full`} />
                                 ) : (
                                     <>
-                                        {it.img ? (
-                                            // eslint-disable-next-line @next/next/no-img-element
-                                            <img src={it.img} alt="" loading="lazy" decoding="async" className={s.reelImg} />
-                                        ) : (
-                                            <span className="flex h-[60%] items-center justify-center bg-gradient-to-b from-[#2a2350] to-[#17122e]">
-                                                <CupSoda className="h-10 w-10 text-[#7CF5FF]" strokeWidth={1.5} />
-                                            </span>
-                                        )}
-                                        <span className="relative z-[1] block px-3 pt-2.5 font-inter text-[12px] font-semibold leading-tight text-white sm:text-[13px]">
-                                            {it.title}
-                                        </span>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={it.img} alt="" loading="lazy" decoding="async" className={s.reelImg} style={{ objectPosition: it.position }} />
+                                        <span className={s.reelLabel}>{it.title}</span>
                                     </>
                                 )}
                                 <span className={s.reelBar} />

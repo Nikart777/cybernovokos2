@@ -39,22 +39,22 @@ export const DemoSection = forwardRef<HTMLElement, { cfg: GiftConfig; trigger: n
     ref,
 ) {
     return (
-        <section ref={ref} id="open" className="relative z-[2] overflow-hidden border-t border-white/[0.06] py-14 lg:py-28">
+        <section ref={ref} id="open" className="relative z-[2] overflow-hidden border-t border-white/[0.06] py-8 sm:py-12 2xl:py-16">
             <div className={s.beam} style={{ top: "18%", opacity: 0.55 }} aria-hidden />
-            <div className="relative mx-auto max-w-[1280px] px-4 text-center sm:px-6 lg:text-left">
-                <div className="mx-auto max-w-[760px] lg:mx-0">
+            <div className="relative mx-auto max-w-[1440px] px-4 text-center sm:px-6 lg:text-left">
+                <div className={s.demoIntro}>
                     <h2 className={h2}>Вот как откроется подарок</h2>
-                    <p className={`${lead} mx-auto mt-3 max-w-[52ch] lg:mx-0 lg:mt-4`}>
+                    <p className={`${lead} mx-auto mt-3 max-w-[52ch] lg:mx-0 xl:mt-0`}>
                         После оплаты придёт ссылка. Отправьте её тому, кому дарите: по ней откроется такой же кейс с вашим дизайном и промокодом.
                     </p>
                 </div>
             </div>
 
-            <div className="relative mt-8 lg:mt-12">
+            <div className="relative mt-7 lg:mt-8">
                 <CaseReel cfg={cfg} trigger={trigger} onDone={onDone} place="demo" />
             </div>
 
-            <div className="relative mx-auto mt-3 flex max-w-[1280px] justify-center px-4">
+            <div className="relative mx-auto mt-2 flex max-w-[1280px] justify-center px-4">
                 <a
                     href={`${PAGE_PATH}?${configToQuery(cfg, { gift: "1" })}`}
                     target="_blank"
