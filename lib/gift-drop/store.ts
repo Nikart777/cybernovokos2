@@ -22,6 +22,8 @@ export interface GiftOrder {
     providerId?: string;
     confirmationUrl?: string;
     test?: boolean;
+    /** Owner's 1 ₽ check of the live payment flow: the code must not go into Langame. */
+    trial?: boolean;
     code?: string;
     /** Promo bonuses promised on the page (credited by the club with the code). */
     bonus?: number;

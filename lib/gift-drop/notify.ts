@@ -8,11 +8,15 @@ const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 export async function notifyAdmin(o: GiftOrder): Promise<boolean> {
     const c = o.cfg;
     const lines = [
-        `🎁 <b>Оплачен подарочный сертификат${o.mode === "mock" ? " (ТЕСТ, без оплаты)" : ""}</b>`,
+        o.trial
+            ? "🧪 <b>Тестовая оплата сертификата прошла</b>"
+            : `🎁 <b>Оплачен подарочный сертификат${o.mode === "mock" ? " (ТЕСТ, без оплаты)" : ""}</b>`,
         `Номинал: <b>${formatRub(o.amount)}</b>`,
         `Промокод: <code>${esc(o.code || "")}</code>`,
-        `👉 Создайте этот промокод в Langame на ${formatRub(o.amount)}.`,
-        o.bonus ? `ℹ️ На странице обещаны ${o.bonus} приветственных бонусов: они начисляются автоматически при регистрации, вручную ничего начислять не нужно.` : "",
+        o.trial
+            ? "⚠️ Это проверка оплаты на 1 ₽: промокод в Langame НЕ заводить."
+            : `👉 Создайте этот промокод в Langame на ${formatRub(o.amount)}.`,
+        o.bonus && !o.trial ? `ℹ️ На странице обещаны ${o.bonus} приветственных бонусов: они начисляются автоматически при регистрации, вручную ничего начислять не нужно.` : "",
         "",
         c.to.trim() && `Кому: ${esc(c.to.trim())}`,
         c.from.trim() && `От кого: ${esc(c.from.trim())}`,
@@ -36,7 +40,7 @@ export async function emailBuyer(o: GiftOrder): Promise<boolean> {
     const gift = `${o.baseUrl}${giftPath(o.id)}`;
     const order = `${o.baseUrl}${orderPath(o.id)}`;
     const to = o.cfg.to.trim();
-    const subject = `Ваш подарочный сертификат CyberX на ${formatRub(o.amount)}`;
+    const subject = `${o.trial ? "Тест: " : ""}Ваш подарочный сертификат CyberX на ${formatRub(o.amount)}`;
     const text = [
         "Спасибо за покупку!",
         `Сертификат: ${formatRub(o.amount)} в CyberX Новокосино.`,

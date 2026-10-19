@@ -19,7 +19,10 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
     const emailRef = useRef<HTMLInputElement>(null);
     const rarity = rarityOf(cfg.nominal);
     const bonus = useBonusDeadline();
-    const price = `${digitGroups(cfg.nominal).join(" ")} ₽`;
+    // Owner's live check (/certificate?test=<key>): read once on load, the URL is rewritten after the first edit.
+    const [testKey, setTestKey] = useState<string | null>(null);
+    useEffect(() => setTestKey(new URLSearchParams(window.location.search).get("test")), []);
+    const price = testKey ? "1 ₽ (тест)" : `${digitGroups(cfg.nominal).join(" ")} ₽`;
 
     useEffect(() => {
         if (!open) return;
@@ -58,7 +61,13 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
             const res = await fetch("/api/gift/order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ cfg, email: email.trim(), consent: true, bonusUntil: bonus.active ? bonus.until : null }),
+                body: JSON.stringify({
+                    cfg,
+                    email: email.trim(),
+                    consent: true,
+                    bonusUntil: bonus.active ? bonus.until : null,
+                    testKey: testKey || undefined,
+                }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !data.confirmationUrl) {

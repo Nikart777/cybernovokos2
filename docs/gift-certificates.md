@@ -23,6 +23,7 @@
 | `YOOKASSA_VAT_CODE` | `1` — без НДС (по умолчанию уже 1) |
 | `GIFT_RECEIPT_PAYMENT_MODE` | `full_payment` — полная оплата (по умолчанию) |
 | `GIFT_RECEIPT_PAYMENT_SUBJECT` | `payment` — пополнение баланса (по умолчанию) |
+| `GIFT_TEST_KEY` | необязательно, от 16 символов: проверка боевой оплаты на 1 ₽ по ссылке `/certificate?test=<ключ>`. В Telegram такой заказ помечен «промокод в Langame НЕ заводить». После проверки переменную убрать |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | уже используются сайтом; `GIFT_TELEGRAM_CHAT_ID` — если уведомления нужны в другой чат |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | уже используются сайтом, нужны для письма покупателю |
 

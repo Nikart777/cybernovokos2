@@ -43,6 +43,15 @@ function issueCode(orderId: string) {
     throw new AppError("Не получилось выпустить промокод", 500);
 }
 
+/** GIFT_TEST_KEY on the server + /certificate?test=<key> lets the owner pay 1 ₽ to check the live flow. */
+function isTrialKey(value: unknown) {
+    const key = process.env.GIFT_TEST_KEY || "";
+    if (key.length < 16 || typeof value !== "string") return false;
+    const a = Buffer.from(value);
+    const b = Buffer.from(key);
+    return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
 function baseUrl(origin: string) {
     if (process.env.GIFT_SITE_URL) return process.env.GIFT_SITE_URL.replace(/\/$/, "");
     return process.env.NODE_ENV === "production" ? SITE_URL : origin;
@@ -63,6 +72,7 @@ export async function createOrder(input: unknown, origin: string): Promise<{ id:
     // The page promises the bonus until a personal deadline (≤ 3 days ahead); honour it only before that moment.
     const until = Number(body.bonusUntil);
     const bonusOk = Number.isFinite(until) && until > Date.now() && until - Date.now() <= BONUS_DAYS * 86_400_000 + 60_000;
+    const trial = isTrialKey(body.testKey);
 
     const now = new Date().toISOString();
     let order: GiftOrder = saveOrder({
@@ -72,7 +82,8 @@ export async function createOrder(input: unknown, origin: string): Promise<{ id:
         createdAt: now,
         updatedAt: now,
         cfg,
-        amount: cfg.nominal,
+        amount: trial ? 1 : cfg.nominal,
+        trial: trial || undefined,
         bonus: bonusOk ? BONUS_AMOUNT : undefined,
         email,
         baseUrl: baseUrl(origin),
