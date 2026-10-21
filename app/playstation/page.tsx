@@ -42,7 +42,7 @@ const faq = [
     },
     {
         q: "Нужно ли бронировать?",
-        a: "На будний день обычно можно приехать без брони. На вечер пятницы, выходные и на VIP-комнату место лучше забронировать заранее по телефону +7 (985) 128-95-38.",
+        a: "На будний день обычно можно приехать без брони. На вечер пятницы, выходные и на VIP-комнату место лучше забронировать заранее — быстрее всего через прямое онлайн-бронирование на сайте без регистрации в приложении (понадобится только email, на него придёт код бронирования), в приложении CyberX или по телефону +7 (985) 128-95-38.",
     },
     {
         q: "Можно ли остаться на всю ночь?",
@@ -172,17 +172,17 @@ export default function PlaystationPage() {
                         <div className="max-w-2xl relative z-10">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-3">
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
-                                Онлайн-бронирование без регистрации
+                                Быстрое онлайн-бронирование без приложения
                             </div>
                             <h2 className="font-tactic font-black text-2xl md:text-3xl uppercase mb-3">
                                 Забронировать PS5 или VIP-комнату
                             </h2>
                             <p className="font-inter text-gray-400 leading-relaxed mb-4">
                                 Москва, ул. Новокосинская, 32 — рядом с метро «Новокосино».
-                                Клуб работает круглосуточно. На выходные и вечернее время зону с PlayStation 5 рекомендуем бронировать онлайн заранее.
+                                Клуб работает круглосуточно. Выберите зону с PlayStation 5 онлайн без регистрации в приложении — понадобится только ваш email, куда сразу придёт код бронирования.
                             </p>
                             <div className="flex flex-wrap items-center gap-4 text-white/50 text-xs font-chakra font-bold uppercase tracking-wider">
-                                <span className="text-[#00F0FF]">⚡ Бронь за 30 сек</span>
+                                <span className="text-[#00F0FF]">⚡ Нужен только email (код придёт на почту)</span>
                                 <div className="w-[1px] h-3 bg-white/20" />
                                 <span>Без скачивания приложений</span>
                                 <div className="w-[1px] h-3 bg-white/20" />
@@ -191,13 +191,13 @@ export default function PlaystationPage() {
                         </div>
                         <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0 w-full sm:w-auto">
                             <a
-                                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                                href="https://booking.langame.ru/YWo4q8XN"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-base uppercase tracking-wider rounded-xl shadow-[0_0_30px_rgba(255,46,99,0.5)] hover:shadow-[0_0_40px_rgba(255,46,99,0.8)] transition-all duration-300 group"
                             >
                                 <Zap size={18} className="fill-white" />
-                                <span>Забронировать онлайн</span>
+                                <span>Быстрая онлайн-бронь</span>
                                 <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
                             </a>
 

@@ -269,34 +269,34 @@ export default function Prices({ data }: { data: PricingData }) {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2E63]/20 border border-[#FF2E63]/40 text-[#FF2E63] text-[11px] font-chakra font-bold uppercase tracking-wider mb-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#FF2E63] animate-pulse" />
-                  Прямая бронь · CyberX Новокосино
+                  Быстрое онлайн-бронирование · Без приложения
                 </div>
                 <h4 className="font-tactic font-black text-xl sm:text-2xl md:text-3xl text-white uppercase mb-2 leading-tight">
-                  Забронируй ПК или PS5 онлайн
+                  Быстрая онлайн-бронь ПК или PS5
                 </h4>
                 <p className="font-inter text-sm text-gray-400 max-w-lg mb-3">
-                  Выбирайте свободное место на интерактивной карте за 30 секунд без регистрации — либо бронируйте в приложении с кэшбэком до 20%.
+                  Выбирайте свободное место на интерактивной карте без регистрации в приложении — нужен только email, куда придёт код бронирования. Либо бронируйте в приложении с кэшбэком до 20%.
                 </p>
 
                 <div className="flex items-center justify-center md:justify-start gap-4 text-white/50 text-[10px] font-bold uppercase tracking-wider">
-                  <span className="text-[#00F0FF]">⚡ Без регистрации</span>
+                  <span className="text-[#00F0FF]">⚡ Нужен только email (код придёт на почту)</span>
                   <div className="w-[1px] h-3 bg-white/20"></div>
                   <span>+400 ₽ в приложении</span>
                   <div className="w-[1px] h-3 bg-white/20"></div>
-                  <span>iOS / Android</span>
+                  <span>Без регистрации в приложении</span>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto shrink-0">
               <a
-                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                href="https://booking.langame.ru/YWo4q8XN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-6 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-sm md:text-base uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(255,46,99,0.5)] hover:shadow-[0_0_35px_rgba(255,46,99,0.8)] transition-all duration-300 justify-center group"
               >
                 <Zap size={18} className="fill-white" />
-                <span>Забронировать онлайн</span>
+                <span>Быстрая онлайн-бронь</span>
                 <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
               </a>
 

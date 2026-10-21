@@ -290,17 +290,17 @@ export default function SimracingClient() {
                     Этот режим доступен на автосимуляторах в нашем клубе.
                   </p>
                   <p className="mt-1 text-[11px] font-chakra text-[#00F0FF] uppercase tracking-wider">
-                    ⚡ Онлайн-бронь за 30 сек без регистрации
+                    ⚡ Быстрая онлайн-бронь без приложения — нужен только email для кода бронирования
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <a
-                    href="https://langame.ru/cip/umfw9uiydje1ugq"
+                    href="https://booking.langame.ru/YWo4q8XN"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="sr-button"
                   >
-                    Забронировать онлайн
+                    Быстрая онлайн-бронь
                     <ArrowUpRight size={19} aria-hidden="true" />
                   </a>
                   <button

@@ -64,7 +64,7 @@ export const Section18 = () => {
                         <h3 className="font-tactic font-black italic text-2xl text-slate-900 mb-4 uppercase">Как забронировать?</h3>
                         <div className="space-y-4 font-chakra text-sm sm:text-base text-slate-600">
                             <p>
-                                Бронирование автосимуляторов работает строго через <strong className="text-slate-900">Приложение CyberX</strong>, аналогично обычным ПК.
+                                Бронирование автосимуляторов работает онлайн: быстрее всего — через <strong className="text-slate-900">быстрое онлайн-бронирование без приложения</strong> (<a href="https://booking.langame.ru/YWo4q8XN" target="_blank" rel="noopener noreferrer" className="text-[#0ea5e9] underline">booking.langame.ru/YWo4q8XN</a>, нужен только email — код бронирования придёт на электронную почту) или через <strong className="text-slate-900">Приложение CyberX</strong>, аналогично обычным ПК.
                             </p>
                             <ol className="list-decimal list-inside space-y-3 mt-4 text-slate-700 font-medium">
                                 <li className="pl-2">Клиент открывает приложение и выбирает клуб.</li>

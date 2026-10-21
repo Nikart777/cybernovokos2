@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useTransform, MotionValue } from 'framer-motion';
-import { Clock3, Cpu, MonitorUp, Smartphone, Trophy } from 'lucide-react';
+import { Clock3, Cpu, MonitorUp, Smartphone, Trophy, Zap } from 'lucide-react';
 import Image from 'next/image';
 import ScrollSequence from '@/components/ScrollSequence';
 import { useSectionProgress } from '@/components/hooks/useSectionProgress';
@@ -155,16 +155,16 @@ export default function HeroNew() {
             Погнали?
           </h2>
           <p className="mt-4 font-chakra text-[10px] font-black uppercase tracking-[0.25em] text-white/50 md:text-xs">
-            Автоматическая посадка · Без ожидания в очереди
+            Быстрое онлайн-бронирование без приложения · Нужен только email для кода брони
           </p>
           <button
             onClick={openBooking}
             className="group relative mt-8 inline-flex h-14 skew-x-[-12deg] items-center justify-center bg-[#FF2E63] px-8 shadow-border-accent transition-[transform,background-color,box-shadow] duration-150 ease-out hover:bg-[#FF2E63]/80 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-[0.96] md:h-16 md:px-10"
           >
             <div className="flex skew-x-[12deg] items-center gap-3">
-              <Smartphone className="h-5 w-5 text-white" />
+              <Zap className="h-5 w-5 text-white fill-white" />
               <span className="mt-1 font-tactic text-sm font-black uppercase italic leading-none text-white md:text-lg">
-                Забронировать место
+                Быстрая онлайн-бронь
               </span>
             </div>
           </button>

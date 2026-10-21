@@ -89,7 +89,7 @@ export default function CTASection() {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="font-inter text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed"
                         >
-                            Забронируй место прямо сейчас и получи <span className="text-white font-semibold">промокод на первое посещение</span>. 
+                            Воспользуйся <span className="text-white font-semibold">быстрым онлайн-бронированием без приложения</span> (нужен только email — на него придёт код бронирования) или получи <span className="text-white font-semibold">промокод на первое посещение</span> в приложении.
                             Твой лучший игровой опыт начинается здесь.
                         </motion.p>
 
@@ -102,13 +102,13 @@ export default function CTASection() {
                             className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12"
                         >
                             <a
-                                href="https://langame.ru/cip/umfw9uiydje1ugq"
+                                href="https://booking.langame.ru/YWo4q8XN"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group relative flex items-center gap-3 bg-gradient-to-r from-[#FF2E63] to-[#FF2E63]/85 px-8 sm:px-10 py-5 rounded-full font-chakra font-black text-xs sm:text-sm uppercase tracking-[0.16em] text-white transition-all duration-300 hover:shadow-[0_0_50px_rgba(255,46,99,0.5)] hover:scale-105 active:scale-95"
                             >
                                 <Zap size={18} className="animate-pulse" />
-                                <span>Забронировать онлайн (без регистрации)</span>
+                                <span>Быстрая онлайн-бронь (код на email)</span>
                             </a>
 
                             <button

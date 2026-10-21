@@ -195,20 +195,20 @@ export default function ClubMap() {
                    Данные в реальном времени
                  </h3>
                  <p className="font-inter text-sm text-gray-400 leading-relaxed">
-                   Это текущая загрузка клуба. Чтобы гарантированно сесть за любимый ПК, рекомендуем бронировать место заранее через приложение.
+                   Это текущая загрузка клуба. Чтобы гарантированно сесть за любимый ПК, воспользуйтесь быстрым онлайн-бронированием без регистрации в приложении — понадобится только email, куда придёт код бронирования.
                  </p>
               </div>
            </div>
            
            <div className="flex flex-col items-center gap-3 shrink-0">
              <a 
-               href="/download"
+               href="https://booking.langame.ru/YWo4q8XN"
                target="_blank"
                rel="nofollow noopener noreferrer"
                className="flex items-center gap-3 px-8 py-3 bg-[#FF2E63] text-white font-chakra font-bold text-sm uppercase rounded-xl hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,46,99,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] whitespace-nowrap"
              >
                <Smartphone size={18} />
-               Бронь со скидкой
+               Быстрая онлайн-бронь (код на email)
              </a>
              
              {/* Platform Icons */}

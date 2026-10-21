@@ -262,7 +262,7 @@ export default function SimracingPage() {
                   Меньше слов. Больше газа.
                 </strong>
                 Руль Direct Drive, четыре гоночных кокпита и заезды с друзьями в
-                Новокосино.
+                Новокосино. Быстрое онлайн-бронирование без приложения — нужен только email для кода брони.
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <BookingButton />
@@ -497,7 +497,7 @@ export default function SimracingPage() {
               <p className="sr-lead">
                 Симрейсинг рядом с домом: приезжай из Новокосино, Реутова,
                 Косино или других районов Москвы. Мы открыты каждый день и
-                каждую ночь.
+                каждую ночь. Доступна быстрая онлайн-бронь без регистрации в приложении (понадобится только email — на него придёт код бронирования).
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <BookingButton />

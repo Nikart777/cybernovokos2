@@ -104,14 +104,14 @@ export default function Contacts() {
             <div className="sm:col-span-2">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href="https://langame.ru/cip/umfw9uiydje1ugq"
+                    href="https://booking.langame.ru/YWo4q8XN"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative flex-1 inline-flex items-center justify-center gap-3 px-6 py-5 bg-[#FF2E63] border-2 border-[#FF2E63] skew-x-[-6deg] hover:bg-[#e02655] transition-all shadow-[0_0_25px_rgba(255,46,99,0.4)]"
                   >
                     <div className="skew-x-[6deg] flex items-center gap-2.5">
                         <Zap size={20} className="text-white fill-white" />
-                        <span className="font-tactic font-black italic text-sm md:text-base text-white uppercase">ОНЛАЙН-БРОНЬ (30 СЕК)</span>
+                        <span className="font-tactic font-black italic text-sm md:text-base text-white uppercase">БЫСТРАЯ ОНЛАЙН-БРОНЬ (КОД НА EMAIL)</span>
                     </div>
                   </a>
                   <a

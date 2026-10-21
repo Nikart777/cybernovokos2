@@ -33,7 +33,7 @@ The website consists of the following key pages and modules:
 - Main landing page with club feature highlights, FAQ, reviews, and a real-time computer vacancy/occupancy tracking dashboard.
 ### Pricing & Booking
 - Detailed price charts divided by club zones, times of day (Morning/Day vs Evening/Night), packages (Hourly, Night package, 24-Hour package), and long-term hourly subscriptions (50-hour, 100-hour).
-- Booking is done via the mobile application.
+- Fast online booking without app registration is available directly at https://booking.langame.ru/YWo4q8XN (only an email address is required to receive the booking code), or via the CyberX mobile application.
 ### Specialized Zones & Tools
 - A dedicated page for the professional racing simulator zone (Simracing).
 - Purchasing info for customized gift certificates.
@@ -78,7 +78,9 @@ CyberX Novokosino features a range of gaming setups tailored for casual and prof
 ---
 
 ## Mobile Application & Booking
-Booking seats at the club is handled strictly through the mobile app.
+Booking seats at the club is available via fast direct online booking in the browser (no app installation or registration needed — only an email is required, and the booking code is sent to the client's email) or through the CyberX mobile app.
+- **Direct Fast Online Booking (No App Needed, Booking Code Sent to Email)**:
+https://booking.langame.ru/YWo4q8XN
 - **Mobile Booking App Link (iOS & Android)**:
 https://clck.ru/3CmFQa
 - **Phone Number for General Inquiries**:

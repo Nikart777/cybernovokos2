@@ -24,7 +24,8 @@ export function BookingButton({
 }) {
   return (
     <a
-      href="https://langame.ru/cip/umfw9uiydje1ugq"
+      href="https://booking.langame.ru/YWo4q8XN"
+      title="Быстрое онлайн-бронирование без регистрации в приложении — нужен только email для кода бронирования"
       target="_blank"
       rel="noopener noreferrer"
       className={`sr-button ${className}`}

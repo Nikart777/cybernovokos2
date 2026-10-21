@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, MessageCircle, Phone, Smartphone, X, Zap, Sparkles } from "lucide-react";
 
-export const ONLINE_BOOKING_URL = "https://langame.ru/cip/umfw9uiydje1ugq";
+export const ONLINE_BOOKING_URL = "https://booking.langame.ru/YWo4q8XN";
 export const APP_DOWNLOAD_URL = "/download";
 
 export default function BookingModal() {
@@ -137,18 +137,18 @@ export default function BookingModal() {
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FF2E63] text-white font-chakra font-black text-[9px] sm:text-[10px] uppercase tracking-wider">
                         <Zap size={11} className="animate-pulse" />
-                        БЕЗ РЕГИСТРАЦИИ · РЕКОМЕНДУЕМ
+                        БЫСТРОЕ БРОНИРОВАНИЕ · БЕЗ ПРИЛОЖЕНИЯ
                       </span>
                       <span className="text-[10px] font-chakra font-bold text-[#00F0FF] uppercase tracking-wider">
-                        30 СЕКУНД
+                        ТОЛЬКО EMAIL
                       </span>
                     </div>
 
                     <div className="font-tactic font-black text-base sm:text-lg uppercase italic text-white mb-1">
-                      Онлайн-бронь на карте клуба
+                      Быстрое онлайн-бронирование
                     </div>
                     <p className="font-inter text-xs text-white/70 leading-relaxed mb-3.5">
-                      Мгновенный выбор свободного ПК или кокпита автосимулятора на интерактивной схеме клуба в браузере. Без установки приложения и регистраций.
+                      Выберите свободный ПК, PS5 или кокпит автосимулятора на схеме клуба прямо в браузере без регистрации в приложении. Понадобится <strong className="text-white">только ваш email</strong> — туда сразу придёт код бронирования.
                     </p>
 
                     <a
@@ -159,7 +159,7 @@ export default function BookingModal() {
                     >
                       <span className="flex items-center gap-2">
                         <Zap size={16} />
-                        <span>ЗАБРОНИРОВАТЬ ОНЛАЙН</span>
+                        <span>БЫСТРАЯ ОНЛАЙН-БРОНЬ</span>
                       </span>
                       <ArrowUpRight size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                     </a>

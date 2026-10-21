@@ -31,7 +31,7 @@ export default function DownloadSelectPage() {
               Выберите магазин приложений
             </h1>
             <p className="mt-5 max-w-xl font-chakra leading-relaxed text-white/70">
-              Установите CyberX, выберите клуб «Новокосино» и получите 400 бонусов после регистрации.
+              Установите CyberX, выберите клуб «Новокосино» и получите 400 бонусов после регистрации. Или воспользуйтесь <a href="https://booking.langame.ru/YWo4q8XN" target="_blank" rel="noopener noreferrer" className="text-[#00F0FF] underline hover:text-white">быстрым онлайн-бронированием без приложения</a> — понадобится только ваш email, куда придёт код бронирования.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">

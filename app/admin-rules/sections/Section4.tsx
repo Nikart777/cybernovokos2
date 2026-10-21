@@ -23,13 +23,13 @@ export function Section4() {
                 <div className="relative z-10 text-center md:text-left">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
                         <Shield size={14} className="text-[#00F0FF]" />
-                        <span className="font-chakra font-bold text-[10px] sm:text-xs uppercase tracking-widest text-[#00F0FF]">Единственный способ брони</span>
+                        <span className="font-chakra font-bold text-[10px] sm:text-xs uppercase tracking-widest text-[#00F0FF]">Быстрая онлайн-бронь и приложение</span>
                     </div>
                     <h3 className="font-tactic font-black text-3xl md:text-4xl uppercase italic text-white mb-4">
-                        Только через <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#0ea5e9]">App CYBERX</span>
+                        Онлайн на сайте или через <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#0ea5e9]">App CYBERX</span>
                     </h3>
                     <p className="font-chakra text-slate-300 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
-                        Мы не принимаем брони по телефону или через социальные сети. Это полностью автоматизированный процесс, предоставляющий гостям <strong className="text-white border-b border-[#FF2E63]">скидку 5%</strong> на весь прайс-лист.
+                        Мы не принимаем брони по телефону или в соцсетях. В первую очередь гостям доступно <strong className="text-white border-b border-[#00F0FF]">быстрое онлайн-бронирование без регистрации в приложении</strong> по прямой ссылке <a href="https://booking.langame.ru/YWo4q8XN" target="_blank" rel="noopener noreferrer" className="text-[#00F0FF] underline">booking.langame.ru/YWo4q8XN</a> (нужен только email — на него придёт код бронирования), а также бронь через приложение CYBERX со <strong className="text-white border-b border-[#FF2E63]">скидкой 5%</strong> и бонусами.
                     </p>
                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
                         <div className="flex items-center gap-2 text-xs font-chakra font-bold text-white bg-black/40 px-4 py-2.5 rounded-xl border border-white/10">
@@ -53,8 +53,8 @@ export function Section4() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group">
                         <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-500 mb-5 group-hover:scale-110 transition-transform"><PhoneCall size={24} /></div>
-                        <div className="font-tactic font-black text-slate-900 uppercase italic text-sm mb-3">Звонки = В App</div>
-                        <p className="font-chakra text-slate-500 text-sm leading-relaxed">По телефону и в чате <strong>не бронируем</strong>. Обязательно объясняем, что все делается только в приложении.</p>
+                        <div className="font-tactic font-black text-slate-900 uppercase italic text-sm mb-3">Звонки = Ссылка или App</div>
+                        <p className="font-chakra text-slate-500 text-sm leading-relaxed">По телефону и в чате <strong>не бронируем</strong>. Предлагаем быстрое онлайн-бронирование на сайте (нужен только email для кода брони) или приложение CYBERX.</p>
                     </div>
                     <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group">
                         <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-500 mb-5 group-hover:scale-110 transition-transform"><Monitor size={24} /></div>
@@ -64,7 +64,7 @@ export function Section4() {
                     <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all group">
                         <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-500 mb-5 group-hover:scale-110 transition-transform"><Key size={24} /></div>
                         <div className="font-tactic font-black text-slate-900 uppercase italic text-sm mb-3">Код активации</div>
-                        <p className="font-chakra text-slate-500 text-sm leading-relaxed">Для запуска забронированного ПК гость должен ввести сгенерированный в приложении код.</p>
+                        <p className="font-chakra text-slate-500 text-sm leading-relaxed">Для запуска забронированного ПК гость вводит код бронирования: при быстрой онлайн-брони без приложения код приходит клиенту на <strong>электронную почту (email)</strong>, а в приложении — в разделе «Мой клуб».</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +163,7 @@ export function Section4() {
                             <ul className="list-disc pl-5 space-y-2 font-chakra text-emerald-800 text-sm">
                                 <li>Если на балансе недостаточно средств, приложение предложит пополнить баланс.</li>
                                 <li>После пополнения удобным способом (карта, СБП), <strong>подтвердите бронь</strong>.</li>
-                                <li>В приложении (во вкладке "Мой клуб") появится <strong>код бронирования</strong>.</li>
+                                <li>При быстром онлайн-бронировании по прямой ссылке (<a href="https://booking.langame.ru/YWo4q8XN" target="_blank" rel="noopener noreferrer" className="underline">booking.langame.ru/YWo4q8XN</a>) без приложения нужен только email — <strong>код бронирования приходит клиенту на электронную почту</strong>. В приложении код появляется во вкладке "Мой клуб".</li>
                             </ul>
                         </div>
                     </div>
@@ -199,7 +199,7 @@ export function Section4() {
                         <div className="shrink-0 w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm"><CreditCard size={18} /></div>
                         <div>
                             <div className="font-chakra font-bold text-slate-900 text-sm mb-1 uppercase tracking-wider">Оплата онлайн</div>
-                            <p className="font-chakra text-slate-500 text-xs mt-1">Оплата производится только внутри приложения. Бронь <strong className="text-green-600">автоматически активируется</strong> ровно в назначенное время.</p>
+                            <p className="font-chakra text-slate-500 text-xs mt-1">Оплата производится онлайн при быстром бронировании на сайте (код приходит на email) или внутри приложения. Бронь <strong className="text-green-600">автоматически активируется</strong> ровно в назначенное время.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:border-[#FF2E63]/30 transition-colors">

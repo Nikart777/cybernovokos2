@@ -332,9 +332,18 @@ export default function PromoLanding() {
                     Выберите место заранее
                   </h3>
                   <p className="mt-5 max-w-xl font-chakra text-sm leading-relaxed text-white/70 sm:text-base">
-                    Откройте CyberX Новокосино, выберите дату, свободное место и время. После регистрации на балансе будут 400 бонусов. Ими можно оплатить до 20% игры.
+                    Воспользуйтесь быстрым онлайн-бронированием без приложения (понадобится только email — на него придёт код бронирования) или откройте приложение CyberX Новокосино, где после регистрации на балансе будут 400 бонусов для оплаты до 20% игры.
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <a
+                    href="https://booking.langame.ru/YWo4q8XN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#FF2E63] px-5 font-tactic text-xs font-black uppercase italic tracking-wide text-[#090909] transition hover:-translate-y-0.5 hover:bg-[#ff5d86] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:translate-y-0 motion-reduce:transform-none"
+                  >
+                    Быстрая онлайн-бронь (код на email)
+                    <ArrowRight size={16} />
+                  </a>
                     <AppStoreLink className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#FF2E63] px-5 font-tactic text-xs font-black uppercase italic tracking-wide text-[#090909] transition hover:-translate-y-0.5 hover:bg-[#ff5d86] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:translate-y-0 motion-reduce:transform-none">
                       <Smartphone size={17} />
                       Установить CyberX
@@ -641,9 +650,18 @@ export default function PromoLanding() {
                 <UsersRound className="text-[#FF2E63]" size={29} />
                 <h2 className="mt-7 font-tactic text-4xl font-black uppercase italic leading-none md:text-5xl xl:text-6xl">Бронь в несколько касаний</h2>
                 <p className="mt-5 max-w-2xl font-chakra leading-relaxed text-white/65">
-                  Общий зал, Bootcamp, Solo Room, PlayStation 5 или автосимулятор. В приложении видно свободные места, а бронь хранится в вашем аккаунте.
+                  Общий зал, Bootcamp, Solo Room, PlayStation 5 или автосимулятор. Забронировать место можно за пару кликов через быстрое онлайн-бронирование без приложения (нужен только email — на него придёт код бронирования) либо в приложении CyberX с бонусами в вашем аккаунте.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <a
+                    href="https://booking.langame.ru/YWo4q8XN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#FF2E63] px-5 font-tactic text-xs font-black uppercase italic tracking-wide text-[#090909] transition hover:-translate-y-0.5 hover:bg-[#ff5d86] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:translate-y-0 motion-reduce:transform-none"
+                  >
+                    Быстрая онлайн-бронь (код на email)
+                    <ArrowRight size={16} />
+                  </a>
                   <AppStoreLink className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#FF2E63] px-5 font-tactic text-xs font-black uppercase italic tracking-wide text-[#090909] transition hover:-translate-y-0.5 hover:bg-[#ff5d86] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:translate-y-0 motion-reduce:transform-none">
                     <Smartphone size={17} />
                     Установить и забронировать

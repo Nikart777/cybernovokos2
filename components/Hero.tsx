@@ -70,13 +70,13 @@ export default function Hero() {
                         className="mb-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
                     >
                         <a
-                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            href="https://booking.langame.ru/YWo4q8XN"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group relative inline-flex items-center gap-2.5 bg-[#FF2E63] hover:bg-[#ff1e57] px-7 sm:px-9 py-4 rounded-full font-chakra font-black text-xs sm:text-sm uppercase tracking-[0.16em] text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,46,99,0.5)] active:scale-95"
                         >
                             <Zap size={18} className="animate-pulse" />
-                            <span>Забронировать онлайн (без регистрации)</span>
+                            <span>Быстрая онлайн-бронь (код придёт на email)</span>
                         </a>
 
                         <button

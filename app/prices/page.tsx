@@ -87,13 +87,14 @@ export default async function PricesPage() {
 
                     <div className="flex flex-wrap items-center gap-3 shrink-0">
                         <a
-                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            href="https://booking.langame.ru/YWo4q8XN"
+                            title="Быстрое онлайн-бронирование без регистрации в приложении — нужен только email для получения кода бронирования"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-6 py-4 bg-[#FF2E63] hover:bg-[#e02655] text-white font-chakra font-black text-sm uppercase tracking-wider rounded-xl shadow-[0_0_25px_rgba(255,46,99,0.5)] hover:shadow-[0_0_35px_rgba(255,46,99,0.8)] transition-all"
                         >
                             <Zap size={16} className="fill-white" />
-                            <span>Забронировать онлайн</span>
+                            <span>Быстрая онлайн-бронь (код на email)</span>
                         </a>
                         <a
                             href="/download"

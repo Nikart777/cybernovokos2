@@ -487,13 +487,14 @@ function MonitoringCard({ config, prices, status, idx }: { config: typeof CARDS_
 
                     <div className="flex gap-2">
                         <a
-                            href="https://langame.ru/cip/umfw9uiydje1ugq"
+                            href="https://booking.langame.ru/YWo4q8XN"
+                            title="Быстрое онлайн-бронирование без приложения — нужен только email для кода бронирования"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex-1 py-2.5 px-3 rounded-xl bg-[#FF2E63] hover:bg-[#e02655] text-white transition-all font-chakra font-black text-[11px] uppercase tracking-[0.12em] shadow-[0_0_15px_rgba(255,46,99,0.3)] hover:shadow-[0_0_25px_rgba(255,46,99,0.5)] flex items-center justify-center gap-1.5 text-center"
                         >
                             <Zap size={13} className="fill-white shrink-0" />
-                            <span>Онлайн-бронь</span>
+                            <span>Быстрая бронь</span>
                         </a>
                         <button
                             onClick={openBooking}

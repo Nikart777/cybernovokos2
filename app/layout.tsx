@@ -251,7 +251,7 @@ export default function RootLayout({
             if (!a) return;
             var track = a.getAttribute('data-track');
             if (track) return send(track);
-            var h = a.getAttribute('href') || '';
+            var h = a.getAttribute('href') || ''; if (/booking\.langame\.ru/.test(h)) return send('click_booking', { method: 'web' });
             if (/^\\/download(\\/|\\?|$)/.test(h) || /appmetrica\\.yandex|apps\\.apple\\.com|play\\.google\\.com|rustore\\.ru/.test(h)) return send('click_booking', { method: 'app' });
             if (h.indexOf('tel:') === 0) return send('click_phone');
             if (/t\\.me\\//.test(h)) return send('click_telegram');
