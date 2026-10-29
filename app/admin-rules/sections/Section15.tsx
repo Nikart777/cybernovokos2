@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Target, Monitor, Wrench, ShieldAlert, Cpu, HardDrive, Mouse, BotMessageSquare, AlertCircle, RefreshCw, Layers, FileDown, ExternalLink, Terminal } from 'lucide-react';
+import { Target, Monitor, Wrench, ShieldAlert, Cpu, HardDrive, Mouse, BotMessageSquare, AlertCircle, RefreshCw, Layers, FileDown, ExternalLink, Terminal, Usb, CheckCircle2, Camera } from 'lucide-react';
 import { SectionBadge } from '../components/SectionBadge';
 
 export function Section15() {
@@ -15,7 +15,7 @@ export function Section15() {
                         Технические <span className="text-slate-600">вопросы</span>
                     </h2>
                     <p className="font-chakra text-slate-600 text-sm md:text-base max-w-2xl">
-                        Инструкции по сложным системным ошибкам (FaceIT, Windows Update), проверке периферии и чистой установке гостевых ПК.
+                        Инструкции по восстановлению ПК при постоянной перезагрузке (лечебная флешка), системным ошибкам (FaceIT, Windows Update), проверке периферии и чистой установке гостевых ПК.
                     </p>
                 </div>
             </div>
@@ -59,6 +59,267 @@ export function Section15() {
                     <p className="font-chakra text-slate-700 text-sm leading-relaxed">
                         Технические вопросы необходимо задавать в <strong className="text-sky-600">чат техподдержки Langame</strong> через <strong className="text-slate-900">Admin ПО</strong> либо через приложение <strong className="text-slate-900">Langame Business</strong>.
                     </p>
+                </div>
+            </div>
+
+            {/* ВЕЧНЫЙ РЕБУТ — ЛЕЧЕБНАЯ ФЛЕШКА */}
+            <div className="mb-14">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <h3 className="font-tactic font-black text-2xl md:text-3xl uppercase italic text-slate-900 flex items-center gap-3">
+                        <Usb className="text-[#FF2E63]" size={30} />
+                        Компьютер постоянно перезагружается — <span className="text-[#FF2E63]">что делать</span>
+                    </h3>
+                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 font-chakra font-black text-[11px] uppercase tracking-widest">
+                        Единый алгоритм: Новокосино + Алтуфьево
+                    </span>
+                </div>
+
+                <div className="bg-white border-2 border-rose-200 rounded-3xl overflow-hidden shadow-sm">
+                    {/* Верхняя плашка + Схема */}
+                    <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-rose-950 p-6 md:p-8 text-white border-b border-slate-800">
+                        <p className="font-chakra text-sm md:text-base text-slate-200 leading-relaxed max-w-3xl">
+                            Если компьютер ушёл в <strong className="text-white">вечный ребут</strong> (постоянно перезагружается при включении), в обоих клубах используется <strong className="text-rose-400">специальная лечебная флешка</strong>. Нужно загрузиться с неё через Boot Menu и нажать <kbd className="px-1.5 py-0.5 bg-white/15 border border-white/25 rounded font-mono text-xs text-white">1</kbd> — дальше процесс полностью автоматизирован.
+                        </p>
+
+                        {/* СХЕМА ПРОЦЕССА (Визуальная блок-схема) */}
+                        <div className="mt-7 pt-6 border-t border-white/10">
+                            <div className="text-[10px] font-chakra font-black uppercase tracking-[0.25em] text-rose-400 mb-4">
+                                Схема восстановления по шагам
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                                {/* Шаг 1 */}
+                                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="w-7 h-7 rounded-lg bg-[#FF2E63] text-white font-tactic font-black text-xs flex items-center justify-center">1</span>
+                                        <Usb size={18} className="text-rose-400" />
+                                    </div>
+                                    <div className="font-tactic font-black uppercase italic text-sm text-white mb-1">Вставить флешку</div>
+                                    <p className="font-chakra text-xs text-slate-300 leading-relaxed">
+                                        Вставьте лечебную флешку в USB-разъём компьютера
+                                    </p>
+                                </div>
+
+                                {/* Шаг 2 */}
+                                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="w-7 h-7 rounded-lg bg-[#FF2E63] text-white font-tactic font-black text-xs flex items-center justify-center">2</span>
+                                        <div className="flex items-center gap-1">
+                                            <kbd className="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-400/40 text-amber-300 font-mono font-bold text-xs">F12</kbd>
+                                            <span className="text-slate-500 text-xs">/</span>
+                                            <kbd className="px-2 py-0.5 rounded bg-white/10 border border-white/20 text-slate-200 font-mono font-bold text-xs">F8</kbd>
+                                        </div>
+                                    </div>
+                                    <div className="font-tactic font-black uppercase italic text-sm text-white mb-1">Открыть Boot Menu</div>
+                                    <p className="font-chakra text-xs text-slate-300 leading-relaxed">
+                                        При включении сразу часто жмите <strong className="text-amber-300">F12</strong> (GIGABYTE) или <strong className="text-white">F8</strong> (ASUS)
+                                    </p>
+                                </div>
+
+                                {/* Шаг 3 */}
+                                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="w-7 h-7 rounded-lg bg-[#FF2E63] text-white font-tactic font-black text-xs flex items-center justify-center">3</span>
+                                        <kbd className="px-2 py-0.5 rounded bg-sky-400/20 border border-sky-400/40 text-sky-300 font-mono font-bold text-xs">Enter ↵</kbd>
+                                    </div>
+                                    <div className="font-tactic font-black uppercase italic text-sm text-white mb-1">Выбрать флешку</div>
+                                    <p className="font-chakra text-xs text-slate-300 leading-relaxed">
+                                        Строка с <code className="text-sky-300">UEFI</code> и <code className="text-sky-300">USB</code> (напр. <code className="text-sky-300">UEFI: USB Flash Disk</code>) → <strong className="text-white">Enter</strong>
+                                    </p>
+                                </div>
+
+                                {/* Шаг 4 */}
+                                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="w-7 h-7 rounded-lg bg-[#FF2E63] text-white font-tactic font-black text-xs flex items-center justify-center">4</span>
+                                        <div className="flex items-center gap-1">
+                                            <kbd className="px-2 py-0.5 rounded bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 font-mono font-bold text-xs">1</kbd>
+                                            <span className="text-slate-500 text-xs">+</span>
+                                            <kbd className="px-2 py-0.5 rounded bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 font-mono font-bold text-xs">Enter ↵</kbd>
+                                        </div>
+                                    </div>
+                                    <div className="font-tactic font-black uppercase italic text-sm text-white mb-1">Нажать 1 и Enter</div>
+                                    <p className="font-chakra text-xs text-slate-300 leading-relaxed">
+                                        В окне восстановления нажмите <strong className="text-emerald-300">1</strong>, затем <strong className="text-emerald-300">Enter</strong>. Больше ничего вводить не нужно
+                                    </p>
+                                </div>
+
+                                {/* Шаг 5 */}
+                                <div className="relative bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 flex flex-col justify-between">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="w-7 h-7 rounded-lg bg-emerald-500 text-white font-tactic font-black text-xs flex items-center justify-center">5</span>
+                                        <CheckCircle2 size={18} className="text-emerald-400" />
+                                    </div>
+                                    <div className="font-tactic font-black uppercase italic text-sm text-emerald-300 mb-1">Ждать загрузки</div>
+                                    <p className="font-chakra text-xs text-emerald-100/90 leading-relaxed">
+                                        Питание не отключать, флешку оставить. Загрузилась Windows — сообщить технику
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Основное тело: Пошаговая инструкция + Схематичные экраны */}
+                    <div className="p-6 md:p-8 space-y-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                            {/* Левая колонка: точный текст инструкции */}
+                            <div className="lg:col-span-6 space-y-3 font-chakra text-sm text-slate-700">
+                                <div className="text-xs font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-3">
+                                    Пошаговая инструкция
+                                </div>
+
+                                <div className="flex gap-3.5 items-start p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <span className="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <p className="leading-relaxed">
+                                        Вставьте <strong>лечебную флешку</strong> в USB-разъём компьютера.
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-3.5 items-start p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <span className="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <p className="leading-relaxed">
+                                        При очередном включении сразу часто нажимайте кнопку:{' '}
+                                        <kbd className="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold text-slate-900">F12</kbd> на{' '}
+                                        <a
+                                            href="https://download.gigabyte.com/FileList/Manual/mb_manual_b760m-ds3h-series_1303_e.pdf"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="text-[#FF2E63] font-bold underline hover:opacity-80 inline-flex items-center gap-1"
+                                        >
+                                            GIGABYTE <ExternalLink size={12} />
+                                        </a>
+                                        , или{' '}
+                                        <kbd className="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold text-slate-900">F8</kbd> на{' '}
+                                        <a
+                                            href="https://dlcdnets.asus.com/pub/ASUS/mb/LGA1200/EX-B560M-V5/E17747_EX-B560M-V5_UM_WEB.pdf"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="text-blue-600 font-bold underline hover:opacity-80 inline-flex items-center gap-1"
+                                        >
+                                            ASUS <ExternalLink size={12} />
+                                        </a>
+                                        .
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-3.5 items-start p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <span className="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                    <p className="leading-relaxed">
+                                        Появится список устройств — это <strong>Boot Menu</strong>. Выберите флешку: строку с <strong>UEFI</strong> и <strong>USB</strong> или названием флешки. Например: <code className="px-1.5 py-0.5 bg-white border border-slate-200 rounded font-mono font-bold text-slate-900">UEFI: USB Flash Disk</code>. Нажмите <kbd className="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold text-slate-900">Enter</kbd>.
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-3.5 items-start p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                    <span className="w-6 h-6 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+                                    <p className="leading-relaxed">
+                                        Дождитесь окна восстановления с текстом. Нажмите <kbd className="px-1.5 py-0.5 bg-emerald-100 border border-emerald-300 rounded font-mono font-bold text-emerald-900">1</kbd>, затем <kbd className="px-1.5 py-0.5 bg-emerald-100 border border-emerald-300 rounded font-mono font-bold text-emerald-900">Enter</kbd>. <strong>Больше ничего вводить не нужно.</strong>
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-3.5 items-start p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                                    <span className="w-6 h-6 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">5</span>
+                                    <p className="leading-relaxed text-emerald-950">
+                                        <strong>Ждите.</strong> Компьютер сам перезагрузится. <strong>Питание не отключайте, флешку оставьте подключённой.</strong> Когда загрузится Windows — сообщите технику, дальше проверим мы.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Правая колонка: Схематичная визуализация экранов Boot Menu и Окна восстановления */}
+                            <div className="lg:col-span-6 space-y-5">
+                                <div className="text-xs font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-3">
+                                    Как это выглядит на экране (схема)
+                                </div>
+
+                                {/* Схема экрана 1: Boot Menu */}
+                                <div className="rounded-2xl border-2 border-slate-800 bg-slate-950 p-4 text-white font-mono text-xs shadow-md">
+                                    <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800 text-[11px] text-slate-400">
+                                        <span>ЭКРАН 1: BOOT MENU (после F12 / F8)</span>
+                                        <span className="text-amber-400 font-bold">↑↓ Стрелки • Enter</span>
+                                    </div>
+                                    <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-1.5">
+                                        <div className="px-3 py-1.5 rounded text-slate-400 flex items-center justify-between">
+                                            <span>Windows Boot Manager</span>
+                                        </div>
+                                        <div className="px-3 py-2 rounded-lg bg-[#FF2E63] text-white font-bold flex flex-wrap items-center justify-between gap-2 shadow-[0_0_15px_rgba(255,46,99,0.4)]">
+                                            <span>► UEFI: USB Flash Disk</span>
+                                            <span className="text-[10px] bg-black/30 px-2 py-0.5 rounded uppercase">Выбрать → Enter ↵</span>
+                                        </div>
+                                        <div className="px-3 py-1.5 rounded text-slate-500">
+                                            <span>Enter Setup</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Схема экрана 2: Окно восстановления */}
+                                <div className="rounded-2xl border-2 border-slate-800 bg-slate-950 p-4 text-white font-mono text-xs shadow-md">
+                                    <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-800 text-[11px] text-slate-400">
+                                        <span className="flex items-center gap-1.5">
+                                            <Terminal size={13} className="text-emerald-400" />
+                                            ЭКРАН 2: ОКНО ВОССТАНОВЛЕНИЯ С ФЛЕШКИ
+                                        </span>
+                                        <span className="text-emerald-400 font-bold">Автоматический процесс</span>
+                                    </div>
+                                    <div className="bg-black border border-slate-800 rounded-xl p-3.5 space-y-2 text-slate-300 leading-relaxed">
+                                        <div className="text-slate-400">=== ОКНО ВОССТАНОВЛЕНИЯ СИСТЕМЫ ===</div>
+                                        <div className="text-emerald-400 font-bold">[1] Восстановление Windows (автоматически)</div>
+                                        <div className="text-slate-500">[2] Выход</div>
+                                        <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+                                            <span>
+                                                Введите номер: <span className="inline-block px-2 py-0.5 bg-emerald-500 text-black font-bold rounded">1</span>
+                                            </span>
+                                            <span className="text-[11px] text-amber-300 font-sans font-bold">
+                                                Нажмите «1» → «Enter» (больше ничего не вводить!)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Сценарии после перезагрузки (Развилка) */}
+                        <div className="pt-4 border-t border-slate-200">
+                            <div className="text-xs font-chakra font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+                                Что делать дальше после перезагрузки (3 варианта)
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-chakra text-sm">
+                                {/* Вариант А */}
+                                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5 flex flex-col justify-between">
+                                    <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold text-xs uppercase mb-3">
+                                            <CheckCircle2 size={14} /> Загрузилась Windows
+                                        </div>
+                                        <p className="text-slate-800 leading-relaxed">
+                                            Сообщите технику, что компьютер загрузился — <strong>дальше проверим мы</strong>.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Вариант Б */}
+                                <div className="rounded-2xl border border-amber-200 bg-amber-50/70 p-5 flex flex-col justify-between">
+                                    <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500 text-white font-bold text-xs uppercase mb-3">
+                                            <RefreshCw size={14} /> Снова открылось меню флешки
+                                        </div>
+                                        <p className="text-slate-800 leading-relaxed">
+                                            Выберите <code className="px-1.5 py-0.5 bg-white border border-amber-300 rounded font-mono font-bold text-slate-900">Windows Boot Manager</code> через то же <strong>Boot Menu</strong>.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Вариант В */}
+                                <div className="rounded-2xl border-2 border-rose-200 bg-rose-50/70 p-5 flex flex-col justify-between">
+                                    <div>
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-600 text-white font-bold text-xs uppercase mb-3">
+                                            <Camera size={14} /> Ошибка или снова перезагрузки
+                                        </div>
+                                        <p className="text-slate-800 leading-relaxed">
+                                            Отправьте <strong>фото экрана и номер ПК технику</strong>. <strong className="text-rose-700 underline">Повторно восстановление не запускайте.</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -395,12 +656,9 @@ export function Section15() {
 
             <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between gap-4">
                 <p className="text-xs font-chakra font-bold text-slate-400 uppercase tracking-widest mt-4">
-                    Раздел 13/14
+                    Раздел 15
                 </p>
             </div>
         </section>
     );
 }
-
-
-

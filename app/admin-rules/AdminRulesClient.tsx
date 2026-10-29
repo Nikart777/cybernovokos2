@@ -45,7 +45,7 @@ const SECTIONS_NAV = [
     { id: 'section12', label: '12. Уборка и контроль', keywords: 'уборка чек-лист пыль мусор монитор мышка клавиатура туалет бумага мыло проверка свет' },
     { id: 'section13', label: '13. Обновления ПК', keywords: 'обновление игр стим steam cs dota valorant pubg тех режим диски лан гейм обои wallpaper cyberx фирменные синхронизация runme' },
     { id: 'section14', label: '14. Зона TV (PS5)', labelSearch: 'Зона TV (PS5)', keywords: 'тв tv пс5 ps5 плойка консоль телевизор джойстик геймпад fifa ufc mk мортал комбат аккаунт' },
-    { id: 'section15', label: '15. Технические вопросы', keywords: 'техподдержка синий экран фейсит faceit windows bios secure boot память ошибки мышь сенсор звук' },
+    { id: 'section15', label: '15. Технические вопросы', keywords: 'техподдержка синий экран фейсит faceit windows bios secure boot память ошибки мышь сенсор звук вечный ребут перезагружается лечебная флешка boot menu f12 f8 восстановление' },
     { id: 'section16', label: '16. Подарочные сертификаты', keywords: 'сертификат подарочный подарок номинал активация' },
     { id: 'section17', label: '17. Нарушения и штрафы', keywords: 'штраф увольнение наказание вычет несход касса опоздание грязь нарушение' },
     { id: 'section18', label: '18. Автосимуляторы', keywords: 'автосим руль педали база коробка передач моза moza pit house assetto corsa carx forza beamng dirt rally city car driving' },
