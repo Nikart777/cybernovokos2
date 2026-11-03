@@ -9,10 +9,11 @@ import { loadRates } from "@/lib/gift-drop/rates";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 const URL = `${SITE_URL}/certificate`;
-// Aimed at gift-intent searches («необычный подарок», «подарок-впечатление»), not only «сертификат в клуб».
-const TITLE = "Необычный подарок-впечатление в Москве: сертификат в компьютерный клуб";
+// The page ranks for «подарочный сертификат в компьютерный клуб», so that phrase leads the title.
+// «Необычный подарок» SERPs belong to gift aggregators: those words stay in the description and on the page.
+const TITLE = "Подарочный сертификат в компьютерный клуб в Москве";
 const DESCRIPTION =
-    "Подарок-впечатление мужчине, парню или девушке: сертификат в компьютерный клуб CyberX Новокосино от 1 000 ₽. ПК, PS5, автосимулятор и бар. Оплата онлайн, промокод сразу.";
+    "Подарочный сертификат в компьютерный клуб CyberX Новокосино от 1 000 ₽: необычный подарок геймеру. ПК, PS5, автосимулятор и бар. Оплата онлайн, промокод сразу.";
 
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
     // ?gift=1 is the recipient preview of someone's design: never indexed.
@@ -32,10 +33,10 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
         title: TITLE,
         description: DESCRIPTION,
         keywords:
-            "необычный подарок, подарок-впечатление Москва, необычный подарок мужчине, необычный подарок девушке, креативный подарок, подарок геймеру, сертификат впечатление в подарок, сертификат в компьютерный клуб, CyberX Новокосино",
+            "подарочный сертификат в компьютерный клуб, сертификат в компьютерный клуб Москва, сертификат в компьютерный клуб Новокосино, сертификат в киберклуб, сертификат в игровой клуб, подарок геймеру, необычный подарок геймеру, сертификат на автосимулятор, сертификат на PS5, CyberX Новокосино",
         alternates: { canonical: URL },
         openGraph: {
-            title: TITLE,
+            title: "Подарочный сертификат в компьютерный клуб CyberX Новокосино",
             description: DESCRIPTION,
             url: URL,
             images: [{ url: "/certificates.webp", alt: "Подарочный сертификат CyberX Новокосино" }],
@@ -49,7 +50,7 @@ const productSchema = {
     "@id": `${URL}#gift-certificate`,
     name: "Подарочный сертификат в компьютерный клуб CyberX Новокосино",
     description:
-        "Необычный подарок-впечатление: электронный сертификат в компьютерный клуб CyberX Новокосино в Москве. Баланс тратится на игровые ПК, Solo- и Duo-комнаты, Bootcamp, PS5, автосимулятор и бар клуба. Номинал от 1 000 до 20 000 ₽.",
+        "Электронный подарочный сертификат в компьютерный клуб CyberX Новокосино в Москве. Баланс тратится на игровые ПК, Solo- и Duo-комнаты, Bootcamp, PS5, автосимулятор и бар клуба. Номинал от 1 000 до 20 000 ₽, промокод приходит сразу после оплаты.",
     url: URL,
     // Yandex reads image as a plain URL, not ImageObject.
     image: `${SITE_URL}/certificates.webp`,

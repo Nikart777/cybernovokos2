@@ -111,6 +111,8 @@ export const metadata: Metadata = {
     icons: {
         icon: [
             { url: '/favicon.ico', sizes: 'any' },
+            // Яндекс берёт иконку для выдачи только в SVG или 120×120.
+            { url: '/icon-120.png', sizes: '120x120', type: 'image/png' },
             { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
             { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
         ],

@@ -7,7 +7,8 @@ import fs from "fs";
 import path from "path";
 import { PricingData } from "../lib/types";
 import SchemaMarkup from "@/components/SchemaMarkup";
-import { Zap, Smartphone } from "lucide-react";
+import Link from "next/link";
+import { Zap, Smartphone, Gift } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Цены на услуги киберклуба в Новокосино | Москва",
@@ -31,6 +32,11 @@ const faqItems = [
         iconKey: 'clock',
         question: "Что такое 'Ночной пакет'?",
         answer: "Это специальный тариф с фиксированной стоимостью за 10 часов игры (с 22:00 до 08:00). Ночной пакет является самым выгодным предложением для длительных сессий. Продление игры после 08:00 возможно по дневному тарифу."
+    },
+    {
+        iconKey: 'credit-card',
+        question: "Можно ли подарить игровое время?",
+        answer: "Да, подарочным сертификатом CyberX Новокосино на любую сумму от 1 000 до 20 000 ₽. Баланс тратится на все зоны из этого прайса и на бар. Сертификат оформляется онлайн на странице подарочных сертификатов, промокод приходит сразу после оплаты."
     }
 ];
 
@@ -83,6 +89,13 @@ export default async function PricesPage() {
                         <p className="font-chakra font-bold text-sm sm:text-base md:text-lg text-white/70 max-w-2xl uppercase tracking-wide leading-relaxed">
                             Выбирай свою зону и врывайся в игру. Лучшее железо в Новокосино по доступным ценам.
                         </p>
+                        <Link
+                            href="/certificate"
+                            className="mt-3 inline-flex min-h-11 items-center gap-2 font-chakra text-sm font-bold text-white/60 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
+                        >
+                            <Gift size={16} className="shrink-0 text-[#FF2E63]" aria-hidden />
+                            Подарочный сертификат на любую зону
+                        </Link>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3 shrink-0">

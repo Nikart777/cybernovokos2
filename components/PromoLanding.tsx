@@ -477,6 +477,14 @@ export default function PromoLanding() {
                     Зона для игры вдвоём
                     <ArrowRight size={16} />
                   </Link>
+                  <Link
+                    href="/certificate"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white/[0.055] px-5 font-tactic text-xs font-black uppercase italic tracking-wide text-white ring-1 ring-white/15 transition hover:bg-white/10 hover:ring-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
+                  >
+                    <Gift size={17} className="text-[#FF2E63]" />
+                    Подарить сертификат другу
+                    <ArrowRight size={16} />
+                  </Link>
                 </div>
               </Reveal>
             </div>

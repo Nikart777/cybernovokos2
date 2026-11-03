@@ -443,6 +443,16 @@ export default function SimracingPage() {
               </p>
             </Reveal>
             <SimracingTariffs />
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#b4b6c0]">
+              Заезд можно подарить:{" "}
+              <Link
+                href="/certificate"
+                className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+              >
+                подарочный сертификат в клуб
+              </Link>{" "}
+              тратится и на автосимуляторы.
+            </p>
           </div>
         </section>
 

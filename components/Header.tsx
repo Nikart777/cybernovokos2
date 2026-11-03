@@ -12,6 +12,7 @@ const desktopNavLinks = [
     { name: 'Автосимуляторы', href: '/simracing' },
     { name: 'Цены', href: '/prices' },
     { name: 'Промокод', href: '/promo' },
+    { name: 'Сертификаты', href: '/certificate' },
     { name: 'Блог', href: '/blog' },
     { name: 'Контакты', href: '/contacts' },
 ];

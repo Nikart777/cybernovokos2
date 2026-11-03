@@ -48,6 +48,10 @@ const faq = [
         q: "Можно ли остаться на всю ночь?",
         a: "Да. Клуб круглосуточный, а на зону TV есть отдельный ночной тариф: 1800 ₽ за ночь в Standard и 2075 ₽ в VIP-комнате в будни.",
     },
+    {
+        q: "Можно ли подарить вечер на PS5?",
+        a: "Да, подарочным сертификатом CyberX Новокосино. Его баланс тратится на зону PS5, VIP-комнату и любые другие зоны клуба. Номинал от 1 000 ₽, сертификат оформляется онлайн, а промокод приходит сразу после оплаты.",
+    },
 ];
 
 export default function PlaystationPage() {
@@ -139,7 +143,11 @@ export default function PlaystationPage() {
                         <Link href="/prices" className="text-[#FF2E63] hover:underline">
                             смотрите полный прайс
                         </Link>
-                        .
+                        . Вечер на PS5 можно подарить:{" "}
+                        <Link href="/certificate" className="text-[#FF2E63] hover:underline">
+                            сертификат в клуб
+                        </Link>{" "}
+                        тратится и на зону TV.
                     </p>
                 </section>
 

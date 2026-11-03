@@ -9,6 +9,9 @@ const urlList = [
   `https://${host}/prices`,
   `https://${host}/contacts`,
   `https://${host}/simracing`,
+  `https://${host}/certificate`,
+  `https://${host}/promo`,
+  `https://${host}/playstation`,
   `https://${host}/llms.txt`,
   `https://${host}/llms-full.txt`
 ];

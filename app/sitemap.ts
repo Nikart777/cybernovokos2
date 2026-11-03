@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/prices`,
-            lastModified: new Date('2026-08-13'),
+            lastModified: new Date('2026-11-03'),
             changeFrequency: 'weekly',
             priority: 0.8,
         },
@@ -25,13 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/promo`,
-            lastModified: new Date('2026-08-13'),
+            lastModified: new Date('2026-11-03'),
             changeFrequency: 'weekly',
             priority: 0.85,
         },
         {
             url: `${baseUrl}/playstation`,
-            lastModified: new Date('2026-08-31'),
+            lastModified: new Date('2026-11-03'),
             changeFrequency: 'monthly',
             priority: 0.75,
         },
@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
         {
             url: `${baseUrl}/simracing`,
-            lastModified: new Date('2026-10-13'),
+            lastModified: new Date('2026-11-03'),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
@@ -68,7 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/certificate`,
-            lastModified: new Date('2026-07-14'),
+            lastModified: new Date('2026-11-03'),
             changeFrequency: 'monthly',
             priority: 0.8,
         },

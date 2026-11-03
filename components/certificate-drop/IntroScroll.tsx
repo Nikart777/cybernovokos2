@@ -151,13 +151,14 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                 {/* captions: top on phones, left column on desktop */}
                 <div className={`absolute inset-x-4 top-[88px] h-[33svh] sm:inset-x-8 lg:top-1/2 lg:h-[480px] lg:w-[min(46vw,600px)] lg:-translate-y-1/2 ${side}`}>
                     <Caption p={p} range={[0, 0.13, 0.18]} className="text-center lg:text-left">
+                        {/* Reads as one phrase, the one people search: «Подарочный сертификат в компьютерный клуб…» */}
                         <h1 className="text-white">
                             <span className={`${s.display} block text-[clamp(2.1rem,9.4vw,3rem)] leading-[1.02] lg:text-[clamp(3.2rem,5vw,5rem)]`}>
-                                Необычный подарок
+                                Подарочный сертификат
                             </span>
-                            <span className="sr-only">: </span>
+                            <span className="sr-only"> </span>
                             <span className="mt-3 block font-inter text-[15px] font-semibold leading-snug text-[#d9d3f5] sm:text-[17px] lg:mt-5 lg:text-[20px]">
-                                Сертификат в компьютерный клуб CyberX&nbsp;Новокосино
+                                в компьютерный клуб CyberX&nbsp;Новокосино
                             </span>
                         </h1>
                     </Caption>
