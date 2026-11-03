@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Tv, DoorClosed, Users, Moon, Zap, Smartphone, Phone, ChevronRight } from "lucide-react";
@@ -58,14 +59,17 @@ export default function PlaystationPage() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "SportsActivityLocation",
+        "@id": "https://cyberx-novokosino.ru/playstation#zone",
         name: "Зона PlayStation 5 — CyberX Новокосино",
+        // Зона внутри клуба, а не отдельный бизнес
+        containedInPlace: ORG_REF,
         description:
             "Игровая зона с PlayStation 5 на 4K-телевизоре и отдельной VIP-комнатой. FIFA 26, UFC 5. Москва, ул. Новокосинская, 32. Круглосуточно.",
         address: {
             "@type": "PostalAddress",
             streetAddress: "ул. Новокосинская, 32",
             addressLocality: "Москва",
-            postalCode: "111673",
+            postalCode: "111672",
             addressCountry: "RU",
         },
         telephone: "+79851289538",

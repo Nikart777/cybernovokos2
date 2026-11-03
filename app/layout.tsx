@@ -10,6 +10,7 @@ import SchemaMarkup from "@/components/SchemaMarkup";
 import ChatBot from "@/components/ChatBot";
 import CookieBanner from "@/components/CookieBanner";
 import { GOOGLE_MAPS_URL } from "@/lib/googleBusiness";
+import { ORG_ID, ORG_LOGO, ORG_NAME, SITE_URL } from "@/lib/organization";
 
 // Локальные шрифты Tactic Sans
 const tacticSans = localFont({
@@ -130,11 +131,12 @@ export default function RootLayout({
     const businessSchema = {
         "@context": "https://schema.org",
         "@type": "InternetCafe",
-        "name": "CyberX Community",
+        "@id": ORG_ID,
+        "name": ORG_NAME,
         "alternateName": ["CyberX Новокосино", "Компьютерный клуб CyberX Новокосино"],
         "image": "https://cyberx-novokosino.ru/og-image.jpg",
-        "@id": "https://cyberx-novokosino.ru",
-        "url": "https://cyberx-novokosino.ru",
+        "logo": ORG_LOGO,
+        "url": SITE_URL,
         "telephone": "+79851289538",
         "priceRange": "100RUB - 1000RUB",
         "address": {
@@ -150,6 +152,15 @@ export default function RootLayout({
             "longitude": 37.867172
         },
         "hasMap": GOOGLE_MAPS_URL,
+        // Районы, под которые написаны гео-страницы /kompyuterny-klub/*
+        "areaServed": [
+            { "@type": "Place", "name": "Новокосино" },
+            { "@type": "City", "name": "Реутов" },
+            { "@type": "Place", "name": "Косино-Ухтомский" },
+            { "@type": "Place", "name": "Выхино-Жулебино" },
+            { "@type": "Place", "name": "Новогиреево" },
+            { "@type": "Place", "name": "Перово" }
+        ],
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [

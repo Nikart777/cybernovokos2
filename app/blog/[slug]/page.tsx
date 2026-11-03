@@ -2,6 +2,7 @@ import BlogInteractive from "@/components/BlogInteractive";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { blogPosts, getBlogPost } from "@/data/blog-posts";
+import { ORG_LOGO, ORG_NAME, ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,11 +66,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: post.date,
     dateModified: post.updated,
     inLanguage: "ru-RU",
-    author: { "@type": "Organization", name: "CyberX Новокосино", url: baseUrl },
+    // Both are the club from app/layout.tsx, linked by @id.
+    author: { ...ORG_REF, "@type": "Organization", name: ORG_NAME, url: baseUrl },
     publisher: {
+      ...ORG_REF,
       "@type": "Organization",
-      name: "CyberX Community Новокосино",
-      logo: { "@type": "ImageObject", url: `${baseUrl}/icon-512.png` },
+      name: ORG_NAME,
+      logo: { "@type": "ImageObject", url: ORG_LOGO },
     },
     mainEntityOfPage: articleUrl,
     keywords: post.keywords.join(", "),

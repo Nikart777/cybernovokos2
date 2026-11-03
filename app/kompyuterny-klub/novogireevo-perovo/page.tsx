@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Moon, Sunrise, Zap, Smartphone, ChevronRight } from "lucide-react";
@@ -50,24 +51,18 @@ const faq = [
 export default function NovogireevoPerovoPage() {
     const schema = {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
+        // Страница о самом клубе для района: клуб описан в layout, здесь ссылка на него
+        "@type": "WebPage",
+        "@id": "https://cyberx-novokosino.ru/kompyuterny-klub/novogireevo-perovo#webpage",
+        url: "https://cyberx-novokosino.ru/kompyuterny-klub/novogireevo-perovo",
         name: "CyberX Новокосино — компьютерный клуб для Новогиреево и Перово",
         description:
             "Киберспортивный клуб в ВАО Москвы: игровые ПК RTX 4060–5070, PS5, автосимулятор. От Новогиреево и Перово — по прямой без пересадок. Работает круглосуточно.",
-        address: {
-            "@type": "PostalAddress",
-            streetAddress: "ул. Новокосинская, 32",
-            addressLocality: "Москва",
-            postalCode: "111673",
-            addressCountry: "RU",
-        },
-        areaServed: [
+        about: ORG_REF,
+        spatialCoverage: [
             { "@type": "Place", name: "Новогиреево" },
             { "@type": "Place", name: "Перово" },
         ],
-        telephone: "+79851289538",
-        openingHours: "Mo-Su 00:00-23:59",
-        url: "https://cyberx-novokosino.ru/kompyuterny-klub/novogireevo-perovo",
     };
 
     return (

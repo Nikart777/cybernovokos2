@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Smartphone, ChevronRight } from "lucide-react";
@@ -55,24 +56,18 @@ const priceRows = [
 export default function KosinoPage() {
     const schema = {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
+        // Страница о самом клубе для района: клуб описан в layout, здесь ссылка на него
+        "@type": "WebPage",
+        "@id": "https://cyberx-novokosino.ru/kompyuterny-klub/kosino#webpage",
+        url: "https://cyberx-novokosino.ru/kompyuterny-klub/kosino",
         name: "CyberX Новокосино — компьютерный клуб рядом с Косино",
         description:
             "Киберспортивный клуб на востоке Москвы рядом с Косино-Ухтомским: игровые ПК RTX 4060–5070, PS5, автосимулятор. Час от 150 ₽, работает круглосуточно.",
-        address: {
-            "@type": "PostalAddress",
-            streetAddress: "ул. Новокосинская, 32",
-            addressLocality: "Москва",
-            postalCode: "111673",
-            addressCountry: "RU",
-        },
-        areaServed: [
+        about: ORG_REF,
+        spatialCoverage: [
             { "@type": "Place", name: "Косино-Ухтомский" },
             { "@type": "Place", name: "Салтыковская" },
         ],
-        telephone: "+79851289538",
-        openingHours: "Mo-Su 00:00-23:59",
-        url: "https://cyberx-novokosino.ru/kompyuterny-klub/kosino",
     };
 
     return (

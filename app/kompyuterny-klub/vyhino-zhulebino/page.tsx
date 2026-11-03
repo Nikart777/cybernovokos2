@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Zap, Smartphone, ChevronRight } from "lucide-react";
@@ -50,24 +51,18 @@ const faq = [
 export default function VyhinoZhulebinoPage() {
     const schema = {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
+        // Страница о самом клубе для района: клуб описан в layout, здесь ссылка на него
+        "@type": "WebPage",
+        "@id": "https://cyberx-novokosino.ru/kompyuterny-klub/vyhino-zhulebino#webpage",
+        url: "https://cyberx-novokosino.ru/kompyuterny-klub/vyhino-zhulebino",
         name: "CyberX Новокосино — компьютерный клуб для Выхино и Жулебино",
         description:
             "Киберспортивный клуб на востоке Москвы: Solo Rooms на RTX 5070, буткемп на 5 мест, PS5, автосимулятор. Работает круглосуточно.",
-        address: {
-            "@type": "PostalAddress",
-            streetAddress: "ул. Новокосинская, 32",
-            addressLocality: "Москва",
-            postalCode: "111673",
-            addressCountry: "RU",
-        },
-        areaServed: [
+        about: ORG_REF,
+        spatialCoverage: [
             { "@type": "Place", name: "Выхино" },
             { "@type": "Place", name: "Жулебино" },
         ],
-        telephone: "+79851289538",
-        openingHours: "Mo-Su 00:00-23:59",
-        url: "https://cyberx-novokosino.ru/kompyuterny-klub/vyhino-zhulebino",
     };
 
     return (

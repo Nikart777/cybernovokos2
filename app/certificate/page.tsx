@@ -5,6 +5,7 @@ import DropFooter from "@/components/certificate-drop/DropFooter";
 import CertificateDrop from "@/components/certificate-drop/CertificateDrop";
 import { configFromParams, FAQ, NOMINAL_MAX, NOMINAL_MIN, SITE_URL } from "@/components/certificate-drop/model";
 import { loadRates } from "@/lib/gift-drop/rates";
+import { ORG_NAME, ORG_REF } from "@/lib/organization";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -64,16 +65,8 @@ const productSchema = {
         lowPrice: String(NOMINAL_MIN),
         highPrice: String(NOMINAL_MAX),
         availability: "https://schema.org/InStock",
-        seller: {
-            "@type": "LocalBusiness",
-            name: "CyberX Новокосино",
-            address: {
-                "@type": "PostalAddress",
-                streetAddress: "Новокосинская улица, 32",
-                addressLocality: "Москва",
-                addressCountry: "RU",
-            },
-        },
+        // The club from app/layout.tsx; type and name stay for validators that do not follow @id.
+        seller: { ...ORG_REF, "@type": "InternetCafe", name: ORG_NAME },
     },
 };
 

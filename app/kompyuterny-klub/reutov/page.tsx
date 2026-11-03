@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GeoFaq from "@/components/GeoFaq";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Train, Clock, Wallet, Monitor, Gamepad2, Car, Zap, Smartphone, ChevronRight } from "lucide-react";
@@ -48,24 +49,18 @@ const faq = [
 export default function ReutovPage() {
     const schema = {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
+        // Страница о самом клубе для района: клуб описан в layout, здесь ссылка на него
+        "@type": "WebPage",
+        "@id": "https://cyberx-novokosino.ru/kompyuterny-klub/reutov#webpage",
+        url: "https://cyberx-novokosino.ru/kompyuterny-klub/reutov",
         name: "CyberX Новокосино — компьютерный клуб рядом с Реутовом",
         description:
             "Киберспортивный клуб в шаговой доступности от Реутова: игровые ПК с RTX 4060–5070, PS5, автосимулятор. Работает круглосуточно.",
-        address: {
-            "@type": "PostalAddress",
-            streetAddress: "ул. Новокосинская, 32",
-            addressLocality: "Москва",
-            postalCode: "111673",
-            addressCountry: "RU",
-        },
-        areaServed: [
+        about: ORG_REF,
+        spatialCoverage: [
             { "@type": "City", name: "Реутов" },
             { "@type": "Place", name: "Новокосино" },
         ],
-        telephone: "+79851289538",
-        openingHours: "Mo-Su 00:00-23:59",
-        url: "https://cyberx-novokosino.ru/kompyuterny-klub/reutov",
     };
 
     return (

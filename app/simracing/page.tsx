@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MapPin, Phone, Plus } from "lucide-react";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { ORG_REF } from "@/lib/organization";
 import SimracingClient from "./SimracingClient";
 import SimracingTariffs from "./SimracingTariffs";
 import SimracingReviews from "./SimracingReviews";
@@ -118,6 +119,8 @@ const schema = {
       "@type": "SportsActivityLocation",
       "@id": `${SIMRACING_URL}#location`,
       name: "Симрейсинг CyberX Новокосино",
+      // Зона внутри клуба, а не отдельный бизнес
+      containedInPlace: ORG_REF,
       url: SIMRACING_URL,
       image: "https://cyberx-novokosino.ru/zones/sim-5.webp",
       telephone: "+79851289538",
