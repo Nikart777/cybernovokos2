@@ -25,6 +25,7 @@ import { Section16 } from './sections/Section16';
 import { Section17 } from './sections/Section17';
 import { Section18 } from './sections/Section18';
 import { Section19 } from './sections/Section19';
+import { RefundsSection } from './sections/RefundsSection';
 
 /* ─────────────────────────────────────────────
    DATA
@@ -38,6 +39,7 @@ const SECTIONS_NAV = [
     { id: 'section5', label: '5. Пополнение баланса', keywords: 'оплата перевод пополнение сбер тинькофф qr сбп наличные безнал терминал обман мошенник' },
     { id: 'section6', label: '6. Управление баром', keywords: 'бар продажа холодильник инвентаризация микроволновка сэндвич энергетик сроки годности списание' },
     { id: 'section7', label: '7. Компенсации', keywords: 'компенсация возврат манибэк лаг вылет перезагрузка фризы жалоба клиент недоволен доплата' },
+    { id: 'refunds', label: '7.1. Возвраты клиентам', keywords: 'возврат деньги заявление претензия жалоба недоволен шаблон ип уголок потребителя подпись письменный ответ' },
     { id: 'section8', label: '8. Игровые аккаунты', keywords: 'аккаунт аккаунты игровые игровой лаунчер лаунчеры steam стим epic battle.net riot выдача выдать занять занят langame лангейм админ по личный кабинет выбрать игру автовход net runtime guard' },
     { id: 'section9', label: '9. Система премий', keywords: 'премия выручка план бонус kpi мотивация зарплата порог' },
     { id: 'section10', label: '10. Закрытие смены', keywords: 'закрытие смены инкассация подсчет кассы сейф отчет excel таблица эксель терминал z-отчет x-отчет' },
@@ -311,6 +313,7 @@ export default function AdminRulesClient() {
                             <Section6 setZoomedImage={setZoomedImage} configData={configData} isEditing={isEditing} updateNovokosinoRow={updateNovokosinoRow} updateAltufevoRow={updateAltufevoRow} />
                         )}
                         {activeSection === 'section7' && <Section7 />}
+                        {activeSection === 'refunds' && <RefundsSection />}
                         {activeSection === 'section8' && <Section8 setZoomedImage={setZoomedImage} onNavigate={setActiveSection} />}
                         {activeSection === 'section9' && <Section9 />}
                         {activeSection === 'section10' && <Section10 setZoomedImage={setZoomedImage} />}

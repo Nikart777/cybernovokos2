@@ -116,7 +116,7 @@ export function Section7() {
                         </div>
                         <div className="mt-4 flex items-start gap-3 bg-red-50 text-red-600 p-3 rounded-xl text-xs font-chakra font-bold">
                             <Ban className="shrink-0" size={16} />
-                            <span>В любом другом виде (расчет текстом, "начислите 150 рублей") заявки приниматься <strong>не будут</strong>!</span>
+                            <span>В любом другом виде (расчет текстом, «начислите 150 рублей») заявки приниматься <strong>не будут</strong>!</span>
                         </div>
                     </div>
                 </div>
@@ -146,12 +146,12 @@ export function Section7() {
                         <AlertOctagon size={24} />
                     </div>
                     <div>
-                        <h4 className="font-tactic font-black uppercase text-sm mb-2 text-[#FF2E63]">Запрет на возвраты</h4>
+                        <h4 className="font-tactic font-black uppercase text-sm mb-2 text-[#FF2E63]">Возвраты — через заявление</h4>
                         <p className="font-chakra text-[#8F1A3A] text-sm leading-relaxed mb-3">
-                            Возвраты деньгами <strong>не производятся</strong> (прописано в правилах для клиентов).
+                            Администратор <strong>никогда не возвращает деньги самостоятельно</strong> — ни за услуги, ни за товары, ни за пополнение баланса. Его задача — принять заявление на возврат и передать руководству.
                         </p>
                         <div className="text-xs font-chakra text-[#8F1A3A]/80 font-medium">
-                            Возврат возможен <strong>только</strong> по согласованию с руководством в случаях оказания откровенно некачественной услуги или введения клиента в заблуждение.
+                            Если клиент чем-либо недоволен, он вправе написать заявление. Руководство рассмотрит обращение и даст письменный ответ. Порядок действий и шаблон — в подразделе <strong>«7.1. Возвраты клиентам»</strong>.
                         </div>
                     </div>
                 </div>
