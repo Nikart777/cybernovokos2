@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "node ping-indexnow.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:admin-test": "node scripts/check-admin-test.cjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

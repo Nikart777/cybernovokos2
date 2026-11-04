@@ -6,6 +6,7 @@ import { section4 } from './section4';
 import { section5 } from './section5';
 import { section6 } from './section6';
 import { section7 } from './section7';
+import { gameAccounts } from './gameAccounts';
 import { section8 } from './section8';
 import { section9 } from './section9';
 import { section10 } from './section10';
@@ -14,6 +15,9 @@ import { section12 } from './section12';
 import { section13 } from './section13';
 import { section14 } from './section14';
 import { section15 } from './section15';
+import { section16 } from './section16';
+import { section17 } from './section17';
+import { section18 } from './section18';
 
 export const QUESTIONS = [
     ...intro,
@@ -24,6 +28,7 @@ export const QUESTIONS = [
     ...section5,
     ...section6,
     ...section7,
+    ...gameAccounts,
     ...section8,
     ...section9,
     ...section10,
@@ -31,5 +36,8 @@ export const QUESTIONS = [
     ...section12,
     ...section13,
     ...section14,
-    ...section15
+    ...section15,
+    ...section16,
+    ...section17,
+    ...section18
 ];

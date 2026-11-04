@@ -54,14 +54,14 @@ export function Section19({ setActiveSection }: Section19Props) {
                                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
                                 <span><strong>Приемка зоны PS5</strong> <br/><span className="text-xs text-slate-500">Джойстики, диваны, плойки.</span></span>
                             </div>
-                            <button onClick={() => handleRef('section14')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к 'Зона TV (PS5)' <ArrowRight size={10}/></button>
+                            <button onClick={() => handleRef('section14')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к «Зона TV (PS5)» <ArrowRight size={10}/></button>
                         </li>
                         <li className="flex flex-col gap-2 p-3 bg-slate-50 rounded-xl">
                             <div className="flex items-start gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
                                 <span><strong>Открытие смены</strong> <br/><span className="text-xs text-slate-500">Пересчет кассы и товара в баре (сверка со входом).</span></span>
                             </div>
-                            <button onClick={() => handleRef('section3')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к 'Открытие смены' <ArrowRight size={10}/></button>
+                            <button onClick={() => handleRef('section3')} className="self-start text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3 py-1 rounded inline-flex items-center gap-1 hover:bg-indigo-200 transition-colors">Перейти к «Открытие смены» <ArrowRight size={10}/></button>
                         </li>
                     </ul>
                 </div>
@@ -84,11 +84,12 @@ export function Section19({ setActiveSection }: Section19Props) {
                         <li className="flex flex-col gap-2">
                             <div className="flex items-start gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
-                                <span><strong>Пополнение баланса / Возвраты:</strong> Механизмы списания и внесения.</span>
+                                <span><strong>Пополнение баланса / Возвраты:</strong> Способы пополнения, компенсации на баланс и приём заявлений на денежный возврат. Администратор самостоятельно деньги клиентам не возвращает.</span>
                             </div>
-                            <div className="pl-3.5 flex gap-2">
+                            <div className="pl-3.5 flex flex-wrap gap-2">
                                 <button onClick={() => handleRef('section5')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Оплата</button>
                                 <button onClick={() => handleRef('section7')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Раздел: Компенсации</button>
+                                <button onClick={() => handleRef('refunds')} className="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded hover:bg-slate-200 transition-colors">Подраздел: Возвраты клиентам</button>
                             </div>
                         </li>
                         <li className="flex flex-col gap-2">
@@ -187,7 +188,7 @@ export function Section19({ setActiveSection }: Section19Props) {
                         </li>
                         <li>
                             <button onClick={() => handleRef('section10')} className="text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white px-4 py-2 rounded-xl border border-emerald-500 shadow-sm hover:bg-emerald-500 transition-colors flex items-center gap-2">
-                                Перейти к 'Закрытие смены' <ArrowRight size={14}/>
+                                Перейти к «Закрытие смены» <ArrowRight size={14}/>
                             </button>
                         </li>
                     </ul>

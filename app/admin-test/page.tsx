@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Target, MonitorPlay, CheckCircle2, ShieldAlert, XCircle, ArrowRight, Home, RefreshCcw } from 'lucide-react';
 import Link from 'next/link';
 
-// === ВОПРОСЫ ПО ВСЕМ 18 РАЗДЕЛАМ ===
+// Вопросы по актуальным разделам инструкции администратора.
 import { QUESTIONS } from './questions';
 
 export default function AdminTestPage() {
@@ -22,6 +22,10 @@ export default function AdminTestPage() {
     const [showExplanation, setShowExplanation] = useState(false);
     const [completed, setCompleted] = useState(false);
     const [mistakes, setMistakes] = useState<{questionIdx: number, selectedIdx: number}[]>([]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }, [currentQuestion, completed, started]);
 
     const handleStart = (selectedClub: 'altufevo' | 'novokosino') => {
         const trimmed = fullName.trim();
@@ -97,6 +101,7 @@ export default function AdminTestPage() {
     };
 
     const nextQuestion = () => {
+        if (!showExplanation) return;
         setSelectedOption(null);
         setShowExplanation(false);
         
@@ -148,7 +153,7 @@ export default function AdminTestPage() {
                     </h1>
                     
                     <p className="font-chakra text-lg text-slate-600 mb-12 max-w-xl mx-auto border-x-4 border-indigo-200 px-6">
-                        Тест содержит <strong className="text-slate-900">{QUESTIONS.length} вопросов</strong> по всем разделам правил. 
+                        Всего вопросов: <strong className="text-slate-900">{QUESTIONS.length}</strong>. Тест охватывает все разделы правил.
                         Для допуска к полноценной работе требуется набрать минимум {QUESTIONS.length - 4} правильных ответов.
                     </p>
 
@@ -260,12 +265,12 @@ export default function AdminTestPage() {
                         )}
                         {sendingStatus === 'sent' && (
                             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600">
-                                ✅ Результаты успешно отправлены в рабочий чат!
+                                ✅ Результаты успешно отправлены руководству!
                             </span>
                         )}
                         {sendingStatus === 'error' && (
                             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-rose-50 border border-rose-100 text-rose-600">
-                                ⚠️ Не удалось отправить результаты в Telegram.
+                                ⚠️ Не удалось отправить результаты. Сообщите руководителю и сохраните результат теста.
                             </span>
                         )}
                     </div>
@@ -351,7 +356,9 @@ export default function AdminTestPage() {
             
             <div className="w-full max-w-3xl mb-8 flex items-center justify-between z-10">
                 <div className="flex items-center gap-3 sm:gap-6">
-                    <Link href="/admin-rules" onClick={() => confirm("Точно выйти? Прогресс сбросится.")} className="p-3 bg-white hover:bg-slate-100 rounded-full shadow-sm text-slate-400 border border-slate-200 transition-colors shrink-0">
+                    <Link href="/admin-rules" aria-label="Выйти из теста" onClick={(event) => {
+                        if (!window.confirm('Точно выйти? Прогресс сбросится.')) event.preventDefault();
+                    }} className="p-3 bg-white hover:bg-slate-100 rounded-full shadow-sm text-slate-400 border border-slate-200 transition-colors shrink-0">
                         <XCircle size={24} />
                     </Link>
                     <div className="flex flex-col">
