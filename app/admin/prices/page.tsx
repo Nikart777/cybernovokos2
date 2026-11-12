@@ -4,9 +4,15 @@ import { useState, useEffect } from "react";
 import { PricingData, ZoneData, Abonnement, PricingCategory, PriceItem } from "@/app/lib/types";
 import { Save, Plus, Trash2, Shield, Loader2, LogOut, ChevronDown, ChevronUp } from "lucide-react";
 
+// The server checks this password (ADMIN_PASSWORD) on every save; it is kept only for this tab.
+const PASSWORD_KEY = 'prices_admin_password';
+const passwordHeader = (password: string) => ({ "X-Admin-Password": encodeURIComponent(password) });
+
 export default function AdminPricesPage() {
     const [password, setPassword] = useState("");
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const [checking, setChecking] = useState(false);
+    const [loginError, setLoginError] = useState("");
     const [data, setData] = useState<PricingData | null>(null);
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
@@ -14,8 +20,10 @@ export default function AdminPricesPage() {
 
     // Enable auth if session persists
     useEffect(() => {
-        const auth = sessionStorage.getItem('admin_auth');
-        if (auth === 'true') {
+        sessionStorage.removeItem('admin_auth'); // old flag without a password
+        const saved = sessionStorage.getItem(PASSWORD_KEY);
+        if (saved) {
+            setPassword(saved);
             setIsAuthorized(true);
         }
     }, []);
@@ -41,13 +49,23 @@ export default function AdminPricesPage() {
         }
     };
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === 'cyberx2024') {
-            setIsAuthorized(true);
-            sessionStorage.setItem('admin_auth', 'true');
-        } else {
-            alert("Неверный пароль");
+        setChecking(true);
+        setLoginError("");
+        try {
+            const res = await fetch("/api/prices/check", { method: "POST", headers: passwordHeader(password) });
+            if (res.ok) {
+                setIsAuthorized(true);
+                sessionStorage.setItem(PASSWORD_KEY, password);
+            } else {
+                const json = await res.json().catch(() => ({}));
+                setLoginError(json.error || "Неверный пароль");
+            }
+        } catch {
+            setLoginError("Нет связи с сервером");
+        } finally {
+            setChecking(false);
         }
     };
 
@@ -59,11 +77,14 @@ export default function AdminPricesPage() {
             // Send ONLY the data object expected by /api/prices
             const res = await fetch("/api/prices", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", ...passwordHeader(password) },
                 body: JSON.stringify(data),
             });
 
-            if (!res.ok) throw new Error('Failed to save');
+            if (!res.ok) {
+                const json = await res.json().catch(() => ({}));
+                throw new Error(json.error || 'Failed to save');
+            }
 
             setMessage({ text: "Цены успешно сохранены!", type: "success" });
 
@@ -94,8 +115,11 @@ export default function AdminPricesPage() {
                         className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 text-white mb-6 focus:border-[#FF2E63] outline-none"
                         required
                     />
-                    <button className="w-full bg-[#FF2E63] hover:bg-[#FF2E63]/80 py-4 rounded-xl font-chakra font-black text-white uppercase tracking-wider transition-all">
-                        Войти
+                    {loginError && (
+                        <p className="text-red-400 text-sm text-center -mt-3 mb-5">{loginError}</p>
+                    )}
+                    <button disabled={checking} className="w-full bg-[#FF2E63] hover:bg-[#FF2E63]/80 disabled:opacity-50 py-4 rounded-xl font-chakra font-black text-white uppercase tracking-wider transition-all">
+                        {checking ? "Проверяем…" : "Войти"}
                     </button>
                 </form>
             </div>
@@ -138,7 +162,8 @@ export default function AdminPricesPage() {
                         <button
                             onClick={() => {
                                 setIsAuthorized(false);
-                                sessionStorage.removeItem('admin_auth');
+                                setPassword("");
+                                sessionStorage.removeItem(PASSWORD_KEY);
                             }}
                             className="p-3 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 transition-all border border-white/5"
                         >

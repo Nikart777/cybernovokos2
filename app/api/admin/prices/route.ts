@@ -1,21 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { checkAdminPassword, validatePricingData } from "@/lib/prices-admin";
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
         const { password, data } = body;
 
-        // Проверка пароля из переменной окружения
-        const adminPassword = process.env.ADMIN_PASSWORD;
-
-        if (!adminPassword || password !== adminPassword) {
-            return NextResponse.json({ error: "Invalid password" }, { status: 401 });
+        // Проверка пароля из переменной окружения (без ADMIN_PASSWORD запись закрыта)
+        const auth = checkAdminPassword(typeof password === "string" ? password : null);
+        if (!auth.ok) {
+            return NextResponse.json({ error: auth.error }, { status: 403 });
         }
 
-        if (!data) {
-            return NextResponse.json({ error: "No data provided" }, { status: 400 });
+        const invalid = validatePricingData(data);
+        if (invalid) {
+            return NextResponse.json({ error: invalid }, { status: 400 });
         }
 
         const filePath = path.join(process.cwd(), "data", "prices.json");
