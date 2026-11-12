@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MapPin, Phone, ChevronRight, MapPinned } from 'lucide-react';
+import { MapPin, Phone, MapPinned } from 'lucide-react';
 import { GOOGLE_MAPS_URL } from '@/lib/googleBusiness';
 
 const links = [
@@ -165,22 +165,6 @@ export default function Footer() {
                             ИП Артюх Никита Андреевич • ОГРНИП 325508100725157
                         </p>
                     </div>
-
-                    <a
-                        href="https://art-vision.online/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative flex items-center gap-4 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl transition-[transform,background-color,color,border-color] duration-300 hover:bg-white hover:text-black overflow-hidden order-1 md:order-2 active:scale-[0.96]"
-                    >
-                        <div className="flex flex-col items-end">
-                            <span className="text-[8px] font-chakra font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">Сайт разработан</span>
-                            <span className="text-xs font-tactic font-black uppercase tracking-tighter italic">ART.VISION</span>
-                        </div>
-                        <div className="w-10 h-10 rounded-xl bg-[#FF2E63] flex items-center justify-center group-hover:rotate-[360deg] transition-transform duration-700 shadow-[0_0_20px_rgba(255,46,99,0.3)]">
-                            <ChevronRight size={20} className="text-white group-hover:text-black transition-colors" />
-                        </div>
-                        <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF2E63] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                    </a>
                 </div>
             </div>
         </footer>
