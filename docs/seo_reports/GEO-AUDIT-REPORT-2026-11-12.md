@@ -160,7 +160,7 @@
 **Неделя 1 — доступ и факты**
 - [ ] Rusonyx снял блокировку (тикет #263691); проверка: `curl -A "bingbot/2.0" https://cyberx-novokosino.ru/robots.txt` → 200.
 - [x] Выложены правки, 301 с www, переобход в Вебмастере.
-- [ ] Bing Webmaster Tools: добавить сайт, подтвердить, отправить sitemap.
+- [x] Bing Webmaster Tools: сайт импортирован из Google Search Console 12.11.2026 (подтверждён через GSC), sitemap.xml подхвачен. Скачать его Bing сможет только после того, как Rusonyx снимет 403 для bingbot. Там же есть отчёт «AI Performance» о цитированиях в Copilot.
 
 **Неделя 2 — сертификат**
 - [x] Решён срок (год), вопрос в FAQ.
