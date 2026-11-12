@@ -192,7 +192,7 @@ export default function RootLayout({
         "sameAs": [
             "https://yandex.ru/maps/org/cyberx_community/98831858695/",
             GOOGLE_MAPS_URL,
-            "https://go.2gis.com/EjmFC", // заменить на https://2gis.ru/moscow/firm/<id> из адресной строки браузера
+            "https://2gis.ru/moscow/firm/70000001084078599",
             "https://cyberxcommunity.ru/kluby/rossiya/moskva/novokosinskaya.html",
             "https://t.me/CyberXNovokos",
             "https://t.me/cyberxn32",
