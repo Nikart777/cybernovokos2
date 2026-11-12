@@ -85,8 +85,9 @@ export default function Reviews() {
           <div className="flex items-center gap-5 bg-[#111] border-2 border-white/10 px-6 py-4 skew-x-[-6deg]">
             <div className="skew-x-[6deg] flex items-center gap-5">
                 <div className="text-right">
-                  <div className="font-tactic italic font-black text-4xl text-white leading-none">5.0</div>
-                  <div className="text-[10px] font-chakra text-white/50 uppercase tracking-widest font-black">Яндекс / 2GIS</div>
+                  {/* Реальная оценка карточки на Яндекс Картах (4,9 при 137 оценках на 12.11.2026). Сверять раз в месяц. */}
+                  <div className="font-tactic italic font-black text-4xl text-white leading-none">4.9</div>
+                  <div className="text-[10px] font-chakra text-white/50 uppercase tracking-widest font-black">Яндекс Карты</div>
                 </div>
                 <div className="flex text-[#FF2E63] gap-1">
                   {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
@@ -131,7 +132,8 @@ export default function Reviews() {
                     Оставь отзыв
                   </h3>
                   <p className="font-chakra text-white/70 font-bold text-xs uppercase tracking-widest mb-8 leading-relaxed">
-                    ПОДЕЛИСЬ ВПЕЧАТЛЕНИЯМИ О КЛУБЕ И ПОЛУЧИ <b className="text-[#FF2E63] bg-white/10 px-1">+100₽</b> НА БАЛАНС.
+                    {/* Без вознаграждения: правила Яндекс Карт, как и Google, запрещают отзывы за бонусы. */}
+                    ПОДЕЛИСЬ ВПЕЧАТЛЕНИЯМИ О КЛУБЕ НА ЯНДЕКС КАРТАХ. ЧИТАЕМ КАЖДЫЙ ОТЗЫВ.
                   </p>
                   <div className="flex items-center gap-2 font-tactic italic text-sm font-black uppercase text-[#111] bg-white px-6 py-3 hover:bg-[#FF2E63] hover:text-white transition-colors">
                     Написать <ChevronRight size={16} />

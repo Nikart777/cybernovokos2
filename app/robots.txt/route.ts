@@ -16,7 +16,8 @@ const DISALLOW = [
     "/social-hub", // Закрытый Social Hub
 ];
 
-// AI-поисковики и ассистенты: пускаем на весь сайт.
+// AI-поисковики и ассистенты: пускаем на весь сайт, кроме служебных разделов. Бот, у которого
+// есть своя группа, правила группы «*» не читает, поэтому Disallow повторяем и здесь.
 const AI_BOTS = ["OAI-SearchBot", "GPTBot", "ChatGPT-User", "ClaudeBot", "anthropic-ai", "PerplexityBot", "CCBot", "Google-Extended"];
 
 // Для Яндекса: метки и параметры, которые не меняют содержимое страницы.
@@ -35,7 +36,7 @@ const disallowLines = DISALLOW.map((path) => `Disallow: ${path}`);
 
 const ROBOTS = [
     group("*", ["Allow: /", ...disallowLines]),
-    ...AI_BOTS.map((bot) => group(bot, ["Allow: /"])),
+    ...AI_BOTS.map((bot) => group(bot, ["Allow: /", ...disallowLines])),
     group("Yandex", ["Allow: /", ...disallowLines, ...CLEAN_PARAM.map((p) => `Clean-param: ${p}`)]),
     `Sitemap: ${SITE_URL}/sitemap.xml`,
 ].join("\n\n");

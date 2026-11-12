@@ -114,15 +114,16 @@ export default function HeroNew() {
           style={{ opacity: h1Opacity, y: h1Y }}
           className="pointer-events-none container relative z-10 mx-auto flex max-w-7xl flex-1 flex-col justify-center px-4 sm:px-6 lg:px-8"
         >
+          {/* Крупно — слоган, мелко в том же H1 — что это за место. Слово «НАЧИНАЕТСЯ» одно:
+              обводка меняется классом, а не второй копией, иначе робот читает «НАЧИНАЕТСЯНАЧИНАЕТСЯ». */}
           <h1 className="font-tactic text-[2.2rem] min-[360px]:text-[2.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-black uppercase italic leading-[0.9] text-white text-balance drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
             ТВОЙ ВЕЧЕР <br />
-            <span className="hidden text-transparent md:inline" style={{ WebkitTextStroke: '2px #FF2E63' }}>НАЧИНАЕТСЯ</span>
-            <span className="text-transparent md:hidden" style={{ WebkitTextStroke: '1px #FF2E63' }}>НАЧИНАЕТСЯ</span> <br />
-            ЗДЕСЬ
+            <span className="text-transparent [-webkit-text-stroke:1px_#FF2E63] md:[-webkit-text-stroke:2px_#FF2E63]">НАЧИНАЕТСЯ</span> <br />
+            ЗДЕСЬ{" "}
+            <span className="mt-5 block max-w-md font-chakra text-xs font-bold not-italic tracking-[0.25em] text-white/50 md:text-sm">
+              Компьютерный клуб CyberX в Новокосино
+            </span>
           </h1>
-          <p className="mt-5 max-w-md font-chakra text-xs font-bold uppercase tracking-[0.25em] text-white/50 md:text-sm">
-            Компьютерный клуб CyberX · Новокосино
-          </p>
         </motion.div>
 
         {/* Act 2 — telemetry HUD */}

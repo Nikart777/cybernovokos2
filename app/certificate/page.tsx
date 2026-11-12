@@ -36,11 +36,22 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
         keywords:
             "подарочный сертификат в компьютерный клуб, сертификат в компьютерный клуб Москва, сертификат в компьютерный клуб Новокосино, сертификат в киберклуб, сертификат в игровой клуб, подарок геймеру, необычный подарок геймеру, сертификат на автосимулятор, сертификат на PS5, CyberX Новокосино",
         alternates: { canonical: URL },
+        // openGraph и twitter страницы заменяют общие из layout целиком, поэтому type,
+        // siteName и locale повторены здесь, а twitter задан свой (раньше брался с главной).
         openGraph: {
+            type: "website",
+            siteName: "CyberX Новокосино",
+            locale: "ru_RU",
             title: "Подарочный сертификат в компьютерный клуб CyberX Новокосино",
             description: DESCRIPTION,
             url: URL,
             images: [{ url: "/certificates.webp", alt: "Подарочный сертификат CyberX Новокосино" }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Подарочный сертификат в компьютерный клуб CyberX Новокосино",
+            description: DESCRIPTION,
+            images: ["/certificates.webp"],
         },
     };
 }
@@ -50,14 +61,14 @@ const productSchema = {
     "@type": "Product",
     "@id": `${URL}#gift-certificate`,
     name: "Подарочный сертификат в компьютерный клуб CyberX Новокосино",
+    // В сети CyberX много клубов: адрес в описании показывает, к какому клубу привязан сертификат.
     description:
-        "Электронный подарочный сертификат в компьютерный клуб CyberX Новокосино в Москве. Баланс тратится на игровые ПК, Solo- и Duo-комнаты, Bootcamp, PS5, автосимулятор и бар клуба. Номинал от 1 000 до 20 000 ₽, промокод приходит сразу после оплаты.",
+        "Электронный подарочный сертификат в компьютерный клуб CyberX на Новокосинской улице, 32 (Москва). Действует год со дня покупки и только в этом клубе. Баланс тратится частями на игровые ПК, Solo- и Duo-комнаты, Bootcamp, PS5, автосимулятор и бар клуба. Номинал от 1 000 до 20 000 ₽, промокод приходит сразу после оплаты картой или через СБП.",
     url: URL,
     // Yandex reads image as a plain URL, not ImageObject.
     image: `${SITE_URL}/certificates.webp`,
     brand: { "@type": "Brand", name: "CyberX" },
     category: "Подарки-впечатления",
-    areaServed: { "@type": "City", name: "Москва" },
     offers: {
         "@type": "AggregateOffer",
         url: URL,
@@ -65,6 +76,8 @@ const productSchema = {
         lowPrice: String(NOMINAL_MIN),
         highPrice: String(NOMINAL_MAX),
         availability: "https://schema.org/InStock",
+        // У Product нет свойства areaServed (ошибка словаря schema.org), у Offer есть.
+        areaServed: { "@type": "City", name: "Москва" },
         // The club from app/layout.tsx; type and name stay for validators that do not follow @id.
         seller: { ...ORG_REF, "@type": "InternetCafe", name: ORG_NAME },
     },

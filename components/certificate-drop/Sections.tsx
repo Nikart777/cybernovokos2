@@ -424,7 +424,7 @@ export const FinalSection = forwardRef<HTMLElement, { cfg: GiftConfig; onEdit: (
                             <b className="block text-[15px] font-semibold text-white underline decoration-white/25 underline-offset-4 group-hover:decoration-white">
                                 Москва, Новокосинская, 32
                             </b>
-                            <span className="text-[13px] text-[#a39cc4]">ТЦ «Новокосино», 2 этаж. Работаем круглосуточно. Открыть на карте</span>
+                            <span className="text-[13px] text-[#a39cc4]">2 этаж, вход рядом с DNS. Работаем круглосуточно. Открыть на карте</span>
                         </span>
                     </a>
                 </div>

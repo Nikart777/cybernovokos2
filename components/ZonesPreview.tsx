@@ -46,6 +46,8 @@ interface ZoneWithPrice {
         threeHours: { week: number; end: number };
         fiveHours: { week: number; end: number };
         night?: { week: number; end: number };
+        /** Подписи трёх пакетов из data/prices.json: у автосимулятора это 1, 2 и 3 часа, а не 1, 3 и 5. */
+        labels?: string[];
     };
     isPopular?: boolean;
     isNew?: boolean;
@@ -153,6 +155,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
             threeHours: { week: items[1]?.week || 0, end: items[1]?.end || 0 },
             fiveHours: { week: items[2]?.week || 0, end: items[2]?.end || 0 },
             night: eveningItems.find((i: any) => i.isNight) || undefined,
+            labels: items.slice(0, 3).map((i: any) => i.time),
         };
     };
 
@@ -170,7 +173,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
             id: 'common',
             name: 'ОБЩИЙ ЗАЛ',
             langameTitle: 'Общий зал',
-            description: 'База клуба - 25 рабочих мест',
+            description: 'База клуба — 15 мест',
             image: '/zones/common-1.webp',
             images: ['/zones/common-1.webp', '/zones/common-2.webp', '/zones/common-3.webp'],
             icon: Monitor,
@@ -275,7 +278,7 @@ export default function ZonesPreview({ pricingData }: { pricingData?: PricingDat
             icon: Gauge,
             color: '#FF8C00',
             specs: ['Moza R12', '55" 4K 120Hz', 'Гоночный кокпит'],
-            prices: getPricesForZone('simracing') || { oneHour: { week: 580, end: 850 }, threeHours: { week: 980, end: 1290 }, fiveHours: { week: 1350, end: 1650 } },
+            prices: getPricesForZone('simracing') || { oneHour: { week: 580, end: 850 }, threeHours: { week: 980, end: 1290 }, fiveHours: { week: 1350, end: 1650 }, labels: ['1 ЧАС', '2 ЧАСА', '3 ЧАСА'] },
             isSimRacing: true,
         },
     ];
@@ -499,11 +502,11 @@ function ZoneCard({
                     </div>
                     <div className="grid grid-cols-3 gap-2">
                         {[
-                            { label: '1 ЧАС', key: 'oneHour' },
-                            { label: '3 ЧАСА', key: 'threeHours' },
-                            { label: '5 ЧАСОВ', key: 'fiveHours' }
+                            { label: zone.prices?.labels?.[0] ?? '1 ЧАС', key: 'oneHour' },
+                            { label: zone.prices?.labels?.[1] ?? '3 ЧАСА', key: 'threeHours' },
+                            { label: zone.prices?.labels?.[2] ?? '5 ЧАСОВ', key: 'fiveHours' }
                         ].map((pkg, i) => {
-                            const p = zone.prices?.[pkg.key as keyof typeof zone.prices]?.[activePriceTab] || 0;
+                            const p = zone.prices?.[pkg.key as 'oneHour' | 'threeHours' | 'fiveHours']?.[activePriceTab] || 0;
                             const isMain = i === 0;
                             return (
                                 <div key={pkg.key} className={`py-2 px-1 flex flex-col items-center justify-between border-b-2 skew-x-[-6deg] h-full ${isMain ? 'bg-gradient-to-t from-[#FF2E63]/20 to-transparent border-[#FF2E63]' : 'bg-[#111] border-white/20'}`}>

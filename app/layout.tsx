@@ -79,7 +79,7 @@ export const metadata: Metadata = {
         locale: "ru_RU",
         url: "https://cyberx-novokosino.ru",
         title: "CYBERX НОВОКОСИНО | Компьютерный клуб",
-        description: "Киберспортивный клуб CYBERX в Москве. RTX 5070, PS5 Lounge, и профессиональный автосимулятор.",
+        description: "Круглосуточный компьютерный клуб у метро Новокосино: RTX 5070, PS5 и четыре автосимулятора MOZA.",
         siteName: "CyberX Новокосино",
         images: [{
             url: "/og-image.jpg",
@@ -132,16 +132,28 @@ export default function RootLayout({
         "@context": "https://schema.org",
         "@type": "InternetCafe",
         "@id": ORG_ID,
+        // Имя как в карточках Яндекса, Google и 2ГИС: так сеть называет все свои клубы (в Москве их 27).
         "name": ORG_NAME,
-        "alternateName": ["CyberX Новокосино", "Компьютерный клуб CyberX Новокосино"],
-        "image": "https://cyberx-novokosino.ru/og-image.jpg",
+        // Имена именно этого клуба: сайт, Telegram, страница клуба на cyberxcommunity.ru.
+        "alternateName": ["CyberX Новокосино", "CyberX Novokosino", "CyberX Новокосинская", "Компьютерный клуб CyberX Новокосино"],
+        // Факты для ответов нейросетей. Числа — из Langame (/api/club-status) и data/prices.json.
+        "description": "Круглосуточный компьютерный клуб у метро Новокосино: общий зал на 15 ПК с RTX 4060, Solo-комнаты с RTX 5070 и мониторами до 400 Гц, Duo-комната, Bootcamp и VIP Bootcamp на 5 мест, две зоны PS5, четыре автосимулятора MOZA R12 и бар. Час игры — от 150 ₽.",
+        "image": [
+            "https://cyberx-novokosino.ru/og-image.jpg",
+            "https://cyberx-novokosino.ru/zones/common-6.webp",
+            "https://cyberx-novokosino.ru/zones/sim-1.webp"
+        ],
         "logo": ORG_LOGO,
-        "url": SITE_URL,
+        "url": `${SITE_URL}/`,
         "telephone": "+79851289538",
-        "priceRange": "100RUB - 1000RUB",
+        // Цена 1 часа: от общего зала днём в будни до автосимулятора в выходные (data/prices.json).
+        "priceRange": "150–850 ₽ за час",
+        "currenciesAccepted": "RUB",
+        // Как в карточке Яндекса.
+        "paymentAccepted": "Наличные, банковская карта, QR-код, СБП",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "ул. Новокосинская, 32, ТЦ «Новокосино», 2 этаж",
+            "streetAddress": "ул. Новокосинская, 32, 2 этаж",
             "addressLocality": "Москва",
             "postalCode": "111672",
             "addressCountry": "RU"
@@ -175,26 +187,45 @@ export default function RootLayout({
             "opens": "00:00",
             "closes": "23:59"
         },
+        // Полные адреса карточек, а не короткие ссылки: oid Яндекса и CID Google отличают этот клуб
+        // от остальных московских «CyberX Community».
         "sameAs": [
+            "https://yandex.ru/maps/org/cyberx_community/98831858695/",
+            GOOGLE_MAPS_URL,
+            "https://go.2gis.com/EjmFC", // заменить на https://2gis.ru/moscow/firm/<id> из адресной строки браузера
+            "https://cyberxcommunity.ru/kluby/rossiya/moskva/novokosinskaya.html",
             "https://t.me/CyberXNovokos",
             "https://t.me/cyberxn32",
             "https://vk.com/club224403383",
-            "https://www.tiktok.com/@cyberxnovokosino",
-            "https://yandex.ru/maps/-/CPA4UJ~I",
-            "https://go.2gis.com/EjmFC",
-            GOOGLE_MAPS_URL
+            "https://www.tiktok.com/@cyberxnovokosino"
         ],
+        // Это сеть, а не клуб: отличается описанием и сайтом, иначе выглядит как ссылка клуба на себя.
         "parentOrganization": {
             "@type": "Organization",
             "name": "CyberX Community",
-            "url": "https://cyberxcommunity.ru"
+            "alternateName": "CyberX",
+            "description": "Сеть компьютерных клубов",
+            "url": "https://cyberxcommunity.ru/"
         }
+    };
+
+    // Имя сайта в выдаче Google: организация называется «CyberX Community», а сайт — «CyberX Новокосино».
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        "url": `${SITE_URL}/`,
+        "name": "CyberX Новокосино",
+        "alternateName": ["CyberX Novokosino", "cyberx-novokosino.ru"],
+        "inLanguage": "ru",
+        "publisher": { "@id": ORG_ID }
     };
 
     return (
         <html lang="ru" className={`${tacticSans.variable} ${chakra.variable} ${inter.variable}`}>
             <head>
                 <SchemaMarkup schema={businessSchema} />
+                <SchemaMarkup schema={websiteSchema} />
 
                 {/* Discovery for LLMs */}
                 <link rel="llms" href="/llms.txt" />

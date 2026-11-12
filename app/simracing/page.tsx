@@ -537,7 +537,7 @@ export default function SimracingPage() {
                       Новокосинская улица, 32
                     </p>
                     <p className="mt-2 text-base text-[#b4b6c0]">
-                      ТЦ «Новокосино», 2 этаж · Москва
+                      2 этаж, вход рядом с DNS · Москва
                     </p>
                   </div>
                 </div>

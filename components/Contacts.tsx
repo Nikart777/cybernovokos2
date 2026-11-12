@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { MapPin, Phone, Clock, MessageSquare, ChevronRight, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { GOOGLE_MAPS_URL, GOOGLE_ROUTE_URL } from "@/lib/googleBusiness";
@@ -23,7 +24,7 @@ const contacts = [
     icon: MapPin,
     label: "ЛОКАЦИЯ",
     value: "НОВОКОСИНСКАЯ 32",
-    sub: "ТЦ Новокосино, 2 этаж",
+    sub: "2 этаж, вход рядом с DNS",
     href: "https://yandex.ru/maps/-/CTATeV~u"
   },
   {
@@ -154,6 +155,19 @@ export default function Contacts() {
           </div>
 
         </div>
+
+        {/* Ориентир: кольцо с памятником у метро и наше здание — кадр целиком, без обрезки */}
+        <figure className="mt-8 md:mt-12">
+          <div className="relative aspect-[2/1] w-full overflow-hidden border-2 border-white/10 bg-[#111]">
+            <Image
+              src="/images/building-novokosino.webp"
+              alt="Кольцо с памятником у метро Новокосино и здание с вывесками DNS, CyberX и «Магнит», где находится компьютерный клуб"
+              fill
+              sizes="(max-width: 1400px) 100vw, 1320px"
+              className="object-cover"
+            />
+          </div>
+        </figure>
       </div>
     </section>
   );

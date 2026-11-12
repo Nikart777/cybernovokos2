@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, Trophy, Shield, Cpu, MapPin } from "lucide-react";
 
 export default function SEOBlock() {
@@ -79,14 +79,11 @@ export default function SEOBlock() {
                 </div>
             </div>
 
-            <AnimatePresence>
-                {isExpanded && (
-                <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                >
+            {/* Текст всегда в HTML, «Читать полностью» только разворачивает его визуально. */}
+            <div
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+            >
+                <div className="overflow-hidden">
                     <div className="prose prose-invert max-w-none font-inter text-sm md:text-base text-white/60 leading-relaxed pt-4 border-t border-white/10">
                     <h3 className="font-tactic font-black text-white text-xl uppercase italic mt-6 mb-4">
                         Разнообразие игровых зон
@@ -100,8 +97,8 @@ export default function SEOBlock() {
                         Автосимуляторы в ВАО
                     </h3>
                     <p className="mb-4">
-                        Гордость клуба — профессиональные автосимуляторы на базе базы Moza R12. 
-                        Прямой привод руля, металлические педали и гоночный кокпит подарят незабываемые эмоции от Assetto Corsa Competizione и F1.
+                        Гордость клуба — четыре профессиональных автосимулятора на базе MOZA R12.
+                        Прямой привод руля, педали Load Cell и гоночный кокпит подарят незабываемые эмоции от Assetto Corsa и BeamNG.drive.
                         Аналогов такого оборудования в киберклубах Новокосино просто нет.
                     </p>
                     <p>
@@ -109,9 +106,8 @@ export default function SEOBlock() {
                         CyberX Новокосино — твой билет в киберспорт!
                     </p>
                     </div>
-                </motion.div>
-                )}
-            </AnimatePresence>
+                </div>
+            </div>
 
             <div className="mt-8 flex justify-center">
                 <button

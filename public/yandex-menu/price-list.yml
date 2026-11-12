@@ -47,7 +47,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>1</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/standard-night.jpg</picture>
-                <description>Ночной пакет с 22:00 до 08:00: вся ночь игры за 700 ₽ в будни и 850 ₽ в выходные — дешевле, чем те же часы днём. Клуб в Новокосино работает круглосуточно.</description>
+                <description>Ночной пакет с 22:00 до 11:00: вся ночь игры за 700 ₽ в будни и 850 ₽ в выходные — дешевле, чем те же часы днём. Клуб в Новокосино работает круглосуточно.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="bootcamp-1h">
@@ -83,7 +83,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>2</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/bootcamp-night.jpg</picture>
-                <description>Ночной пакет 22:00–08:00 в отдельной комнате для пятерых: 850 ₽ с человека в будни, 950 ₽ в выходные. Вся ночь на праки и катки — комната полностью ваша до утра.</description>
+                <description>Ночной пакет 22:00–11:00 в отдельной комнате для пятерых: 850 ₽ с человека в будни, 950 ₽ в выходные. Вся ночь на праки и катки — комната полностью ваша до утра.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="vip-1h">
@@ -119,7 +119,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>3</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/vip-night.jpg</picture>
-                <description>Ночной пакет 22:00–08:00 в VIP: 950 ₽ в будни, 1050 ₽ в выходные. Тихий зал, топовое железо и кофе на баре под утро. Круглосуточный клуб в Новокосино.</description>
+                <description>Ночной пакет 22:00–11:00 в VIP: 950 ₽ в будни, 1050 ₽ в выходные. Тихий зал, топовое железо и кофе на баре под утро. Круглосуточный клуб в Новокосино.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="duo-1h">
@@ -155,7 +155,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>4</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/duo-night.jpg</picture>
-                <description>Ночной пакет 22:00–08:00 для двоих геймеров: 950 ₽ с человека в будни, 1050 ₽ в выходные. Вся ночь кооператива в клубе, который не закрывается никогда.</description>
+                <description>Ночной пакет 22:00–11:00 для двоих геймеров: 950 ₽ с человека в будни, 1050 ₽ в выходные. Вся ночь кооператива в клубе, который не закрывается никогда.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="solo-1h">
@@ -191,7 +191,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>5</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/solo-night.jpg</picture>
-                <description>Ночной пакет 22:00–08:00 в отдельной комнате: 1300 ₽ в будни, 1450 ₽ в выходные. Максимальная приватность и топовое железо — как дома, только в разы мощнее.</description>
+                <description>Ночной пакет 22:00–11:00 в отдельной комнате: 1300 ₽ в будни, 1450 ₽ в выходные. Максимальная приватность и топовое железо — как дома, только в разы мощнее.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="ps5-std-1h">
@@ -222,7 +222,7 @@
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="ps5-std-night">
-                <name>Ночь на PS5 — TV зона (22:00–08:00)</name>
+                <name>Ночь на PS5 — TV зона (22:00–11:00)</name>
                 <price>1800</price>
                 <currencyId>RUR</currencyId>
                 <categoryId>6</categoryId>
@@ -263,7 +263,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>7</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/ps5-vip-night.jpg</picture>
-                <description>Ночной пакет 22:00–08:00 в приватной комнате с PlayStation 5: 2075 ₽ в будни, 2450 ₽ в выходные. Ночная тусовка на большом экране без соседей.</description>
+                <description>Ночной пакет 22:00–11:00 в приватной комнате с PlayStation 5: 2075 ₽ в будни, 2450 ₽ в выходные. Ночная тусовка на большом экране без соседей.</description>
                 <url>https://cyberx-novokosino.ru/prices</url>
             </offer>
             <offer id="simracing-1h">
@@ -326,7 +326,7 @@
                 <currencyId>RUR</currencyId>
                 <categoryId>10</categoryId>
                 <picture>https://cyberx-novokosino.ru/yandex-menu/certificate.jpg</picture>
-                <description>Подарочный сертификат CyberX Новокосино номиналом от 1000 до 5000 ₽: часы игры, ночные пакеты, PS5 или автосимулятор — получатель выберет сам. Оформление на сайте за пару минут.</description>
+                <description>Подарочный сертификат CyberX Новокосино номиналом от 1 000 до 20 000 ₽: часы игры, ночные пакеты, PS5 или автосимулятор — тот, кому дарите, выберет сам. Оплата на сайте, промокод сразу после оплаты, действует год.</description>
                 <url>https://cyberx-novokosino.ru/certificate</url>
             </offer>
         </offers>

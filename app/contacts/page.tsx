@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Контакты и адрес клуба | Москва",
-    description: "Наш адрес: г. Москва, ул. Новокосинская, 32. ТЦ 'Новокосино', 2 этаж. Работаем круглосуточно 24/7. 5 минут от метро Новокосино. Телефон: +7 985 128 95 38.",
+    description: "Наш адрес: г. Москва, ул. Новокосинская, 32, 2 этаж. Работаем круглосуточно 24/7. 5 минут от метро Новокосино. Телефон: +7 985 128 95 38.",
     keywords: ["адрес CyberX Новокосино", "компьютерный клуб метро Новокосино", "как пройти в CyberX", "телефон киберклуб Новокосино"],
     alternates: {
         canonical: "https://cyberx-novokosino.ru/contacts",
@@ -44,7 +44,7 @@ export default function ContactsPage() {
                                     <span className="text-[#FF2E63]">01.</span> Как нас найти?
                                 </h2>
                                 <div className="font-inter text-gray-400 text-lg leading-relaxed mb-6">
-                                    Мы находимся в <span className="text-white font-bold">ТЦ &quot;Новокосино&quot;</span> на 2 этаже.
+                                    Мы находимся в <span className="text-white font-bold">здании на кольце у метро Новокосино</span>, внизу — круглосуточный «Магнит».
                                     Заходите через центральный вход, поднимайтесь по лестнице на 2 этаж.
                                     Наш клуб расположен рядом с магазином электроники DNS.
                                     <div className="mt-4">

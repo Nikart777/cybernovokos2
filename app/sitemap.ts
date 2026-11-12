@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
         {
             url: `${baseUrl}/`,
-            lastModified: new Date('2026-07-14'),
+            lastModified: new Date('2026-11-12'),
             changeFrequency: 'weekly',
             priority: 1,
         },
@@ -68,7 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/certificate`,
-            lastModified: new Date('2026-11-03'),
+            lastModified: new Date('2026-11-12'),
             changeFrequency: 'monthly',
             priority: 0.8,
         },

@@ -428,7 +428,7 @@ function CategoryEditor({ cat, onChange, onDelete }: { cat: PricingCategory, onC
                 ))}
                 <button
                     onClick={() => {
-                        const newItem: PriceItem = { time: "1 ЧАС", hours: "08:00 - 17:00", week: 0, end: 0 };
+                        const newItem: PriceItem = { time: "1 ЧАС", hours: "04:00 - 16:00", week: 0, end: 0 };
                         onChange({ ...cat, items: [...cat.items, newItem] });
                     }}
                     className="w-full text-[10px] text-gray-500 hover:text-white flex items-center justify-center gap-1 py-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors mt-2"
