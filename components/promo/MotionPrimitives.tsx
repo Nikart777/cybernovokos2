@@ -7,7 +7,7 @@ import type { StoryChapter } from "./promoData";
 export function StoryReveal({
   children,
   delay = 0,
-  y = 18,
+  y = 14,
   className = "",
 }: {
   children: React.ReactNode;
@@ -22,8 +22,8 @@ export function StoryReveal({
       className={className}
       initial={reduceMotion ? false : { opacity: 0.01, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16 }}
-      transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, amount: 0.14 }}
+      transition={{ duration: 0.42, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -34,8 +34,8 @@ export function MobileStoryRail({ chapters }: { chapters: StoryChapter[] }) {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 240,
-    damping: 32,
+    stiffness: 260,
+    damping: 34,
     restDelta: 0.001,
   });
   const [activeId, setActiveId] = useState(chapters[0]?.id ?? "start");
@@ -51,7 +51,7 @@ export function MobileStoryRail({ chapters }: { chapters: StoryChapter[] }) {
         }
       },
       {
-        rootMargin: "-25% 0px -55% 0px",
+        rootMargin: "-24% 0px -56% 0px",
         threshold: [0.1, 0.35, 0.6],
       },
     );
@@ -71,19 +71,17 @@ export function MobileStoryRail({ chapters }: { chapters: StoryChapter[] }) {
   };
 
   return (
-    <div className="sticky top-[58px] z-40 border-b border-white/10 bg-[#050505]/95 backdrop-blur-md md:top-[70px]">
-      {/* Thin GPU scroll-progress thread */}
+    <div className="sticky top-[58px] z-40 border-y border-white/10 bg-[#050505]/95 backdrop-blur-md md:top-[70px]">
       <div className="h-[2px] w-full bg-white/[0.06]" aria-hidden="true">
         <motion.div
-          className="h-full origin-left bg-gradient-to-r from-[#FF2E63] via-[#D5FF39] to-[#00F0FF]"
+          className="h-full origin-left bg-[#FF2E63]"
           style={{ scaleX: reduceMotion ? 1 : scaleX }}
         />
       </div>
 
-      {/* Horizontal chapter quick-jump pills for mobile thumb ergonomics */}
       <nav
         aria-label="Разделы страницы акций"
-        className="mx-auto flex max-w-[1760px] items-center gap-1.5 overflow-x-auto px-3 py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-center md:gap-2 md:px-10"
+        className="mx-auto flex max-w-[1440px] items-center gap-6 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-between md:px-10"
       >
         {chapters.map((chapter) => {
           const isActive = activeId === chapter.id;
@@ -94,31 +92,24 @@ export function MobileStoryRail({ chapters }: { chapters: StoryChapter[] }) {
               key={chapter.id}
               type="button"
               onClick={() => scrollToChapter(chapter.id)}
-              className={`relative shrink-0 rounded-full px-3.5 py-2 font-chakra text-[11px] font-bold uppercase tracking-[0.06em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF] ${
+              className={`relative shrink-0 py-3.5 font-chakra text-[11px] font-bold uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:text-white ${
                 isActive
                   ? isDropX
-                    ? "text-[#090909]"
-                    : "text-[#090909]"
-                  : "text-white/65 hover:text-white"
+                    ? "text-[#D5FF39]"
+                    : "text-white"
+                  : "text-white/45 hover:text-white/80"
               }`}
             >
+              <span>{chapter.label}</span>
               {isActive && (
                 <motion.span
-                  layoutId="promo-story-pill"
-                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                  className={`absolute inset-0 -z-10 rounded-full ${
+                  layoutId="promo-nav-line"
+                  transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                  className={`absolute inset-x-0 bottom-0 h-[2px] ${
                     isDropX ? "bg-[#D5FF39]" : "bg-[#FF2E63]"
                   }`}
                 />
               )}
-              <span className="relative z-10 inline-flex items-center gap-1.5">
-                {chapter.label}
-                {chapter.badge && !isActive && (
-                  <span className="rounded bg-[#D5FF39]/20 px-1.5 py-0.5 text-[9px] font-black leading-none text-[#D5FF39]">
-                    {chapter.badge}
-                  </span>
-                )}
-              </span>
             </button>
           );
         })}
