@@ -1,7 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
+import { SITE_URL } from "@/lib/organization";
 
 const appStoreUrl = "https://redirect.appmetrica.yandex.com/serve/317784602498366130";
 const googlePlayUrl = "https://redirect.appmetrica.yandex.com/serve/245723835301644591";
+
+function selectPageUrl(request: NextRequest): URL {
+  // Custom server.js binds localhost:3000 behind Passenger, so request.url leaks localhost in prod.
+  if (process.env.NODE_ENV === "production") {
+    return new URL("/download/select", SITE_URL);
+  }
+  const host = request.headers.get("host");
+  if (host) {
+    const hostname = host.split(":")[0].toLowerCase();
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return new URL("/download/select", `http://${host}`);
+    }
+  }
+  return new URL("/download/select", request.url);
+}
 
 export function GET(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? "";
@@ -11,7 +27,7 @@ export function GET(request: NextRequest) {
     ? googlePlayUrl
     : isAppleMobile
       ? appStoreUrl
-      : new URL("/download/select", request.url);
+      : selectPageUrl(request);
 
   const response = NextResponse.redirect(destination);
   response.headers.set("Cache-Control", "private, no-store");
