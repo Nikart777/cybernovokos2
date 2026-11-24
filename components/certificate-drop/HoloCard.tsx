@@ -266,6 +266,8 @@ export function MiniCert({
             <span className={`${s.layer} ${s.skinBg}`} aria-hidden />
             <span className={`${s.layer} ${s.pattern}`} aria-hidden />
             <span className={`${s.layer} ${s.foil}`} aria-hidden />
+            {/* the rarity stripe marks a real item (buy bar, checkout); swatches have no nominal and stay plain */}
+            {!label && nominal ? <span className="absolute inset-x-0 bottom-0 z-[1] h-[3px]" style={{ background: rarity.color }} aria-hidden /> : null}
             {label && nominal ? (
                 <span
                     className="relative z-[1] flex h-full flex-col items-center justify-center text-center"

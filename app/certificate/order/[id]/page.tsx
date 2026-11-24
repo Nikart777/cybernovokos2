@@ -21,7 +21,7 @@ export default async function GiftOrderPage({ params, searchParams }: { params: 
     const view = publicView(order);
 
     return (
-        <div className="bg-[#0d0a1c]">
+        <div className="bg-[#0b0d14]">
             <Header />
             <OrderView initial={view} mock={order.mode === "mock" && searchParams.mock === "1"} />
             <DropFooter />

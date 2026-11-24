@@ -27,13 +27,13 @@ export function CodeBox({ code }: { code: string }) {
     return (
         <div className="mt-6 flex items-center gap-3 rounded-2xl border border-white/15 bg-black/30 p-3 pl-5">
             <div className="min-w-0 flex-1 text-left">
-                <div className="font-inter text-[12px] text-[#a39cc4]">Промокод</div>
-                <div className="font-tactic text-[clamp(1.2rem,5vw,1.6rem)] font-black tracking-[0.12em] text-white">{code}</div>
+                <div className="font-inter text-[12px] text-[#a3a9b8]">Промокод</div>
+                <div className="font-tactic text-[clamp(1.2rem,5vw,1.6rem)] font-black tracking-[0.12em] text-[#eef0f5]">{code}</div>
             </div>
             <button
                 type="button"
                 onClick={copy}
-                className="inline-flex h-12 shrink-0 items-center gap-2 rounded-xl bg-white px-4 font-inter text-[15px] font-bold text-[#0d0a1c] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0a1c]"
+                className="inline-flex h-12 shrink-0 items-center gap-2 rounded-[10px] bg-[#eef0f5] px-4 font-inter text-[15px] font-semibold text-[#0b0d14] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0d14]"
             >
                 {done ? <Check className="h-4 w-4" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}
                 <span aria-live="polite">{done ? "Скопирован" : "Скопировать"}</span>
@@ -64,12 +64,10 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
 
     return (
         <div className={`${s.root} min-h-[100svh]`} style={{ "--rar": rarity.color } as React.CSSProperties}>
-            <div className={s.grain} aria-hidden />
-
             {preview && (
-                <div className="relative z-[3] border-b border-white/10 bg-[#151030] px-4 py-2.5 text-center font-inter text-[13px] text-[#c8c1ea]">
+                <div className="relative z-[3] border-b border-white/10 bg-[#11141c] px-4 py-2.5 text-center font-inter text-[13px] text-[#a3a9b8]">
                     Это предпросмотр: промокод появится после оплаты.{" "}
-                    <a href={`${PAGE_PATH}?${configToQuery(cfg)}`} className="font-semibold text-white underline underline-offset-4">
+                    <a href={`${PAGE_PATH}?${configToQuery(cfg)}`} className="font-semibold text-[#eef0f5] underline underline-offset-4">
                         Вернуться к оформлению
                     </a>
                 </div>
@@ -79,7 +77,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                 <a href="/" className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/logo new.png" alt="CyberX" className="h-6 w-auto" />
-                    <span className="font-inter text-[13px] text-[#a39cc4]">Новокосино</span>
+                    <span className="font-inter text-[13px] text-[#a3a9b8]">Новокосино</span>
                 </a>
             </header>
 
@@ -91,9 +89,8 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                         transition={{ duration: 0.35 }}
                         className="relative z-[2] flex min-h-[calc(100svh-80px)] flex-col items-center justify-center px-4 pb-16 text-center"
                     >
-                        <div className={s.beam} aria-hidden />
-                        <p className="relative font-inter text-[16px] text-[#c8c1ea]">{from ? `${from} дарит тебе подарок` : "Тебе прислали подарок"}</p>
-                        <h1 className={`${s.display} relative mt-3 max-w-[16ch] text-[clamp(2.1rem,7vw,4.2rem)] leading-[1.02] text-white`}>
+                        <p className="relative font-inter text-[16px] text-[#a3a9b8]">{from ? `${from} дарит тебе подарок` : "Тебе прислали подарок"}</p>
+                        <h1 className={`${s.display} relative mt-3 max-w-[16ch] text-[clamp(2.1rem,7vw,4.2rem)] leading-[1.02] text-[#eef0f5]`}>
                             Открой кейс и посмотри, что внутри
                         </h1>
 
@@ -104,7 +101,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                             initial={reduce ? false : { y: -200, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ type: "spring", stiffness: 120, damping: 12, delay: 0.3 }}
-                            className="relative mt-12 rounded-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#0d0a1c]"
+                            className="relative mt-12 rounded-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#0b0d14]"
                         >
                             <span className={`${s.crate} block`}>
                                 <span className={s.crateBand} />
@@ -121,7 +118,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                         <button
                             type="button"
                             onClick={open}
-                            className={`${s.buy} relative mt-12 inline-flex h-16 items-center gap-3 rounded-2xl px-10 font-inter text-[18px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white`}
+                            className={`${s.buy} relative mt-12 inline-flex h-[52px] items-center gap-2 rounded-[10px] px-8 font-inter text-[16px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white`}
                         >
                             <Gift className="h-5 w-5" aria-hidden />
                             Открыть кейс
@@ -137,16 +134,13 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                         exit={{ opacity: 0 }}
                         className="relative z-[2] flex min-h-[calc(100svh-80px)] flex-col justify-center pb-16"
                     >
-                        <p className="mb-6 text-center font-inter text-[16px] text-[#c8c1ea]">Крутим кейс…</p>
+                        <p className="mb-6 text-center font-inter text-[16px] text-[#a3a9b8]">Крутим кейс…</p>
                         <CaseReel cfg={cfg} autoStart onDone={() => setStage("open")} place={preview ? "preview" : "gift"} showButton={false} />
                     </motion.section>
                 )}
 
                 {stage === "open" && (
                     <motion.section key="open" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative z-[2] overflow-hidden px-4 pb-24 pt-6">
-                        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-                            <div className={s.rays} style={{ top: "34%" }} />
-                        </div>
                         <div className="relative mx-auto grid grid-cols-1 max-w-[1040px] items-center gap-10 md:grid-cols-[minmax(0,360px)_1fr] md:gap-16">
                             <motion.div
                                 initial={reduce ? false : { scale: 0.5, y: 80, opacity: 0 }}
@@ -164,15 +158,15 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                                 transition={{ delay: 0.5, duration: 0.5 }}
                                 className="text-center md:text-left"
                             >
-                                <p className="font-inter text-[15px] text-[#a39cc4]">
+                                <p className="font-inter text-[15px] text-[#a3a9b8]">
                                     Выпало <span className="font-semibold" style={{ color: rarity.color }}>{rarity.name.toLowerCase()}</span>
                                 </p>
-                                <h1 className={`${s.display} mt-2 text-[clamp(2rem,5vw,3.2rem)] leading-[1.03] text-white`}>
+                                <h1 className={`${s.display} mt-2 text-[clamp(2rem,5vw,3.2rem)] leading-[1.03] text-[#eef0f5]`}>
                                     {digitGroups(cfg.nominal).join(" ")}
-                                    <span className="font-inter font-extrabold">&nbsp;₽</span> в компьютерном клубе CyberX
+                                    <span className="font-inter font-normal">&nbsp;₽</span> в компьютерном клубе CyberX
                                 </h1>
                                 {hall && (
-                                    <p className="mt-3 font-inter text-[16px] text-[#c8c1ea]">
+                                    <p className="mt-3 font-inter text-[16px] text-[#a3a9b8]">
                                         Хватит на {hall.value} {hall.unit} за игровым ПК{hallBar ? `${hallBar.includes(" и ") ? "," : " и"} ${hallBar}` : ""}. Или на ночь до утра, PS5 и автосимулятор. Как захочешь.
                                     </p>
                                 )}
@@ -180,7 +174,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                                 {code ? (
                                     <CodeBox code={code} />
                                 ) : (
-                                    <p className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-4 py-3 font-inter text-[14px] text-[#c8c1ea]">
+                                    <p className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-4 py-3 font-inter text-[14px] text-[#a3a9b8]">
                                         <Lock className="h-4 w-4 shrink-0" style={{ color: rarity.color }} aria-hidden />
                                         Промокод появится здесь после оплаты
                                     </p>
@@ -194,7 +188,7 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                             <button
                                 type="button"
                                 onClick={book}
-                                className="mt-4 inline-flex h-12 items-center gap-2 rounded-xl px-1 font-inter text-[15px] font-semibold text-[#c8c1ea] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                className="mt-4 inline-flex h-12 items-center gap-2 rounded-xl px-1 font-inter text-[15px] font-semibold text-[#a3a9b8] underline decoration-white/25 underline-offset-4 transition-colors hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
                                 <CalendarCheck className="h-4 w-4" aria-hidden />
                                 Забронировать место на сайте
@@ -202,12 +196,12 @@ export default function GiftReveal({ cfg, rates, code }: { cfg: GiftConfig; rate
                         </div>
 
                         <div className="relative mx-auto mt-16 max-w-[1040px] border-t border-white/10 pt-8 text-center md:text-left">
-                            <p className="font-inter text-[15px] text-[#a39cc4]">
+                            <p className="font-inter text-[15px] text-[#a3a9b8]">
                                 Хочешь тоже кого-то порадовать?{" "}
                                 <a
                                     href={PAGE_PATH}
                                     onClick={() => track("cert_drop_regift")}
-                                    className="font-semibold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+                                    className="font-semibold text-[#eef0f5] underline decoration-white/30 underline-offset-4 hover:decoration-white"
                                 >
                                     Собери свой сертификат
                                 </a>

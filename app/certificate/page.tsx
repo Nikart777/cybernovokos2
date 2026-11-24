@@ -112,7 +112,7 @@ export default async function CertificatePage({ searchParams }: { searchParams: 
     }
 
     return (
-        <div className="bg-[#0d0a1c]">
+        <div className="bg-[#0b0d14]">
             <SchemaMarkup schema={productSchema} />
             <SchemaMarkup schema={breadcrumbSchema} />
             <SchemaMarkup schema={faqSchema} />

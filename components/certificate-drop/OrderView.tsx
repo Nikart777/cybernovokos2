@@ -67,12 +67,6 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
 
     return (
         <section className={`${s.root} relative min-h-[100svh] overflow-hidden px-4 pb-24 pt-28 sm:pt-32`} style={{ "--rar": rarity.color } as React.CSSProperties}>
-            <div className={s.grain} aria-hidden />
-            {paid && (
-                <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-                    <div className={s.rays} style={{ top: "40%" }} />
-                </div>
-            )}
 
             <div className="relative z-[2] mx-auto grid grid-cols-1 max-w-[1080px] items-center gap-10 md:grid-cols-[minmax(0,360px)_1fr] md:gap-16">
                 <motion.div
@@ -89,39 +83,39 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                 <div className="text-center md:text-left">
                     {paid ? (
                         <>
-                            <p className="font-inter text-[15px] text-[#a39cc4]">Оплата прошла</p>
-                            <h1 className={`${s.display} mt-2 text-[clamp(2rem,5vw,3.2rem)] leading-[1.03] text-white`}>
+                            <p className="font-inter text-[15px] text-[#a3a9b8]">Оплата прошла</p>
+                            <h1 className={`${s.display} mt-2 text-[clamp(2rem,5vw,3.2rem)] leading-[1.03] text-[#eef0f5]`}>
                                 Сертификат на {digitGroups(order.amount).join(" ")}
-                                <span className="font-inter font-extrabold">&nbsp;₽</span> готов
+                                <span className="font-inter font-normal">&nbsp;₽</span> готов
                             </h1>
                             <CodeBox code={order.code!} />
                             {order.bonus > 0 && (
-                                <p className="mt-3 font-inter text-[15px] font-semibold text-[#FFE68A]">
+                                <p className="mt-3 font-inter text-[15px] font-medium text-[#eef0f5]">
                                     +{order.bonus} бонусов в подарок: начислятся при регистрации в приложении CyberX
                                 </p>
                             )}
-                            <p className="mt-3 font-inter text-[14px] leading-relaxed text-[#8f88b3]">
+                            <p className="mt-3 font-inter text-[14px] leading-relaxed text-[#7a8296]">
                                 Промокод заработает в приложении CyberX после подтверждения клубом.{" "}
                                 {order.emailed ? "Копию со ссылкой-сюрпризом отправили на" : "Сохраните эту страницу: копия придёт на"}{" "}
-                                <span className="inline-flex items-center gap-1 text-[#c8c1ea]">
+                                <span className="inline-flex items-center gap-1 text-[#a3a9b8]">
                                     <Mail className="h-3.5 w-3.5" aria-hidden />
                                     {order.email}
                                 </span>
                                 {order.emailed ? "." : " чуть позже."}
                             </p>
 
-                            <h2 className="mt-8 font-inter text-[18px] font-bold text-white">Осталось отправить ссылку-сюрприз</h2>
-                            <p className="mt-1.5 font-inter text-[15px] text-[#a39cc4]">
+                            <h2 className="mt-8 font-inter text-[18px] font-medium text-[#eef0f5]">Осталось отправить ссылку-сюрприз</h2>
+                            <p className="mt-1.5 font-inter text-[15px] text-[#a3a9b8]">
                                 Отправьте её тому, кому дарите: по ней откроется кейс с вашим дизайном, пожеланием и промокодом.
                             </p>
                             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                                <CopyLink url={giftUrl} label="Скопировать ссылку" goal="cert_drop_copy_link" className="h-14 rounded-2xl !border-transparent !bg-white !text-[#0d0a1c] hover:!bg-white/90" />
+                                <CopyLink url={giftUrl} label="Скопировать ссылку" goal="cert_drop_copy_link" className="h-14 rounded-2xl !border-transparent !bg-white !text-[#0b0d14] hover:!bg-white/90" />
                                 <a
                                     href={tgShare}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => track("cert_drop_share_tg")}
-                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.04] px-5 font-inter text-[15px] font-semibold text-white transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.04] px-5 font-inter text-[15px] font-semibold text-[#eef0f5] transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                                 >
                                     <Send className="h-4 w-4" aria-hidden />
                                     Отправить в Telegram
@@ -130,7 +124,7 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                                     href={giftUrl}
                                     target="_blank"
                                     rel="noopener"
-                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl px-4 font-inter text-[15px] font-semibold text-[#c8c1ea] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl px-4 font-inter text-[15px] font-semibold text-[#a3a9b8] transition-colors hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                                 >
                                     <ExternalLink className="h-4 w-4" aria-hidden />
                                     Посмотреть, как откроется подарок
@@ -139,14 +133,14 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                         </>
                     ) : order.status === "canceled" || order.status === "failed" ? (
                         <>
-                            <h1 className={`${s.display} text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05] text-white`}>Оплата не прошла</h1>
-                            <p className="mt-4 font-inter text-[16px] leading-relaxed text-[#a39cc4]">
+                            <h1 className={`${s.display} text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05] text-[#eef0f5]`}>Оплата не прошла</h1>
+                            <p className="mt-4 font-inter text-[16px] leading-relaxed text-[#a3a9b8]">
                                 Деньги не списаны. Макет сохранён, можно попробовать ещё раз или выбрать другой способ оплаты.
                             </p>
                             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                                 <a
                                     href={`${PAGE_PATH}?${configToQuery(order.cfg)}`}
-                                    className={`${s.buy} inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl px-6 font-inter text-[16px] font-bold`}
+                                    className={`${s.buy} inline-flex h-12 items-center justify-center gap-2 rounded-[10px] px-6 font-inter text-[15px] font-semibold`}
                                 >
                                     <RotateCcw className="h-5 w-5" aria-hidden />
                                     Вернуться к макету
@@ -155,7 +149,7 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                                     href={telegramHelpUrl()}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/15 px-6 font-inter text-[15px] font-semibold text-white"
+                                    className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/15 px-6 font-inter text-[15px] font-semibold text-[#eef0f5]"
                                 >
                                     <Send className="h-4 w-4" aria-hidden />
                                     Написать в Telegram
@@ -164,19 +158,19 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                         </>
                     ) : (
                         <>
-                            <h1 className={`${s.display} text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05] text-white`}>
+                            <h1 className={`${s.display} text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05] text-[#eef0f5]`}>
                                 {mock ? "Тестовая оплата" : "Проверяем оплату"}
                             </h1>
                             {mock ? (
                                 <>
-                                    <p className="mt-4 font-inter text-[16px] leading-relaxed text-[#a39cc4]">
+                                    <p className="mt-4 font-inter text-[16px] leading-relaxed text-[#a3a9b8]">
                                         ЮKassa ещё не подключена, поэтому вместо страницы оплаты здесь тестовая кнопка. На сайте в рабочем режиме её нет.
                                     </p>
                                     <button
                                         type="button"
                                         onClick={mockPay}
                                         disabled={busy}
-                                        className={`${s.buy} mt-7 inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl px-6 font-inter text-[16px] font-bold disabled:opacity-70`}
+                                        className={`${s.buy} mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-[10px] px-6 font-inter text-[15px] font-semibold disabled:opacity-70`}
                                     >
                                         {busy ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> : <CreditCard className="h-5 w-5" aria-hidden />}
                                         Оплатить {digitGroups(order.amount).join(" ")}&nbsp;₽ (тест)
@@ -184,14 +178,14 @@ export default function OrderView({ initial, mock }: { initial: PublicOrder; moc
                                 </>
                             ) : (
                                 <>
-                                    <p className="mt-4 inline-flex items-center gap-2.5 font-inter text-[16px] text-[#a39cc4]">
+                                    <p className="mt-4 inline-flex items-center gap-2.5 font-inter text-[16px] text-[#a3a9b8]">
                                         <Loader2 className="h-5 w-5 animate-spin" style={{ color: rarity.color }} aria-hidden />
                                         Обычно это занимает несколько секунд
                                     </p>
                                     {order.confirmationUrl && (
-                                        <p className="mt-6 font-inter text-[15px] text-[#8f88b3]">
+                                        <p className="mt-6 font-inter text-[15px] text-[#7a8296]">
                                             Не успели оплатить?{" "}
-                                            <a href={order.confirmationUrl} className="font-semibold text-white underline underline-offset-4">
+                                            <a href={order.confirmationUrl} className="font-semibold text-[#eef0f5] underline underline-offset-4">
                                                 Вернуться к оплате
                                             </a>
                                         </p>

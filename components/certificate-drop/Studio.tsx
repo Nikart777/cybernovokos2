@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, ImagePlus, Loader2, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, ImagePlus, Loader2, Package } from "lucide-react";
 import s from "./drop.module.css";
 import HoloCard, { MiniCert } from "./HoloCard";
 import { BuyButton } from "./ui";
@@ -29,31 +29,21 @@ import {
 
 type Update = (patch: Partial<GiftConfig>) => void;
 
-const MOTES = [
-    { left: "18%", delay: "0s" },
-    { left: "30%", delay: "1.6s" },
-    { left: "44%", delay: "3.1s" },
-    { left: "57%", delay: "0.8s" },
-    { left: "69%", delay: "2.4s" },
-    { left: "81%", delay: "4.0s" },
-    { left: "36%", delay: "4.6s" },
-    { left: "63%", delay: "3.7s" },
-];
 
 /* ── Small controls ──────────────────────────────────────────────────── */
 
 const chip =
-    "inline-flex h-10 shrink-0 items-center justify-center rounded-full border px-4 font-inter text-[14px] font-semibold transition-[background-color,border-color,color,transform] duration-150 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
-const chipOn = "border-transparent bg-[#F1EEFF] text-[#0d0a1c]";
-const chipOff = "border-white/12 bg-white/[0.03] text-[#d9d3f5] hover:border-white/30 hover:bg-white/[0.07]";
+    "inline-flex h-10 shrink-0 items-center justify-center rounded-lg border px-4 font-inter text-[14px] font-medium tabular-nums transition-[background-color,border-color,color,transform] duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
+const chipOn = "border-transparent bg-[#eef0f5] text-[#0b0d14]";
+const chipOff = "border-white/10 bg-white/[0.03] text-[#a3a9b8] hover:border-white/20 hover:bg-white/[0.06] hover:text-[#eef0f5]";
 
 const input =
-    "h-12 w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 font-inter text-[16px] text-white placeholder:text-[#7d76a3] transition-colors focus:border-white/40 focus:bg-white/[0.07] focus:outline-none";
+    "h-12 w-full rounded-[10px] border border-white/10 bg-[#11141c] px-4 font-inter text-[16px] text-[#eef0f5] placeholder:text-[#7a8296] transition-colors focus:border-white/30 focus:bg-[#1a1e28] focus:outline-none";
 
 function FieldLabel({ children, htmlFor, aside }: { children: React.ReactNode; htmlFor?: string; aside?: React.ReactNode }) {
     return (
-        <div className="mb-2.5 flex items-baseline justify-between gap-3">
-            <label htmlFor={htmlFor} className="font-inter text-[13px] font-semibold text-[#c8c1ea]">
+        <div className="mb-2 flex items-baseline justify-between gap-3">
+            <label htmlFor={htmlFor} className="font-inter text-[13px] font-medium text-[#a3a9b8]">
                 {children}
             </label>
             {aside}
@@ -74,7 +64,6 @@ export function NominalChips({ cfg, update, compact = false }: { cfg: GiftConfig
                         aria-checked={on}
                         onClick={() => update({ nominal: n })}
                         className={`${chip} ${on ? chipOn : chipOff}`}
-                        style={on ? { boxShadow: `0 0 0 2px ${rarityOf(n).color}` } : undefined}
                     >
                         {digitGroups(n).join(" ")}&nbsp;₽
                     </button>
@@ -150,7 +139,7 @@ function WhoPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp: 
                                 maxLength={OCCASION_MAX}
                                 autoFocus
                                 autoComplete="off"
-                                placeholder="Например: С защитой диплома!"
+                                placeholder="Например: с защитой диплома"
                                 onChange={(e) => update({ occasionText: e.target.value })}
                             />
                         </motion.div>
@@ -174,9 +163,9 @@ function NominalPanel({ cfg, update: rawUpdate, idp, onPick }: { cfg: GiftConfig
             <FieldLabel
                 htmlFor={`${idp}-nominal`}
                 aside={
-                    <span className="font-tactic text-[15px] font-black tabular-nums text-white">
+                    <span className="font-inter text-[15px] font-medium tabular-nums text-[#eef0f5]">
                         {digitGroups(cfg.nominal).join(" ")}
-                        <span className="font-inter font-extrabold"> ₽</span>
+                        &nbsp;₽
                     </span>
                 }
             >
@@ -195,17 +184,16 @@ function NominalPanel({ cfg, update: rawUpdate, idp, onPick }: { cfg: GiftConfig
                 onChange={(e) => update({ nominal: Number(e.target.value) })}
                 style={{ "--fill": `${fill}%` } as React.CSSProperties}
             />
-            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-inter text-[13px] text-[#a39cc4]">
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 font-inter text-[13px] text-[#a3a9b8]">
                 <span className="inline-flex items-center gap-2">
-                    <i className="h-2.5 w-2.5 rounded-full" style={{ background: rarity.color, boxShadow: `0 0 10px ${rarity.color}` }} aria-hidden />
-                    Редкость: <b className="font-semibold text-white">{rarity.name}</b>
+                    <i className="h-2 w-2 rounded-full" style={{ background: rarity.color }} aria-hidden />
+                    Редкость: <b className="font-medium text-[#eef0f5]">{rarity.name}</b>
                 </span>
                 {next && (
                     <button
                         type="button"
                         onClick={() => update({ nominal: next.min })}
-                        className="rounded-md font-semibold underline decoration-dotted underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                        style={{ color: next.color }}
+                        className="rounded-md tabular-nums underline decoration-white/25 underline-offset-4 transition-colors hover:text-[#eef0f5] hover:decoration-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
                         До «{next.name}» ещё {digitGroups(next.min - cfg.nominal).join(" ")} ₽
                     </button>
@@ -284,26 +272,26 @@ function PhotoTile({ cfg, update }: { cfg: GiftConfig; update: Update }) {
                 disabled={busy}
                 onClick={onClick}
                 className={`group flex w-full items-center gap-4 rounded-xl border p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
-                    on ? "border-[#F1EEFF] bg-white/[0.07]" : "border-white/15 bg-white/[0.04] hover:border-white/35"
+                    on ? "border-[#eef0f5] bg-[#1a1e28]" : "border-white/10 bg-[#11141c] hover:border-white/20"
                 }`}
             >
                 <span className={`relative block w-[46px] shrink-0 rounded-[10px] p-[2px] transition-colors ${on ? "bg-white" : "bg-white/10 group-hover:bg-white/30"}`}>
                     {cfg.image ? (
                         <MiniCert skin="photo" image={cfg.image} label={false} className="aspect-[5/7] w-full rounded-[8px]" />
                     ) : (
-                        <span className="grid aspect-[5/7] w-full place-items-center rounded-[8px] border border-dashed border-white/30 bg-[#1e1840]">
-                            <ImagePlus className="h-5 w-5 text-[#c8c1ea]" aria-hidden />
+                        <span className="grid aspect-[5/7] w-full place-items-center rounded-[8px] border border-dashed border-white/30 bg-[#1a1e28]">
+                            <ImagePlus className="h-5 w-5 text-[#a3a9b8]" aria-hidden />
                         </span>
                     )}
                     {busy && (
                         <span className="absolute inset-[2px] grid place-items-center rounded-[8px] bg-black/60">
-                            <Loader2 className="h-5 w-5 animate-spin text-white" aria-hidden />
+                            <Loader2 className="h-5 w-5 animate-spin text-[#eef0f5]" aria-hidden />
                         </span>
                     )}
                 </span>
                 <span className="min-w-0">
-                    <span className="block font-inter text-[15px] font-bold leading-snug text-white">{cfg.image ? "Своё фото" : "Загрузить своё фото"}</span>
-                    <span className={`mt-1 block font-inter text-[13px] leading-snug ${error ? "text-[#ff8aa8]" : "text-[#a39cc4]"}`} aria-live="polite">
+                    <span className="block font-inter text-[15px] font-medium leading-snug text-[#eef0f5]">{cfg.image ? "Своё фото" : "Загрузить своё фото"}</span>
+                    <span className={`mt-1 block font-inter text-[13px] leading-snug ${error ? "text-[#e5484d]" : "text-[#a3a9b8]"}`} aria-live="polite">
                         {hint}
                     </span>
                 </span>
@@ -317,7 +305,7 @@ function SkinPanel({ cfg, update }: { cfg: GiftConfig; update: Update; idp?: str
     const current = cfg.skin === "photo" ? { hint: "Ваше фото на сертификате" } : SKINS.find((x) => x.id === cfg.skin);
     return (
         <div>
-            <FieldLabel aside={<span className="font-inter text-[13px] text-[#a39cc4]">{current?.hint}</span>}>Дизайн</FieldLabel>
+            <FieldLabel aside={<span className="font-inter text-[13px] text-[#a3a9b8]">{current?.hint}</span>}>Дизайн</FieldLabel>
             <div role="radiogroup" aria-label="Дизайн" className="grid grid-cols-3 gap-2.5 sm:gap-3 lg:grid-cols-5 lg:gap-2.5">
                 <PhotoTile cfg={cfg} update={update} />
                 {SKINS.map((sk) => {
@@ -337,7 +325,7 @@ function SkinPanel({ cfg, update }: { cfg: GiftConfig; update: Update; idp?: str
                             >
                                 <MiniCert skin={sk.id} label={false} className="aspect-[4/5] w-full rounded-[8px] lg:aspect-[5/7]" />
                             </span>
-                            <span className={`font-inter text-[12px] font-semibold leading-none ${on ? "text-white" : "text-[#8f88b3]"}`}>{sk.name}</span>
+                            <span className={`font-inter text-[12px] font-medium leading-none ${on ? "text-[#eef0f5]" : "text-[#7a8296]"}`}>{sk.name}</span>
                         </button>
                     );
                 })}
@@ -352,7 +340,7 @@ function WishPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp:
             <FieldLabel
                 htmlFor={`${idp}-msg`}
                 aside={
-                    <span className="font-inter text-[12px] tabular-nums text-[#7d76a3]">
+                    <span className="font-inter text-[12px] tabular-nums text-[#7a8296]">
                         {cfg.message.length}/{MESSAGE_MAX}
                     </span>
                 }
@@ -368,14 +356,14 @@ function WishPanel({ cfg, update, idp }: { cfg: GiftConfig; update: Update; idp:
                 onChange={(e) => update({ message: e.target.value })}
                 className={`${input} h-auto resize-none py-3 leading-snug`}
             />
-            <div className="-mx-1 mt-2.5 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] lg:flex-wrap">
+            <div className="-mx-1 mt-3 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] lg:flex-wrap">
                 {WISH_PRESETS.map((w) => (
                     <button
                         key={w}
                         type="button"
                         onClick={() => update({ message: w })}
                         aria-pressed={cfg.message === w}
-                        className={`${chip} h-9 px-3.5 text-[13px] font-medium ${cfg.message === w ? chipOn : chipOff}`}
+                        className={`${chip} h-9 px-3 text-[13px] ${cfg.message === w ? chipOn : chipOff}`}
                     >
                         {w}
                     </button>
@@ -397,9 +385,9 @@ const WIZARD = [
 const LAST = WIZARD.length - 1;
 
 const primaryBtn =
-    "inline-flex h-14 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-2xl bg-[#F1EEFF] px-3 font-inter text-[15px] font-bold leading-tight text-[#0d0a1c] transition-transform active:scale-[0.98] disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0a1c]";
+    "inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-[10px] bg-[#eef0f5] px-4 font-inter text-[15px] font-semibold leading-tight text-[#0b0d14] transition-[background-color,transform] duration-150 hover:bg-white active:scale-[0.98] disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0d14]";
 const secondaryBtn =
-    "inline-flex shrink-0 items-center justify-center gap-1 rounded-2xl border border-white/15 font-inter font-bold text-white transition-colors hover:bg-white/[0.06] active:bg-white/[0.09] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
+    "inline-flex shrink-0 items-center justify-center gap-2 rounded-[10px] border border-white/10 bg-white/[0.03] font-inter font-medium text-[#eef0f5] transition-colors hover:bg-white/[0.06] active:bg-white/[0.08] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
 
 function CertificateWizard({
     cfg,
@@ -491,7 +479,7 @@ function CertificateWizard({
                             key={item.id}
                             aria-current={i === step ? "step" : undefined}
                             data-done={i < step || undefined}
-                            className="min-w-0 font-inter text-[11px] font-semibold sm:text-[12px]"
+                            className="min-w-0 font-inter text-[11px] font-medium sm:text-[12px]"
                         >
                             <span className="mb-2 block h-0.5 rounded-full transition-colors" aria-hidden />
                             {item.label}
@@ -508,28 +496,28 @@ function CertificateWizard({
                         transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
                         onAnimationComplete={settle}
                     >
-                        <h3 className="mb-4 font-inter text-[22px] font-semibold tracking-[-0.02em] text-white sm:text-[26px]">{st.title}</h3>
+                        <h3 className="mb-4 font-inter text-[22px] font-medium tracking-[-0.01em] text-[#eef0f5] sm:text-[24px]">{st.title}</h3>
                         {panel(step)}
                     </motion.div>
                 </AnimatePresence>
                 <div className="mt-5 flex items-stretch gap-2">
                     {step > 0 && (
-                        <button type="button" disabled={moving} onClick={() => go(step - 1)} className={`${secondaryBtn} h-14 min-w-[92px] px-3 text-[14px]`}>
-                            <ChevronLeft className="h-5 w-5 shrink-0" aria-hidden />
+                        <button type="button" disabled={moving} onClick={() => go(step - 1)} className={`${secondaryBtn} h-12 min-w-[92px] px-3 text-[14px]`}>
+                            <ChevronLeft className="h-4 w-4 shrink-0" aria-hidden />
                             Назад
                         </button>
                     )}
                     {step < LAST ? (
                         <button type="button" disabled={moving} onClick={() => next()} className={primaryBtn}>
                             <span>{st.next}</span>
-                            <ChevronRight className="h-5 w-5 shrink-0" aria-hidden />
+                            <ChevronRight className="h-4 w-4 shrink-0" aria-hidden />
                         </button>
                     ) : !picked ? (
                         <button type="button" disabled={moving} onClick={pick} className={primaryBtn}>
                             Оставить <span className="whitespace-nowrap">{sum}</span>
                         </button>
                     ) : (
-                        <p className="self-center font-inter text-[14px] font-semibold text-white">Выбрано {sum}</p>
+                        <p className="self-center font-inter text-[14px] font-medium text-[#eef0f5]">Выбрано {sum}</p>
                     )}
                 </div>
                 {step < LAST && (
@@ -538,7 +526,7 @@ function CertificateWizard({
                         disabled={moving}
                         onClick={() => next(true)}
                         aria-label={`Пропустить шаг «${st.label}»`}
-                        className="mt-1 inline-flex min-h-11 w-full items-center justify-center rounded-lg font-inter text-[14px] font-semibold text-[#a39cc4] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                        className="mt-1 inline-flex min-h-11 w-full items-center justify-center rounded-lg font-inter text-[14px] font-medium text-[#a3a9b8] underline decoration-white/25 underline-offset-4 transition-colors hover:text-[#eef0f5] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
                         Пропустить
                     </button>
@@ -549,20 +537,20 @@ function CertificateWizard({
                 <AnimatePresence initial={false}>
                     {picked && step === LAST && !moving && (
                         <motion.div
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                             className="mt-4"
                         >
                             <div className="flex flex-col gap-3">
                                 <BuyButton nominal={cfg.nominal} place="wizard" onBuy={onBuy} size="lg" className="w-full" />
-                                <button type="button" onClick={onOpenCase} className={`${secondaryBtn} h-14 gap-2.5 px-6 text-[16px] font-semibold`}>
-                                    <Sparkles className="h-5 w-5" style={{ color: "var(--rar)" }} aria-hidden />
+                                <button type="button" onClick={onOpenCase} className={`${secondaryBtn} h-12 px-6 text-[15px]`}>
+                                    <Package className="h-4 w-4 text-[#a3a9b8]" aria-hidden />
                                     Посмотреть, как откроется подарок
                                 </button>
                             </div>
-                            <p className="mt-3 text-center font-inter text-[13px] leading-relaxed text-[#8f88b3]">
+                            <p className="mt-3 text-center font-inter text-[13px] leading-relaxed text-[#7a8296]">
                                 Оплата картой или через СБП. Промокод и ссылка на подарок придут сразу после оплаты.
                             </p>
                         </motion.div>
@@ -609,7 +597,7 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
             <div className="mx-auto grid grid-cols-1 max-w-[1280px] gap-x-16 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)]">
                 {/* Headline */}
                 <div className="text-center lg:col-start-2 lg:row-start-1 lg:text-left">
-                    <h2 className={`${s.display} text-[clamp(1.4rem,6vw,2.1rem)] leading-[1.08] text-white sm:text-[2.4rem] lg:text-[clamp(2rem,2.7vw,2.8rem)]`}>
+                    <h2 className={`${s.display} text-[clamp(1.5rem,6vw,2.1rem)] leading-[1.08] text-[#eef0f5] sm:text-[2.4rem] lg:text-[clamp(2rem,2.7vw,2.8rem)]`}>
                         Соберите свой сертификат
                     </h2>
                 </div>
@@ -619,32 +607,26 @@ export default function Studio({ cfg, update, rates, onOpenCase, onBuy, ctaRef }
                     ref={stageRef}
                     className={`${s.stage} ${s.stagePinned} relative mt-3 lg:sticky lg:top-24 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mt-2 lg:self-start`}
                 >
-                    <div className={s.beam} aria-hidden />
-                    <div className={s.beamCore} aria-hidden />
-                    {MOTES.map((m, i) => <span key={i} className={s.mote} style={{ left: m.left, animationDelay: m.delay }} aria-hidden />)}
-
-                    {/* the card drops onto the pedestal the first time the constructor comes into view */}
+                    {/* the card fades in the first time the constructor comes into view */}
                     <motion.div
-                        initial={{ y: -160, opacity: 0, rotate: -6 }}
-                        animate={landed ? { y: 0, opacity: 1, rotate: 0 } : undefined}
-                        transition={{ type: "spring", stiffness: 120, damping: 12, mass: 1.1 }}
-                        className={`relative z-[1] transition-[width] duration-300 ease-out sm:w-[300px] lg:w-[min(100%,410px)] ${
+                        initial={{ y: 12, opacity: 0 }}
+                        animate={landed ? { y: 0, opacity: 1 } : undefined}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className={`relative z-[1] sm:w-[300px] lg:w-[min(100%,410px)] ${
                             typing ? "w-[132px]" : "w-[clamp(160px,min(54vw,calc(37svh*0.714)),250px)]"
                         }`}
                     >
                         <HoloCard cfg={cfg} />
                     </motion.div>
-                    <div className={`${s.pedestal} ${typing ? "hidden lg:block" : ""}`} aria-hidden>
-                        {landed && <span className={s.shock} />}
-                    </div>
+                    <div className={`${s.pedestal} ${typing ? "hidden lg:block" : ""}`} aria-hidden />
 
                     {solo.units > 0 && (
-                        <p className={`relative z-[1] mt-1 text-center font-inter text-[12px] leading-snug text-[#a39cc4] sm:mt-2 sm:text-[14px] ${typing ? "hidden lg:block" : ""}`}>
-                            Хватит на <b className="font-semibold text-white">{solo.units} ч в соло-комнате</b>
+                        <p className={`relative z-[1] mt-1 text-center font-inter text-[12px] leading-snug text-[#a3a9b8] sm:mt-2 sm:text-[14px] ${typing ? "hidden lg:block" : ""}`}>
+                            Хватит на <b className="font-medium text-[#eef0f5]">{solo.units} ч в соло-комнате</b>
                             {solo.bar > 0 && (
                                 <>
                                     {soloBar.includes(" и ") ? ", " : " и "}
-                                    <b className="font-semibold text-[#FFE68A]">{soloBar}</b>
+                                    <b className="font-medium text-[#eef0f5]">{soloBar}</b>
                                 </>
                             )}
                         </p>

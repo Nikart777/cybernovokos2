@@ -23,9 +23,9 @@ export const BuyButton = forwardRef<HTMLButtonElement, BuyProps>(function BuyBut
     ref,
 ) {
     const sizes = {
-        sm: "h-11 px-4 text-[14px] gap-2 rounded-xl",
-        md: "h-14 px-6 text-[16px] gap-2.5 rounded-2xl",
-        lg: "h-16 px-8 text-[17px] sm:text-[18px] gap-3 rounded-2xl",
+        sm: "h-10 px-4 text-[14px] gap-2",
+        md: "h-12 px-6 text-[15px] gap-2",
+        lg: "h-[52px] px-7 text-[16px] gap-2",
     };
     return (
         <button
@@ -35,13 +35,13 @@ export const BuyButton = forwardRef<HTMLButtonElement, BuyProps>(function BuyBut
                 track("cert_drop_buy_open", { place, nominal });
                 onBuy(place);
             }}
-            className={`${s.buy} inline-flex items-center justify-center font-inter font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0a1c] ${sizes[size]} ${className}`}
+            className={`${s.buy} inline-flex items-center justify-center rounded-[10px] font-inter font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0d14] ${sizes[size]} ${className}`}
         >
-            <Gift className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} aria-hidden />
+            <Gift className={size === "lg" ? "h-[18px] w-[18px]" : "h-4 w-4"} aria-hidden />
             <span>
                 {label}
                 {withPrice && (
-                    <span className="font-semibold opacity-90">
+                    <span className="font-normal tabular-nums opacity-90">
                         {" "}за {digitGroups(nominal).join(" ")}&nbsp;₽
                     </span>
                 )}
@@ -89,9 +89,9 @@ export function CopyLink({
         <button
             type="button"
             onClick={copy}
-            className={`inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 font-inter text-[15px] font-semibold text-white transition-colors hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${className}`}
+            className={`inline-flex h-12 items-center justify-center gap-2 rounded-[10px] border border-white/10 bg-white/[0.03] px-5 font-inter text-[15px] font-medium text-[#eef0f5] transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${className}`}
         >
-            {done ? <Check className="h-4 w-4 text-[#7CF5FF]" aria-hidden /> : <Icon className="h-4 w-4" aria-hidden />}
+            {done ? <Check className="h-4 w-4 text-[#4cc38a]" aria-hidden /> : <Icon className="h-4 w-4 text-[#a3a9b8]" aria-hidden />}
             <span aria-live="polite">{done ? doneLabel : label}</span>
         </button>
     );

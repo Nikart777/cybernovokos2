@@ -38,23 +38,23 @@ function TikTokIcon() {
 const SOCIALS = [
     { name: "Telegram-канал", href: "https://t.me/CyberXNovokos", icon: <TelegramIcon /> },
     { name: "Чат в Telegram", href: "https://t.me/cyberxn32", icon: <TelegramIcon /> },
-    { name: "ВКонтакте", href: "https://vk.com/club224403383", icon: <span className="font-inter text-[13px] font-extrabold">VK</span> },
+    { name: "ВКонтакте", href: "https://vk.com/club224403383", icon: <span className="font-inter text-[13px] font-semibold">VK</span> },
     { name: "TikTok", href: "https://www.tiktok.com/@cyberxnovokosino", icon: <TikTokIcon /> },
 ];
 
 const iconBtn =
-    "grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-[#d9d3f5] transition-colors hover:bg-white/[0.1] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
+    "grid h-11 w-11 place-items-center rounded-[10px] border border-white/10 bg-white/[0.03] text-[#a3a9b8] transition-colors hover:bg-white/[0.06] hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white";
 
 export default function DropFooter() {
     return (
-        <footer className="relative border-t border-white/[0.07] bg-[#0a0817] font-inter">
+        <footer className="relative border-t border-white/[0.07] bg-[#07080d] font-inter">
             <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1.2fr] md:gap-8 lg:py-14">
                 <div>
                     <Link href="/" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src="/logo new.png" alt="CyberX" className="h-7 w-auto" />
                     </Link>
-                    <p className="mt-4 max-w-[34ch] text-[14px] leading-relaxed text-[#8f88b3]">
+                    <p className="mt-4 max-w-[34ch] text-[14px] leading-relaxed text-[#7a8296]">
                         Компьютерный клуб в Новокосино: игровые ПК, PS5, автосимуляторы и бар.
                     </p>
                 </div>
@@ -63,7 +63,7 @@ export default function DropFooter() {
                     <ul className="grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-1">
                         {NAV.map((l) => (
                             <li key={l.href}>
-                                <Link href={l.href} className="text-[15px] text-[#c8c1ea] transition-colors hover:text-white">
+                                <Link href={l.href} className="text-[15px] text-[#a3a9b8] transition-colors hover:text-[#eef0f5]">
                                     {l.name}
                                 </Link>
                             </li>
@@ -73,8 +73,8 @@ export default function DropFooter() {
 
                 <div className="space-y-6">
                     <div>
-                        <p className="mb-3 text-[13px] text-[#8f88b3]">Мы в соцсетях</p>
-                        <div className="flex flex-wrap gap-2.5">
+                        <p className="mb-3 text-[13px] text-[#7a8296]">Мы в соцсетях</p>
+                        <div className="flex flex-wrap gap-2">
                             {SOCIALS.map((x) => (
                                 <a key={x.name} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.name} title={x.name} className={iconBtn}>
                                     {x.icon}
@@ -83,17 +83,17 @@ export default function DropFooter() {
                         </div>
                     </div>
                     <div>
-                        <p className="mb-3 text-[13px] text-[#8f88b3]">Мы на картах</p>
-                        <div className="flex flex-wrap gap-2.5">
+                        <p className="mb-3 text-[13px] text-[#7a8296]">Мы на картах</p>
+                        <div className="flex flex-wrap gap-2">
                             {MAPS.map((m) => (
                                 <a
                                     key={m.name}
                                     href={m.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 text-[14px] font-medium text-[#d9d3f5] transition-colors hover:bg-white/[0.1] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                    className="inline-flex h-11 items-center gap-2 rounded-[10px] border border-white/10 bg-white/[0.03] px-4 text-[14px] font-medium text-[#a3a9b8] transition-colors hover:bg-white/[0.06] hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                                 >
-                                    <MapPinned className="h-4 w-4" aria-hidden />
+                                    <MapPinned className="h-4 w-4 text-[#7a8296]" aria-hidden />
                                     {m.name}
                                 </a>
                             ))}
@@ -102,7 +102,7 @@ export default function DropFooter() {
                 </div>
             </div>
             <div className="border-t border-white/[0.05]">
-                <p className="mx-auto max-w-[1280px] px-4 py-5 text-[12px] text-[#6f6894] sm:px-6">© 2026 CyberX Новокосино</p>
+                <p className="mx-auto max-w-[1280px] px-4 py-5 text-[12px] text-[#7a8296] sm:px-6">© 2026 CyberX Новокосино</p>
             </div>
         </footer>
     );

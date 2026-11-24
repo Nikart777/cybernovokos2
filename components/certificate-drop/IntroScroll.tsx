@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, Gift } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, MotionValue, useMotionValue, useMotionValueEvent, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import s from "./drop.module.css";
 import HoloCard from "./HoloCard";
 import { DEFAULT_CONFIG, GiftConfig, rarityOf, SkinId, track } from "./model";
@@ -89,7 +89,32 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
         if (typeof sectionRef === "function") sectionRef(el);
         else if (sectionRef) (sectionRef as React.MutableRefObject<HTMLElement | null>).current = el;
     };
-    const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+    // Progress comes from a plain scroll listener: framer's useScroll can hand the
+    // transforms to a native ScrollTimeline and then never reports the value to JS,
+    // which froze the nominal, the designs and the step bar.
+    const p = useMotionValue(0);
+    useEffect(() => {
+        let raf = 0;
+        const read = () => {
+            raf = 0;
+            const el = ref.current;
+            if (!el) return;
+            const r = el.getBoundingClientRect();
+            const span = r.height - window.innerHeight;
+            p.set(span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0);
+        };
+        const onScroll = () => {
+            if (!raf) raf = requestAnimationFrame(read);
+        };
+        read();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            if (raf) cancelAnimationFrame(raf);
+        };
+    }, [p]);
 
     const [nominal, setNominal] = useState(NOMS[0]);
     const [skin, setSkin] = useState<SkinId>("holo");
@@ -124,12 +149,10 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
     const rightSide = "lg:left-auto lg:right-[max(24px,calc((100vw-1280px)/2+48px))]";
 
     return (
-        <section ref={setRefs} aria-label="Что такое подарочный сертификат CyberX" className="relative z-[2] h-[360vh]" style={{ "--rar": rarity.color } as React.CSSProperties}>
+        <section ref={setRefs} aria-label="Что такое подарочный сертификат CyberX" className="relative z-[2] h-[260vh]" style={{ "--rar": rarity.color } as React.CSSProperties}>
             <div className="sticky top-0 h-[100svh] overflow-hidden">
                 {/* card stage: centred low on phones, right column on desktop */}
                 <div className={`absolute bottom-[12svh] left-1/2 w-[clamp(180px,min(58vw,calc(42svh*0.714)),300px)] -translate-x-1/2 lg:bottom-auto lg:top-1/2 lg:w-[min(30vw,390px)] lg:-translate-x-0 lg:-translate-y-[46%] ${rightSide}`}>
-                    <div className={s.beam} aria-hidden />
-                    <div className={s.beamCore} aria-hidden />
                     <motion.div style={{ opacity: cardOpacity }} className="relative">
                         <motion.div style={{ rotateY, scale, transformPerspective: 1200 }}>
                             <HoloCard cfg={cfg} />
@@ -152,33 +175,33 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                 <div className={`absolute inset-x-4 top-[88px] h-[33svh] sm:inset-x-8 lg:top-1/2 lg:h-[480px] lg:w-[min(46vw,600px)] lg:-translate-y-1/2 ${side}`}>
                     <Caption p={p} range={[0, 0.13, 0.18]} className="text-center lg:text-left">
                         {/* Reads as one phrase, the one people search: «Подарочный сертификат в компьютерный клуб…» */}
-                        <h1 className="text-white">
+                        <h1 className="text-[#eef0f5]">
                             <span className={`${s.display} block text-[clamp(2.1rem,9.4vw,3rem)] leading-[1.02] lg:text-[clamp(3.2rem,5vw,5rem)]`}>
                                 Подарочный сертификат
                             </span>
                             <span className="sr-only"> </span>
-                            <span className="mt-3 block font-inter text-[15px] font-semibold leading-snug text-[#d9d3f5] sm:text-[17px] lg:mt-5 lg:text-[20px]">
+                            <span className="mt-3 block font-inter text-[16px] font-normal leading-snug text-[#a3a9b8] sm:text-[18px] lg:mt-4 lg:text-[20px]">
                                 в компьютерный клуб CyberX&nbsp;Новокосино
                             </span>
                         </h1>
                     </Caption>
 
                     <Caption p={p} range={[0.16, 0.21, 0.4, 0.44]} className="text-center lg:text-left">
-                        <h2 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-white lg:text-[clamp(2.2rem,3.3vw,3.3rem)]`}>
+                        <h2 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-[#eef0f5] lg:text-[clamp(2.2rem,3.3vw,3.3rem)]`}>
                             Любой номинал,{" "}
                             <br />
                             <span className="whitespace-nowrap">от 1{" "}000{" "}₽</span>
                         </h2>
-                        <p className="mx-auto mt-3 max-w-[42ch] font-inter text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:text-[18px]">
-                            Чем больше сумма, тем больше удовольствия.
+                        <p className="mx-auto mt-3 max-w-[42ch] font-inter text-[14px] leading-relaxed text-[#a3a9b8] sm:text-[16px] lg:mx-0 lg:text-[18px]">
+                            Баланс тратится частями и действует год
                         </p>
                     </Caption>
 
                     <Caption p={p} range={[0.42, 0.47, 0.63, 0.67]} className="text-center lg:text-left">
-                        <h2 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-white lg:text-[clamp(2.2rem,3.3vw,3.3rem)]`}>
+                        <h2 className={`${s.display} text-[clamp(1.5rem,6.6vw,2.3rem)] leading-[1.06] text-[#eef0f5] lg:text-[clamp(2.2rem,3.3vw,3.3rem)]`}>
                             Девять дизайнов или своё фото
                         </h2>
-                        <p className="mx-auto mt-3 max-w-[42ch] font-inter text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:text-[18px]">
+                        <p className="mx-auto mt-3 max-w-[42ch] font-inter text-[14px] leading-relaxed text-[#a3a9b8] sm:text-[16px] lg:mx-0 lg:text-[18px]">
                             Голограмма, неон, карбон, лава… Или загрузите снимок с телефона, и мы подгоним его под сертификат.
                         </p>
                     </Caption>
@@ -190,10 +213,10 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                     className={`absolute inset-x-4 bottom-[68px] top-[84px] flex flex-col justify-between text-center sm:inset-x-8 lg:bottom-auto lg:top-1/2 lg:w-[min(42vw,540px)] lg:-translate-y-1/2 lg:justify-center lg:text-left ${side}`}
                 >
                     <div>
-                        <h2 className={`${s.display} text-[clamp(1.35rem,6vw,2.1rem)] leading-[1.06] text-white lg:text-[clamp(2.1rem,3.1vw,3.1rem)]`}>
+                        <h2 className={`${s.display} text-[clamp(1.35rem,6vw,2.1rem)] leading-[1.06] text-[#eef0f5] lg:text-[clamp(2.1rem,3.1vw,3.1rem)]`}>
                             Можно потратить на всё в клубе
                         </h2>
-                        <p className="mx-auto mt-2.5 max-w-[46ch] font-inter text-[14px] leading-relaxed text-[#a39cc4] sm:text-[16px] lg:mx-0 lg:mt-4 lg:text-[18px]">
+                        <p className="mx-auto mt-2.5 max-w-[46ch] font-inter text-[14px] leading-relaxed text-[#a3a9b8] sm:text-[16px] lg:mx-0 lg:mt-4 lg:text-[18px]">
                             ПК, отдельные комнаты, PS5, автосимулятор и бар. Выбирает тот, кому дарите.
                         </p>
                     </div>
@@ -201,9 +224,8 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                         <button
                             type="button"
                             onClick={skip}
-                            className={`${s.buy} inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-2xl px-7 font-inter text-[16px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto`}
+                            className="inline-flex h-12 w-full items-center justify-center rounded-[10px] bg-[#eef0f5] px-6 font-inter text-[15px] font-semibold text-[#0b0d14] transition-[background-color,transform] duration-150 hover:bg-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0d14] sm:w-auto"
                         >
-                            <Gift className="h-5 w-5" aria-hidden />
                             Собрать свой сертификат
                         </button>
                     </div>
@@ -217,15 +239,15 @@ export default function IntroScroll({ sectionRef }: { sectionRef?: React.Ref<HTM
                     <ol className="flex flex-1 items-center gap-2" aria-label="Шаги рассказа">
                         {STEPS.map((label, i) => (
                             <li key={label} className="flex-1">
-                                <span className={`block h-[3px] rounded-full transition-colors duration-300 ${i <= step ? "bg-white" : "bg-white/15"}`} />
-                                <span className={`mt-2 hidden font-inter text-[12px] transition-colors duration-300 lg:block ${i === step ? "text-white" : "text-[#7d76a3]"}`}>{label}</span>
+                                <span className={`block h-0.5 rounded-full transition-colors duration-300 ${i <= step ? "bg-[#eef0f5]" : "bg-white/10"}`} />
+                                <span className={`mt-2 hidden font-inter text-[12px] transition-colors duration-300 lg:block ${i === step ? "text-[#eef0f5]" : "text-[#7a8296]"}`}>{label}</span>
                             </li>
                         ))}
                     </ol>
                     <button
                         type="button"
                         onClick={skip}
-                        className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-black/30 px-4 font-inter text-[13px] font-semibold text-[#d9d3f5] backdrop-blur transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white lg:-mt-6"
+                        className="inline-flex h-10 shrink-0 items-center gap-2 rounded-[10px] border border-white/10 bg-[#11141c] px-4 font-inter text-[13px] font-medium text-[#a3a9b8] transition-colors hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white lg:-mt-6"
                     >
                         К конструктору
                         <ChevronDown className="h-4 w-4" aria-hidden />

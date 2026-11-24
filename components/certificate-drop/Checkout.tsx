@@ -95,47 +95,47 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
                     aria-labelledby="cd-checkout-title"
                     style={{ "--rar": rarity.color } as React.CSSProperties}
                 >
-                    <div className="absolute inset-0 bg-[#07051a]/80 backdrop-blur-md" onClick={() => !busy && onClose()} aria-hidden />
+                    <div className="absolute inset-0 bg-[#07080d]/85" onClick={() => !busy && onClose()} aria-hidden />
                     <motion.form
                         onSubmit={submit}
-                        initial={{ y: 60, opacity: 0 }}
+                        initial={{ y: 24, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 60, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                        className="relative max-h-[92svh] w-full max-w-[480px] overflow-y-auto rounded-t-[26px] border border-white/10 bg-[#151030] p-5 pb-[max(20px,env(safe-area-inset-bottom))] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] sm:rounded-[26px] sm:p-7"
+                        exit={{ y: 24, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative max-h-[92svh] w-full max-w-[480px] overflow-y-auto rounded-t-[20px] border border-white/10 bg-[#11141c] p-5 pb-[max(20px,env(safe-area-inset-bottom))] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.8)] sm:rounded-[20px] sm:p-8"
                     >
                         <button
                             type="button"
                             onClick={onClose}
                             disabled={busy}
                             aria-label="Закрыть"
-                            className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full text-[#a39cc4] transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                            className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-[10px] text-[#a3a9b8] transition-colors hover:bg-white/[0.06] hover:text-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                         >
                             <X className="h-5 w-5" />
                         </button>
 
-                        <h2 id="cd-checkout-title" className={`${s.display} pr-10 text-[1.6rem] leading-[1.08] text-white`}>
+                        <h2 id="cd-checkout-title" className={`${s.display} pr-10 text-[1.5rem] leading-[1.1] text-[#eef0f5]`}>
                             Оформление сертификата
                         </h2>
 
-                        <div className="mt-5 flex items-center gap-4 rounded-2xl bg-black/25 p-3">
+                        <div className="mt-6 flex items-center gap-4 rounded-xl border border-white/[0.08] bg-[#0b0d14] p-3">
                             <MiniCert skin={cfg.skin} image={cfg.image} nominal={cfg.nominal} label={false} className="h-[78px] w-[56px] shrink-0 rounded-lg" />
                             <div className="min-w-0 font-inter">
-                                <div className="font-tactic text-[22px] font-black leading-none text-white">
+                                <div className="font-inter text-[22px] font-medium leading-none tabular-nums text-[#eef0f5]">
                                     {digitGroups(cfg.nominal).join(" ")}
-                                    <span className="font-inter font-extrabold"> ₽</span>
+                                    <span> ₽</span>
                                 </div>
-                                <div className="mt-1.5 truncate text-[13px] text-[#c8c1ea]">
+                                <div className="mt-2 truncate text-[13px] text-[#a3a9b8]">
                                     {skinName(cfg.skin)}, {occasionLabel(cfg).toLowerCase()}
                                 </div>
-                                <div className="truncate text-[13px] text-[#8f88b3]">
+                                <div className="truncate text-[13px] text-[#7a8296]">
                                     {cfg.to.trim() ? `Кому: ${cfg.to.trim()}` : "Без имени"}
                                 </div>
-                                {bonus.active && <div className="mt-1 text-[13px] font-semibold text-[#FFE68A]">{bonusLabel}</div>}
+                                {bonus.active && <div className="mt-1 text-[13px] text-[#eef0f5]">{bonusLabel}</div>}
                             </div>
                         </div>
 
-                        <label htmlFor="cd-email" className="mt-5 block font-inter text-[13px] font-semibold text-[#c8c1ea]">
+                        <label htmlFor="cd-email" className="mt-6 block font-inter text-[13px] font-medium text-[#a3a9b8]">
                             Email для чека и промокода
                         </label>
                         <input
@@ -149,27 +149,27 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="you@mail.ru"
-                            className="mt-2 h-12 w-full rounded-xl border border-white/12 bg-white/[0.05] px-4 font-inter text-[16px] text-white placeholder:text-[#7d76a3] focus:border-white/40 focus:outline-none"
+                            className="mt-2 h-12 w-full rounded-[10px] border border-white/10 bg-[#0b0d14] px-4 font-inter text-[16px] text-[#eef0f5] placeholder:text-[#7a8296] transition-colors focus:border-white/30 focus:outline-none"
                         />
 
-                        <ul className="mt-5 space-y-2.5 font-inter text-[14px] leading-snug text-[#c8c1ea]">
-                            <li className="flex gap-2.5">
-                                <Lock className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--rar)" }} aria-hidden />
+                        <ul className="mt-6 space-y-2 font-inter text-[14px] leading-snug text-[#a3a9b8]">
+                            <li className="flex gap-2">
+                                <Lock className="mt-0.5 h-4 w-4 shrink-0 text-[#7a8296]" aria-hidden />
                                 Промокод и ссылка-сюрприз откроются сразу после оплаты
                             </li>
-                            <li className="flex gap-2.5">
-                                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#7CF5FF]" aria-hidden />
+                            <li className="flex gap-2">
+                                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#7a8296]" aria-hidden />
                                 Оплата картой или через СБП на защищённой странице ЮKassa
                             </li>
                         </ul>
 
                         {error && (
-                            <p role="alert" className="mt-4 rounded-xl border border-[#ff2e63]/40 bg-[#ff2e63]/10 p-3 font-inter text-[14px] text-white">
+                            <p role="alert" className="mt-4 rounded-[10px] border border-[#e5484d]/40 bg-[#e5484d]/10 p-3 font-inter text-[14px] text-[#eef0f5]">
                                 {error.text}
                                 {error.offline && (
                                     <>
                                         {" "}
-                                        <a href={telegramHelpUrl()} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-4">
+                                        <a href={telegramHelpUrl()} target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-4">
                                             Написать в Telegram
                                         </a>
                                     </>
@@ -180,19 +180,19 @@ export default function Checkout({ cfg, open, place, onClose }: Props) {
                         <button
                             type="submit"
                             disabled={busy}
-                            className={`${s.buy} mt-6 inline-flex h-16 w-full items-center justify-center gap-2.5 rounded-2xl font-inter text-[18px] font-bold disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white`}
+                            className={`${s.buy} mt-6 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-[10px] font-inter text-[16px] font-semibold tabular-nums disabled:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#11141c]`}
                         >
                             {busy ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> : null}
                             {busy ? "Переходим к оплате…" : `Оплатить ${price}`}
                         </button>
 
-                        <p className="mt-3 text-center font-inter text-[12px] leading-relaxed text-[#8f88b3]">
+                        <p className="mt-3 text-center font-inter text-[12px] leading-relaxed text-[#7a8296]">
                             Нажимая «Оплатить», вы принимаете{" "}
-                            <a href="/legal/offer" target="_blank" className="underline underline-offset-2 hover:text-white">
+                            <a href="/legal/offer" target="_blank" className="underline underline-offset-2 hover:text-[#eef0f5]">
                                 оферту
                             </a>{" "}
                             и{" "}
-                            <a href="/legal/privacy" target="_blank" className="underline underline-offset-2 hover:text-white">
+                            <a href="/legal/privacy" target="_blank" className="underline underline-offset-2 hover:text-[#eef0f5]">
                                 политику конфиденциальности
                             </a>
                             .

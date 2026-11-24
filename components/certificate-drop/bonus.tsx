@@ -59,16 +59,16 @@ export function Countdown({ left }: { left: number }) {
         { v: two(s), l: "сек" },
     ];
     return (
-        <span className="inline-flex items-end gap-1.5" role="timer" aria-label={`До конца акции ${d} д ${h} ч ${m} мин`}>
+        <span className="inline-flex items-end gap-2" role="timer" aria-label={`До конца акции ${d} д ${h} ч ${m} мин`}>
             {cells.map((c, i) => (
-                <span key={c.l} className="inline-flex items-end gap-1.5">
+                <span key={c.l} className="inline-flex items-end gap-2">
                     <span className="flex flex-col items-center">
-                        <span className="min-w-[2.2ch] rounded-md bg-black/40 px-1.5 py-1 text-center font-tactic text-[17px] font-black tabular-nums leading-none text-white">
+                        <span className="min-w-[2.4ch] rounded-md border border-white/[0.08] bg-[#0b0d14] px-2 py-1 text-center font-inter text-[16px] font-medium tabular-nums leading-none text-[#eef0f5]">
                             {c.v}
                         </span>
-                        <span className="mt-1 font-inter text-[10px] text-[#a39cc4]">{c.l}</span>
+                        <span className="mt-1 font-inter text-[11px] text-[#7a8296]">{c.l}</span>
                     </span>
-                    {i < cells.length - 1 && <span className="pb-[18px] font-tactic text-[15px] font-black text-white/50">:</span>}
+                    {i < cells.length - 1 && <span className="pb-[22px] font-inter text-[14px] text-[#7a8296]">:</span>}
                 </span>
             ))}
         </span>

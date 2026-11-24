@@ -100,7 +100,6 @@ export default function CertificateDrop({ initial, rates, mode, startAtStudio = 
     const rarity = rarityOf(cfg.nominal);
     return (
         <div className={s.root} style={{ "--rar": rarity.color, "--pin-top": headerTucked ? "8px" : "66px" } as React.CSSProperties}>
-            <div className={s.grain} aria-hidden />
             <main>
                 <IntroScroll sectionRef={introRef} />
                 <Studio cfg={cfg} update={update} rates={rates} onOpenCase={openCase} onBuy={openCheckout} ctaRef={heroCtaRef} />

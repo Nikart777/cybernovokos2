@@ -30,9 +30,9 @@ export default async function GiftPage({ params }: { params: { id: string } }) {
     const o = load(params.id);
     if (!o) {
         return (
-            <main className="flex min-h-[100svh] flex-col items-center justify-center bg-[#0d0a1c] px-6 text-center text-white">
+            <main className="flex min-h-[100svh] flex-col items-center justify-center bg-[#0b0d14] px-6 text-center text-white">
                 <h1 className="font-tactic text-[2rem] font-black leading-tight">Подарок пока недоступен</h1>
-                <p className="mt-4 max-w-[44ch] font-inter text-[16px] text-[#a39cc4]">
+                <p className="mt-4 max-w-[44ch] font-inter text-[16px] text-[#a3a9b8]">
                     Ссылка неверная или сертификат ещё не оплачен. Попросите отправителя проверить ссылку.
                 </p>
                 <Link href={PAGE_PATH} className="mt-8 font-inter font-semibold underline underline-offset-4">

@@ -167,9 +167,9 @@ export default function CaseReel({ cfg, trigger = 0, onStart, onDone, place, sho
                         type="button"
                         onClick={onButton}
                         disabled={spinning}
-                        className={`${s.buy} inline-flex h-14 w-full max-w-[420px] items-center justify-center gap-2.5 rounded-2xl px-8 font-inter text-[17px] font-bold disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto`}
+                        className="inline-flex h-12 w-full max-w-[420px] items-center justify-center gap-2 rounded-[10px] bg-[#eef0f5] px-8 font-inter text-[15px] font-semibold text-[#0b0d14] transition-[background-color,transform] duration-150 hover:bg-white active:scale-[0.98] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0d14] sm:w-auto"
                     >
-                        <Package className="h-5 w-5" aria-hidden />
+                        <Package className="h-4 w-4" aria-hidden />
                         {spinning ? "Крутим…" : "Открыть кейс"}
                     </button>
                 </div>
